@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Nosyt Labs</title>
+  <link rel="stylesheet" href="/styles/global.css">
+</head>
+<body class="terminal-background">
+  <div class="terminal-scanline"></div>
+  <div class="terminal-noise"></div>
+  
+  <div class="terminal-container">
+    <div class="terminal-header">
+      <div class="terminal-title">ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</div>
+      <div class="terminal-subtitle">NOSYT LABS SECURE TERMINAL</div>
+    </div>
+    
+    <div class="terminal-content">
+      <div class="terminal-error-screen">
+        <h1>ERROR 404</h1>
+        <div class="terminal-error-message">
+          <p>FATAL EXCEPTION: Page not found</p>
+          <p>The file you are looking for has been moved, deleted, or never existed.</p>
+          <p>* Press any key to return to the main terminal *</p>
+        </div>
+        <div class="terminal-error-code">
+          <pre>
+0xC0000005: Access violation at 0x00000000.
+MEMORY DUMP: 0x74FF0B30 0x01A9F974 0x01A9F978 0x7C80B529
+          </pre>
+        </div>
+        <a href="/" class="terminal-button">Return to Home Terminal</a>
+      </div>
+    </div>
+    
+    <div class="terminal-footer">
+      <div class="terminal-commands">
+        [ESC] ABORT &nbsp;&nbsp; [ENTER] RETRY &nbsp;&nbsp; [H] HELP
+      </div>
+      <div class="terminal-copyright">
+        &copy; 2025 Nosyt Labs - Notable Opportunities Shape Your Tomorrow
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Add event listener to redirect on any key press
+    document.addEventListener('keydown', function() {
+      window.location.href = '/';
+    });
+  </script>
+</body>
+</html>

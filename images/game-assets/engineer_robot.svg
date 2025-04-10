@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Engineer Robot in Fallout Style -->
+  
+  <!-- Background glow -->
+  <circle cx="100" cy="100" r="80" fill="#3d2714" opacity="0.2" />
+  
+  <!-- Robot Body -->
+  <rect x="70" y="80" width="60" height="70" rx="5" ry="5" fill="#7a6247" stroke="#3e2e1d" stroke-width="3" />
+  
+  <!-- Robot Head -->
+  <rect x="75" y="50" width="50" height="40" rx="5" ry="5" fill="#7a6247" stroke="#3e2e1d" stroke-width="3" />
+  
+  <!-- Engineer Hard Hat -->
+  <path d="M70 50 L130 50 L130 45 L70 45 Z" fill="#f3d55b" stroke="#3e2e1d" stroke-width="2" />
+  <path d="M75 45 C100 30, 100 30, 125 45" fill="#f3d55b" stroke="#3e2e1d" stroke-width="2" />
+  
+  <!-- Eyes -->
+  <circle cx="85" cy="70" r="7" fill="#000" />
+  <circle cx="115" cy="70" r="7" fill="#000" />
+  <circle cx="85" cy="70" r="3" fill="#ff7700" />
+  <circle cx="115" cy="70" r="3" fill="#ff7700" />
+  
+  <!-- Mouth/Speaker -->
+  <rect x="90" y="85" width="20" height="5" rx="2" ry="2" fill="#333" />
+  
+  <!-- Arms -->
+  <rect x="50" y="90" width="20" height="10" rx="3" ry="3" fill="#7a6247" stroke="#3e2e1d" stroke-width="2" />
+  <rect x="130" y="90" width="20" height="10" rx="3" ry="3" fill="#7a6247" stroke="#3e2e1d" stroke-width="2" />
+  
+  <!-- Engineering Tool (Wrench) -->
+  <path d="M40 90 L25 85 L20 95 L35 100 Z" fill="#888" stroke="#555" stroke-width="1" />
+  <rect x="35" y="90" width="15" height="10" rx="1" ry="1" fill="#888" stroke="#555" stroke-width="1" />
+  
+  <!-- Legs -->
+  <rect x="75" y="150" width="15" height="30" rx="3" ry="3" fill="#7a6247" stroke="#3e2e1d" stroke-width="2" />
+  <rect x="110" y="150" width="15" height="30" rx="3" ry="3" fill="#7a6247" stroke="#3e2e1d" stroke-width="2" />
+  
+  <!-- Feet -->
+  <rect x="70" y="180" width="25" height="10" rx="3" ry="3" fill="#333" stroke="#222" stroke-width="2" />
+  <rect x="105" y="180" width="25" height="10" rx="3" ry="3" fill="#333" stroke="#222" stroke-width="2" />
+  
+  <!-- Control Panel -->
+  <rect x="85" y="100" width="30" height="20" rx="2" ry="2" fill="#333" stroke="#222" stroke-width="1" />
+  <circle cx="95" cy="110" r="3" fill="#ff7700" />
+  <circle cx="105" cy="110" r="3" fill="#3939ff" />
+  
+  <!-- Blueprint in Hand -->
+  <rect x="140" y="85" width="20" height="15" fill="#3373cc" stroke="#222" stroke-width="1" />
+  <line x1="145" y1="90" x2="155" y2="90" stroke="#fff" stroke-width="1" />
+  <line x1="145" y1="95" x2="155" y2="95" stroke="#fff" stroke-width="1" />
+  
+  <!-- Tool Belt -->
+  <rect x="70" y="140" width="60" height="10" rx="2" ry="2" fill="#8b4513" stroke="#3e2e1d" stroke-width="2" />
+  <circle cx="80" cy="145" r="2" fill="#888" />
+  <circle cx="90" cy="145" r="2" fill="#888" />
+  <circle cx="100" cy="145" r="2" fill="#888" />
+  <circle cx="110" cy="145" r="2" fill="#888" />
+  <circle cx="120" cy="145" r="2" fill="#888" />
+  
+  <!-- Weathering and Damage -->
+  <path d="M80 60 L85 65 L80 65" fill="#3e2e1d" opacity="0.7" />
+  <path d="M120 100 L125 105 L120 105" fill="#3e2e1d" opacity="0.7" />
+  <line x1="75" y1="120" x2="85" y2="130" stroke="#3e2e1d" stroke-width="1" opacity="0.7" />
+  
+  <!-- Fallout-style Gear Symbol -->
+  <g transform="translate(100, 135) scale(0.15)">
+    <circle cx="0" cy="0" r="50" fill="#ff7700" opacity="0.7" />
+    <circle cx="0" cy="0" r="20" fill="#000" />
+    <path d="M-10,-60 L10,-60 L15,-50 L-15,-50 Z" fill="#333" transform="rotate(0)" />
+    <path d="M-10,-60 L10,-60 L15,-50 L-15,-50 Z" fill="#333" transform="rotate(45)" />
+    <path d="M-10,-60 L10,-60 L15,-50 L-15,-50 Z" fill="#333" transform="rotate(90)" />
+    <path d="M-10,-60 L10,-60 L15,-50 L-15,-50 Z" fill="#333" transform="rotate(135)" />
+    <path d="M-10,-60 L10,-60 L15,-50 L-15,-50 Z" fill="#333" transform="rotate(180)" />
+    <path d="M-10,-60 L10,-60 L15,-50 L-15,-50 Z" fill="#333" transform="rotate(225)" />
+    <path d="M-10,-60 L10,-60 L15,-50 L-15,-50 Z" fill="#333" transform="rotate(270)" />
+    <path d="M-10,-60 L10,-60 L15,-50 L-15,-50 Z" fill="#333" transform="rotate(315)" />
+  </g>
+</svg>

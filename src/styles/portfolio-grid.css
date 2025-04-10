@@ -1,0 +1,329 @@
+/* Portfolio Grid Layout Styles */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.portfolio-item {
+  border: 1px solid var(--terminal-green);
+  background-color: rgba(10, 10, 10, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(51, 255, 51, 0.2);
+}
+
+.portfolio-item-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--terminal-green);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.portfolio-item-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--terminal-green);
+}
+
+.portfolio-item-badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.portfolio-badge {
+  background-color: rgba(51, 255, 51, 0.2);
+  color: var(--terminal-green);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  border-radius: 2px;
+}
+
+.portfolio-item-content {
+  padding: 1rem;
+}
+
+.portfolio-item-description {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.portfolio-item-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.portfolio-stat {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+}
+
+.stat-label {
+  color: rgba(51, 255, 51, 0.7);
+  margin-bottom: 0.2rem;
+}
+
+.stat-value {
+  color: var(--terminal-green);
+}
+
+.portfolio-item-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.portfolio-action-button {
+  background-color: transparent;
+  border: 1px solid var(--terminal-green);
+  color: var(--terminal-green);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.portfolio-action-button:hover {
+  background-color: var(--terminal-green);
+  color: var(--terminal-black);
+}
+
+.portfolio-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.portfolio-item:hover .portfolio-item-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.portfolio-overlay-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.portfolio-filter {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.portfolio-filter-button {
+  background-color: transparent;
+  border: 1px solid var(--terminal-green);
+  color: var(--terminal-green);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.portfolio-filter-button.active {
+  background-color: var(--terminal-green);
+  color: var(--terminal-black);
+}
+
+.portfolio-filter-button:hover {
+  background-color: rgba(51, 255, 51, 0.2);
+}
+
+/* Portfolio Modal Styles */
+.portfolio-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.portfolio-modal-content {
+  background-color: var(--terminal-black);
+  border: 1px solid var(--terminal-green);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.portfolio-modal-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--terminal-green);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.portfolio-modal-title {
+  margin: 0;
+  color: var(--terminal-green);
+}
+
+.portfolio-modal-close {
+  background-color: transparent;
+  border: none;
+  color: var(--terminal-green);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.portfolio-modal-body {
+  padding: 1rem;
+}
+
+.portfolio-modal-section {
+  margin-bottom: 2rem;
+}
+
+.portfolio-modal-section-title {
+  color: var(--terminal-green);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(51, 255, 51, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.portfolio-modal-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.portfolio-gallery-item {
+  border: 1px solid rgba(51, 255, 51, 0.3);
+  overflow: hidden;
+}
+
+.portfolio-gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.portfolio-modal-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--terminal-green);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .portfolio-item-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animation Effects */
+@keyframes terminalFlicker {
+  0% { opacity: 1; }
+  5% { opacity: 0.8; }
+  10% { opacity: 1; }
+  15% { opacity: 0.9; }
+  20% { opacity: 1; }
+  55% { opacity: 1; }
+  60% { opacity: 0.7; }
+  65% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+.portfolio-item-title {
+  animation: terminalFlicker 5s infinite;
+}
+
+.portfolio-item:nth-child(odd) .portfolio-item-title {
+  animation-delay: 1s;
+}
+
+.portfolio-item:nth-child(even) .portfolio-item-title {
+  animation-delay: 2.5s;
+}
+
+/* Terminal Loading Effect */
+.portfolio-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.portfolio-loading-text {
+  color: var(--terminal-green);
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.portfolio-loading-text::after {
+  content: '';
+  position: absolute;
+  right: -15px;
+  top: 5px;
+  width: 10px;
+  height: 15px;
+  background-color: var(--terminal-green);
+  animation: cursorBlink 1s infinite;
+}
+
+@keyframes cursorBlink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}

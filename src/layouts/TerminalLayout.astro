@@ -1,0 +1,191 @@
+---
+import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
+import DropdownNav from '../components/DropdownNav.astro';
+import Analytics from '@vercel/analytics/astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <ViewTransitions />
+  <title>Nosyt Labs - Notable Opportunities Shape Your Tomorrow</title>
+  <meta name="description" content="Nosyt Labs is a forward-thinking technology company specializing in innovative solutions across multiple domains.">
+  <meta property="og:title" content="Nosyt Labs - Notable Opportunities Shape Your Tomorrow">
+  <meta property="og:description" content="Nosyt Labs is a forward-thinking technology company specializing in innovative solutions across multiple domains.">
+  <meta property="og:url" content="https://nosytlabs.com/">
+  <meta property="og:image" content="/images/nosyt-labs-og.png">
+  <meta property="og:type" content="website">
+  <meta name="keywords" content="technology, innovation, software, development">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Nosyt Labs",
+      "url": "https://nosytlabs.com/",
+      "logo": "/images/nosyt-labs-og.png"
+    }
+  </script>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+</head>
+<body class="terminal-background">
+  <!-- RobCo Loading Overlay -->
+  <div id="robco-loading-overlay">
+    <div class="robco-loading-content">
+      <h1>ROBCO INDUSTRIES (TM)</h1>
+      <p>TERMLINK PROTOCOL</p>
+      <div class="robco-loading-bar terminal-loading-enhanced"></div>
+    </div>
+  </div>
+
+  <div class="terminal-scanline"></div>
+  <div class="terminal-noise"></div>
+  <div id="terminal-background-container"></div>
+  <div id="terminal-effects-container"></div>
+  
+<!-- Toggle button moved inside .layout-container -->
+<div class="layout-container">
+  <button id="terminal-toggle" class="terminal-button mobile-toggle" aria-controls="terminal-dock" aria-expanded="false" style="display:none;">
+    Toggle Terminal
+  </button>
+
+
+  <main class="main-content">
+    <slot />
+  </main>
+
+  <aside class="terminal-dock" role="complementary" aria-label="Developer Terminal">
+    <div class="terminal-wrapper">
+      <div class="terminal-container">
+        <div class="terminal-header">
+          <div class="terminal-title">ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</div>
+          
+          <!-- Navigation Dropdown -->
+          <DropdownNav />
+        </div>
+
+        <div class="terminal-content">
+          <!-- Optional: terminal output area -->
+        </div>
+
+        <div id="terminal-interactive-container"></div>
+<div id="terminal-cli-container"></div>
+
+        <div class="terminal-footer">
+          <div class="terminal-commands">
+            [TAB] EXIT &nbsp;&nbsp; [R] LOAD HOLOTAPE &nbsp;&nbsp; [H] HELP
+          </div>
+          
+          <div class="terminal-copyright">
+            &copy; 2025 Nosyt Labs - Notable Opportunities Shape Your Tomorrow
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- Terminal dock moved inside .layout-container -->
+  <script>
+    // Terminal boot sequence and component initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Terminal initialized');
+      
+      // Import and initialize terminal background
+      import('../scripts/terminal-background.js').then(module => {
+        const { TerminalBackground } = module;
+        const background = new TerminalBackground('terminal-background-container');
+        background.initialize();
+      }).catch(err => {
+        console.error('Failed to load terminal background:', err);
+      });
+
+      // Import and initialize terminal effects
+      import('../scripts/terminal-effects.js').then(module => {
+        const { TerminalEffects } = module;
+        const effects = new TerminalEffects('terminal-effects-container');
+        effects.initialize();
+      }).catch(err => {
+        console.error('Failed to load terminal effects:', err);
+      });
+
+      // Import and initialize terminal interactive elements
+      // import('../scripts/terminal-interactive.js').then(module => {
+      //   const { TerminalInteractive } = module;
+      //   const interactive = new TerminalInteractive('terminal-interactive-container');
+      //   interactive.initialize();
+      // }).catch(err => {
+      //   console.error('Failed to load terminal interactive elements:', err);
+      // });
+      
+      // Import and initialize theme manager
+      import('../scripts/theme-manager.js').then(module => {
+        const { ThemeManager } = module;
+        const themeManager = new ThemeManager();
+        themeManager.initialize(true);
+      }).catch(err => {
+        console.error('Failed to load theme manager:', err);
+      });
+      
+      // Import and initialize terminal CLI
+      import('../scripts/terminal-cli.js').then(module => {
+        const { TerminalCLI } = module;
+        const cli = new TerminalCLI('terminal-cli-container');
+        cli.initialize();
+        // Hide RobCo loading overlay after CLI init
+        const overlay = document.getElementById('robco-loading-overlay');
+        if(overlay) overlay.classList.add('hidden');
+      }).catch(err => {
+        console.error('Failed to load terminal CLI:', err);
+      });
+      
+      // Import and initialize analytics manager
+      
+      // Import and initialize SEO manager
+      import('../scripts/seo-manager.js').then(module => {
+        const { SEOManager } = module;
+        const seo = new SEOManager();
+        // SEO manager is used server-side, no initialization needed
+      }).catch(err => {
+        console.error('Failed to load SEO manager:', err);
+      });
+      
+      // Import and initialize blog manager
+      import('../scripts/blog-manager.js').then(module => {
+        const { BlogManager } = module;
+        const blog = new BlogManager();
+        blog.initialize();
+      }).catch(err => {
+        console.error('Failed to load blog manager:', err);
+      });
+
+      // Listen for terminal object clicks
+      document.addEventListener('terminal-object-click', (event) => {
+        console.log('Terminal object clicked:', event.detail.id);
+        // Handle object interactions here
+      });
+    });
+  </script>
+    <Analytics />
+</body>
+</html>

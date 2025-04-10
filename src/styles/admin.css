@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html, body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-container {
+  height: 100vh;
+}
+
+
+/* Vault-Tec Admin Panel Theme */
+.admin-header {
+  background-color: var(--terminal-black);
+  color: var(--terminal-green);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md);
+  font-family: var(--terminal-font);
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+}
+
+.admin-logo img {
+  height: 50px;
+  margin-right: var(--space-md);
+}
+
+.admin-logo h1 {
+  font-size: var(--font-size-xl);
+  color: var(--terminal-green);
+  font-family: var(--terminal-font);
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+}
+
+.admin-nav ul {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.admin-nav-link {
+  color: var(--vaulttec-yellow);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.admin-nav-link:hover,
+.admin-nav-link:focus {
+  color: var(--terminal-green);
+  outline: none;
+}
+
+.admin-user {
+  color: var(--terminal-green);
+  font-family: var(--terminal-font);
+}
+
+/* Sidebar */
+.admin-sidebar {
+  background-color: var(--terminal-black);
+  color: var(--terminal-green);
+  width: 250px;
+  padding: 1rem;
+  min-height: 100vh;
+  font-family: var(--terminal-font);
+}
+
+.admin-sidebar-section h3 {
+  color: var(--terminal-green-light);
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--terminal-green);
+  padding-bottom: 0.3rem;
+  font-family: var(--terminal-font);
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+}
+
+.admin-sidebar-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.admin-sidebar-section a {
+  display: block;
+  color: var(--terminal-green);
+  text-decoration: none;
+  padding: 0.3rem 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: var(--terminal-font);
+}
+
+.admin-sidebar-section a:hover,
+.admin-sidebar-section a:focus {
+  background-color: var(--terminal-green-dark);
+  color: var(--terminal-black);
+  outline: none;
+}
+
+/* Main content */
+.admin-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--terminal-black);
+  color: var(--terminal-green);
+}
+
+/* Container */
+.admin-container {
+  display: flex;
+}
+
+/* Footer */
+.admin-footer {
+  background-color: var(--terminal-black);
+  color: var(--terminal-green);
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+  font-family: var(--terminal-font);
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-container {
+    flex-direction: column;
+  }
+  .admin-sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+}

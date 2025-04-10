@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "buildCommand": "astro build",
+  "outputDirectory": "dist",
+  "framework": "astro",
+  "env": {
+    "API_URL": "https://your-api-url.com",
+    "ANALYTICS_KEY": "your-analytics-key"
+  },
+  "github": {
+    "enabled": true,
+    "productionBranch": "master"
+  }
+}

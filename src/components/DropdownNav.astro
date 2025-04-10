@@ -1,0 +1,195 @@
+---
+---
+
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a href="/" class="navbar-brand">Nosyt Labs</a>
+  <button class="navbar-toggler" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav" id="nav-toggle">
+    ☰
+  </button>
+  <ul class="navbar-nav" id="main-nav">
+    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+    <li class="nav-item dropdown">
+      <button class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">About</button>
+      <ul class="dropdown-menu">
+        <li><a href="/about" class="dropdown-item">Our Story</a></li>
+        <li><a href="/team" class="dropdown-item">Team</a></li>
+      </ul>
+    </li>
+    <li class="nav-item"><a href="/projects" class="nav-link">Projects</a></li>
+    <li class="nav-item"><a href="/blog" class="nav-link">Blog</a></li>
+    <li class="nav-item"><a href="/vault-shelter" class="nav-link">Vault Shelter</a></li>
+    <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+  </ul>
+</nav>
+
+<style>
+/* Base styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--terminal-black);
+  padding: 0.5rem 1rem;
+  color: var(--terminal-white);
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  color: var(--terminal-white);
+  text-decoration: none;
+}
+.navbar-toggler {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--terminal-white);
+  cursor: pointer;
+  display: none;
+}
+.navbar-nav {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+.nav-item {
+  position: relative;
+}
+.nav-link, .dropdown-toggle {
+  background: none;
+  border: none;
+  color: var(--terminal-white);
+  text-decoration: none;
+  font: inherit;
+  cursor: pointer;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--terminal-gray);
+  display: none;
+  flex-direction: column;
+  min-width: 150px;
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  color: var(--terminal-white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.dropdown-item:hover,
+.nav-link:hover,
+.dropdown-toggle:hover {
+  background: var(--terminal-gray);
+}
+.nav-item:hover > .dropdown-menu,
+.nav-item:focus-within > .dropdown-menu,
+.nav-item.open > .dropdown-menu {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block;
+  }
+  .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    background: var(--terminal-black);
+  }
+  .navbar-nav.show {
+    display: flex;
+  }
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    display: none;
+    padding-left: 1rem;
+  }
+  .nav-item.open > .dropdown-menu {
+    display: flex;
+  }
+}
+/* Alignment fixes */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.navbar-brand, .navbar-toggler {
+  display: flex;
+  align-items: center;
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('main-nav');
+  navToggle.addEventListener('click', () => {
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+    navToggle.setAttribute('aria-expanded', !expanded);
+    navMenu.classList.toggle('show');
+  });
+
+  // Dropdown toggle buttons
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      const parent = toggle.closest('.nav-item');
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', !expanded);
+      parent.classList.toggle('open');
+    });
+
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle.click();
+      }
+    });
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    dropdownToggles.forEach(toggle => {
+      const parent = toggle.closest('.nav-item');
+      if (!parent.contains(e.target)) {
+        toggle.setAttribute('aria-expanded', false);
+        parent.classList.remove('open');
+      }
+    });
+  });
+
+  // Keyboard navigation for menu links
+  const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
+  navLinks.forEach(link => {
+    link.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // Close all dropdowns on Escape key
+        dropdownToggles.forEach(toggle => {
+          toggle.setAttribute('aria-expanded', false);
+          toggle.closest('.nav-item').classList.remove('open');
+        });
+      }
+    });
+  });
+});
+</script>

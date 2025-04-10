@@ -1,0 +1,209 @@
+---
+import TerminalLayout from '../layouts/TerminalLayout.astro';
+---
+
+<TerminalLayout>
+  <div class="terminal-section">
+    <h1 class="terminal-heading">CONTACT NOSYT LABS</h1>
+    <p class="terminal-paragraph">Establishing communication link with Nosyt Labs. Please select your preferred method of contact below.</p>
+    
+    <h2 class="terminal-subheading">DIRECT COMMUNICATION</h2>
+    <ul class="terminal-list">
+      <li class="terminal-list-item">General Inquiries: hi@nosytlabs.com</li>
+      <li class="terminal-list-item">Technical Support: support@nosytlabs.com</li>
+    </ul>
+    
+    <h2 class="terminal-subheading">SECURE MESSAGE TRANSMISSION</h2>
+    <form class="terminal-form" id="contact-form">
+      <div class="terminal-form-group">
+        <label for="name" class="terminal-label">NAME:</label>
+        <input type="text" id="name" name="name" class="terminal-input" required>
+      </div>
+      
+      <div class="terminal-form-group">
+        <label for="email" class="terminal-label">EMAIL:</label>
+        <input type="email" id="email" name="email" class="terminal-input" required>
+      </div>
+      
+      <div class="terminal-form-group">
+        <label for="server" class="terminal-label">SERVER ORDER:</label>
+        <select id="server" name="server" class="terminal-input" required>
+          <option value="">-- Select a Server --</option>
+        </select>
+      </div>
+      
+      <div class="terminal-form-group">
+        <label for="message" class="terminal-label">MESSAGE:</label>
+        <textarea id="message" name="message" class="terminal-textarea" rows="5" required></textarea>
+      </div>
+      
+      <button type="submit" class="terminal-button">TRANSMIT MESSAGE</button>
+    </form>
+    
+    <div class="terminal-alert hidden" id="success-message">
+      <div class="terminal-alert-title">TRANSMISSION SUCCESSFUL</div>
+      <div class="terminal-alert-content">Your message has been received. Expect a response within 48 hours.</div>
+    </div>
+    
+    <div class="terminal-alert hidden" id="error-message">
+      <div class="terminal-alert-title">TRANSMISSION ERROR</div>
+      <div class="terminal-alert-content">Unable to send message. Please try again or use direct email contact.</div>
+    </div>
+    
+    <h2 class="terminal-subheading">SOCIAL CONNECTIONS</h2>
+    <div class="terminal-social-links">
+      <a href="https://github.com/NosytLabs" target="_blank" class="terminal-social-link">GITHUB</a>
+      <a href="#" target="_blank" class="terminal-social-link">TWITTER</a>
+      <a href="#" target="_blank" class="terminal-social-link">LINKEDIN</a>
+    </div>
+    
+    <div class="terminal-navigation">
+      <a href="/" class="terminal-button">RETURN TO MAIN MENU</a>
+    </div>
+  </div>
+</TerminalLayout>
+
+<style>
+  .terminal-form {
+    margin: 2rem 0;
+  }
+  
+  .terminal-form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .terminal-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--terminal-green-light);
+  }
+  
+  .terminal-textarea {
+    background-color: var(--terminal-black);
+    color: var(--terminal-green);
+    border: 1px solid var(--terminal-green);
+    padding: 0.5rem;
+    font-family: var(--terminal-font);
+    width: 100%;
+    resize: vertical;
+  }
+  
+  .terminal-textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+  }
+  
+  .terminal-social-links {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .terminal-social-link {
+    color: var(--terminal-green-light);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+    padding-left: 1.5rem;
+  }
+  
+  .terminal-social-link::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    opacity: 1;
+  }
+  
+  .terminal-social-link:hover {
+    color: var(--terminal-white);
+    text-shadow: 0 0 8px rgba(76, 175, 80, 0.9);
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .terminal-navigation {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
+    const errorMessage = document.getElementById('error-message');
+    
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Simulate form submission with loading effect
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+      submitButton.textContent = 'TRANSMITTING...';
+      submitButton.disabled = true;
+      
+      // Add terminal typing sound effect
+      const typingSound = new Audio('/sounds/terminal-typing.mp3');
+      typingSound.volume = 0.3;
+      typingSound.play().catch(err => console.log('Audio playback prevented:', err));
+      
+      try {
+        // Simulate API call with delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // In a real implementation, this would be an actual API call
+        // const response = await fetch('/api/contact', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify(Object.fromEntries(new FormData(contactForm))),
+        // });
+        
+        // if (!response.ok) throw new Error('Failed to send message');
+        
+        // Show success message
+        contactForm.reset();
+        successMessage.classList.remove('hidden');
+        errorMessage.classList.add('hidden');
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          successMessage.classList.add('hidden');
+        }, 5000);
+      } catch (error) {
+        console.error('Error sending message:', error);
+        
+        // Show error message
+        errorMessage.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+        
+        // Hide error message after 5 seconds
+        setTimeout(() => {
+          errorMessage.classList.add('hidden');
+        }, 5000);
+      } finally {
+        // Restore button state
+        submitButton.textContent = originalButtonText;
+        submitButton.disabled = false;
+      }
+    });
+  });
+    // Fetch server inventory and populate dropdown
+    fetch('/src/scripts/server-inventory.json')
+      .then(response => response.json())
+      .then(data => {
+        const serverSelect = document.getElementById('server');
+        data.forEach(server => {
+          const option = document.createElement('option');
+          option.value = server.id;
+          option.textContent = server.name;
+          serverSelect.appendChild(option);
+        });
+      })
+      .catch(err => console.error('Failed to load server inventory:', err));
+
+</script>

@@ -1,0 +1,48 @@
+---
+import '../../../styles/global.css';
+import '../../../styles/admin.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login - Nosyt Labs</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="admin-body">
+  <div class="login-container" style="max-width:400px;margin:5rem auto;padding:2rem;background:var(--terminal-gray);color:var(--terminal-white);border-radius:8px;">
+    <h1 style="text-align:center;">Admin Login</h1>
+    <form id="login-form" style="display:flex;flex-direction:column;gap:1rem;">
+      <label for="apiKey">API Key:</label>
+      <input type="password" id="apiKey" name="apiKey" required style="padding:0.5rem;border-radius:4px;border:none;"/>
+      <button type="submit" style="padding:0.75rem;background:var(--terminal-gray);color:var(--terminal-white);border:none;border-radius:4px;cursor:pointer;">Login</button>
+      <p id="error-message" style="color:var(--color-error);display:none;">Invalid API Key</p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const apiKey = document.getElementById('apiKey').value.trim();
+      if (!apiKey) return;
+
+      // Optionally, verify API key by pinging a protected endpoint
+      try {
+        const response = await fetch('/api/radiation-zones', {
+          headers: { 'Authorization': apiKey }
+        });
+        if (response.status === 200) {
+          localStorage.setItem('admin_token', apiKey);
+          window.location.href = '/secure/admin';
+        } else {
+          document.getElementById('error-message').style.display = 'block';
+        }
+      } catch {
+        document.getElementById('error-message').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+---
+prerender: true
+layout: '../../layouts/AdminLayout.astro'
+title: 'Admin Dashboard'
+---
+---
+layout: '../../layouts/AdminLayout.astro'
+title: 'Admin Dashboard'
+---
+<script type="module" src="/src/scripts/auth-middleware.js"></script>
+
+<h2>Welcome to the Admin Dashboard</h2>
+
+<ul>
+  <li><a href="/secure/admin/radiation">Radiation System Admin</a></li>
+<hr>
+<h3>Project Management</h3>
+<div id="project-list">
+</div>
+
+<h4>Add / Edit Project</h4>
+<form id="project-form">
+  <input type="hidden" id="project-id" />
+  <label>Project Name:<br><input type="text" id="project-name" required></label><br>
+  <label>Description:<br><textarea id="project-description" required></textarea></label><br>
+  <button type="submit">Save Project</button>
+</form>
+
+<script>
+const projectList = document.getElementById('project-list');
+const projectForm = document.getElementById('project-form');
+const projectIdInput = document.getElementById('project-id');
+const projectNameInput = document.getElementById('project-name');
+const projectDescriptionInput = document.getElementById('project-description');
+
+let projects = JSON.parse(localStorage.getItem('adminProjects') || '[]');
+
+function renderProjects() {
+  projectList.innerHTML = '';
+  projects.forEach((proj, index) => {
+    const div = document.createElement('div');
+    div.innerHTML = `<strong>${proj.name}</strong><br>${proj.description}<br>
+      <button onclick="editProject(${index})">Edit</button>
+      <button onclick="deleteProject(${index})">Delete</button><hr>`;
+    projectList.appendChild(div);
+  });
+}
+
+function saveProjects() {
+  localStorage.setItem('adminProjects', JSON.stringify(projects));
+  renderProjects();
+}
+
+projectForm.onsubmit = (e) => {
+  e.preventDefault();
+  const id = projectIdInput.value;
+  const name = projectNameInput.value.trim();
+  const description = projectDescriptionInput.value.trim();
+  if (!name || !description) return;
+  if (id) {
+    projects[id] = { name, description };
+  } else {
+    projects.push({ name, description });
+  }
+  projectForm.reset();
+  projectIdInput.value = '';
+  saveProjects();
+};
+
+window.editProject = (index) => {
+  const proj = projects[index];
+  projectIdInput.value = index;
+  projectNameInput.value = proj.name;
+  projectDescriptionInput.value = proj.description;
+};
+
+window.deleteProject = (index) => {
+  if (confirm('Delete this project?')) {
+    projects.splice(index, 1);
+    saveProjects();
+  }
+};
+
+renderProjects();
+</script>
+</ul>

@@ -1,0 +1,88 @@
+---
+import TerminalLayout from '../layouts/TerminalLayout.astro';
+---
+
+<TerminalLayout>
+  <div class="terminal-section">
+    <h1 class="terminal-heading">HOW IT WORKS</h1>
+    <p class="terminal-paragraph">Welcome to the Nosyt Labs terminal interface. This guide will help you navigate and utilize all features of this site.</p>
+    
+    <h2 class="terminal-subheading">NAVIGATION BASICS</h2>
+    <div class="terminal-card">
+      <div class="terminal-card-title">TERMINAL COMMANDS</div>
+      <div class="terminal-card-content">
+        <ul class="terminal-list">
+          <li class="terminal-list-item">[TAB] - Return to main menu from any page</li>
+          <li class="terminal-list-item">[H] - Access this help guide</li>
+          <li class="terminal-list-item">[R] - Load project data</li>
+          <li class="terminal-list-item">[1-5] - Quick navigation to main sections</li>
+        </ul>
+      </div>
+    </div>
+    
+    <h2 class="terminal-subheading">SPECIAL FEATURES</h2>
+    <div class="terminal-grid">
+      <div class="terminal-card">
+        <div class="terminal-card-title">DARK/LIGHT MODE</div>
+        <div class="terminal-card-content">Toggle between terminal display modes using the power switch in the top-right corner.</div>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-card-title">LAB ASSISTANT</div>
+        <div class="terminal-card-content">Access your virtual pet by clicking [5] or typing "assistant" in the terminal. Feed, train, and send on missions.</div>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-card-title">ACHIEVEMENTS</div>
+        <div class="terminal-card-content">Unlock special achievements by exploring the site and interacting with different features.</div>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-card-title">EASTER EGGS</div>
+        <div class="terminal-card-content">Hidden features and jokes are scattered throughout the terminal. Try different commands to discover them.</div>
+      </div>
+    </div>
+    
+    <h2 class="terminal-subheading">ADMIN PORTAL OVERVIEW</h2>
+    <p class="terminal-paragraph">The Nosyt Labs site includes a comprehensive admin portal for site management (developer access only).</p>
+    <div class="terminal-card">
+      <div class="terminal-card-title">ADMIN CAPABILITIES</div>
+      <div class="terminal-card-content">
+        <ul class="terminal-list">
+          <li class="terminal-list-item">Content Management System for updating projects and information</li>
+          <li class="terminal-list-item">Analytics Dashboard for tracking site performance</li>
+          <li class="terminal-list-item">Feature Toggle System for enabling/disabling site elements</li>
+          <li class="terminal-list-item">Media Library for managing site assets</li>
+          <li class="terminal-list-item">User Experience Controls for customizing animations and effects</li>
+        </ul>
+      </div>
+    </div>
+    <p class="terminal-paragraph">For site changes or updates, please contact the development team at support@nosytlabs.com.</p>
+    
+    <h2 class="terminal-subheading">COMMAND CHEATSHEET</h2>
+    <div class="terminal-code">
+      help           - Display this help guide<br>
+      projects       - View all projects<br>
+      about          - Company information<br>
+      contact        - Contact information<br>
+      assistant      - Access Lab Assistant<br>
+      achievements   - View unlocked achievements<br>
+      clear          - Clear terminal screen<br>
+      version        - Display site version<br>
+      easteregg      - Nice try, but that would be too easy
+    </div>
+    
+    <div class="terminal-navigation">
+      <a href="/" class="terminal-button">RETURN TO MAIN MENU</a>
+    </div>
+  </div>
+</TerminalLayout>
+
+<style>
+  .terminal-section {
+    margin-bottom: 2rem;
+  }
+  
+  .terminal-navigation {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+</style>

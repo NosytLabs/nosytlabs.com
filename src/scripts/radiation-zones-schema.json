@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Radiation Zones Configuration",
+  "type": "object",
+  "properties": {
+    "zones": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "shape": { "type": "string", "enum": ["circle", "rectangle", "polygon"] },
+          "position": {
+            "type": "object",
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" }
+            },
+            "required": ["x", "y"]
+          },
+          "radius": { "type": "number" },
+          "width": { "type": "number" },
+          "height": { "type": "number" },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "x": { "type": "number" },
+                "y": { "type": "number" }
+              },
+              "required": ["x", "y"]
+            }
+          },
+          "intensity": { "type": "number" },
+          "falloff": { "type": "number" },
+          "active": { "type": "boolean" }
+        },
+        "required": ["id", "shape", "position", "intensity", "falloff", "active"]
+      }
+    }
+  },
+  "required": ["zones"],
+  "examples": [
+    {
+      "zones": [
+        {
+          "id": "zone1",
+          "shape": "circle",
+          "position": { "x": 100, "y": 150 },
+          "radius": 50,
+          "intensity": 1.0,
+          "falloff": 0.5,
+          "active": true
+        },
+        {
+          "id": "zone2",
+          "shape": "rectangle",
+          "position": { "x": 200, "y": 250 },
+          "width": 80,
+          "height": 60,
+          "intensity": 0.8,
+          "falloff": 0.3,
+          "active": true
+        },
+        {
+          "id": "zone3",
+          "shape": "polygon",
+          "points": [
+            { "x": 300, "y": 300 },
+            { "x": 350, "y": 320 },
+            { "x": 340, "y": 370 }
+          ],
+          "position": { "x": 0, "y": 0 },
+          "intensity": 0.6,
+          "falloff": 0.2,
+          "active": false
+        }
+      ]
+    }
+  ]
+}

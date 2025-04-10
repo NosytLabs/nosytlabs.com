@@ -1,0 +1,5 @@
+[
+  { "id": "vault101", "name": "Vault 101 - Basic Shelter Server" },
+  { "id": "vaultTecPro", "name": "Vault-Tec Pro - Advanced Security Server" },
+  { "id": "overseerX", "name": "Overseer X - AI Management Server" }
+]

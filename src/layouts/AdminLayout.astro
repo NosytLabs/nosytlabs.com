@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+import '../styles/admin.css';
+import DropdownNav from '../components/DropdownNav.astro';
+import Analytics from '@vercel/analytics/astro';
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Nosyt Labs</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="description" content="Nosyt Labs Admin Panel - Manage your website content">
+  
+  <!-- Analytics -->
+  <script src="/scripts/analytics-manager.js" defer></script>
+  
+  <!-- Admin Scripts -->
+  <script src="/scripts/admin-panel.js" defer></script>
+  <script src="/scripts/auth-middleware.js" defer></script>
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <div class="admin-logo">
+      <img src="/images/vault-tec-logo.svg" alt="Vault-Tec Logo">
+      <h1>Admin Panel</h1>
+    </div>
+    <DropdownNav />
+    <div class="admin-user">
+<!-- Auth check moved to reusable middleware -->
+      <span class="admin-username">Admin</span>
+      <a href="/secure/admin/logout" class="admin-logout">Logout</a>
+    </div>
+  </header>
+  
+  <div class="admin-container">
+    <aside class="admin-sidebar" id="admin-sidebar" style="display:none;">
+      <nav class="admin-sidebar-nav">
+        <div class="admin-sidebar-section">
+          <h3>Content</h3>
+          <ul>
+            <li><a href="/secure/admin/projects">Projects</a></li>
+            <li><a href="/secure/admin/pages">Pages</a></li>
+            <li><a href="/secure/admin/testimonials">Testimonials</a></li>
+            <li><a href="/secure/admin/skills">Skills</a></li>
+          </ul>
+        </div>
+        
+        <div class="admin-sidebar-section">
+          <h3>Media</h3>
+          <ul>
+            <li><a href="/secure/admin/media">Media Library</a></li>
+            <li><a href="/secure/admin/media/upload">Upload</a></li>
+          </ul>
+        </div>
+        
+        <div class="admin-sidebar-section">
+          <h3>Analytics</h3>
+          <ul>
+            <li><a href="/secure/admin/analytics">Overview</a></li>
+            <li><a href="/secure/admin/analytics/visitors">Visitors</a></li>
+            <li><a href="/secure/admin/analytics/behavior">Behavior</a></li>
+          </ul>
+        </div>
+        
+        <div class="admin-sidebar-section">
+          <h3>Settings</h3>
+          <ul>
+            <li><a href="/secure/admin/settings/general">General</a></li>
+            <li><a href="/secure/admin/settings/seo">SEO</a></li>
+            <li><a href="/secure/admin/settings/users">Users</a></li>
+          </ul>
+<div class="admin-sidebar-section">
+  <h3>Radiation System</h3>
+  <ul>
+    <li><a href="/secure/admin/radiation">Manage Radiation Zones</a></li>
+  </ul>
+</div>
+        </div>
+      </nav>
+    </aside>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        try {
+          const auth = new AdminAuth();
+          const userRole = auth.user?.role || auth.role || null;
+          if (auth.isLoggedIn && userRole === 'admin') {
+            document.getElementById('admin-sidebar').style.display = 'block';
+          } else {
+            document.getElementById('admin-sidebar').style.display = 'none';
+          }
+        } catch (e) {
+          console.error('Sidebar auth check failed:', e);
+          document.getElementById('admin-sidebar').style.display = 'none';
+        }
+      });
+    </script>
+    
+    <main class="admin-content">
+      <slot />
+    </main>
+  </div>
+  
+  <footer class="admin-footer">
+    <p>&copy; 2025 Nosyt Labs - Admin Panel</p>
+  </footer>
+    <Analytics />
+</body>
+</html>

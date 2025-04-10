@@ -1,0 +1,513 @@
+---
+import TerminalLayout from '../layouts/TerminalLayout.astro';
+---
+
+<TerminalLayout>
+  <div class="projects-container">
+    <h1 class="terminal-heading">PROJECTS</h1>
+    <p class="terminal-paragraph">
+      Explore Nosyt Labs' innovative projects across AI, web development, game design, and blockchain technology.
+      Check out our YouTube channel for project demos, tutorials, and the latest updates.
+    </p>
+    
+    <div class="github-integration" id="github-integration">
+      <div class="terminal-loading" id="github-loading">CONNECTING TO GITHUB API...</div>
+      
+      <div class="github-data hidden" id="github-data">
+        <div class="terminal-card">
+          <div class="terminal-card-title">GITHUB REPOSITORY STATUS</div>
+          <div class="terminal-card-content">
+            <div class="github-stats">
+              <div class="github-stat">ORGANIZATION: <span id="org-name">NosytLabs</span></div>
+              <div class="github-stat">REPOSITORIES: <span id="repo-count">5</span></div>
+              <div class="github-stat">TOTAL COMMITS: <span id="commit-count">237</span></div>
+              <div class="github-stat">CONTRIBUTORS: <span id="contributor-count">3</span></div>
+              <div class="github-stat">LAST UPDATED: <span id="last-updated">2025-03-25T14:32:17Z</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="project-list" id="project-list">
+<div class="project-item" data-repo="youtube-channel">
+  <div class="project-header">
+    <h2 class="terminal-subheading">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="var(--terminal-green-light)" style="vertical-align: middle; margin-right: 0.5rem;">
+        <path d="M19.615 3.184C21.403 3.58 22.5 5.053 22.5 7.5v9c0 2.447-1.097 3.92-2.885 4.316-2.53.58-10.115.58-10.115.58s-7.585 0-10.115-.58C.597 20.42-.5 18.947-.5 16.5v-9c0-2.447 1.097-3.92 2.885-4.316C2.915 2.604 10.5 2.604 10.5 2.604s7.585 0 9.115.58zM9.5 8.5v7l6-3.5-6-3.5z"/>
+      </svg>
+      YOUTUBE CHANNEL
+    </h2>
+    <div class="project-badges">
+      <span class="project-badge">VIDEO</span>
+      <span class="project-badge">TUTORIALS</span>
+      <span class="project-badge">FEATURED</span>
+    </div>
+  </div>
+  <div class="project-content">
+    <p class="terminal-paragraph">Subscribe to our YouTube channel for project demos, tutorials, behind-the-scenes content, and the latest updates from Nosyt Labs.</p>
+    <div class="project-links">
+      <a href="https://www.youtube.com/user/tycenyt" class="terminal-button" target="_blank" rel="noopener noreferrer" id="youtube-link">VISIT CHANNEL</a>
+    </div>
+    <div class="video-container" style="margin-top:1rem;">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Nosyt Labs YouTube" allowfullscreen></iframe>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const ytLink = document.getElementById('youtube-link');
+        if (ytLink) {
+          console.log('YouTube link found:', ytLink.href);
+          ytLink.addEventListener('click', (e) => {
+            console.log('YouTube link clicked');
+            console.log('target:', ytLink.target);
+            console.log('rel:', ytLink.rel);
+          });
+        } else {
+          console.warn('YouTube link not found');
+        }
+      });
+    </script>
+  </div>
+</div>
+      <div class="project-item" data-repo="stream-companion">
+        <div class="project-header">
+          <h2 class="terminal-subheading">STREAM COMPANION</h2>
+          <div class="project-badges">
+            <span class="project-badge">AI</span>
+            <span class="project-badge">SAAS</span>
+            <span class="project-badge">STREAMING</span>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <p class="terminal-paragraph">An AI-powered streaming chat bot that doesn't require users to keep the app open. The application functions as a server that continuously monitors streaming chats, providing intelligent responses and moderation.</p>
+          
+          <div class="project-stats">
+            <div class="project-stat">
+              <span class="stat-label">STATUS:</span>
+              <span class="stat-value">IN DEVELOPMENT</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LANGUAGE:</span>
+              <span class="stat-value">PYTHON, JAVASCRIPT</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LAST COMMIT:</span>
+              <span class="stat-value">2025-03-24</span>
+            </div>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/NosytLabs/stream-companion" class="terminal-button" target="_blank">VIEW REPOSITORY</a>
+            <a href="#" class="terminal-button project-details-btn" data-project="stream-companion">PROJECT DETAILS</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-item" data-repo="website-editor">
+        <div class="project-header">
+          <h2 class="terminal-subheading">WEBSITE EDITOR</h2>
+          <div class="project-badges">
+            <span class="project-badge">WEB</span>
+            <span class="project-badge">EDITOR</span>
+            <span class="project-badge">SAAS</span>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <p class="terminal-paragraph">A powerful website editor that allows users to create and edit websites with a simple, intuitive interface. Features include drag-and-drop components, responsive design tools, and template libraries.</p>
+          
+          <div class="project-stats">
+            <div class="project-stat">
+              <span class="stat-label">STATUS:</span>
+              <span class="stat-value">ACTIVE</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LANGUAGE:</span>
+              <span class="stat-value">TYPESCRIPT, REACT</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LAST COMMIT:</span>
+              <span class="stat-value">2025-03-25</span>
+            </div>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/NosytLabs/website-editor" class="terminal-button" target="_blank">VIEW REPOSITORY</a>
+            <a href="#" class="terminal-button project-details-btn" data-project="website-editor">PROJECT DETAILS</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-item" data-repo="vault-shelter-game">
+        <div class="project-header">
+          <h2 class="terminal-subheading">VAULT SHELTER GAME</h2>
+          <div class="project-badges">
+            <span class="project-badge">GAME</span>
+            <span class="project-badge">BLOCKCHAIN</span>
+            <span class="project-badge">NFT</span>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <p class="terminal-paragraph">A Fallout-inspired Tamagotchi-like game with vault management, character development, and wasteland exploration. Features include resource management, room building, SPECIAL stats, and combat systems.</p>
+          
+          <div class="project-stats">
+            <div class="project-stat">
+              <span class="stat-label">STATUS:</span>
+              <span class="stat-value">BETA</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LANGUAGE:</span>
+              <span class="stat-value">JAVASCRIPT, SOLIDITY</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LAST COMMIT:</span>
+              <span class="stat-value">2025-03-22</span>
+            </div>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/NosytLabs/vault-shelter-game" class="terminal-button" target="_blank">VIEW REPOSITORY</a>
+            <a href="/vault-shelter" class="terminal-button">PLAY GAME</a>
+            <a href="#" class="terminal-button project-details-btn" data-project="vault-shelter-game">PROJECT DETAILS</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-item" data-repo="blockchain-tools">
+        <div class="project-header">
+          <h2 class="terminal-subheading">BLOCKCHAIN TOOLS</h2>
+          <div class="project-badges">
+            <span class="project-badge">BLOCKCHAIN</span>
+            <span class="project-badge">SOLANA</span>
+            <span class="project-badge">TOOLS</span>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <p class="terminal-paragraph">A collection of tools for blockchain development, focusing on Solana integration. Includes smart contract templates, wallet connectors, and transaction utilities for developers.</p>
+          
+          <div class="project-stats">
+            <div class="project-stat">
+              <span class="stat-label">STATUS:</span>
+              <span class="stat-value">ACTIVE</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LANGUAGE:</span>
+              <span class="stat-value">RUST, TYPESCRIPT</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LAST COMMIT:</span>
+              <span class="stat-value">2025-03-20</span>
+            </div>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/NosytLabs/blockchain-tools" class="terminal-button" target="_blank">VIEW REPOSITORY</a>
+            <a href="#" class="terminal-button project-details-btn" data-project="blockchain-tools">PROJECT DETAILS</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-item" data-repo="ai-code-assistant">
+        <div class="project-header">
+          <h2 class="terminal-subheading">AI CODE ASSISTANT</h2>
+          <div class="project-badges">
+            <span class="project-badge">AI</span>
+            <span class="project-badge">DEVELOPMENT</span>
+            <span class="project-badge">TOOLS</span>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <p class="terminal-paragraph">An AI-powered code assistant that helps developers write, debug, and optimize code. Features include code completion, error detection, refactoring suggestions, and documentation generation.</p>
+          
+          <div class="project-stats">
+            <div class="project-stat">
+              <span class="stat-label">STATUS:</span>
+              <span class="stat-value">PLANNING</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LANGUAGE:</span>
+              <span class="stat-value">PYTHON, TYPESCRIPT</span>
+            </div>
+            <div class="project-stat">
+              <span class="stat-label">LAST COMMIT:</span>
+              <span class="stat-value">2025-03-15</span>
+            </div>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/NosytLabs/ai-code-assistant" class="terminal-button" target="_blank">VIEW REPOSITORY</a>
+            <a href="#" class="terminal-button project-details-btn" data-project="ai-code-assistant">PROJECT DETAILS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="project-details-modal hidden" id="project-details-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="terminal-subheading" id="modal-title">PROJECT DETAILS</h2>
+          <button class="modal-close" id="modal-close">×</button>
+        </div>
+        
+        <div class="modal-body" id="modal-body">
+        </div>
+        
+        <div class="modal-footer">
+          <button class="terminal-button" id="modal-close-btn">CLOSE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</TerminalLayout>
+
+<style>
+  .projects-container {
+    padding: 1rem 0;
+  }
+  
+  .github-integration {
+    margin: 2rem 0;
+    border: 1px solid var(--terminal-green);
+    padding: 1rem;
+    background-color: rgba(10, 10, 10, 0.8);
+  }
+  
+  .github-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .github-stat {
+    font-size: 0.9rem;
+  }
+  
+  .project-list {
+    margin-top: 2rem;
+  }
+  
+  .project-item {
+    margin-bottom: 2rem;
+    border: 1px solid var(--terminal-green-dark);
+    padding: 1rem;
+    background-color: rgba(10, 10, 10, 0.8);
+    transition: all 0.3s ease;
+  }
+  
+  .project-item:hover {
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+  }
+  
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--terminal-green-dark);
+  }
+  
+  .project-badges {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .project-badge {
+    background-color: var(--terminal-gray);
+    color: var(--terminal-green-light);
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    border: 1px solid var(--terminal-green-dark);
+  }
+  
+  .project-content {
+    padding: 0.5rem 0;
+  }
+  
+  .project-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .project-stat {
+    font-size: 0.8rem;
+  }
+  
+  .stat-label {
+    color: var(--terminal-green-light);
+    margin-right: 0.5rem;
+  }
+  
+  .project-links {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .project-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  
+  .modal-content {
+    background-color: var(--terminal-black);
+    border: 1px solid var(--terminal-green);
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--terminal-green-dark);
+  }
+  
+  .modal-close {
+    background: none;
+    border: none;
+    color: var(--terminal-green);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+  
+  .modal-footer {
+    padding: 1rem;
+    border-top: 1px solid var(--terminal-green-dark);
+    text-align: right;
+  }
+  
+  .hidden {
+    display: none;
+  }
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  margin-top: 1rem;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // GitHub integration loading animation
+    const githubLoading = document.getElementById('github-loading');
+    const githubData = document.getElementById('github-data');
+    
+    // Simulate GitHub API connection
+    setTimeout(() => {
+      gsap.to(githubLoading, {
+        opacity: 0,
+        duration: 0.5,
+        onComplete: () => {
+          githubLoading.classList.add('hidden');
+          githubData.classList.remove('hidden');
+          
+          // Animate GitHub data
+          gsap.from(githubData, {
+            opacity: 0,
+            y: -20,
+            duration: 0.5
+          });
+          
+          // Animate GitHub stats with counting effect
+          const repoCount = document.getElementById('repo-count');
+          const commitCount = document.getElementById('commit-count');
+          const contributorCount = document.getElementById('contributor-count');
+          
+          gsap.from(repoCount, {
+            innerText: 0,
+            duration: 2,
+            snap: { innerText: 1 }
+          });
+          
+          gsap.from(commitCount, {
+            innerText: 0,
+            duration: 2,
+            snap: { innerText: 1 }
+          });
+          
+          gsap.from(contributorCount, {
+            innerText: 0,
+            duration: 2,
+            snap: { innerText: 1 }
+          });
+        }
+      });
+    }, 2000);
+    
+    // Project items animation
+    const projectItems = document.querySelectorAll('.project-item');
+    gsap.from(projectItems, {
+      opacity: 0,
+      y: 20,
+      duration: 0.5,
+      stagger: 0.2,
+      delay: 2.5
+    });
+    
+    // Project details modal
+    const projectDetailsButtons = document.querySelectorAll('.project-details-btn');
+    const projectDetailsModal = document.getElementById('project-details-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const modalClose = document.getElementById('modal-close');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    
+    // Project details data
+    const projectDetails = {
+      'stream-companion': {
+        title: 'STREAM COMPANION',
+        description: `The Stream Companion is an AI-powered streaming chat bot designed to enhance the streaming experience for content creators and viewers alike. Unlike traditional chat bots, Stream Companion doesn't require users to keep the application open, as it functions as a server that continuously monitors streaming chats.
+        
+        Key features include:
+        - Intelligent chat moderation with customizable rules
+        - Viewer engagement tools and automated responses
+        - Stream analytics and viewer behavior insights
+        - Custom command creation and management
+        - Integration with popular streaming platforms
+        - Scheduled announcements and reminders
+        
+        The application leverages advanced natural language processing to understand context and provide relevant responses, creating a more interactive and engaging streaming environment.`,
+        technologies: ['Python', 'TensorFlow', 'Node.js', 'WebSockets', 'Twitch API', 'YouTube API'],
+      }
+    };
+  });
+</script>
+        },
+`,

@@ -1,0 +1,91 @@
+---
+import TerminalLayout from '../layouts/TerminalLayout.astro';
+---
+
+<TerminalLayout>
+  <div class="terminal-section">
+    <h1 class="terminal-heading">ABOUT NOSYT LABS</h1>
+    <p class="terminal-paragraph">Welcome to Nosyt Labs, a cutting-edge technology company specializing in innovative software solutions and digital experiences.</p>
+    
+    <h2 class="terminal-subheading">OUR MISSION</h2>
+    <p class="terminal-paragraph">At Nosyt Labs, we're dedicated to pushing the boundaries of what's possible in the digital realm. Our mission is to create technology that's not just functional, but memorable and engaging.</p>
+    
+    <h2 class="terminal-subheading">OUR EXPERTISE</h2>
+    <div class="terminal-grid">
+      <div class="terminal-card">
+        <div class="terminal-card-title">WEB DEVELOPMENT</div>
+        <div class="terminal-card-content">Creating responsive, interactive websites with cutting-edge technologies.</div>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-card-title">SOFTWARE ENGINEERING</div>
+        <div class="terminal-card-content">Building robust applications that solve complex problems.</div>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-card-title">INTERACTIVE DESIGN</div>
+        <div class="terminal-card-content">Crafting engaging user experiences that captivate and delight.</div>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-card-title">AI INTEGRATION</div>
+        <div class="terminal-card-content">Implementing intelligent solutions that adapt and learn.</div>
+      </div>
+    </div>
+    
+    <h2 class="terminal-subheading">OUR APPROACH</h2>
+    <p class="terminal-paragraph">We believe in combining technical excellence with creative vision. Every project we undertake is an opportunity to innovate and create something truly unique.</p>
+    
+    <h2 class="terminal-subheading">CONTACT INFORMATION</h2>
+    <ul class="terminal-list">
+      <li class="terminal-list-item">Email: hi@nosytlabs.com</li>
+      <li class="terminal-list-item">Support: support@nosytlabs.com</li>
+      <li class="terminal-list-item">GitHub: github.com/NosytLabs</li>
+    </ul>
+    
+    <div class="terminal-navigation">
+      <a href="/" class="terminal-button">RETURN TO MAIN MENU</a>
+    </div>
+
+    <h2 class="terminal-subheading">GAME COMPONENT</h2>
+    <div id="game-container" class="terminal-card">
+      <div class="terminal-card-title">Mini Game</div>
+      <div class="terminal-card-content">Game Loading... (Placeholder)</div>
+    </div>
+  </div>
+
+  <div id="loading-bar">Loading...</div>
+
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loading-bar');
+      if(loader) loader.style.display = 'none';
+    });
+  </script>
+</TerminalLayout>
+
+<style>
+  html, body {
+    height: 100vh;
+  }
+
+  #loading-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--terminal-green-dark);
+    color: var(--terminal-white);
+    text-align: center;
+    padding: 0.5rem;
+    font-family: var(--terminal-font);
+    z-index: 9999;
+  }
+
+  .terminal-section {
+    margin-bottom: 2rem;
+  }
+
+  .terminal-navigation {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+</style>

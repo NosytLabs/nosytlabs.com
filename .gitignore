@@ -1,0 +1,45 @@
+# Dependency directories
+node_modules/
+.astro/
+
+# Build output
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment files
+.env
+.env.*
+.env*.local
+
+# Test coverage
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Misc
+*.swp
+*.tmp
+*.temp
+*.bak
+
+# Optional: ignore local build/test scripts output
+scripts/cleanup-dist.ps1
+scripts/cleanup-dist.js
+.vercel
