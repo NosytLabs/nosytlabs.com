@@ -1,0 +1,677 @@
+/* Vault Shelter Game - Enhanced UI Refresh */
+:root {
+  /* Core Vault Colors */
+  --vault-blue: #00a8ff;
+  --vault-green: #00ffaa;
+  --vault-red: #ff3300;
+  --vault-yellow: #ffcc00;
+  --vault-bg-dark: #00141e;
+  --vault-bg-darker: #000d14;
+  --vault-text: #e0f7ff;
+  --vault-text-dim: #8ab3bf;
+  --vault-border: rgba(0, 168, 255, 0.2);
+  
+  /* Enhanced Theme Variables */
+  --vault-elevation-1: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --vault-elevation-2: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --vault-elevation-3: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --vault-transition: cubic-bezier(0.4, 0, 0.2, 1);
+  --vault-transition-fast: cubic-bezier(0.2, 0, 0, 1);
+  --vault-glass-bg: linear-gradient(135deg,
+    rgba(0, 30, 60, 0.7) 0%,
+    rgba(0, 20, 40, 0.8) 100%);
+  --vault-glass-border: 1px solid rgba(0, 168, 255, 0.15);
+  --vault-glass-effect: blur(8px);
+  --vault-panel-glow: 0 0 20px rgba(0, 168, 255, 0.1);
+  
+  /* Animation System Variables */
+  --anim-duration-fast: 0.3s;
+  --anim-duration-normal: 0.5s;
+  --anim-duration-slow: 1s;
+  --anim-duration-spinner: 1.2s;
+  --anim-duration-glow: 2s;
+  --anim-duration-shine: 2s;
+  --anim-timing-ease: ease;
+  --anim-timing-ease-in-out: ease-in-out;
+  --anim-timing-linear: linear;
+  --anim-timing-vault: var(--vault-transition);
+  --anim-timing-vault-fast: var(--vault-transition-fast);
+}
+/* Cross-browser compatibility fixes */
+
+/* Backdrop-filter fallback */
+@supports not ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  .vault-header,
+  .vault-sidebar,
+  .vault-status,
+  .resource-panel,
+  .mcp-card {
+    background-color: rgba(0, 20, 40, 0.85) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* Flex gap fallback */
+@supports not (gap: 1rem) {
+  .vault-sidebar > * {
+    margin-bottom: 1.5rem;
+  }
+  .vault-sidebar > *:last-child {
+    margin-bottom: 0;
+  }
+  .vault-main > * {
+    margin-bottom: 2rem;
+  }
+  .vault-main > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Normalize form controls and dropdowns */
+select, button, input, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+select:focus, button:focus, input:focus, textarea:focus {
+  outline: 2px solid var(--vault-blue);
+  outline-offset: 2px;
+}
+
+/* Explicit vendor prefixes for backdrop-filter */
+.vault-header,
+.vault-sidebar,
+.vault-status,
+.resource-panel,
+.mcp-card {
+  -webkit-backdrop-filter: var(--vault-glass-effect);
+  backdrop-filter: var(--vault-glass-effect);
+}
+
+
+/* Base Layout - Enhanced Grid System */
+.vault-container {
+  /* Responsive grid layout for main container */
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "status status";
+  grid-template-columns: minmax(260px, 320px) 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 30%, var(--vault-bg-dark) 0%, var(--vault-bg-darker) 100%),
+    linear-gradient(to bottom, rgba(0,20,40,0.8) 0%, transparent 100%);
+  color: var(--vault-text);
+  font-family: 'Courier New', monospace;
+  position: relative;
+}
+
+/* Modern Header with Depth */
+.vault-header {
+  grid-area: header;
+  background: linear-gradient(to right, 
+    rgba(0, 20, 40, 0.9) 0%, 
+    rgba(0, 30, 60, 0.85) 100%);
+  border-bottom: 1px solid var(--vault-border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--vault-elevation-2);
+  z-index: 10;
+}
+
+/* Interactive Sidebar */
+.vault-sidebar {
+  grid-area: sidebar;
+  background: rgba(0, 10, 20, 0.7);
+  border-right: 1px solid var(--vault-border);
+  padding: 2rem 1.5rem 1.5rem; /* Added top padding */
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Main Content Area */
+.vault-main {
+  grid-area: main;
+  /* Responsive grid for main content area */
+  padding: clamp(1rem, 3vw, 2rem);
+  overflow-y: auto;
+  display: grid;
+  gap: clamp(1rem, 2vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-content: start;
+}
+
+/* Status Bar with Notifications */
+.vault-status {
+  grid-area: status;
+  background: linear-gradient(to right, 
+    rgba(0, 15, 30, 0.95) 0%, 
+    rgba(0, 25, 50, 0.9) 100%);
+  border-top: 1px solid var(--vault-border);
+  padding: 0.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Enhanced Vault Door Animation */
+.vault-door {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.vault-door-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform var(--anim-duration-slow) var(--anim-timing-vault);
+  will-change: transform;
+}
+
+.vault-door-opening .vault-door-inner {
+  transform: rotateY(-60deg) translateZ(20px);
+}
+
+/* Modern Resource Panels */
+.resource-panel {
+  background: rgba(0, 30, 60, 0.4);
+  border: 1px solid var(--vault-border);
+  border-radius: 8px;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  transition: transform var(--anim-duration-fast) var(--anim-timing-vault),
+              box-shadow var(--anim-duration-fast) var(--anim-timing-vault),
+              background var(--anim-duration-fast) var(--anim-timing-vault);
+  will-change: transform, box-shadow; /* Hint for hover effect */
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  position: relative;
+  overflow: hidden;
+  min-width: 0; /* Prevent overflow in grid */
+  touch-action: manipulation; /* Improve mobile tap */
+}
+
+.resource-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(0, 168, 255, 0.05) 0%, 
+    rgba(0, 255, 170, 0.03) 100%);
+  pointer-events: none;
+}
+
+.resource-panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 168, 255, 0.15);
+  background: rgba(0, 40, 80, 0.5);
+}
+
+/* Animated Resource Bars */
+.resource-bar {
+  height: 12px;
+  background: rgba(0, 168, 255, 0.1);
+  border-radius: 6px;
+  margin: 0.75rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.resource-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--vault-blue) 0%, 
+    var(--vault-green) 100%);
+  transition: width var(--anim-duration-normal) var(--anim-timing-vault);
+  position: relative;
+}
+
+.resource-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.2) 50%, 
+    rgba(255,255,255,0) 100%);
+  transform: translateX(-100%);
+  animation: shine var(--anim-duration-shine) infinite var(--anim-timing-linear);
+}
+
+/* Terminal UI Elements - Modernized */
+.terminal-input {
+  background: rgba(0, 20, 40, 0.5);
+  border: 1px solid var(--vault-border);
+  border-radius: 6px;
+  padding: 0.875rem 1.25rem;
+  color: var(--vault-text);
+  font-family: inherit;
+  width: 100%;
+  margin-bottom: 1rem;
+  transition: all var(--anim-duration-fast) var(--anim-timing-vault);
+  font-size: 0.95rem;
+}
+
+.terminal-input:focus {
+  outline: none;
+  border-color: var(--vault-blue);
+  box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.2);
+  background: rgba(0, 30, 60, 0.6);
+}
+
+.terminal-button {
+  background: linear-gradient(135deg, 
+    var(--vault-blue) 0%, 
+    var(--vault-green) 100%);
+  border: none;
+  border-radius: 8px; /* Match mcp-button */
+  padding: 0.875rem 1.75rem;
+  color: var(--vault-bg-dark);
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform var(--anim-duration-fast) var(--anim-timing-vault),
+              box-shadow var(--anim-duration-fast) var(--anim-timing-vault);
+  will-change: transform, box-shadow; /* Hint for hover effect */
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0.1) 0%, 
+    rgba(255,255,255,0.3) 50%, 
+    rgba(255,255,255,0.1) 100%);
+  transform: translateX(-100%);
+  transition: transform calc(var(--anim-duration-fast) * 2) var(--anim-timing-ease);
+}
+
+.terminal-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 168, 255, 0.3);
+}
+
+.terminal-button:hover::after {
+  transform: translateX(100%);
+}
+
+/* Status Indicators with Micro-interactions */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  /* Transition specific properties instead of 'all' */
+  transition: background var(--anim-duration-fast) var(--anim-timing-ease),
+              color var(--anim-duration-fast) var(--anim-timing-ease),
+              border-color var(--anim-duration-fast) var(--anim-timing-ease),
+              opacity var(--anim-duration-slow) var(--anim-timing-ease-in-out), /* For pulse */
+              transform var(--anim-duration-slow) var(--anim-timing-ease-in-out); /* For pulse */
+  will-change: opacity, transform; /* Hint for pulse animation */
+}
+
+.status-indicator.online {
+  background: rgba(0, 255, 170, 0.1);
+  color: var(--vault-green);
+  border: 1px solid rgba(0, 255, 170, 0.3);
+}
+
+.status-indicator.warning {
+  background: rgba(255, 204, 0, 0.1);
+  color: var(--vault-yellow);
+  border: 1px solid rgba(255, 204, 0, 0.3);
+  animation: pulse calc(var(--anim-duration-slow) * 1.5) infinite var(--anim-timing-ease-in-out);
+}
+
+.status-indicator.critical {
+  background: rgba(255, 51, 0, 0.1);
+  color: var(--vault-red);
+  border: 1px solid rgba(255, 51, 0, 0.3);
+  animation: pulse var(--anim-duration-slow) infinite var(--anim-timing-ease-in-out);
+}
+
+/* Animation System */
+@keyframes pulse {
+  0% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.7; transform: scale(1); }
+}
+
+@keyframes vaultGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 168, 255, 0.3);
+    filter: drop-shadow(0 0 2px rgba(0, 200, 255, 0.5));
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 168, 255, 0.5);
+    filter: drop-shadow(0 0 8px rgba(0, 200, 255, 0.8));
+  }
+}
+
+@keyframes particlePulse {
+  0% { transform: scale(0.8); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(0.8); opacity: 0.3; }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  30% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes rotateReverse {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Enhanced Loading System */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--vault-glass-bg);
+  -webkit-backdrop-filter: var(--vault-glass-effect);
+  backdrop-filter: var(--vault-glass-effect);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity var(--anim-duration-normal) var(--anim-timing-vault);
+  will-change: opacity; /* Hint for fade in/out */
+  border: var(--vault-glass-border);
+  box-shadow: var(--vault-panel-glow);
+}
+
+.loading-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 168, 255, 0.1) 0%,
+    rgba(0, 168, 255, 0.05) 50%,
+    rgba(0, 168, 255, 0.1) 100%
+  );
+  animation: particlePulse calc(var(--anim-duration-slow) * 3) var(--anim-timing-ease-in-out) infinite;
+}
+
+.loading-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(0,255,170,0.05) 0%, transparent 25%),
+    radial-gradient(circle at 75% 75%, rgba(0,168,255,0.05) 0%, transparent 25%);
+  animation: panOverlay calc(var(--anim-duration-slow) * 15) var(--anim-timing-linear) infinite;
+}
+
+@keyframes panOverlay {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
+}
+
+.loading-spinner {
+  --spinner-size: 60px;
+  --spinner-thickness: 5px;
+  --spinner-speed: 1.2s;
+  --glow-speed: 2s;
+    
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  border: var(--spinner-thickness) solid rgba(0, 168, 255, 0.2);
+  border-top-color: rgba(0, 200, 255, 0.8);
+  border-left-color: var(--vault-green);
+  border-radius: 50%;
+  animation:
+    spin var(--anim-duration-spinner) cubic-bezier(0.65, 0, 0.35, 1) infinite,
+    vaultGlow var(--anim-duration-glow) var(--anim-timing-ease-in-out) infinite;
+  margin: 2rem auto;
+  will-change: transform;
+  box-shadow: 0 0 15px rgba(0, 168, 255, 0.5);
+  position: relative;
+}
+
+.loading-spinner::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 255, 170, 0.1);
+  animation: rotateReverse calc(var(--anim-duration-spinner) * 1.5) var(--anim-timing-linear) infinite;
+}
+
+.loading-progress {
+  width: 100%;
+  max-width: 300px;
+  height: 8px;
+  background: rgba(0, 168, 255, 0.1);
+  border-radius: 4px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.loading-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    var(--vault-blue) 0%, 
+    var(--vault-green) 100%);
+  box-shadow: 0 0 10px rgba(0, 255, 170, 0.5);
+  transition: width calc(var(--anim-duration-fast) + 0.1s) var(--anim-timing-ease);
+  position: relative;
+}
+
+.loading-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.2) 50%, 
+    rgba(255,255,255,0) 100%);
+  transform: translateX(-100%);
+  animation: shine var(--anim-duration-shine) infinite var(--anim-timing-linear);
+}
+
+.loading-message {
+  margin-top: 1.5rem;
+  color: var(--vault-text-dim);
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .vault-container {
+    grid-template-columns: minmax(180px, 220px) 1fr;
+  }
+  .vault-main {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .vault-container {
+    grid-template-areas:
+      "header"
+      "main"
+      "status";
+    grid-template-columns: 1fr;
+  }
+  .vault-sidebar {
+    display: none;
+  }
+  .vault-main {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .resource-panel {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vault-header,
+  .vault-status {
+    padding: 0.5rem 0.5rem;
+  }
+  .vault-main {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+  .resource-panel {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .terminal-button,
+  .mcp-button {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Enhanced Magic MCP UI Components */
+.mcp-button {
+  background: linear-gradient(135deg,
+    var(--vault-blue) 0%,
+    var(--vault-green) 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+  color: var(--vault-bg-dark);
+  font-weight: bold;
+  cursor: pointer;
+  transition: all var(--anim-duration-fast) var(--anim-timing-vault-fast);
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mcp-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.1) 0%,
+    rgba(255,255,255,0.3) 50%,
+    rgba(255,255,255,0.1) 100%);
+  transform: translateX(-100%);
+  transition: transform calc(var(--anim-duration-fast) * 2) var(--anim-timing-vault);
+}
+
+.mcp-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 168, 255, 0.3);
+}
+
+.mcp-button:active {
+  transform: translateY(1px);
+}
+
+.mcp-button:hover::after {
+  transform: translateX(100%);
+}
+
+/* MCP Card Component */
+/* MCP Card Component - unified, responsive */
+.mcp-card {
+  background: rgba(0, 30, 60, 0.4);
+  border: 1px solid var(--vault-border);
+  border-radius: 10px;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  transition: all var(--anim-duration-fast) var(--anim-timing-vault);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  box-shadow: var(--vault-panel-glow);
+  min-width: 0;
+  touch-action: manipulation;
+}
+.mcp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 168, 255, 0.18);
+  background: rgba(0, 40, 80, 0.5);
+}
+
+/* Existing Loading System (Preserved) */
+.loading-stage.complete .loading-stage-status {
+  color: var(--vault-green);
+}
+
+.loading-stage.failed .loading-stage-status {
+  color: var(--vault-red);
+}
+
+.loading-stage.progress .loading-stage-status {
+  color: var(--vault-blue);
+}
+
+.loading-error {
+  background: rgba(20, 0, 0, 0.95);
+  border: 1px solid var(--vault-red);
+  box-shadow: 0 0 15px rgba(255, 50, 0, 0.3);
+}
+
+.loading-error-btn.retry {
+  background: linear-gradient(135deg, var(--vault-red), #ff6600);
+}

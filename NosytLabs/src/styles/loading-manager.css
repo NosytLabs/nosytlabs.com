@@ -1,0 +1,156 @@
+/* src/styles/loading-manager.css */
+
+/* Vault-Tec Theme Colors (Example - Adjust as needed) */
+:root {
+  --vault-blue: #1a3d5a; /* Deep blue */
+  --vault-yellow: #f0e68c; /* Khaki/pale yellow */
+  --vault-text: #d0e0f0; /* Light blue-grey text */
+  --vault-accent: #ffd700; /* Gold/bright yellow accent */
+  --vault-progress-bg: #334; /* Darker background for progress */
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0; /* Modern shorthand for top/left/right/bottom: 0 */
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 61, 90, 0.95); /* Themed semi-transparent background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0; /* Managed by JS for transition */
+  transition: opacity 0.5s ease-in-out;
+  font-family: 'Orbitron', sans-serif; /* Example retro-futuristic font - ensure it's loaded */
+  color: var(--vault-text);
+}
+
+.loading-content {
+  max-width: 400px;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.3); /* Slight inner panel effect */
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); /* Subtle glow */
+}
+
+/* Thematic Spinner - Example: Rotating Gear or Vault Door Symbol */
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(240, 230, 140, 0.3); /* Lighter yellow border */
+  border-top-color: var(--vault-accent); /* Bright yellow top */
+  border-radius: 50%;
+  animation: vaultSpin 1.2s linear infinite;
+  margin: 0 auto 25px;
+  box-shadow: 0 0 10px var(--vault-accent); /* Spinner glow */
+}
+
+@keyframes vaultSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Alternative Spinner Idea (using pseudo-elements for complexity) */
+/*
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  margin: 0 auto 25px;
+  animation: vaultSpin 1.2s linear infinite;
+}
+.loading-spinner::before,
+.loading-spinner::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+.loading-spinner::before {
+  inset: 0;
+  border: 5px solid rgba(240, 230, 140, 0.3);
+  border-top-color: var(--vault-accent);
+}
+.loading-spinner::after {
+  inset: 5px;
+  border: 3px solid transparent;
+  border-top-color: var(--vault-blue);
+  animation: vaultSpinInner 0.8s linear infinite reverse;
+}
+@keyframes vaultSpinInner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+*/
+
+
+.loading-status {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+}
+
+.loading-progress-container {
+  height: 10px; /* Slightly thicker bar */
+  background: var(--vault-progress-bg);
+  border-radius: 5px;
+  margin: 20px 0;
+  overflow: hidden;
+  border: 1px solid rgba(240, 230, 140, 0.2); /* Subtle border */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.loading-progress-fill {
+  height: 100%;
+  width: 0%; /* Managed by JS */
+  background: linear-gradient(90deg, var(--vault-yellow), var(--vault-accent)); /* Gradient fill */
+  border-radius: 5px; /* Match container */
+  transition: width 0.4s ease-out; /* Smoother transition */
+  box-shadow: 0 0 5px var(--vault-accent); /* Glow effect on progress */
+}
+
+
+/* --- Placeholder Styles (Kept but commented out as default is off) --- */
+/*
+.loading-placeholders {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.placeholder {
+  background: rgba(208, 224, 240, 0.1); // Themed placeholder bg
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.placeholder::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%; // Start off-screen
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(240, 230, 140, 0.15), // Themed shimmer
+    transparent
+  );
+  animation: placeholderShimmer 1.8s infinite linear;
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(200%); // Move across twice the width
+  }
+}
+*/

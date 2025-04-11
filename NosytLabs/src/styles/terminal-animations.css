@@ -1,0 +1,1641 @@
+@import './global.css';
+
+/* Enhanced Fallout retro terminal loading indicator */
+.terminal-loading {
+  color: var(--crt-green); /* CRT green */
+  text-shadow: 0 0 5px var(--crt-green), 0 0 10px var(--crt-green);
+  animation: flicker 2s infinite;
+  position: relative;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.terminal-loading::after {
+  /* existing dot animation remains */
+}
+
+/* Optional subtle scanline overlay */
+.terminal-loading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.2) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
+/* Fallout Retro Terminal Enhancements */
+
+/* 1. Enhanced CRT phosphor glow pulse */
+.fallout-terminal-glow {
+  color: var(--crt-green);
+  text-shadow:
+    0 0 2px var(--crt-green),
+    0 0 5px var(--crt-green),
+    0 0 10px var(--crt-green),
+    0 0 20px var(--crt-green);
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 2px var(--crt-green),
+      0 0 5px var(--crt-green),
+      0 0 10px var(--crt-green),
+      0 0 20px var(--crt-green);
+  }
+  50% {
+    text-shadow:
+      0 0 4px var(--crt-green),
+      0 0 8px var(--crt-green),
+      0 0 15px var(--crt-green),
+      0 0 30px var(--crt-green);
+  }
+}
+
+/* 2. Animated scanlines */
+.scanline-animate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  background-size: 100% 4px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+  animation: scanlineScroll 1s linear infinite;
+}
+
+@keyframes scanlineScroll {
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: 4px;
+  }
+}
+
+/* 3. Typing indicator with animated dots */
+.typing-indicator {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 1em;
+  letter-spacing: 2px;
+  color: var(--crt-green);
+}
+
+.typing-indicator span {
+  display: inline-block;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-0.3em);
+    opacity: 0.7;
+  }
+}
+
+/* Performance hint */
+.fallout-terminal-glow, .scanline-animate, .typing-indicator span {
+  will-change: opacity, transform, text-shadow;
+}
+
+
+.terminal-loading span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Terminal animations CSS */
+
+/* Scanline effect */
+.terminal-scanline {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  z-index: auto;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+/* Noise effect */
+.terminal-noise {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/png;base64,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");
+  z-index: auto;
+  pointer-events: none;
+  opacity: 0.05;
+  animation: noise 0.2s infinite;
+}
+
+/* Flicker animation */
+@keyframes flicker {
+  0% {
+    opacity: 0.9;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+/* Noise animation */
+@keyframes noise {
+  0% {
+    background-position: 0 0;
+  }
+  10% {
+    background-position: -5% -5%;
+  }
+  20% {
+    background-position: -10% 5%;
+  }
+  30% {
+    background-position: 5% -10%;
+  }
+}
+
+  /*
+  Fallout Vault-Tec Inspired Loading Animation
+  -------------------------------------------
+  - Retro-futuristic progress bar matching Fallout terminal aesthetic
+  - Vault-Tec blue background with yellow border and diagonal stripes
+  - CRT green glow effect for retro feel
+  - Smooth infinite fill animation using width keyframes
+  - Scanline overlay for authentic CRT look
+  - Designed for smooth performance across devices
+  - Compatible with existing terminal styles
+
+  Usage:
+  <div class="vault-loading">
+    <div class="vault-progress"></div>
+  </div>
+
+  Classes:
+  .vault-loading   - Container bar styled with Vault-Tec theme
+  .vault-progress  - Animated fill element
+
+Animation:
+@keyframes vault-progress-fill
+- Animates width from 0% to 100% and back
+- Duration: 3s, infinite loop, ease-in-out
+*/
+/* Fallout Vault-Tec inspired loading animation */
+
+.vault-loading {
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+  height: 24px;
+  margin: 40px auto;
+  background-color: var(--vaulttec-blue); /* Vault-Tec blue */
+  border: 2px solid var(--vaulttec-yellow); /* Vault-Tec yellow border */
+  box-shadow: 0 0 10px var(--crt-green); /* CRT green glow */
+  overflow: hidden;
+}
+
+.vault-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--vaulttec-yellow),
+    var(--vaulttec-yellow) 10px,
+    var(--vaulttec-yellow) 10px,
+    var(--vaulttec-yellow) 20px
+  );
+  animation: vault-progress-fill 3s infinite ease-in-out;
+}
+
+/* Optional scanline overlay inside the loading bar */
+.vault-loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+@keyframes vault-progress-fill {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+/* Usage example (HTML):
+<div class="vault-loading">
+  <div class="vault-progress"></div>
+</div>
+/* Fallout Terminal Green Loading Animation */
+.fallout-loading {
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+  height: 24px;
+  margin: 40px auto;
+  background-color: black;
+  border: 2px solid var(--crt-green);
+  box-shadow: 0 0 10px var(--crt-green);
+  overflow: hidden;
+  animation: flicker 2s infinite;
+}
+
+.fallout-progress {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--crt-green) 50%, transparent);
+  animation: fallout-scan 2s infinite ease-in-out;
+}
+
+.fallout-loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+@keyframes fallout-scan {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Usage:
+<div class="fallout-loading">
+  <div class="fallout-progress"></div>
+</div>
+*/
+/* Fallout CRT Pulsing Dot Spinner */
+.fallout-spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 4px;
+  background-color: var(--crt-green, var(--crt-green));
+  border-radius: 50%;
+  box-shadow: 0 0 5px var(--crt-green, var(--crt-green)), 0 0 10px var(--crt-green, var(--crt-green));
+  animation: fallout-pulse 1s infinite ease-in-out;
+}
+
+@keyframes fallout-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+}
+
+/* Usage:
+<span class="fallout-spinner"></span>
+<span class="fallout-spinner"></span>
+<span class="fallout-spinner"></span>
+/* Fallout Radiation Symbol Loader */
+.radiation-loader {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin: 20px auto;
+  border-radius: 50%;
+  background-color: var(--crt-green, var(--crt-green));
+  box-shadow: 0 0 10px var(--crt-green), 0 0 20px var(--crt-green);
+  animation: radiationPulse 2s infinite ease-in-out;
+}
+
+.radiation-loader::before,
+.radiation-loader::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  background-color: black;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* Radiation trefoil blades */
+.radiation-loader .blade {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 20%;
+  background-color: var(--crt-green, var(--crt-green));
+  transform-origin: 0% 50%;
+  border-radius: 2px;
+  box-shadow: 0 0 5px var(--crt-green);
+}
+
+.radiation-loader .blade:nth-child(1) {
+  transform: rotate(0deg) translateX(50%) rotate(0deg);
+}
+
+.radiation-loader .blade:nth-child(2) {
+  transform: rotate(120deg) translateX(50%) rotate(-120deg);
+}
+
+.radiation-loader .blade:nth-child(3) {
+  transform: rotate(240deg) translateX(50%) rotate(-240deg);
+}
+
+.radiation-loader-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20%;
+  height: 20%;
+  background-color: black;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+/* Animate rotation */
+.radiation-loader {
+  animation: radiationRotate 2s linear infinite, radiationPulse 2s infinite ease-in-out;
+}
+
+@keyframes radiationRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes radiationPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--crt-green), 0 0 10px var(--crt-green);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 15px var(--crt-green), 0 0 30px var(--crt-green);
+    opacity: 0.7;
+  }
+}
+
+/* Usage Example:
+<div class="radiation-loader">
+  <div class="blade"></div>
+  <div class="blade"></div>
+  <div class="blade"></div>
+  <div class="radiation-loader-inner"></div>
+</div>
+*/
+
+/* Typing animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Cursor blink animation */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Glitch animation */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Advanced Glitch animation */
+@keyframes advancedGlitch {
+  0% {
+    transform: translate(0);
+    text-shadow: -2px 0 var(--crt-green), 2px 2px var(--color-error);
+  }
+  20% {
+    transform: translate(-3px, 3px);
+    text-shadow: 1px -1px var(--crt-green), -1px -2px var(--color-error);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+    text-shadow: 2px 1px var(--crt-green), -2px -1px var(--color-error);
+  }
+  60% {
+    transform: translate(3px, 2px);
+    text-shadow: -1px 0 var(--crt-green), 1px -1px var(--color-error);
+  }
+  80% {
+    transform: translate(2px, -3px);
+    text-shadow: -1px 2px var(--crt-green), 2px 1px var(--color-error);
+  }
+  100% {
+    transform: translate(0);
+    text-shadow: -2px 0 var(--crt-green), 2px 2px var(--color-error);
+  }
+}
+
+/* Character scramble animation */
+@keyframes characterScramble {
+  0% {
+    content: attr(data-text);
+  }
+  20% {
+    content: attr(data-scramble1);
+  }
+  40% {
+    content: attr(data-scramble2);
+  }
+  60% {
+    content: attr(data-scramble3);
+  }
+  80% {
+    content: attr(data-scramble4);
+  }
+  100% {
+    content: attr(data-text);
+  }
+}
+
+/* Matrix rain animation */
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100%);
+/* Fallout Terminal Loading Animation */
+.fallout-terminal-loader {
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--crt-green);
+  text-shadow: 0 0 2px var(--crt-green), 0 0 5px var(--crt-green), 0 0 10px var(--crt-green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: black;
+  border: 2px solid var(--crt-green);
+  box-shadow: 0 0 10px var(--crt-green);
+  position: relative;
+  animation: flicker 2s infinite;
+}
+
+.fallout-terminal-loader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.2) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.loading-text {
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  letter-spacing: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid var(--crt-green);
+  animation: typing 2s steps(12, end) infinite alternate, blink 1s step-end infinite;
+  z-index: 2;
+}
+
+.loading-bar {
+  position: relative;
+  width: 100%;
+  height: 1.2rem;
+  margin-top: 1.5rem;
+  background-color: #001100;
+  border: 1px solid var(--crt-green);
+  box-shadow: 0 0 5px var(--crt-green);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.loading-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: var(--crt-green);
+  box-shadow: 0 0 5px var(--crt-green), 0 0 10px var(--crt-green);
+  animation: load-progress 2.5s infinite ease-in-out;
+}
+
+@keyframes load-progress {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(1000%);
+    opacity: 0;
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Shake animation */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Terminal boot animation */
+.terminal-boot-line {
+  animation: typing 2s steps(40, end), blink 0.75s step-end infinite;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--terminal-green);
+  margin-bottom: 0.5rem;
+}
+
+/* Enhanced terminal boot animation */
+.terminal-boot-sequence {
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-boot-line.enhanced {
+  position: relative;
+  animation: typing 2s steps(40, end);
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 0.5rem;
+}
+
+.terminal-boot-line.enhanced::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: var(--terminal-green);
+  animation: blink 0.75s step-end infinite;
+}
+
+.terminal-boot-line.error {
+  color: var(--color-error);
+  animation: typing 1.5s steps(40, end), shake 0.5s ease-in-out;
+}
+
+.terminal-boot-line.success {
+  color: var(--terminal-green);
+  animation: typing 1.5s steps(40, end), pulse 1s ease-in-out;
+}
+
+.terminal-boot-line.warning {
+  color: var(--color-warning);
+  animation: typing 1.5s steps(40, end);
+}
+
+.terminal-boot-line.scramble::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  animation: characterScramble 1s steps(1, end);
+}
+
+/* Matrix character animation */
+.matrix-character {
+  position: absolute;
+  color: var(--terminal-green);
+  font-family: var(--terminal-font);
+  font-size: 1.2rem;
+  animation: matrixRain 3s linear infinite;
+  opacity: 0;
+}
+
+/* Terminal cursor */
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  background-color: var(--terminal-green);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+/* Terminal glitch effect */
+.terminal-glitch {
+  animation: glitch 0.3s infinite;
+  position: relative;
+  display: inline-block;
+}
+
+/* Advanced terminal glitch effect */
+.terminal-advanced-glitch {
+  animation: advancedGlitch 0.5s infinite;
+  position: relative;
+  display: inline-block;
+}
+
+/* Terminal loading animation */
+.terminal-loading::after {
+  content: "...";
+  animation: terminal-loading 1.5s infinite;
+}
+
+@keyframes terminal-loading {
+  0%, 100% {
+    content: ".";
+  }
+  33% {
+    content: "..";
+  }
+  66% {
+    content: "...";
+  }
+}
+
+/* Enhanced terminal loading animation */
+.terminal-loading-enhanced {
+  position: relative;
+  display: inline-block;
+  min-width: 60px;
+  text-align: left;
+}
+
+.terminal-loading-enhanced::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  animation: enhancedLoading 2s steps(4, end) infinite;
+}
+
+@keyframes enhancedLoading {
+  0% {
+    content: "▌";
+  }
+  25% {
+    content: "▌▌";
+  }
+  50% {
+    content: "▌▌▌";
+  }
+  75% {
+    content: "▌▌▌▌";
+  }
+  100% {
+    content: "▌▌▌▌▌";
+  }
+}
+
+/* Terminal notification animation */
+@keyframes notification-slide {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%);
+/* Fallout Vault-Tec Inspired Radar Loading Animation */
+.vault-radar {
+  position: relative;
+  width: 30vmin;
+  height: 30vmin;
+  margin: 40px auto;
+  border-radius: 50%;
+  background-color: black;
+  border: 2px solid var(--crt-green);
+  box-shadow: 0 0 20px var(--crt-green);
+  overflow: hidden;
+}
+
+.vault-radar::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(0,255,0,0.2) 20%, transparent 70%),
+    repeating-radial-gradient(circle, transparent, transparent 5%, rgba(0,255,0,0.1) 6%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.radar-sweep {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(rgba(0,255,0,0.3) 0deg, rgba(0,255,0,0.6) 30deg, rgba(0,255,0,0) 60deg, rgba(0,255,0,0) 360deg);
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: radar-rotate 2s linear infinite;
+  z-index: 2;
+}
+
+/* Optional scanline overlay */
+.vault-radar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,255,0,0.05) 50%, rgba(0,0,0,0.2) 50%);
+  background-size: 100% 4px;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes radar-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Usage Example:
+<div class="vault-radar">
+  <div class="radar-sweep"></div>
+</div>
+*/
+    opacity: 0;
+  }
+}
+
+.terminal-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--terminal-gray);
+  border: 1px solid var(--terminal-green);
+  padding: 1rem;
+  z-index: 100;
+  animation: notification-slide 5s forwards;
+}
+
+/* Enhanced terminal notification */
+.terminal-notification-enhanced {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: var(--terminal-gray);
+  border: 1px solid var(--terminal-green);
+  padding: 1rem;
+  z-index: 100;
+  animation: notification-slide 5s forwards, flicker 0.15s infinite;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+}
+
+.terminal-notification-enhanced::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 0%, rgba(76, 175, 80, 0.1) 50%, transparent 100%);
+  animation: notification-glow 2s infinite;
+}
+
+@keyframes notification-glow {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Terminal achievement animation */
+@keyframes achievement-unlock {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.terminal-achievement {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: var(--terminal-gray);
+  border: 1px solid var(--terminal-green);
+  padding: 1rem;
+  z-index: 100;
+  animation: achievement-unlock 5s forwards;
+}
+
+/* Enhanced achievement animation */
+.terminal-achievement-enhanced {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: var(--terminal-gray);
+  border: 1px solid var(--terminal-green);
+  padding: 1rem;
+  z-index: 100;
+  animation: achievement-unlock 5s forwards, pulse 1s infinite;
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+}
+
+.terminal-achievement-enhanced::before {
+  content: "★";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--terminal-green);
+  font-size: 1.5rem;
+  animation: pulse 1s infinite;
+}
+
+/* Terminal hover effect */
+.terminal-hover-effect {
+  transition: all 0.3s ease;
+}
+
+.terminal-hover-effect:hover {
+  text-shadow: 0 0 10px var(--terminal-green);
+  color: var(--terminal-white);
+}
+
+/* Enhanced terminal hover effect */
+.terminal-hover-effect-enhanced {
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.terminal-hover-effect-enhanced:hover {
+  text-shadow: 0 0 10px var(--terminal-green);
+  color: var(--terminal-white);
+  transform: scale(1.05);
+}
+
+.terminal-hover-effect-enhanced::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--terminal-green);
+  transition: width 0.3s ease;
+}
+
+.terminal-hover-effect-enhanced:hover::before {
+  width: 100%;
+}
+
+/* Terminal button press effect */
+.terminal-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Enhanced terminal button */
+.terminal-button-enhanced {
+  background-color: var(--terminal-gray);
+  color: var(--terminal-green);
+  border: 1px solid var(--terminal-green);
+  padding: 0.5rem 1rem;
+  font-family: var(--terminal-font);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-button-enhanced::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.2), transparent);
+  transition: all 0.5s ease;
+}
+
+.terminal-button-enhanced:hover::before {
+  left: 100%;
+}
+
+.terminal-button-enhanced:hover {
+  background-color: var(--terminal-green-dark);
+  color: var(--terminal-black);
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+}
+
+.terminal-button-enhanced:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Power-up animation */
+@keyframes powerUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    filter: brightness(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: brightness(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.power-up {
+  animation: powerUp 1s ease-out;
+}
+
+/* Shutdown animation */
+@keyframes shutdown {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+  90% {
+    opacity: 0.1;
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+.shutdown {
+  animation: shutdown 1s ease-in forwards;
+}
+
+/* CRT off animation */
+@keyframes crtOff {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  10% {
+    opacity: 0.8;
+    transform: scale(0.98);
+    filter: brightness(0.8);
+  }
+  30% {
+    opacity: 0.6;
+    transform: scale(0.95, 0.8);
+    filter: brightness(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9, 0.1);
+    filter: brightness(0);
+  }
+}
+
+.crt-off {
+  animation: crtOff 0.5s ease-in forwards;
+}
+
+/* CRT on animation */
+@keyframes crtOn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9, 0.1);
+    filter: brightness(0);
+  }
+  30% {
+    opacity: 0.3;
+    transform: scale(0.95, 0.8);
+    filter: brightness(0.3);
+  }
+  60% {
+    opacity: 0.6;
+    transform: scale(0.98, 0.95);
+    filter: brightness(0.6);
+  }
+  80% {
+    opacity: 0.8;
+    transform: scale(1.02, 1.02);
+    filter: brightness(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+.crt-on {
+  animation: crtOn 1s ease-out forwards;
+}
+
+/* Radiation pulse animation */
+@keyframes radiationPulse {
+  0% {
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  }
+}
+
+.radiation-pulse {
+  animation: radiationPulse 2s infinite;
+}
+
+/* Terminal command typing effect */
+.terminal-command-typing {
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--terminal-green);
+  animation: typing 1s steps(30, end), blink 0.75s step-end infinite;
+}
+
+/* Command execution animation */
+@keyframes commandExecution {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: auto;
+    opacity: 1;
+  }
+}
+
+.command-execution {
+  overflow: hidden;
+  animation: commandExecution 0.5s ease-out forwards;
+}
+
+/* Vault door animation */
+@keyframes vaultDoorOpen {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.vault-door-open {
+  animation: vaultDoorOpen 2s ease-in-out forwards;
+}
+
+/* Room construction animation */
+@keyframes roomConstruction {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+.room-construction {
+  animation: roomConstruction 1.5s ease-out forwards;
+}
+
+/* Incident animation */
+@keyframes incident {
+  0% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.2);
+    filter: brightness(2);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+/* Fallout-themed loading animation */
+.fallout-loading {
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--crt-green);
+  text-shadow: 0 0 5px var(--crt-green), 0 0 10px var(--crt-green);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  display: inline-block;
+  position: relative;
+}
+
+.fallout-loading::after {
+  content: '_';
+  animation: fallout-blink 1s step-end infinite;
+  position: absolute;
+  right: -10px;
+}
+
+@keyframes fallout-blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.fallout-dots::after {
+  content: '.';
+  animation: fallout-dots 1.5s infinite;
+}
+
+@keyframes fallout-dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60% {
+    content: '...';
+  }
+  80%, 100% {
+    content: '';
+  }
+}
+#terminal-cli-container {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  border-top: 1px solid var(--crt-green);
+  padding: 8px 12px;
+  z-index: auto;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--crt-green);
+  box-shadow: 0 -2px 10px rgba(0, 255, 65, 0.5);
+}
+.terminal-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100vh;
+}
+
+.terminal-header {
+  flex-shrink: 0;
+}
+
+.terminal-content {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+#terminal-interactive-container {
+  flex-shrink: 0;
+}
+
+.terminal-footer {
+  flex-shrink: 0;
+}
+
+/* Terminal Docked Panel */
+.terminal-dock {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 40vh;
+  background-color: var(--terminal-black);
+  border-top: 2px solid var(--terminal-green);
+  overflow-y: auto;
+  z-index: auto;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  transition: max-height 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .terminal-dock {
+    max-height: 60vh;
+  }
+}
+/* Fallout Unified Loading Animation - Enhanced */
+/* Combines Vault-Tec progress bar, radar sweep, CRT flicker, scanlines, and blinking cursor */
+
+.fallout-loader-container {
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+  height: 24px;
+  margin: 40px auto;
+  background-color: var(--vaulttec-blue); /* Vault-Tec blue */
+  border: 2px solid var(--vaulttec-yellow); /* Vault-Tec yellow */
+  box-shadow: 0 0 10px var(--crt-green); /* CRT green glow */
+  overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
+  color: var(--crt-green);
+  text-shadow: 0 0 5px var(--crt-green), 0 0 10px var(--crt-green);
+}
+
+/* Progress bar fill */
+.fallout-loader-container .vault-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--vaulttec-yellow),
+    var(--vaulttec-yellow) 10px,
+    var(--vaulttec-yellow) 10px,
+    var(--vaulttec-yellow) 20px
+  );
+  animation: vault-progress-fill 3s infinite ease-in-out;
+  z-index: 2;
+}
+
+/* Radar sweep overlay */
+.fallout-loader-container .radar-sweep {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(rgba(0,255,0,0.3) 0deg, rgba(0,255,0,0.6) 30deg, rgba(0,255,0,0) 60deg, rgba(0,255,0,0) 360deg);
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: radar-rotate 2s linear infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Scanline overlay */
+.fallout-loader-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* Blinking cursor */
+.fallout-loader-container .blinking-cursor {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  animation: fallout-blink 1s step-end infinite;
+  z-index: 5;
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .fallout-loader-container .vault-progress,
+  .fallout-loader-container .radar-sweep,
+  .fallout-loader-container .blinking-cursor {
+    animation: none !important;
+  }
+}
+
+/* Example usage:
+<div class="fallout-loader-container">
+  <div class="vault-progress"></div>
+  <div class="radar-sweep"></div>
+  <div class="blinking-cursor">_</div>
+</div>
+*/
+
+/* Fallout-themed Loading Screen Overlay */
+.fallout-loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: var(--crt-green);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fallout-loading-screen.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fallout-loading-text {
+  font-family: monospace;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-shadow: 0 0 5px var(--crt-green), 0 0 10px var(--crt-green);
+  animation: flicker 2s infinite;
+}
+
+.fallout-loading-spinner {
+  display: flex;
+  gap: 10px;
+}
+
+.fallout-loading-spinner span {
+  width: 12px;
+  height: 12px;
+  background-color: var(--crt-green);
+  border-radius: 50%;
+  box-shadow: 0 0 5px var(--crt-green), 0 0 10px var(--crt-green);
+  animation: fallout-pulse 1s infinite ease-in-out;
+  will-change: transform, opacity;
+}
+
+.fallout-loading-spinner span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.fallout-loading-spinner span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Optional scanline overlay */
+.fallout-loading-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  background-size: 100% 4px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+  animation: scanlineScroll 1s linear infinite;
+}
+
+/* Usage:
+<div class="fallout-loading-screen active">
+  <div class="fallout-loading-text">Loading Vault-Tec Systems...</div>
+  <div class="fallout-loading-spinner">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+*/
+
+/* Accessibility: Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .terminal-loading,
+  .vault-progress,
+  .fallout-progress,
+  .fallout-spinner,
+  .radiation-loader,
+  .scanline-animate,
+  .typing-indicator span {
+    animation: none !important;
+    transition: none !important;
+  }
+  .terminal-loading {
+    opacity: 1 !important;
+  }
+  .scanline-animate,
+  .terminal-loading::before,
+  .vault-loading::after,
+  .fallout-loading::after {
+    opacity: 0 !important;
+  }
+}
