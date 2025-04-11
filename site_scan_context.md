@@ -1,50 +1,16 @@
-# Comprehensive Site Scan & Analysis Context
+# Site & Codebase Audit Context
 
 ## Objective
-Conduct a full site scan and analysis for the project, covering:
-- Code quality (JavaScript/TypeScript)
-- Style quality (CSS)
-- Performance (Lighthouse)
-- Accessibility (axe-core)
-- Image optimization
+Conduct a comprehensive audit of the codebase and the live site (nosytlabs.com) to identify and remove all files, assets, and code not required for production operation.
 
-## Technical Constraints
-- Non-destructive: analysis only, no code changes at this stage
-- Use MCP tools where available for efficiency and best practices
-- Aggregate findings and recommendations in this context file
+## Scope
+- Static codebase analysis (all files, directories, and code)
+- Dynamic site scan of nosytlabs.com (all reachable pages, assets, and endpoints)
+- Cross-referencing to flag unused or orphaned files/assets/code
+- Remediation plan and execution
+- Quality assurance and documentation
 
-## Task Decomposition
-
-### 1. Code Quality Audit (ESLint)
-- Scope: src/, server/, public/scripts/
-- Tool: site-optimizer-mcp (run_eslint)
-- Deliverable: List of code issues, warnings, and recommendations
-
-### 2. Style Quality Audit (Stylelint)
-- Scope: src/styles/, public/styles/
-- Tool: site-optimizer-mcp (run_stylelint)
-- Deliverable: List of style issues, warnings, and recommendations
-
-### 3. Performance Audit (Lighthouse)
-- Scope: Main site URL (local or deployed)
-- Tool: site-optimizer-mcp (run_lighthouse)
-- Deliverable: Lighthouse report with performance, SEO, best practices, and PWA scores
-
-### 4. Accessibility Audit (axe-core)
-- Scope: Main site URL (local or deployed)
-- Tool: site-optimizer-mcp (run_accessibility_audit)
-- Deliverable: Accessibility issues and recommendations
-
-### 5. Image Optimization Audit
-- Scope: images/, public/images/
-- Tool: site-optimizer-mcp (optimize_images, dry-run/report mode)
-- Deliverable: List of optimizable images and potential savings
-
-## Acceptance Criteria
-- Each audit produces a clear, actionable report
-- All findings are aggregated and prioritized in this context file
-- Recommendations are specific, feasible, and aligned with best practices
-
-## Next Steps
-- Assign each audit as a subtask to technical experts (code mode)
-- Aggregate results and synthesize recommendations upon completion
+## Constraints
+- Preserve all files/assets/code required for correct site operation
+- No regressions, broken links, or missing assets post-cleanup
+- Document all changes and rationale

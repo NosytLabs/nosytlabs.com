@@ -17,8 +17,7 @@ html, body {
 }
 
 #game-interface {
-  background: url('/images/game-assets/shelter_background.svg') no-repeat center center;
-  background-size: cover;
+  background: #1a1a1a;
   /* width and height set dynamically by JS */
   box-sizing: border-box;
   display: flex;
