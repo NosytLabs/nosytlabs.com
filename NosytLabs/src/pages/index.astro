@@ -46,12 +46,20 @@ import TerminalLayout from '../layouts/TerminalLayout.astro';
 
   </div>
 
-  <div id="loading-bar">Loading...</div>
+  <div class="fallout-loading-screen active" style="z-index:99999;">
+    <div class="fallout-loading-text">Initializing Vault-Tec Systems...</div>
+    <div class="fallout-loading-spinner">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
 
   <script>
     window.addEventListener('load', () => {
-      const loader = document.getElementById('loading-bar');
-      if(loader) loader.style.display = 'none';
+      const falloutLoader = document.querySelector('.fallout-loading-screen');
+      if(falloutLoader){
+        falloutLoader.classList.remove('active');
+        falloutLoader.style.display = 'none';
+      }
     });
   </script>
 </TerminalLayout>

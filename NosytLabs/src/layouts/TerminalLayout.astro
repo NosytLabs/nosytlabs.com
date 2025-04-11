@@ -51,14 +51,7 @@ import Analytics from '@vercel/analytics/astro';
 <body class="terminal-background">
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- RobCo Loading Overlay -->
-  <div id="robco-loading-overlay" role="status" aria-live="polite">
-    <div class="robco-loading-content">
-      <h1>ROBCO INDUSTRIES (TM)</h1>
-      <p>TERMLINK PROTOCOL</p>
-      <div class="robco-loading-bar terminal-loading-enhanced"></div>
-    </div>
-  </div>
+  <!-- RobCo Loading Overlay removed: now only on home page -->
 
   <div class="terminal-scanline"></div>
   <div class="terminal-noise"></div>
@@ -67,19 +60,12 @@ import Analytics from '@vercel/analytics/astro';
 
   <div class="layout-container">
     <header>
-      <button id="terminal-toggle" class="terminal-button mobile-toggle" aria-controls="terminal-dock" aria-expanded="false" style="display:none;">
-        Toggle Terminal
-      </button>
       <nav role="navigation" aria-label="Main navigation">
         <DropdownNav />
       </nav>
     </header>
 
     <main id="main-content" class="main-content">
-      <slot />
-    </main>
-
-    <aside id="terminal-dock" class="terminal-dock" role="complementary" aria-label="Developer Terminal">
       <div class="terminal-wrapper">
         <div class="terminal-container">
           <header class="terminal-header">
@@ -106,7 +92,8 @@ import Analytics from '@vercel/analytics/astro';
           </footer>
         </div>
       </div>
-    </aside>
+    </main>
+
   </div>
 
   <script>
@@ -141,8 +128,7 @@ import Analytics from '@vercel/analytics/astro';
         const { TerminalCLI } = module;
         const cli = new TerminalCLI('terminal-cli-container');
         cli.initialize();
-        const overlay = document.getElementById('robco-loading-overlay');
-        if (overlay) overlay.classList.add('hidden');
+        // Removed overlay hide logic since overlay is now only on home page
       }).catch(err => {
         console.error('Failed to load terminal CLI:', err);
       });
