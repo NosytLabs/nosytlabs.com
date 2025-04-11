@@ -43,3 +43,4 @@ coverage/
 scripts/cleanup-dist.ps1
 scripts/cleanup-dist.js
 .vercel
+# Trigger redeploy
