@@ -17,8 +17,6 @@ function getCachedElement(selector) {
 // Web Worker for heavy computations with error handling
 const gameWorker = new Worker('game-worker.js');
 gameWorker.onerror = (e) => {
-    console.error('Game worker error:', e);
-    // Fallback to main thread if worker fails
     fallbackToMainThread();
 };
 
@@ -68,9 +66,7 @@ function gameLoop(timestamp) {
     if (typeof updateGameState === 'function') {
          updateGameState(timestamp, delta);
     } else {
-         // Fallback or error if updateGameState is not defined
-         console.error("updateGameState function is not defined or accessible.");
-         // Optionally, stop the loop: return;
+         fallbackToMainThread();
     }
 
     // Request the next frame
@@ -134,11 +130,7 @@ function monitorFPS() {
     const now = performance.now();
     if (now - lastFpsUpdate >= fpsSampleRate) {
         const fps = (frameCount * 1000) / (now - lastFpsUpdate);
-        if (fps < 55) {
-            console.warn(`[Perf] Low FPS detected: ${fps.toFixed(1)}`);
-        } else {
-            console.log(`[Perf] FPS: ${fps.toFixed(1)}`);
-        }
+        performanceMetrics.updateFPS(fps);
         frameCount = 0;
         lastFpsUpdate = now;
     }
@@ -146,7 +138,6 @@ function monitorFPS() {
 
 function setupAnimationObserver() {
    if (typeof PerformanceObserver === 'undefined') {
-       console.warn('[Perf] PerformanceObserver not supported');
        return;
    }
    try {
@@ -154,19 +145,14 @@ function setupAnimationObserver() {
            for (const entry of list.getEntries()) {
                if (entry.entryType === 'element') {
                    const duration = entry.duration;
-                   if (duration > 50) {
-                       console.warn(`[Perf] Long CSS animation detected (${duration.toFixed(2)}ms):`, entry);
-                   } else {
-                       console.log(`[Perf] CSS animation (${duration.toFixed(2)}ms):`, entry);
+                   performanceMetrics.recordAnimationDuration(duration);
                    }
-               } else if (entry.entryType === 'longtask') {
-                   console.warn(`[Perf] Long task detected (${entry.duration.toFixed(2)}ms):`, entry);
-               }
+               performanceMetrics.recordLongTask(entry);
            }
        });
        observer.observe({ entryTypes: ['element', 'longtask'] });
    } catch (e) {
-       console.warn('[Perf] Failed to setup PerformanceObserver', e);
+       // Consider using a more robust error handling mechanism
    }
 }
 
@@ -188,8 +174,8 @@ export {
 function profileMemory() {
     if (performance && performance.memory) {
         const mem = performance.memory;
-        console.log(`[Perf] Memory usage: ${(mem.usedJSHeapSize / 1048576).toFixed(2)} MB / ${(mem.totalJSHeapSize / 1048576).toFixed(2)} MB (limit ${(mem.jsHeapSizeLimit / 1048576).toFixed(2)} MB)`);
+        performanceMetrics.updateMemoryUsage(mem);
     } else {
-        console.log('[Perf] Memory profiling not supported in this browser.');
+        // Consider using a more robust fallback or logging mechanism
     }
 }

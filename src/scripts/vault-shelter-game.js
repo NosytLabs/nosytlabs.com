@@ -10,9 +10,6 @@ const rateLimit = (fn, delay, methodName = 'method') => {
     return (...args) => {
         const now = Date.now();
         if (now - lastCall < delay) {
-            // Throwing an error might be too disruptive, consider logging or returning null/false
-            console.warn(`Rate limit exceeded for ${methodName}. Wait ${delay - (now - lastCall)}ms`);
-            // throw new RateLimitError(`API call rate limited. Wait ${delay - (now - lastCall)}ms`, { method: methodName, delay });
             return; // Or return a specific value indicating rate limit
         }
         lastCall = now;
@@ -107,7 +104,6 @@ const VaultShelterGame = (() => {
         clear: () => {
             objectPool.dwellers.length = 0;
             objectPool.rooms.length = 0;
-            console.log('Object pools cleared.');
         }
     };
 
@@ -167,7 +163,6 @@ const VaultShelterGame = (() => {
                         const growthRateBytesPerSec = (last.usage - first.usage) / durationSeconds;
 
                         if (growthRateBytesPerSec > this._leakThresholdBytesPerSec) {
-                            console.warn(`Potential memory leak: ${(growthRateBytesPerSec / (1024 * 1024)).toFixed(2)} MB/sec growth over ${durationSeconds.toFixed(1)}s`);
                             if (growthRateBytesPerSec > this._leakThresholdBytesPerSec * 5) {
                                 console.error('Critical memory leak detected - triggering cleanup');
                                 this.triggerCleanup();
@@ -191,12 +186,10 @@ const VaultShelterGame = (() => {
                 // Check if this frame exceeded the budget
                 if (validDelta > this.frameBudget * 1.1) { // Allow 10% buffer
                     this.longFrames++;
-                     // console.warn(`Long frame detected: ${validDelta.toFixed(2)}ms`);
                 }
             },
 
             triggerCleanup() {
-                console.warn('Attempting GC and clearing object pools due to potential leak...');
                 if (typeof gc === 'function') {
                     try { gc(); } catch (e) { console.error('Error during explicit GC:', e); }
                 }
@@ -219,7 +212,6 @@ const VaultShelterGame = (() => {
 
                     if (this.fps < 50 && this.fps > 0) { // Avoid warning on initial 0 fps
                          const avgFrameTime = this._frameTimes.reduce((sum, t) => sum + t, 0) / this._frameTimes.length;
-                        console.warn(`Low FPS: ${this.fps}. Avg Frame Time: ${avgFrameTime.toFixed(2)}ms`);
                     }
                      // Reset per-second counters here
                      this.longFrames = 0;
@@ -228,27 +220,12 @@ const VaultShelterGame = (() => {
             },
 
             logPerformance() {
-                const avgFrameTime = this._frameTimes.reduce((sum, t) => sum + t, 0) / this._frameTimes.length;
-                console.table({
-                    'FPS': this.fps,
-                    'Frame Time Avg (ms)': avgFrameTime.toFixed(2),
-                    'Frame Time Max (ms)': Math.max(...this._frameTimes).toFixed(2),
-                    'Long Frames (/sec)': this.longFrames, // Shows count since last log/reset
-                    'Memory (MB)': (this.memoryUsage / (1024 * 1024)).toFixed(2),
-                    'Layout Shift Score': this.layoutShiftScore.toFixed(4),
-                    'Long Tasks (>50ms)': this.longTasksCount, // Shows count since last log/reset
-                    'Collision Checks': this.collisionChecks, // Assuming this is updated elsewhere
-                    'Skipped Frames': this.skippedFrames // Assuming this is updated elsewhere
-                });
-                 // Reset counters after logging for per-second view (moved from updateFps)
-                 // this.longFrames = 0; // Resetting here means table shows cumulative since last reset
-                 // this.longTasksCount = 0;
-                 // CLS is cumulative, usually not reset this way
+                // Production: logPerformance is a no-op or could be replaced with analytics event if needed.
             },
 
             initPerformanceObserver() {
                 if (!window.PerformanceObserver) {
-                    console.warn('PerformanceObserver API not supported.'); return;
+                    return;
                 }
                 try {
                     // Disconnect existing observer if any
@@ -260,13 +237,11 @@ const VaultShelterGame = (() => {
                                 this.layoutShiftScore += entry.value;
                             } else if (entry.entryType === 'longtask') {
                                 this.longTasksCount++;
-                                console.warn(`Long Task detected: ${entry.duration.toFixed(1)}ms`, entry);
                             }
                         }
                     });
                     // Use buffered: true to get entries that occurred before observe() was called
                     this._perfObserver.observe({ entryTypes: ['layout-shift', 'longtask'], buffered: true });
-                    console.log('PerformanceObserver initialized.');
                 } catch (e) {
                     console.error('Failed to initialize PerformanceObserver:', e);
                 }
@@ -276,7 +251,6 @@ const VaultShelterGame = (() => {
                 if (this._perfObserver) {
                     this._perfObserver.disconnect();
                     this._perfObserver = null;
-                    console.log('PerformanceObserver disconnected.');
                 }
             }
         },
@@ -398,9 +372,7 @@ const VaultShelterGame = (() => {
     // --- Public API ---
     // Define the API object first
     const api = {
-        // Expose state for debugging or specific UI needs (use carefully)
-        // Consider providing specific getters instead of exposing raw state
-        get state() { return state; },
+        // State is not exposed in production. Use specific getters if needed.
 
         // --- Core Methods ---
         addDweller(name, skills) {
@@ -608,7 +580,7 @@ const VaultShelterGame = (() => {
                              position: posValidation === true ? d.position : { x: 0, y: 0 } // Default position if invalid
                          });
                     } else {
-                         console.warn("Skipping invalid dweller data during load:", d);
+                         // Skipping invalid dweller data during load.
                     }
                 });
 
@@ -617,7 +589,7 @@ const VaultShelterGame = (() => {
                      if (r && r.id && validate.roomName(r.name) === true) {
                          rooms.set(r.id, { ...r, name: sanitize(r.name), roomType: sanitize(r.roomType) });
                      } else {
-                          console.warn("Skipping invalid room data during load:", r);
+                          // Skipping invalid room data during load.
                      }
                  });
 
@@ -644,7 +616,7 @@ const VaultShelterGame = (() => {
                                events.delete(loadedEvent);
                           }
                       } else {
-                           console.warn("Skipping invalid event data during load:", e);
+                           // Skipping invalid event data during load.
                       }
                   });
 
@@ -656,7 +628,7 @@ const VaultShelterGame = (() => {
                 state._spatialGrid.clear(); // Rebuild spatial grid
                 state.dwellers.forEach(dweller => _updateSpatialGrid(dweller, null));
 
-                console.log("Game state loaded successfully.");
+                // Game state loaded successfully.
 
             } catch (error) {
                  console.error("Error loading state:", error);
@@ -711,7 +683,7 @@ const VaultShelterGame = (() => {
                          // Handle collision: Simple bounce off
                          dweller._moveAngle = (dweller._moveAngle + Math.PI + (Math.random() - 0.5) * 0.5) % (2 * Math.PI);
                     } else {
-                         console.warn(`Error moving dweller ${dweller.id}:`, error.message);
+                         // Error moving dweller, see error.message
                     }
                 }
             });
@@ -732,7 +704,7 @@ const VaultShelterGame = (() => {
 
          // --- Cleanup ---
          destroy() {
-             console.log("Destroying VaultShelterGame instance...");
+             // Destroying VaultShelterGame instance...
              state._monitor.disconnectObserver(); // Disconnect performance observer
              // Add other cleanup logic: clear intervals/timeouts, remove listeners
              state.dwellers.clear();
@@ -983,7 +955,7 @@ const VaultShelterUI = (() => {
              // Initial empty structure
              this._currentVNode = createElement('div', { id: 'game-root', style: { position: 'relative', width: '500px', height: '300px', border: '1px solid white', overflow: 'hidden', background: '#222' } }); // Basic container style
              render(this._currentVNode, this._rootContainer);
-             console.log("VaultShelterUI initialized.");
+             // VaultShelterUI initialized.
          },
 
          renderUI(gameState) {
@@ -1030,7 +1002,7 @@ const VaultShelterUI = (() => {
 
         clearCache() {
             componentCache.clear();
-            console.log("UI component cache cleared.");
+            // UI component cache cleared.
         }
     };
 
@@ -1054,7 +1026,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start the game loop (assuming gameLoop is globally available or imported from performance-optimizations.js)
     if (typeof gameLoop === 'function') {
          requestAnimationFrame(gameLoop);
-         console.log("Game loop started.");
+         // Game loop started.
     } else {
          console.error("gameLoop function not found. Cannot start game.");
     }
@@ -1083,9 +1055,7 @@ document.addEventListener('DOMContentLoaded', () => {
      // Periodic performance log
       setInterval(() => {
           // Access monitor via the game instance's state
-          if (VaultShelterGame?.state?._monitor?.logPerformance) {
-               VaultShelterGame.state._monitor.logPerformance();
-          }
+          // Performance logging disabled in production.
       }, 5000);
 
       // Example: Add controls to test game functions

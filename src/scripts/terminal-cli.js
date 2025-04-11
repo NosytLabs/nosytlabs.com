@@ -52,7 +52,7 @@ export class TerminalCLI {
     // Show welcome message
     this.showWelcomeMessage();
     
-    console.log('Terminal CLI initialized');
+    // Terminal CLI initialized.
   }
 
   /**
@@ -151,14 +151,6 @@ export class TerminalCLI {
   showWelcomeMessage() {
     const welcomeMessage = `
       <div class="terminal-cli-welcome">
-        <pre class="terminal-cli-ascii-art">
- _   _  ___  _____   _______ 
-| \\ | |/ _ \\/ ____\\ \\ / /_   _|
-|  \\| | | | | (___  \\ V /  | |  
-| . \` | | | |\\___ \\  > <   | |  
-| |\\  | |_| |____) |/ . \\ _| |_ 
-|_| \\_|\\___/|_____//_/ \\_\\_____|
-        </pre>
         <p>ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</p>
         <p>NOSYT LABS SECURE TERMINAL v1.0.0</p>
         <p>Type 'help' to see available commands.</p>
@@ -502,7 +494,7 @@ export class TerminalCLI {
   initializeFileSystem() {
     return {
       directories: {
-        home: {
+        'home': {
           directories: {
             'vault-tec': {
               directories: {
@@ -510,28 +502,25 @@ export class TerminalCLI {
                   directories: {},
                   files: {
                     'readme.txt': {
-                      content: 'Welcome to the Nosyt Labs terminal system. This terminal provides access to various resources and tools.'
-                    },
-                    'vault-tec.txt': {
-                      content: 'VAULT-TEC CONFIDENTIAL\n\nVault-Tec Shelter Simulator is a state-of-the-art simulation of vault management. Build and manage your own vault, assign dwellers to tasks, and protect your vault from threats.'
+                      content: 'Welcome to the Vault-Tec terminal!'
                     }
                   }
                 },
                 projects: {
                   directories: {},
                   files: {
-                    'stream-companion.txt': {
-                      content: 'Stream Companion is an AI-powered streaming chat bot that doesn\'t require users to keep the app open. The application is designed as a server that can run independently and continuously monitor streaming chats.'
+                    'project1.txt': {
+                      content: 'Project 1: Secure Vault Door'
                     },
-                    'website-editor.txt': {
-                      content: 'The Website Editor is a powerful tool for creating and editing websites with a user-friendly interface.'
+                    'project2.txt': {
+                      content: 'Project 2: Radiation Monitoring System'
                     }
                   }
                 }
               },
               files: {
-                'welcome.txt': {
-                  content: 'Welcome to Nosyt Labs Terminal!\n\nType "help" to see available commands.\nType "vault" to launch the Vault-Tec Shelter Simulator.\nType "projects" to view Nosyt Labs projects.'
+                'notes.txt': {
+                  content: 'Remember to check the reactor core.'
                 }
               }
             }
@@ -544,36 +533,46 @@ export class TerminalCLI {
   }
 
   /**
-   * Get directory from path
-   * @param {string} path - Directory path
-   * @returns {Object|null} Directory object or null if not found
+   * Get directory object from path
+   * @param {string} path
+   * @returns {Object|null}
    */
   getDirectoryFromPath(path) {
-    // Handle absolute paths
-    if (path.startsWith('/')) {
-      const parts = path.split('/').filter(Boolean);
-      let current = this.fileSystem;
-      
-      for (const part of parts) {
-        if (!current.directories[part]) {
-          return null;
-        }
-        current = current.directories[part];
-      }
-      
-      return current;
+    if (!path || path === '/') {
+      return this.fileSystem;
     }
-    
-    // Handle relative paths
-    const currentParts = this.currentDirectory.split('/').filter(Boolean);
+    const parts = path.replace(/^\/+|\/+$/g, '').split('/');
     let current = this.fileSystem;
-    
-    for (const part of currentParts) {
-      if (!current.directories[part]) {
+    for (const part of parts) {
+      if (current.directories && current.directories[part]) {
+        current = current.directories[part];
+      } else {
         return null;
       }
-      current = current.directories[part];
     }
     return current;
+  }
+
+  /**
+   * Get file object from path
+   * @param {string} path
+   * @returns {Object|null}
+   */
+  getFileFromPath(path) {
+    if (!path) return null;
+    const parts = path.replace(/^\/+|\/+$/g, '').split('/');
+    let current = this.fileSystem;
+    for (let i = 0; i < parts.length - 1; i++) {
+      if (current.directories && current.directories[parts[i]]) {
+        current = current.directories[parts[i]];
+      } else {
+        return null;
+      }
+    }
+    const fileName = parts[parts.length - 1];
+    if (current.files && current.files[fileName]) {
+      return current.files[fileName];
+    }
+    return null;
   }
 }

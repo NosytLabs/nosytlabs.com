@@ -332,9 +332,6 @@ function getProjectDetails(projectName) {
       <div class="terminal-response">
         <div>PROJECT: AI CODE ASSISTANT</div>
         <div>-----------------------------------------</div>
-        <div>STATUS: PLANNING</div>
-        <div>DESCRIPTION: An AI-powered code assistant that helps developers write, debug, and optimize code. Features include code completion, error detection, refactoring suggestions, and documentation generation.</div>
-        <div>TECHNOLOGIES: Python, TypeScript, Machine Learning</div>
       </div>
     `
   };

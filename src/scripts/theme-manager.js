@@ -26,7 +26,7 @@ export class ThemeManager {
     // Listen for system preference changes
     this.listenForSystemPreferenceChanges();
     
-    console.log('Theme Manager initialized with theme:', this.currentTheme);
+    // Theme Manager initialized with theme.
   }
 
   /**

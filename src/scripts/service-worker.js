@@ -23,7 +23,6 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Service Worker: Caching files');
         return cache.addAll(PRECACHE_ASSETS);
       })
       .then(() => self.skipWaiting())
@@ -39,7 +38,6 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
-            console.log('Service Worker: Deleting old cache', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -103,17 +101,9 @@ self.addEventListener('fetch', event => {
             return response;
           })
           .catch(error => {
-            // Special handling for image requests - return placeholder
             if (event.request.url.match(/\.(jpg|jpeg|png|gif|svg)$/)) {
-              return new Response(
-                '<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">' +
-                '<rect width="400" height="300" fill="#1E1E1E" />' +
-                '<text x="50%" y="50%" fill="#4CAF50" text-anchor="middle" dominant-baseline="middle" font-family="monospace">Image Offline</text>' +
-                '</svg>',
-                { headers: { 'Content-Type': 'image/svg+xml' } }
-              );
+              return caches.match('/images/offline-placeholder.svg');
             }
-            console.error('Service Worker fetch failed:', error);
             throw error;
           });
       })

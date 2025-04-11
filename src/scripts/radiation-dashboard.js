@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     const res = await fetch('/api/analytics');
     analytics = await res.json();
   } catch {
-    console.warn('Failed to fetch analytics data');
+    // Failed to fetch analytics data.
   }
 
   // Aggregate events by date

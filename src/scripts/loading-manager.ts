@@ -253,7 +253,6 @@ class LoadingManager {
             // Keep the queue sorted by priority (lower number first)
             this.queue.sort((a, b) => (a.priority ?? 10) - (b.priority ?? 10));
         } else {
-            // console.debug(`Skipping duplicate resource: ${resource.id}`);
         }
     }
 
@@ -275,7 +274,6 @@ class LoadingManager {
         this.dispatchEvent('start', {}); // Dispatch start event
 
         if (this.totalResources === 0) {
-            // console.debug('No resources to load.');
             this.dispatchEvent('complete', {});
             return Promise.resolve();
         }
@@ -332,7 +330,6 @@ class LoadingManager {
             // Final completion check
             const failedCount = this.totalResources - this.loadedResources.size;
             if (failedCount > 0) {
-                 console.warn(`Loading finished, but ${failedCount} resources failed to load.`);
                  this.dispatchEvent('complete', { partialError: true });
             } else {
                  this.dispatchEvent('complete', { partialError: false });
@@ -393,7 +390,6 @@ class LoadingManager {
             }
 
             if (attempt < this.options.retryAttempts) {
-                // console.debug(`Retrying ${resource.id} (attempt ${attempt + 1})...`);
                 await new Promise(resolve => setTimeout(resolve, this.options.retryDelay * Math.pow(2, attempt))); // Exponential backoff
                 return this.loadResourceWithRetry(resource, attempt + 1);
             } else {
@@ -655,7 +651,7 @@ class LoadingManager {
         // Prevent prototype pollution
         const proto = Object.getPrototypeOf(data);
         if (proto !== Object.prototype && proto !== Array.prototype) {
-            console.warn('Potential prototype pollution detected in JSON.');
+            // Potential prototype pollution detected in JSON.
             return false;
         }
 
@@ -670,7 +666,7 @@ class LoadingManager {
 
              // Disallow keys that might indicate prototype pollution
              if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
-                 console.warn(`Disallowed key found in JSON: ${key}`);
+                 // Disallowed key found in JSON.
                  return false;
              }
 
@@ -678,7 +674,7 @@ class LoadingManager {
             if (typeof value === 'string') {
                 // Basic XSS check - check for script tags or event handlers
                 if (/<script|onerror=|onload=/i.test(value)) {
-                     console.warn(`Potentially unsafe string found in JSON: ${key}`);
+                     // Potentially unsafe string found in JSON.
                      return false;
                 }
                 // Optionally replace chars like < > & ' " if needed downstream
@@ -696,11 +692,10 @@ class LoadingManager {
     private validateJsonSchema<T>(data: unknown, schema?: T): data is T {
         // Ensure Ajv is available (consider making it optional or injectable)
         if (typeof Ajv === 'undefined') {
-             console.warn('Ajv not available for schema validation. Skipping.');
+             // Ajv not available for schema validation. Skipping.
              return true;
         }
         if (!schema) {
-             // console.debug('No schema provided for validation.');
              return true; // No schema means validation passes vacuously
         }
 
@@ -741,7 +736,6 @@ class LoadingManager {
 
     // --- Cleanup ---
     public destroy(): void {
-        // console.debug('Destroying LoadingManager...');
         this.abortController.abort(); // Abort ongoing operations
 
         // Clear queues and state
@@ -759,12 +753,10 @@ class LoadingManager {
         // Create a new abort controller for potential future use
         this.abortController = new AbortController();
 
-        // console.debug('LoadingManager destroyed.');
     }
 
     // --- Event Dispatcher ---
     private dispatchEvent(type: string, detail: unknown): void {
-        // console.debug(`Dispatching event: ${type}`, detail); // Verbose logging
         this.eventTarget.dispatchEvent(new CustomEvent(type, { detail }));
     }
 
@@ -789,9 +781,9 @@ class LoadingManager {
                 // Ignore WebGL errors
             }
 
-            console.log(`[Perf] Device capabilities: CPU cores=${cores}, RAM=${memory}GB, GPU=${gpuInfo}`);
+            // Device capabilities detected (CPU, RAM, GPU).
         } catch (e) {
-            console.warn('[Perf] Failed to detect device capabilities', e);
+            // Failed to detect device capabilities.
         }
     }
 
@@ -800,14 +792,7 @@ class LoadingManager {
             const navEntries = performance.getEntriesByType('navigation');
             if (navEntries && navEntries.length > 0) {
                 const nav = navEntries[0] as PerformanceNavigationTiming;
-                console.log('[Perf] Navigation Timing:', {
-                    startTime: nav.startTime,
-                    fetchStart: nav.fetchStart,
-                    domInteractive: nav.domInteractive,
-                    domContentLoaded: nav.domContentLoadedEventEnd,
-                    loadEventEnd: nav.loadEventEnd,
-                    duration: nav.duration
-                });
+                // Navigation timing logging removed for production.
             } else if ((performance as any).timing) {
                 const t = (performance as any).timing;
                 console.log('[Perf] Legacy Navigation Timing:', {

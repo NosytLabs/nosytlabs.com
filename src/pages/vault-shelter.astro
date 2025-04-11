@@ -20,11 +20,9 @@ export const prerender = true;
     </div>
 
     <div class="game-container" id="game-container">
-      <div class="game-loading" id="game-loading">
-        <div class="terminal-loading">LOADING VAULT-TEC SYSTEMS</div>
-      </div>
+      <!-- Loading animation removed -->
       
-      <div class="game-interface hidden" id="game-interface">
+      <div class="game-interface" id="game-interface">
         <div class="vault-status">
           <div class="resource-meters">
             <div class="resource-meter">
@@ -94,7 +92,6 @@ export const prerender = true;
           <button id="add-zone-btn">Add Zone</button>
           <button id="save-zones-btn">Save Zones</button>
           <button id="load-zones-btn">Load Zones</button>
-          <button id="toggle-debug-btn">Toggle Debug</button>
           <div style="margin-top:10px;">
             <label>ID: <input type="text" id="zone-id" /></label><br/>
             <label>Shape:
@@ -121,24 +118,7 @@ export const prerender = true;
   <script type="module">
     (async () => {
       // Show loading spinner
-      const loading = document.getElementById('game-loading');
-      const gameInterface = document.getElementById('game-interface');
-      let gameReady = false;
-      let scriptsLoaded = 0;
-      let totalScripts = 3;
-
-      function checkReady() {
-        if (scriptsLoaded === totalScripts && gameReady) {
-          if (loading) loading.style.display = 'none';
-          if (gameInterface) gameInterface.classList.remove('hidden');
-        }
-      }
-
-      // Listen for a custom event from the game script indicating readiness
-      window.addEventListener('vault-shelter-game-ready', () => {
-        gameReady = true;
-        checkReady();
-      });
+      // Loading animation logic removed; game interface is always visible
 
       try {
         await import('/src/scripts/radiation-zone-editor.js');

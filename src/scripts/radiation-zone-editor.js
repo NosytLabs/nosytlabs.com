@@ -1,10 +1,9 @@
-const canvas = document.getElementById('zone-visualization');
+npmconst canvas = document.getElementById('zone-visualization');
 const ctx = canvas.getContext('2d');
 const panel = document.getElementById('zone-editor-panel');
 
 let zones = [];
 let selectedZone = null;
-let debugVisible = true;
 
 // Load zones from localStorage if available
 function loadZones() {
@@ -78,7 +77,6 @@ function updateZoneFromForm() {
 // Render all zones on canvas
 function renderZones() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (!debugVisible) return;
   zones.forEach(zone => {
     ctx.globalAlpha = 0.3;
     ctx.fillStyle = zone.active ? 'red' : 'gray';

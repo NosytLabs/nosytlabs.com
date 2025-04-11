@@ -20,17 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setupSocket() {
     socket = io(); // assumes same origin server
-    socket.on('connect', () => console.log('Connected to collaboration server'));
+    socket.on('connect', () => {});
     socket.on('zonesUpdated', async () => {
-      console.log('Received zones update');
-      await loadZones();
+        await loadZones();
     });
     socket.on('presetsUpdated', async () => {
-      console.log('Received presets update');
       await loadPresets();
     });
     socket.on('versionsUpdated', async () => {
-      console.log('Received versions update');
       await loadVersions();
     });
   }

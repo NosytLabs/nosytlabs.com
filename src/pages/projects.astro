@@ -11,9 +11,9 @@ import TerminalLayout from '../layouts/TerminalLayout.astro';
     </p>
     
     <div class="github-integration" id="github-integration">
-      <div class="terminal-loading" id="github-loading">CONNECTING TO GITHUB API...</div>
+      <!-- Loading animation removed -->
       
-      <div class="github-data hidden" id="github-data">
+      <div class="github-data" id="github-data">
         <div class="terminal-card">
           <div class="terminal-card-title">GITHUB REPOSITORY STATUS</div>
           <div class="terminal-card-content">
@@ -56,14 +56,8 @@ import TerminalLayout from '../layouts/TerminalLayout.astro';
       document.addEventListener('DOMContentLoaded', () => {
         const ytLink = document.getElementById('youtube-link');
         if (ytLink) {
-          console.log('YouTube link found:', ytLink.href);
           ytLink.addEventListener('click', (e) => {
-            console.log('YouTube link clicked');
-            console.log('target:', ytLink.target);
-            console.log('rel:', ytLink.rel);
           });
-        } else {
-          console.warn('YouTube link not found');
         }
       });
     </script>
@@ -216,40 +210,6 @@ import TerminalLayout from '../layouts/TerminalLayout.astro';
         </div>
       </div>
       
-      <div class="project-item" data-repo="ai-code-assistant">
-        <div class="project-header">
-          <h2 class="terminal-subheading">AI CODE ASSISTANT</h2>
-          <div class="project-badges">
-            <span class="project-badge">AI</span>
-            <span class="project-badge">DEVELOPMENT</span>
-            <span class="project-badge">TOOLS</span>
-          </div>
-        </div>
-        
-        <div class="project-content">
-          <p class="terminal-paragraph">An AI-powered code assistant that helps developers write, debug, and optimize code. Features include code completion, error detection, refactoring suggestions, and documentation generation.</p>
-          
-          <div class="project-stats">
-            <div class="project-stat">
-              <span class="stat-label">STATUS:</span>
-              <span class="stat-value">PLANNING</span>
-            </div>
-            <div class="project-stat">
-              <span class="stat-label">LANGUAGE:</span>
-              <span class="stat-value">PYTHON, TYPESCRIPT</span>
-            </div>
-            <div class="project-stat">
-              <span class="stat-label">LAST COMMIT:</span>
-              <span class="stat-value">2025-03-15</span>
-            </div>
-          </div>
-          
-          <div class="project-links">
-            <a href="https://github.com/NosytLabs/ai-code-assistant" class="terminal-button" target="_blank">VIEW REPOSITORY</a>
-            <a href="#" class="terminal-button project-details-btn" data-project="ai-code-assistant">PROJECT DETAILS</a>
-          </div>
-        </div>
-      </div>
     </div>
     
     <div class="project-details-modal hidden" id="project-details-modal">
@@ -425,57 +385,18 @@ import TerminalLayout from '../layouts/TerminalLayout.astro';
   height: 100%;
   border: 0;
 }
+.projects-container {
+  min-height: 0;
+  overflow: auto;
+}
+
 </style>
 
 <script>
   import { gsap } from 'gsap';
   
   document.addEventListener('DOMContentLoaded', () => {
-    // GitHub integration loading animation
-    const githubLoading = document.getElementById('github-loading');
-    const githubData = document.getElementById('github-data');
-    
-    // Simulate GitHub API connection
-    setTimeout(() => {
-      gsap.to(githubLoading, {
-        opacity: 0,
-        duration: 0.5,
-        onComplete: () => {
-          githubLoading.classList.add('hidden');
-          githubData.classList.remove('hidden');
-          
-          // Animate GitHub data
-          gsap.from(githubData, {
-            opacity: 0,
-            y: -20,
-            duration: 0.5
-          });
-          
-          // Animate GitHub stats with counting effect
-          const repoCount = document.getElementById('repo-count');
-          const commitCount = document.getElementById('commit-count');
-          const contributorCount = document.getElementById('contributor-count');
-          
-          gsap.from(repoCount, {
-            innerText: 0,
-            duration: 2,
-            snap: { innerText: 1 }
-          });
-          
-          gsap.from(commitCount, {
-            innerText: 0,
-            duration: 2,
-            snap: { innerText: 1 }
-          });
-          
-          gsap.from(contributorCount, {
-            innerText: 0,
-            duration: 2,
-            snap: { innerText: 1 }
-          });
-        }
-      });
-    }, 2000);
+    // Loading animation logic removed; GitHub data is always visible
     
     // Project items animation
     const projectItems = document.querySelectorAll('.project-item');

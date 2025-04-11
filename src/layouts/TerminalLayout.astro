@@ -39,7 +39,6 @@ import Analytics from '@vercel/analytics/astro';
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js')
           .then(registration => {
-            console.log('Service Worker registered with scope:', registration.scope);
           })
           .catch(error => {
             console.error('Service Worker registration failed:', error);
@@ -49,6 +48,13 @@ import Analytics from '@vercel/analytics/astro';
   </script>
 </head>
 <body class="terminal-background">
+<div id="loading-overlay" class="loading-overlay" style="display: none;">
+  <div class="loading-spinner">
+    <div class="spinner-dot"></div>
+    <div class="spinner-dot"></div>
+    <div class="spinner-dot"></div>
+  </div>
+</div>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- RobCo Loading Overlay removed: now only on home page -->
@@ -70,9 +76,6 @@ import Analytics from '@vercel/analytics/astro';
         <div class="terminal-container">
           <header class="terminal-header">
             <div class="terminal-title">ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</div>
-            <nav aria-label="Terminal navigation">
-              <DropdownNav />
-            </nav>
           </header>
 
           <div class="terminal-content">
@@ -98,7 +101,6 @@ import Analytics from '@vercel/analytics/astro';
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('Terminal initialized');
 
       import('../scripts/terminal-background.js').then(module => {
         const { TerminalBackground } = module;
@@ -149,9 +151,23 @@ import Analytics from '@vercel/analytics/astro';
       });
 
       document.addEventListener('terminal-object-click', (event) => {
-        console.log('Terminal object clicked:', event.detail.id);
       });
     });
+  <script>
+    // Loading animation logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('loading-overlay');
+      if (overlay) {
+        overlay.style.display = 'flex';
+        setTimeout(() => {
+          overlay.style.opacity = '0';
+          setTimeout(() => {
+            overlay.style.display = 'none';
+          }, 400);
+        }, 900); // Show for ~0.9s
+      }
+    });
+  </script>
   </script>
   <Analytics />
 </body>

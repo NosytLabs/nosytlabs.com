@@ -18,12 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const userRole = auth.user?.role || null;
     if (userRole !== 'admin') {
-      console.warn('Access denied: user lacks admin role');
       window.location.href = '/secure/admin/login';
       return;
     }
   } catch (e) {
-    console.error('Auth middleware error:', e);
     window.location.href = '/secure/admin/login';
   }
 });

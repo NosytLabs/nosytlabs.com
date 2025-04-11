@@ -21,7 +21,7 @@ html, body {
   color: #fff;
 }
 
-/* Hide loading screen by default */
+ /* Hide loading screen by default */
 #game-loading.hidden {
   display: none;
 }
@@ -239,11 +239,12 @@ body {
   min-height: 100vh;
 }
 
-/* Main content area */
+ /* Main content area */
 .main-content {
   flex: 1;
   padding: 1rem;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Terminal sidebar */
@@ -457,6 +458,7 @@ body, .terminal-container {
 .terminal-content {
   flex: 1;
   padding: 1rem 0;
+  overflow-x: hidden;
 }
 
 /* Terminal Footer */
@@ -478,7 +480,7 @@ body, .terminal-container {
   font-style: italic;
   color: var(--terminal-green-light);
   pointer-events: none;
--webkit-user-select: none;
+  -webkit-user-select: none;
   user-select: none;
 }
 /* Terminal Text Styles */
@@ -839,5 +841,121 @@ body, .terminal-container {
 @media (max-width: 768px) {
   .terminal-dock {
     max-height: 50vh;
+  }
+}
+
+/* =====================
+   Loading Overlay Styles
+   ===================== */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease;
+  opacity: 1;
+}
+.loading-spinner {
+  display: flex;
+  gap: 0.5rem;
+}
+.spinner-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--terminal-green, #2E7D32);
+  opacity: 0.7;
+  animation: spinner-bounce 1s infinite alternate;
+}
+.spinner-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.spinner-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes spinner-bounce {
+  0% { transform: translateY(0); opacity: 0.7; }
+  100% { transform: translateY(-18px); opacity: 1; }
+}
+
+/* =====================
+   Layout & Terminal Fixes
+   ===================== */
+html, body {
+  height: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex: 1 0 auto;
+}
+header {
+  flex-shrink: 0;
+  z-index: 10;
+}
+.main-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 0;
+}
+.terminal-wrapper {
+  flex-shrink: 0;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.terminal-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem 1rem 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  background: transparent;
+}
+
+/* Always keep terminal at bottom */
+.layout-container {
+  justify-content: flex-start;
+}
+@media (min-width: 768px) {
+  .main-content {
+    padding-bottom: 0;
+  }
+}
+
+/* Prevent scrolling past top menu */
+body, html {
+  overscroll-behavior-y: contain;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .terminal-container {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    min-height: 120px;
+  }
+  .main-content {
+    padding: 0.5rem;
   }
 }

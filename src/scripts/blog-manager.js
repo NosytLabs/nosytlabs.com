@@ -134,7 +134,7 @@ export class BlogManager {
       }
     ];
     
-    console.log('Blog Manager initialized with sample posts');
+    // Blog Manager initialized with sample posts.
   }
 
   /**
