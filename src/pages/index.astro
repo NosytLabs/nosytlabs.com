@@ -1,0 +1,683 @@
+---
+// Homepage for NosytLabs
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { fetchChannelData, fetchChannelVideos } from '../utils/youtubeScraperUtil.js';
+
+// Fetch YouTube channel data
+const channelData = await fetchChannelData('@TycenYT');
+const recentVideos = await fetchChannelVideos('@TycenYT', 3);
+
+// Import data
+import projectsData from '../../public/data/projects.json';
+const featuredProjects = projectsData.featured || [];
+
+// Services data with authentic descriptions
+const services = [
+  {
+    title: "Web Development",
+    description: "Custom websites and web applications built with React, Astro, and modern frameworks. Specializing in responsive design, performance optimization, and SEO.",
+    icon: "code",
+    link: "/services#web-development"
+  },
+  {
+    title: "Content Creation",
+    description: "Technology and programming content on YouTube (@TycenYT) and live streaming on Kick.com/Tycen featuring coding tutorials, tech reviews, and AI tools.",
+    icon: "video",
+    link: "/content-creation"
+  },
+  {
+    title: "3D Printing",
+    description: "Custom 3D printing services using Creality Ender 3 S1 Pro (FDM) and Elegoo Saturn 2 (resin) printers for prototypes, models, and functional parts.",
+    icon: "cube",
+    link: "/3d-printing"
+  },
+  {
+    title: "Passive Income",
+    description: "Educational resources about passive income opportunities including bandwidth sharing, content creation, and investments with realistic earnings expectations.",
+    icon: "chart-line",
+    link: "/passive-income"
+  }
+];
+---
+
+<BaseLayout
+  title="NosytLabs - Notable Opportunities Shape Your Tomorrow"
+  description="NosytLabs provides innovative digital solutions including web development, content creation, 3D printing services, and passive income resources."
+>
+  <!-- Hero Section -->
+  <section class="hero-section bg-gradient-to-br from-primary-dark to-primary-main text-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col lg:flex-row items-center">
+        <div class="lg:w-1/2 mb-10 lg:mb-0">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
+            Notable Opportunities Shape Your Tomorrow
+          </h1>
+          <p class="text-xl mb-8 animate-fade-in" style="animation-delay: 0.2s;">
+            NosytLabs provides innovative digital solutions including web development,
+            content creation, 3D printing services, and passive income resources.
+          </p>
+          <div class="flex flex-wrap gap-4 animate-fade-in" style="animation-delay: 0.4s;">
+            <a href="/services" class="btn btn-accent hover:btn-accent-hover">
+              Our Services
+            </a>
+            <a href="/contact" class="btn btn-outline-light hover:btn-light">
+              Contact Us
+            </a>
+          </div>
+        </div>
+        <div class="lg:w-1/2 flex justify-center">
+          <div class="relative w-full max-w-md animate-fade-in" style="animation-delay: 0.6s;">
+            <img
+              src="/images/nosytlabs-hero.webp"
+              alt="NosytLabs Digital Solutions"
+              class="rounded-lg shadow-2xl"
+              width="600"
+              height="400"
+            />
+            <div class="absolute -bottom-4 -right-4 bg-accent text-white p-4 rounded-lg shadow-lg">
+              <p class="font-bold">Est. 2025</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary dark:text-primary-light">
+          Our Services
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          We provide a range of services to help you achieve your goals, from web development to content creation and 3D printing.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {services.map((service) => (
+          <div class="service-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform hover:transform hover:scale-105">
+            <div class="p-6">
+              <div class="w-16 h-16 bg-primary-light dark:bg-primary rounded-full flex items-center justify-center mb-4 mx-auto">
+                <i class={`fas fa-${service.icon} text-white text-2xl`}></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2 text-center text-primary dark:text-primary-light">{service.title}</h3>
+              <p class="text-gray-600 dark:text-gray-300 text-center mb-4">{service.description}</p>
+              <div class="text-center">
+                <a href={service.link} class="inline-block text-accent hover:text-accent-dark font-medium">
+                  Learn More <i class="fas fa-arrow-right ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section id="projects" class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary dark:text-primary-light">
+          Featured Projects
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Explore our latest projects showcasing our expertise in web development, AI integration, and innovative solutions.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredProjects.map((project) => (
+          <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            <div class="relative overflow-hidden">
+              <img
+                src={project.image || "/images/projects/default-project.jpg"}
+                alt={project.title}
+                class="w-full h-48 object-cover transition-transform hover:scale-110"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
+                <div class="p-4 text-white">
+                  <h4 class="font-bold">{project.title}</h4>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-primary dark:text-primary-light">{project.title}</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {project.technologies && project.technologies.map((tech) => (
+                  <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={project.link || project.githubUrl || project.demoUrl || `https://github.com/NosytLabs/${project.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block text-accent hover:text-accent-dark font-medium"
+              >
+                View Project <i class="fas fa-external-link-alt ml-1"></i>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="/projects" class="btn btn-primary">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Creation Section -->
+  <section id="content" class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary dark:text-primary-light">
+          Content Creation
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Check out our latest content on YouTube and Kick.com, featuring tech reviews, coding tutorials, and live streams.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- YouTube Videos -->
+        <div class="content-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden p-6">
+          <h3 class="text-2xl font-semibold mb-6 text-primary dark:text-primary-light">Latest YouTube Videos</h3>
+
+          <div class="space-y-4 mb-6">
+            {recentVideos.map((video) => (
+              <div class="flex flex-col sm:flex-row gap-4 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors">
+                <div class="sm:w-1/3">
+                  <a href={`https://www.youtube.com/watch?v=${video.videoId}`} target="_blank" rel="noopener noreferrer" class="block relative">
+                    <img
+                      src={video.thumbnail}
+                      alt={video.title}
+                      class="w-full rounded-lg"
+                      loading="lazy"
+                    />
+                    <div class="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-1 rounded">
+                      {video.duration}
+                    </div>
+                  </a>
+                </div>
+                <div class="sm:w-2/3">
+                  <a
+                    href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block hover:text-accent"
+                  >
+                    <h4 class="font-medium line-clamp-2">{video.title}</h4>
+                  </a>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                    {video.views} views • {video.publishedAt}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <a href="https://www.youtube.com/@TycenYT" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Visit YouTube Channel
+          </a>
+        </div>
+
+        <!-- Live Stream -->
+        <div class="content-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden p-6">
+          <h3 class="text-2xl font-semibold mb-6 text-primary dark:text-primary-light">Live on Kick.com</h3>
+          <div class="aspect-video mb-6 rounded-lg overflow-hidden">
+            <iframe
+              src="https://player.kick.com/Tycen?muted=true&autoplay=true"
+              width="100%"
+              height="100%"
+              frameborder="0"
+              scrolling="no"
+              allowfullscreen
+              allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              class="rounded-lg"
+            ></iframe>
+          </div>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            Join us live on Kick.com for coding sessions, tech discussions, and gaming streams. Follow the channel to get notified when we go live.
+          </p>
+          <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Watch Live Stream
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D Printing Section -->
+  <section id="3d-printing" class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary dark:text-primary-light">
+          3D Printing Services
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          We offer custom 3D printing services for prototypes, models, and functional parts using high-quality materials.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-2xl font-semibold mb-4 text-primary dark:text-primary-light">Custom 3D Printing</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            Our 3D printing services use the latest technology to create high-quality prints for various applications:
+          </p>
+          <ul class="list-disc pl-5 mb-6 space-y-2 text-gray-600 dark:text-gray-300">
+            <li>Prototyping for product development</li>
+            <li>Custom models and figurines</li>
+            <li>Functional parts and components</li>
+            <li>Architectural models and displays</li>
+            <li>Educational tools and visual aids</li>
+          </ul>
+          <p class="text-gray-600 dark:text-gray-300 mb-6">
+            We use a Creality Ender 3 S1 Pro for FDM printing and an Elegoo Saturn 2 for resin printing, allowing us to create both functional parts and highly detailed models.
+          </p>
+          <a href="/3d-printing" class="btn btn-primary">Learn More</a>
+        </div>
+        <div class="3d-model-showcase">
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            <img
+              src="/images/3d-printing/sample-prints.jpg"
+              alt="Sample 3D Prints"
+              class="w-full h-auto rounded-t-lg"
+              loading="lazy"
+            />
+            <div class="p-4">
+              <h4 class="text-lg font-semibold mb-2 text-primary dark:text-primary-light">Our 3D Printing Equipment</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="text-center">
+                  <img
+                    src="/images/3d-printing/ender-3-s1-pro.jpg"
+                    alt="Creality Ender 3 S1 Pro"
+                    class="w-full h-auto rounded-lg mb-2"
+                    loading="lazy"
+                  />
+                  <p class="text-sm text-gray-600 dark:text-gray-300">Creality Ender 3 S1 Pro (FDM)</p>
+                </div>
+                <div class="text-center">
+                  <img
+                    src="/images/3d-printing/elegoo-saturn-2.jpg"
+                    alt="Elegoo Saturn 2"
+                    class="w-full h-auto rounded-lg mb-2"
+                    loading="lazy"
+                  />
+                  <p class="text-sm text-gray-600 dark:text-gray-300">Elegoo Saturn 2 (Resin)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div class="order-2 lg:order-1">
+          <div class="relative overflow-hidden rounded-lg shadow-xl">
+            <img
+              src="/images/about-nosytlabs.jpg"
+              alt="About NosytLabs"
+              class="w-full h-auto rounded-lg"
+              loading="lazy"
+            />
+            <div class="absolute bottom-4 right-4 bg-accent text-white px-4 py-2 rounded-lg shadow-lg">
+              <p class="font-bold">Est. 2025</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 text-primary dark:text-primary-light">
+            About NosytLabs
+          </h2>
+
+          <div class="space-y-4 text-gray-600 dark:text-gray-300">
+            <p>
+              Founded in 2025, NosytLabs is the portfolio site for NOSYT LLC, showcasing our technology projects and services. Our name represents our mission: <span class="font-semibold text-accent">Notable Opportunities Shape Your Tomorrow</span>.
+            </p>
+
+            <p>
+              We develop web applications, create technology content on YouTube (@TycenYT) and Kick.com/Tycen, provide educational resources on passive income opportunities, and offer 3D printing services using our Creality and Elegoo printers.
+            </p>
+
+            <div class="mt-6">
+              <h3 class="text-xl font-semibold mb-3 text-primary dark:text-primary-light">Our Core Offerings</h3>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>Custom web development with React, Astro, and modern frameworks</li>
+                <li>Technology content creation on YouTube and Kick.com</li>
+                <li>3D printing services with Creality Ender 3 S1 Pro (FDM) and Elegoo Saturn 2 (resin)</li>
+                <li>Educational resources on passive income opportunities</li>
+                <li>Open-source GitHub projects and development tools</li>
+              </ul>
+            </div>
+
+            <div class="flex flex-wrap gap-4 mt-8">
+              <a href="/about" class="btn btn-primary">
+                Learn More <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+              <a href="/contact" class="btn btn-outline-primary">
+                Contact Us <i class="fas fa-envelope ml-2"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section id="cta" class="py-16 bg-gradient-to-r from-primary to-primary-dark text-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
+        <p class="max-w-2xl mx-auto mb-8">
+          Contact us today to discuss your project requirements and how we can help bring your ideas to life.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/contact" class="btn btn-accent">Contact Us</a>
+          <a href="/services" class="btn btn-outline-light">Explore Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Animation classes */
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Button styles */
+  .btn-outline-light {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+  }
+
+  .btn-outline-light:hover {
+    background-color: white;
+    color: var(--primary);
+  }
+
+  .btn-accent-hover:hover {
+    background-color: var(--accent-dark);
+  }
+
+  /* Service card hover effect */
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Project card hover effect */
+  .project-card:hover img {
+    transform: scale(1.05);
+  }
+</style>
+
+<style>
+  /* Enhanced 3D Feature card styles */
+  .service-icon-container {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .service-icon-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: theme('colors.accent.DEFAULT');
+    opacity: 0.1;
+    border-radius: 12px;
+    transform: rotate(45deg);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .feature-card:hover .service-icon-container::before {
+    transform: rotate(0deg) scale(1.1);
+    opacity: 0.2;
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+  }
+
+  /* 3D Icon styling */
+  .service-icon-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .service-icon-inner {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow:
+      0 5px 15px rgba(0, 0, 0, 0.1),
+      0 0 5px rgba(255, 107, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateZ(10px);
+  }
+
+  .feature-card:hover .service-icon-inner {
+    transform: translateZ(20px) scale(1.1);
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.2),
+      0 0 10px rgba(255, 107, 0, 0.4);
+  }
+
+  .service-icon-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.3) 0%, rgba(255, 107, 0, 0) 70%);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translateZ(5px);
+    transition: all 0.5s ease;
+  }
+
+  .feature-card:hover .service-icon-glow {
+    opacity: 0.7;
+    transform: translateZ(15px) scale(1.2);
+  }
+
+  /* Enhanced service link */
+  .service-link-3d {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    color: theme('colors.accent.DEFAULT');
+    font-weight: 500;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+  }
+
+  .service-link-3d:hover {
+    background-color: rgba(255, 107, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .service-link-text {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Particles animation */
+  .particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: particleAnimation 20s linear infinite;
+  }
+
+  /* Enhanced particles animation */
+  .particles-enhanced {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+      radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+      radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+      radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+      radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: enhancedParticleAnimation 30s linear infinite;
+  }
+
+  @keyframes particleAnimation {
+    0% {
+      transform: translateY(0) translateX(0);
+    }
+    25% {
+      transform: translateY(-10px) translateX(10px);
+    }
+    50% {
+      transform: translateY(0) translateX(0);
+    }
+    75% {
+      transform: translateY(10px) translateX(-10px);
+    }
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+  }
+
+  @keyframes enhancedParticleAnimation {
+    0% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.7;
+    }
+    25% {
+      transform: translateY(-15px) translateX(15px) scale(1.05);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.7;
+    }
+    75% {
+      transform: translateY(15px) translateX(-15px) scale(0.95);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.7;
+    }
+  }
+
+  /* Animations */
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes glitch {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse {
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  .animate-glitch:hover {
+    animation: glitch 0.5s cubic-bezier(.25, .46, .45, .94) both;
+  }
+</style>

@@ -1,0 +1,298 @@
+/**
+ * Window Manager Fix Styles
+ * Enhanced styles for the window management system
+ */
+
+/* Window styles */
+.win95-window {
+  border: 2px solid #c0c0c0;
+  background-color: #c0c0c0;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  min-width: 200px;
+  min-height: 150px;
+  transition: box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.win95-window.dragging,
+.win95-window.resizing {
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
+}
+
+.win95-window.maximized {
+  border-width: 0;
+  border-top-width: 2px;
+}
+
+/* Window header */
+.window-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #000080, #1084d0);
+  color: white;
+  padding: 2px 4px;
+  cursor: default;
+  user-select: none;
+}
+
+.win95-window.maximized .window-header {
+  padding: 2px 4px;
+}
+
+.window-title {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window-title img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.window-controls {
+  display: flex;
+  align-items: center;
+}
+
+.window-minimize,
+.window-maximize,
+.window-close {
+  width: 16px;
+  height: 16px;
+  margin-left: 2px;
+  background-color: #c0c0c0;
+  border: 1px solid #000;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  font-size: 10px;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window-minimize:active,
+.window-maximize:active,
+.window-close:active {
+  border: 1px solid #000;
+  border-bottom-color: #fff;
+  border-right-color: #fff;
+}
+
+.window-close {
+  font-weight: bold;
+}
+
+/* Window menu */
+.window-menu {
+  display: flex;
+  background-color: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  padding: 2px 0;
+}
+
+.menu-item {
+  padding: 2px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #000080;
+  color: white;
+}
+
+/* Window content */
+.window-content {
+  background-color: #fff;
+  border: 1px solid #808080;
+  border-top-color: #000;
+  border-left-color: #000;
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  height: calc(100% - 50px);
+}
+
+/* Window status bar */
+.window-status-bar {
+  background-color: #c0c0c0;
+  border-top: 1px solid #808080;
+  padding: 2px 4px;
+  font-size: 12px;
+  height: 20px;
+}
+
+/* Resize handles */
+.resize-handle {
+  position: absolute;
+  z-index: 10;
+}
+
+.resize-n {
+  top: 0;
+  left: 4px;
+  right: 4px;
+  height: 4px;
+  cursor: ns-resize;
+}
+
+.resize-e {
+  top: 4px;
+  right: 0;
+  bottom: 4px;
+  width: 4px;
+  cursor: ew-resize;
+}
+
+.resize-s {
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 4px;
+  cursor: ns-resize;
+}
+
+.resize-w {
+  top: 4px;
+  left: 0;
+  bottom: 4px;
+  width: 4px;
+  cursor: ew-resize;
+}
+
+.resize-ne {
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  cursor: nesw-resize;
+}
+
+.resize-se {
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  cursor: nwse-resize;
+}
+
+.resize-sw {
+  bottom: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  cursor: nesw-resize;
+}
+
+.resize-nw {
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  cursor: nwse-resize;
+}
+
+/* Taskbar */
+.taskbar {
+  display: flex;
+  align-items: center;
+  background-color: #c0c0c0;
+  border-top: 2px solid #fff;
+  height: 30px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 2px 4px;
+}
+
+.taskbar-button {
+  display: flex;
+  align-items: center;
+  background-color: #c0c0c0;
+  border: 1px solid #000;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  margin-right: 4px;
+  padding: 2px 8px;
+  min-width: 100px;
+  height: 22px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.taskbar-button.active {
+  border: 1px solid #000;
+  border-bottom-color: #fff;
+  border-right-color: #fff;
+  background-color: #d0d0d0;
+}
+
+.taskbar-button img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.taskbar-button span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Start menu button */
+.start-button {
+  display: flex;
+  align-items: center;
+  background-color: #c0c0c0;
+  border: 1px solid #000;
+  border-top-color: #fff;
+  border-left-color: #fff;
+  margin-right: 8px;
+  padding: 2px 8px;
+  height: 22px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.start-button.active {
+  border: 1px solid #000;
+  border-bottom-color: #fff;
+  border-right-color: #fff;
+  background-color: #d0d0d0;
+}
+
+.start-button img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .taskbar-button {
+    min-width: 80px;
+  }
+  
+  .taskbar-button span {
+    display: none;
+  }
+  
+  .start-button span {
+    display: none;
+  }
+}

@@ -1,0 +1,20 @@
+# robots.txt for NosytLabs.com
+User-agent: *
+Allow: /
+
+# Disallow development-specific paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /dev/
+Disallow: /test/
+Disallow: /temp/
+Disallow: /drafts/
+Disallow: /*.json$
+Disallow: /*.map$
+
+# Sitemaps
+Sitemap: https://nosytlabs.com/sitemap.xml
+Sitemap: https://nosytlabs.com/sitemap-index.xml
+
+# Crawl delay for better server performance
+Crawl-delay: 5

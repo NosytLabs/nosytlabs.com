@@ -1,0 +1,81 @@
+/**
+ * NosytOS95 Blue Screen of Death (BSOD) Styles
+ */
+
+.win95-bsod {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0000AA;
+  color: #FFFFFF;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+
+.bsod-content {
+  width: 80%;
+  max-width: 800px;
+}
+
+.bsod-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.bsod-message {
+  margin-bottom: 20px;
+}
+
+.bsod-message p {
+  margin: 10px 0;
+}
+
+.bsod-details {
+  margin-bottom: 20px;
+}
+
+.bsod-details p {
+  margin: 10px 0;
+}
+
+.bsod-technical {
+  margin-top: 20px;
+}
+
+.bsod-technical p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.win95-shutdown {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+
+.shutdown-content {
+  text-align: center;
+}
+
+.shutdown-message p {
+  margin: 10px 0;
+}

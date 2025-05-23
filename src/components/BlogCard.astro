@@ -1,0 +1,113 @@
+---
+// Blog Card Component
+// Used to display blog post previews in a grid
+
+interface Props {
+  title: string;
+  excerpt: string;
+  date: string;
+  author: string;
+  image: string;
+  url: string;
+  tags?: string[];
+  readTime?: string;
+}
+
+const { 
+  title, 
+  excerpt, 
+  date, 
+  author, 
+  image, 
+  url, 
+  tags = [], 
+  readTime = "5 min read" 
+} = Astro.props;
+
+// Format date if needed
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<article class="blog-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2">
+  <a href={url} class="block">
+    <div class="relative">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-48 object-cover"
+        onerror="this.src='/images/fallback-image.svg'; this.onerror=null;"
+      />
+      {tags.length > 0 && (
+        <div class="absolute top-4 right-4 bg-accent text-white text-xs px-2 py-1 rounded-full">
+          {tags[0]}
+        </div>
+      )}
+    </div>
+    <div class="p-6">
+      <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+        <span>{formattedDate}</span>
+        <span class="mx-2">•</span>
+        <span>{readTime}</span>
+      </div>
+      <h2 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">{title}</h2>
+      <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{excerpt}</p>
+      
+      {tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          {tags.map(tag => (
+            <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+      
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-2">
+            <span class="text-sm font-bold">{author.charAt(0)}</span>
+          </div>
+          <span class="text-sm text-gray-700 dark:text-gray-300">{author}</span>
+        </div>
+        <span class="text-accent hover:text-accent-dark font-medium text-sm">Read More →</span>
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  /* Card hover effects */
+  .blog-card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .blog-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .blog-card:hover::after {
+    transform: scaleX(1);
+  }
+  
+  /* Line clamp for excerpt */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

@@ -1,0 +1,551 @@
+---
+// ExpandableCard.astro
+// A card component with flip animation and expandable features
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  link?: string;
+  technologies?: string[];
+  github?: string;
+  demo?: string;
+  flippable?: boolean;
+  expandable?: boolean;
+  theme?: 'default' | 'dark' | 'light' | 'gradient';
+  category?: string;
+  date?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  link,
+  technologies = [],
+  github,
+  demo,
+  flippable = true,
+  expandable = false,
+  theme = 'default',
+  category,
+  date
+} = Astro.props;
+
+// Generate a unique ID for this card
+const cardId = `card-${Math.random().toString(36).substring(2, 9)}`;
+
+// Determine theme classes
+let themeClasses = '';
+if (theme === 'dark') {
+  themeClasses = 'bg-primary-dark text-white';
+} else if (theme === 'light') {
+  themeClasses = 'bg-white text-gray-800';
+} else if (theme === 'gradient') {
+  themeClasses = 'bg-gradient-to-br from-primary-dark to-primary-main text-white';
+} else {
+  themeClasses = 'bg-white text-gray-800';
+}
+---
+
+<div class={`expandable-card ${flippable ? 'flippable card-3d-flip' : ''} ${expandable ? 'expandable' : ''} card-hover-animation reveal-on-scroll card-3d mouse-tracking-3d`} id={cardId}>
+  <div class="card-3d-inner card-inner">
+    <!-- Front of the card -->
+    <div class={`card-front card-3d-front rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${themeClasses}`}>
+      {image && (
+        <div class="card-image-container relative overflow-hidden">
+          <img
+            data-src={image}
+            src="/images/placeholder.svg"
+            alt={title}
+            class="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
+            loading="lazy"
+          />
+          {category && (
+            <span class="absolute top-2 right-2 px-3 py-1 bg-accent text-white text-xs font-bold rounded-full">
+              {category}
+            </span>
+          )}
+        </div>
+      )}
+      <div class="p-6 staggered-container">
+        <h3 class="text-xl font-semibold mb-2 card-title text-reveal">{title}</h3>
+        <p class="text-opacity-80 mb-4 card-description line-clamp-3 fade-in-scale">{description}</p>
+
+        {technologies.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-4 staggered-fade-in">
+            {technologies.slice(0, 3).map(tech => (
+              <span class="px-2 py-1 bg-gray-100 text-gray-800 text-sm rounded-full">
+                {tech}
+              </span>
+            ))}
+            {technologies.length > 3 && (
+              <span class="px-2 py-1 bg-gray-100 text-gray-800 text-sm rounded-full">
+                +{technologies.length - 3} more
+              </span>
+            )}
+          </div>
+        )}
+
+        {date && (
+          <div class="text-sm opacity-75 mb-4 slide-up-fade">{date}</div>
+        )}
+
+        <div class="flex justify-between items-center slide-up-fade">
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block bg-accent hover:bg-accent text-white font-medium py-2 px-4 rounded transition-colors button-pulse"
+            >
+              View Project
+            </a>
+          )}
+
+          {flippable && (
+            <button class="flip-button text-accent hover:text-accent transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <!-- Back of the card -->
+    <div class={`card-back card-3d-back rounded-lg overflow-hidden shadow-lg ${themeClasses}`}>
+      <div class="p-6">
+        <h3 class="text-xl font-semibold mb-4">{title}</h3>
+
+        <div class="mb-6">
+          <h4 class="text-lg font-medium mb-2">Description</h4>
+          <p class="text-opacity-80">{description}</p>
+        </div>
+
+        {technologies.length > 0 && (
+          <div class="mb-6">
+            <h4 class="text-lg font-medium mb-2">Technologies</h4>
+            <div class="flex flex-wrap gap-2">
+              {technologies.map(tech => (
+                <span class="px-2 py-1 bg-gray-100 text-gray-800 text-sm rounded-full">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div class="flex flex-col sm:flex-row gap-3 mt-6">
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block bg-gray-800 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded transition-colors text-center"
+            >
+              <span class="flex items-center justify-center">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+                GitHub
+              </span>
+            </a>
+          )}
+
+          {demo && (
+            <a
+              href={demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block bg-accent hover:bg-accent text-white font-medium py-2 px-4 rounded transition-colors text-center"
+            >
+              <span class="flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                Live Demo
+              </span>
+            </a>
+          )}
+
+          <button class="flip-button inline-block bg-transparent border border-current text-current font-medium py-2 px-4 rounded transition-colors text-center">
+            <span class="flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+              </svg>
+              Back
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .expandable-card {
+    perspective: 1000px;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Replace hover-based flipping with class-based flip */
+  .flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  /* Keep the hover effect only for non-touch devices */
+  @media (hover: hover) and (pointer: fine) {
+    .flippable:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+  }
+
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Card hover effects */
+  .card-front:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-title {
+    position: relative;
+    display: inline-block;
+  }
+
+  .card-title::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: theme('colors.accent.DEFAULT'); /* Updated to use Tailwind accent color */
+    transition: width 0.3s ease;
+  }
+
+  .card-front:hover .card-title::after {
+    width: 100%;
+  }
+
+  /* Card image container with consistent aspect ratio */
+  .card-image-container {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Card content area that grows to fill available space */
+  .p-6 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Push buttons to bottom of card */
+  .p-6 > .flex.justify-between {
+    margin-top: auto;
+  }
+
+  /* Expandable card */
+  .expandable {
+    cursor: pointer;
+  }
+
+  .expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    max-width: 800px;
+    height: auto;
+    max-height: 80vh;
+    z-index: 50;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .expanded .card-front,
+  .expanded .card-back {
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+
+  /* Line clamp for description */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Overlay for expanded card */
+  .card-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(3px);
+  }
+
+  .card-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Animation for card appearance */
+  @keyframes cardAppear {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .expandable-card {
+    animation: cardAppear 0.5s ease forwards;
+  }
+
+  /* Card grid layout for consistent sizing */
+  :global(.card-grid) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  /* Safari-specific fixes */
+  @supports (-webkit-touch-callout: none) {
+    .card-3d {
+      transform: translateZ(0);
+    }
+
+    .card-front, .card-back {
+      -webkit-transform-style: preserve-3d;
+      -webkit-backface-visibility: hidden;
+    }
+  }
+</style>
+
+<script define:vars={{ cardId, expandable, flippable }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const card = document.getElementById(cardId);
+    if (!card) return;
+
+    // Create overlay for expanded card
+    if (expandable) {
+      const overlay = document.createElement('div');
+      overlay.classList.add('card-overlay');
+      document.body.appendChild(overlay);
+
+      // Add close button for expanded card
+      const closeButton = document.createElement('button');
+      closeButton.classList.add('card-close-button');
+      closeButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      `;
+      closeButton.style.position = 'absolute';
+      closeButton.style.top = '10px';
+      closeButton.style.right = '10px';
+      closeButton.style.zIndex = '60';
+      closeButton.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+      closeButton.style.color = 'white';
+      closeButton.style.border = 'none';
+      closeButton.style.borderRadius = '50%';
+      closeButton.style.width = '32px';
+      closeButton.style.height = '32px';
+      closeButton.style.display = 'flex';
+      closeButton.style.alignItems = 'center';
+      closeButton.style.justifyContent = 'center';
+      closeButton.style.cursor = 'pointer';
+      closeButton.style.opacity = '0';
+      closeButton.style.transition = 'opacity 0.3s ease';
+      card.appendChild(closeButton);
+
+      // Toggle expanded state
+      card.addEventListener('click', (e) => {
+        // Don't expand if clicking on a link or button
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' ||
+            e.target.closest('a') || e.target.closest('button')) {
+          return;
+        }
+
+        // Toggle expanded state
+        const wasExpanded = card.classList.contains('expanded');
+        card.classList.toggle('expanded');
+        overlay.classList.toggle('active');
+
+        // Show/hide close button
+        closeButton.style.opacity = wasExpanded ? '0' : '1';
+
+        // Prevent body scrolling when card is expanded
+        if (card.classList.contains('expanded')) {
+          document.body.style.overflow = 'hidden';
+
+          // Reset any flipped state when expanding
+          card.classList.remove('flipped');
+
+          // Add a small delay to ensure the card is visible before scrolling
+          setTimeout(() => {
+            // Ensure the card is in view
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 100);
+        } else {
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Close expanded card when clicking close button
+      closeButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.remove('expanded');
+        overlay.classList.remove('active');
+        closeButton.style.opacity = '0';
+        document.body.style.overflow = '';
+      });
+
+      // Close expanded card when clicking overlay
+      overlay.addEventListener('click', () => {
+        card.classList.remove('expanded');
+        overlay.classList.remove('active');
+        closeButton.style.opacity = '0';
+        document.body.style.overflow = '';
+      });
+
+      // Close expanded card with Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && card.classList.contains('expanded')) {
+          card.classList.remove('expanded');
+          overlay.classList.remove('active');
+          closeButton.style.opacity = '0';
+          document.body.style.overflow = '';
+        }
+      });
+    }
+
+    // Improved flip functionality for all devices
+    if (flippable) {
+      // For flip buttons
+      const flipButtons = card.querySelectorAll('.flip-button');
+      flipButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.stopPropagation(); // Prevent card expansion when clicking flip button
+
+          // Toggle flipped state
+          card.classList.toggle('flipped');
+
+          // If card is expanded, make sure it stays in view after flipping
+          if (card.classList.contains('expanded')) {
+            setTimeout(() => {
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+          }
+        });
+      });
+
+      // For clicking/tapping on card (but only if no other interaction is intended)
+      card.addEventListener('click', (e) => {
+        // Don't flip if clicking on a link, button, or if card is expandable
+        if (expandable ||
+            e.target.tagName === 'A' ||
+            e.target.tagName === 'BUTTON' ||
+            e.target.closest('a') ||
+            e.target.closest('button')) {
+          return;
+        }
+
+        // Toggle flipped state
+        card.classList.toggle('flipped');
+      });
+
+      // Add double-click handler to reset card state
+      card.addEventListener('dblclick', (e) => {
+        // Don't reset if clicking on a link or button
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' ||
+            e.target.closest('a') || e.target.closest('button')) {
+          return;
+        }
+
+        // Reset flipped state
+        card.classList.remove('flipped');
+
+        // If card is expanded, also reset that
+        if (expandable && card.classList.contains('expanded')) {
+          card.classList.remove('expanded');
+          document.querySelector('.card-overlay').classList.remove('active');
+          document.body.style.overflow = '';
+
+          // Hide close button if it exists
+          const closeButton = card.querySelector('.card-close-button');
+          if (closeButton) {
+            closeButton.style.opacity = '0';
+          }
+        }
+      });
+    }
+
+    // Fix for external links to ensure they open properly
+    const externalLinks = card.querySelectorAll('a[href^="http"]');
+    externalLinks.forEach(link => {
+      // Add target="_blank" and rel attributes if not already present
+      if (!link.hasAttribute('target')) {
+        link.setAttribute('target', '_blank');
+      }
+
+      if (!link.hasAttribute('rel')) {
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+
+      // Add click event listener to ensure links open
+      link.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+    });
+  });
+</script>

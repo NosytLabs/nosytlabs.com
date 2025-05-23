@@ -1,0 +1,169 @@
+/**
+ * Terminal Fix Styles
+ * Enhanced styles for the Terminal application
+ */
+
+/* Terminal container */
+.terminal-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  color: #0f0;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Terminal output */
+.terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  padding: 5px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Terminal input container */
+.terminal-input-container {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: #000;
+  border-top: 1px solid #333;
+}
+
+/* Terminal prompt */
+.terminal-prompt {
+  color: #0f0;
+  margin-right: 5px;
+}
+
+/* Terminal input */
+.terminal-input {
+  flex: 1;
+  background-color: #000;
+  color: #0f0;
+  border: none;
+  outline: none;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+}
+
+/* Terminal line */
+.terminal-line {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+/* Error messages */
+.terminal-line.error {
+  color: #f00;
+}
+
+/* Easter egg */
+.terminal-line.easter-egg {
+  color: #ff0;
+}
+
+/* Matrix effect */
+.matrix-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.matrix-column {
+  position: absolute;
+  top: -20px;
+  width: 20px;
+  animation: matrix-fall 10s infinite linear;
+}
+
+.matrix-char {
+  color: #0f0;
+  font-size: 16px;
+  text-align: center;
+  animation: matrix-glow 1.5s infinite;
+}
+
+.matrix-exit {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  animation: blink 1s infinite;
+}
+
+@keyframes matrix-fall {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes matrix-glow {
+  0%, 100% {
+    color: #0f0;
+    text-shadow: 0 0 5px #0f0;
+  }
+  50% {
+    color: #0a0;
+    text-shadow: 0 0 2px #0a0;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Scrollbar */
+.terminal-output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+  background: #000;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .terminal-container {
+    font-size: 12px;
+  }
+  
+  .terminal-input {
+    font-size: 12px;
+  }
+  
+  .matrix-char {
+    font-size: 14px;
+  }
+}

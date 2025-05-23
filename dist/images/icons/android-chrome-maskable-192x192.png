@@ -1,0 +1,14 @@
+This is a placeholder for the Android Chrome Maskable 192x192 icon.
+Please replace this file with an actual 192x192 PNG icon named 'android-chrome-maskable-192x192.png'.
+
+The icon should be a square PNG format image with a size of 192x192 pixels.
+Unlike regular icons, maskable icons are designed to fill the entire space
+and accommodate various mask shapes used by different Android devices.
+
+Design guidelines for maskable icons:
+1. Place your main icon content within a safe zone (about 60% of the total area)
+2. The background should extend to the edges of the image
+3. Avoid transparent backgrounds - use a solid color that matches your brand
+
+You can use tools like https://maskable.app/ to preview how your icon will appear
+with different masks applied.

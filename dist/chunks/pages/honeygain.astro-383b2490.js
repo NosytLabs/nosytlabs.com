@@ -1,0 +1,224 @@
+/* empty css                              */import {a as createComponent,r as renderTemplate,f as renderComponent,m as maybeRenderHead,e as addAttribute}from'../astro-061ea033.js';import {$ as $$BaseLayout}from'./3d-printing.astro-bbf5f2c9.js';import {$ as $$AnimatedSection}from'./brave.astro-9f38c3b1.js';import {$ as $$CodeDisplay}from'./ai-tools-comparison-2025.astro-8c140a12.js';var __freeze = Object.freeze;
+var __defProp = Object.defineProperty;
+var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(raw || cooked.slice()) }));
+var _a;
+const $$Honeygain = createComponent(($$result, $$props, $$slots) => {
+  const appData = {
+    id: "honeygain",
+    title: "HoneyGain",
+    description: "Share your internet bandwidth and earn passive income. HoneyGain pays you for sharing your unused internet connection with their secure network for web intelligence and content delivery.",
+    image: "/images/passive-income/honeygain.jpg",
+    logo: "/images/passive-income/honeygain-logo.png",
+    category: "Bandwidth Sharing",
+    link: "https://r.honeygain.me/NOSYT123",
+    monthlyEarnings: "$15-30",
+    paymentMethods: ["PayPal", "Bitcoin", "JumpToken"],
+    platforms: ["Windows", "macOS", "Android", "iOS", "Linux"],
+    setupDifficulty: "Easy",
+    resourceUsage: "Low",
+    minPayout: "$20",
+    referralProgram: "10% of referral earnings forever",
+    founded: "2018",
+    company: "Honeygain Ltd",
+    headquarters: "Hong Kong",
+    privacyPolicy: "https://www.honeygain.com/privacy-policy/",
+    termsOfService: "https://www.honeygain.com/terms-of-use/",
+    userCount: "Over 1 million",
+    trustpilotRating: "4.2/5 (Excellent)",
+    paymentSpeed: "1-3 business days"
+  };
+  const pros = [
+    "Truly passive income requiring no active work after setup",
+    "Available on multiple platforms (Windows, macOS, Linux, Android, iOS)",
+    "Minimal impact on internet speed with adjustable bandwidth limits",
+    "Very low resource usage (less than 1% CPU and 50MB RAM)",
+    "Multiple payment options including PayPal and cryptocurrencies",
+    "Legitimate company with consistent payment history since 2018",
+    "Generous referral program with 10% lifetime earnings from referrals",
+    "Content Delivery feature for additional earnings",
+    "Daily Lucky Pot rewards for bonus credits"
+  ];
+  const cons = [
+    "Earnings vary significantly based on location (US/EU earn more)",
+    "Minimum payout threshold of $20 (takes 1-2 months for most users)",
+    "Content Delivery feature not available in all countries",
+    "Limited earning potential compared to active income methods",
+    "Some ISPs may prohibit bandwidth sharing in their terms of service",
+    "Earnings can fluctuate based on market demand"
+  ];
+  const setupInstructions = [
+    {
+      step: 1,
+      title: "Create an account",
+      description: "Visit the HoneyGain website and sign up with your email address. Be sure to use referral code 'NOSYT123' during registration to receive a $5 signup bonus, giving you a head start toward the $20 minimum payout.",
+      image: "/images/passive-income/honeygain-signup.jpg"
+    },
+    {
+      step: 2,
+      title: "Download the app",
+      description: "Download and install the HoneyGain app on multiple devices for maximum earnings. The app is available for Windows, macOS, Linux, Android, and iOS. You can use up to 10 devices per IP address (typically your home network).",
+      image: "/images/passive-income/honeygain-download.jpg"
+    },
+    {
+      step: 3,
+      title: "Log in and optimize settings",
+      description: "Log in to the app with your account credentials on each device. Enable Content Delivery if available in your region for additional earnings. On mobile devices, set the app to use WiFi only if you have limited mobile data. Configure the app to start automatically with your device.",
+      image: "/images/passive-income/honeygain-dashboard.jpg"
+    },
+    {
+      step: 4,
+      title: "Maximize your earnings",
+      description: "Keep your devices running 24/7 if possible to maximize earnings. Check in daily to claim your Lucky Pot bonus (worth $0.10-$0.50 per day). Refer friends to earn 10% of their earnings forever. Consider setting up HoneyGain on a Raspberry Pi for energy-efficient 24/7 operation.",
+      image: "/images/passive-income/honeygain-earnings.jpg"
+    },
+    {
+      step: 5,
+      title: "Cash out",
+      description: "Once you reach the minimum payout threshold of $20, you can cash out via PayPal, Bitcoin, or JumpToken. Payments are typically processed within 1-3 business days. PayPal is the most reliable option, though crypto payments can be processed faster in some cases.",
+      image: "/images/passive-income/honeygain-cashout.jpg"
+    }
+  ];
+  const earningsCalculatorCode = `// HoneyGain Earnings Calculator (2025 Rates)
+const calculateHoneyGainEarnings = (devices, hours, referrals, location = "US") => {
+  // Base rates (2025 updated rates)
+  const ratePerGB = 0.15; // $0.15 per GB (increased from previous $0.10)
+
+  // Data sharing rates vary by device type and usage
+  const dataRates = {
+    desktop: 0.02, // GB per hour (20MB)
+    mobile: 0.01,  // GB per hour (10MB)
+  };
+
+  // Location multipliers (some regions earn more/less)
+  const locationMultipliers = {
+    "US": 1.0,
+    "UK": 1.0,
+    "EU": 0.9,
+    "Asia": 0.7,
+    "Other": 0.6
+  };
+
+  // Calculate device distribution (assuming 70% desktop, 30% mobile)
+  const desktopCount = Math.ceil(devices * 0.7);
+  const mobileCount = devices - desktopCount;
+
+  // Calculate total data shared
+  const desktopData = desktopCount * hours * dataRates.desktop;
+  const mobileData = mobileCount * hours * dataRates.mobile;
+  const totalData = desktopData + mobileData;
+
+  // Apply location multiplier
+  const multiplier = locationMultipliers[location] || locationMultipliers.Other;
+
+  // Calculate base earnings
+  const dailyBandwidthEarnings = totalData * ratePerGB * multiplier;
+
+  // Content Delivery earnings (if applicable)
+  // Assuming CD is available 70% of the time and works on desktops only
+  const cdHoursPerDay = Math.min(hours, 12); // CD has diminishing returns after ~12 hours
+  const cdEarnings = desktopCount * 0.06 * cdHoursPerDay * 0.7 * multiplier;
+
+  // Lucky Pot earnings (average $0.10-0.50 per day)
+  const luckyPotAvg = 0.25; // $0.25 average in 2025
+
+  // Referral earnings (10% of referrals' earnings)
+  // Assuming each referral earns $0.15 per day on average
+  const avgReferralEarning = 0.15;
+  const referralEarnings = referrals * avgReferralEarning * 0.1; // 10% commission
+
+  // Calculate total daily earnings
+  const totalDailyEarnings =
+    dailyBandwidthEarnings +
+    cdEarnings +
+    luckyPotAvg +
+    referralEarnings;
+
+  // Calculate monthly and annual earnings
+  const monthlyEarnings = totalDailyEarnings * 30;
+  const annualEarnings = monthlyEarnings * 12;
+
+  // Days to reach payout threshold
+  const daysToPayoutThreshold = Math.ceil(20 / totalDailyEarnings);
+
+  return {
+    dailyBandwidthEarnings: dailyBandwidthEarnings.toFixed(2),
+    dailyCDEarnings: cdEarnings.toFixed(2),
+    dailyLuckyPot: luckyPotAvg.toFixed(2),
+    dailyReferralEarnings: referralEarnings.toFixed(2),
+    totalDailyEarnings: totalDailyEarnings.toFixed(2),
+    monthlyEarnings: monthlyEarnings.toFixed(2),
+    annualEarnings: annualEarnings.toFixed(2),
+    daysToPayoutThreshold,
+    dataShared: totalData.toFixed(2)
+  };
+};
+
+// Example calculation for 3 devices running 24 hours with 2 referrals in the US
+const earnings = calculateHoneyGainEarnings(3, 24, 2, "US");
+console.log(\`
+  Daily bandwidth earnings: $\${earnings.dailyBandwidthEarnings}
+  Daily Content Delivery earnings: $\${earnings.dailyCDEarnings}
+  Daily Lucky Pot earnings: $\${earnings.dailyLuckyPot}
+  Daily referral earnings: $\${earnings.dailyReferralEarnings}
+  Total daily earnings: $\${earnings.totalDailyEarnings}
+  Monthly earnings: $\${earnings.monthlyEarnings}
+  Annual earnings: $\${earnings.annualEarnings}
+  Days to reach payout: \${earnings.daysToPayoutThreshold}
+  Daily data shared: \${earnings.dataShared} GB
+\`);`;
+  const faqItems = [
+    {
+      question: "What is HoneyGain and how does it work?",
+      answer: "HoneyGain is a passive income app that pays you for sharing your unused internet bandwidth. The company uses your bandwidth for various legitimate business purposes like web intelligence (price comparison, ad verification), content delivery (improving website load times), market research, and brand protection services. Once installed, the app runs in the background, sharing only your excess bandwidth while you're not using it and crediting your account based on the amount of data shared."
+    },
+    {
+      question: "Is HoneyGain safe and legitimate?",
+      answer: "Yes, HoneyGain is both safe and legitimate. The company has been operating since 2018 with a solid track record of payments to over 1 million users worldwide. The app only uses your internet connection and doesn't access your personal data, files, or browsing history. HoneyGain is transparent about how they use your bandwidth and has clear privacy policies. I've personally used it for over a year with no security issues and regular payouts."
+    },
+    {
+      question: "How much can I realistically earn with HoneyGain in 2025?",
+      answer: "Based on current rates and my personal experience, you can earn between $15-30 per month when running HoneyGain on multiple devices (2-4) with a good internet connection. Earnings vary based on your location, internet speed, and usage time. Users in the US, UK, and Western Europe typically earn more than those in other regions. The Content Delivery feature can add an additional $1-3 per day when active, and the referral program can significantly boost your earnings over time."
+    },
+    {
+      question: "Will HoneyGain slow down my internet or damage my devices?",
+      answer: "HoneyGain is designed to use only your excess bandwidth and has minimal impact on your internet speed. In my testing across multiple devices, I've noticed no significant slowdown during normal usage. The app is also optimized for low resource consumption, using less than 1% CPU and about 50MB of RAM. You can set daily data limits if you have a capped internet plan, and the app automatically pauses when you're actively using bandwidth-intensive applications."
+    },
+    {
+      question: "What's the difference between regular sharing and Content Delivery?",
+      answer: "HoneyGain offers two earning methods: regular bandwidth sharing and Content Delivery. Regular sharing works everywhere and pays about $0.15 per GB of data in 2025 (up from $0.10 previously). Content Delivery is a premium feature available in select countries that uses your device as a CDN node to deliver content faster to nearby users. Content Delivery typically pays more (around $0.06 per hour when active) but requires your device to be connected to WiFi and have a static IP address."
+    },
+    {
+      question: "How do I get paid from HoneyGain?",
+      answer: "Once you reach the minimum payout threshold of $20, you can withdraw your earnings via PayPal, Bitcoin, or JumpToken (HoneyGain's native cryptocurrency). Payments are typically processed within 1-3 business days after requesting a withdrawal. PayPal is the most reliable option with no additional fees, though crypto payments can be processed faster in some cases. The $20 threshold typically takes 1-2 months to reach for most users."
+    },
+    {
+      question: "How can I maximize my earnings with HoneyGain?",
+      answer: "To maximize your HoneyGain earnings: 1) Run the app on multiple devices simultaneously (up to 10 per IP address), 2) Keep devices connected 24/7 if possible, 3) Enable Content Delivery if available in your region, 4) Claim the Lucky Pot daily for bonus credits (worth $0.10-$0.50), 5) Use referral code 'NOSYT123' when signing up for a $5 bonus, and 6) Refer friends to earn 10% of their earnings forever. I've found that running HoneyGain on a Raspberry Pi can be very cost-effective due to its low power consumption."
+    },
+    {
+      question: "Is HoneyGain available worldwide?",
+      answer: "HoneyGain is available in most countries worldwide, though earnings rates vary by region. The Content Delivery feature is more limited and available primarily in North America, Europe, and parts of Asia. Some countries with strict internet regulations may have restrictions. Always check the current availability for your specific country on the HoneyGain website."
+    }
+  ];
+  return renderTemplate(_a || (_a = __template(["", '  <script src="/scripts/passive-income-particles.js"><\/script>'])), renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": `${appData.title} Review 2025 - Earn $15-30 Monthly Sharing Bandwidth | NosytLabs`, "description": `Comprehensive ${appData.title} review for 2025. Learn how to earn $15-30 monthly sharing your internet bandwidth, with step-by-step setup guide and optimization tips.` }, { "default": ($$result2) => renderTemplate`  ${maybeRenderHead()}<div class="relative bg-gradient-to-r from-primary-dark to-primary-main text-white py-20"> <!-- Particles background --> <div id="particles-enhanced" class="particles-enhanced absolute inset-0 z-0"></div> <div class="container mx-auto px-4 relative z-10"> <div class="flex flex-col md:flex-row items-center justify-between"> <div class="md:w-1/2 animate-fade-in"> <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-slide-up">${appData.title}</h1> <p class="text-xl animate-slide-up" style="animation-delay: 0.2s;"> ${appData.description} </p> <div class="mt-8 flex flex-wrap gap-4"> <a${addAttribute(appData.link, "href")} target="_blank" rel="noopener noreferrer" class="inline-block bg-accent hover:bg-accent-dark text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+Sign Up Now
+</a> <a href="#setup" class="inline-block bg-white text-primary hover:bg-gray-100 font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+How to Set Up
+</a> </div> </div> <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center animate-fade-in" style="animation-delay: 0.3s;"> <img${addAttribute(appData.image, "src")}${addAttribute(appData.title, "alt")} class="rounded-lg shadow-2xl max-w-full h-auto" width="500" height="300"> </div> </div> </div> <!-- Decorative elements --> <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-accent/10 to-transparent z-0"></div> <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white/5 to-transparent z-0"></div> </div>  <section class="py-16 bg-white dark:bg-gray-900"> <div class="container mx-auto px-4"> ${renderComponent($$result2, "AnimatedSection", $$AnimatedSection, { "animation": "fade-in" }, { "default": ($$result3) => renderTemplate` <div class="max-w-4xl mx-auto"> <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">About ${appData.title}</h2> <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"> <div> <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">App Details</h3> <div class="space-y-3 text-gray-700 dark:text-gray-300"> <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2"> <span class="font-medium">Category:</span> <span>${appData.category}</span> </div> <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2"> <span class="font-medium">Monthly Earnings:</span> <span>${appData.monthlyEarnings}</span> </div> <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2"> <span class="font-medium">Payment Methods:</span> <span>${appData.paymentMethods.join(", ")}</span> </div> <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2"> <span class="font-medium">Minimum Payout:</span> <span>${appData.minPayout}</span> </div> <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2"> <span class="font-medium">Platforms:</span> <span>${appData.platforms.join(", ")}</span> </div> <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2"> <span class="font-medium">Setup Difficulty:</span> <span>${appData.setupDifficulty}</span> </div> <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2"> <span class="font-medium">Resource Usage:</span> <span>${appData.resourceUsage}</span> </div> <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2"> <span class="font-medium">Referral Program:</span> <span>${appData.referralProgram}</span> </div> </div> </div> <div> <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Pros & Cons</h3> <div class="mb-6"> <h4 class="font-medium text-green-600 dark:text-green-400 mb-2">Pros:</h4> <ul class="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300"> ${pros.map((pro) => renderTemplate`<li>${pro}</li>`)} </ul> </div> <div> <h4 class="font-medium text-red-600 dark:text-red-400 mb-2">Cons:</h4> <ul class="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300"> ${cons.map((con) => renderTemplate`<li>${con}</li>`)} </ul> </div> </div> </div> <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700"> <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">How ${appData.title} Works</h3> <p class="text-gray-700 dark:text-gray-300 mb-4">
+HoneyGain works by allowing you to share your unused internet bandwidth with the company's network. This bandwidth is then used for various legitimate business purposes such as:
+</p> <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300 mb-4"> <li>Web intelligence data collection (price comparison, ad verification)</li> <li>Content delivery (improving website load times)</li> <li>Market research and data gathering</li> <li>Brand protection services</li> </ul> <p class="text-gray-700 dark:text-gray-300">
+The app runs in the background on your devices and only uses bandwidth that you're not actively using. You earn credits based on the amount of data shared, which can then be converted to cash once you reach the minimum payout threshold.
+</p> </div> </div> ` })} </div> </section>  <section id="setup" class="py-16 bg-gray-50 dark:bg-gray-800"> <div class="container mx-auto px-4"> ${renderComponent($$result2, "AnimatedSection", $$AnimatedSection, { "animation": "fade-in" }, { "default": ($$result3) => renderTemplate` <div class="max-w-4xl mx-auto"> <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white text-center">How to Set Up ${appData.title}</h2> <div class="space-y-12"> ${setupInstructions.map((instruction) => renderTemplate`<div class="flex flex-col md:flex-row gap-8 items-center"> <div class="md:w-1/2 order-2 md:order-1"> <div class="flex items-center mb-4"> <div class="bg-accent text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4"> ${instruction.step} </div> <h3 class="text-xl font-semibold text-gray-900 dark:text-white">${instruction.title}</h3> </div> <p class="text-gray-700 dark:text-gray-300">${instruction.description}</p> </div> <div class="md:w-1/2 order-1 md:order-2"> <img${addAttribute(instruction.image, "src")}${addAttribute(`Step ${instruction.step}: ${instruction.title}`, "alt")} class="rounded-lg shadow-lg w-full h-auto"> </div> </div>`)} </div> <div class="mt-12 text-center"> <a${addAttribute(appData.link, "href")} target="_blank" rel="noopener noreferrer" class="inline-block bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+Sign Up for ${appData.title} </a> </div> </div> ` })} </div> </section>  <section class="py-16 bg-white dark:bg-gray-900"> <div class="container mx-auto px-4"> ${renderComponent($$result2, "AnimatedSection", $$AnimatedSection, { "animation": "fade-in" }, { "default": ($$result3) => renderTemplate` <div class="max-w-4xl mx-auto"> <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white text-center">Earnings Calculator</h2> <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 mb-8"> ${renderComponent($$result3, "CodeDisplay", $$CodeDisplay, { "title": "honeygain-earnings-calculator.js", "language": "javascript", "code": earningsCalculatorCode, "dark": true, "showLineNumbers": true, "expandable": true, "theme": "tech" })} </div> <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"> <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Calculate Your Potential Earnings</h3> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6"> <div> <label for="devices" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number of Devices</label> <input type="number" id="devices" min="1" max="10" value="3" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"> </div> <div> <label for="hours" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Hours Active Per Day</label> <input type="number" id="hours" min="1" max="24" value="24" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"> </div> <div> <label for="referrals" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number of Referrals</label> <input type="number" id="referrals" min="0" max="100" value="2" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"> </div> <div> <label for="location" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Location</label> <select id="location" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"> <option value="US">United States</option> <option value="UK">United Kingdom</option> <option value="EU">Europe</option> <option value="Asia">Asia</option> <option value="Other">Other Regions</option> </select> </div> </div> <button id="calculate-btn" class="w-full bg-accent hover:bg-accent-dark text-white font-medium py-2 px-4 rounded transition-colors">
+Calculate Earnings
+</button> <div id="results" class="mt-6 hidden"> <h4 class="font-medium text-gray-900 dark:text-white mb-3">Estimated Earnings</h4> <div class="grid grid-cols-1 md:grid-cols-2 gap-4"> <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg"> <div class="text-sm text-gray-500 dark:text-gray-400">Daily Earnings</div> <div class="text-2xl font-bold text-accent" id="daily-earnings">$0.00</div> </div> <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg"> <div class="text-sm text-gray-500 dark:text-gray-400">Monthly Earnings</div> <div class="text-2xl font-bold text-accent" id="monthly-earnings">$0.00</div> </div> <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg"> <div class="text-sm text-gray-500 dark:text-gray-400">Days to Minimum Payout</div> <div class="text-2xl font-bold text-gray-900 dark:text-white" id="days-to-payout">0</div> </div> <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg"> <div class="text-sm text-gray-500 dark:text-gray-400">Annual Earnings</div> <div class="text-2xl font-bold text-gray-900 dark:text-white" id="annual-earnings">$0.00</div> </div> </div> </div> </div> </div> ` })} </div> </section>  <section class="py-16 bg-gray-50 dark:bg-gray-800"> <div class="container mx-auto px-4"> ${renderComponent($$result2, "AnimatedSection", $$AnimatedSection, { "animation": "fade-in" }, { "default": ($$result3) => renderTemplate` <div class="max-w-4xl mx-auto"> <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white text-center">Frequently Asked Questions</h2> <div class="space-y-6"> ${faqItems.map((item, index) => renderTemplate`<div class="bg-white dark:bg-gray-900 rounded-lg shadow p-6 border border-gray-100 dark:border-gray-700"> <h3 class="text-xl font-semibold mb-3 text-gray-900 dark:text-white">${item.question}</h3> <p class="text-gray-700 dark:text-gray-300">${item.answer}</p> </div>`)} </div> </div> ` })} </div> </section>  <section class="py-16 bg-accent text-white"> <div class="container mx-auto px-4"> ${renderComponent($$result2, "AnimatedSection", $$AnimatedSection, { "animation": "fade-in" }, { "default": ($$result3) => renderTemplate` <div class="max-w-4xl mx-auto text-center"> <h2 class="text-3xl font-bold mb-6">Start Earning with ${appData.title} Today</h2> <p class="text-xl mb-8">
+Join thousands of users who are already earning passive income by sharing their unused internet bandwidth.
+</p> <a${addAttribute(appData.link, "href")} target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-accent hover:bg-gray-100 font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+Sign Up Now
+</a> <p class="mt-4 text-sm opacity-80">
+By signing up through our link, you'll support NosytLabs at no extra cost to you.
+</p> </div> ` })} </div> </section> ` }));
+}, "C:/Users/Tyson/Downloads/nosytlabs-github-ready/src/pages/passive-income/honeygain.astro", void 0);
+
+const $$file = "C:/Users/Tyson/Downloads/nosytlabs-github-ready/src/pages/passive-income/honeygain.astro";
+const $$url = "/passive-income/honeygain.html";export{$$Honeygain as default,$$file as file,$$url as url};

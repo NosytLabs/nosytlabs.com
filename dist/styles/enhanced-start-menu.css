@@ -1,0 +1,376 @@
+/**
+ * Enhanced Start Menu CSS for NosytOS95
+ *
+ * Provides styling for the Windows 95-style Start Menu with:
+ * - Proper cascading submenus
+ * - Visual feedback for hover and active states
+ * - Accessibility features
+ * - Animation effects
+ *
+ * @version 1.0.0
+ * @author NosytLabs
+ */
+
+/* Start Button */
+.start-button {
+  display: flex;
+  align-items: center;
+  padding: 2px 6px;
+  background-color: var(--win95-button-face);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  cursor: pointer;
+  height: 100%;
+  user-select: none;
+}
+
+.start-button:hover {
+  background-color: #d0d0d0;
+}
+
+.start-button.active {
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  background-color: #d0d0d0;
+}
+
+.start-button img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.start-button span {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Start Menu */
+.start-menu {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  width: 200px;
+  background-color: var(--win95-button-face);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  z-index: 1000;
+  display: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.start-menu-header {
+  background: linear-gradient(to right, #000080, #1084d0);
+  color: white;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.start-menu-title {
+  transform: rotate(-90deg);
+  transform-origin: left center;
+  position: absolute;
+  left: 16px;
+  bottom: 0;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.start-menu-items {
+  padding: 2px;
+  margin-left: 24px;
+}
+
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  cursor: pointer;
+  position: relative;
+  font-size: 12px;
+}
+
+.start-menu-item:hover,
+.start-menu-item:focus,
+.start-menu-item.active {
+  background-color: var(--win95-window-header);
+  color: white;
+  outline: none;
+}
+
+.start-menu-item img {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.start-menu-item .arrow {
+  position: absolute;
+  right: 8px;
+  font-size: 10px;
+}
+
+.start-menu-divider {
+  height: 1px;
+  background-color: var(--win95-button-shadow);
+  margin: 4px 0;
+  border-bottom: 1px solid var(--win95-button-highlight);
+}
+
+/* Submenus */
+.submenu {
+  position: absolute;
+  width: 180px;
+  background-color: var(--win95-button-face);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  z-index: 1001;
+  display: none;
+  padding: 2px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Submenu items */
+.submenu-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.submenu-item:hover,
+.submenu-item:focus {
+  background-color: var(--win95-window-header);
+  color: white;
+  outline: none;
+}
+
+.submenu-item img {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+.submenu-item .arrow {
+  position: absolute;
+  right: 8px;
+  font-size: 10px;
+}
+
+.submenu-divider {
+  height: 1px;
+  background-color: var(--win95-button-shadow);
+  margin: 4px 0;
+  border-bottom: 1px solid var(--win95-button-highlight);
+}
+
+/* Taskbar styles */
+
+/* Taskbar */
+.win95-taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 28px;
+  background-color: var(--win95-button-face);
+  border-top: 2px solid var(--win95-button-highlight);
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  z-index: 999;
+}
+
+.taskbar-divider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--win95-button-shadow);
+  margin: 0 2px;
+  border-right: 1px solid var(--win95-button-highlight);
+}
+
+.open-windows {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  overflow: hidden;
+  align-items: center;
+}
+
+.taskbar-item {
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  margin: 0 2px;
+  background-color: var(--win95-button-face);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  min-width: 100px;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  cursor: pointer;
+  height: 22px;
+  box-sizing: border-box;
+}
+
+.taskbar-item.active {
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  background-color: #d0d0d0;
+}
+
+.taskbar-item img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+.system-tray {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 4px;
+}
+
+.clock {
+  font-size: 12px;
+  padding: 0 4px;
+  border: 1px solid var(--win95-button-shadow);
+  background-color: var(--win95-button-face);
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Animation keyframes */
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Accessibility improvements */
+.start-button:focus,
+.start-menu-item:focus,
+.submenu-item:focus {
+  outline: 1px dotted #000;
+}
+
+/* System dialogs */
+.win95-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--win95-button-face);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  z-index: 2000;
+  min-width: 300px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dialog-header {
+  background-color: var(--win95-window-header);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 4px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.dialog-content {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.dialog-icon {
+  margin-right: 10px;
+}
+
+.dialog-message {
+  font-size: 12px;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.dialog-button {
+  background-color: var(--win95-button-face);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  padding: 4px 10px;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  min-width: 75px;
+  text-align: center;
+}
+
+.dialog-button:active {
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+}
+
+/* Tooltip */
+.win95-tooltip {
+  position: absolute;
+  background-color: #FFFFE1;
+  border: 1px solid #000;
+  padding: 2px 4px;
+  font-size: 11px;
+  z-index: 2001;
+  max-width: 200px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .start-menu {
+    width: 180px;
+  }
+
+  .submenu {
+    width: 160px;
+  }
+
+  .start-menu-item,
+  .submenu-item {
+    padding: 6px 8px; /* Larger touch targets */
+  }
+
+  .taskbar-item {
+    min-width: 80px;
+  }
+}

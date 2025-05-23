@@ -1,0 +1,74 @@
+---
+// StreamSchedule.astro
+// A component to display the streaming schedule
+
+// No fixed schedule - stream times are variable
+const scheduleItems = [
+  {
+    day: "Check Kick.com/Tycen",
+    time: "For current stream status",
+    title: "AI Development & Coding",
+    icon: "💻"
+  },
+  {
+    day: "Follow on social media",
+    time: "For stream announcements",
+    title: "Game Development & Tech Talk",
+    icon: "🎮"
+  },
+  {
+    day: "Subscribe for notifications",
+    time: "Never miss a stream",
+    title: "3D Printing & Projects",
+    icon: "🖨️"
+  }
+];
+---
+
+<div class="stream-schedule">
+  <ul class="space-y-4">
+    {scheduleItems.map(item => (
+      <li class="flex items-start p-3 rounded-md bg-primary-main bg-opacity-50 hover:bg-opacity-70 transition-all duration-300">
+        <div class="icon-container flex-shrink-0 w-10 h-10 flex items-center justify-center bg-accent rounded-full mr-4 text-xl">
+          {item.icon}
+        </div>
+        <div>
+          <h3 class="font-bold text-white">{item.title}</h3>
+          <div class="schedule-details text-sm text-white">
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span class="text-white font-medium">{item.day}</span>
+            </div>
+            <div class="flex items-center mt-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="text-white font-medium">{item.time}</span>
+            </div>
+          </div>
+        </div>
+      </li>
+    ))}
+  </ul>
+
+  <div class="mt-4 text-center">
+    <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-accent hover:bg-accent-dark text-white font-medium py-2 px-4 rounded-lg transition-all duration-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+      </svg>
+      Get notified when stream goes live
+    </a>
+  </div>
+</div>
+
+<style>
+  .stream-schedule {
+    width: 100%;
+  }
+
+  .icon-container {
+    box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.5);
+  }
+</style>

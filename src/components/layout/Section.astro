@@ -1,0 +1,91 @@
+---
+/**
+ * Section Component
+ * A consistent section layout component with proper spacing and alignment
+ */
+
+export interface Props {
+  id?: string;
+  class?: string;
+  size?: 'sm' | 'md' | 'lg';
+  background?: 'primary' | 'secondary' | 'tertiary' | 'accent' | 'white' | 'gray' | 'none';
+  paddingTop?: boolean;
+  paddingBottom?: boolean;
+  container?: boolean;
+  fullWidth?: boolean;
+}
+
+const {
+  id,
+  class: className = '',
+  size = 'md',
+  background = 'none',
+  paddingTop = true,
+  paddingBottom = true,
+  container = true,
+  fullWidth = false,
+} = Astro.props;
+
+// Determine padding classes based on size
+const paddingClasses = {
+  sm: {
+    top: paddingTop ? 'pt-8' : '',
+    bottom: paddingBottom ? 'pb-8' : '',
+  },
+  md: {
+    top: paddingTop ? 'pt-16' : '',
+    bottom: paddingBottom ? 'pb-16' : '',
+  },
+  lg: {
+    top: paddingTop ? 'pt-24' : '',
+    bottom: paddingBottom ? 'pb-24' : '',
+  },
+};
+
+// Determine background classes
+const backgroundClasses = {
+  primary: 'bg-primary-darkest text-white',
+  secondary: 'bg-secondary text-white',
+  tertiary: 'bg-gray-100 dark:bg-gray-800',
+  accent: 'bg-accent text-white',
+  white: 'bg-white dark:bg-gray-900',
+  gray: 'bg-gray-100 dark:bg-gray-800',
+  none: '',
+};
+
+// Combine all classes
+const sectionClasses = [
+  'section',
+  paddingClasses[size].top,
+  paddingClasses[size].bottom,
+  backgroundClasses[background],
+  className,
+].filter(Boolean).join(' ');
+---
+
+<section id={id} class={sectionClasses}>
+  {container && !fullWidth ? (
+    <div class="container mx-auto px-4">
+      <slot />
+    </div>
+  ) : (
+    <div class={fullWidth ? 'w-full' : 'container-fluid px-4'}>
+      <slot />
+    </div>
+  )}
+</section>
+
+<style>
+  .section {
+    position: relative;
+    width: 100%;
+    clear: both;
+  }
+  
+  .container-fluid {
+    width: 100%;
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

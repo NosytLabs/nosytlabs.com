@@ -1,0 +1,546 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact Us - NosytLabs" description="Get in touch with NosytLabs for inquiries, quotes, or to discuss your project.">
+  <div class="contact-page">
+    <div class="container">
+      <div class="page-header">
+        <h1>Contact Us</h1>
+        <p class="lead">Get in touch with us for inquiries, quotes, or to discuss your project.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-form-container">
+          <h2>Send Us a Message</h2>
+          
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone (Optional)</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="service">Service</label>
+              <select id="service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="web-development">Web Development</option>
+                <option value="content-creation">Content Creation</option>
+                <option value="crypto-mining">Crypto Mining</option>
+                <option value="3d-printing">3D Printing</option>
+                <option value="consulting">Consulting</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            
+            <div class="form-group file-upload">
+              <label for="file">Attach File (Optional)</label>
+              <input type="file" id="file" name="file">
+              <p class="file-info">Max file size: 10MB. Supported formats: PDF, JPG, PNG, STL</p>
+            </div>
+            
+            <div class="form-group budget-range">
+              <label for="budget">Budget Range (Optional)</label>
+              <div class="range-container">
+                <input type="range" id="budget" name="budget" min="100" max="10000" step="100" value="1000">
+                <span id="budget-value">$1,000</span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+          </form>
+        </div>
+        
+        <div class="contact-info">
+          <h2>Contact Information</h2>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h3>Email</h3>
+              <p><a href="mailto:info@nosytlabs.com">info@nosytlabs.com</a></p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h3>Phone</h3>
+              <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h3>Location</h3>
+              <p>United States</p>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="info-content">
+              <h3>Business Hours</h3>
+              <p>Monday - Friday: 9:00 AM - 5:00 PM EST</p>
+              <p>Saturday - Sunday: Closed</p>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+              <a href="https://github.com/NosytLabs" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" aria-label="Kick">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1 17H7V7h4v10zm8 0h-4v-5c0-1.1-.9-2-2-2h-2V7h2c2.21 0 4 1.79 4 4v6z"/>
+                </svg>
+              </a>
+              <a href="https://www.youtube.com/@TycenYT" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                </svg>
+              </a>
+              <a href="https://crealitycloud.com/user/9519489699" target="_blank" rel="noopener noreferrer" aria-label="Creality Cloud">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1 21.95c-5.513-.26-9.95-4.77-9.95-10.05 0-.789.092-1.556.264-2.292L7 16v1c0 1.1.9 2 2 2v2.95zm9.95-3.113c-.26-.738-1-1.267-1.838-1.337H18v-3c0-.552-.448-1-1-1h-5v-2h2c.552 0 1-.448 1-1V8h2c1.1 0 2-.9 2-2v-.535C21.969 7.278 24 10.338 24 14c0 1.926-.432 3.748-1.05 5.837z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h3>What services do you offer?</h3>
+            <p>We offer a range of services including web development, content creation, crypto mining, 3D printing, and consulting. Visit our <a href="/services">Services</a> page for more information.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>How can I request a quote?</h3>
+            <p>You can request a quote by filling out the contact form on this page or by sending an email to <a href="mailto:info@nosytlabs.com">info@nosytlabs.com</a>.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>What is your typical response time?</h3>
+            <p>We typically respond to inquiries within 24-48 hours during business days.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>Do you offer remote services?</h3>
+            <p>Yes, we offer remote services for clients worldwide. We use various communication tools to ensure smooth collaboration regardless of location.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>What file formats do you accept for 3D printing?</h3>
+            <p>We accept STL, OBJ, and 3MF file formats for 3D printing. If you have a different format, please contact us to see if we can accommodate it.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h3>How do I track my project's progress?</h3>
+            <p>Once your project begins, we provide regular updates and access to project management tools where you can track progress in real-time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    padding: var(--spacing-12) 0;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+  
+  .page-header h1 {
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-4);
+    color: var(--primary);
+  }
+  
+  .dark .page-header h1 {
+    color: var(--primary-light);
+  }
+  
+  .lead {
+    font-size: var(--font-size-xl);
+    color: var(--gray-600);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .dark .lead {
+    color: var(--gray-300);
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-16);
+  }
+  
+  @media (min-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 3fr 2fr;
+    }
+  }
+  
+  .contact-form-container {
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-8);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .dark .contact-form-container {
+    background-color: var(--gray-800);
+  }
+  
+  .contact-form-container h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-6);
+    color: var(--primary);
+  }
+  
+  .dark .contact-form-container h2 {
+    color: var(--primary-light);
+  }
+  
+  .contact-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+  
+  @media (min-width: 768px) {
+    .contact-form {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contact-form .form-group:nth-child(5),
+    .contact-form .form-group:nth-child(6),
+    .contact-form .form-group:nth-child(7),
+    .contact-form .form-group:nth-child(8),
+    .contact-form .form-group:nth-child(9) {
+      grid-column: span 2;
+    }
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: var(--spacing-3);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-base);
+    transition: border-color var(--transition-normal) var(--transition-timing-ease);
+  }
+  
+  .dark .form-group input,
+  .dark .form-group select,
+  .dark .form-group textarea {
+    background-color: var(--gray-700);
+    border-color: var(--gray-600);
+    color: var(--white);
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(76, 29, 149, 0.1);
+  }
+  
+  .dark .form-group input:focus,
+  .dark .form-group select:focus,
+  .dark .form-group textarea:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.1);
+  }
+  
+  .file-upload {
+    position: relative;
+  }
+  
+  .file-upload input[type="file"] {
+    padding: var(--spacing-2);
+  }
+  
+  .file-info {
+    font-size: var(--font-size-sm);
+    color: var(--gray-500);
+    margin-top: var(--spacing-1);
+  }
+  
+  .dark .file-info {
+    color: var(--gray-400);
+  }
+  
+  .budget-range .range-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+  }
+  
+  .budget-range input[type="range"] {
+    flex: 1;
+  }
+  
+  .budget-range #budget-value {
+    font-weight: var(--font-weight-medium);
+    min-width: 80px;
+  }
+  
+  .contact-info {
+    background-color: var(--primary);
+    color: white;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-8);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .dark .contact-info {
+    background-color: var(--primary-light);
+  }
+  
+  .contact-info h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-6);
+    color: white;
+  }
+  
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
+  }
+  
+  .info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  
+  .info-content h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-1);
+    color: white;
+  }
+  
+  .info-content p {
+    margin-bottom: var(--spacing-1);
+  }
+  
+  .info-content a {
+    color: white;
+    text-decoration: underline;
+    transition: opacity var(--transition-normal) var(--transition-timing-ease);
+  }
+  
+  .info-content a:hover {
+    opacity: 0.8;
+  }
+  
+  .social-links {
+    margin-top: var(--spacing-8);
+  }
+  
+  .social-links h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-4);
+    color: white;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: var(--spacing-4);
+  }
+  
+  .social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: white;
+    transition: all var(--transition-normal) var(--transition-timing-ease);
+  }
+  
+  .social-icons a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+  }
+  
+  .faq-section {
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .faq-section h2 {
+    text-align: center;
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-8);
+    color: var(--primary);
+  }
+  
+  .dark .faq-section h2 {
+    color: var(--primary-light);
+  }
+  
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+  
+  @media (min-width: 768px) {
+    .faq-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .faq-item {
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .dark .faq-item {
+    background-color: var(--gray-800);
+  }
+  
+  .faq-item h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2);
+    color: var(--primary);
+  }
+  
+  .dark .faq-item h3 {
+    color: var(--primary-light);
+  }
+  
+  .faq-item p {
+    color: var(--gray-600);
+  }
+  
+  .dark .faq-item p {
+    color: var(--gray-300);
+  }
+  
+  .faq-item a {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+  
+  .dark .faq-item a {
+    color: var(--primary-light);
+  }
+</style>
+
+<script>
+  // Initialize contact form
+  document.addEventListener('DOMContentLoaded', function() {
+    // Budget range slider
+    const budgetSlider = document.getElementById('budget');
+    const budgetValue = document.getElementById('budget-value');
+    
+    if (budgetSlider && budgetValue) {
+      // Update budget value display
+      budgetSlider.addEventListener('input', function() {
+        const value = parseInt(budgetSlider.value);
+        budgetValue.textContent = `$${value.toLocaleString()}`;
+      });
+    }
+    
+    // Form submission
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        
+        // Show success message (in a real implementation, you would send the data to a server)
+        alert('Thank you for your message! We will get back to you soon.');
+        
+        // Reset form
+        contactForm.reset();
+      });
+    }
+  });
+</script>

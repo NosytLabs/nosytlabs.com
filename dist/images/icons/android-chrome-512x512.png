@@ -1,0 +1,10 @@
+This is a placeholder for the Android Chrome 512x512 icon.
+Please replace this file with an actual 512x512 PNG icon named 'android-chrome-512x512.png'.
+
+The icon should be a square PNG format image with a size of 512x512 pixels.
+This larger icon is used for higher-density screens and OS-level integration
+on Android devices.
+
+You can create this icon by resizing your logo to 512x512 pixels and 
+ensuring it has a transparent background for better integration with various 
+Android themes.

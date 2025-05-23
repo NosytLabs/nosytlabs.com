@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192" height="192" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .nosyt-purple-dark { fill: #2D0A4F; }
+    .nosyt-purple { fill: #4C1D95; }
+    .nosyt-orange { fill: #FF6B00; }
+  </style>
+  <rect class="nosyt-purple-dark" x="0" y="0" width="100" height="100" rx="10" />
+  <!-- N letter with stylized design -->
+  <path class="nosyt-purple" d="M25 20 L25 80 L35 80 L35 40 L65 80 L75 80 L75 20 L65 20 L65 60 L35 20 Z" fill="#4C1D95" />
+  <!-- Orange accent -->
+  <path class="nosyt-orange" d="M75 60 L85 60 L85 80 L75 80 Z" fill="#FF6B00" />
+</svg>

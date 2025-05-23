@@ -1,0 +1,236 @@
+/**
+ * Hero Section Animations
+ * Enhanced animations for the NosytLabs hero section
+ */
+
+/* Hero section with enhanced animated background */
+.hero-section {
+  background: linear-gradient(135deg, var(--nosyt-purple-dark) 0%, var(--nosyt-purple-main) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Animated background with particles effect */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 107, 0, 0.1) 2%, transparent 10%),
+    radial-gradient(circle at 75% 75%, rgba(255, 107, 0, 0.1) 2%, transparent 10%),
+    radial-gradient(circle at 50% 50%, rgba(255, 107, 0, 0.1) 2%, transparent 10%),
+    radial-gradient(circle at 15% 85%, rgba(255, 107, 0, 0.1) 2%, transparent 10%),
+    radial-gradient(circle at 85% 15%, rgba(255, 107, 0, 0.1) 2%, transparent 10%);
+  background-size: 
+    50px 50px,
+    70px 70px,
+    100px 100px,
+    80px 80px,
+    120px 120px;
+  animation: animateBackground 15s linear infinite;
+  opacity: 0.7;
+  z-index: 0;
+}
+
+/* Animation for the background */
+@keyframes animateBackground {
+  0% {
+    background-position: 
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
+  }
+  100% {
+    background-position: 
+      50px 50px,
+      70px 70px,
+      100px 100px,
+      80px 80px,
+      120px 120px;
+  }
+}
+
+/* Ensure content is above the animated background */
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero gradient with 3D effect */
+.hero-gradient {
+  background-size: 200% 200%;
+  animation: pulse-slow 10s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Grid pattern overlay */
+.bg-grid-pattern {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Tech icons styling */
+.tech-icon {
+  width: 24px;
+  height: 24px;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.tech-icon:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 107, 0, 0.3);
+}
+
+.tech-label {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhanced text container styling */
+.hero-text-container {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+  max-width: 650px;
+  position: relative;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.2);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.3),
+    0 0 20px rgba(0,0,0,0.1) inset;
+  transition: all 0.5s ease;
+}
+
+.hero-text-container:hover {
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.4),
+    0 0 30px rgba(0,0,0,0.15) inset,
+    0 0 10px rgba(255, 107, 0, 0.2);
+  border-color: rgba(255,255,255,0.2);
+}
+
+/* 3D text shadow */
+.shadow-text-3d {
+  text-shadow:
+    0 2px 0 rgba(0,0,0,0.5),
+    0 4px 0 rgba(0,0,0,0.3),
+    0 6px 10px rgba(0,0,0,0.7),
+    0 0 15px rgba(255, 107, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* Glow shadows */
+.shadow-glow-accent {
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
+}
+
+.shadow-glow-primary {
+  box-shadow: 0 0 15px rgba(76, 29, 149, 0.5);
+}
+
+/* Quote text styling */
+.quote-text {
+  display: block;
+  text-align: center;
+  font-style: italic;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Quote slide styling */
+.quote-slide {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+
+.quote-slide:first-child {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.quote-slide:not(:first-child) {
+  transform: translateX(100%);
+}
+
+/* Floating animation for logo */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-text-container {
+    padding: 1rem;
+    max-width: 90%;
+  }
+  
+  .tech-icon {
+    padding: 1rem;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero-section::before,
+  .hero-gradient,
+  .float-animation,
+  .tech-icon:hover,
+  .hero-text-container:hover {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+}

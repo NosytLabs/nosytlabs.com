@@ -1,0 +1,9 @@
+This is a placeholder for the Android Chrome 192x192 icon.
+Please replace this file with an actual 192x192 PNG icon named 'android-chrome-192x192.png'.
+
+The icon should be a square PNG format image with a size of 192x192 pixels.
+It will be used for Android Chrome home screen shortcuts and PWA installations.
+
+You can create this icon by resizing your logo to 192x192 pixels and 
+ensuring it has a transparent background for better integration with various 
+Android themes.

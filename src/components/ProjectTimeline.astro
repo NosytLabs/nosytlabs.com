@@ -1,0 +1,353 @@
+---
+// ProjectTimeline.astro - Interactive timeline component for NosytLabs projects
+// Using standard img tags instead of Astro's Image component
+
+// Define the timeline data structure
+interface TimelineItem {
+  year: string;
+  title: string;
+  description: string;
+  image?: string;
+  technologies?: string[];
+  category?: string;
+  link?: string;
+}
+
+// Define the component props
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  items: TimelineItem[];
+  theme?: 'light' | 'dark' | 'gradient';
+  animated?: boolean;
+}
+
+// Get the props with defaults
+const {
+  title = "Our Journey",
+  subtitle = "The evolution of NosytLabs projects over time",
+  items = [],
+  theme = 'light',
+  animated = true
+} = Astro.props;
+
+// Determine theme classes
+const themeClasses = {
+  light: 'bg-white text-gray-800',
+  dark: 'bg-gray-900 text-white',
+  gradient: 'bg-gradient-to-br from-primary-dark via-primary to-secondary text-white'
+};
+
+const containerClass = themeClasses[theme];
+const timelineClass = theme === 'dark' ? 'timeline-dark' : 'timeline-light';
+---
+
+<section class={`project-timeline-section py-16 ${containerClass}`}>
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+      <p class="text-lg opacity-80 max-w-3xl mx-auto">{subtitle}</p>
+    </div>
+
+    <div class={`timeline-container ${timelineClass} ${animated ? 'timeline-animated' : ''}`}>
+      {items.map((item, index) => (
+        <div class={`timeline-item ${index % 2 === 0 ? 'timeline-left' : 'timeline-right'}`} data-year={item.year}>
+          <div class="timeline-content">
+            <div class="timeline-marker"></div>
+            <div class="timeline-card">
+              {/* Images removed as per user request */}
+              <div class="timeline-text">
+                <h3 class="timeline-title">{item.title}</h3>
+                <p class="timeline-description">{item.description}</p>
+
+                {item.technologies && item.technologies.length > 0 && (
+                  <div class="timeline-technologies">
+                    {item.technologies.map(tech => (
+                      <span class="timeline-tech-tag">{tech}</span>
+                    ))}
+                  </div>
+                )}
+
+                {item.link && (
+                  <a href={item.link} class="timeline-link" target="_blank" rel="noopener noreferrer">
+                    View Project
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <!-- Timeline line -->
+      <div class="timeline-line"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Timeline Container */
+  .timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+
+  /* Timeline Line */
+  .timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background-color: var(--nosyt-primary, #2E1A47);
+    transform: translateX(-50%);
+  }
+
+  .timeline-dark .timeline-line {
+    background-color: var(--nosyt-accent, #FF7A2F);
+  }
+
+  /* Timeline Items */
+  .timeline-item {
+    position: relative;
+    margin-bottom: 60px;
+    width: 100%;
+  }
+
+  .timeline-left {
+    padding-right: calc(50% + 30px);
+  }
+
+  .timeline-right {
+    padding-left: calc(50% + 30px);
+  }
+
+  /* Year Marker */
+  .timeline-item::before {
+    content: attr(data-year);
+    position: absolute;
+    top: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background-color: var(--nosyt-primary, #2E1A47);
+    color: white;
+    z-index: 2;
+  }
+
+  .timeline-left::before {
+    right: calc(50% - 70px);
+  }
+
+  .timeline-right::before {
+    left: calc(50% - 70px);
+  }
+
+  .timeline-dark .timeline-item::before {
+    background-color: var(--nosyt-accent, #FF7A2F);
+    color: #111;
+  }
+
+  /* Timeline Marker */
+  .timeline-marker {
+    position: absolute;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--nosyt-accent, #FF7A2F);
+    border: 4px solid var(--nosyt-primary, #2E1A47);
+    z-index: 2;
+  }
+
+  .timeline-left .timeline-marker {
+    right: calc(50% - 10px);
+  }
+
+  .timeline-right .timeline-marker {
+    left: calc(50% - 10px);
+  }
+
+  .timeline-dark .timeline-marker {
+    background-color: var(--nosyt-primary, #2E1A47);
+    border-color: var(--nosyt-accent, #FF7A2F);
+  }
+
+  /* Timeline Card */
+  .timeline-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .timeline-dark .timeline-card {
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .timeline-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Timeline Image styles removed as per user request */
+
+  /* Timeline Text Content */
+  .timeline-text {
+    padding: 20px;
+  }
+
+  .timeline-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--nosyt-primary, #2E1A47);
+  }
+
+  .timeline-dark .timeline-title {
+    color: var(--nosyt-accent, #FF7A2F);
+  }
+
+  .timeline-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #4a4a4a;
+  }
+
+  .timeline-dark .timeline-description {
+    color: #e0e0e0;
+  }
+
+  /* Technology Tags */
+  .timeline-technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 15px;
+  }
+
+  .timeline-tech-tag {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background-color: #f0f0f0;
+    color: #555;
+  }
+
+  .timeline-dark .timeline-tech-tag {
+    background-color: #333;
+    color: #ddd;
+  }
+
+  /* Link */
+  .timeline-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--nosyt-accent, #FF7A2F);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .timeline-link:hover {
+    color: var(--nosyt-primary, #2E1A47);
+    text-decoration: underline;
+  }
+
+  .timeline-dark .timeline-link {
+    color: var(--nosyt-accent, #FF7A2F);
+  }
+
+  .timeline-dark .timeline-link:hover {
+    color: white;
+  }
+
+  /* Animation */
+  .timeline-animated .timeline-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .timeline-animated .timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .timeline-animated .timeline-line {
+    height: 0;
+    transition: height 1.5s ease;
+  }
+
+  .timeline-animated.initialized .timeline-line {
+    height: 100%;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 30px;
+    }
+
+    .timeline-item {
+      padding-left: 60px !important;
+      padding-right: 0 !important;
+    }
+
+    .timeline-item::before {
+      left: 0 !important;
+      right: auto !important;
+    }
+
+    .timeline-marker {
+      left: 30px !important;
+      right: auto !important;
+    }
+  }
+</style>
+
+<script>
+  // Initialize timeline animations
+  document.addEventListener('DOMContentLoaded', () => {
+    const timelineContainer = document.querySelector('.timeline-container');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+
+    if (timelineContainer && timelineContainer.classList.contains('timeline-animated')) {
+      // Initialize the timeline line animation
+      setTimeout(() => {
+        timelineContainer.classList.add('initialized');
+      }, 100);
+
+      // Set up intersection observer for timeline items
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Unobserve after animation
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+      });
+
+      // Observe each timeline item with a staggered delay
+      timelineItems.forEach((item, index) => {
+        setTimeout(() => {
+          observer.observe(item);
+        }, index * 200); // Stagger the animations
+      });
+    }
+  });
+</script>

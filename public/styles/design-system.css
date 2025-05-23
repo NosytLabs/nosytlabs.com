@@ -1,0 +1,806 @@
+/**
+ * NosytLabs Design System
+ * A comprehensive design system for the NosytLabs website
+ * Combines the Windows 95 aesthetic with NosytLabs brand colors
+ */
+
+:root {
+  /* ========== BRAND COLORS ========== */
+  /* Primary Colors - Purple (NosytLabs) */
+  --nosyt-purple-darkest: #2D0A4F; /* Deepest purple from logo background */
+  --nosyt-purple-dark: #3B0764;    /* Dark purple from logo gradient */
+  --nosyt-purple-main: #4C1D95;    /* Main purple from logo */
+  --nosyt-purple-light: #7C3AED;   /* Lighter purple for accents */
+  --nosyt-purple-lightest: #A78BFA; /* Lightest purple for subtle elements */
+
+  /* Secondary Colors - Orange (NosytLabs) */
+  --nosyt-orange-darkest: #B34500; /* Deepest orange for strong contrast */
+  --nosyt-orange-dark: #E05A00;    /* Dark orange for contrast */
+  --nosyt-orange-main: #FF6B00;    /* Main orange from logo */
+  --nosyt-orange-light: #FF8C3F;   /* Lighter orange for hover states */
+  --nosyt-orange-lightest: #FFBB80; /* Lightest orange for subtle elements */
+
+  /* Semantic Colors */
+  --primary: var(--nosyt-purple-main);
+  --primary-light: var(--nosyt-purple-light);
+  --primary-dark: var(--nosyt-purple-dark);
+  --secondary: var(--nosyt-orange-main);
+  --secondary-light: var(--nosyt-orange-light);
+  --secondary-dark: var(--nosyt-orange-dark);
+  --accent: var(--nosyt-purple-light);
+  --accent-light: var(--nosyt-purple-lightest);
+  --accent-dark: var(--nosyt-purple-dark);
+
+  /* Status Colors */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+
+  /* Neutrals */
+  --white: #FFFFFF;
+  --black: #000000;
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+
+  /* ========== WINDOWS 95 THEME COLORS ========== */
+  /* Base Windows 95 Colors - Modified for NosytLabs */
+  --win95-desktop: var(--nosyt-purple-darkest); /* Desktop background */
+  --win95-window-bg: #c0c0c0;                   /* Classic window background */
+  --win95-window-header: var(--nosyt-purple-main); /* Window header */
+  --win95-window-header-text: #FFFFFF;          /* Window header text */
+  --win95-text: #000000;                        /* Standard text */
+  --win95-button-highlight: #FFFFFF;            /* Button highlight */
+  --win95-button-shadow: #808080;               /* Button shadow */
+  --win95-button-face: #c0c0c0;                 /* Button face */
+  --win95-button-text: #000000;                 /* Button text */
+  --win95-button-hover: #d0d0d0;                /* Button hover */
+  --win95-button-active: var(--nosyt-purple-light); /* Button active */
+  --win95-menu-bg: #c0c0c0;                     /* Menu background */
+  --win95-menu-text: #000000;                   /* Menu text */
+  --win95-menu-hover: var(--nosyt-purple-light); /* Menu hover */
+  --win95-menu-active: var(--nosyt-purple-main); /* Menu active */
+  --win95-scrollbar-bg: #c0c0c0;                /* Scrollbar background */
+  --win95-scrollbar-thumb: #a0a0a0;             /* Scrollbar thumb */
+  --win95-scrollbar-thumb-hover: #909090;       /* Scrollbar thumb hover */
+  --win95-selection: var(--nosyt-orange-main);  /* Selection highlight */
+  --win95-selection-text: #FFFFFF;              /* Selection text */
+
+  /* Windows 95 Dark Theme Adjustments */
+  --win95-dark-window-bg: #1E1E1E;
+  --win95-dark-window-header: var(--nosyt-purple-dark);
+  --win95-dark-window-header-text: #FFFFFF;
+  --win95-dark-button-face: #2D2D2D;
+  --win95-dark-button-highlight: #4D4D4D;
+  --win95-dark-button-shadow: #000000;
+  --win95-dark-button-text: #FFFFFF;
+  --win95-dark-button-active: var(--nosyt-purple-dark);
+
+  /* ========== TYPOGRAPHY ========== */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace;
+  --font-win95: 'MS Sans Serif', 'Pixelated MS Sans Serif', Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6rem;
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* Spacing */
+  --spacing-0: 0;
+  --spacing-px: 1px;
+  --spacing-0-5: 0.125rem;
+  --spacing-1: 0.25rem;
+  --spacing-1-5: 0.375rem;
+  --spacing-2: 0.5rem;
+  --spacing-2-5: 0.625rem;
+  --spacing-3: 0.75rem;
+  --spacing-3-5: 0.875rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-9: 2.25rem;
+  --spacing-10: 2.5rem;
+  --spacing-11: 2.75rem;
+  --spacing-12: 3rem;
+  --spacing-14: 3.5rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-28: 7rem;
+  --spacing-32: 8rem;
+  --spacing-36: 9rem;
+  --spacing-40: 10rem;
+  --spacing-44: 11rem;
+  --spacing-48: 12rem;
+  --spacing-52: 13rem;
+  --spacing-56: 14rem;
+  --spacing-60: 15rem;
+  --spacing-64: 16rem;
+  --spacing-72: 18rem;
+  --spacing-80: 20rem;
+  --spacing-96: 24rem;
+
+  /* Borders */
+  --border-radius-none: 0;
+  --border-radius-sm: 0.125rem;
+  --border-radius-md: 0.25rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 0.75rem;
+  --border-radius-2xl: 1rem;
+  --border-radius-3xl: 1.5rem;
+  --border-radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-none: none;
+
+  /* ========== Z-INDEX ========== */
+  --z-hide: -1;       /* Hidden elements */
+  --z-0: 0;           /* Default stacking context */
+  --z-10: 10;         /* Low-priority UI elements */
+  --z-20: 20;         /* Standard UI elements */
+  --z-30: 30;         /* Elevated UI elements */
+  --z-40: 40;         /* Dropdown menus, tooltips */
+  --z-50: 50;         /* Sticky headers, navigation */
+  --z-60: 60;         /* Fixed elements */
+  --z-70: 70;         /* Modals, dialogs */
+  --z-80: 80;         /* Notifications */
+  --z-90: 90;         /* Toasts */
+  --z-100: 100;       /* Highest priority elements */
+  --z-auto: auto;     /* Auto stacking context */
+
+  /* Windows 95 specific z-index values */
+  --z-win95-desktop: 0;
+  --z-win95-window: 10;
+  --z-win95-active-window: 20;
+  --z-win95-menu: 30;
+  --z-win95-dropdown: 40;
+  --z-win95-dialog: 50;
+  --z-win95-taskbar: 100;
+
+  /* ========== TRANSITIONS ========== */
+  --transition-none: none;
+  --transition-fast: 150ms;
+  --transition-normal: 300ms;
+  --transition-slow: 500ms;
+  --transition-timing-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-timing-linear: linear;
+  --transition-timing-ease-in: cubic-bezier(0.42, 0, 1, 1);
+  --transition-timing-ease-out: cubic-bezier(0, 0, 0.58, 1);
+  --transition-timing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+
+  /* Windows 95 specific transitions */
+  --transition-win95-menu: 100ms;
+  --transition-win95-window: 150ms;
+
+  /* Container widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+}
+
+/* ========== BASE STYLES ========== */
+html {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Prevents inline spacing issues */
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-normal) var(--transition-timing-ease);
+}
+
+a:hover {
+  color: var(--color-primary-light);
+}
+
+/* ========== DARK MODE ========== */
+.dark {
+  --color-bg-primary: var(--color-gray-900);
+  --color-bg-secondary: var(--color-gray-800);
+  --color-bg-tertiary: var(--color-gray-700);
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-gray-300);
+  --color-text-tertiary: var(--color-gray-400);
+  --color-border: var(--color-gray-700);
+  --color-border-light: var(--color-gray-600);
+  --color-border-dark: var(--color-gray-800);
+
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+.dark a {
+  color: var(--color-primary-light);
+}
+
+.dark a:hover {
+  color: var(--color-primary-lightest);
+}
+
+/* ========== WINDOWS 95 THEME ========== */
+.win95-theme {
+  font-family: var(--font-win95);
+  background-color: var(--win95-desktop);
+  color: var(--win95-text);
+}
+
+.win95-window {
+  background-color: var(--win95-window-bg);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  box-shadow: 1px 1px 0 0 var(--color-black);
+}
+
+.win95-window-header {
+  background-color: var(--win95-window-header);
+  color: var(--win95-window-header-text);
+  padding: 2px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.win95-button {
+  background-color: var(--win95-button-face);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  color: var(--win95-button-text);
+  padding: 4px 8px;
+  font-family: var(--font-win95);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+
+.win95-button:active {
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  background-color: var(--win95-button-active);
+}
+
+/* Dark Windows 95 Theme */
+.win95-theme.dark {
+  background-color: var(--nosyt-purple-darkest);
+}
+
+.win95-theme.dark .win95-window {
+  background-color: var(--win95-dark-window-bg);
+  border-color: var(--win95-dark-button-highlight) var(--win95-dark-button-shadow) var(--win95-dark-button-shadow) var(--win95-dark-button-highlight);
+}
+
+.win95-theme.dark .win95-window-header {
+  background-color: var(--win95-dark-window-header);
+  color: var(--win95-dark-window-header-text);
+}
+
+/* ========== LAYOUT UTILITIES ========== */
+/* Container */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
+  position: relative;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: var(--container-sm);
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-md);
+    padding-left: var(--spacing-8);
+    padding-right: var(--spacing-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--container-lg);
+    padding-left: var(--spacing-10);
+    padding-right: var(--spacing-10);
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--container-xl);
+    padding-left: var(--spacing-12);
+    padding-right: var(--spacing-12);
+  }
+}
+
+/* Section spacing with consistent vertical rhythm */
+.section {
+  padding: var(--spacing-16) 0;
+  margin-bottom: var(--spacing-8);
+  position: relative;
+  width: 100%;
+  clear: both; /* Ensure proper flow */
+}
+
+.section-sm {
+  padding: var(--spacing-8) 0;
+  margin-bottom: var(--spacing-6);
+  position: relative;
+  width: 100%;
+}
+
+.section-lg {
+  padding: var(--spacing-20) 0;
+  margin-bottom: var(--spacing-12);
+  position: relative;
+  width: 100%;
+}
+
+/* ========== GRID SYSTEM ========== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-4);
+  width: 100%;
+  margin: 0 auto;
+  align-items: start; /* Align items to the top by default */
+}
+
+/* Basic column configurations */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* minmax prevents overflow */
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Grid gap variations */
+.grid-gap-0 {
+  gap: 0;
+}
+
+.grid-gap-sm {
+  gap: var(--spacing-2);
+}
+
+.grid-gap-md {
+  gap: var(--spacing-4);
+}
+
+.grid-gap-lg {
+  gap: var(--spacing-6);
+}
+
+.grid-gap-xl {
+  gap: var(--spacing-8);
+}
+
+/* Grid alignment options */
+.grid-align-center {
+  align-items: center;
+}
+
+.grid-align-end {
+  align-items: end;
+}
+
+.grid-justify-center {
+  justify-items: center;
+}
+
+.grid-justify-end {
+  justify-items: end;
+}
+
+/* Responsive grid columns */
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sm\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .xl\:grid-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .xl\:grid-cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* ========== RESPONSIVE UTILITIES ========== */
+/* Responsive display */
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+@media (min-width: 640px) {
+  .sm\:hidden {
+    display: none;
+  }
+
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:inline-block {
+    display: inline-block;
+  }
+
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:grid {
+    display: grid;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:hidden {
+    display: none;
+  }
+
+  .md\:block {
+    display: block;
+  }
+
+  .md\:inline-block {
+    display: inline-block;
+  }
+
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:grid {
+    display: grid;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:hidden {
+    display: none;
+  }
+
+  .lg\:block {
+    display: block;
+  }
+
+  .lg\:inline-block {
+    display: inline-block;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
+
+  .lg\:grid {
+    display: grid;
+  }
+}
+
+/* ========== ACCESSIBILITY ========== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.focus-visible:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.dark .focus-visible:focus-visible {
+  outline-color: var(--color-primary-light);
+}
+
+/* Skip to content link - accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ========== ANIMATION UTILITIES ========== */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ========== WINDOWS 95 ANIMATIONS ========== */
+@keyframes win95-open {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes win95-close {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes win95-minimize {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.1) translateY(500px);
+    opacity: 0;
+  }
+}
+
+@keyframes win95-maximize {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.win95-animate-open {
+  animation: win95-open 0.2s ease-in-out;
+}
+
+.win95-animate-close {
+  animation: win95-close 0.2s ease-in-out;
+}
+
+.win95-animate-minimize {
+  animation: win95-minimize 0.2s ease-in-out;
+}
+
+.win95-animate-maximize {
+  animation: win95-maximize 0.2s ease-in-out;
+}
+
+/* ========== FOCUS STYLES ========== */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline-color: var(--color-primary-light);
+}
+
+/* Windows 95 focus styles */
+.win95-theme :focus-visible {
+  outline: 1px dotted var(--win95-text);
+  outline-offset: 1px;
+}
+
+.win95-theme.dark :focus-visible {
+  outline: 1px dotted var(--win95-window-header-text);
+  outline-offset: 1px;
+}
+
+/* ========== REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

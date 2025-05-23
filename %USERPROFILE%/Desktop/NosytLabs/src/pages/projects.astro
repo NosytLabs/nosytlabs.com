@@ -1,0 +1,403 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Projects - NosytLabs" description="Explore our portfolio of projects including web development, AI tools, and more.">
+  <div class="projects-page">
+    <div class="container">
+      <div class="page-header">
+        <h1>Our Projects</h1>
+        <p class="lead">Explore our portfolio of projects and see what we've been working on.</p>
+      </div>
+      
+      <div class="projects-filter">
+        <button class="filter-button active" data-filter="all">All</button>
+        <button class="filter-button" data-filter="web">Web Development</button>
+        <button class="filter-button" data-filter="ai">AI Tools</button>
+        <button class="filter-button" data-filter="content">Content Creation</button>
+        <button class="filter-button" data-filter="3d">3D Printing</button>
+      </div>
+      
+      <div class="projects-grid">
+        <!-- Cursor AI -->
+        <div class="project-card" data-category="ai">
+          <div class="project-image">
+            <img src="/images/projects/cursor-ai.jpg" alt="Cursor AI" loading="lazy">
+          </div>
+          <div class="project-content">
+            <h2>Cursor AI</h2>
+            <p class="project-category">AI Tools</p>
+            <p class="project-description">An advanced AI code editor with chat functionality that helps developers write better code faster.</p>
+            <div class="project-links">
+              <a href="https://cursor.sh" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visit Website
+              </a>
+              <a href="https://github.com/getcursor/cursor" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Trae AI -->
+        <div class="project-card" data-category="ai">
+          <div class="project-image">
+            <img src="/images/projects/trae-ai.jpg" alt="Trae AI" loading="lazy">
+          </div>
+          <div class="project-content">
+            <h2>Trae AI</h2>
+            <p class="project-category">AI Tools</p>
+            <p class="project-description">An adaptive AI code editor with comprehensive IDE features for modern development workflows.</p>
+            <div class="project-links">
+              <a href="https://trae.ai" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visit Website
+              </a>
+              <a href="https://github.com/traeai" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Roo Code -->
+        <div class="project-card" data-category="ai">
+          <div class="project-image">
+            <img src="/images/projects/roo-code.jpg" alt="Roo Code" loading="lazy">
+          </div>
+          <div class="project-content">
+            <h2>Roo Code</h2>
+            <p class="project-category">AI Tools</p>
+            <p class="project-description">An AI-powered IDE designed to make development more accessible for developers of all skill levels.</p>
+            <div class="project-links">
+              <a href="https://roocode.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visit Website
+              </a>
+              <a href="https://github.com/roocode" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Windsurf -->
+        <div class="project-card" data-category="ai">
+          <div class="project-image">
+            <img src="/images/projects/windsurf.jpg" alt="Windsurf" loading="lazy">
+          </div>
+          <div class="project-content">
+            <h2>Windsurf</h2>
+            <p class="project-category">AI Tools</p>
+            <p class="project-description">An AI-powered IDE with Composer feature for managing large codebases efficiently.</p>
+            <div class="project-links">
+              <a href="https://windsurf.io" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visit Website
+              </a>
+              <a href="https://github.com/windsurf" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- NosytLabs Website -->
+        <div class="project-card" data-category="web">
+          <div class="project-image">
+            <img src="/images/projects/nosytlabs.jpg" alt="NosytLabs Website" loading="lazy">
+          </div>
+          <div class="project-content">
+            <h2>NosytLabs Website</h2>
+            <p class="project-category">Web Development</p>
+            <p class="project-description">Our portfolio website built with Astro, featuring a modern design and interactive elements.</p>
+            <div class="project-links">
+              <a href="/" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+                Visit Website
+              </a>
+              <a href="https://github.com/NosytLabs/nosytlabs" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- TycenYT Channel -->
+        <div class="project-card" data-category="content">
+          <div class="project-image">
+            <img src="/images/projects/tycenyt.jpg" alt="TycenYT YouTube Channel" loading="lazy">
+          </div>
+          <div class="project-content">
+            <h2>TycenYT YouTube Channel</h2>
+            <p class="project-category">Content Creation</p>
+            <p class="project-description">Our YouTube channel featuring tech tutorials, reviews, and programming content.</p>
+            <div class="project-links">
+              <a href="https://www.youtube.com/@TycenYT" target="_blank" rel="noopener noreferrer" class="project-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                </svg>
+                YouTube Channel
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .projects-page {
+    padding: var(--spacing-12) 0;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+  
+  .page-header h1 {
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-4);
+    color: var(--primary);
+  }
+  
+  .dark .page-header h1 {
+    color: var(--primary-light);
+  }
+  
+  .lead {
+    font-size: var(--font-size-xl);
+    color: var(--gray-600);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .dark .lead {
+    color: var(--gray-300);
+  }
+  
+  .projects-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .filter-button {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+    border: none;
+    border-radius: var(--border-radius-full);
+    padding: var(--spacing-2) var(--spacing-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-normal) var(--transition-timing-ease);
+  }
+  
+  .dark .filter-button {
+    background-color: var(--gray-800);
+    color: var(--gray-300);
+  }
+  
+  .filter-button:hover {
+    background-color: var(--gray-200);
+  }
+  
+  .dark .filter-button:hover {
+    background-color: var(--gray-700);
+  }
+  
+  .filter-button.active {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  .dark .filter-button.active {
+    background-color: var(--primary-light);
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+  
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .project-card {
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal) var(--transition-timing-ease);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dark .project-card {
+    background-color: var(--gray-800);
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .project-image {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+  
+  .project-content {
+    padding: var(--spacing-6);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .project-content h2 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-2);
+    color: var(--primary);
+  }
+  
+  .dark .project-content h2 {
+    color: var(--primary-light);
+  }
+  
+  .project-category {
+    font-size: var(--font-size-sm);
+    color: var(--accent);
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .project-description {
+    color: var(--gray-600);
+    margin-bottom: var(--spacing-6);
+  }
+  
+  .dark .project-description {
+    color: var(--gray-300);
+  }
+  
+  .project-links {
+    margin-top: auto;
+    display: flex;
+    gap: var(--spacing-4);
+  }
+  
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    color: var(--primary);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-normal) var(--transition-timing-ease);
+  }
+  
+  .dark .project-link {
+    color: var(--primary-light);
+  }
+  
+  .project-link:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  
+  .dark .project-link:hover {
+    color: var(--accent-light);
+  }
+</style>
+
+<script>
+  // Initialize projects filter
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    // Add click event to filter buttons
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        // Get filter value
+        const filter = button.dataset.filter;
+        
+        // Filter projects
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

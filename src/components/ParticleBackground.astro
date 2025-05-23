@@ -1,0 +1,435 @@
+---
+/**
+ * ParticleBackground.astro
+ *
+ * A robust particle background component that works with particles.js
+ * and has proper error handling with CSS fallback.
+ *
+ * Features:
+ * - Uses NosytLabs brand colors (purple and orange)
+ * - Has fallback when particles.js fails to load
+ * - Supports reduced motion preferences
+ * - Customizable via props
+ */
+
+interface Props {
+  /**
+   * ID for the particle container
+   * @default "particle-background"
+   */
+  id?: string;
+
+  /**
+   * Primary color for particles
+   * @default "rgba(124, 58, 237, 0.5)" (Purple)
+   */
+  color?: string;
+
+  /**
+   * Secondary color for particles (used in gradient mode)
+   * @default "rgba(255, 107, 0, 0.5)" (Orange)
+   */
+  secondaryColor?: string;
+
+  /**
+   * Number of particles to display
+   * @default 100
+   */
+  particleCount?: number;
+
+  /**
+   * Size of particles in pixels
+   * @default 3
+   */
+  particleSize?: number;
+
+  /**
+   * Speed of particle movement
+   * @default 1
+   */
+  particleSpeed?: number;
+
+  /**
+   * Whether particles should interact with mouse
+   * @default true
+   */
+  interactive?: boolean;
+
+  /**
+   * Whether particles should connect with lines
+   * @default true
+   */
+  connectParticles?: boolean;
+
+  /**
+   * Density of particles (area per particle)
+   * @default 800
+   */
+  density?: number;
+
+  /**
+   * Maximum distance between connected particles
+   * @default 150
+   */
+  maxDistance?: number;
+
+  /**
+   * Background color of the container
+   * @default "transparent"
+   */
+  backgroundColor?: string;
+
+  /**
+   * Background opacity
+   * @default 0
+   */
+  backgroundOpacity?: number;
+
+  /**
+   * Whether to use gradient colors
+   * @default true
+   */
+  gradient?: boolean;
+
+  /**
+   * CSS class to apply to the container
+   */
+  className?: string;
+
+  /**
+   * Z-index for the particle container
+   * @default 0
+   */
+  zIndex?: number;
+}
+
+// Default props
+const {
+  id = 'particle-background',
+  color = 'rgba(124, 58, 237, 0.5)', // Purple
+  secondaryColor = 'rgba(255, 107, 0, 0.5)', // Orange
+  particleCount = 100,
+  particleSize = 3,
+  particleSpeed = 1,
+  interactive = true,
+  connectParticles = true,
+  density = 800,
+  maxDistance = 150,
+  backgroundColor = 'transparent',
+  backgroundOpacity = 0,
+  gradient = true,
+  className = '',
+  zIndex = 0
+} = Astro.props;
+---
+
+<div
+  id={id}
+  class={`particle-background ${className}`}
+  data-color={color}
+  data-secondary-color={secondaryColor}
+  data-particle-count={particleCount}
+  data-particle-size={particleSize}
+  data-particle-speed={particleSpeed}
+  data-interactive={interactive}
+  data-connect-particles={connectParticles}
+  data-gradient={gradient}
+  aria-hidden="true"
+>
+  <!-- Particles will be rendered here by particles.js -->
+  <!-- Fallback particles will be added here if particles.js fails -->
+</div>
+
+<script define:vars={{
+  id,
+  color,
+  secondaryColor,
+  particleCount,
+  particleSize,
+  particleSpeed,
+  interactive,
+  connectParticles,
+  density,
+  maxDistance,
+  backgroundColor,
+  backgroundOpacity,
+  gradient,
+  zIndex
+}}>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check if already initialized by particles-config.js
+    const element = document.getElementById(id);
+    if (element && element.classList.contains('particles-initialized')) {
+      console.log(`Particles already initialized for ${id}`);
+      return;
+    }
+
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Check if particles.js is loaded
+    if (typeof particlesJS !== 'undefined') {
+      try {
+        // Helper function to convert color to RGB
+        function colorToRgb(color) {
+          let rgb = null;
+
+          // Handle different color formats
+          if (typeof color === 'string') {
+            if (color.startsWith('rgb')) {
+              // Extract RGB values from rgb/rgba string
+              const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+              if (match) {
+                rgb = {
+                  r: parseInt(match[1], 10),
+                  g: parseInt(match[2], 10),
+                  b: parseInt(match[3], 10)
+                };
+              }
+            } else if (color.startsWith('#')) {
+              // Convert hex to RGB
+              const hex = color.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => r + r + g + g + b + b);
+              const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+              if (result) {
+                rgb = {
+                  r: parseInt(result[1], 16),
+                  g: parseInt(result[2], 16),
+                  b: parseInt(result[3], 16)
+                };
+              }
+            }
+          }
+
+          return rgb;
+        }
+
+        // Initialize particles.js with enhanced configuration
+        const config = {
+          "particles": {
+            "number": {
+              "value": prefersReducedMotion ? Math.min(30, particleCount) : particleCount,
+              "density": {
+                "enable": true,
+                "value_area": density
+              }
+            },
+            "color": {
+              "value": gradient ? [color, secondaryColor] : color
+            },
+            "shape": {
+              "type": "circle",
+              "stroke": {
+                "width": 0,
+                "color": "#000000"
+              }
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": true,
+              "anim": {
+                "enable": !prefersReducedMotion,
+                "speed": 1,
+                "opacity_min": 0.1,
+                "sync": false
+              }
+            },
+            "size": {
+              "value": particleSize,
+              "random": true,
+              "anim": {
+                "enable": !prefersReducedMotion,
+                "speed": 2,
+                "size_min": 0.1,
+                "sync": false
+              }
+            },
+            "line_linked": {
+              "enable": connectParticles,
+              "distance": maxDistance,
+              "color": gradient ? secondaryColor : color,
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": {
+              "enable": !prefersReducedMotion,
+              "speed": particleSpeed,
+              "direction": "none",
+              "random": true,
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false,
+              "attract": {
+                "enable": true,
+                "rotateX": 600,
+                "rotateY": 1200
+              }
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": interactive && !prefersReducedMotion,
+                "mode": "grab"
+              },
+              "onclick": {
+                "enable": interactive && !prefersReducedMotion,
+                "mode": "push"
+              },
+              "resize": true
+            },
+            "modes": {
+              "grab": {
+                "distance": maxDistance,
+                "line_linked": {
+                  "opacity": 1
+                }
+              },
+              "bubble": {
+                "distance": 400,
+                "size": particleSize * 1.5,
+                "duration": 2,
+                "opacity": 8,
+                "speed": 3
+              },
+              "repulse": {
+                "distance": 200,
+                "duration": 0.4
+              },
+              "push": {
+                "particles_nb": 4
+              },
+              "remove": {
+                "particles_nb": 2
+              }
+            }
+          },
+          "retina_detect": true,
+          "background": {
+            "color": backgroundColor,
+            "opacity": backgroundOpacity,
+            "image": "",
+            "position": "50% 50%",
+            "repeat": "no-repeat",
+            "size": "cover"
+          }
+        };
+
+        // Add color_rgb_line property to prevent "Cannot read properties of null (reading 'r')" error
+        if (config.particles.line_linked && config.particles.line_linked.enable) {
+          const lineColor = config.particles.line_linked.color;
+          const rgb = colorToRgb(lineColor);
+
+          if (rgb) {
+            config.particles.line_linked.color_rgb_line = rgb;
+          } else {
+            // Default fallback color
+            config.particles.line_linked.color_rgb_line = { r: 124, g: 58, b: 237 }; // Purple
+          }
+        }
+
+        // Mark as initialized
+        if (element) {
+          element.classList.add('particles-initialized');
+        }
+
+        // Initialize particles
+        particlesJS(id, config);
+        console.log(`Particles initialized for ${id}`);
+      } catch (error) {
+        console.error(`Failed to initialize particles for ${id}:`, error);
+        createCSSFallback();
+      }
+    } else {
+      console.warn('particles.js is not loaded. Creating CSS fallback.');
+      createCSSFallback();
+    }
+
+    // Create CSS fallback animation
+    function createCSSFallback() {
+      const container = document.getElementById(id);
+      if (!container) return;
+
+      // Add fallback class
+      container.classList.add('particles-fallback');
+
+      // Clear any existing fallback particles
+      const existingParticles = container.querySelectorAll('.fallback-particle');
+      existingParticles.forEach(p => p.remove());
+
+      // Create fallback particles
+      const fallbackCount = Math.min(particleCount, 20);
+
+      for (let i = 0; i < fallbackCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'fallback-particle';
+
+        // Randomize properties
+        const size = Math.floor(Math.random() * 5) + 2; // 2-6px
+        const posX = Math.random() * 100; // 0-100%
+        const posY = Math.random() * 100; // 0-100%
+        const opacity = Math.random() * 0.5 + 0.1; // 0.1-0.6
+        const particleColor = Math.random() > 0.5 ? color : secondaryColor;
+        const delay = Math.random() * 5; // 0-5s delay
+        const duration = Math.random() * 20 + 10; // 10-30s duration
+
+        // Apply styles
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.backgroundColor = particleColor;
+        particle.style.opacity = opacity;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.animation = `particle-float ${duration}s ease-in-out ${delay}s infinite`;
+
+        // Add to container
+        container.appendChild(particle);
+      }
+
+      console.log(`Created CSS fallback for ${id}`);
+    }
+  });
+</script>
+
+<style define:vars={{ zIndex }}>
+  .particle-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--zIndex);
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* Fallback CSS particles */
+  .particles-fallback {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fallback-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  @keyframes particle-float {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(10px, -10px); }
+    50% { transform: translate(20px, 10px); }
+    75% { transform: translate(-10px, 15px); }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .particle-background {
+      opacity: 0.5;
+    }
+
+    .fallback-particle {
+      animation: none !important;
+    }
+  }
+</style>

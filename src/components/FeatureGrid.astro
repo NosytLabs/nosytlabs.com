@@ -1,0 +1,221 @@
+---
+/**
+ * FeatureGrid Component
+ * 
+ * A responsive grid layout for displaying feature cards
+ * with a title and subtitle.
+ */
+
+import FeatureCard from './FeatureCard.astro';
+
+interface Feature {
+  title: string;
+  description: string;
+  iconUrl?: string;
+  svgIcon?: string;
+  linkUrl?: string;
+  highlighted?: boolean;
+}
+
+interface Props {
+  /**
+   * Array of feature objects to display
+   */
+  features: Feature[];
+  
+  /**
+   * Title for the features section
+   * @default "Features"
+   */
+  title?: string;
+  
+  /**
+   * Subtitle for the features section
+   */
+  subtitle?: string;
+  
+  /**
+   * Number of columns in the grid
+   * @default 3
+   */
+  columns?: 2 | 3 | 4;
+  
+  /**
+   * Whether to animate the features on scroll
+   * @default true
+   */
+  animateOnScroll?: boolean;
+  
+  /**
+   * Additional CSS classes
+   */
+  class?: string;
+}
+
+const {
+  features,
+  title = "Features",
+  subtitle,
+  columns = 3,
+  animateOnScroll = true,
+  class: className = '',
+} = Astro.props;
+---
+
+<section class:list={['features-section', className]}>
+  <div class="features-section__header">
+    <h2 class="features-section__title">{title}</h2>
+    {subtitle && <p class="features-section__subtitle">{subtitle}</p>}
+  </div>
+  
+  <div class:list={[
+    'features-section__grid',
+    `features-section__grid--${columns}-col`,
+    { 'features-section__grid--animate': animateOnScroll }
+  ]}>
+    {features.map((feature, index) => (
+      <div 
+        class="features-section__item"
+        style={animateOnScroll ? `animation-delay: ${index * 0.1}s;` : ''}
+      >
+        <FeatureCard
+          title={feature.title}
+          description={feature.description}
+          iconUrl={feature.iconUrl}
+          svgIcon={feature.svgIcon}
+          linkUrl={feature.linkUrl}
+          highlighted={feature.highlighted}
+        />
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  // Initialize animation on scroll
+  document.addEventListener('DOMContentLoaded', () => {
+    const animatedGrid = document.querySelector('.features-section__grid--animate');
+    
+    if (animatedGrid) {
+      const items = document.querySelectorAll('.features-section__item');
+      
+      // Set initial state
+      items.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+      });
+      
+      // Create intersection observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      });
+      
+      // Observe each item
+      items.forEach(item => {
+        observer.observe(item);
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Variables for consistent styling */
+  :root {
+    --section-spacing: 4rem;
+    --grid-gap: 2rem;
+    --nosyt-purple: #4C1D95;
+    --nosyt-purple-light: #7C3AED;
+    --nosyt-orange: #FF6B00;
+    --nosyt-orange-light: #FF9E44;
+  }
+
+  .features-section {
+    padding: var(--section-spacing) 0;
+  }
+
+  .features-section__header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .features-section__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: var(--nosyt-purple);
+  }
+
+  :global(.dark) .features-section__title {
+    color: var(--nosyt-purple-light);
+  }
+
+  .features-section__subtitle {
+    font-size: 1.125rem;
+    color: #4B5563;
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    line-height: 1.6;
+  }
+
+  :global(.dark) .features-section__subtitle {
+    color: #D1D5DB;
+  }
+
+  .features-section__grid {
+    display: grid;
+    gap: var(--grid-gap);
+  }
+
+  .features-section__grid--2-col {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .features-section__grid--3-col {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .features-section__grid--4-col {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (min-width: 640px) {
+    .features-section__grid--2-col,
+    .features-section__grid--3-col,
+    .features-section__grid--4-col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .features-section__grid--3-col {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .features-section__grid--4-col {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .features-section__item {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Responsive adjustments */
+  @media (prefers-reduced-motion: reduce) {
+    .features-section__item {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>

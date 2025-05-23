@@ -1,0 +1,250 @@
+/**
+ * Enhanced System Dialogs CSS for NosytOS95
+ * 
+ * Provides styling for Windows 95-style system dialogs:
+ * - Shutdown dialog
+ * - Restart dialog
+ * - Log off dialog
+ * - Run dialog
+ * - Find dialog
+ * - Error dialog
+ * 
+ * @version 1.0.0
+ * @author NosytLabs
+ */
+
+/* System Dialog */
+.win95-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--win95-button-face);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  min-width: 300px;
+  max-width: 400px;
+  z-index: 2000;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 12px;
+}
+
+/* Dialog Header */
+.dialog-header {
+  background-color: var(--win95-window-header);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 4px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.dialog-close {
+  width: 16px;
+  height: 14px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--win95-button-face);
+  border: 1px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  cursor: pointer;
+}
+
+.dialog-close:active {
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+}
+
+/* Dialog Content */
+.dialog-content {
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.dialog-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.dialog-message {
+  flex-grow: 1;
+  line-height: 1.4;
+}
+
+/* Dialog Input */
+.dialog-input-container {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.dialog-input {
+  width: 100%;
+  padding: 4px;
+  border: 2px solid;
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  background-color: white;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 12px;
+}
+
+.dialog-input:focus {
+  outline: 1px dotted #000;
+}
+
+/* Dialog Buttons */
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  gap: 8px;
+}
+
+.dialog-button {
+  min-width: 75px;
+  padding: 4px 10px;
+  background-color: var(--win95-button-face);
+  border: 2px solid;
+  border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dialog-button:active {
+  border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+}
+
+.dialog-button:focus {
+  outline: 1px dotted #000;
+}
+
+/* Shutdown Screen */
+.shutdown-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 16px;
+}
+
+.shutdown-message {
+  text-align: center;
+}
+
+/* Restart Screen */
+.restart-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000080;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 16px;
+}
+
+.restart-message {
+  text-align: center;
+}
+
+.restart-message:after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url('/images/win95/hourglass.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* Logoff Screen */
+.logoff-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--win95-bg);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 16px;
+}
+
+.logoff-message {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+/* Dialog Animations */
+@keyframes dialogAppear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.win95-dialog {
+  animation: dialogAppear 0.2s ease-out forwards;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .win95-dialog {
+    min-width: 250px;
+    max-width: 90%;
+  }
+  
+  .dialog-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .dialog-icon {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+  
+  .dialog-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dialog-button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}

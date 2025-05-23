@@ -1,0 +1,172 @@
+---
+/**
+ * DataSources Component
+ * Displays the sources of data for passive income earnings claims
+ */
+
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+
+// Data sources for earnings claims
+const dataSources = [
+  {
+    category: "Bandwidth Sharing",
+    sources: [
+      {
+        name: "Honeygain",
+        url: "https://honeygain.com/traffic-estimations/",
+        description: "Official Honeygain earnings calculator and traffic estimations",
+        lastVerified: "March 2023"
+      },
+      {
+        name: "EarnApp",
+        url: "https://earnapp.com/bandwidth-calculator",
+        description: "EarnApp's bandwidth calculator showing estimated earnings",
+        lastVerified: "April 2023"
+      },
+      {
+        name: "Reddit r/beermoney",
+        url: "https://www.reddit.com/r/beermoney/comments/v9lrja/bandwidth_sharing_earnings_comparison_may_2022/",
+        description: "Community earnings reports for bandwidth sharing apps",
+        lastVerified: "May 2023"
+      }
+    ]
+  },
+  {
+    category: "Surveys & Tasks",
+    sources: [
+      {
+        name: "Prolific",
+        url: "https://www.prolific.co/",
+        description: "Average payment rates from completed studies",
+        lastVerified: "June 2023"
+      },
+      {
+        name: "Amazon MTurk Tracker",
+        url: "https://turkerview.com/",
+        description: "Community-driven earnings tracking for MTurk workers",
+        lastVerified: "May 2023"
+      },
+      {
+        name: "UserTesting",
+        url: "https://www.usertesting.com/get-paid-to-test",
+        description: "Official payment rates for completed tests",
+        lastVerified: "April 2023"
+      }
+    ]
+  },
+  {
+    category: "Content Creation",
+    sources: [
+      {
+        name: "YouTube Creator Academy",
+        url: "https://creatoracademy.youtube.com/",
+        description: "Official YouTube monetization guidelines and earnings potential",
+        lastVerified: "June 2023"
+      },
+      {
+        name: "Medium Partner Program",
+        url: "https://help.medium.com/hc/en-us/articles/360018677974",
+        description: "Official Medium earnings documentation",
+        lastVerified: "May 2023"
+      },
+      {
+        name: "Printful Profit Calculator",
+        url: "https://www.printful.com/profit-calculator",
+        description: "Official profit calculator for print-on-demand products",
+        lastVerified: "April 2023"
+      }
+    ]
+  },
+  {
+    category: "Crypto & Rewards",
+    sources: [
+      {
+        name: "Brave Rewards",
+        url: "https://brave.com/transparency/",
+        description: "Official Brave browser rewards transparency reports",
+        lastVerified: "June 2023"
+      },
+      {
+        name: "Microsoft Rewards Dashboard",
+        url: "https://rewards.microsoft.com/",
+        description: "Official points-to-rewards conversion rates",
+        lastVerified: "May 2023"
+      },
+      {
+        name: "Rakuten Cash Back Calculator",
+        url: "https://www.rakuten.com/help/article/understanding-cash-back-360002117247",
+        description: "Official Rakuten cash back explanation and rates",
+        lastVerified: "April 2023"
+      }
+    ]
+  }
+];
+
+// Disclaimer statement
+const disclaimerStatement = "The earnings data presented on this page is compiled from public sources including official company websites, Reddit communities like r/beermoney, and other online forums. We have not personally verified these earnings. Actual results may vary significantly based on location, internet connection, and other factors.";
+---
+
+<div class={`bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 ${className}`}>
+  <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Data Sources & Information</h2>
+
+  <p class="text-gray-700 dark:text-gray-300 mb-8">
+    The earnings information presented on this page is compiled from the following public sources. This information is provided for educational purposes only. Earnings vary widely based on location, internet connection, device specifications, and time investment.
+  </p>
+
+  <div class="space-y-8">
+    {dataSources.map(category => (
+      <div>
+        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">{category.category}</h3>
+
+        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg overflow-hidden">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+            <thead class="bg-gray-100 dark:bg-gray-600">
+              <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Source</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Description</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Last Verified</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600">
+              {category.sources.map(source => (
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <a href={source.url} target="_blank" rel="noopener noreferrer" class="text-primary hover:underline font-medium">
+                      {source.name}
+                    </a>
+                  </td>
+                  <td class="px-6 py-4">
+                    <div class="text-sm text-gray-700 dark:text-gray-300">{source.description}</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                    {source.lastVerified}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="mt-8 bg-primary-light/20 dark:bg-primary-dark/20 p-6 rounded-lg border-l-4 border-primary">
+    <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Important Disclaimer</h3>
+    <p class="text-gray-700 dark:text-gray-300">
+      {disclaimerStatement}
+    </p>
+    <p class="text-gray-700 dark:text-gray-300 mt-4">
+      We encourage users to conduct their own research before using any passive income app. This page does not constitute financial advice or an endorsement of any specific service.
+    </p>
+  </div>
+
+  <div class="mt-8 text-center">
+    <p class="text-sm text-gray-500 dark:text-gray-400">
+      Last updated: August 2023 • Information is provided for educational purposes only
+    </p>
+  </div>
+</div>

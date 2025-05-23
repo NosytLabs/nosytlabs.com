@@ -1,0 +1,194 @@
+/* Windows 95 style Clippy bubble */
+.clippy-bubble {
+  background-color: #fffcdb; /* Classic Windows 95 tooltip yellow */
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff; /* Classic Windows 95 border */
+  border-radius: 0; /* Windows 95 had square corners */
+  padding: 10px;
+  margin-bottom: 15px;
+  max-width: 300px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 12px;
+  color: #000000;
+}
+
+.clippy-bubble.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  animation: clippy-bubble-bounce 0.5s ease-out;
+}
+
+@keyframes clippy-bubble-bounce {
+  0% { transform: translateY(20px) scale(0.9); }
+  50% { transform: translateY(-5px) scale(1.05); }
+  70% { transform: translateY(3px) scale(0.98); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.clippy-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: #fffcdb;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  transform: rotate(45deg);
+}
+
+/* Clippy message */
+#clippy-message {
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+/* Clippy options */
+.clippy-options {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.clippy-option {
+  background-color: #c0c0c0; /* Classic Windows 95 button color */
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff; /* Classic Windows 95 button border */
+  padding: 4px 8px;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+  color: #000000;
+}
+
+.clippy-option:hover {
+  background-color: #d0d0d0;
+}
+
+.clippy-option:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+  background-color: #b0b0b0;
+}
+
+/* Clippy close button */
+.clippy-close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  background-color: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Dark mode adjustments - Windows 95 "High Contrast" theme */
+.dark .clippy-bubble {
+  background-color: #000080; /* Windows 95 dark blue */
+  border-color: #c0c0c0 #404040 #404040 #c0c0c0;
+  color: #ffffff;
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.5);
+}
+
+.dark .clippy-bubble::after {
+  background-color: #000080;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+}
+
+.dark .clippy-image {
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
+  background-color: #000080;
+  border: 2px outset #c0c0c0;
+}
+
+.dark .clippy-option {
+  background-color: #808080;
+  border-color: #c0c0c0 #404040 #404040 #c0c0c0;
+  color: #ffffff;
+}
+
+.dark .clippy-option:hover {
+  background-color: #a0a0a0;
+}
+
+.dark .clippy-option:active {
+  border-color: #404040 #c0c0c0 #c0c0c0 #404040;
+  background-color: #606060;
+}
+
+.dark .clippy-close {
+  background-color: #808080;
+  border-color: #c0c0c0 #404040 #404040 #c0c0c0;
+  color: #ffffff;
+}
+
+.dark .clippy-close:hover {
+  background-color: #a0a0a0;
+}
+
+.dark .clippy-close:active {
+  border-color: #404040 #c0c0c0 #c0c0c0 #404040;
+  background-color: #606060;
+}
+
+/* Clippy container */
+.clippy-container {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  z-index: 3000;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Clippy image */
+.clippy-image {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clippy-image:hover {
+  transform: scale(1.05);
+}
+
+.clippy-image:active {
+  transform: scale(0.95);
+}
+
+/* Animation classes */
+.clippy-entrance {
+  animation: clippy-entrance-anim 0.5s ease-out;
+}
+
+.clippy-exit {
+  animation: clippy-exit-anim 0.5s ease-in;
+}
+
+@keyframes clippy-entrance-anim {
+  0% { transform: translateY(50px) scale(0.5); opacity: 0; }
+  70% { transform: translateY(-10px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes clippy-exit-anim {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  30% { transform: translateY(-10px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(50px) scale(0.5); opacity: 0; }
+}

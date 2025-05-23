@@ -1,0 +1,52 @@
+{
+  "name": "nosytlabs-website",
+  "version": "1.0.0",
+  "description": "NosytLabs Portfolio Website",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "npm run fix-css && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "npx playwright test",
+    "test:debug": "npx playwright test --debug",
+    "optimize-images": "node scripts/optimize-images.js",
+    "generate-win95-icons": "node scripts/generate-win95-icons.js",
+    "generate-resize-handle": "node scripts/generate-resize-handle.js",
+    "generate-favicons": "node scripts/generate-favicons.js",
+    "generate-assets": "node scripts/generate-assets.js",
+    "check-links": "node scripts/check-links.js",
+    "fix-css": "node scripts/fix-css.js",
+    "build:prod": "npm run generate-assets && npm run fix-css && astro build",
+    "build:full": "npm run generate-assets && npm run fix-css && astro build && npm run check-links"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.6.0",
+    "@vercel/speed-insights": "^1.3.0",
+    "astro": "^4.5.0",
+    "puppeteer": "^24.9.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@astrojs/react": "^3.1.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.3",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "lightningcss": "^1.30.0",
+    "serve": "^14.2.4",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.1",
+    "terser": "^5.39.0"
+  },
+  "keywords": [
+    "astro",
+    "portfolio",
+    "nosytlabs"
+  ],
+  "author": "NosytLabs",
+  "license": "ISC"
+}

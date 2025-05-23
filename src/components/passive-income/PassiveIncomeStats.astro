@@ -1,0 +1,157 @@
+---
+/**
+ * PassiveIncomeStats Component
+ * Displays statistics about passive income opportunities with animated counters
+ */
+
+interface Props {
+  totalApps?: number;
+  averageMonthlyEarnings?: number;
+  highestEarningApp?: string;
+  highestMonthlyEarning?: number;
+  lowestSetupDifficulty?: string;
+  className?: string;
+}
+
+const {
+  totalApps = 25,
+  averageMonthlyEarnings = 5.80, // More realistic average based on public data
+  highestEarningApp = "Amazon MTurk",
+  highestMonthlyEarning = 30, // More realistic high-end earnings
+  lowestSetupDifficulty = "Honeygain",
+  className = ""
+} = Astro.props;
+
+// Generate a unique ID for this component
+const componentId = `stats-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class={`bg-gradient-to-br from-primary-dark to-primary-main text-white p-8 rounded-lg shadow-lg ${className}`}>
+  <h2 class="text-2xl font-bold mb-6 text-center">Passive Income Statistics</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Total Apps -->
+    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg text-center">
+      <div class="text-4xl font-bold mb-2">
+        <span id={`total-apps-${componentId}`} class="counter-value">0</span>+
+      </div>
+      <div class="text-sm opacity-80">Passive Income Apps</div>
+    </div>
+
+    <!-- Average Monthly Earnings -->
+    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg text-center">
+      <div class="text-4xl font-bold mb-2">
+        $<span id={`avg-earnings-${componentId}`} class="counter-value">0</span>
+      </div>
+      <div class="text-sm opacity-80">Average Monthly Earnings</div>
+    </div>
+
+    <!-- Highest Monthly Earning -->
+    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg text-center">
+      <div class="text-4xl font-bold mb-2">
+        $<span id={`highest-earning-${componentId}`} class="counter-value">0</span>
+      </div>
+      <div class="text-sm opacity-80">Highest Monthly Potential</div>
+    </div>
+  </div>
+
+  <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Highest Earning App -->
+    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+      <div class="flex items-center">
+        <div class="bg-accent/20 p-3 rounded-full mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-sm opacity-80">Highest Earning App</div>
+          <div class="font-bold">{highestEarningApp}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Easiest Setup -->
+    <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+      <div class="flex items-center">
+        <div class="bg-accent/20 p-3 rounded-full mr-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-sm opacity-80">Easiest Setup</div>
+          <div class="font-bold">{lowestSetupDifficulty}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 text-center">
+    <p class="text-sm opacity-80">
+      These statistics are based on publicly available information from company websites and online communities.
+      We have not personally verified these earnings. Individual results may vary significantly based on location,
+      internet speed, and usage patterns.
+    </p>
+  </div>
+</div>
+
+<script define:vars={{ componentId, totalApps, averageMonthlyEarnings, highestMonthlyEarning }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Function to animate counter
+    function animateCounter(elementId, targetValue, duration = 2000, decimals = 0) {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+
+      const startValue = 0;
+      const increment = targetValue / (duration / 16);
+      let currentValue = startValue;
+
+      const updateCounter = () => {
+        currentValue += increment;
+
+        if (currentValue >= targetValue) {
+          currentValue = targetValue;
+          clearInterval(interval);
+        }
+
+        element.textContent = currentValue.toFixed(decimals);
+      };
+
+      const interval = setInterval(updateCounter, 16);
+    }
+
+    // Function to check if element is in viewport
+    function isInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+
+    // Start animation when element is in viewport
+    const statsElement = document.getElementById(`total-apps-${componentId}`).closest('div').parentElement;
+    let animated = false;
+
+    function checkScroll() {
+      if (!animated && isInViewport(statsElement)) {
+        animated = true;
+
+        // Animate counters with different durations for visual interest
+        animateCounter(`total-apps-${componentId}`, totalApps, 1500, 0);
+        animateCounter(`avg-earnings-${componentId}`, averageMonthlyEarnings, 2000, 2);
+        animateCounter(`highest-earning-${componentId}`, highestMonthlyEarning, 2500, 0);
+
+        // Remove scroll listener once animated
+        window.removeEventListener('scroll', checkScroll);
+      }
+    }
+
+    // Initial check and add scroll listener
+    checkScroll();
+    window.addEventListener('scroll', checkScroll);
+  });
+</script>

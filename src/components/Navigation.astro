@@ -1,0 +1,448 @@
+---
+// Windows 95 Style Navigation Component for NosytLabs
+// This component includes both desktop and mobile navigation with Windows 95 aesthetic
+---
+
+<header class="win95-header">
+  <div class="container">
+    <div class="win95-header-inner">
+      <!-- Logo -->
+      <a href="/" class="win95-logo">
+        <img src="/images/nosytlabs-logo-2025.svg" alt="NosytLabs Logo" width="40" height="40">
+        <span>NosytLabs</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="win95-nav">
+        <a href="/" class={Astro.url.pathname === '/' ? 'active' : ''}>Home</a>
+        <a href="/services" class={Astro.url.pathname === '/services' ? 'active' : ''}>Services</a>
+        <a href="/projects" class={Astro.url.pathname === '/projects' ? 'active' : ''}>Projects</a>
+        <a href="/passive-income" class={Astro.url.pathname === '/passive-income' ? 'active' : ''}>Passive Income</a>
+        <a href="/content-creation" class={Astro.url.pathname === '/content-creation' ? 'active' : ''}>Content</a>
+        <a href="/live" class={Astro.url.pathname === '/live' ? 'active' : ''}>Live</a>
+        <a href="/crypto-mining" class={Astro.url.pathname === '/crypto-mining' ? 'active' : ''}>Mining</a>
+        <a href="/3d-printing" class={Astro.url.pathname === '/3d-printing' ? 'active' : ''}>3D Printing</a>
+        <a href="/" class={Astro.url.pathname === '/' ? 'active' : ''}>Home</a>
+        <a href="/nosytos95" class={Astro.url.pathname === '/nosytos95' ? 'active' : ''}>NosytOS95</a>
+        <a href="/contact" class={Astro.url.pathname === '/contact' ? 'active' : ''}>Contact</a>
+      </nav>
+
+      <!-- Theme Toggle and Mobile Menu Toggle -->
+      <div class="win95-controls">
+        <button id="theme-toggle" class="win95-button theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon light">☀️</span>
+          <span class="theme-icon dark">🌙</span>
+        </button>
+
+        <button id="mobile-menu-toggle" class="win95-button mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="win95-mobile-menu" aria-hidden="true">
+    <div class="win95-window">
+      <div class="win95-window-header">
+        <div class="win95-window-title">
+          <span>NosytLabs Navigation</span>
+        </div>
+        <button id="mobile-menu-close" class="win95-window-close" aria-label="Close mobile menu">×</button>
+      </div>
+      <div class="win95-window-content">
+        <nav class="win95-mobile-nav">
+          <a href="/" class={Astro.url.pathname === '/' ? 'active' : ''}>Home</a>
+          <a href="/services" class={Astro.url.pathname === '/services' ? 'active' : ''}>Services</a>
+          <a href="/projects" class={Astro.url.pathname === '/projects' ? 'active' : ''}>Projects</a>
+          <a href="/content-creation" class={Astro.url.pathname === '/content-creation' ? 'active' : ''}>Content Creation</a>
+          <a href="/live" class={Astro.url.pathname === '/live' ? 'active' : ''}>Live Stream</a>
+          <a href="/crypto-mining" class={Astro.url.pathname === '/crypto-mining' ? 'active' : ''}>Crypto Mining</a>
+          <a href="/3d-printing" class={Astro.url.pathname === '/3d-printing' ? 'active' : ''}>3D Printing</a>
+          <a href="/" class={Astro.url.pathname === '/' ? 'active' : ''}>Home</a>
+          <a href="/nosytos95" class={Astro.url.pathname === '/nosytos95' ? 'active' : ''}>NosytOS95</a>
+          <a href="/contact" class={Astro.url.pathname === '/contact' ? 'active' : ''}>Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* Windows 95 Header Styles */
+  .win95-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-win95-taskbar);
+    background-color: var(--win95-window-bg);
+    border-bottom: 2px solid;
+    border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .win95-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+  }
+
+  /* Logo Styles */
+  .win95-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-win95);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+    color: var(--nosyt-purple-main);
+    text-decoration: none;
+  }
+
+  .win95-logo img {
+    height: 40px;
+    width: 40px;
+    border: 2px solid;
+    border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+    padding: 2px;
+    background-color: var(--win95-window-bg);
+  }
+
+  /* Desktop Navigation */
+  .win95-nav {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .win95-nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+  }
+
+  .win95-nav a {
+    font-family: var(--font-win95);
+    font-size: var(--font-size-sm);
+    color: var(--win95-text);
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid transparent;
+    transition: background-color var(--transition-fast);
+  }
+
+  .win95-nav a:hover, .win95-nav a.active {
+    background-color: var(--nosyt-purple-light);
+    color: var(--win95-window-header-text);
+    border: 2px solid;
+    border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  }
+
+  /* Controls (Theme Toggle and Mobile Menu) */
+  .win95-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .win95-button {
+    background-color: var(--win95-button-face);
+    border: 2px solid;
+    border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+    padding: 0.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    min-height: 30px;
+  }
+
+  .win95-button:active {
+    border-color: var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);
+  }
+
+  /* Theme Toggle */
+  .theme-toggle {
+    position: relative;
+  }
+
+  .theme-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity var(--transition-normal);
+  }
+
+  .theme-icon.light {
+    opacity: 1;
+  }
+
+  .theme-icon.dark {
+    opacity: 0;
+  }
+
+  .dark .theme-icon.light {
+    opacity: 0;
+  }
+
+  .dark .theme-icon.dark {
+    opacity: 1;
+  }
+
+  /* Mobile Menu Toggle */
+  .mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
+    padding: 4px;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-menu-toggle {
+      display: none;
+    }
+  }
+
+  .hamburger-line {
+    width: 20px;
+    height: 2px;
+    background-color: var(--win95-text);
+    transition: transform var(--transition-normal);
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Mobile Menu */
+  .win95-mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: var(--z-win95-dialog);
+    transition: right var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .win95-mobile-menu.active {
+    right: 0;
+  }
+
+  .win95-window {
+    background-color: var(--win95-window-bg);
+    border: 2px solid;
+    border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+    width: 90%;
+    max-width: 400px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .win95-window-header {
+    background-color: var(--win95-window-header);
+    color: var(--win95-window-header-text);
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-win95);
+    font-size: var(--font-size-sm);
+  }
+
+  .win95-window-close {
+    background: var(--win95-button-face);
+    border: 1px solid;
+    border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+    color: var(--win95-text);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: var(--font-size-lg);
+    line-height: 1;
+    padding: 0;
+  }
+
+  .win95-window-content {
+    padding: 1rem;
+    overflow-y: auto;
+  }
+
+  .win95-mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .win95-mobile-nav a {
+    font-family: var(--font-win95);
+    font-size: var(--font-size-base);
+    color: var(--win95-text);
+    text-decoration: none;
+    padding: 0.5rem;
+    border: 2px solid transparent;
+    transition: background-color var(--transition-fast);
+  }
+
+  .win95-mobile-nav a:hover, .win95-mobile-nav a.active {
+    background-color: var(--nosyt-purple-light);
+    color: var(--win95-window-header-text);
+    border: 2px solid;
+    border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+  }
+
+  /* Dark Mode Styles */
+  .dark .win95-header {
+    background-color: var(--win95-dark-window-bg);
+  }
+
+  .dark .win95-logo {
+    color: var(--nosyt-purple-light);
+  }
+
+  .dark .win95-logo img {
+    border-color: var(--win95-dark-button-highlight) var(--win95-dark-button-shadow) var(--win95-dark-button-shadow) var(--win95-dark-button-highlight);
+    background-color: var(--win95-dark-window-bg);
+  }
+
+  .dark .win95-button {
+    background-color: var(--win95-dark-button-face);
+    border-color: var(--win95-dark-button-highlight) var(--win95-dark-button-shadow) var(--win95-dark-button-shadow) var(--win95-dark-button-highlight);
+    color: var(--win95-dark-button-text);
+  }
+
+  .dark .win95-button:active {
+    border-color: var(--win95-dark-button-shadow) var(--win95-dark-button-highlight) var(--win95-dark-button-highlight) var(--win95-dark-button-shadow);
+  }
+
+  .dark .hamburger-line {
+    background-color: var(--win95-dark-button-text);
+  }
+
+  .dark .win95-window {
+    background-color: var(--win95-dark-window-bg);
+    border-color: var(--win95-dark-button-highlight) var(--win95-dark-button-shadow) var(--win95-dark-button-shadow) var(--win95-dark-button-highlight);
+  }
+
+  .dark .win95-window-header {
+    background-color: var(--win95-dark-window-header);
+    color: var(--win95-dark-window-header-text);
+  }
+
+  .dark .win95-window-close {
+    background: var(--win95-dark-button-face);
+    border-color: var(--win95-dark-button-highlight) var(--win95-dark-button-shadow) var(--win95-dark-button-shadow) var(--win95-dark-button-highlight);
+    color: var(--win95-dark-button-text);
+  }
+</style>
+
+<script>
+  // Initialize navigation functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const themeToggle = document.getElementById('theme-toggle');
+
+    // Mobile menu toggle
+    if (mobileMenuToggle && mobileMenu) {
+      mobileMenuToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent document click from immediately closing it
+        mobileMenu.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+
+        // Set accessibility attributes
+        const isExpanded = mobileMenu.classList.contains('active');
+        mobileMenuToggle.setAttribute('aria-expanded', isExpanded.toString());
+        mobileMenu.setAttribute('aria-hidden', (!isExpanded).toString());
+      });
+    }
+
+    // Mobile menu close button
+    if (mobileMenuClose && mobileMenu) {
+      mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    }
+
+    // Close mobile menu when clicking links inside the menu
+    if (mobileMenu) {
+      const mobileNavLinks = mobileMenu.querySelectorAll('a');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          mobileMenuToggle.classList.remove('active');
+          mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+        });
+      });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (mobileMenu && mobileMenu.classList.contains('active') &&
+          !mobileMenu.contains(e.target) &&
+          !mobileMenuToggle.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Close menu with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Theme toggle
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+
+        // Save theme preference to localStorage
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+
+      // Set initial theme based on localStorage or system preference
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  });
+</script>

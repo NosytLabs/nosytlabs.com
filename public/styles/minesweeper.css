@@ -1,0 +1,121 @@
+/**
+ * Minesweeper Game Styles for NosytOS95
+ * Based on the implementation by Ania Kubow (https://github.com/kubowania/minesweeper)
+ * Adapted for NosytOS95 interface
+ */
+
+.minesweeper-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #c0c0c0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.minesweeper-grid {
+  height: 400px;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #dcd6bc;
+  margin: 0 auto;
+  border: 10px solid #dcd6bc;
+  margin-bottom: 10px;
+}
+
+.minesweeper-status {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+}
+
+.minesweeper-square {
+  height: 40px;
+  width: 40px;
+  box-sizing: border-box;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.valid {
+  border: 5px solid;
+  border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
+}
+
+.checked {
+  border: 2px solid;
+  background-color: #cecab7;
+  border-color: #9c998d;
+}
+
+.bomb {
+  border: 5px solid;
+  border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
+}
+
+.one {
+  color: #e76346;
+}
+
+.two {
+  color: #4199d3;
+}
+
+.three {
+  color: #57da59;
+}
+
+.four {
+  color: #bb41d3;
+}
+
+#minesweeper-result {
+  margin-top: 5px;
+  color: #e76346;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .minesweeper-grid {
+    height: 300px;
+    width: 300px;
+  }
+  
+  .minesweeper-square {
+    height: 30px;
+    width: 30px;
+    font-size: 14px;
+  }
+  
+  .minesweeper-status {
+    width: 300px;
+  }
+}
+
+/* Win95 style button for restart */
+.minesweeper-restart {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.minesweeper-restart:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+}

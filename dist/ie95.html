@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Explorer 4.0</title>
+    <link rel="stylesheet" href="styles/win95-authentic.css">
+    <link rel="stylesheet" href="styles/ie95.css">
+</head>
+<body>
+    <div class="ie-window">
+        <div class="title-bar">
+            <div class="title-bar-text">Microsoft Internet Explorer</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="menu-bar">
+            <div class="menu-item">File</div>
+            <div class="menu-item">Edit</div>
+            <div class="menu-item">View</div>
+            <div class="menu-item">Go</div>
+            <div class="menu-item">Favorites</div>
+            <div class="menu-item">Help</div>
+        </div>
+        <div class="toolbar">
+            <button class="toolbar-button back" disabled>Back</button>
+            <button class="toolbar-button forward" disabled>Forward</button>
+            <button class="toolbar-button stop">Stop</button>
+            <button class="toolbar-button refresh">Refresh</button>
+            <button class="toolbar-button home">Home</button>
+            <div class="address-bar">
+                <span>Address:</span>
+                <input type="text" id="url-input" value="about:blank">
+                <button class="go-button">Go</button>
+            </div>
+        </div>
+        <div class="content-area">
+            <iframe id="browser-frame" src="about:blank" title="Internet Explorer Web Content"></iframe>
+        </div>
+        <div class="status-bar">
+            <div class="status-text">Done</div>
+            <div class="loading-indicator"></div>
+        </div>
+    </div>
+    <script src="scripts/ie95.js"></script>
+</body>
+</html>

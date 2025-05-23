@@ -1,0 +1,254 @@
+---
+// Project Submission Form Component
+---
+
+<div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl">
+  <form id="projectSubmissionForm" class="space-y-6">
+    <!-- Project Details -->
+    <div class="space-y-4">
+      <h3 class="text-xl font-bold mb-4">Project Details</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="projectName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Project Name</label>
+          <input type="text" id="projectName" name="projectName" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+          />
+        </div>
+        
+        <div>
+          <label for="projectType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Project Type</label>
+          <select id="projectType" name="projectType" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+          >
+            <option value="">Select type</option>
+            <option value="prototype">Prototype</option>
+            <option value="functional">Functional Part</option>
+            <option value="decorative">Decorative Item</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Material Selection -->
+    <div class="space-y-4">
+      <h3 class="text-xl font-bold mb-4">Material Selection</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="printType" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Print Type</label>
+          <select id="printType" name="printType" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+          >
+            <option value="">Select print type</option>
+            <option value="fdm">FDM (Standard 3D Printing)</option>
+            <option value="resin">Resin (High Detail)</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="material" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Material</label>
+          <select id="material" name="material" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+          >
+            <option value="">Select material</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- File Upload -->
+    <div class="space-y-4">
+      <h3 class="text-xl font-bold mb-4">3D Model Upload</h3>
+      
+      <div class="file-upload-container">
+        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center" id="dropZone">
+          <input type="file" id="modelFile" name="modelFile" accept=".stl,.obj,.3mf" class="hidden" required />
+          <label for="modelFile" class="cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Drag and drop your 3D model here or click to browse</p>
+            <p class="mt-1 text-xs text-gray-500 dark:text-gray-500">Supported formats: STL, OBJ, 3MF (Max 50MB)</p>
+          </label>
+        </div>
+        <div id="fileInfo" class="mt-2 text-sm text-gray-500 dark:text-gray-400 hidden">
+          <p>Selected file: <span id="fileName"></span></p>
+          <p>Size: <span id="fileSize"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Requirements -->
+    <div class="space-y-4">
+      <h3 class="text-xl font-bold mb-4">Additional Requirements</h3>
+      
+      <div class="space-y-4">
+        <div>
+          <label for="quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Quantity</label>
+          <input type="number" id="quantity" name="quantity" min="1" required
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+          />
+        </div>
+        
+        <div>
+          <label for="specifications" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Special Requirements</label>
+          <textarea id="specifications" name="specifications" rows="4"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+            placeholder="Enter any special requirements or notes for your project..."
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="w-full bg-accent hover:bg-accent-dark text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300">
+      Submit Project Request
+    </button>
+  </form>
+</div>
+
+<style>
+  .file-upload-container {
+    position: relative;
+  }
+
+  #dropZone.dragover {
+    border-color: theme('colors.accent.DEFAULT');
+    background-color: rgba(255, 107, 0, 0.05);
+  }
+</style>
+
+<script>
+  // Material options based on print type
+  const materialOptions = {
+    fdm: [
+      { value: 'pla', label: 'PLA - Standard, Easy to Print' },
+      { value: 'petg', label: 'PETG - Durable, Water Resistant' },
+      { value: 'tpu', label: 'TPU - Flexible Material' },
+      { value: 'abs', label: 'ABS - Heat Resistant' }
+    ],
+    resin: [
+      { value: 'standard', label: 'Standard Resin - High Detail' },
+      { value: 'abs-like', label: 'ABS-Like - Durable' },
+      { value: 'dental', label: 'Dental Grade - Medical' }
+    ]
+  };
+
+  // Update material options based on print type selection
+  document.getElementById('printType').addEventListener('change', (e) => {
+    const materialSelect = document.getElementById('material');
+    const printType = e.target.value;
+    
+    // Clear existing options
+    materialSelect.innerHTML = '<option value="">Select material</option>';
+    
+    if (printType) {
+      materialOptions[printType].forEach(option => {
+        const optionElement = document.createElement('option');
+        optionElement.value = option.value;
+        optionElement.textContent = option.label;
+        materialSelect.appendChild(optionElement);
+      });
+    }
+  });
+
+  // File upload handling
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('modelFile');
+  const fileInfo = document.getElementById('fileInfo');
+  const fileName = document.getElementById('fileName');
+  const fileSize = document.getElementById('fileSize');
+
+  // Prevent default drag behaviors
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, preventDefaults, false);
+    document.body.addEventListener(eventName, preventDefaults, false);
+  });
+
+  function preventDefaults (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  // Highlight drop zone when file is dragged over it
+  ['dragenter', 'dragover'].forEach(eventName => {
+    dropZone.addEventListener(eventName, highlight, false);
+  });
+
+  ['dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, unhighlight, false);
+  });
+
+  function highlight(e) {
+    dropZone.classList.add('dragover');
+  }
+
+  function unhighlight(e) {
+    dropZone.classList.remove('dragover');
+  }
+
+  // Handle dropped files
+  dropZone.addEventListener('drop', handleDrop, false);
+
+  function handleDrop(e) {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    handleFiles(files);
+  }
+
+  fileInput.addEventListener('change', function(e) {
+    handleFiles(this.files);
+  });
+
+  function handleFiles(files) {
+    const file = files[0];
+    if (file) {
+      // Validate file type
+      const validTypes = ['.stl', '.obj', '.3mf'];
+      const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+      if (!validTypes.includes(fileExtension)) {
+        alert('Please upload a valid 3D model file (STL, OBJ, or 3MF)');
+        return;
+      }
+
+      // Validate file size (50MB max)
+      if (file.size > 50 * 1024 * 1024) {
+        alert('File size must be less than 50MB');
+        return;
+      }
+
+      // Display file information
+      fileName.textContent = file.name;
+      fileSize.textContent = formatFileSize(file.size);
+      fileInfo.classList.remove('hidden');
+    }
+  }
+
+  function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+
+  // Form submission
+  document.getElementById('projectSubmissionForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Collection form data
+    const formData = new FormData(e.target);
+    
+    try {
+      // Here you would typically send the data to your backend
+      // For now, we'll just show a success message
+      alert('Your project request has been submitted! We will review it and get back to you soon.');
+      e.target.reset();
+      fileInfo.classList.add('hidden');
+    } catch (error) {
+      alert('There was an error submitting your request. Please try again.');
+      console.error('Submission error:', error);
+    }
+  });
+</script>

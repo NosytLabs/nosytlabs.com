@@ -1,0 +1,301 @@
+---
+/**
+ * KnowledgeGraphDemo Component
+ * 
+ * A demonstration component that shows how to use the Knowledge Graph utility
+ * to retrieve and display content on the website.
+ */
+
+import { getEntitiesByType, getEntityByName, getRelatedEntities, formatEntityContent } from '../utils/knowledgeGraph.js';
+
+interface Props {
+  /**
+   * The type of entities to display
+   * @default "Project"
+   */
+  entityType?: string;
+  
+  /**
+   * The name of a specific entity to display
+   */
+  entityName?: string;
+  
+  /**
+   * Whether to show related entities
+   * @default false
+   */
+  showRelated?: boolean;
+  
+  /**
+   * The type of relation to filter by
+   */
+  relationType?: string;
+  
+  /**
+   * Additional CSS classes
+   */
+  class?: string;
+}
+
+const {
+  entityType = "Project",
+  entityName,
+  showRelated = false,
+  relationType,
+  class: className = '',
+} = Astro.props;
+
+// Fetch data based on props
+let entities = [];
+let entity = null;
+let relatedEntities = [];
+
+if (entityName) {
+  // Fetch a specific entity
+  entity = await getEntityByName(entityName);
+  
+  // Fetch related entities if requested
+  if (showRelated) {
+    relatedEntities = await getRelatedEntities(entityName, relationType);
+  }
+} else {
+  // Fetch entities by type
+  entities = await getEntitiesByType(entityType);
+}
+---
+
+<div class:list={['knowledge-graph-demo', className]}>
+  {entityName && entity ? (
+    <div class="entity-detail">
+      <h2 class="entity-title">{entity.name}</h2>
+      <div class="entity-type">{entity.entityType}</div>
+      <div class="entity-content" set:html={formatEntityContent(entity)} />
+      
+      {showRelated && relatedEntities.length > 0 && (
+        <div class="related-entities">
+          <h3 class="related-title">
+            {relationType ? `${relationType} Relations` : 'Related Entities'}
+          </h3>
+          <ul class="related-list">
+            {relatedEntities.map(related => (
+              <li class="related-item">
+                <div class="related-name">{related.name}</div>
+                <div class="related-type">{related.entityType}</div>
+                <div class="related-content" set:html={formatEntityContent(related)} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  ) : (
+    <div class="entity-list">
+      <h2 class="list-title">{entityType} Entities</h2>
+      {entities.length > 0 ? (
+        <ul class="entities">
+          {entities.map(entity => (
+            <li class="entity-item">
+              <h3 class="entity-name">{entity.name}</h3>
+              <div class="entity-content" set:html={formatEntityContent(entity)} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="no-entities">No {entityType} entities found.</p>
+      )}
+    </div>
+  )}
+</div>
+
+<style>
+  /* Variables for consistent styling */
+  :root {
+    --card-border-radius: 0.75rem;
+    --card-padding: 1.5rem;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --nosyt-purple: #4C1D95;
+    --nosyt-purple-light: #7C3AED;
+    --nosyt-orange: #FF6B00;
+    --nosyt-orange-light: #FF9E44;
+  }
+
+  .knowledge-graph-demo {
+    margin: 2rem 0;
+  }
+
+  .entity-detail,
+  .entity-list {
+    background-color: white;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    box-shadow: var(--card-shadow);
+  }
+
+  :global(.dark) .entity-detail,
+  :global(.dark) .entity-list {
+    background-color: #1F2937;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .entity-title,
+  .list-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: var(--nosyt-purple);
+  }
+
+  :global(.dark) .entity-title,
+  :global(.dark) .list-title {
+    color: var(--nosyt-purple-light);
+  }
+
+  .entity-type {
+    display: inline-block;
+    background-color: var(--nosyt-purple-light);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  :global(.dark) .entity-type {
+    background-color: var(--nosyt-purple);
+  }
+
+  .entity-content {
+    margin-bottom: 1.5rem;
+  }
+
+  .entity-content p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+    color: #4B5563;
+  }
+
+  :global(.dark) .entity-content p {
+    color: #D1D5DB;
+  }
+
+  .related-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem 0;
+    color: var(--nosyt-orange);
+    border-bottom: 2px solid var(--nosyt-orange-light);
+    padding-bottom: 0.5rem;
+  }
+
+  :global(.dark) .related-title {
+    color: var(--nosyt-orange-light);
+  }
+
+  .related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .related-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .related-item {
+    background-color: #F9FAFB;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border-left: 3px solid var(--nosyt-purple);
+  }
+
+  :global(.dark) .related-item {
+    background-color: #374151;
+    border-left-color: var(--nosyt-purple-light);
+  }
+
+  .related-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #111827;
+  }
+
+  :global(.dark) .related-name {
+    color: white;
+  }
+
+  .related-type {
+    font-size: 0.75rem;
+    color: #6B7280;
+    margin-bottom: 0.5rem;
+  }
+
+  :global(.dark) .related-type {
+    color: #9CA3AF;
+  }
+
+  .related-content {
+    font-size: 0.875rem;
+  }
+
+  .related-content p {
+    margin: 0.25rem 0;
+    color: #4B5563;
+  }
+
+  :global(.dark) .related-content p {
+    color: #D1D5DB;
+  }
+
+  .entities {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .entities {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .entity-item {
+    background-color: #F9FAFB;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    border-top: 3px solid var(--nosyt-purple);
+  }
+
+  :global(.dark) .entity-item {
+    background-color: #374151;
+    border-top-color: var(--nosyt-purple-light);
+  }
+
+  .entity-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    color: #111827;
+  }
+
+  :global(.dark) .entity-name {
+    color: white;
+  }
+
+  .no-entities {
+    color: #6B7280;
+    font-style: italic;
+    margin: 1rem 0;
+  }
+
+  :global(.dark) .no-entities {
+    color: #9CA3AF;
+  }
+</style>
