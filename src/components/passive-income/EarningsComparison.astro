@@ -1,0 +1,194 @@
+---
+/**
+ * EarningsComparison Component
+ * Displays a visual comparison of earnings from different passive income methods
+ */
+
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+
+// Earnings data - Based on public sources and community reports
+const earningsData = [
+  {
+    category: "Data Sharing",
+    apps: [
+      { name: "Honeygain", monthlyEarning: 3, setupDifficulty: 1, timeRequired: 1, source: "https://honeygain.com/traffic-estimations/" },
+      { name: "EarnApp", monthlyEarning: 4, setupDifficulty: 2, timeRequired: 1, source: "https://earnapp.com/bandwidth-calculator" },
+      { name: "Repocket", monthlyEarning: 3, setupDifficulty: 1, timeRequired: 1, source: "https://repocket.co/calculator" },
+      { name: "Peer2Profit", monthlyEarning: 2, setupDifficulty: 2, timeRequired: 1, source: "https://peer2profit.com/earnings-calculator" }
+    ]
+  },
+  {
+    category: "Surveys & Tasks",
+    apps: [
+      { name: "Prolific", monthlyEarning: 20, setupDifficulty: 1, timeRequired: 3, source: "https://www.prolific.co/" },
+      { name: "Amazon MTurk", monthlyEarning: 30, setupDifficulty: 3, timeRequired: 4, source: "https://turkerview.com/" },
+      { name: "UserTesting", monthlyEarning: 15, setupDifficulty: 2, timeRequired: 3, source: "https://www.usertesting.com/get-paid-to-test" }
+    ]
+  },
+  {
+    category: "Cashback & Rewards",
+    apps: [
+      { name: "Rakuten", monthlyEarning: 8, setupDifficulty: 1, timeRequired: 1, source: "https://www.rakuten.com/help/article/understanding-cash-back-360002117247" },
+      { name: "Ibotta", monthlyEarning: 6, setupDifficulty: 2, timeRequired: 2, source: "https://ibotta.com/how-it-works" },
+      { name: "Microsoft Rewards", monthlyEarning: 5, setupDifficulty: 1, timeRequired: 2, source: "https://rewards.microsoft.com/" }
+    ]
+  },
+  {
+    category: "Content Creation",
+    apps: [
+      { name: "YouTube", monthlyEarning: 50, setupDifficulty: 4, timeRequired: 5, source: "https://creatoracademy.youtube.com/" },
+      { name: "Medium", monthlyEarning: 15, setupDifficulty: 3, timeRequired: 4, source: "https://help.medium.com/hc/en-us/articles/360018677974" },
+      { name: "Print on Demand", monthlyEarning: 25, setupDifficulty: 3, timeRequired: 3, source: "https://www.printful.com/profit-calculator" }
+    ]
+  }
+];
+
+// Calculate max earnings for scaling
+const maxEarning = Math.max(...earningsData.flatMap(category =>
+  category.apps.map(app => app.monthlyEarning)
+));
+
+// Helper function to get bar width percentage
+function getBarWidth(earning: number) {
+  return (earning / maxEarning) * 100;
+}
+
+// Helper function to get difficulty label
+function getDifficultyLabel(level: number) {
+  switch(level) {
+    case 1: return "Very Easy";
+    case 2: return "Easy";
+    case 3: return "Moderate";
+    case 4: return "Challenging";
+    case 5: return "Difficult";
+    default: return "Unknown";
+  }
+}
+
+// Helper function to get time required label
+function getTimeLabel(level: number) {
+  switch(level) {
+    case 1: return "Minimal (<1h/month)";
+    case 2: return "Low (1-2h/month)";
+    case 3: return "Medium (3-5h/month)";
+    case 4: return "High (5-10h/month)";
+    case 5: return "Very High (10h+/month)";
+    default: return "Unknown";
+  }
+}
+
+// Helper function to get color based on category
+function getCategoryColor(category: string) {
+  switch(category) {
+    case "Data Sharing": return "bg-blue-500";
+    case "Surveys & Tasks": return "bg-green-500";
+    case "Cashback & Rewards": return "bg-orange-500";
+    case "Content Creation": return "bg-purple-500";
+    default: return "bg-gray-500";
+  }
+}
+---
+
+<div class={`bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 ${className}`}>
+  <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Passive Income Earnings Comparison</h2>
+
+  <div class="space-y-12">
+    {earningsData.map(category => (
+      <div class="mb-8">
+        <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center">
+          <span class={`inline-block w-4 h-4 rounded-full mr-2 ${getCategoryColor(category.category)}`}></span>
+          {category.category}
+        </h3>
+
+        <div class="space-y-4">
+          {category.apps.map(app => (
+            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 hover:shadow-md transition-shadow duration-300">
+              <div class="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                <div class="font-medium text-gray-900 dark:text-white mb-2 md:mb-0">{app.name}</div>
+                <div class="text-lg font-bold text-primary">${app.monthlyEarning}/month</div>
+              </div>
+
+              <div class="mt-3">
+                <div class="relative h-6 bg-gray-200 dark:bg-gray-600 rounded-full overflow-hidden">
+                  <div
+                    class={`absolute top-0 left-0 h-full ${getCategoryColor(category.category)} rounded-full`}
+                    style={`width: ${getBarWidth(app.monthlyEarning)}%`}
+                  ></div>
+                </div>
+              </div>
+
+              <div class="mt-3 flex flex-col sm:flex-row justify-between text-sm">
+                <div class="flex items-center mb-2 sm:mb-0">
+                  <span class="text-gray-500 dark:text-gray-400 mr-2">Setup:</span>
+                  <span class="font-medium text-gray-900 dark:text-white">{getDifficultyLabel(app.setupDifficulty)}</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="text-gray-500 dark:text-gray-400 mr-2">Time Required:</span>
+                  <span class="font-medium text-gray-900 dark:text-white">{getTimeLabel(app.timeRequired)}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="mt-8 bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+    <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-white">Earnings Disclaimer</h3>
+    <p class="text-gray-600 dark:text-gray-300 text-sm">
+      The earnings shown above are estimates based on publicly available information from company websites,
+      Reddit communities like r/beermoney, and other online forums. These figures represent potential earnings
+      that some users might achieve, but results vary widely based on factors such as location, internet connection,
+      device specifications, and time investment.
+    </p>
+    <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">
+      We have not personally verified these earnings. This information is provided for educational purposes only
+      and should not be considered financial advice. Always research thoroughly before using any passive income app.
+    </p>
+  </div>
+</div>
+
+<script>
+  // Add animation when bars come into view
+  document.addEventListener('DOMContentLoaded', function() {
+    const bars = document.querySelectorAll('.bg-blue-500, .bg-green-500, .bg-orange-500, .bg-purple-500');
+
+    // Store original widths
+    bars.forEach(bar => {
+      const width = bar.style.width;
+      bar.setAttribute('data-width', width);
+      bar.style.width = '0%';
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Animate width to original value
+          const bar = entry.target;
+          const originalWidth = bar.getAttribute('data-width');
+
+          // Transition effect
+          bar.style.transition = 'width 1s ease-out';
+          setTimeout(() => {
+            bar.style.width = originalWidth;
+          }, 100);
+
+          observer.unobserve(bar);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    });
+
+    bars.forEach(bar => {
+      observer.observe(bar);
+    });
+  });
+</script>

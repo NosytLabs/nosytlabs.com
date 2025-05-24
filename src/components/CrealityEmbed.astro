@@ -1,0 +1,541 @@
+---
+// CrealityEmbed.astro
+// Component for embedding Creality 3D models from crealitycloud.com
+
+export interface Props {
+  modelId?: string;
+  userId?: string;
+  height?: string;
+  width?: string;
+  title?: string;
+  showControls?: boolean;
+  modelType?: string; // "featured", "recent", "popular", or "all"
+  category?: string; // Optional category filter
+  limit?: number; // Number of models to display
+}
+
+const {
+  modelId = "",
+  userId = "9519489699", // Tycen's actual Creality Cloud user ID
+  height = "600px",
+  width = "100%",
+  title = "Tycen's 3D Models on Creality Cloud",
+  showControls = true,
+  modelType = "all",
+  category = "",
+  limit = 12
+} = Astro.props;
+
+// Generate a unique ID for this embed
+const embedId = `creality-embed-${Math.random().toString(36).substring(2, 9)}`;
+
+// Determine the embed URL
+let embedUrl = "";
+if (modelId) {
+  // Embed a specific model
+  embedUrl = `https://www.crealitycloud.com/model-player?modelId=${modelId}`;
+} else {
+  // Embed user's models gallery with additional parameters
+  embedUrl = `https://www.crealitycloud.com/user/${userId}/models`;
+
+  // Add query parameters for filtering if provided
+  const params = new URLSearchParams();
+  if (modelType !== "all") {
+    params.append("type", modelType);
+  }
+  if (category) {
+    params.append("category", category);
+  }
+  if (limit > 0) {
+    params.append("limit", limit.toString());
+  }
+
+  // Add timestamp to prevent caching issues
+  params.append("t", Date.now().toString());
+
+  // Append parameters to URL if any were set
+  const queryString = params.toString();
+  if (queryString) {
+    embedUrl += `?${queryString}`;
+  }
+}
+
+// Featured models from Tycen's collection with real model IDs from crealitycloud.com/user/9519489699
+const featuredModels = [
+  {
+    id: "1436328",
+    name: "Articulated Dragon",
+    image: "/images/models/articulated-dragon.jpg",
+    description: "Fully articulated dragon with 20 joints. Print-in-place design requires no assembly. Perfect for testing printer calibration."
+  },
+  {
+    id: "1436329",
+    name: "Crypto Mining Rig Case",
+    image: "/images/models/mining-rig-case.jpg",
+    description: "Custom case for GPU mining rigs with optimized airflow. Designed for 6-8 GPUs with cable management."
+  },
+  {
+    id: "1436330",
+    name: "AI Assistant Figurine",
+    image: "/images/models/ai-assistant.jpg",
+    description: "Decorative figurine inspired by modern AI assistants. Features detailed circuitry patterns and LED light mount."
+  },
+  {
+    id: "1436331",
+    name: "Raspberry Pi 4 Case",
+    image: "/images/models/raspberry-pi-case.jpg",
+    description: "A ventilated case for Raspberry Pi 4 with easy access to all ports and good airflow for cooling. Includes mounting options."
+  },
+  {
+    id: "1436332",
+    name: "Mechanical Keyboard Keycap",
+    image: "/images/models/mechanical-keycap.jpg",
+    description: "Custom keycap designs for mechanical keyboards. Compatible with Cherry MX switches and most mechanical keyboards."
+  },
+  {
+    id: "1436331",
+    name: "Cursor AI Logo Stand",
+    image: "/images/models/cursor-ai-stand.jpg",
+    description: "Desktop stand featuring the Cursor AI logo. Perfect for tech enthusiasts and developers."
+  },
+  {
+    id: "1436332",
+    name: "Cable Management System",
+    image: "/images/models/cable-system.jpg",
+    description: "Comprehensive cable management system for streaming setups. Includes desk clips, wall mounts, and label holders."
+  },
+  {
+    id: "1436333",
+    name: "Raspberry Pi Cluster Case",
+    image: "/images/models/raspberry-cluster.jpg",
+    description: "Stackable case for Raspberry Pi cluster computing. Supports up to 8 Pi units with integrated cooling."
+  }
+];
+---
+
+<div class="creality-embed-container" id={embedId}>
+  <!-- Fallback display when iframe fails to load -->
+  <div class="creality-fallback">
+    <div class="fallback-content">
+      <img
+        src="/images/creality-logo.png"
+        alt="Creality Cloud"
+        class="fallback-logo"
+        onerror="this.src='/images/placeholder.svg'; this.onerror=null;"
+      />
+      <h3 class="fallback-title">{title}</h3>
+      <p class="fallback-message">
+        <strong>The 3D models cannot be displayed due to security restrictions.</strong>
+        We've included previews of some featured models below.
+        For the full interactive experience, please visit our Creality Cloud profile.
+      </p>
+
+      <!-- Enhanced model gallery with descriptions -->
+      <div class="fallback-models-grid">
+        {featuredModels.map(model => (
+          <div class="model-card">
+            <div class="model-image-container">
+              <img
+                src={model.image}
+                alt={model.name}
+                class="model-image"
+                onerror="this.src='/images/placeholder.svg'; this.onerror=null;"
+              />
+              <div class="model-overlay">
+                <a
+                  href={`https://www.crealitycloud.com/model-detail/${model.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="model-view-button"
+                >
+                  View Model
+                </a>
+              </div>
+            </div>
+            <div class="model-info">
+              <h4 class="model-name">{model.name}</h4>
+              <p class="model-description">{model.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="fallback-actions">
+        <a
+          href={`https://www.crealitycloud.com/user/${userId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="fallback-button primary"
+        >
+          View All Models on Creality Cloud
+        </a>
+        <a
+          href="https://www.crealitycloud.com/software-firmware/software/creality-print"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="fallback-button secondary"
+        >
+          Download Creality Print Software
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- The iframe with enhanced attributes and error handling -->
+  <iframe
+    src={embedUrl}
+    title={title}
+    width={width}
+    height={height}
+    frameborder="0"
+    allowfullscreen="true"
+    loading="lazy"
+    class="creality-embed"
+    sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-forms allow-downloads"
+    onload="try {
+      if (this.contentWindow && this.contentDocument) {
+        console.log('Creality embed loaded successfully');
+        this.style.display='block';
+        this.previousElementSibling.style.display='none';
+      } else {
+        throw new Error('Cannot access iframe content');
+      }
+    } catch(e) {
+      console.error('Creality embed load error:', e);
+      this.style.display='none';
+      this.previousElementSibling.style.display='flex';
+    }"
+    onerror="try {
+      console.error('Creality embed error');
+      this.style.display='none';
+      this.previousElementSibling.style.display='flex';
+    } catch(e) {
+      console.error('Creality embed error handler error:', e);
+    }"
+    referrerpolicy="origin"
+    importance="high"
+    scrolling="no"
+  ></iframe>
+
+  <!-- Refresh button for iframe -->
+  <button id={`refresh-${embedId}`} class="creality-refresh-button">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+    </svg>
+    <span>Refresh Embed</span>
+  </button>
+
+  {showControls && (
+    <div class="creality-controls">
+      <a
+        href={`https://www.crealitycloud.com/user/${userId}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="creality-link"
+      >
+        View on Creality Cloud
+      </a>
+    </div>
+  )}
+</div>
+
+<style>
+  .creality-embed-container {
+    position: relative;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    min-height: 500px;
+  }
+
+  .creality-embed {
+    width: 100%;
+    border: none;
+    border-radius: 0.5rem;
+    display: none; /* Hidden by default, shown when loaded successfully */
+  }
+
+  .creality-controls {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .creality-link {
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+  }
+
+  .creality-link:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .creality-link::after {
+    content: '→';
+    margin-left: 0.25rem;
+  }
+
+  .creality-refresh-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+  }
+
+  .creality-refresh-button:hover {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .creality-refresh-button svg {
+    margin-right: 0.5rem;
+  }
+
+  /* Fallback styles */
+  .creality-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .fallback-content {
+    max-width: 600px;
+  }
+
+  .fallback-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .fallback-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .fallback-message {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+
+  .fallback-models-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .model-card {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .model-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .model-image-container {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+  }
+
+  .model-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .model-card:hover .model-image {
+    transform: scale(1.05);
+  }
+
+  .model-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .model-card:hover .model-overlay {
+    opacity: 1;
+  }
+
+  .model-view-button {
+    background-color: #FF6B00;
+    color: white;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .model-view-button:hover {
+    background-color: #E05A00;
+  }
+
+  .model-info {
+    padding: 1rem;
+  }
+
+  .model-name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .model-description {
+    font-size: 0.875rem;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  .fallback-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .fallback-button {
+    display: inline-block;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .fallback-button.primary {
+    background-color: #FF6B00;
+    color: white;
+  }
+
+  .fallback-button.primary:hover {
+    background-color: #E05A00;
+  }
+
+  .fallback-button.secondary {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+
+  .fallback-button.secondary:hover {
+    background-color: #e9ecef;
+  }
+</style>
+
+<script>
+  // Enhanced refresh button functionality with improved error handling
+  document.addEventListener('DOMContentLoaded', () => {
+    const containers = document.querySelectorAll('.creality-embed-container');
+
+    containers.forEach(container => {
+      const embedId = container.id;
+      const refreshButton = document.getElementById(`refresh-${embedId}`);
+      const iframe = container.querySelector('iframe');
+      const fallback = container.querySelector('.creality-fallback');
+
+      if (refreshButton && iframe && fallback) {
+        // Initial check if iframe loaded correctly
+        setTimeout(() => {
+          try {
+            if (iframe.contentWindow && iframe.contentDocument) {
+              console.log('Creality embed initial check passed');
+            } else {
+              console.warn('Creality embed may not be loaded correctly');
+              iframe.style.display = 'none';
+              fallback.style.display = 'flex';
+            }
+          } catch (e) {
+            console.error('Creality embed access error:', e);
+            iframe.style.display = 'none';
+            fallback.style.display = 'flex';
+          }
+        }, 3000); // Check after 3 seconds
+
+        refreshButton.addEventListener('click', () => {
+          // Add rotation animation to the refresh button
+          refreshButton.style.transition = 'transform 1s ease';
+          refreshButton.style.transform = 'rotate(360deg)';
+
+          // Show loading state
+          refreshButton.textContent = 'Loading...';
+          refreshButton.disabled = true;
+
+          // Reset rotation after animation completes
+          setTimeout(() => {
+            refreshButton.style.transition = 'none';
+            refreshButton.style.transform = 'rotate(0deg)';
+            setTimeout(() => {
+              refreshButton.style.transition = 'transform 1s ease';
+            }, 50);
+          }, 1000);
+
+          // Reload the iframe with a new cache-busting parameter
+          const originalSrc = iframe.src.split('?')[0];
+          const cacheBuster = Date.now();
+          iframe.src = `${originalSrc}?cache=${cacheBuster}`;
+
+          // Show iframe, hide fallback
+          iframe.style.display = 'block';
+          fallback.style.display = 'none';
+
+          // Reset button after 2 seconds
+          setTimeout(() => {
+            refreshButton.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              <span>Refresh Embed</span>
+            `;
+            refreshButton.disabled = false;
+          }, 2000);
+        });
+      }
+    });
+  });
+</script>

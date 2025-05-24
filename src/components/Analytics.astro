@@ -1,0 +1,622 @@
+---
+/**
+ * Analytics Component
+ * Comprehensive analytics and performance monitoring
+ */
+
+interface Props {
+  /**
+   * Google Analytics 4 Measurement ID
+   */
+  gaId?: string;
+  
+  /**
+   * Enable performance monitoring
+   */
+  enablePerformance?: boolean;
+  
+  /**
+   * Enable error tracking
+   */
+  enableErrorTracking?: boolean;
+  
+  /**
+   * Enable user behavior tracking
+   */
+  enableBehaviorTracking?: boolean;
+  
+  /**
+   * Enable custom events
+   */
+  enableCustomEvents?: boolean;
+  
+  /**
+   * Debug mode
+   */
+  debug?: boolean;
+}
+
+const {
+  gaId = 'G-XXXXXXXXXX', // Replace with actual GA4 ID
+  enablePerformance = true,
+  enableErrorTracking = true,
+  enableBehaviorTracking = true,
+  enableCustomEvents = true,
+  debug = false
+} = Astro.props;
+
+const isProduction = import.meta.env.PROD;
+const shouldLoadAnalytics = isProduction && gaId && gaId !== 'G-XXXXXXXXXX';
+---
+
+<!-- Google Analytics 4 -->
+{shouldLoadAnalytics && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+    <script define:vars={{ gaId, debug }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gaId, {
+        debug_mode: debug,
+        send_page_view: false // We'll handle this manually
+      });
+    </script>
+  </>
+)}
+
+<!-- Analytics Manager Script -->
+<script type="module" define:vars={{ 
+  gaId, 
+  enablePerformance, 
+  enableErrorTracking, 
+  enableBehaviorTracking, 
+  enableCustomEvents,
+  debug,
+  isProduction 
+}}>
+  // Analytics Manager Class
+  class AnalyticsManager {
+    constructor(config) {
+      this.config = config;
+      this.isEnabled = config.isProduction && config.gaId && config.gaId !== 'G-XXXXXXXXXX';
+      this.sessionId = this.generateSessionId();
+      this.userId = this.getUserId();
+      this.pageLoadTime = Date.now();
+      
+      if (this.isEnabled) {
+        this.init();
+      } else if (config.debug) {
+        console.log('📊 Analytics disabled (development mode or missing GA ID)');
+      }
+    }
+    
+    init() {
+      // Track initial page view
+      this.trackPageView();
+      
+      // Set up performance monitoring
+      if (this.config.enablePerformance) {
+        this.initPerformanceTracking();
+      }
+      
+      // Set up error tracking
+      if (this.config.enableErrorTracking) {
+        this.initErrorTracking();
+      }
+      
+      // Set up behavior tracking
+      if (this.config.enableBehaviorTracking) {
+        this.initBehaviorTracking();
+      }
+      
+      // Set up custom events
+      if (this.config.enableCustomEvents) {
+        this.initCustomEvents();
+      }
+      
+      // Track session data
+      this.trackSession();
+      
+      if (this.config.debug) {
+        console.log('📊 Analytics initialized', this.config);
+      }
+    }
+    
+    // Generate unique session ID
+    generateSessionId() {
+      return Date.now().toString(36) + Math.random().toString(36).substr(2);
+    }
+    
+    // Get or create user ID
+    getUserId() {
+      let userId = localStorage.getItem('nosytlabs_user_id');
+      if (!userId) {
+        userId = 'user_' + Date.now().toString(36) + Math.random().toString(36).substr(2);
+        localStorage.setItem('nosytlabs_user_id', userId);
+      }
+      return userId;
+    }
+    
+    // Track page view
+    trackPageView() {
+      const pageData = {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+        session_id: this.sessionId,
+        user_id: this.userId
+      };
+      
+      if (this.isEnabled && typeof gtag !== 'undefined') {
+        gtag('event', 'page_view', pageData);
+      }
+      
+      if (this.config.debug) {
+        console.log('📊 Page view tracked:', pageData);
+      }
+    }
+    
+    // Initialize performance tracking
+    initPerformanceTracking() {
+      // Track Core Web Vitals
+      this.trackCoreWebVitals();
+      
+      // Track page load performance
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          this.trackPageLoadPerformance();
+        }, 0);
+      });
+      
+      // Track resource loading
+      this.trackResourcePerformance();
+    }
+    
+    // Track Core Web Vitals
+    trackCoreWebVitals() {
+      // Import web-vitals library dynamically
+      import('https://unpkg.com/web-vitals@3/dist/web-vitals.js').then(({ onCLS, onFID, onFCP, onLCP, onTTFB }) => {
+        onCLS((metric) => this.trackWebVital('CLS', metric));
+        onFID((metric) => this.trackWebVital('FID', metric));
+        onFCP((metric) => this.trackWebVital('FCP', metric));
+        onLCP((metric) => this.trackWebVital('LCP', metric));
+        onTTFB((metric) => this.trackWebVital('TTFB', metric));
+      }).catch(() => {
+        // Fallback manual tracking
+        this.trackWebVitalsManual();
+      });
+    }
+    
+    // Track web vital metric
+    trackWebVital(name, metric) {
+      const eventData = {
+        event_category: 'Web Vitals',
+        event_label: name,
+        value: Math.round(metric.value),
+        metric_id: metric.id,
+        metric_delta: metric.delta
+      };
+      
+      if (this.isEnabled && typeof gtag !== 'undefined') {
+        gtag('event', 'web_vital', eventData);
+      }
+      
+      if (this.config.debug) {
+        console.log(`📊 Web Vital ${name}:`, metric.value, eventData);
+      }
+    }
+    
+    // Manual web vitals tracking (fallback)
+    trackWebVitalsManual() {
+      // Track LCP manually
+      new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        this.trackWebVital('LCP', { value: lastEntry.startTime, id: 'manual' });
+      }).observe({ entryTypes: ['largest-contentful-paint'] });
+      
+      // Track FID manually
+      new PerformanceObserver((entryList) => {
+        const firstInput = entryList.getEntries()[0];
+        this.trackWebVital('FID', { 
+          value: firstInput.processingStart - firstInput.startTime,
+          id: 'manual'
+        });
+      }).observe({ entryTypes: ['first-input'] });
+    }
+    
+    // Track page load performance
+    trackPageLoadPerformance() {
+      const navigation = performance.getEntriesByType('navigation')[0];
+      if (!navigation) return;
+      
+      const performanceData = {
+        event_category: 'Performance',
+        dns_time: navigation.domainLookupEnd - navigation.domainLookupStart,
+        connect_time: navigation.connectEnd - navigation.connectStart,
+        response_time: navigation.responseEnd - navigation.requestStart,
+        dom_load_time: navigation.domContentLoadedEventEnd - navigation.navigationStart,
+        window_load_time: navigation.loadEventEnd - navigation.navigationStart,
+        page_load_time: Date.now() - this.pageLoadTime
+      };
+      
+      if (this.isEnabled && typeof gtag !== 'undefined') {
+        gtag('event', 'page_performance', performanceData);
+      }
+      
+      if (this.config.debug) {
+        console.log('📊 Page performance:', performanceData);
+      }
+    }
+    
+    // Track resource performance
+    trackResourcePerformance() {
+      window.addEventListener('load', () => {
+        const resources = performance.getEntriesByType('resource');
+        const slowResources = resources.filter(resource => resource.duration > 1000);
+        
+        slowResources.forEach(resource => {
+          const resourceData = {
+            event_category: 'Performance',
+            event_label: 'Slow Resource',
+            resource_name: resource.name,
+            resource_duration: Math.round(resource.duration),
+            resource_size: resource.transferSize || 0
+          };
+          
+          if (this.isEnabled && typeof gtag !== 'undefined') {
+            gtag('event', 'slow_resource', resourceData);
+          }
+          
+          if (this.config.debug) {
+            console.log('📊 Slow resource:', resourceData);
+          }
+        });
+      });
+    }
+    
+    // Initialize error tracking
+    initErrorTracking() {
+      // JavaScript errors
+      window.addEventListener('error', (event) => {
+        this.trackError({
+          type: 'javascript',
+          message: event.message,
+          filename: event.filename,
+          lineno: event.lineno,
+          colno: event.colno,
+          stack: event.error?.stack
+        });
+      });
+      
+      // Unhandled promise rejections
+      window.addEventListener('unhandledrejection', (event) => {
+        this.trackError({
+          type: 'promise_rejection',
+          message: event.reason?.message || String(event.reason),
+          stack: event.reason?.stack
+        });
+      });
+      
+      // Resource loading errors
+      window.addEventListener('error', (event) => {
+        if (event.target !== window) {
+          this.trackError({
+            type: 'resource',
+            message: 'Resource failed to load',
+            resource: event.target.src || event.target.href,
+            element: event.target.tagName
+          });
+        }
+      }, true);
+    }
+    
+    // Track error
+    trackError(errorData) {
+      const eventData = {
+        event_category: 'Error',
+        event_label: errorData.type,
+        error_message: errorData.message,
+        error_filename: errorData.filename,
+        error_line: errorData.lineno,
+        error_column: errorData.colno,
+        page_url: window.location.href,
+        user_agent: navigator.userAgent,
+        timestamp: new Date().toISOString()
+      };
+      
+      if (this.isEnabled && typeof gtag !== 'undefined') {
+        gtag('event', 'exception', {
+          description: errorData.message,
+          fatal: false,
+          ...eventData
+        });
+      }
+      
+      if (this.config.debug) {
+        console.log('📊 Error tracked:', eventData);
+      }
+    }
+    
+    // Initialize behavior tracking
+    initBehaviorTracking() {
+      // Scroll depth tracking
+      this.trackScrollDepth();
+      
+      // Click tracking
+      this.trackClicks();
+      
+      // Form interactions
+      this.trackFormInteractions();
+      
+      // Time on page
+      this.trackTimeOnPage();
+      
+      // Exit intent
+      this.trackExitIntent();
+    }
+    
+    // Track scroll depth
+    trackScrollDepth() {
+      const scrollDepths = [25, 50, 75, 90, 100];
+      const trackedDepths = new Set();
+      
+      const trackScroll = () => {
+        const scrollPercent = Math.round(
+          (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+        );
+        
+        scrollDepths.forEach(depth => {
+          if (scrollPercent >= depth && !trackedDepths.has(depth)) {
+            trackedDepths.add(depth);
+            this.trackEvent('scroll_depth', {
+              event_category: 'Engagement',
+              event_label: `${depth}%`,
+              value: depth
+            });
+          }
+        });
+      };
+      
+      window.addEventListener('scroll', this.throttle(trackScroll, 500));
+    }
+    
+    // Track clicks
+    trackClicks() {
+      document.addEventListener('click', (event) => {
+        const target = event.target.closest('a, button, [data-track]');
+        if (!target) return;
+        
+        const eventData = {
+          event_category: 'Interaction',
+          event_label: 'Click',
+          element_type: target.tagName.toLowerCase(),
+          element_text: target.textContent?.trim().substring(0, 100),
+          element_id: target.id,
+          element_class: target.className,
+          page_url: window.location.href
+        };
+        
+        // Special tracking for external links
+        if (target.tagName === 'A' && target.href) {
+          const isExternal = !target.href.startsWith(window.location.origin);
+          if (isExternal) {
+            eventData.event_label = 'External Link';
+            eventData.link_url = target.href;
+          }
+        }
+        
+        this.trackEvent('click', eventData);
+      });
+    }
+    
+    // Track form interactions
+    trackFormInteractions() {
+      // Form submissions
+      document.addEventListener('submit', (event) => {
+        const form = event.target;
+        this.trackEvent('form_submit', {
+          event_category: 'Form',
+          event_label: 'Submit',
+          form_id: form.id,
+          form_name: form.name,
+          form_action: form.action
+        });
+      });
+      
+      // Form field focus (for engagement tracking)
+      document.addEventListener('focus', (event) => {
+        if (event.target.matches('input, textarea, select')) {
+          this.trackEvent('form_field_focus', {
+            event_category: 'Form',
+            event_label: 'Field Focus',
+            field_type: event.target.type,
+            field_name: event.target.name
+          });
+        }
+      }, true);
+    }
+    
+    // Track time on page
+    trackTimeOnPage() {
+      let startTime = Date.now();
+      let isActive = true;
+      
+      // Track when user becomes inactive
+      const trackInactivity = () => {
+        isActive = false;
+        setTimeout(() => {
+          isActive = true;
+          startTime = Date.now();
+        }, 30000); // Reset after 30 seconds
+      };
+      
+      // Reset timer on user activity
+      ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'].forEach(event => {
+        document.addEventListener(event, () => {
+          if (!isActive) {
+            isActive = true;
+            startTime = Date.now();
+          }
+        }, true);
+      });
+      
+      // Track time on page before leaving
+      window.addEventListener('beforeunload', () => {
+        if (isActive) {
+          const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+          this.trackEvent('time_on_page', {
+            event_category: 'Engagement',
+            event_label: 'Time Spent',
+            value: timeOnPage
+          });
+        }
+      });
+    }
+    
+    // Track exit intent
+    trackExitIntent() {
+      let exitIntentTracked = false;
+      
+      document.addEventListener('mouseleave', (event) => {
+        if (event.clientY <= 0 && !exitIntentTracked) {
+          exitIntentTracked = true;
+          this.trackEvent('exit_intent', {
+            event_category: 'Engagement',
+            event_label: 'Exit Intent'
+          });
+        }
+      });
+    }
+    
+    // Initialize custom events
+    initCustomEvents() {
+      // Track search usage
+      document.addEventListener('search', (event) => {
+        this.trackEvent('search', {
+          event_category: 'Search',
+          event_label: 'Query',
+          search_term: event.detail?.query
+        });
+      });
+      
+      // Track theme changes
+      document.addEventListener('themechange', (event) => {
+        this.trackEvent('theme_change', {
+          event_category: 'Customization',
+          event_label: 'Theme',
+          theme: event.detail?.theme
+        });
+      });
+      
+      // Track NosytOS95 interactions
+      document.addEventListener('nosytos95_interaction', (event) => {
+        this.trackEvent('nosytos95_interaction', {
+          event_category: 'NosytOS95',
+          event_label: event.detail?.action,
+          application: event.detail?.app
+        });
+      });
+    }
+    
+    // Track session data
+    trackSession() {
+      const sessionData = {
+        session_id: this.sessionId,
+        user_id: this.userId,
+        timestamp: new Date().toISOString(),
+        page_url: window.location.href,
+        referrer: document.referrer,
+        user_agent: navigator.userAgent,
+        screen_resolution: `${screen.width}x${screen.height}`,
+        viewport_size: `${window.innerWidth}x${window.innerHeight}`,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        language: navigator.language
+      };
+      
+      // Store session data locally
+      try {
+        localStorage.setItem('nosytlabs_current_session', JSON.stringify(sessionData));
+      } catch (error) {
+        console.warn('Failed to store session data:', error);
+      }
+      
+      if (this.config.debug) {
+        console.log('📊 Session tracked:', sessionData);
+      }
+    }
+    
+    // Generic event tracking
+    trackEvent(eventName, eventData = {}) {
+      if (this.isEnabled && typeof gtag !== 'undefined') {
+        gtag('event', eventName, {
+          session_id: this.sessionId,
+          user_id: this.userId,
+          timestamp: new Date().toISOString(),
+          ...eventData
+        });
+      }
+      
+      if (this.config.debug) {
+        console.log(`📊 Event tracked: ${eventName}`, eventData);
+      }
+    }
+    
+    // Utility: Throttle function
+    throttle(func, limit) {
+      let inThrottle;
+      return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+          func.apply(context, args);
+          inThrottle = true;
+          setTimeout(() => inThrottle = false, limit);
+        }
+      };
+    }
+    
+    // Public API methods
+    track(eventName, eventData) {
+      this.trackEvent(eventName, eventData);
+    }
+    
+    identify(userId, userProperties = {}) {
+      this.userId = userId;
+      localStorage.setItem('nosytlabs_user_id', userId);
+      
+      if (this.isEnabled && typeof gtag !== 'undefined') {
+        gtag('config', this.config.gaId, {
+          user_id: userId,
+          custom_map: userProperties
+        });
+      }
+    }
+    
+    page(pageData = {}) {
+      this.trackPageView(pageData);
+    }
+  }
+  
+  // Initialize analytics
+  const analytics = new AnalyticsManager({
+    gaId,
+    enablePerformance,
+    enableErrorTracking,
+    enableBehaviorTracking,
+    enableCustomEvents,
+    debug,
+    isProduction
+  });
+  
+  // Make analytics available globally
+  window.analytics = analytics;
+  
+  // Export for use in other scripts
+  window.AnalyticsManager = AnalyticsManager;
+</script>
+
+<style>
+  /* This component only provides analytics functionality, no visual styles needed */
+</style>

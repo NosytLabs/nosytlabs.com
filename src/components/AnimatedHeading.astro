@@ -1,0 +1,139 @@
+---
+// AnimatedHeading.astro
+// A component for animated headings with accent text
+
+interface Props {
+  text: string;
+  accentText?: string;
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  className?: string;
+  animation?: 'fade' | 'slide' | 'highlight' | 'none';
+  textAlign?: 'left' | 'center' | 'right';
+}
+
+const { 
+  text, 
+  accentText, 
+  level = 2, 
+  className = "",
+  animation = 'fade',
+  textAlign = 'left'
+} = Astro.props;
+
+// Determine heading tag based on level
+const HeadingTag = `h${level}`;
+
+// Determine animation class
+let animationClass = '';
+if (animation === 'fade') animationClass = 'animate-fade-in';
+if (animation === 'slide') animationClass = 'animate-slide-in';
+if (animation === 'highlight') animationClass = 'animate-highlight';
+
+// Determine text alignment
+let alignClass = '';
+if (textAlign === 'center') alignClass = 'text-center';
+if (textAlign === 'right') alignClass = 'text-right';
+
+// Determine heading size based on level
+let sizeClass = '';
+switch(level) {
+  case 1:
+    sizeClass = 'text-4xl md:text-5xl lg:text-6xl';
+    break;
+  case 2:
+    sizeClass = 'text-3xl md:text-4xl';
+    break;
+  case 3:
+    sizeClass = 'text-2xl md:text-3xl';
+    break;
+  case 4:
+    sizeClass = 'text-xl md:text-2xl';
+    break;
+  case 5:
+    sizeClass = 'text-lg md:text-xl';
+    break;
+  case 6:
+    sizeClass = 'text-base md:text-lg';
+    break;
+}
+---
+
+<div class={`animated-heading ${alignClass} ${className}`}>
+  <HeadingTag class={`font-bold ${sizeClass} ${animationClass}`}>
+    {text}
+    {accentText && (
+      <span class="text-accent relative">
+        {" "}{accentText}
+        <span class="accent-underline"></span>
+      </span>
+    )}
+  </HeadingTag>
+</div>
+
+<style>
+  .animated-heading {
+    position: relative;
+  }
+  
+  .accent-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    transform-origin: left;
+    animation: expand 1.5s ease-out forwards;
+    opacity: 0.7;
+  }
+  
+  @keyframes expand {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  .animate-slide-in {
+    animation: slideIn 1s ease-out forwards;
+  }
+  
+  .animate-highlight {
+    animation: highlight 2s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes highlight {
+    0% {
+      background-position: -100% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+</style>

@@ -1,0 +1,252 @@
+---
+/**
+ * Column Component
+ * A consistent column component for use within Grid layouts
+ */
+
+export interface Props {
+  span?: {
+    default?: number;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+  };
+  start?: {
+    default?: number;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+  };
+  order?: number;
+  class?: string;
+}
+
+const {
+  span = { default: 1 },
+  start = {},
+  order,
+  class: className = '',
+} = Astro.props;
+
+// Span classes
+const getSpanClass = (cols: number) => {
+  return `col-span-${cols}`;
+};
+
+// Start classes
+const getStartClass = (col: number) => {
+  return `col-start-${col}`;
+};
+
+// Responsive span classes
+const spanClasses = [
+  span.default ? getSpanClass(span.default) : '',
+  span.sm ? `sm:${getSpanClass(span.sm)}` : '',
+  span.md ? `md:${getSpanClass(span.md)}` : '',
+  span.lg ? `lg:${getSpanClass(span.lg)}` : '',
+  span.xl ? `xl:${getSpanClass(span.xl)}` : '',
+].filter(Boolean);
+
+// Responsive start classes
+const startClasses = [
+  start.default ? getStartClass(start.default) : '',
+  start.sm ? `sm:${getStartClass(start.sm)}` : '',
+  start.md ? `md:${getStartClass(start.md)}` : '',
+  start.lg ? `lg:${getStartClass(start.lg)}` : '',
+  start.xl ? `xl:${getStartClass(start.xl)}` : '',
+].filter(Boolean);
+
+// Order class
+const orderClass = order ? `order-${order}` : '';
+
+// Combine all classes
+const columnClasses = [
+  ...spanClasses,
+  ...startClasses,
+  orderClass,
+  className,
+].filter(Boolean).join(' ');
+---
+
+<div class={columnClasses}>
+  <slot />
+</div>
+
+<style>
+  /* Column span classes */
+  .col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+  
+  .col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+  
+  .col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+  
+  .col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+  
+  .col-span-5 {
+    grid-column: span 5 / span 5;
+  }
+  
+  .col-span-6 {
+    grid-column: span 6 / span 6;
+  }
+  
+  .col-span-7 {
+    grid-column: span 7 / span 7;
+  }
+  
+  .col-span-8 {
+    grid-column: span 8 / span 8;
+  }
+  
+  .col-span-9 {
+    grid-column: span 9 / span 9;
+  }
+  
+  .col-span-10 {
+    grid-column: span 10 / span 10;
+  }
+  
+  .col-span-11 {
+    grid-column: span 11 / span 11;
+  }
+  
+  .col-span-12 {
+    grid-column: span 12 / span 12;
+  }
+  
+  /* Column start classes */
+  .col-start-1 {
+    grid-column-start: 1;
+  }
+  
+  .col-start-2 {
+    grid-column-start: 2;
+  }
+  
+  .col-start-3 {
+    grid-column-start: 3;
+  }
+  
+  .col-start-4 {
+    grid-column-start: 4;
+  }
+  
+  .col-start-5 {
+    grid-column-start: 5;
+  }
+  
+  .col-start-6 {
+    grid-column-start: 6;
+  }
+  
+  .col-start-7 {
+    grid-column-start: 7;
+  }
+  
+  .col-start-8 {
+    grid-column-start: 8;
+  }
+  
+  .col-start-9 {
+    grid-column-start: 9;
+  }
+  
+  .col-start-10 {
+    grid-column-start: 10;
+  }
+  
+  .col-start-11 {
+    grid-column-start: 11;
+  }
+  
+  .col-start-12 {
+    grid-column-start: 12;
+  }
+  
+  /* Order classes */
+  .order-1 {
+    order: 1;
+  }
+  
+  .order-2 {
+    order: 2;
+  }
+  
+  .order-3 {
+    order: 3;
+  }
+  
+  .order-4 {
+    order: 4;
+  }
+  
+  .order-5 {
+    order: 5;
+  }
+  
+  .order-first {
+    order: -9999;
+  }
+  
+  .order-last {
+    order: 9999;
+  }
+  
+  /* Responsive classes */
+  @media (min-width: 640px) {
+    .sm\:col-span-1 { grid-column: span 1 / span 1; }
+    .sm\:col-span-2 { grid-column: span 2 / span 2; }
+    .sm\:col-span-3 { grid-column: span 3 / span 3; }
+    .sm\:col-span-4 { grid-column: span 4 / span 4; }
+    .sm\:col-span-6 { grid-column: span 6 / span 6; }
+    .sm\:col-span-12 { grid-column: span 12 / span 12; }
+    
+    .sm\:col-start-1 { grid-column-start: 1; }
+    .sm\:col-start-2 { grid-column-start: 2; }
+    .sm\:col-start-3 { grid-column-start: 3; }
+    .sm\:col-start-4 { grid-column-start: 4; }
+  }
+  
+  @media (min-width: 768px) {
+    .md\:col-span-1 { grid-column: span 1 / span 1; }
+    .md\:col-span-2 { grid-column: span 2 / span 2; }
+    .md\:col-span-3 { grid-column: span 3 / span 3; }
+    .md\:col-span-4 { grid-column: span 4 / span 4; }
+    .md\:col-span-6 { grid-column: span 6 / span 6; }
+    .md\:col-span-8 { grid-column: span 8 / span 8; }
+    .md\:col-span-12 { grid-column: span 12 / span 12; }
+    
+    .md\:col-start-1 { grid-column-start: 1; }
+    .md\:col-start-2 { grid-column-start: 2; }
+    .md\:col-start-3 { grid-column-start: 3; }
+    .md\:col-start-4 { grid-column-start: 4; }
+    .md\:col-start-5 { grid-column-start: 5; }
+  }
+  
+  @media (min-width: 1024px) {
+    .lg\:col-span-1 { grid-column: span 1 / span 1; }
+    .lg\:col-span-2 { grid-column: span 2 / span 2; }
+    .lg\:col-span-3 { grid-column: span 3 / span 3; }
+    .lg\:col-span-4 { grid-column: span 4 / span 4; }
+    .lg\:col-span-6 { grid-column: span 6 / span 6; }
+    .lg\:col-span-8 { grid-column: span 8 / span 8; }
+    .lg\:col-span-9 { grid-column: span 9 / span 9; }
+    .lg\:col-span-12 { grid-column: span 12 / span 12; }
+    
+    .lg\:col-start-1 { grid-column-start: 1; }
+    .lg\:col-start-2 { grid-column-start: 2; }
+    .lg\:col-start-3 { grid-column-start: 3; }
+    .lg\:col-start-4 { grid-column-start: 4; }
+    .lg\:col-start-5 { grid-column-start: 5; }
+  }
+</style>

@@ -1,0 +1,847 @@
+---
+// 3D Printing page for NosytLabs
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CrealityEmbed from '../components/CrealityEmbed.astro';
+import CrealityModelViewer from '../components/CrealityModelViewer.astro';
+import ThreeDPrintingCalculator from '../components/3DPrintingCalculator.astro';
+import ProjectSubmissionForm from '../components/ProjectSubmissionForm.astro';
+---
+
+<BaseLayout
+  title="3D Printing Services - NosytLabs"
+  description="Explore our 3D printing services and models at NosytLabs."
+>
+  <!-- Hero Section -->
+  <div class="relative bg-gradient-to-r from-primary-dark to-primary-main text-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl animate-fade-in">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-slide-up">3D Printing Services</h1>
+        <p class="text-xl animate-slide-up" style="animation-delay: 0.2s;">
+          Custom 3D printing with Creality Ender 3 S1 Pro (FDM) and Elegoo Saturn 2 (resin) printers.
+        </p>
+        <div class="mt-4 bg-white/10 backdrop-blur-sm p-4 rounded-lg animate-slide-up" style="animation-delay: 0.4s;">
+          <p class="text-sm">
+            <strong>Coming Soon:</strong> We're planning to launch an Etsy store for our 3D printing services in the near future.
+            Currently, we're in the testing phase and not accepting commercial orders.
+          </p>
+        </div>
+
+        <div class="mt-4 bg-yellow-500/20 backdrop-blur-sm p-4 rounded-lg animate-slide-up" style="animation-delay: 0.6s;">
+          <p class="text-sm">
+            <strong>Startup Status:</strong> Our 3D printing services are currently in development.
+            We're showcasing our capabilities and designs while we prepare for our official launch.
+            The information below represents our planned offerings.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D Models Section - Removed duplicate section as we have a more comprehensive one below -->
+
+  <!-- Services Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 animate-fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">Our 3D Printing Services</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+          We offer hobby-level 3D printing services for personal projects, prototypes, and small models.
+        </p>
+        <div class="mt-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.4s;">
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            <strong>Disclaimer:</strong> Our 3D printing services are currently in development and will be launching on Etsy soon.
+            We are a startup and not yet a full commercial printing service. The information below represents our planned
+            offerings once we officially launch. We're currently building our portfolio and testing our capabilities.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Enhanced 3D Service Card 1 -->
+        <div class="feature-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 border-accent card-3d mouse-tracking-3d animate-fade-in" style="animation-delay: 0.3s;">
+          <div class="service-icon-container mb-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <!-- Icon with 3D effect -->
+            <div class="service-icon-3d">
+              <div class="service-icon-inner">
+                <div class="text-4xl service-icon">🔍</div>
+              </div>
+              <!-- Glow effect -->
+              <div class="service-icon-glow"></div>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+            3D Model Design
+            <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Creation of 3D models from concept sketches or specifications. Our expert designers will bring your ideas to life.
+          </p>
+
+          <div class="text-sm text-accent font-semibold mb-2 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Contact for custom pricing
+          </div>
+        </div>
+
+        <!-- Enhanced 3D Service Card 2 -->
+        <div class="feature-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 border-accent card-3d mouse-tracking-3d animate-fade-in" style="animation-delay: 0.4s;">
+          <div class="service-icon-container mb-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <!-- Icon with 3D effect -->
+            <div class="service-icon-3d">
+              <div class="service-icon-inner">
+                <div class="text-4xl service-icon">📷</div>
+              </div>
+              <!-- Glow effect -->
+              <div class="service-icon-glow"></div>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+            3D Scanning
+            <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            High-resolution scanning of physical objects for digital reproduction. Perfect for creating digital twins of existing items.
+          </p>
+
+          <div class="text-sm text-accent font-semibold mb-2 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Contact for custom pricing
+          </div>
+        </div>
+
+        <!-- Enhanced 3D Service Card 3 -->
+        <div class="feature-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 border-accent card-3d mouse-tracking-3d animate-fade-in" style="animation-delay: 0.5s;">
+          <div class="service-icon-container mb-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <!-- Icon with 3D effect -->
+            <div class="service-icon-3d">
+              <div class="service-icon-inner">
+                <div class="text-4xl service-icon">⚡</div>
+              </div>
+              <!-- Glow effect -->
+              <div class="service-icon-glow"></div>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+            Rapid Prototyping
+            <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Quick turnaround printing of concept models and prototypes. Get your ideas into physical form fast.
+          </p>
+
+          <div class="text-sm text-accent font-semibold mb-2 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Contact for custom pricing
+          </div>
+        </div>
+
+        <!-- Enhanced 3D Service Card 4 -->
+        <div class="feature-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 border-accent card-3d mouse-tracking-3d animate-fade-in" style="animation-delay: 0.6s;">
+          <div class="service-icon-container mb-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <!-- Icon with 3D effect -->
+            <div class="service-icon-3d">
+              <div class="service-icon-inner">
+                <div class="text-4xl service-icon">🔧</div>
+              </div>
+              <!-- Glow effect -->
+              <div class="service-icon-glow"></div>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+            Functional Prototypes
+            <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Printing of functional prototypes with specific material properties. Test your designs in real-world conditions.
+          </p>
+
+          <div class="text-sm text-accent font-semibold mb-2 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Contact for custom pricing
+          </div>
+        </div>
+
+        <!-- Enhanced 3D Service Card 5 -->
+        <div class="feature-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 border-accent card-3d mouse-tracking-3d animate-fade-in" style="animation-delay: 0.7s;">
+          <div class="service-icon-container mb-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <!-- Icon with 3D effect -->
+            <div class="service-icon-3d">
+              <div class="service-icon-inner">
+                <div class="text-4xl service-icon">🏭</div>
+              </div>
+              <!-- Glow effect -->
+              <div class="service-icon-glow"></div>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+            Small Batch Production
+            <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Production of small batches of parts or products. Ideal for limited runs or market testing.
+          </p>
+
+          <div class="text-sm text-accent font-semibold mb-2 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Contact for custom pricing
+          </div>
+        </div>
+
+        <!-- Enhanced 3D Service Card 6 -->
+        <div class="feature-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 border-accent card-3d mouse-tracking-3d animate-fade-in" style="animation-delay: 0.8s;">
+          <div class="service-icon-container mb-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <!-- Icon with 3D effect -->
+            <div class="service-icon-3d">
+              <div class="service-icon-inner">
+                <div class="text-4xl service-icon">🎨</div>
+              </div>
+              <!-- Glow effect -->
+              <div class="service-icon-glow"></div>
+            </div>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+            Finishing & Post-Processing
+            <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 mb-5">
+            Professional finishing services including sanding, painting, and assembly of printed parts.
+          </p>
+
+          <div class="text-sm text-accent font-semibold mb-2 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Contact for custom pricing
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Materials Section -->
+  <section class="py-20 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 animate-fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">Material Options</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+          We offer a wide range of materials to suit your specific needs, from standard PLA to specialized engineering materials.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- FDM Materials -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl border-t-4 border-accent card-3d mouse-tracking-3d animate-fade-in">
+          <h3 class="text-xl font-bold mb-4">FDM Materials</h3>
+          <div class="space-y-4">
+            <div class="material-card p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h4 class="font-semibold mb-2">PLA</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Biodegradable, easy to print. Ideal for decorative items and prototypes.</p>
+              <div class="flex gap-2 mt-2">
+                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Eco-friendly</span>
+                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Low Cost</span>
+              </div>
+            </div>
+            
+            <div class="material-card p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h4 class="font-semibold mb-2">PETG</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Durable and chemical resistant. Great for functional parts.</p>
+              <div class="flex gap-2 mt-2">
+                <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Durable</span>
+                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Water-resistant</span>
+              </div>
+            </div>
+
+            <div class="material-card p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h4 class="font-semibold mb-2">TPU</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Flexible and elastic. Perfect for soft, bendable parts.</p>
+              <div class="flex gap-2 mt-2">
+                <span class="px-2 py-1 bg-pink-100 text-pink-800 text-xs rounded-full">Flexible</span>
+                <span class="px-2 py-1 bg-indigo-100 text-indigo-800 text-xs rounded-full">Impact Resistant</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resin Materials -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl border-t-4 border-accent card-3d mouse-tracking-3d animate-fade-in">
+          <h3 class="text-xl font-bold mb-4">Resin Materials</h3>
+          <div class="space-y-4">
+            <div class="material-card p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h4 class="font-semibold mb-2">Standard Resin</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">High detail and smooth surface finish. Perfect for miniatures.</p>
+              <div class="flex gap-2 mt-2">
+                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">High Detail</span>
+                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Smooth Finish</span>
+              </div>
+            </div>
+
+            <div class="material-card p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h4 class="font-semibold mb-2">ABS-Like Resin</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Tough and durable. Suitable for functional prototypes.</p>
+              <div class="flex gap-2 mt-2">
+                <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full">Durable</span>
+                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Heat Resistant</span>
+              </div>
+            </div>
+
+            <div class="material-card p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h4 class="font-semibold mb-2">Dental Resin</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Biocompatible and precise. Ideal for dental applications.</p>
+              <div class="flex gap-2 mt-2">
+                <span class="px-2 py-1 bg-teal-100 text-teal-800 text-xs rounded-full">Medical Grade</span>
+                <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">High Precision</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Material Selection Guide -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl border-t-4 border-accent card-3d mouse-tracking-3d animate-fade-in">
+          <h3 class="text-xl font-bold mb-4">Material Selection Guide</h3>
+          <div class="space-y-4">
+            <div class="guide-card p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h4 class="font-semibold mb-2">For Prototypes</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">PLA or Standard Resin for quick iterations and visual prototypes.</p>
+            </div>
+
+            <div class="guide-card p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h4 class="font-semibold mb-2">For Functional Parts</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">PETG or ABS-Like Resin for durability and strength.</p>
+            </div>
+
+            <div class="guide-card p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h4 class="font-semibold mb-2">For Detailed Models</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Standard Resin for high-detail miniatures and artistic pieces.</p>
+            </div>
+
+            <a href="/contact" class="block mt-6 text-center">
+              <button class="bg-accent hover:bg-accent-dark text-white px-6 py-2 rounded-lg transition-colors duration-300">
+                Get Material Recommendations
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Submission Section -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 animate-fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">Start Your Project</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+          Upload your 3D model and specify your requirements. We'll review your project and provide a quote.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <ProjectSubmissionForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- Creality 3D Models Section -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 animate-fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">Our 3D Models</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+          Browse our collection of 3D models available on Creality Cloud. These models showcase our design capabilities and printing expertise.
+        </p>
+      </div>
+
+      <!-- Featured 3D Models -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <CrealityModelViewer
+          modelId="1234567"
+          title="Articulated Dragon"
+          description="A fully articulated dragon model with movable joints and detailed scales."
+          author="Tycen"
+          height="300px"
+          className="animate-fade-in"
+        />
+
+        <CrealityModelViewer
+          modelId="2345678"
+          title="Smartphone Stand"
+          description="A practical smartphone stand with adjustable viewing angles."
+          author="Tycen"
+          height="300px"
+          className="animate-fade-in"
+          style="animation-delay: 0.2s;"
+        />
+
+        <CrealityModelViewer
+          modelId="3456789"
+          title="Desk Organizer"
+          description="A modular desk organizer with compartments for various office supplies."
+          author="Tycen"
+          height="300px"
+          className="animate-fade-in"
+          style="animation-delay: 0.4s;"
+        />
+      </div>
+
+      <!-- Creality Cloud Embed -->
+      <div class="mb-20">
+        <h3 class="text-2xl font-bold mb-6 text-center">Our Models on Creality Cloud</h3>
+        <p class="text-center text-gray-600 dark:text-gray-300 mb-4 max-w-3xl mx-auto">
+          Browse our collection of 3D models on Creality Cloud. These models showcase our design capabilities and the types of projects we plan to offer in our upcoming Etsy store.
+        </p>
+        <p class="text-center text-gray-500 dark:text-gray-400 mb-6 max-w-3xl mx-auto text-sm">
+          <strong>Note:</strong> We're continuously adding new designs as we prepare for our official launch.
+        </p>
+        <CrealityEmbed
+          userId="9519489699"
+          height="800px"
+          width="100%"
+          title="Tycen's 3D Models on Creality Cloud"
+          showControls={true}
+          modelType="all"
+          limit={12}
+        />
+        <div class="mt-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg max-w-3xl mx-auto">
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            <strong>Note:</strong> If the embed above doesn't load properly, you can view our models directly on
+            <a href="https://www.crealitycloud.com/user/9519489699" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Creality Cloud</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Budget Calculator Section -->
+  <section class="py-20 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 animate-fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">Budget Calculator</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+          Use our interactive calculator to estimate the cost of your 3D printing project.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto animate-fade-in" style="animation-delay: 0.3s;">
+        <ThreeDPrintingCalculator />
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment Section -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 animate-fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">Our Equipment</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">
+          We use state-of-the-art 3D printing equipment to ensure the highest quality results.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Enhanced Equipment Card 1 -->
+        <div class="equipment-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 card-3d animate-fade-in" style="animation-delay: 0.3s;">
+          <div class="aspect-w-16 aspect-h-9 relative overflow-hidden">
+            <img
+              src="/images/equipment/creality-ender.jpg"
+              alt="Creality Ender 3D Printer"
+              class="object-cover w-full h-full"
+            />
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            <!-- Equipment badge -->
+            <div class="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg transform rotate-3">
+              Premium
+            </div>
+          </div>
+          <div class="p-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+              Creality Ender Series
+              <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Our Creality Ender 3 S1 Pro printers offer exceptional precision and reliability for FDM printing, with a build volume of 220x220x270mm and direct drive extruder for superior print quality.
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">FDM</span>
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">PLA</span>
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">PETG</span>
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">TPU</span>
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">ABS</span>
+            </div>
+
+            <!-- Specs section -->
+            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-500 dark:text-gray-400">Build Volume:</span>
+                <span class="font-medium">220 x 220 x 250mm</span>
+              </div>
+              <div class="flex justify-between text-sm mt-1">
+                <span class="text-gray-500 dark:text-gray-400">Layer Height:</span>
+                <span class="font-medium">0.1 - 0.4mm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced Equipment Card 2 -->
+        <div class="equipment-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 card-3d animate-fade-in" style="animation-delay: 0.4s;">
+          <div class="aspect-w-16 aspect-h-9 relative overflow-hidden">
+            <img
+              src="/images/equipment/resin-printer.jpg"
+              alt="Resin 3D Printer"
+              class="object-cover w-full h-full"
+            />
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            <!-- Equipment badge -->
+            <div class="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg transform -rotate-3">
+              High Detail
+            </div>
+          </div>
+          <div class="p-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+              Resin Printers
+              <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Our Elegoo Saturn 2 8K MSLA resin printer delivers ultra-high resolution prints (7680×4320 pixels) with smooth surfaces, perfect for detailed models, miniatures, and functional prototypes.
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">MSLA</span>
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">8K Resolution</span>
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">Standard Resin</span>
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">ABS-Like</span>
+              <span class="px-3 py-1 bg-accent/10 text-accent border border-accent/20 rounded-full text-sm font-medium">Water-Washable</span>
+            </div>
+
+            <!-- Specs section -->
+            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-500 dark:text-gray-400">Build Volume:</span>
+                <span class="font-medium">130 x 80 x 160mm</span>
+              </div>
+              <div class="flex justify-between text-sm mt-1">
+                <span class="text-gray-500 dark:text-gray-400">Layer Height:</span>
+                <span class="font-medium">0.01 - 0.05mm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced 3D CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-primary-dark to-primary-main text-white relative overflow-hidden">
+    <!-- Background particles with enhanced animation -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="particles-enhanced"></div>
+
+      <!-- 3D Printer animation -->
+      <div class="absolute bottom-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+        <div class="w-full h-full bg-contain bg-no-repeat bg-bottom" style="background-image: url('/images/equipment/3d-printer-outline.png');"></div>
+      </div>
+
+      <!-- Light beam effect -->
+      <div class="absolute inset-0 light-beam"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-3xl mx-auto text-center animate-fade-in">
+        <!-- Decorative elements -->
+        <div class="inline-block relative mb-4">
+          <div class="absolute -top-6 -left-6 w-12 h-12 border-t-2 border-l-2 border-accent opacity-70"></div>
+          <div class="absolute -bottom-6 -right-6 w-12 h-12 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+          <h2 class="text-3xl md:text-5xl font-bold mb-6 animate-slide-up relative">
+            Ready to <span class="text-accent gradient-text shadow-text-3d">Bring Your Ideas</span> to Life?
+            <div class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h2>
+        </div>
+
+        <p class="text-xl mb-6 animate-slide-up" style="animation-delay: 0.2s;">
+          We're preparing to launch our 3D printing services on Etsy! Sign up to be notified when our store goes live.
+        </p>
+
+        <div class="bg-white/20 backdrop-blur-sm p-4 rounded-lg mb-8 animate-slide-up" style="animation-delay: 0.3s;">
+          <p class="text-sm">
+            <strong>Coming Soon:</strong> Our Etsy store will feature custom 3D printed items, made-to-order designs, and
+            personalized 3D printing services. We're currently finalizing our product lineup and testing our processes.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-6 animate-slide-up" style="animation-delay: 0.3s;">
+          <a
+            href="/contact"
+            class="cta-button-primary group"
+          >
+            <span class="cta-button-content">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>Get Notified</span>
+            </span>
+            <!-- Button glow effect -->
+            <div class="absolute inset-0 rounded-lg bg-accent opacity-0 blur-xl group-hover:opacity-30 transition-opacity duration-300"></div>
+          </a>
+
+          <a
+            href="/services"
+            class="cta-button-secondary group"
+          >
+            <span class="cta-button-content">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              <span>Explore All Services</span>
+            </span>
+            <!-- Button subtle glow effect -->
+            <div class="absolute inset-0 rounded-lg bg-white opacity-0 blur-xl group-hover:opacity-10 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Enhanced 3D Feature card styles */
+  .service-icon-container {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .service-icon-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: theme('colors.accent.DEFAULT');
+    opacity: 0.1;
+    border-radius: 12px;
+    transform: rotate(45deg);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .feature-card:hover .service-icon-container::before {
+    transform: rotate(0deg) scale(1.1);
+    opacity: 0.2;
+    box-shadow: 0 0 20px rgba(255, 107, 0, 0.3);
+  }
+
+  /* 3D Icon styling */
+  .service-icon-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .service-icon-inner {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow:
+      0 5px 15px rgba(0, 0, 0, 0.1),
+      0 0 5px rgba(255, 107, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateZ(10px);
+  }
+
+  .feature-card:hover .service-icon-inner {
+    transform: translateZ(20px) scale(1.1);
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.2),
+      0 0 10px rgba(255, 107, 0, 0.4);
+  }
+
+  .service-icon-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.3) 0%, rgba(255, 107, 0, 0) 70%);
+    border-radius: 50%;
+    opacity: 0;
+    transform: translateZ(5px);
+    transition: all 0.5s ease;
+  }
+
+  .feature-card:hover .service-icon-glow {
+    opacity: 0.7;
+    transform: translateZ(15px) scale(1.2);
+  }
+
+  /* Card 3D effect */
+  .card-3d {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+
+  /* Mouse tracking 3D effect */
+  .mouse-tracking-3d {
+    transition: transform 0.1s ease-out;
+  }
+
+  /* Animation keyframes */
+  @keyframes float-3d {
+    0% { transform: translateY(0) rotateY(0deg); }
+    25% { transform: translateY(-8px) rotateY(5deg); }
+    50% { transform: translateY(0) rotateY(0deg); }
+    75% { transform: translateY(8px) rotateY(-5deg); }
+    100% { transform: translateY(0) rotateY(0deg); }
+  }
+
+  /* Equipment card enhancements */
+  .equipment-card {
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+  }
+
+  .equipment-card:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  .equipment-card img {
+    transition: all 0.5s ease;
+  }
+
+  .equipment-card:hover img {
+    transform: scale(1.05);
+  }
+</style>
+
+<script>
+  // Add mouse tracking 3D effect to cards
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.mouse-tracking-3d');
+
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left; // x position within the element
+        const y = e.clientY - rect.top; // y position within the element
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
+
+        card.style.transform = `perspective(1000px) rotateY(${deltaX * 5}deg) rotateX(${-deltaY * 5}deg) translateZ(10px) scale(1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0) scale(1)';
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Animation keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-in-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-in-out forwards;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.8s ease-in-out forwards;
+  }
+</style>

@@ -1,0 +1,1 @@
+import"./hoisted-C8kgOObh.js";document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("search-input");e&&e.addEventListener("keypress",(t=>{if("Enter"===t.key){const t=e.value.trim();t&&(window.location.href=`https://www.google.com/search?q=site:nosytlabs.com ${encodeURIComponent(t)}`)}}))}));

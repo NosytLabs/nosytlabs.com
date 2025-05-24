@@ -1,0 +1,418 @@
+---
+// HeroShowcase.astro - Redesigned hero component with improved visuals and performance
+---
+
+<section class="hero-showcase">
+  <div class="hero-background">
+    <div class="hero-particles" id="hero-particles"></div>
+    <div class="hero-gradient"></div>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="hero-content">
+      <div class="hero-text animate-slide-up">
+        <h1 class="hero-title">
+          <span class="hero-title-main">NosytLabs</span>
+        </h1>
+
+        <p class="hero-subtitle">Notable Opportunities Shape Your Tomorrow</p>
+
+        <div class="quotes-carousel">
+          <div class="quotes-container">
+            <div class="quote-slide active" data-index="0">
+              <span class="quote-text">"Web development with modern frameworks like React and Astro"</span>
+            </div>
+            <div class="quote-slide" data-index="1">
+              <span class="quote-text">"3D printing services with Creality Ender 3 S1 Pro and Elegoo Saturn 2"</span>
+            </div>
+            <div class="quote-slide" data-index="2">
+              <span class="quote-text">"Resources for Kick.com streaming and YouTube content creation"</span>
+            </div>
+            <div class="quote-slide" data-index="3">
+              <span class="quote-text">"Helpful resources for cryptocurrency mining enthusiasts"</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="/services" class="btn btn-primary">
+            <span>Our Services</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <a href="/projects" class="btn btn-outline">
+            <span>View Projects</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual animate-slide-left">
+        <div class="hero-logo">
+          <img src="/images/nosytlabs-logo-2025.svg" alt="NosytLabs Logo" class="hero-logo-image" />
+        </div>
+
+        <div class="hero-features">
+          <a href="/services" class="hero-feature">
+            <div class="hero-feature-icon">💻</div>
+            <div class="hero-feature-text">Web Dev</div>
+          </a>
+
+          <a href="/content-creation" class="hero-feature">
+            <div class="hero-feature-icon">📱</div>
+            <div class="hero-feature-text">Content</div>
+          </a>
+
+          <a href="/crypto-mining" class="hero-feature">
+            <div class="hero-feature-icon">⛏️</div>
+            <div class="hero-feature-text">Mining</div>
+          </a>
+
+          <a href="/3d-printing" class="hero-feature">
+            <div class="hero-feature-icon">🖨️</div>
+            <div class="hero-feature-text">3D Print</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator animate-bounce">
+    <span>Scroll Down</span>
+    <button aria-label="Scroll down" class="scroll-button" id="scroll-down-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<style>
+  .hero-showcase {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: var(--spacing-8) 0;
+    background-color: var(--nosyt-purple-darkest);
+  }
+
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--nosyt-purple-darkest), var(--nosyt-purple-main), var(--nosyt-orange-main));
+    opacity: 0.7;
+    z-index: 0;
+    background-size: 200% 200%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-12);
+    width: 100%;
+    padding: var(--spacing-8) 0;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .hero-text {
+    flex: 1;
+    max-width: 600px;
+    color: var(--color-white);
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(12px);
+    padding: var(--spacing-8);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-title {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-4);
+    color: var(--color-white);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+  }
+
+  .hero-title-main {
+    background: linear-gradient(90deg, var(--nosyt-purple-light), var(--nosyt-orange-main));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-6);
+    color: var(--color-gray-200);
+  }
+
+  .quotes-carousel {
+    height: 60px;
+    margin-bottom: var(--spacing-6);
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-4);
+  }
+
+  .quotes-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .quote-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.7s ease-in-out;
+  }
+
+  .quote-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .quote-text {
+    font-style: italic;
+    color: var(--color-gray-200);
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: var(--spacing-4);
+    flex-wrap: wrap;
+  }
+
+  .hero-visual {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-8);
+  }
+
+  .hero-logo {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+  }
+
+  .hero-logo-image {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  }
+
+  .hero-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-4);
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .hero-feature {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2);
+    transition: all var(--transition-normal) var(--transition-timing-default);
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  .hero-feature:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: var(--nosyt-orange-main);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-feature-icon {
+    font-size: 24px;
+    margin-bottom: var(--spacing-2);
+  }
+
+  .hero-feature-text {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: var(--spacing-8);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2);
+    color: var(--color-white);
+    z-index: 10;
+  }
+
+  .scroll-button {
+    background-color: transparent;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: var(--spacing-2);
+    border-radius: 50%;
+    transition: all var(--transition-fast) var(--transition-timing-default);
+  }
+
+  .scroll-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(3px);
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: var(--font-size-4xl);
+    }
+
+    .hero-subtitle {
+      font-size: var(--font-size-lg);
+    }
+
+    .hero-logo {
+      width: 150px;
+      height: 150px;
+    }
+
+    .hero-features {
+      max-width: 250px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Initialize quotes carousel
+    const quotes = document.querySelectorAll('.quote-slide');
+    let currentQuote = 0;
+    let isAnimating = false;
+    let carouselInterval = null;
+
+    // Function to change quote with sliding animation
+    function changeQuote() {
+      if (isAnimating || quotes.length <= 1) return;
+      isAnimating = true;
+
+      // Get current and next quote
+      const current = quotes[currentQuote];
+      current.classList.remove('active');
+
+      currentQuote = (currentQuote + 1) % quotes.length;
+      const next = quotes[currentQuote];
+      next.classList.add('active');
+
+      // Reset animation flag after transition completes
+      setTimeout(() => {
+        isAnimating = false;
+      }, 700);
+    }
+
+    // Start carousel if reduced motion is not preferred
+    if (!prefersReducedMotion && quotes.length > 0) {
+      carouselInterval = setInterval(changeQuote, 6000);
+
+      // Pause carousel when page is not visible
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          clearInterval(carouselInterval);
+        } else {
+          carouselInterval = setInterval(changeQuote, 6000);
+        }
+      });
+    }
+
+    // Scroll down button functionality
+    const scrollButton = document.getElementById('scroll-down-button');
+    if (scrollButton) {
+      scrollButton.addEventListener('click', () => {
+        const heroHeight = document.querySelector('.hero-showcase').offsetHeight;
+        window.scrollTo({
+          top: heroHeight,
+          behavior: 'smooth'
+        });
+      });
+    }
+  });
+</script>

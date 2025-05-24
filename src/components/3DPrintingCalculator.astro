@@ -1,0 +1,523 @@
+---
+// 3D Printing Budget Calculator Component
+---
+
+<div class="calculator-container bg-white dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 transform transition-all duration-500 hover:shadow-2xl card-3d relative">
+  <!-- Decorative elements -->
+  <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+  <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+  <h2 class="text-2xl font-bold mb-6 relative inline-block text-gray-800 dark:text-white">
+    3D Printing Budget Calculator
+    <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+  </h2>
+  <div class="mb-6 p-3 bg-gray-100 dark:bg-gray-700 rounded-lg text-sm text-gray-600 dark:text-gray-300">
+    <p><strong>Note:</strong> This calculator provides rough estimates only. Actual costs may vary based on model complexity,
+    material usage, printer availability, and other factors. All prices are in USD and are subject to change.</p>
+  </div>
+
+  <p class="text-gray-600 dark:text-gray-300 mb-6">
+    Use this calculator to estimate the cost of your 3D printing project. Adjust the parameters below to get an instant quote.
+  </p>
+
+  <form id="calculator-form" class="space-y-6">
+    <!-- Material Selection -->
+    <div class="form-group">
+      <label for="material" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Material</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+        </div>
+        <select
+          id="material"
+          name="material"
+          class="form-select w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 appearance-none"
+        >
+          <option value="pla">PLA ($0.05/g)</option>
+          <option value="abs">ABS ($0.06/g)</option>
+          <option value="petg">PETG ($0.07/g)</option>
+          <option value="tpu">TPU ($0.10/g)</option>
+          <option value="resin">Resin ($0.15/g)</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Print Quality -->
+    <div class="form-group">
+      <label for="quality" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Print Quality</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+          </svg>
+        </div>
+        <select
+          id="quality"
+          name="quality"
+          class="form-select w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 appearance-none"
+        >
+          <option value="draft">Draft (0.3mm layer height, 1.0x cost)</option>
+          <option value="standard" selected>Standard (0.2mm layer height, 1.2x cost)</option>
+          <option value="high">High (0.1mm layer height, 1.5x cost)</option>
+          <option value="ultra">Ultra (0.05mm layer height, 2.0x cost)</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weight/Size Slider -->
+    <div class="form-group">
+      <label for="weight" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        Estimated Weight (grams)
+      </label>
+      <div class="flex items-center space-x-4">
+        <input
+          type="range"
+          id="weight"
+          name="weight"
+          min="10"
+          max="1000"
+          step="10"
+          value="100"
+          class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-accent"
+        />
+        <span id="weight-value" class="text-gray-700 dark:text-gray-300 font-medium min-w-[60px] text-center">100g</span>
+      </div>
+    </div>
+
+    <!-- Infill Density Slider -->
+    <div class="form-group">
+      <label for="infill" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+        Infill Density (%)
+      </label>
+      <div class="flex items-center space-x-4">
+        <input
+          type="range"
+          id="infill"
+          name="infill"
+          min="10"
+          max="100"
+          step="5"
+          value="20"
+          class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-accent"
+        />
+        <span id="infill-value" class="text-gray-700 dark:text-gray-300 font-medium min-w-[60px] text-center">20%</span>
+      </div>
+    </div>
+
+    <!-- Post-Processing Options -->
+    <div class="form-group">
+      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Post-Processing Options</label>
+      <div class="space-y-2">
+        <label class="flex items-center">
+          <input type="checkbox" id="sanding" name="sanding" class="form-checkbox h-5 w-5 text-accent rounded border-gray-300 focus:ring-accent" />
+          <span class="ml-2 text-gray-700 dark:text-gray-300">Sanding & Smoothing (+$10)</span>
+        </label>
+        <label class="flex items-center">
+          <input type="checkbox" id="painting" name="painting" class="form-checkbox h-5 w-5 text-accent rounded border-gray-300 focus:ring-accent" />
+          <span class="ml-2 text-gray-700 dark:text-gray-300">Painting (+$20)</span>
+        </label>
+        <label class="flex items-center">
+          <input type="checkbox" id="assembly" name="assembly" class="form-checkbox h-5 w-5 text-accent rounded border-gray-300 focus:ring-accent" />
+          <span class="ml-2 text-gray-700 dark:text-gray-300">Assembly (+$15)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Quantity -->
+    <div class="form-group">
+      <label for="quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Quantity</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <input
+          type="number"
+          id="quantity"
+          name="quantity"
+          min="1"
+          max="100"
+          value="1"
+          class="form-input w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300"
+        />
+      </div>
+    </div>
+
+    <!-- Urgency -->
+    <div class="form-group">
+      <label for="urgency" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Delivery Time</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <select
+          id="urgency"
+          name="urgency"
+          class="form-select w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition-all duration-300 appearance-none"
+        >
+          <option value="standard">Standard (7-10 business days, 1.0x cost)</option>
+          <option value="express">Express (3-5 business days, 1.5x cost)</option>
+          <option value="rush">Rush (1-2 business days, 2.0x cost)</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Cost Estimate -->
+  <div class="mt-8 p-6 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Estimated Cost</h3>
+      <div id="total-cost" class="text-2xl font-bold text-accent">$0.00</div>
+    </div>
+    <div class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
+      <div class="flex justify-between">
+        <span>Base Material Cost:</span>
+        <span id="material-cost">$0.00</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Quality Adjustment:</span>
+        <span id="quality-cost">$0.00</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Post-Processing:</span>
+        <span id="processing-cost">$0.00</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Quantity:</span>
+        <span id="quantity-cost">$0.00</span>
+      </div>
+      <div class="flex justify-between">
+        <span>Urgency Fee:</span>
+        <span id="urgency-cost">$0.00</span>
+      </div>
+      <div class="border-t border-gray-200 dark:border-gray-600 pt-2 mt-2 flex justify-between font-medium">
+        <span>Total:</span>
+        <span id="final-cost">$0.00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Buttons -->
+  <div class="mt-6 flex flex-col sm:flex-row gap-4">
+    <a href="/contact" class="cta-button-primary group">
+      <span class="cta-button-content">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <span>Request Quote</span>
+      </span>
+      <div class="absolute inset-0 rounded-lg bg-accent opacity-0 blur-xl group-hover:opacity-30 transition-opacity duration-300"></div>
+    </a>
+    <button id="save-estimate" class="cta-button-secondary group">
+      <span class="cta-button-content">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+        </svg>
+        <span>Save Estimate</span>
+      </span>
+      <div class="absolute inset-0 rounded-lg bg-white opacity-0 blur-xl group-hover:opacity-10 transition-opacity duration-300"></div>
+    </button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get all form elements
+    const form = document.getElementById('calculator-form');
+    const materialSelect = document.getElementById('material');
+    const qualitySelect = document.getElementById('quality');
+    const weightSlider = document.getElementById('weight');
+    const weightValue = document.getElementById('weight-value');
+    const infillSlider = document.getElementById('infill');
+    const infillValue = document.getElementById('infill-value');
+    const sandingCheckbox = document.getElementById('sanding');
+    const paintingCheckbox = document.getElementById('painting');
+    const assemblyCheckbox = document.getElementById('assembly');
+    const quantityInput = document.getElementById('quantity');
+    const urgencySelect = document.getElementById('urgency');
+    const saveEstimateButton = document.getElementById('save-estimate');
+
+    // Get all cost display elements
+    const totalCostElement = document.getElementById('total-cost');
+    const materialCostElement = document.getElementById('material-cost');
+    const qualityCostElement = document.getElementById('quality-cost');
+    const processingCostElement = document.getElementById('processing-cost');
+    const quantityCostElement = document.getElementById('quantity-cost');
+    const urgencyCostElement = document.getElementById('urgency-cost');
+    const finalCostElement = document.getElementById('final-cost');
+
+    // Material costs per gram (realistic estimates)
+    const materialCosts = {
+      pla: 0.03,     // $0.03 per gram for PLA
+      abs: 0.04,     // $0.04 per gram for ABS
+      petg: 0.04,    // $0.04 per gram for PETG
+      tpu: 0.06,     // $0.06 per gram for TPU
+      resin: 0.10    // $0.10 per gram for resin
+    };
+
+    // Quality multipliers (affects print time and detail)
+    const qualityMultipliers = {
+      draft: 1.0,     // 0.3mm layer height
+      standard: 1.2,  // 0.2mm layer height
+      high: 1.4,      // 0.1mm layer height
+      ultra: 1.8      // 0.05mm layer height (resin)
+    };
+
+    // Urgency multipliers (affects scheduling priority)
+    const urgencyMultipliers = {
+      standard: 1.0,  // 1-2 weeks turnaround
+      express: 1.3,   // 3-5 days turnaround
+      rush: 1.6       // 1-2 days turnaround (if available)
+    };
+
+    // Post-processing costs (base costs)
+    const processingCosts = {
+      sanding: 5,     // Basic sanding and smoothing
+      painting: 10,   // Basic painting (single color)
+      assembly: 8     // Basic assembly of parts
+    };
+
+    // Update weight value display
+    weightSlider.addEventListener('input', function() {
+      weightValue.textContent = `${this.value}g`;
+      calculateCost();
+    });
+
+    // Update infill value display
+    infillSlider.addEventListener('input', function() {
+      infillValue.textContent = `${this.value}%`;
+      calculateCost();
+    });
+
+    // Add event listeners to all form elements
+    [materialSelect, qualitySelect, sandingCheckbox, paintingCheckbox,
+     assemblyCheckbox, quantityInput, urgencySelect].forEach(element => {
+      element.addEventListener('change', calculateCost);
+    });
+
+    // Calculate cost function
+    function calculateCost() {
+      // Get current values
+      const material = materialSelect.value;
+      const quality = qualitySelect.value;
+      const weight = parseInt(weightSlider.value);
+      const infill = parseInt(infillSlider.value);
+      const quantity = parseInt(quantityInput.value);
+      const urgency = urgencySelect.value;
+
+      // Calculate infill adjustment (more infill = more material)
+      const infillAdjustment = 0.5 + (infill / 100) * 0.5; // 10% infill = 0.55, 100% infill = 1.0
+
+      // Calculate base material cost
+      const baseMaterialCost = materialCosts[material] * weight * infillAdjustment;
+
+      // Apply quality multiplier
+      const qualityAdjustedCost = baseMaterialCost * qualityMultipliers[quality];
+
+      // Calculate post-processing costs
+      let postProcessingCost = 0;
+      if (sandingCheckbox.checked) postProcessingCost += processingCosts.sanding;
+      if (paintingCheckbox.checked) postProcessingCost += processingCosts.painting;
+      if (assemblyCheckbox.checked) postProcessingCost += processingCosts.assembly;
+
+      // Calculate quantity cost
+      const quantityCost = (qualityAdjustedCost + postProcessingCost) * quantity;
+
+      // Apply urgency multiplier
+      const urgencyAdjustedCost = quantityCost * urgencyMultipliers[urgency];
+
+      // Update cost displays
+      materialCostElement.textContent = `$${baseMaterialCost.toFixed(2)}`;
+      qualityCostElement.textContent = `$${(qualityAdjustedCost - baseMaterialCost).toFixed(2)}`;
+      processingCostElement.textContent = `$${postProcessingCost.toFixed(2)}`;
+      quantityCostElement.textContent = `$${(quantityCost - (qualityAdjustedCost + postProcessingCost)).toFixed(2)}`;
+      urgencyCostElement.textContent = `$${(urgencyAdjustedCost - quantityCost).toFixed(2)}`;
+
+      // Update total cost
+      const totalCost = urgencyAdjustedCost;
+      totalCostElement.textContent = `$${totalCost.toFixed(2)}`;
+      finalCostElement.textContent = `$${totalCost.toFixed(2)}`;
+
+      // Add animation to total cost
+      totalCostElement.classList.add('pulse-animation');
+      setTimeout(() => {
+        totalCostElement.classList.remove('pulse-animation');
+      }, 500);
+    }
+
+    // Save estimate button
+    saveEstimateButton.addEventListener('click', function() {
+      // Create a summary of the estimate
+      const material = materialSelect.options[materialSelect.selectedIndex].text;
+      const quality = qualitySelect.options[qualitySelect.selectedIndex].text;
+      const weight = weightSlider.value;
+      const infill = infillSlider.value;
+      const quantity = quantityInput.value;
+      const urgency = urgencySelect.options[urgencySelect.selectedIndex].text;
+
+      const totalCost = totalCostElement.textContent;
+
+      const summary = `
+3D Printing Estimate Summary:
+----------------------------
+Material: ${material}
+Quality: ${quality}
+Weight: ${weight}g
+Infill: ${infill}%
+Quantity: ${quantity}
+Delivery: ${urgency}
+Post-Processing: ${sandingCheckbox.checked ? 'Sanding & Smoothing, ' : ''}${paintingCheckbox.checked ? 'Painting, ' : ''}${assemblyCheckbox.checked ? 'Assembly' : ''}
+Total Cost: ${totalCost}
+----------------------------
+Generated on: ${new Date().toLocaleString()}
+      `;
+
+      // Create a blob and download link
+      const blob = new Blob([summary], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = '3d-printing-estimate.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      // Show success message
+      alert('Estimate saved successfully!');
+    });
+
+    // Initialize cost calculation
+    calculateCost();
+  });
+</script>
+
+<style>
+  /* Calculator specific styles */
+  .form-checkbox {
+    color: var(--nosyt-orange-main);
+  }
+
+  .form-checkbox:checked {
+    background-color: var(--nosyt-orange-main);
+    border-color: var(--nosyt-orange-main);
+  }
+
+  /* Range slider styling */
+  input[type="range"] {
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 5px;
+    background: #d1d5db;
+  }
+
+  .dark input[type="range"] {
+    background: #4b5563;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--nosyt-orange-main);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--nosyt-orange-main);
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Animation for cost updates */
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+
+  .pulse-animation {
+    animation: pulse 0.5s ease-in-out;
+  }
+
+  /* CTA Button styles */
+  .cta-button-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--nosyt-orange-main);
+    color: white;
+    font-medium: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(0);
+  }
+
+  .cta-button-primary:hover {
+    background-color: var(--nosyt-orange-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  }
+
+  .cta-button-secondary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--nosyt-orange-main);
+    font-medium: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--nosyt-orange-main);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    transform: translateY(0);
+  }
+
+  .cta-button-secondary:hover {
+    background-color: rgba(255, 107, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .cta-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+  }
+</style>

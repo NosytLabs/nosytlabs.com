@@ -1,0 +1,500 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Content Creation - NosytLabs" description="Professional video content for YouTube and live streaming on Kick.com.">
+  <div class="content-creation-page">
+    <div class="container">
+      <div class="page-header">
+        <h1>Content Creation</h1>
+        <p class="lead">Professional video content for YouTube and live streaming on Kick.com.</p>
+      </div>
+      
+      <div class="content-platforms">
+        <div class="platform-card youtube">
+          <div class="platform-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+          </div>
+          <h2>YouTube</h2>
+          <p>We create engaging video content for YouTube, including tutorials, reviews, and programming content.</p>
+          <div class="platform-cta">
+            <a href="https://www.youtube.com/@TycenYT" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Visit YouTube Channel
+            </a>
+          </div>
+        </div>
+        
+        <div class="platform-card kick">
+          <div class="platform-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1 17H7V7h4v10zm8 0h-4v-5c0-1.1-.9-2-2-2h-2V7h2c2.21 0 4 1.79 4 4v6z"/>
+            </svg>
+          </div>
+          <h2>Kick.com</h2>
+          <p>We stream live on Kick.com, sharing our development process, gaming sessions, and tech discussions.</p>
+          <div class="platform-cta">
+            <a href="/live" class="btn btn-primary">
+              Watch Live Stream
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="content-showcase">
+        <h2>Featured Content</h2>
+        
+        <div class="video-grid">
+          <!-- Video 1 -->
+          <div class="video-card">
+            <div class="video-embed">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="video-info">
+              <h3>Getting Started with Astro</h3>
+              <p>Learn how to build fast websites with Astro, a modern static site generator.</p>
+            </div>
+          </div>
+          
+          <!-- Video 2 -->
+          <div class="video-card">
+            <div class="video-embed">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="video-info">
+              <h3>React vs Vue: Which One Should You Choose?</h3>
+              <p>A comparison of React and Vue.js to help you decide which framework is right for your project.</p>
+            </div>
+          </div>
+          
+          <!-- Video 3 -->
+          <div class="video-card">
+            <div class="video-embed">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="video-info">
+              <h3>Building a Portfolio Website with Astro</h3>
+              <p>Step-by-step guide to building a portfolio website with Astro and deploying it to Vercel.</p>
+            </div>
+          </div>
+          
+          <!-- Video 4 -->
+          <div class="video-card">
+            <div class="video-embed">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="video-info">
+              <h3>Introduction to 3D Printing</h3>
+              <p>Learn the basics of 3D printing, including hardware, software, and materials.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="content-services">
+        <h2>Our Content Creation Services</h2>
+        
+        <div class="services-grid">
+          <!-- Video Production -->
+          <div class="service-item">
+            <div class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+              </svg>
+            </div>
+            <h3>Video Production</h3>
+            <p>Professional video production and editing for YouTube, including tutorials, reviews, and programming content.</p>
+          </div>
+          
+          <!-- Live Streaming -->
+          <div class="service-item">
+            <div class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 9V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"></path>
+                <polyline points="12 8 16 12 12 16"></polyline>
+                <line x1="16" y1="12" x2="8" y2="12"></line>
+              </svg>
+            </div>
+            <h3>Live Streaming</h3>
+            <p>Live streaming setup and management for Kick.com, including technical setup, overlays, and alerts.</p>
+          </div>
+          
+          <!-- Thumbnail Design -->
+          <div class="service-item">
+            <div class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <h3>Thumbnail Design</h3>
+            <p>Eye-catching thumbnail design for YouTube videos to increase click-through rates and engagement.</p>
+          </div>
+          
+          <!-- Channel Branding -->
+          <div class="service-item">
+            <div class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+              </svg>
+            </div>
+            <h3>Channel Branding</h3>
+            <p>Professional channel branding, including logos, banners, and consistent visual identity.</p>
+          </div>
+          
+          <!-- SEO Optimization -->
+          <div class="service-item">
+            <div class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3>SEO Optimization</h3>
+            <p>Search engine optimization for YouTube videos to improve visibility and reach a wider audience.</p>
+          </div>
+          
+          <!-- Content Strategy -->
+          <div class="service-item">
+            <div class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <h3>Content Strategy</h3>
+            <p>Strategic content planning to grow your channel and engage your audience effectively.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CTA Section -->
+      <div class="content-cta">
+        <h2>Ready to Create Engaging Content?</h2>
+        <p>Contact us today to discuss your content creation needs and how we can help you reach your audience.</p>
+        <a href="/contact" class="btn btn-accent">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .content-creation-page {
+    padding: var(--spacing-12) 0;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+  
+  .page-header h1 {
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-4);
+    color: var(--primary);
+  }
+  
+  .dark .page-header h1 {
+    color: var(--primary-light);
+  }
+  
+  .lead {
+    font-size: var(--font-size-xl);
+    color: var(--gray-600);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .dark .lead {
+    color: var(--gray-300);
+  }
+  
+  .content-platforms {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-16);
+  }
+  
+  @media (min-width: 768px) {
+    .content-platforms {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .platform-card {
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-8);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: all var(--transition-normal) var(--transition-timing-ease);
+  }
+  
+  .dark .platform-card {
+    background-color: var(--gray-800);
+  }
+  
+  .platform-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .platform-card.youtube {
+    border-top: 5px solid #FF0000;
+  }
+  
+  .platform-card.kick {
+    border-top: 5px solid #53B848;
+  }
+  
+  .platform-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .platform-card.youtube .platform-icon {
+    color: #FF0000;
+  }
+  
+  .platform-card.kick .platform-icon {
+    color: #53B848;
+  }
+  
+  .platform-card h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .platform-card p {
+    margin-bottom: var(--spacing-6);
+  }
+  
+  .content-showcase {
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .content-showcase h2 {
+    text-align: center;
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-8);
+  }
+  
+  @media (min-width: 768px) {
+    .video-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .video-card {
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal) var(--transition-timing-ease);
+  }
+  
+  .dark .video-card {
+    background-color: var(--gray-800);
+  }
+  
+  .video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .video-embed {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  }
+  
+  .video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  .video-info {
+    padding: var(--spacing-4);
+  }
+  
+  .video-info h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2);
+    color: var(--primary);
+  }
+  
+  .dark .video-info h3 {
+    color: var(--primary-light);
+  }
+  
+  .video-info p {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+  }
+  
+  .dark .video-info p {
+    color: var(--gray-300);
+  }
+  
+  .content-services {
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .content-services h2 {
+    text-align: center;
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+  
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .service-item {
+    background-color: white;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal) var(--transition-timing-ease);
+  }
+  
+  .dark .service-item {
+    background-color: var(--gray-800);
+  }
+  
+  .service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  .service-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    color: white;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .service-item h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2);
+    color: var(--primary);
+  }
+  
+  .dark .service-item h3 {
+    color: var(--primary-light);
+  }
+  
+  .service-item p {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+  }
+  
+  .dark .service-item p {
+    color: var(--gray-300);
+  }
+  
+  .content-cta {
+    text-align: center;
+    background-color: var(--primary);
+    color: white;
+    padding: var(--spacing-12);
+    border-radius: var(--border-radius-lg);
+  }
+  
+  .dark .content-cta {
+    background-color: var(--primary-light);
+  }
+  
+  .content-cta h2 {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-4);
+    color: white;
+  }
+  
+  .content-cta p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-6);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

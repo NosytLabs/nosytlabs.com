@@ -1,0 +1,92 @@
+---
+/**
+ * AppCard Component
+ * A compact card component for displaying passive income app information
+ */
+
+// Define the props interface
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  category: string;
+  monthlyEarnings: string;
+  minPayout?: string;
+  paymentMethods?: string[];
+  link: string;
+  className?: string;
+}
+
+// Destructure the props
+const { 
+  id, 
+  title, 
+  description, 
+  image, 
+  category, 
+  monthlyEarnings, 
+  minPayout = "Varies", 
+  paymentMethods = [], 
+  link,
+  className = ""
+} = Astro.props;
+---
+
+<div class={`bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${className}`}>
+  <div class="relative">
+    <img 
+      src={image} 
+      alt={title} 
+      class="w-full h-48 object-cover"
+      loading="lazy"
+    />
+    <div class="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-2 py-1 m-2 rounded">
+      {category}
+    </div>
+  </div>
+  
+  <div class="p-5">
+    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">{description}</p>
+    
+    <div class="space-y-2 mb-4">
+      <div class="flex justify-between text-sm">
+        <span class="text-gray-500 dark:text-gray-400">Monthly Earnings:</span>
+        <span class="font-medium text-gray-900 dark:text-white">{monthlyEarnings}</span>
+      </div>
+      
+      <div class="flex justify-between text-sm">
+        <span class="text-gray-500 dark:text-gray-400">Min. Payout:</span>
+        <span class="font-medium text-gray-900 dark:text-white">{minPayout}</span>
+      </div>
+      
+      {paymentMethods.length > 0 && (
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500 dark:text-gray-400">Payment:</span>
+          <span class="font-medium text-gray-900 dark:text-white truncate max-w-[60%] text-right">
+            {paymentMethods.slice(0, 2).join(", ")}
+            {paymentMethods.length > 2 && "..."}
+          </span>
+        </div>
+      )}
+    </div>
+    
+    <div class="flex space-x-2">
+      <a 
+        href={`/passive-income/${id}`} 
+        class="flex-1 bg-primary hover:bg-primary-dark text-white text-center py-2 px-4 rounded transition-colors"
+      >
+        Learn More
+      </a>
+      <a 
+        href={link} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="flex-1 bg-accent hover:bg-accent-dark text-white text-center py-2 px-4 rounded transition-colors"
+      >
+        Sign Up
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,536 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Roo Code: An Open-Source VSCode Extension for AI-Assisted Coding - NosytLabs Blog</title><meta name="description" content="NosytLabs - Innovative digital solutions that help businesses thrive in the modern landscape."><!-- Favicons - Updated with NosytLabs logo 2025 --><link rel="icon" type="image/svg+xml" href="/images/nosytlabs-logo-2025.svg"><link rel="shortcut icon" href="/favicon.ico"><!-- Standard Favicons --><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png"><!-- Apple Touch Icon --><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png"><!-- Web Manifest --><link rel="manifest" href="/site.webmanifest"><!-- Theme Colors --><meta name="theme-color" content="#4C1D95"><meta name="msapplication-TileColor" content="#4C1D95"><!-- Open Graph / Social Media --><meta property="og:type" content="website"><meta property="og:url" content="https://nosytlabs.com/blog/roo-code.html"><meta property="og:title" content="Roo Code: An Open-Source VSCode Extension for AI-Assisted Coding - NosytLabs Blog"><meta property="og:description" content="NosytLabs - Innovative digital solutions that help businesses thrive in the modern landscape."><meta property="og:image" content="/images/nosytlabs-og.jpg"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:title" content="Roo Code: An Open-Source VSCode Extension for AI-Assisted Coding - NosytLabs Blog"><meta property="twitter:description" content="NosytLabs - Innovative digital solutions that help businesses thrive in the modern landscape."><meta property="twitter:image" content="/images/nosytlabs-og.jpg"><!-- Canonical URL --><link rel="canonical" href="https://nosytlabs.com/blog/roo-code.html"><!-- Keywords --><meta name="keywords" content="AI solutions, web development, mobile apps, 3D printing, technology"><!-- Structured Data for Organization --><script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "NosytLabs",
+      "url": "https://nosytlabs.com",
+      "logo": "https://nosytlabs.com/images/nosytlabs-logo-2025.svg",
+      "description": "Notable Opportunities Shape Your Tomorrow - Innovative digital solutions that help businesses thrive in the modern landscape.",
+      "sameAs": [
+        "https://github.com/NosytLabs",
+        "https://kick.com/Tycen",
+        "https://www.youtube.com/@TycenYT",
+        "https://crealitycloud.com/user/9519489699"
+      ]
+    }
+  </script><!-- Resource hints for critical resources --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><!-- Preload critical resources --><link rel="preload" href="/images/nosytlabs-logo-2025.svg" as="image" fetchpriority="high"><link rel="preload" href="/styles/global.css" as="style"><link rel="preload" href="/scripts/main.js" as="script"><!-- DNS prefetch for external resources --><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"><!-- Fonts with optimized loading --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><link rel="stylesheet" href="/assets/3d-printing-BIFKr3Ol.css">
+<style>@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}.animate-fade-in[data-astro-cid-2q5oecfc]{animation:fadeIn 0.8s ease-in-out forwards}.animate-slide-up[data-astro-cid-2q5oecfc]{animation:slideUp 0.8s ease-in-out forwards}.prose[data-astro-cid-2q5oecfc] h2[data-astro-cid-2q5oecfc]{margin-top:2rem;margin-bottom:1rem;font-size:1.875rem;font-weight:700;color:#2d3748}.prose[data-astro-cid-2q5oecfc] h3[data-astro-cid-2q5oecfc]{margin-top:1.5rem;margin-bottom:0.75rem;font-size:1.5rem;font-weight:600;color:#2d3748}.prose[data-astro-cid-2q5oecfc] p[data-astro-cid-2q5oecfc]{margin-bottom:1.25rem;line-height:1.7}.prose[data-astro-cid-2q5oecfc] ul[data-astro-cid-2q5oecfc],.prose[data-astro-cid-2q5oecfc] ol[data-astro-cid-2q5oecfc]{margin-top:1rem;margin-bottom:1rem;padding-left:1.5rem}.prose[data-astro-cid-2q5oecfc] li[data-astro-cid-2q5oecfc]{margin-bottom:0.5rem}.prose[data-astro-cid-2q5oecfc] blockquote[data-astro-cid-2q5oecfc]{border-left:4px solid #4f46e5;padding-left:1rem;font-style:italic;color:#4b5563;margin:1.5rem 0}.prose[data-astro-cid-2q5oecfc] a[data-astro-cid-2q5oecfc]{color:#4f46e5;text-decoration:underline}.prose[data-astro-cid-2q5oecfc] a[data-astro-cid-2q5oecfc]:hover{color:#4338ca}.prose[data-astro-cid-2q5oecfc] code[data-astro-cid-2q5oecfc]{background-color:#f1f5f9;padding:0.2rem 0.4rem;border-radius:0.25rem;font-size:0.875em}.prose[data-astro-cid-2q5oecfc] pre[data-astro-cid-2q5oecfc]{background-color:#1e293b;color:#e2e8f0;padding:1rem;border-radius:0.5rem;overflow-x:auto;margin:1.5rem 0}.prose[data-astro-cid-2q5oecfc] pre[data-astro-cid-2q5oecfc] code[data-astro-cid-2q5oecfc]{background-color:transparent;padding:0;color:inherit}.prose[data-astro-cid-2q5oecfc] img[data-astro-cid-2q5oecfc]{border-radius:0.5rem;margin:1.5rem 0}.prose[data-astro-cid-2q5oecfc] figure[data-astro-cid-2q5oecfc]{margin:1.5rem 0}.prose[data-astro-cid-2q5oecfc] figcaption[data-astro-cid-2q5oecfc]{text-align:center;font-size:0.875rem;color:#6b7280;margin-top:0.5rem}</style>
+<link rel="stylesheet" href="/assets/cursor-ai-DaBJGAkm.css"><script type="module" src="/entry/hoisted-C8kgOObh.js"></script><noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript><!-- Font Awesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- Global styles --><link rel="stylesheet" href="/styles/global.css"><!-- NosytOS95 specific styles - only loaded on the NosytOS95 page --><!-- Core functionality - high priority --><script src="/scripts/main.js" defer fetchpriority="high"></script><!-- NosytOS95 specific scripts are now loaded directly in the nosytos95.astro page --><!-- Service Worker Registration --></head> <body id="page-dm9059o" class="overflow-x-hidden overflow-y-auto"> <!-- Skip to main content link for accessibility --> <a href="#main-content" class="skip-link">Skip to main content</a> <!-- Header - Only show modern header on non-NosytOS95 pages --> <header class="site-header bg-white dark:bg-gray-900 shadow-md" data-astro-cid-3ef6ksr2> <div class="container mx-auto px-4" data-astro-cid-3ef6ksr2> <div class="flex items-center justify-between py-4" data-astro-cid-3ef6ksr2> <!-- Logo --> <a href="/" class="flex items-center space-x-2 group" data-astro-cid-3ef6ksr2> <div class="w-10 h-10 flex items-center justify-center overflow-hidden" data-astro-cid-3ef6ksr2> <img src="/images/nosytlabs-logo-2025.svg" alt="NosytLabs Logo" width="40" height="40" class="transition-transform duration-300 group-hover:scale-110" data-astro-cid-3ef6ksr2> </div> <span class="text-xl font-bold text-primary dark:text-primary-light transition-colors duration-300" data-astro-cid-3ef6ksr2>
+NosytLabs
+</span> </a> <!-- Desktop Navigation --> <nav class="hidden md:flex items-center space-x-6" data-astro-cid-3ef6ksr2> <a href="/" class="
+              text-sm font-medium transition-colors duration-300 relative
+              text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light
+            " data-astro-cid-3ef6ksr2> Home  </a><a href="/about" class="
+              text-sm font-medium transition-colors duration-300 relative
+              text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light
+            " data-astro-cid-3ef6ksr2> About  </a><a href="/projects" class="
+              text-sm font-medium transition-colors duration-300 relative
+              text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light
+            " data-astro-cid-3ef6ksr2> Projects  </a><a href="/services" class="
+              text-sm font-medium transition-colors duration-300 relative
+              text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light
+            " data-astro-cid-3ef6ksr2> Services  </a><a href="/resume" class="
+              text-sm font-medium transition-colors duration-300 relative
+              text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light
+            " data-astro-cid-3ef6ksr2> Resume  </a><a href="/nosytos95" class="
+              text-sm font-medium transition-colors duration-300 relative
+              text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light
+            " data-astro-cid-3ef6ksr2> NosytOS95  </a><a href="/contact" class="
+              text-sm font-medium transition-colors duration-300 relative
+              text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light
+            " data-astro-cid-3ef6ksr2> Contact  </a> </nav> <!-- Search and Theme Toggle --> <div class="hidden md:flex items-center space-x-3" data-astro-cid-3ef6ksr2> <!-- Search Trigger --> <button id="search-trigger" class="search-trigger" aria-label="Open search" data-astro-cid-3ef6ksr2> <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-3ef6ksr2> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" data-astro-cid-3ef6ksr2></path> </svg> <span class="search-text" data-astro-cid-3ef6ksr2>Search</span> <kbd class="search-kbd" data-astro-cid-3ef6ksr2>⌘K</kbd> </button> <!-- Theme Toggle --> <button id="theme-toggle" class="p-2 rounded-md text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light transition-colors duration-300" aria-label="Toggle theme" data-astro-cid-3ef6ksr2> <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-3ef6ksr2> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" data-astro-cid-3ef6ksr2></path> </svg> <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-3ef6ksr2> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" data-astro-cid-3ef6ksr2></path> </svg> </button> </div> <!-- Mobile Menu Button --> <button id="mobile-menu-button" class="md:hidden flex items-center p-2 rounded-md text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-primary-light" aria-label="Toggle mobile menu" data-astro-cid-3ef6ksr2> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-3ef6ksr2> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-3ef6ksr2></path> </svg> </button> </div> </div> <!-- Mobile Navigation --> <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700" data-astro-cid-3ef6ksr2> <div class="container mx-auto px-4 py-3" data-astro-cid-3ef6ksr2> <nav class="flex flex-col space-y-3" data-astro-cid-3ef6ksr2> <a href="/" class="
+              py-2 px-3 rounded-md transition-colors duration-300
+              text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800
+            " data-astro-cid-3ef6ksr2> Home </a><a href="/about" class="
+              py-2 px-3 rounded-md transition-colors duration-300
+              text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800
+            " data-astro-cid-3ef6ksr2> About </a><a href="/projects" class="
+              py-2 px-3 rounded-md transition-colors duration-300
+              text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800
+            " data-astro-cid-3ef6ksr2> Projects </a><a href="/services" class="
+              py-2 px-3 rounded-md transition-colors duration-300
+              text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800
+            " data-astro-cid-3ef6ksr2> Services </a><a href="/resume" class="
+              py-2 px-3 rounded-md transition-colors duration-300
+              text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800
+            " data-astro-cid-3ef6ksr2> Resume </a><a href="/nosytos95" class="
+              py-2 px-3 rounded-md transition-colors duration-300
+              text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800
+            " data-astro-cid-3ef6ksr2> NosytOS95 </a><a href="/contact" class="
+              py-2 px-3 rounded-md transition-colors duration-300
+              text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800
+            " data-astro-cid-3ef6ksr2> Contact </a> </nav> </div> </div> </header>   <!-- Main Content --> <main id="main-content" class="min-h-screen relative"> <div id="particle-background" class="particle-background absolute inset-0 pointer-events-none z-0" data-color="rgba(76, 29, 149, 0.2)" data-secondary-color="rgba(255, 107, 0, 0.2)" data-particle-count="100" data-particle-size="3" data-particle-speed="1" data-interactive="true" data-connect-particles="true" data-gradient="true"></div> <!-- Main Content --> <div class="relative z-10">  <article class="blog-post" data-astro-cid-2q5oecfc> <!-- Hero Section --> <div class="relative" data-astro-cid-2q5oecfc> <div class="w-full h-[40vh] md:h-[60vh]" data-astro-cid-2q5oecfc> <img src="/images/blog/roo-code.jpg" alt="Roo Code: An Open-Source VSCode Extension for AI-Assisted Coding" class="w-full h-full object-cover" data-astro-cid-2q5oecfc> <div class="absolute inset-0 bg-black bg-opacity-50" data-astro-cid-2q5oecfc></div> </div> <div class="absolute inset-0 flex items-center justify-center" data-astro-cid-2q5oecfc> <div class="text-center text-white px-4 max-w-4xl animate-fade-in" data-astro-cid-2q5oecfc> <h1 class="text-3xl md:text-5xl font-bold mb-4 animate-slide-up" data-astro-cid-2q5oecfc>Roo Code: An Open-Source VSCode Extension for AI-Assisted Coding</h1> <p class="text-xl md:text-2xl mb-6 animate-slide-up" style="animation-delay: 0.2s;" data-astro-cid-2q5oecfc></p> <div class="flex items-center justify-center mb-4 animate-fade-in" style="animation-delay: 0.3s;" data-astro-cid-2q5oecfc> <img alt="Tycen" class="w-12 h-12 rounded-full mr-4" data-astro-cid-2q5oecfc> <div class="text-left" data-astro-cid-2q5oecfc> <div class="font-medium" data-astro-cid-2q5oecfc>Tycen</div> <div class="text-sm opacity-75" data-astro-cid-2q5oecfc>2025-03-25</div> </div> </div> </div> </div> </div> <!-- Content Section --> <div class="container mx-auto px-4 py-16" data-astro-cid-2q5oecfc> <div class="max-w-3xl mx-auto" data-astro-cid-2q5oecfc> <!-- Tags --> <div class="flex flex-wrap gap-2 mb-8 animate-fade-in" style="animation-delay: 0.4s;" data-astro-cid-2q5oecfc> <span class="px-3 py-1 bg-indigo-100 text-indigo-800 font-medium rounded-full" data-astro-cid-2q5oecfc>  </span> <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full" data-astro-cid-2q5oecfc> AI Tools </span><span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full" data-astro-cid-2q5oecfc> Development </span><span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full" data-astro-cid-2q5oecfc> Coding </span><span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full" data-astro-cid-2q5oecfc> Productivity </span><span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full" data-astro-cid-2q5oecfc> VSCode </span> </div> <!-- Post Content --> <div class="prose prose-lg max-w-none animate-fade-in" style="animation-delay: 0.5s;" data-astro-cid-2q5oecfc> <h2 id="the-growth-of-open-source-ai-coding-tools">The Growth of Open-Source AI Coding Tools</h2>
+<p>The software development landscape has been enhanced by AI-powered coding assistants. Among these tools, <strong>Roo Code</strong> (previously known as Roo Cline) offers an open-source alternative for developers who want to integrate AI into their coding workflow. As a VSCode extension, Roo Code provides a combination of flexibility, customization options, and powerful AI capabilities for task automation.</p>
+<div class="blog-image-frame">
+  <div class="blog-image-titlebar">Roo Code Interface</div>
+  <div class="blog-image-content">
+    <img src="/images/blog/roo-code.jpg" alt="Roo Code Interface">
+  </div>
+</div>
+<h2 id="what-is-roo-code">What is Roo Code?</h2>
+<p>Roo Code is an open-source VSCode extension that gives developers direct access to AI capabilities for task automation. It works with your local development setup, offering features such as:</p>
+<ul>
+<li>Direct code manipulation in your editor</li>
+<li>Terminal command execution</li>
+<li>Debug capabilities</li>
+<li>Task automation for complex workflows</li>
+<li>Integration with tools using MCP servers</li>
+</ul>
+<p>Being open-source, Roo Code provides transparency and community-driven development that appeals to many developers who want more control over their AI tools.</p>
+<h2 id="key-features-that-set-roo-code-apart">Key Features That Set Roo Code Apart</h2>
+<h3 id="1-direct-code-manipulation">1. Direct Code Manipulation</h3>
+<p>Roo Code can make changes directly in the editor you’re working in, allowing for seamless integration with your existing workflow:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Example: Ask Roo Code to "Add error handling to this function"</span></span>
+<span class="line"><span style="color:#6A737D">// Original code:</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> fetchUserData</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">userId</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`/api/users/${</span><span style="color:#E1E4E8">userId</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> userData</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> userData;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Roo Code directly modifies the code to:</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> fetchUserData</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">userId</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`/api/users/${</span><span style="color:#E1E4E8">userId</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">response.ok) {</span></span>
+<span class="line"><span style="color:#F97583">      throw</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">`Failed to fetch user data: ${</span><span style="color:#E1E4E8">response</span><span style="color:#9ECBFF">.</span><span style="color:#E1E4E8">statusText</span><span style="color:#9ECBFF">}`</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> userData</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> userData;</span></span>
+<span class="line"><span style="color:#E1E4E8">  } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Error fetching user data:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">    throw</span><span style="color:#E1E4E8"> error;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>This direct manipulation eliminates the need to copy and paste code between different interfaces, maintaining your flow and context.</p>
+<h3 id="2-terminal-command-execution">2. Terminal Command Execution</h3>
+<p>Roo Code can execute terminal commands directly from within the tool, enabling a wide range of operations without leaving your coding environment:</p>
+<ul>
+<li>Installing dependencies</li>
+<li>Running tests</li>
+<li>Starting development servers</li>
+<li>Executing git operations</li>
+<li>Performing file system operations</li>
+</ul>
+<p>This integration streamlines your workflow by keeping all development activities within a single context.</p>
+<h3 id="3-task-automation">3. Task Automation</h3>
+<p>One of Roo Code’s most distinctive features is its ability to automate complex development tasks:</p>
+<ul>
+<li><strong>Debugging</strong>: Automatically identify and fix issues in your code</li>
+<li><strong>Refactoring</strong>: Restructure code while maintaining functionality</li>
+<li><strong>Testing</strong>: Generate comprehensive test suites for your code</li>
+<li><strong>Documentation</strong>: Create and update documentation based on your code</li>
+<li><strong>Project Setup</strong>: Automate the setup of new projects or components</li>
+</ul>
+<p>Users can describe complex tasks in natural language, and Roo Code will execute them step by step, making it particularly valuable for repetitive or time-consuming development tasks.</p>
+<h3 id="4-mcp-server-integration">4. MCP Server Integration</h3>
+<p>Roo Code supports the Model Context Protocol (MCP), allowing it to connect with external tools and services:</p>
+<ul>
+<li>Custom data sources</li>
+<li>Specialized analysis tools</li>
+<li>Domain-specific assistants</li>
+<li>Team-specific resources</li>
+</ul>
+<p>This extensibility makes Roo Code adaptable to a wide range of development scenarios and team requirements.</p>
+<h3 id="5-byok-bring-your-own-key-model">5. BYOK (Bring Your Own Key) Model</h3>
+<p>Roo Code uses a BYOK (Bring Your Own Key) model, allowing you to:</p>
+<ul>
+<li>Use your preferred AI model (Claude, GPT-4, etc.)</li>
+<li>Maintain control over your API usage and costs</li>
+<li>Ensure your code remains private according to your chosen provider’s policies</li>
+<li>Switch between different models for different tasks</li>
+</ul>
+<p>This approach gives developers more flexibility and control compared to services with fixed AI providers.</p>
+<h2 id="real-world-performance">Real-World Performance</h2>
+<p>According to a recent evaluation by Qubika, Roo Code demonstrated impressive capabilities when tasked with adding a deals feature to a site’s CRM:</p>
+<ul>
+<li>Successfully created all initial entities and their matching relations</li>
+<li>Understood patterns in existing code and prompted for clarification when needed</li>
+<li>Detected and dismissed bogus errors while addressing real issues</li>
+<li>Created CRUD functionality for new entities</li>
+<li>Implemented visual changes based on design references</li>
+</ul>
+<p>The evaluation noted that Roo Code was particularly effective at understanding TypeScript errors as they appeared in the editor and making appropriate corrections.</p>
+<h2 id="advantages-of-roo-code">Advantages of Roo Code</h2>
+<h3 id="integration-with-existing-workflow">Integration with Existing Workflow</h3>
+<ul>
+<li>Works within your familiar VSCode environment</li>
+<li>Uses all your existing tools and settings</li>
+<li>Enables direct file manipulation in your editor</li>
+<li>Supports terminal command execution</li>
+</ul>
+<h3 id="customization-and-flexibility">Customization and Flexibility</h3>
+<ul>
+<li>Provides customizable modes for different development tasks</li>
+<li>Allows creation of custom prompt templates</li>
+<li>Supports MCP server integration for extended capabilities</li>
+<li>Works with your choice of AI model</li>
+</ul>
+<h3 id="transparency-and-control">Transparency and Control</h3>
+<ul>
+<li>Open-source codebase allows inspection and modification</li>
+<li>BYOK model gives you control over API usage</li>
+<li>Local development environment keeps your code on your machine</li>
+<li>Community-driven development and support</li>
+</ul>
+<h2 id="limitations-to-consider">Limitations to Consider</h2>
+<p>While Roo Code offers significant advantages, there are some limitations to be aware of:</p>
+<ul>
+<li>Token consumption can be substantial, especially for complex tasks</li>
+<li>Only supports one session per VSCode window</li>
+<li>Performance varies based on codebase complexity and prompt quality</li>
+<li>Requires your own API keys, which means managing costs</li>
+</ul>
+<h2 id="getting-started-with-roo-code">Getting Started with Roo Code</h2>
+<p>Getting started with Roo Code is straightforward:</p>
+<ol>
+<li>Install the <a href="https://marketplace.visualstudio.com/items?itemName=RooVetGit.roo-code">Roo Code extension</a> from the VSCode marketplace</li>
+<li>Configure your preferred AI model API key</li>
+<li>Select or customize modes based on your development needs</li>
+<li>Start coding with AI assistance directly in your editor</li>
+</ol>
+<h2 id="recent-updates-in-roo-code-316">Recent Updates in Roo Code 3.16</h2>
+<p>The latest version of Roo Code (3.16) brings several new features and improvements based on user feedback:</p>
+<ul>
+<li>Enhanced debugging capabilities</li>
+<li>Improved performance and stability</li>
+<li>Better integration with version control systems</li>
+<li>New task automation templates</li>
+<li>Expanded language support</li>
+</ul>
+<p>These updates reflect the active development and community-driven nature of the project, with regular improvements based on real-world developer needs.</p>
+<h2 id="conclusion-the-power-of-open-source-ai">Conclusion: The Power of Open-Source AI</h2>
+<p>Roo Code represents a compelling vision for AI-assisted development—one where developers maintain control over their tools and data while benefiting from powerful AI capabilities for task automation. By combining the flexibility of open-source software with the power of modern AI models, Roo Code offers a unique approach that resonates with developers who value transparency, customization, and integration with existing workflows.</p>
+<p>Whether you’re looking for an alternative to closed-source AI coding assistants or simply want more control over your development environment, Roo Code provides a powerful, flexible solution that can significantly improve your productivity through intelligent task automation.</p>
+<hr>
+<p><em>Have you tried Roo Code or similar open-source AI coding assistants? Share your experience in the comments below!</em></p> </div> <!-- Author Bio --> <div class="mt-16 p-6 bg-gray-50 rounded-lg animate-fade-in" style="animation-delay: 0.6s;" data-astro-cid-2q5oecfc> <div class="flex items-start" data-astro-cid-2q5oecfc> <img alt="Tycen" class="w-16 h-16 rounded-full mr-6" data-astro-cid-2q5oecfc> <div data-astro-cid-2q5oecfc> <h3 class="text-xl font-bold mb-2" data-astro-cid-2q5oecfc>About Tycen</h3> <p class="text-gray-600 mb-4" data-astro-cid-2q5oecfc> Tycen is the founder of NosytLabs and a full-stack developer specializing in React, Next.js, and AI-assisted development tools. With a background in both web development and content creation, Tycen shares practical insights from real-world projects and experiments with cutting-edge technologies like Cursor AI, 3D printing, and cryptocurrency mining.
+</p> <div class="flex space-x-4" data-astro-cid-2q5oecfc> <a href="https://github.com/NosytLabs" class="text-indigo-600 hover:text-indigo-800" target="_blank" rel="noopener noreferrer" data-astro-cid-2q5oecfc> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" data-astro-cid-2q5oecfc> <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" data-astro-cid-2q5oecfc></path> </svg> </a> <a href="https://kick.com/Tycen" class="text-indigo-600 hover:text-indigo-800" target="_blank" rel="noopener noreferrer" data-astro-cid-2q5oecfc> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" data-astro-cid-2q5oecfc> <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm-1-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm5 7h-2v-3.5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5V17h-2v-6h2v1.1c.52-.7 1.37-1.1 2.25-1.1 1.65 0 3 1.35 3 3V17z" clip-rule="evenodd" data-astro-cid-2q5oecfc></path> </svg> </a> <a href="https://www.youtube.com/@TycenYT" class="text-indigo-600 hover:text-indigo-800" target="_blank" rel="noopener noreferrer" data-astro-cid-2q5oecfc> <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" data-astro-cid-2q5oecfc> <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" data-astro-cid-2q5oecfc></path> </svg> </a> </div> </div> </div> </div> </div> </div> <!-- Related Posts Section --> <section class="py-16 bg-gray-50" data-astro-cid-2q5oecfc> <div class="container mx-auto px-4" data-astro-cid-2q5oecfc> <h2 class="text-3xl font-bold mb-12 text-center animate-fade-in" data-astro-cid-2q5oecfc>You Might Also Like</h2> <div class="grid grid-cols-1 md:grid-cols-3 gap-8" data-astro-cid-2q5oecfc> <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in" style="animation-delay: 0.3s;" data-astro-cid-2q5oecfc> <img src="/images/blog/ai-trends-2025.jpg" alt="AI Trends to Watch in 2025" class="w-full h-48 object-cover" data-astro-cid-2q5oecfc> <div class="p-6" data-astro-cid-2q5oecfc> <h3 class="text-xl font-bold mb-2 hover:text-indigo-600 transition-colors" data-astro-cid-2q5oecfc> <a href="/blog/ai-trends-2025" data-astro-cid-2q5oecfc>AI Trends to Watch in 2025</a> </h3> <p class="text-gray-600 mb-4 text-sm" data-astro-cid-2q5oecfc>Explore the cutting-edge AI technologies and trends that will shape the business landscape in 2025 and beyond.</p> <a href="/blog/ai-trends-2025" class="inline-block text-indigo-600 hover:text-indigo-800 font-medium text-sm" data-astro-cid-2q5oecfc>
+Read More &rarr;
+</a> </div> </div> <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in" style="animation-delay: 0.4s;" data-astro-cid-2q5oecfc> <img src="/images/blog/web3-blockchain.jpg" alt="How Web3 and Blockchain Are Transforming Business" class="w-full h-48 object-cover" data-astro-cid-2q5oecfc> <div class="p-6" data-astro-cid-2q5oecfc> <h3 class="text-xl font-bold mb-2 hover:text-indigo-600 transition-colors" data-astro-cid-2q5oecfc> <a href="/blog/web3-blockchain-business" data-astro-cid-2q5oecfc>How Web3 and Blockchain Are Transforming Business</a> </h3> <p class="text-gray-600 mb-4 text-sm" data-astro-cid-2q5oecfc>Discover how decentralized technologies are creating new business models and opportunities across industries.</p> <a href="/blog/web3-blockchain-business" class="inline-block text-indigo-600 hover:text-indigo-800 font-medium text-sm" data-astro-cid-2q5oecfc>
+Read More &rarr;
+</a> </div> </div> <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in" style="animation-delay: 0.5s;" data-astro-cid-2q5oecfc> <img src="/images/blog/3d-printing-manufacturing.jpg" alt="The Future of Manufacturing: 3D Printing Revolution" class="w-full h-48 object-cover" data-astro-cid-2q5oecfc> <div class="p-6" data-astro-cid-2q5oecfc> <h3 class="text-xl font-bold mb-2 hover:text-indigo-600 transition-colors" data-astro-cid-2q5oecfc> <a href="/blog/3d-printing-manufacturing" data-astro-cid-2q5oecfc>The Future of Manufacturing: 3D Printing Revolution</a> </h3> <p class="text-gray-600 mb-4 text-sm" data-astro-cid-2q5oecfc>How additive manufacturing is reshaping production processes and enabling new possibilities in product development.</p> <a href="/blog/3d-printing-manufacturing" class="inline-block text-indigo-600 hover:text-indigo-800 font-medium text-sm" data-astro-cid-2q5oecfc>
+Read More &rarr;
+</a> </div> </div> </div> </div> </section> <!-- Newsletter Section --> <section class="py-16 bg-indigo-700 text-white" data-astro-cid-2q5oecfc> <div class="container mx-auto px-4" data-astro-cid-2q5oecfc> <div class="max-w-3xl mx-auto text-center animate-fade-in" data-astro-cid-2q5oecfc> <h2 class="text-3xl font-bold mb-6 animate-slide-up" data-astro-cid-2q5oecfc>Never Miss an Update</h2> <p class="text-xl mb-8 animate-slide-up" style="animation-delay: 0.2s;" data-astro-cid-2q5oecfc>
+Subscribe to our newsletter for the latest articles, tutorials, and updates.
+</p> <form class="flex flex-col md:flex-row gap-4 animate-fade-in" style="animation-delay: 0.4s;" data-astro-cid-2q5oecfc> <input type="email" placeholder="Enter your email address" class="flex-1 px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500" required data-astro-cid-2q5oecfc> <button type="submit" class="bg-white text-indigo-700 hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1" data-astro-cid-2q5oecfc>
+Subscribe
+</button> </form> <p class="text-sm mt-4 text-indigo-200 animate-fade-in" style="animation-delay: 0.5s;" data-astro-cid-2q5oecfc>
+We respect your privacy. Unsubscribe at any time.
+</p> </div> </div> </section> </article>  </div> </main> <!-- Footer - Only show modern footer on non-NosytOS95 pages --> <footer class="bg-gray-900 text-white pt-16 pb-8" data-astro-cid-sz7xmlte> <div class="container mx-auto px-4" data-astro-cid-sz7xmlte> <!-- Footer Top Section --> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12" data-astro-cid-sz7xmlte> <!-- Company Info --> <div data-astro-cid-sz7xmlte> <div class="flex items-center space-x-2 mb-4" data-astro-cid-sz7xmlte> <img src="/images/nosytlabs-logo-2025.svg" alt="NosytLabs Logo" width="40" height="40" class="w-10 h-10" data-astro-cid-sz7xmlte> <span class="text-xl font-bold text-white" data-astro-cid-sz7xmlte>NosytLabs</span> </div> <p class="text-gray-400 mb-4" data-astro-cid-sz7xmlte>
+Notable Opportunities Shape Your Tomorrow
+</p> <div class="flex space-x-4" data-astro-cid-sz7xmlte> <a href="https://www.youtube.com/@TycenYT" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-accent transition-colors duration-300" aria-label="Follow us on YouTube" data-astro-cid-sz7xmlte> <i class="fab fa-youtube text-xl" data-astro-cid-sz7xmlte></i> </a><a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-accent transition-colors duration-300" aria-label="Follow us on Kick" data-astro-cid-sz7xmlte> <i class="fab fa-tv text-xl" data-astro-cid-sz7xmlte></i> </a><a href="https://github.com/NosytLabs" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-accent transition-colors duration-300" aria-label="Follow us on GitHub" data-astro-cid-sz7xmlte> <i class="fab fa-github text-xl" data-astro-cid-sz7xmlte></i> </a><a href="https://twitter.com/NosytLabs" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-accent transition-colors duration-300" aria-label="Follow us on Twitter" data-astro-cid-sz7xmlte> <i class="fab fa-twitter text-xl" data-astro-cid-sz7xmlte></i> </a> </div> </div> <!-- Quick Links --> <div data-astro-cid-sz7xmlte> <h3 class="text-lg font-bold mb-4 text-white" data-astro-cid-sz7xmlte>Quick Links</h3> <ul class="space-y-2" data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte> <a href="/" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte> Home </a> </li><li data-astro-cid-sz7xmlte> <a href="/about" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte> About </a> </li><li data-astro-cid-sz7xmlte> <a href="/projects" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte> Projects </a> </li><li data-astro-cid-sz7xmlte> <a href="/services" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte> Services </a> </li><li data-astro-cid-sz7xmlte> <a href="/resume" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte> Resume </a> </li> </ul> </div> <!-- Services --> <div data-astro-cid-sz7xmlte> <h3 class="text-lg font-bold mb-4 text-white" data-astro-cid-sz7xmlte>Services</h3> <ul class="space-y-2" data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte> <a href="/services#web-development" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte>
+Web Development
+</a> </li> <li data-astro-cid-sz7xmlte> <a href="/content-creation" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte>
+Content Creation
+</a> </li> <li data-astro-cid-sz7xmlte> <a href="/3d-printing" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte>
+3D Printing Services
+</a> </li> <li data-astro-cid-sz7xmlte> <a href="/passive-income" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte>
+Passive Income Resources
+</a> </li> <li data-astro-cid-sz7xmlte> <a href="/services#seo" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte>
+SEO & Website Audits
+</a> </li> </ul> </div> <!-- Contact Info --> <div data-astro-cid-sz7xmlte> <h3 class="text-lg font-bold mb-4 text-white" data-astro-cid-sz7xmlte>Contact Us</h3> <ul class="space-y-2" data-astro-cid-sz7xmlte> <li class="flex items-start space-x-2" data-astro-cid-sz7xmlte> <i class="fas fa-envelope text-accent mt-1" data-astro-cid-sz7xmlte></i> <a href="mailto:contact@nosytlabs.com" class="text-gray-400 hover:text-accent transition-colors duration-300" data-astro-cid-sz7xmlte>
+contact@nosytlabs.com
+</a> </li> <li class="flex items-start space-x-2" data-astro-cid-sz7xmlte> <i class="fas fa-map-marker-alt text-accent mt-1" data-astro-cid-sz7xmlte></i> <span class="text-gray-400" data-astro-cid-sz7xmlte>
+United States
+</span> </li> <li class="mt-4" data-astro-cid-sz7xmlte> <a href="/contact" class="inline-block bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-md transition-colors duration-300" data-astro-cid-sz7xmlte>
+Contact Us
+</a> </li> </ul> </div> </div> <!-- Divider --> <div class="border-t border-gray-800 my-8" data-astro-cid-sz7xmlte></div> <!-- Footer Bottom Section --> <div class="flex flex-col md:flex-row justify-between items-center" data-astro-cid-sz7xmlte> <div class="text-gray-500 text-sm mb-4 md:mb-0" data-astro-cid-sz7xmlte>
+&copy; 2025 NosytLabs. All rights reserved.
+</div> <div class="flex flex-wrap justify-center gap-4" data-astro-cid-sz7xmlte> <a href="/contact" class="text-gray-500 hover:text-accent text-sm transition-colors duration-300" data-astro-cid-sz7xmlte> Contact </a><a href="/privacy-policy" class="text-gray-500 hover:text-accent text-sm transition-colors duration-300" data-astro-cid-sz7xmlte> Privacy Policy </a><a href="/terms-of-service" class="text-gray-500 hover:text-accent text-sm transition-colors duration-300" data-astro-cid-sz7xmlte> Terms of Service </a> </div> </div> </div> </footer>  <!-- Search Modal - Available on all pages --> <!-- Search Modal Trigger --><button id="search-trigger" class="search-trigger" aria-label="Open search" data-astro-cid-qk3db3zz> <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-qk3db3zz> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" data-astro-cid-qk3db3zz></path> </svg> <span class="search-text" data-astro-cid-qk3db3zz>Search</span> <kbd class="search-kbd" data-astro-cid-qk3db3zz>⌘K</kbd> </button> <!-- Search Modal --> <div id="search-modal" class="search-modal" role="dialog" aria-modal="true" aria-labelledby="search-title" data-astro-cid-qk3db3zz> <div class="search-backdrop" data-astro-cid-qk3db3zz></div> <div class="search-container" data-astro-cid-qk3db3zz> <div class="search-header" data-astro-cid-qk3db3zz> <div class="search-input-container" data-astro-cid-qk3db3zz> <svg xmlns="http://www.w3.org/2000/svg" class="search-input-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-qk3db3zz> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" data-astro-cid-qk3db3zz></path> </svg> <input type="text" id="search-input" class="search-input" placeholder="Search NosytLabs..." autocomplete="off" spellcheck="false" aria-label="Search query" data-astro-cid-qk3db3zz> <button id="search-clear" class="search-clear" aria-label="Clear search" data-astro-cid-qk3db3zz> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-qk3db3zz> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" data-astro-cid-qk3db3zz></path> </svg> </button> </div> <button id="search-close" class="search-close" aria-label="Close search" data-astro-cid-qk3db3zz> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-qk3db3zz> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" data-astro-cid-qk3db3zz></path> </svg> </button> </div> <div id="search-filters" class="search-filters" data-astro-cid-qk3db3zz> <button class="filter-btn active" data-category="all" data-astro-cid-qk3db3zz>All</button> <button class="filter-btn" data-category="page" data-astro-cid-qk3db3zz>Pages</button> <button class="filter-btn" data-category="blog" data-astro-cid-qk3db3zz>Blog</button> <button class="filter-btn" data-category="project" data-astro-cid-qk3db3zz>Projects</button> <button class="filter-btn" data-category="service" data-astro-cid-qk3db3zz>Services</button> </div> <div class="search-content" data-astro-cid-qk3db3zz> <!-- Loading State --> <div id="search-loading" class="search-loading" style="display: none;" data-astro-cid-qk3db3zz> <div class="loading-spinner" data-astro-cid-qk3db3zz></div> <p data-astro-cid-qk3db3zz>Searching...</p> </div> <!-- Empty State --> <div id="search-empty" class="search-empty" data-astro-cid-qk3db3zz> <div class="empty-icon" data-astro-cid-qk3db3zz>🔍</div> <h3 data-astro-cid-qk3db3zz>Search NosytLabs</h3> <p data-astro-cid-qk3db3zz>Find pages, blog posts, projects, and services</p> <div class="popular-searches" data-astro-cid-qk3db3zz> <h4 data-astro-cid-qk3db3zz>Popular searches:</h4> <div class="popular-tags" data-astro-cid-qk3db3zz> <button class="popular-tag" data-query="web development" data-astro-cid-qk3db3zz>Web Development</button> <button class="popular-tag" data-query="3d printing" data-astro-cid-qk3db3zz>3D Printing</button> <button class="popular-tag" data-query="cursor ai" data-astro-cid-qk3db3zz>Cursor AI</button> <button class="popular-tag" data-query="nosytos95" data-astro-cid-qk3db3zz>NosytOS95</button> <button class="popular-tag" data-query="passive income" data-astro-cid-qk3db3zz>Passive Income</button> </div> </div> </div> <!-- No Results State --> <div id="search-no-results" class="search-no-results" style="display: none;" data-astro-cid-qk3db3zz> <div class="no-results-icon" data-astro-cid-qk3db3zz>😔</div> <h3 data-astro-cid-qk3db3zz>No results found</h3> <p id="no-results-text" data-astro-cid-qk3db3zz>Try adjusting your search terms or browse our popular content.</p> <div class="search-suggestions" data-astro-cid-qk3db3zz> <h4 data-astro-cid-qk3db3zz>Suggestions:</h4> <ul id="search-suggestions-list" data-astro-cid-qk3db3zz></ul> </div> </div> <!-- Results --> <div id="search-results" class="search-results" style="display: none;" data-astro-cid-qk3db3zz> <div id="search-results-header" class="results-header" data-astro-cid-qk3db3zz> <span id="results-count" data-astro-cid-qk3db3zz>0 results</span> <span id="results-query" data-astro-cid-qk3db3zz></span> </div> <div id="search-results-content" class="results-content" data-astro-cid-qk3db3zz></div> </div> </div> <div class="search-footer" data-astro-cid-qk3db3zz> <div class="search-shortcuts" data-astro-cid-qk3db3zz> <kbd data-astro-cid-qk3db3zz>↑↓</kbd> Navigate
+<kbd data-astro-cid-qk3db3zz>↵</kbd> Select
+<kbd data-astro-cid-qk3db3zz>Esc</kbd> Close
+</div> </div> </div> </div>  <script type="module">
+  import searchService, { searchUtils } from '../utils/searchService.js';
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize search service
+    await searchService.initialize();
+
+    // DOM elements
+    const searchTrigger = document.getElementById('search-trigger');
+    const searchModal = document.getElementById('search-modal');
+    const searchInput = document.getElementById('search-input');
+    const searchClear = document.getElementById('search-clear');
+    const searchClose = document.getElementById('search-close');
+    const searchBackdrop = document.querySelector('.search-backdrop');
+    const searchFilters = document.getElementById('search-filters');
+    const searchLoading = document.getElementById('search-loading');
+    const searchEmpty = document.getElementById('search-empty');
+    const searchNoResults = document.getElementById('search-no-results');
+    const searchResults = document.getElementById('search-results');
+    const searchResultsContent = document.getElementById('search-results-content');
+    const resultsCount = document.getElementById('results-count');
+    const resultsQuery = document.getElementById('results-query');
+
+    // State
+    let currentQuery = '';
+    let currentCategory = 'all';
+    let selectedIndex = -1;
+    let searchResults = [];
+
+    // Debounced search function
+    const debouncedSearch = searchUtils.debounce(performSearch, 300);
+
+    // Event listeners
+    searchTrigger?.addEventListener('click', openModal);
+    searchClose?.addEventListener('click', closeModal);
+    searchBackdrop?.addEventListener('click', closeModal);
+    searchClear?.addEventListener('click', clearSearch);
+    searchInput?.addEventListener('input', handleSearchInput);
+    searchInput?.addEventListener('keydown', handleKeyDown);
+
+    // Filter buttons
+    searchFilters?.addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-btn')) {
+        handleFilterChange(e.target);
+      }
+    });
+
+    // Popular tags
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('popular-tag')) {
+        const query = e.target.dataset.query;
+        if (query) {
+          searchInput.value = query;
+          handleSearchInput();
+        }
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      // Cmd/Ctrl + K to open search
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        openModal();
+      }
+      
+      // Escape to close
+      if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // Functions
+    function openModal() {
+      searchModal.classList.add('active');
+      searchInput.focus();
+      document.body.style.overflow = 'hidden';
+      showEmptyState();
+    }
+
+    function closeModal() {
+      searchModal.classList.remove('active');
+      document.body.style.overflow = '';
+      clearSearch();
+    }
+
+    function clearSearch() {
+      searchInput.value = '';
+      searchClear.classList.remove('visible');
+      currentQuery = '';
+      selectedIndex = -1;
+      showEmptyState();
+    }
+
+    function handleSearchInput() {
+      const query = searchInput.value.trim();
+      
+      if (query.length > 0) {
+        searchClear.classList.add('visible');
+      } else {
+        searchClear.classList.remove('visible');
+      }
+
+      if (query !== currentQuery) {
+        currentQuery = query;
+        selectedIndex = -1;
+        
+        if (query.length >= 2) {
+          showLoading();
+          debouncedSearch(query);
+        } else if (query.length === 0) {
+          showEmptyState();
+        }
+      }
+    }
+
+    function handleFilterChange(button) {
+      // Update active filter
+      searchFilters.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      button.classList.add('active');
+      
+      currentCategory = button.dataset.category;
+      
+      // Re-search with new filter
+      if (currentQuery.length >= 2) {
+        performSearch(currentQuery);
+      }
+    }
+
+    function handleKeyDown(e) {
+      if (!searchResults.length) return;
+
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          selectedIndex = Math.min(selectedIndex + 1, searchResults.length - 1);
+          updateSelection();
+          break;
+          
+        case 'ArrowUp':
+          e.preventDefault();
+          selectedIndex = Math.max(selectedIndex - 1, -1);
+          updateSelection();
+          break;
+          
+        case 'Enter':
+          e.preventDefault();
+          if (selectedIndex >= 0 && searchResults[selectedIndex]) {
+            navigateToResult(searchResults[selectedIndex]);
+          }
+          break;
+      }
+    }
+
+    async function performSearch(query) {
+      try {
+        const options = currentCategory !== 'all' ? { category: currentCategory } : {};
+        const results = await searchService.search(query, options);
+        
+        searchResults = [];
+        Object.values(results.categories).forEach(categoryResults => {
+          searchResults.push(...categoryResults.map(r => r.document));
+        });
+
+        if (searchResults.length > 0) {
+          showResults(results);
+        } else {
+          showNoResults(query, results.suggestions);
+        }
+      } catch (error) {
+        console.error('Search error:', error);
+        showNoResults(query, []);
+      }
+    }
+
+    function showLoading() {
+      hideAllStates();
+      searchLoading.style.display = 'flex';
+    }
+
+    function showEmptyState() {
+      hideAllStates();
+      searchEmpty.style.display = 'block';
+    }
+
+    function showNoResults(query, suggestions) {
+      hideAllStates();
+      document.getElementById('no-results-text').textContent = 
+        `No results found for "${query}". Try adjusting your search terms.`;
+      
+      const suggestionsList = document.getElementById('search-suggestions-list');
+      suggestionsList.innerHTML = '';
+      
+      if (suggestions.length > 0) {
+        suggestions.forEach(suggestion => {
+          const li = document.createElement('li');
+          li.innerHTML = `<button class="popular-tag" data-query="${suggestion}">${suggestion}</button>`;
+          suggestionsList.appendChild(li);
+        });
+      } else {
+        suggestionsList.innerHTML = '<li>Try searching for "web development", "3d printing", or "nosytos95"</li>';
+      }
+      
+      searchNoResults.style.display = 'block';
+    }
+
+    function showResults(results) {
+      hideAllStates();
+      
+      resultsCount.textContent = `${results.total} result${results.total !== 1 ? 's' : ''}`;
+      resultsQuery.textContent = `for "${results.query}"`;
+      
+      const formattedResults = searchUtils.formatResults(results);
+      searchResultsContent.innerHTML = '';
+      
+      formattedResults.forEach(category => {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'result-category';
+        
+        categoryDiv.innerHTML = `
+          <div class="category-header">
+            <span class="category-icon">${searchUtils.getCategoryIcon(category.category.toLowerCase())}</span>
+            <span>${category.category}</span>
+          </div>
+        `;
+        
+        category.items.forEach(item => {
+          const resultDiv = document.createElement('a');
+          resultDiv.className = 'result-item';
+          resultDiv.href = item.url;
+          resultDiv.addEventListener('click', () => navigateToResult(item));
+          
+          const highlightedTitle = searchUtils.highlightSearchTerms(item.title, results.query);
+          const highlightedDescription = searchUtils.highlightSearchTerms(item.description, results.query);
+          
+          resultDiv.innerHTML = `
+            <div class="result-title">${highlightedTitle}</div>
+            <div class="result-description">${highlightedDescription}</div>
+            <div class="result-url">${item.url}</div>
+          `;
+          
+          categoryDiv.appendChild(resultDiv);
+        });
+        
+        searchResultsContent.appendChild(categoryDiv);
+      });
+      
+      searchResults.style.display = 'block';
+      selectedIndex = -1;
+    }
+
+    function hideAllStates() {
+      searchLoading.style.display = 'none';
+      searchEmpty.style.display = 'none';
+      searchNoResults.style.display = 'none';
+      searchResults.style.display = 'none';
+    }
+
+    function updateSelection() {
+      const resultItems = searchResultsContent.querySelectorAll('.result-item');
+      resultItems.forEach((item, index) => {
+        item.classList.toggle('selected', index === selectedIndex);
+      });
+      
+      if (selectedIndex >= 0 && resultItems[selectedIndex]) {
+        resultItems[selectedIndex].scrollIntoView({ block: 'nearest' });
+      }
+    }
+
+    function navigateToResult(result) {
+      closeModal();
+      window.location.href = result.url;
+    }
+  });
+</script> <!-- Back to top button --> <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary hover:bg-primary-dark text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 invisible z-50" aria-label="Back to top"> <i class="fas fa-arrow-up"></i> </button> <!-- Theme toggle script --> <script>
+    // Check for saved theme preference or use system preference
+    const getThemePreference = () => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+        return localStorage.getItem('theme');
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    // Apply theme
+    const theme = getThemePreference();
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+
+    // Store theme preference
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('theme', theme);
+    }
+  </script> <!-- Back to top button script -->  <!-- Vercel Analytics -->  </body></html> 

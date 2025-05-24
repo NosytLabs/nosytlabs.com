@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 95 3D Viewer</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css">
+    <style>
+        body {
+            margin: 0;
+            background-color: #008080;
+            font-family: "MS Sans Serif", Arial, sans-serif;
+            overflow: hidden;
+        }
+        .window {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 600px;
+            background: #c0c0c0;
+            border: 1px solid #000;
+            box-shadow: inset -1px -1px #0a0a0a,inset 1px 1px #fff;
+        }
+        .title-bar {
+            background: linear-gradient(90deg,navy,#1084d0);
+            padding: 3px 2px 3px 3px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title-bar-text {
+            color: white;
+            font-weight: bold;
+            margin-right: 24px;
+        }
+        .viewer-content {
+            position: relative;
+            height: calc(100% - 52px);
+        }
+        #scene-container {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+        .toolbar {
+            padding: 4px;
+            border-bottom: 1px solid #808080;
+            display: flex;
+            gap: 4px;
+            background: #c0c0c0;
+            position: relative;
+        }
+        .toolbar button {
+            padding: 2px 6px;
+            min-width: 50px;
+            text-align: center;
+        }
+        .status-bar {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 2px 4px;
+            background: #c0c0c0;
+            border-top: 1px solid #808080;
+            font-size: 12px;
+            box-sizing: border-box;
+        }
+        .window-menu {
+            position: absolute;
+            background: #c0c0c0;
+            border: 1px solid #000;
+            box-shadow: 2px 2px #000;
+            z-index: 1000;
+            min-width: 150px;
+        }
+        .menu-content {
+            padding: 2px;
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-item {
+            padding: 4px 20px;
+            text-align: left;
+            border: 1px solid transparent;
+            background: transparent;
+            width: 100%;
+            cursor: default;
+        }
+        .menu-item:hover {
+            background: navy;
+            color: white;
+        }
+        .menu-separator {
+            margin: 2px 0;
+            border: none;
+            border-top: 1px solid #808080;
+            border-bottom: 1px solid #ffffff;
+        }
+        button {
+            font-family: "MS Sans Serif", Arial, sans-serif;
+            font-size: 12px;
+        }
+        button:focus {
+            outline: 1px dotted #000;
+            outline-offset: -4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">3D Model Viewer</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="toolbar">
+            <button>File</button>
+            <button>View</button>
+            <button>Tools</button>
+            <button>Help</button>
+        </div>
+        <div class="viewer-content">
+            <div id="scene-container"></div>
+            <div class="status-bar">Ready</div>
+        </div>
+    </div>
+
+    <!-- Menu Windows -->
+    <div class="window-menu" id="file-menu" style="display: none;">
+        <div class="menu-content">
+            <button class="menu-item" id="open-file">Open...</button>
+            <button class="menu-item" id="save-screenshot">Save Screenshot</button>
+            <hr class="menu-separator">
+            <button class="menu-item" id="exit">Exit</button>
+        </div>
+    </div>
+
+    <div class="window-menu" id="view-menu" style="display: none;">
+        <div class="menu-content">
+            <button class="menu-item" id="toggle-grid">Grid</button>
+            <button class="menu-item" id="toggle-axes">Axes</button>
+            <button class="menu-item" id="toggle-wireframe">Wireframe</button>
+            <hr class="menu-separator">
+            <button class="menu-item" id="toggle-projection">Switch to Orthographic</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import ModelViewer from './js/viewer.js';
+
+        // Initialize the viewer
+        const viewer = new ModelViewer('scene-container');
+
+        // Menu button handlers
+        const menuButtons = document.querySelectorAll('.toolbar button');
+        const menus = document.querySelectorAll('.window-menu');
+
+        menuButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const menuType = e.target.textContent.toLowerCase();
+                const menuElement = document.getElementById(`${menuType}-menu`);
+                
+                if (menuElement) {
+                    menus.forEach(menu => menu.style.display = 'none');
+                    menuElement.style.display = 'block';
+                    menuElement.style.position = 'absolute';
+                    menuElement.style.left = `${e.target.offsetLeft}px`;
+                    menuElement.style.top = `${e.target.offsetTop + e.target.offsetHeight}px`;
+                }
+            });
+        });
+
+        // Hide menus when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.matches('.toolbar button')) {
+                menus.forEach(menu => menu.style.display = 'none');
+            }
+        });
+
+        // Menu item handlers
+        document.getElementById('open-file').addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.glb,.gltf';
+            input.onchange = (e) => {
+                if (e.target.files.length > 0) {
+                    viewer.handleFileDrop(e.target.files);
+                }
+            };
+            input.click();
+        });
+
+        document.getElementById('save-screenshot').addEventListener('click', () => {
+            viewer.takeScreenshot();
+        });
+
+        document.getElementById('toggle-grid').addEventListener('click', () => {
+            viewer.toggleGrid();
+        });
+
+        document.getElementById('toggle-axes').addEventListener('click', () => {
+            viewer.toggleAxes();
+        });
+
+        document.getElementById('toggle-wireframe').addEventListener('click', () => {
+            viewer.toggleWireframe();
+        });
+
+        document.getElementById('toggle-projection').addEventListener('click', (e) => {
+            viewer.toggleProjection();
+            e.target.textContent = e.target.textContent.includes('Orthographic')
+                ? 'Switch to Perspective'
+                : 'Switch to Orthographic';
+        });
+
+        document.getElementById('exit').addEventListener('click', () => {
+            if (confirm('Are you sure you want to exit?')) {
+                viewer.dispose();
+                window.close();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,706 @@
+---
+/**
+ * ContactForm Component
+ *
+ * A modern, accessible contact form with validation
+ * and submission handling.
+ */
+
+interface Props {
+  /**
+   * Title for the contact form
+   * @default "Contact Us"
+   */
+  title?: string;
+
+  /**
+   * Subtitle for the contact form
+   */
+  subtitle?: string;
+
+  /**
+   * Form submission endpoint
+   * @default "/api/contact"
+   */
+  endpoint?: string;
+
+  /**
+   * Success message after form submission
+   * @default "Thank you for your message! We'll get back to you soon."
+   */
+  successMessage?: string;
+
+  /**
+   * Error message if form submission fails
+   * @default "There was an error submitting the form. Please try again."
+   */
+  errorMessage?: string;
+
+  /**
+   * Whether to show a file upload field
+   * @default false
+   */
+  showFileUpload?: boolean;
+
+  /**
+   * Whether to show a budget field
+   * @default false
+   */
+  showBudgetField?: boolean;
+
+  /**
+   * Whether to show a service selection field
+   * @default true
+   */
+  showServiceField?: boolean;
+
+  /**
+   * Array of service options
+   */
+  serviceOptions?: string[];
+
+  /**
+   * Additional CSS classes
+   */
+  class?: string;
+}
+
+const {
+  title = "Contact Us",
+  subtitle = "Have a question or want to work together? Fill out the form below and we'll get back to you as soon as possible.",
+  endpoint = "/api/contact",
+  successMessage = "Thank you for your message! We'll get back to you soon.",
+  errorMessage = "There was an error submitting the form. Please try again.",
+  showFileUpload = false,
+  showBudgetField = false,
+  showServiceField = true,
+  serviceOptions = [
+    "Web Development",
+    "Content Creation",
+    "3D Printing",
+    "Crypto Mining",
+    "Consulting",
+    "Other"
+  ],
+  class: className = '',
+} = Astro.props;
+---
+
+<section class:list={['contact-form-section', className]}>
+  <div class="contact-form-container">
+    <div class="contact-form-header">
+      <h2 class="contact-form-title">{title}</h2>
+      {subtitle && <p class="contact-form-subtitle">{subtitle}</p>}
+    </div>
+
+    <form id="contact-form" class="contact-form" action={endpoint} method="POST">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name" class="form-label">Name <span class="required">*</span></label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-input"
+            required
+            placeholder="Your name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email <span class="required">*</span></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-input"
+            required
+            placeholder="your.email@example.com"
+          />
+        </div>
+
+        {showServiceField && (
+          <div class="form-group form-group--full">
+            <label for="service" class="form-label">Service</label>
+            <select id="service" name="service" class="form-select">
+              <option value="" disabled selected>Select a service</option>
+              {serviceOptions.map(option => (
+                <option value={option}>{option}</option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        {showBudgetField && (
+          <div class="form-group form-group--full">
+            <label for="budget" class="form-label">Budget</label>
+            <select id="budget" name="budget" class="form-select">
+              <option value="" disabled selected>Select your budget range</option>
+              <option value="Under $500">Under $500</option>
+              <option value="$500 - $1,000">$500 - $1,000</option>
+              <option value="$1,000 - $5,000">$1,000 - $5,000</option>
+              <option value="$5,000+">$5,000+</option>
+            </select>
+          </div>
+        )}
+
+        <div class="form-group form-group--full">
+          <label for="message" class="form-label">Message <span class="required">*</span></label>
+          <textarea
+            id="message"
+            name="message"
+            class="form-textarea"
+            required
+            placeholder="Your message"
+            rows="5"
+          ></textarea>
+        </div>
+
+        {showFileUpload && (
+          <div class="form-group form-group--full">
+            <label for="file" class="form-label">Attachment</label>
+            <div class="file-upload">
+              <input type="file" id="file" name="file" class="file-input" />
+              <label for="file" class="file-label">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span class="file-text">Choose a file</span>
+              </label>
+              <span class="file-name">No file chosen</span>
+            </div>
+            <p class="file-help">Max file size: 10MB. Accepted formats: .jpg, .png, .pdf, .stl</p>
+          </div>
+        )}
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="submit-button">
+          <span>Send Message</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+
+      <div class="form-message" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<script type="module" define:vars={{ successMessage, errorMessage }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    const formMessage = document.querySelector('.form-message');
+
+    if (form) {
+      // File upload handling
+      const fileInput = document.querySelector('.file-input');
+      const fileName = document.querySelector('.file-name');
+
+      if (fileInput && fileName) {
+        fileInput.addEventListener('change', (e) => {
+          if (e.target.files.length > 0) {
+            fileName.textContent = e.target.files[0].name;
+          } else {
+            fileName.textContent = 'No file chosen';
+          }
+        });
+      }
+
+      // Form validation
+      const validateForm = () => {
+        let isValid = true;
+        const inputs = form.querySelectorAll('input, textarea, select');
+
+        // Clear previous validation messages
+        form.querySelectorAll('.validation-message').forEach(el => el.remove());
+
+        inputs.forEach(input => {
+          input.classList.remove('input-error');
+
+          // Check required fields
+          if (input.hasAttribute('required') && !input.value.trim()) {
+            isValid = false;
+            addValidationMessage(input, 'This field is required');
+          }
+
+          // Validate email format
+          if (input.type === 'email' && input.value.trim()) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(input.value.trim())) {
+              isValid = false;
+              addValidationMessage(input, 'Please enter a valid email address');
+            }
+          }
+
+          // Validate file size if present
+          if (input.type === 'file' && input.files.length > 0) {
+            const maxSize = 10 * 1024 * 1024; // 10MB
+            if (input.files[0].size > maxSize) {
+              isValid = false;
+              addValidationMessage(input, 'File size exceeds 10MB limit');
+            }
+
+            // Validate file type
+            const acceptedTypes = ['.jpg', '.jpeg', '.png', '.pdf', '.stl'];
+            const fileName = input.files[0].name;
+            const fileExtension = fileName.substring(fileName.lastIndexOf('.')).toLowerCase();
+
+            if (!acceptedTypes.includes(fileExtension)) {
+              isValid = false;
+              addValidationMessage(input, 'File type not supported. Please use .jpg, .png, .pdf, or .stl');
+            }
+          }
+        });
+
+        return isValid;
+      };
+
+      // Add validation message below an input
+      const addValidationMessage = (input, message) => {
+        input.classList.add('input-error');
+        const validationMessage = document.createElement('div');
+        validationMessage.className = 'validation-message';
+        validationMessage.textContent = message;
+        input.parentNode.appendChild(validationMessage);
+      };
+
+      // Form submission
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Validate form
+        if (!validateForm()) {
+          // Scroll to first error
+          const firstError = form.querySelector('.input-error');
+          if (firstError) {
+            firstError.focus();
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
+
+        // Show loading state
+        const submitButton = form.querySelector('.submit-button');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.innerHTML = '<span>Sending...</span><svg class="spinner" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle></svg>';
+        submitButton.disabled = true;
+
+        try {
+          // Import email service
+          const { formHandlers } = await import('../../utils/emailService.js');
+
+          // Submit form using email service
+          const result = await formHandlers.handleContactForm(form);
+
+          if (result.success) {
+            // Success
+            formMessage.textContent = result.message || successMessage;
+            formMessage.classList.add('form-message--success');
+            formMessage.classList.remove('form-message--error');
+            form.reset();
+
+            // Reset file name display if present
+            if (fileName) {
+              fileName.textContent = 'No file chosen';
+            }
+
+            // Show success animation
+            const successAnimation = document.createElement('div');
+            successAnimation.className = 'success-animation';
+            successAnimation.innerHTML = '<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>';
+            formMessage.appendChild(successAnimation);
+          } else {
+            // Show error from service
+            formMessage.textContent = result.message || errorMessage;
+            formMessage.classList.add('form-message--error');
+            formMessage.classList.remove('form-message--success');
+          }
+        } catch (error) {
+          // Network error
+          formMessage.textContent = errorMessage;
+          formMessage.classList.add('form-message--error');
+          formMessage.classList.remove('form-message--success');
+          console.error('Form submission error:', error);
+        } finally {
+          // Reset button state
+          submitButton.innerHTML = originalButtonText;
+          submitButton.disabled = false;
+
+          // Scroll to message
+          formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Variables for consistent styling */
+  :root {
+    --form-border-radius: 0.5rem;
+    --form-padding: 2rem;
+    --form-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --form-transition: all 0.3s ease;
+    --nosyt-purple: #4C1D95;
+    --nosyt-purple-light: #7C3AED;
+    --nosyt-orange: #FF6B00;
+    --nosyt-orange-light: #FF9E44;
+  }
+
+  .contact-form-section {
+    padding: 4rem 0;
+  }
+
+  .contact-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .contact-form-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-form-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: var(--nosyt-purple);
+  }
+
+  :global(.dark) .contact-form-title {
+    color: var(--nosyt-purple-light);
+  }
+
+  .contact-form-subtitle {
+    font-size: 1.125rem;
+    color: #4B5563;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  :global(.dark) .contact-form-subtitle {
+    color: #D1D5DB;
+  }
+
+  .contact-form {
+    background-color: white;
+    border-radius: var(--form-border-radius);
+    padding: var(--form-padding);
+    box-shadow: var(--form-shadow);
+  }
+
+  :global(.dark) .contact-form {
+    background-color: #1F2937;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-group--full {
+      grid-column: span 2;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #4B5563;
+  }
+
+  :global(.dark) .form-label {
+    color: #D1D5DB;
+  }
+
+  .required {
+    color: #EF4444;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    transition: var(--form-transition);
+    width: 100%;
+  }
+
+  :global(.dark) .form-input,
+  :global(.dark) .form-select,
+  :global(.dark) .form-textarea {
+    background-color: #374151;
+    border-color: #4B5563;
+    color: white;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--nosyt-purple);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .file-upload {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .file-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #F3F4F6;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--form-transition);
+  }
+
+  :global(.dark) .file-label {
+    background-color: #374151;
+    border-color: #4B5563;
+    color: white;
+  }
+
+  .file-label:hover {
+    background-color: #E5E7EB;
+  }
+
+  :global(.dark) .file-label:hover {
+    background-color: #4B5563;
+  }
+
+  .file-name {
+    font-size: 0.875rem;
+    color: #6B7280;
+  }
+
+  :global(.dark) .file-name {
+    color: #9CA3AF;
+  }
+
+  .file-help {
+    font-size: 0.75rem;
+    color: #6B7280;
+    margin-top: 0.5rem;
+  }
+
+  :global(.dark) .file-help {
+    color: #9CA3AF;
+  }
+
+  .form-footer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .submit-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--nosyt-purple);
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--form-transition);
+  }
+
+  .submit-button:hover {
+    background-color: var(--nosyt-purple-light);
+    transform: translateY(-2px);
+  }
+
+  .submit-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .form-message {
+    margin-top: 1.5rem;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .form-message--success {
+    background-color: #ECFDF5;
+    color: #065F46;
+    border: 1px solid #A7F3D0;
+  }
+
+  :global(.dark) .form-message--success {
+    background-color: rgba(6, 95, 70, 0.2);
+    color: #34D399;
+    border-color: rgba(167, 243, 208, 0.2);
+  }
+
+  .form-message--error {
+    background-color: #FEF2F2;
+    color: #B91C1C;
+    border: 1px solid #FECACA;
+  }
+
+  :global(.dark) .form-message--error {
+    background-color: rgba(185, 28, 28, 0.2);
+    color: #F87171;
+    border-color: rgba(254, 202, 202, 0.2);
+  }
+
+  /* Validation styles */
+  .input-error {
+    border-color: #EF4444 !important;
+  }
+
+  .validation-message {
+    color: #EF4444;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  :global(.dark) .validation-message {
+    color: #F87171;
+  }
+
+  /* Loading spinner */
+  .spinner {
+    animation: rotate 2s linear infinite;
+    width: 20px;
+    height: 20px;
+    margin-left: 0.5rem;
+  }
+
+  .spinner .path {
+    stroke: white;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+
+  /* Success animation */
+  .success-animation {
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
+
+  .checkmark {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #4BB543;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #4BB543;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+  }
+
+  .checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #4BB543;
+    fill: none;
+    animation: stroke .6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  }
+
+  .checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke .3s cubic-bezier(0.65, 0, 0.45, 1) .8s forwards;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-5px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes rotate {
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  @keyframes stroke {
+    100% { stroke-dashoffset: 0; }
+  }
+
+  @keyframes scale {
+    0%, 100% { transform: none; }
+    50% { transform: scale3d(1.1, 1.1, 1); }
+  }
+
+  @keyframes fill {
+    100% { box-shadow: inset 0px 0px 0px 30px rgba(75, 181, 67, 0); }
+  }
+</style>

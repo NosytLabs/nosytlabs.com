@@ -1,0 +1,247 @@
+---
+// CrealityModelViewer.astro
+// A component to display and interact with 3D models from Creality Cloud
+
+interface Props {
+  modelId: string;
+  title?: string;
+  description?: string;
+  author?: string;
+  width?: string;
+  height?: string;
+  className?: string;
+}
+
+const {
+  modelId,
+  title = "3D Model",
+  description = "",
+  author = "Tycen",
+  width = "100%",
+  height = "400px",
+  className = ""
+} = Astro.props;
+
+// Generate a unique ID for this viewer instance
+const viewerId = `model-viewer-${Math.random().toString(36).substring(2, 9)}`;
+
+// Construct the embed URL
+const embedUrl = `https://www.crealitycloud.com/model-embed/${modelId}`;
+
+// Fallback image in case the embed fails
+const fallbackImage = `/images/3d-printing/${modelId}-preview.jpg`;
+---
+
+<div class={`creality-model-viewer ${className}`} id={viewerId}>
+  <div class="model-container">
+    <iframe
+      src={embedUrl}
+      width={width}
+      height={height}
+      frameborder="0"
+      allowfullscreen
+      allow="autoplay; fullscreen; xr-spatial-tracking"
+      loading="lazy"
+      importance="high"
+      title={title}
+      class="model-iframe"
+      onload="this.parentNode.querySelector('.loading-overlay').style.display = 'none';"
+      onerror="handleModelError(this);"
+    ></iframe>
+    
+    <!-- Loading overlay -->
+    <div class="loading-overlay">
+      <div class="spinner"></div>
+      <p>Loading 3D Model...</p>
+    </div>
+    
+    <!-- Fallback content if iframe fails -->
+    <div class="fallback-content" style="display: none;">
+      <img 
+        src={fallbackImage} 
+        alt={title} 
+        class="fallback-image"
+        onerror="this.src='/images/3d-printing/model-placeholder.jpg'; this.onerror=null;"
+      />
+      <div class="fallback-message">
+        <p>3D model preview unavailable</p>
+        <a href={`https://www.crealitycloud.com/model-detail/${modelId}`} target="_blank" rel="noopener noreferrer" class="view-on-creality">
+          View on Creality Cloud
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Model information -->
+  {(title || description || author) && (
+    <div class="model-info">
+      {title && <h3 class="model-title">{title}</h3>}
+      {description && <p class="model-description">{description}</p>}
+      {author && <p class="model-author">By: {author}</p>}
+      <a href={`https://www.crealitycloud.com/model-detail/${modelId}`} target="_blank" rel="noopener noreferrer" class="view-on-creality">
+        View on Creality Cloud
+      </a>
+    </div>
+  )}
+</div>
+
+<style>
+  .creality-model-viewer {
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .model-container {
+    position: relative;
+    width: 100%;
+    background-color: #eee;
+    border-radius: 0.5rem 0.5rem 0 0;
+    overflow: hidden;
+  }
+
+  .model-iframe {
+    display: block;
+    border: none;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background-color: #f5f5f5;
+  }
+
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(245, 245, 245, 0.9);
+    z-index: 10;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #3b82f6;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 1rem;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .fallback-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    z-index: 5;
+  }
+
+  .fallback-image {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+  }
+
+  .fallback-message {
+    text-align: center;
+    color: #666;
+  }
+
+  .model-info {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+
+  .model-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  .model-description {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .model-author {
+    font-size: 0.875rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .view-on-creality {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .view-on-creality:hover {
+    background-color: #2563eb;
+  }
+
+  @media (max-width: 640px) {
+    .model-iframe {
+      height: 300px !important;
+    }
+  }
+</style>
+
+<script define:vars={{ viewerId }}>
+  // Handle errors loading the iframe
+  function handleModelError(iframe) {
+    const container = iframe.parentNode;
+    container.querySelector('.loading-overlay').style.display = 'none';
+    container.querySelector('.fallback-content').style.display = 'flex';
+    iframe.style.display = 'none';
+  }
+
+  // Add the function to the global scope
+  window.handleModelError = handleModelError;
+
+  // Set up a timeout to show fallback if iframe takes too long to load
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById(viewerId);
+    if (!container) return;
+    
+    const iframe = container.querySelector('.model-iframe');
+    const loadingOverlay = container.querySelector('.loading-overlay');
+    const fallbackContent = container.querySelector('.fallback-content');
+    
+    // If iframe hasn't loaded after 10 seconds, show fallback
+    setTimeout(() => {
+      if (loadingOverlay.style.display !== 'none') {
+        loadingOverlay.style.display = 'none';
+        fallbackContent.style.display = 'flex';
+        iframe.style.display = 'none';
+      }
+    }, 10000);
+  });
+</script>

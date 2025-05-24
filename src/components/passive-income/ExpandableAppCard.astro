@@ -1,0 +1,365 @@
+---
+/**
+ * ExpandableAppCard Component
+ * A comprehensive card component for displaying passive income app information
+ * with expandable sections for details, pros/cons, setup, and calculator
+ */
+
+// Define the props interface
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  category: string;
+  monthlyEarnings: string;
+  minPayout?: string;
+  paymentMethods?: string[];
+  platforms?: string[];
+  setupDifficulty?: string;
+  resourceUsage?: string;
+  referralProgram?: string;
+  link: string;
+  pros?: string[];
+  cons?: string[];
+  setupInstructions?: {
+    step: number;
+    title: string;
+    description: string;
+    image?: string;
+  }[];
+  faqItems?: {
+    question: string;
+    answer: string;
+  }[];
+  className?: string;
+}
+
+// Destructure the props
+const { 
+  id, 
+  title, 
+  description, 
+  image, 
+  category, 
+  monthlyEarnings, 
+  minPayout = "Varies", 
+  paymentMethods = [], 
+  platforms = [],
+  setupDifficulty = "Easy",
+  resourceUsage = "Low",
+  referralProgram = "",
+  link,
+  pros = [],
+  cons = [],
+  setupInstructions = [],
+  faqItems = [],
+  className = ""
+} = Astro.props;
+
+// Generate a unique ID for this card
+const cardId = `card-${id}-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class={`bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl ${className}`} id={cardId}>
+  <!-- Card Header -->
+  <div class="relative">
+    <div class="relative h-48 bg-gray-100 dark:bg-gray-700">
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-full object-cover"
+        loading="lazy"
+        onerror="this.style.display='none'; this.parentElement.classList.add('flex', 'items-center', 'justify-center'); this.parentElement.innerHTML += `<div class='text-gray-400 dark:text-gray-500'><svg class='w-12 h-12 mx-auto mb-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'></path></svg><span class='block text-sm'>${this.alt}</span></div>`; console.error(`Failed to load image for ${this.alt}`);"
+      />
+    </div>
+    <div class="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-2 py-1 m-2 rounded">
+      {category}
+    </div>
+  </div>
+  
+  <!-- Basic Info (Always Visible) -->
+  <div class="p-5">
+    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">{description}</p>
+    
+    <div class="space-y-2 mb-4">
+      <div class="flex justify-between text-sm">
+        <span class="text-gray-500 dark:text-gray-400">Monthly Earnings:</span>
+        <span class="font-medium text-gray-900 dark:text-white">{monthlyEarnings}</span>
+      </div>
+      
+      <div class="flex justify-between text-sm">
+        <span class="text-gray-500 dark:text-gray-400">Min. Payout:</span>
+        <span class="font-medium text-gray-900 dark:text-white">{minPayout}</span>
+      </div>
+      
+      {paymentMethods.length > 0 && (
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-500 dark:text-gray-400">Payment:</span>
+          <span class="font-medium text-gray-900 dark:text-white truncate max-w-[60%] text-right">
+            {paymentMethods.slice(0, 2).join(", ")}
+            {paymentMethods.length > 2 && "..."}
+          </span>
+        </div>
+      )}
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="flex space-x-2">
+      <button 
+        id={`expand-btn-${cardId}`}
+        class="flex-1 bg-primary hover:bg-primary-dark text-white text-center py-2 px-4 rounded transition-colors"
+      >
+        <span class="expand-text">Show Details</span>
+        <span class="collapse-text hidden">Hide Details</span>
+      </button>
+      <a 
+        href={link} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="flex-1 bg-accent hover:bg-accent-dark text-white text-center py-2 px-4 rounded transition-colors"
+      >
+        Sign Up
+      </a>
+    </div>
+  </div>
+  
+  <!-- Expandable Content (Hidden by Default) -->
+  <div id={`expandable-content-${cardId}`} class="hidden border-t border-gray-200 dark:border-gray-700">
+    <!-- Tabs Navigation -->
+    <div class="flex border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+      <button class="tab-btn active py-2 px-4 text-sm font-medium border-b-2 border-primary text-primary" data-tab="details">Details</button>
+      {pros.length > 0 && cons.length > 0 && (
+        <button class="tab-btn py-2 px-4 text-sm font-medium border-b-2 border-transparent hover:border-gray-300 text-gray-500 dark:text-gray-400" data-tab="pros-cons">Pros & Cons</button>
+      )}
+      {setupInstructions.length > 0 && (
+        <button class="tab-btn py-2 px-4 text-sm font-medium border-b-2 border-transparent hover:border-gray-300 text-gray-500 dark:text-gray-400" data-tab="setup">Setup</button>
+      )}
+      <button class="tab-btn py-2 px-4 text-sm font-medium border-b-2 border-transparent hover:border-gray-300 text-gray-500 dark:text-gray-400" data-tab="calculator">Calculator</button>
+      {faqItems.length > 0 && (
+        <button class="tab-btn py-2 px-4 text-sm font-medium border-b-2 border-transparent hover:border-gray-300 text-gray-500 dark:text-gray-400" data-tab="faq">FAQ</button>
+      )}
+    </div>
+    
+    <!-- Tab Content -->
+    <div class="p-5">
+      <!-- Details Tab -->
+      <div class="tab-content active" data-tab-content="details">
+        <h4 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">App Details</h4>
+        <div class="space-y-3 text-gray-700 dark:text-gray-300">
+          <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+            <span class="font-medium">Category:</span>
+            <span>{category}</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+            <span class="font-medium">Monthly Earnings:</span>
+            <span>{monthlyEarnings}</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+            <span class="font-medium">Payment Methods:</span>
+            <span>{paymentMethods.join(", ")}</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+            <span class="font-medium">Minimum Payout:</span>
+            <span>{minPayout}</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+            <span class="font-medium">Platforms:</span>
+            <span>{platforms.join(", ")}</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+            <span class="font-medium">Setup Difficulty:</span>
+            <span>{setupDifficulty}</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+            <span class="font-medium">Resource Usage:</span>
+            <span>{resourceUsage}</span>
+          </div>
+          {referralProgram && (
+            <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 pb-2">
+              <span class="font-medium">Referral Program:</span>
+              <span>{referralProgram}</span>
+            </div>
+          )}
+        </div>
+      </div>
+      
+      <!-- Pros & Cons Tab -->
+      {pros.length > 0 && cons.length > 0 && (
+        <div class="tab-content hidden" data-tab-content="pros-cons">
+          <div class="mb-6">
+            <h4 class="text-lg font-semibold mb-3 text-green-600 dark:text-green-400">Pros:</h4>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+              {pros.map(pro => (
+                <li>{pro}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-3 text-red-600 dark:text-red-400">Cons:</h4>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
+              {cons.map(con => (
+                <li>{con}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+      
+      <!-- Setup Tab -->
+      {setupInstructions.length > 0 && (
+        <div class="tab-content hidden" data-tab-content="setup">
+          <h4 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Setup Instructions</h4>
+          <div class="space-y-6">
+            {setupInstructions.map((instruction) => (
+              <div class="flex items-start gap-4">
+                <div class="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0 mt-1">
+                  {instruction.step}
+                </div>
+                <div>
+                  <h5 class="font-medium text-gray-900 dark:text-white">{instruction.title}</h5>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">{instruction.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      <!-- Calculator Tab -->
+      <div class="tab-content hidden" data-tab-content="calculator">
+        <h4 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Earnings Calculator</h4>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div>
+            <label for={`devices-${cardId}`} class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number of Devices</label>
+            <input type="number" id={`devices-${cardId}`} min="1" max="10" value="2" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+          </div>
+          <div>
+            <label for={`hours-${cardId}`} class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Hours Active Per Day</label>
+            <input type="number" id={`hours-${cardId}`} min="1" max="24" value="12" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+          </div>
+          <div>
+            <label for={`referrals-${cardId}`} class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Number of Referrals</label>
+            <input type="number" id={`referrals-${cardId}`} min="0" max="100" value="0" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+          </div>
+        </div>
+        
+        <button id={`calculate-btn-${cardId}`} class="w-full bg-accent hover:bg-accent-dark text-white font-medium py-2 px-4 rounded transition-colors">
+          Calculate Earnings
+        </button>
+        
+        <div id={`results-${cardId}`} class="mt-4 hidden">
+          <h5 class="font-medium text-gray-900 dark:text-white mb-2">Estimated Earnings</h5>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-gray-50 dark:bg-gray-900 p-3 rounded-lg">
+              <div class="text-sm text-gray-500 dark:text-gray-400">Monthly</div>
+              <div class="text-xl font-bold text-accent" id={`monthly-earnings-${cardId}`}>$0.00</div>
+            </div>
+            <div class="bg-gray-50 dark:bg-gray-900 p-3 rounded-lg">
+              <div class="text-sm text-gray-500 dark:text-gray-400">Annual</div>
+              <div class="text-xl font-bold text-gray-900 dark:text-white" id={`annual-earnings-${cardId}`}>$0.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- FAQ Tab -->
+      {faqItems.length > 0 && (
+        <div class="tab-content hidden" data-tab-content="faq">
+          <h4 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Frequently Asked Questions</h4>
+          <div class="space-y-4">
+            {faqItems.map((item) => (
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+                <h5 class="font-medium text-gray-900 dark:text-white mb-2">{item.question}</h5>
+                <p class="text-gray-700 dark:text-gray-300 text-sm">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ cardId }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get elements
+    const expandBtn = document.getElementById(`expand-btn-${cardId}`);
+    const expandableContent = document.getElementById(`expandable-content-${cardId}`);
+    const tabBtns = expandableContent.querySelectorAll('.tab-btn');
+    const tabContents = expandableContent.querySelectorAll('.tab-content');
+    const calculateBtn = document.getElementById(`calculate-btn-${cardId}`);
+    const resultsDiv = document.getElementById(`results-${cardId}`);
+    
+    // Toggle expand/collapse
+    if (expandBtn && expandableContent) {
+      expandBtn.addEventListener('click', function() {
+        const isExpanded = expandableContent.classList.toggle('hidden');
+        expandBtn.querySelector('.expand-text').classList.toggle('hidden', !isExpanded);
+        expandBtn.querySelector('.collapse-text').classList.toggle('hidden', isExpanded);
+      });
+    }
+    
+    // Tab functionality
+    if (tabBtns.length > 0 && tabContents.length > 0) {
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Remove active class from all tabs
+          tabBtns.forEach(b => b.classList.remove('active', 'border-primary', 'text-primary'));
+          tabBtns.forEach(b => b.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400'));
+          
+          // Add active class to clicked tab
+          btn.classList.add('active', 'border-primary', 'text-primary');
+          btn.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+          
+          // Hide all tab contents
+          tabContents.forEach(content => content.classList.add('hidden'));
+          
+          // Show selected tab content
+          const tabName = btn.getAttribute('data-tab');
+          const activeContent = expandableContent.querySelector(`[data-tab-content="${tabName}"]`);
+          if (activeContent) {
+            activeContent.classList.remove('hidden');
+          }
+        });
+      });
+    }
+    
+    // Calculator functionality
+    if (calculateBtn && resultsDiv) {
+      calculateBtn.addEventListener('click', function() {
+        const devices = parseInt(document.getElementById(`devices-${cardId}`).value) || 1;
+        const hours = parseInt(document.getElementById(`hours-${cardId}`).value) || 12;
+        const referrals = parseInt(document.getElementById(`referrals-${cardId}`).value) || 0;
+        
+        // Simple calculation formula (customize per app if needed)
+        const dailyRate = 0.01; // $0.01 per hour per device
+        const referralRate = 0.05; // $0.05 per day per referral
+        
+        const dailyEarnings = (devices * hours * dailyRate) + (referrals * referralRate);
+        const monthlyEarnings = dailyEarnings * 30;
+        const annualEarnings = monthlyEarnings * 12;
+        
+        // Update results
+        document.getElementById(`monthly-earnings-${cardId}`).textContent = `$${monthlyEarnings.toFixed(2)}`;
+        document.getElementById(`annual-earnings-${cardId}`).textContent = `$${annualEarnings.toFixed(2)}`;
+        
+        // Show results
+        resultsDiv.classList.remove('hidden');
+      });
+    }
+  });
+</script>
+
+<style>
+  /* Smooth transitions */
+  .tab-content {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Active tab styling */
+  .tab-btn.active {
+    font-weight: 600;
+  }
+</style>

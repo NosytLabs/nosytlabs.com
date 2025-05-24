@@ -1,0 +1,28 @@
+---
+// Vercel Analytics and Speed Insights component
+---
+
+<script>
+  import { inject as injectAnalytics } from '@vercel/analytics';
+  import { injectSpeedInsights } from '@vercel/speed-insights';
+
+  // Only inject in production
+  if (import.meta.env.PROD) {
+    // Initialize Vercel Analytics
+    injectAnalytics({
+      mode: 'production',
+      beforeSend: (event) => {
+        // Don't track localhost
+        if (window.location.hostname === 'localhost') {
+          return null;
+        }
+        return event;
+      },
+    });
+
+    // Initialize Speed Insights
+    injectSpeedInsights({
+      route: window.location.pathname,
+    });
+  }
+</script>

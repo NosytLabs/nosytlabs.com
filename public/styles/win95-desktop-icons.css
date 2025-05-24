@@ -1,0 +1,359 @@
+/**
+ * Windows 95 Desktop Icons Styling
+ * Authentic styling for Windows 95 desktop icons
+ */
+
+/* Desktop Container */
+.win95-desktop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 28px; /* Space for taskbar */
+  background-color: #008080; /* Classic teal background */
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Desktop Icons Container */
+.desktop-icons {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Desktop Icon */
+.desktop-icon {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+  cursor: pointer;
+  user-select: none;
+  z-index: 1;
+}
+
+.desktop-icon img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 5px;
+}
+
+.desktop-icon span {
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  color: white;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Selected Icon */
+.desktop-icon.selected {
+  background-color: rgba(0, 0, 128, 0.3);
+  outline: 1px dotted white;
+}
+
+/* Focused Icon */
+.desktop-icon:focus {
+  outline: 1px dotted white;
+}
+
+/* Hover Icon */
+.desktop-icon:hover:not(.selected):not(.disabled-icon) {
+  background-color: rgba(0, 0, 128, 0.1);
+}
+
+/* Dragging Icon */
+.desktop-icon.dragging {
+  opacity: 0.7;
+  z-index: 2;
+}
+
+/* Disabled Icon */
+.desktop-icon.disabled-icon {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.desktop-icon.disabled-icon img {
+  filter: grayscale(100%);
+}
+
+/* Coming Soon Badge */
+.coming-soon-badge {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff0000;
+  color: white;
+  font-size: 8px;
+  padding: 1px 3px;
+  border-radius: 3px;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+/* Desktop Context Menu */
+.context-menu {
+  position: absolute;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  min-width: 150px;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  display: none;
+}
+
+.context-menu-item {
+  padding: 4px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.context-menu-item:hover {
+  background-color: #000080;
+  color: #ffffff;
+}
+
+.context-menu-divider {
+  height: 1px;
+  background-color: #808080;
+  border-bottom: 1px solid #ffffff;
+  margin: 2px 0;
+}
+
+/* Blue Screen of Death */
+#bsod {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0000aa;
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  padding: 50px;
+  box-sizing: border-box;
+  z-index: 99999;
+  display: none;
+}
+
+#bsod h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+#bsod p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* DO NOT CLICK Folder */
+.desktop-icon#do-not-click-icon {
+  position: relative;
+}
+
+.desktop-icon#do-not-click-icon::after {
+  content: '!';
+  position: absolute;
+  top: 0;
+  right: 15px;
+  width: 16px;
+  height: 16px;
+  background-color: #ff0000;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffffff;
+}
+
+/* My Computer Icon */
+.desktop-icon#my-computer-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Recycle Bin Icon */
+.desktop-icon#recycle-bin-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Network Neighborhood Icon */
+.desktop-icon#network-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* My Documents Icon */
+.desktop-icon#my-documents-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Internet Explorer Icon */
+.desktop-icon#internet-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Notepad Icon */
+.desktop-icon#notepad-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* MS-DOS Prompt Icon */
+.desktop-icon#dos-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Duck Hunt Icon */
+.desktop-icon#duck-hunt-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Minesweeper Icon */
+.desktop-icon#minesweeper-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Nosyt AI Icon */
+.desktop-icon#nosyt-ai-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Icon Rename Input */
+.icon-rename-input {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 20px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  text-align: center;
+  z-index: 3;
+}
+
+/* Desktop Properties Dialog */
+.desktop-properties-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10001;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 11px;
+  display: none;
+}
+
+.desktop-properties-header {
+  background-color: #000080;
+  color: #ffffff;
+  padding: 2px 4px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.desktop-properties-close {
+  width: 16px;
+  height: 14px;
+  background-color: #c0c0c0;
+  border: 1px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.desktop-properties-content {
+  padding: 10px;
+}
+
+.desktop-properties-tabs {
+  display: flex;
+  border-bottom: 1px solid #808080;
+  margin-bottom: 10px;
+}
+
+.desktop-properties-tab {
+  padding: 4px 10px;
+  cursor: pointer;
+  border: 1px solid #808080;
+  border-bottom: none;
+  margin-right: 2px;
+  background-color: #c0c0c0;
+}
+
+.desktop-properties-tab.active {
+  background-color: #d4d0c8;
+  position: relative;
+  top: 1px;
+}
+
+.desktop-properties-options {
+  margin-bottom: 10px;
+}
+
+.desktop-properties-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.desktop-properties-checkbox {
+  margin-right: 5px;
+}
+
+.desktop-properties-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.desktop-properties-button {
+  padding: 4px 10px;
+  margin-left: 5px;
+  background-color: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  cursor: pointer;
+}

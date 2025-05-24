@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bin-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4C1D95" />
+      <stop offset="100%" stop-color="#2D0A4F" />
+    </linearGradient>
+    <linearGradient id="lid-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#E05A00" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0.5" dy="0.5" stdDeviation="0.5" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  
+  <!-- Bin Lid -->
+  <path d="M8,8 L24,8 L26,10 L6,10 Z" fill="url(#lid-gradient)" stroke="#333" stroke-width="0.5" filter="url(#shadow)"/>
+  
+  <!-- Bin Body -->
+  <path d="M8,10 L10,26 L22,26 L24,10 Z" fill="url(#bin-gradient)" stroke="#333" stroke-width="0.5" filter="url(#shadow)"/>
+  
+  <!-- Bin Handle -->
+  <rect x="15" y="6" width="2" height="2" rx="0.5" fill="#c0c0c0" stroke="#333" stroke-width="0.3"/>
+  
+  <!-- Bin Highlights -->
+  <path d="M8,10 L10,26" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <path d="M24,10 L22,26" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  <path d="M8,10 L24,10" stroke="#fff" stroke-width="0.5" opacity="0.3"/>
+  
+  <!-- Recycle Symbol -->
+  <g transform="translate(16, 18) scale(0.7)" fill="none" stroke="#fff" stroke-width="1.2">
+    <!-- Arrow 1 -->
+    <path d="M0,-5 L-3,-1 L-1,-1 L-2,3 L1,3 L0,-1 L2,-1 Z"/>
+    
+    <!-- Arrow 2 -->
+    <path d="M4,2 L4,-2 L2,-1 L-2,-3 L-3,0 L1,2 L0,4 Z" transform="rotate(120, 0, 0)"/>
+    
+    <!-- Arrow 3 -->
+    <path d="M4,2 L4,-2 L2,-1 L-2,-3 L-3,0 L1,2 L0,4 Z" transform="rotate(240, 0, 0)"/>
+  </g>
+  
+  <!-- Delete Lines -->
+  <line x1="12" y1="12" x2="12" y2="24" stroke="#fff" stroke-width="0.5" opacity="0.7"/>
+  <line x1="16" y1="12" x2="16" y2="24" stroke="#fff" stroke-width="0.5" opacity="0.7"/>
+  <line x1="20" y1="12" x2="20" y2="24" stroke="#fff" stroke-width="0.5" opacity="0.7"/>
+  
+  <!-- Nosyt Branding -->
+  <text x="16" y="29" font-family="Arial, sans-serif" font-size="2" text-anchor="middle" fill="#fff" font-weight="bold">RECYCLE</text>
+</svg>

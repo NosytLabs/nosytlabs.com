@@ -1,0 +1,95 @@
+---
+// ServiceCard.astro
+// A component for displaying service cards with proper icon alignment
+
+import ServiceIcon from './ServiceIcon.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  iconType: 'web' | 'content' | 'crypto' | '3dprinting' | 'mobile' | 'tools';
+  link: string;
+  style?: 'modern' | 'win95';
+  className?: string;
+}
+
+const { 
+  title, 
+  description, 
+  iconType, 
+  link,
+  style = 'modern',
+  className = '' 
+} = Astro.props;
+---
+
+{style === 'modern' ? (
+  <div class={`service-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${className}`}>
+    <div class="service-icon-container mb-4">
+      <ServiceIcon type={iconType} size="lg" color="var(--nosyt-orange-main)" />
+    </div>
+    <h3 class="text-xl font-semibold mb-2">{title}</h3>
+    <p class="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
+    <a href={link} class="inline-flex items-center text-accent hover:text-accent-dark font-medium">
+      Learn more
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+) : (
+  <div class="win95-card">
+    <div class="win95-card-header">
+      <div class="win95-card-icon">
+        <ServiceIcon type={iconType} size="sm" color="white" />
+      </div>
+      <h3 class="win95-card-title ml-2">{title}</h3>
+    </div>
+    <div class="win95-card-body">
+      <p>{description}</p>
+      <a href={link} class="win95-btn win95-btn-primary mt-3 inline-block">
+        Learn More
+      </a>
+    </div>
+  </div>
+)}
+
+<style>
+  .service-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background-color: rgba(255, 107, 0, 0.1);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .win95-card-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .win95-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .win95-card-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .win95-card-body p {
+    margin-bottom: 1rem;
+  }
+</style>
