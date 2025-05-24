@@ -2,10 +2,28 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<script is:inline src="/scripts/nosytos95.js"></script>
-<script is:inline src="/scripts/nosytos95-part2.js"></script>
-<script is:inline src="/scripts/nosytos95-part3.js"></script>
-<script is:inline src="/scripts/nosytos95-part4.js"></script>
+<!-- NosytOS95 Core System -->
+<script is:inline src="/nosytos95/core/window-manager.js"></script>
+<script is:inline src="/nosytos95/core/taskbar.js"></script>
+<script is:inline src="/nosytos95/core/start-menu.js"></script>
+<script is:inline src="/nosytos95/core/desktop.js"></script>
+
+<!-- NosytOS95 Applications -->
+<script is:inline src="/nosytos95/applications/minesweeper/minesweeper.js"></script>
+<script is:inline src="/nosytos95/applications/tetris/tetris.js"></script>
+<script is:inline src="/nosytos95/applications/snake/snake.js"></script>
+<script is:inline src="/nosytos95/applications/calculator/calculator.js"></script>
+<script is:inline src="/nosytos95/applications/solitaire/solitaire.js"></script>
+
+<!-- NosytOS95 Main System -->
+<script is:inline src="/nosytos95/nosytos95.js"></script>
+
+<!-- NosytOS95 Styles -->
+<link rel="stylesheet" href="/nosytos95/styles/core.css">
+<link rel="stylesheet" href="/nosytos95/applications/minesweeper/minesweeper.css">
+<link rel="stylesheet" href="/nosytos95/applications/tetris/tetris.css">
+<link rel="stylesheet" href="/nosytos95/applications/snake/snake.css">
+<link rel="stylesheet" href="/nosytos95/applications/calculator/calculator.css">
 
 <BaseLayout
   title="NosytOS95 - NosytLabs"
@@ -51,6 +69,78 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <img src="/images/win95/folder.png" alt="Do Not Click" class="icon-img">
         <span class="icon-text">Do Not Click</span>
       </div>
+
+      <!-- Virtual PC -->
+      <div class="desktop-icon" data-app="virtual-pc">
+        <img src="/images/win95/computer.png" alt="Virtual PC" class="icon-img">
+        <span class="icon-text">Virtual PC</span>
+      </div>
+
+      <!-- Chat -->
+      <div class="desktop-icon" data-app="chat">
+        <img src="/images/win95/chat.png" alt="Chat" class="icon-img">
+        <span class="icon-text">Chat</span>
+      </div>
+
+      <!-- File Explorer -->
+      <div class="desktop-icon" data-app="explorer">
+        <img src="/images/win95/folder.png" alt="File Explorer" class="icon-img">
+        <span class="icon-text">File Explorer</span>
+      </div>
+
+      <!-- Soundboard -->
+      <div class="desktop-icon" data-app="soundboard">
+        <img src="/images/win95/sound.png" alt="Soundboard" class="icon-img">
+        <span class="icon-text">Soundboard</span>
+      </div>
+
+      <!-- Photo Booth -->
+      <div class="desktop-icon" data-app="photo-booth">
+        <img src="/images/win95/camera.png" alt="Photo Booth" class="icon-img">
+        <span class="icon-text">Photo Booth</span>
+      </div>
+
+      <!-- iPod -->
+      <div class="desktop-icon" data-app="ipod">
+        <img src="/images/win95/music.png" alt="iPod" class="icon-img">
+        <span class="icon-text">iPod</span>
+      </div>
+
+      <!-- Paint -->
+      <div class="desktop-icon" data-app="paint">
+        <img src="/images/win95/paint.png" alt="Paint" class="icon-img">
+        <span class="icon-text">Paint</span>
+      </div>
+
+      <!-- Minesweeper -->
+      <div class="desktop-icon" data-app="minesweeper">
+        <img src="/images/win95/minesweeper.png" alt="Minesweeper" class="icon-img">
+        <span class="icon-text">Minesweeper</span>
+      </div>
+
+      <!-- Tetris -->
+      <div class="desktop-icon" data-app="tetris">
+        <img src="/images/win95/tetris.png" alt="Tetris" class="icon-img">
+        <span class="icon-text">Tetris</span>
+      </div>
+
+      <!-- Snake -->
+      <div class="desktop-icon" data-app="snake">
+        <img src="/images/win95/snake.png" alt="Snake" class="icon-img">
+        <span class="icon-text">Snake</span>
+      </div>
+
+      <!-- Calculator -->
+      <div class="desktop-icon" data-app="calculator">
+        <img src="/images/win95/calculator.png" alt="Calculator" class="icon-img">
+        <span class="icon-text">Calculator</span>
+      </div>
+
+      <!-- Solitaire -->
+      <div class="desktop-icon" data-app="solitaire">
+        <img src="/images/win95/solitaire.png" alt="Solitaire" class="icon-img">
+        <span class="icon-text">Solitaire</span>
+      </div>
     </div>
 
     <!-- Windows Container -->
@@ -76,6 +166,114 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <div class="window-content">
           <textarea class="notepad-content"></textarea>
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- Virtual PC Window -->
+      <div class="win95-window" id="virtual-pc-window" style="display: none; width: 600px; height: 500px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/computer.png" alt="Virtual PC" class="window-icon">
+            <span>Virtual PC</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">File</div>
+          <div class="menu-item">Controls</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content">
+          <div class="game-list">
+            <!-- Game list will be populated by JavaScript -->
+          </div>
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- Chat Window -->
+      <div class="win95-window" id="chat-window" style="display: none; width: 700px; height: 500px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/chat.png" alt="Chat" class="window-icon">
+            <span>Chat</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">File</div>
+          <div class="menu-item">Rooms</div>
+          <div class="menu-item">Sound</div>
+          <div class="menu-item">View</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content">
+          <!-- Chat interface will be populated by JavaScript -->
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- File Explorer Window -->
+      <div class="win95-window" id="explorer-window" style="display: none; width: 800px; height: 600px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/folder.png" alt="File Explorer" class="window-icon">
+            <span>File Explorer</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">File</div>
+          <div class="menu-item">Edit</div>
+          <div class="menu-item">View</div>
+          <div class="menu-item">Go</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content">
+          <!-- Explorer interface will be populated by JavaScript -->
         </div>
         <div class="window-statusbar">
           <span>Ready</span>
@@ -228,6 +426,309 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="resize-handle resize-handle-nw"></div>
       </div>
 
+      <!-- Soundboard Window -->
+      <div class="win95-window" id="soundboard-window" style="display: none; width: 600px; height: 500px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/sound.png" alt="Soundboard" class="window-icon">
+            <span>Soundboard</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">File</div>
+          <div class="menu-item">Sound</div>
+          <div class="menu-item">View</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content">
+          <!-- Soundboard interface will be populated by JavaScript -->
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- Photo Booth Window -->
+      <div class="win95-window" id="photo-booth-window" style="display: none; width: 700px; height: 600px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/camera.png" alt="Photo Booth" class="window-icon">
+            <span>Photo Booth</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">File</div>
+          <div class="menu-item">Camera</div>
+          <div class="menu-item">Effects</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content">
+          <!-- Photo Booth interface will be populated by JavaScript -->
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- iPod Window -->
+      <div class="win95-window" id="ipod-window" style="display: none; width: 500px; height: 600px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/music.png" alt="iPod" class="window-icon">
+            <span>iPod</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">File</div>
+          <div class="menu-item">Music</div>
+          <div class="menu-item">Controls</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content">
+          <!-- iPod interface will be populated by JavaScript -->
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- Paint Window -->
+      <div class="win95-window" id="paint-window" style="display: none; width: 900px; height: 700px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/paint.png" alt="Paint" class="window-icon">
+            <span>Paint</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">File</div>
+          <div class="menu-item">Edit</div>
+          <div class="menu-item">View</div>
+          <div class="menu-item">Image</div>
+          <div class="menu-item">Colors</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content">
+          <!-- Paint interface will be populated by JavaScript -->
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- Minesweeper Window -->
+      <div class="win95-window" id="minesweeper-window" style="display: none; width: 600px; height: 500px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/minesweeper.png" alt="Minesweeper" class="window-icon">
+            <span>Minesweeper</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">Game</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content" id="minesweeper-content">
+          <!-- Minesweeper game will be initialized here -->
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- Tetris Window -->
+      <div class="win95-window" id="tetris-window" style="display: none; width: 700px; height: 600px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/tetris.png" alt="Tetris" class="window-icon">
+            <span>Tetris</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">Game</div>
+          <div class="menu-item">Options</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content" id="tetris-content">
+          <!-- Tetris game will be initialized here -->
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- Snake Window -->
+      <div class="win95-window" id="snake-window" style="display: none; width: 800px; height: 600px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/snake.png" alt="Snake" class="window-icon">
+            <span>Snake</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">Game</div>
+          <div class="menu-item">Options</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content" id="snake-content">
+          <!-- Snake game will be initialized here -->
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- Calculator Window -->
+      <div class="win95-window" id="calculator-window" style="display: none; width: 350px; height: 450px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/calculator.png" alt="Calculator" class="window-icon">
+            <span>Calculator</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-content" id="calculator-content">
+          <!-- Calculator will be initialized here -->
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
+      <!-- Solitaire Window -->
+      <div class="win95-window" id="solitaire-window" style="display: none; width: 900px; height: 700px;">
+        <div class="window-header">
+          <div class="window-title">
+            <img src="/images/win95/solitaire.png" alt="Solitaire" class="window-icon">
+            <span>Solitaire</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-minimize" title="Minimize">_</button>
+            <button class="window-maximize" title="Maximize">□</button>
+            <button class="window-close" title="Close">×</button>
+          </div>
+        </div>
+        <div class="window-menu">
+          <div class="menu-item">Game</div>
+          <div class="menu-item">Options</div>
+          <div class="menu-item">Help</div>
+        </div>
+        <div class="window-content" id="solitaire-content">
+          <!-- Solitaire game will be initialized here -->
+        </div>
+        <div class="window-statusbar">
+          <span>Ready</span>
+        </div>
+        <div class="resize-handle resize-handle-se"></div>
+        <div class="resize-handle resize-handle-e"></div>
+        <div class="resize-handle resize-handle-s"></div>
+        <div class="resize-handle resize-handle-sw"></div>
+        <div class="resize-handle resize-handle-n"></div>
+        <div class="resize-handle resize-handle-w"></div>
+        <div class="resize-handle resize-handle-ne"></div>
+        <div class="resize-handle resize-handle-nw"></div>
+      </div>
+
       <!-- Clippy Assistant -->
       <div class="clippy-container" id="clippy">
         <div class="clippy-bubble">
@@ -265,6 +766,58 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="submenu-item" data-app="terminal">
               <img src="/images/win95/utilities-terminal.png" alt="Terminal">
               <span>Terminal</span>
+            </div>
+            <div class="submenu-item" data-app="virtual-pc">
+              <img src="/images/win95/computer.png" alt="Virtual PC">
+              <span>Virtual PC</span>
+            </div>
+            <div class="submenu-item" data-app="chat">
+              <img src="/images/win95/chat.png" alt="Chat">
+              <span>Chat</span>
+            </div>
+            <div class="submenu-item" data-app="explorer">
+              <img src="/images/win95/folder.png" alt="File Explorer">
+              <span>File Explorer</span>
+            </div>
+            <div class="submenu-item" data-app="soundboard">
+              <img src="/images/win95/sound.png" alt="Soundboard">
+              <span>Soundboard</span>
+            </div>
+            <div class="submenu-item" data-app="photo-booth">
+              <img src="/images/win95/camera.png" alt="Photo Booth">
+              <span>Photo Booth</span>
+            </div>
+            <div class="submenu-item" data-app="ipod">
+              <img src="/images/win95/music.png" alt="iPod">
+              <span>iPod</span>
+            </div>
+            <div class="submenu-item" data-app="paint">
+              <img src="/images/win95/paint.png" alt="Paint">
+              <span>Paint</span>
+            </div>
+            <div class="submenu-separator"></div>
+            <div class="submenu-category">Games</div>
+            <div class="submenu-item" data-app="minesweeper">
+              <img src="/images/win95/minesweeper.png" alt="Minesweeper">
+              <span>Minesweeper</span>
+            </div>
+            <div class="submenu-item" data-app="tetris">
+              <img src="/images/win95/tetris.png" alt="Tetris">
+              <span>Tetris</span>
+            </div>
+            <div class="submenu-item" data-app="snake">
+              <img src="/images/win95/snake.png" alt="Snake">
+              <span>Snake</span>
+            </div>
+            <div class="submenu-item" data-app="solitaire">
+              <img src="/images/win95/solitaire.png" alt="Solitaire">
+              <span>Solitaire</span>
+            </div>
+            <div class="submenu-separator"></div>
+            <div class="submenu-category">Accessories</div>
+            <div class="submenu-item" data-app="calculator">
+              <img src="/images/win95/calculator.png" alt="Calculator">
+              <span>Calculator</span>
             </div>
           </div>
         </div>
