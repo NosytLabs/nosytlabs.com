@@ -1,0 +1,137 @@
+---
+// IntroAnimation.astro
+// Displays a one-time intro animation for new visitors
+---
+
+<div id="intro-animation-container" class="intro-animation-container fixed inset-0 z-50 flex items-center justify-center bg-black">
+  <video
+    id="intro-animation-video"
+    class="w-full h-full object-cover"
+    muted
+    playsinline
+    preload="auto"
+  >
+    <source src="/videos/intro-animation.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <button
+    id="skip-intro"
+    class="absolute bottom-8 right-8 bg-white bg-opacity-20 hover:bg-opacity-30 backdrop-blur-sm text-white px-4 py-2 rounded-lg transition-all"
+  >
+    Skip Intro
+  </button>
+</div>
+
+<!-- Preload the intro video for better performance -->
+<link rel="preload" href="/videos/intro-animation.mp4" as="video" type="video/mp4">
+
+<script>
+  // Wait for DOM to be loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    const introContainer = document.getElementById('intro-animation-container');
+    const introVideo = document.getElementById('intro-animation-video');
+    const skipButton = document.getElementById('skip-intro');
+
+    // Function to check if we should show the intro
+    function shouldShowIntro() {
+      try {
+        // Check session storage first
+        if (sessionStorage.getItem('hasShownIntro') === 'true') {
+          return false;
+        }
+      } catch (e) {
+        // Session storage might be unavailable (e.g., in private browsing)
+        console.warn('Session storage access error:', e);
+
+        // Try cookie as fallback
+        if (document.cookie.indexOf('hasShownIntro=true') !== -1) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // Function to mark intro as shown
+    function markIntroAsShown() {
+      try {
+        // Try session storage first
+        sessionStorage.setItem('hasShownIntro', 'true');
+      } catch (e) {
+        // Fallback to cookies if session storage fails
+        console.warn('Session storage write error:', e);
+        document.cookie = "hasShownIntro=true; max-age=86400; path=/;";
+      }
+    }
+
+    // Function to handle intro animation
+    function setupIntroAnimation() {
+      if (!shouldShowIntro()) {
+        // Don't show if already seen
+        hideIntroAnimation();
+        return;
+      }
+
+      // Play the video if the intro should be shown
+      if (introVideo) {
+        introVideo.play().catch(e => {
+          console.warn('Error playing intro video:', e);
+          // If video can't play for some reason, just hide the intro
+          hideIntroAnimation();
+        });
+      }
+
+      // Setup event listeners
+      if (introVideo) {
+        introVideo.addEventListener('ended', function() {
+          hideIntroAnimation();
+        });
+      }
+
+      if (skipButton) {
+        skipButton.addEventListener('click', function() {
+          hideIntroAnimation();
+        });
+      }
+
+      // Mark as shown when animation starts
+      markIntroAsShown();
+    }
+
+    // Function to hide the intro animation
+    function hideIntroAnimation() {
+      if (introContainer && introContainer.parentNode) {
+        // Always check if the element still exists in the DOM
+        introContainer.classList.add('fade-out');
+
+        setTimeout(() => {
+          // Double check parent node before removing
+          if (introContainer && introContainer.parentNode) {
+            introContainer.parentNode.removeChild(introContainer);
+          }
+        }, 1000); // Fade out over 1 second
+      }
+    }
+
+    // Initialize the intro animation
+    setupIntroAnimation();
+  });
+</script>
+
+<style>
+  .intro-animation-container {
+    opacity: 1;
+    transition: opacity 1s ease-out;
+  }
+
+  .intro-animation-container.fade-out {
+    opacity: 0;
+  }
+
+  /* Accessibility: Hide intro for users who prefer reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .intro-animation-container {
+      display: none;
+    }
+  }
+</style>

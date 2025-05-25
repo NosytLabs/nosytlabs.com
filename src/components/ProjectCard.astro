@@ -1,0 +1,363 @@
+---
+/**
+ * ProjectCard Component
+ * 
+ * A modern, animated card component for displaying project information
+ * with hover effects and NosytLabs brand colors.
+ */
+
+interface Props {
+  /**
+   * Project title
+   */
+  title: string;
+  
+  /**
+   * Project description
+   */
+  description: string;
+  
+  /**
+   * URL to the project image
+   */
+  imageUrl: string;
+  
+  /**
+   * Alt text for the project image
+   */
+  imageAlt: string;
+  
+  /**
+   * URL to view the project
+   */
+  projectUrl: string;
+  
+  /**
+   * URL to the project's GitHub repository
+   */
+  githubUrl?: string;
+  
+  /**
+   * Array of tags/categories for the project
+   */
+  tags?: string[];
+  
+  /**
+   * Whether to feature/highlight this project
+   */
+  featured?: boolean;
+  
+  /**
+   * Additional CSS classes
+   */
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  imageUrl,
+  imageAlt,
+  projectUrl,
+  githubUrl,
+  tags = [],
+  featured = false,
+  class: className = '',
+} = Astro.props;
+---
+
+<article class:list={[
+  'project-card',
+  { 'project-card--featured': featured },
+  className
+]}>
+  <div class="project-card__image-container">
+    <img 
+      src={imageUrl} 
+      alt={imageAlt} 
+      class="project-card__image" 
+      loading="lazy"
+      width="600"
+      height="400"
+    />
+    <div class="project-card__overlay">
+      <div class="project-card__actions">
+        <a href={projectUrl} class="project-card__action-btn project-card__view-btn" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+          <span>View Project</span>
+        </a>
+        {githubUrl && (
+          <a href={githubUrl} class="project-card__action-btn project-card__github-btn" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+  
+  <div class="project-card__content">
+    <div class="project-card__tags">
+      {tags.map(tag => (
+        <span class="project-card__tag">{tag}</span>
+      ))}
+    </div>
+    
+    <h3 class="project-card__title">{title}</h3>
+    <p class="project-card__description">{description}</p>
+    
+    <div class="project-card__links">
+      <a href={projectUrl} class="project-card__link" target="_blank" rel="noopener noreferrer">
+        View Project
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"></path>
+          <path d="M12 5l7 7-7 7"></path>
+        </svg>
+      </a>
+      
+      {githubUrl && (
+        <a href={githubUrl} class="project-card__link project-card__link--github" target="_blank" rel="noopener noreferrer">
+          GitHub
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      )}
+    </div>
+  </div>
+</article>
+
+<style>
+  /* Variables for consistent styling */
+  :root {
+    --card-border-radius: 0.75rem;
+    --card-padding: 1.5rem;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --card-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --card-transition: all 0.3s ease;
+    --nosyt-purple: #4C1D95;
+    --nosyt-purple-light: #7C3AED;
+    --nosyt-orange: #FF6B00;
+    --nosyt-orange-light: #FF9E44;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: var(--card-transition);
+    height: 100%;
+    position: relative;
+  }
+
+  /* Dark mode styles */
+  :global(.dark) .project-card {
+    background-color: #1F2937;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .project-card--featured {
+    border: 2px solid var(--nosyt-purple);
+  }
+
+  .project-card__image-container {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .project-card:hover .project-card__image {
+    transform: scale(1.05);
+  }
+
+  .project-card__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(76, 29, 149, 0.8), rgba(255, 107, 0, 0.4));
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover .project-card__overlay {
+    opacity: 1;
+  }
+
+  .project-card__actions {
+    display: flex;
+    gap: 1rem;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease 0.1s;
+  }
+
+  .project-card:hover .project-card__actions {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .project-card__action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .project-card__view-btn {
+    background-color: white;
+    color: var(--nosyt-purple);
+  }
+
+  .project-card__view-btn:hover {
+    background-color: var(--nosyt-purple-light);
+    color: white;
+  }
+
+  .project-card__github-btn {
+    background-color: #24292e;
+    color: white;
+  }
+
+  .project-card__github-btn:hover {
+    background-color: #000;
+  }
+
+  .project-card__content {
+    padding: var(--card-padding);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .project-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-card__tag {
+    background-color: var(--nosyt-purple-light);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 500;
+  }
+
+  :global(.dark) .project-card__tag {
+    background-color: var(--nosyt-purple);
+  }
+
+  .project-card__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    color: #111827;
+    transition: color 0.2s ease;
+  }
+
+  :global(.dark) .project-card__title {
+    color: white;
+  }
+
+  .project-card:hover .project-card__title {
+    color: var(--nosyt-purple);
+  }
+
+  .project-card__description {
+    color: #4B5563;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+    flex-grow: 1;
+  }
+
+  :global(.dark) .project-card__description {
+    color: #D1D5DB;
+  }
+
+  .project-card__links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+  }
+
+  .project-card__link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--nosyt-purple);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .project-card__link:hover {
+    color: var(--nosyt-orange);
+  }
+
+  .project-card__link svg {
+    transition: transform 0.2s ease;
+  }
+
+  .project-card__link:hover svg {
+    transform: translateX(3px);
+  }
+
+  .project-card__link--github {
+    color: #24292e;
+  }
+
+  :global(.dark) .project-card__link--github {
+    color: #8B949E;
+  }
+
+  .project-card__link--github:hover {
+    color: var(--nosyt-orange);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .project-card__actions {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .project-card__content {
+      padding: 1rem;
+    }
+  }
+</style>

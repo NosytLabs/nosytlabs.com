@@ -1,0 +1,190 @@
+---
+/**
+ * Modern Footer Component for NosytLabs
+ * A clean, professional footer with navigation and social links
+ */
+
+// Get current year for copyright
+const currentYear = new Date().getFullYear();
+
+// Footer navigation items
+const footerNavItems = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Projects", path: "/projects" },
+  { name: "Services", path: "/services" },
+  { name: "Resume", path: "/resume" },
+  { name: "NosytOS95", path: "/nosytos95" },
+  { name: "Contact", path: "/contact" },
+  { name: "Privacy Policy", path: "/privacy-policy" },
+  { name: "Terms of Service", path: "/terms-of-service" }
+];
+
+// Social media links
+const socialLinks = [
+  { name: "YouTube", icon: "youtube", url: "https://www.youtube.com/@TycenYT" },
+  { name: "Kick", icon: "tv", url: "https://kick.com/Tycen" },
+  { name: "GitHub", icon: "github", url: "https://github.com/NosytLabs" },
+  { name: "Twitter", icon: "twitter", url: "https://twitter.com/NosytLabs" }
+];
+---
+
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+  <div class="container mx-auto px-4">
+    <!-- Footer Top Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <!-- Company Info -->
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <img
+            src="/images/nosytlabs-logo-2025.svg"
+            alt="NosytLabs Logo"
+            width="40"
+            height="40"
+            class="w-10 h-10"
+          />
+          <span class="text-xl font-bold text-white">NosytLabs</span>
+        </div>
+        <p class="text-gray-400 mb-4">
+          Notable Opportunities Shape Your Tomorrow
+        </p>
+        <div class="flex space-x-4">
+          {socialLinks.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-400 hover:text-accent transition-colors duration-300"
+              aria-label={`Follow us on ${link.name}`}
+            >
+              <i class={`fab fa-${link.icon} text-xl`}></i>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-bold mb-4 text-white">Quick Links</h3>
+        <ul class="space-y-2">
+          {footerNavItems.slice(0, 5).map((item) => (
+            <li>
+              <a
+                href={item.path}
+                class="text-gray-400 hover:text-accent transition-colors duration-300"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="text-lg font-bold mb-4 text-white">Services</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="/services#web-development" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              Web Development
+            </a>
+          </li>
+          <li>
+            <a href="/content-creation" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              Content Creation
+            </a>
+          </li>
+          <li>
+            <a href="/3d-printing" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              3D Printing Services
+            </a>
+          </li>
+          <li>
+            <a href="/passive-income" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              Passive Income Resources
+            </a>
+          </li>
+          <li>
+            <a href="/services#seo" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              SEO & Website Audits
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-bold mb-4 text-white">Contact Us</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start space-x-2">
+            <i class="fas fa-envelope text-accent mt-1"></i>
+            <a href="mailto:contact@nosytlabs.com" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              contact@nosytlabs.com
+            </a>
+          </li>
+          <li class="flex items-start space-x-2">
+            <i class="fas fa-map-marker-alt text-accent mt-1"></i>
+            <span class="text-gray-400">
+              United States
+            </span>
+          </li>
+          <li class="mt-4">
+            <a href="/contact" class="inline-block bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-md transition-colors duration-300">
+              Contact Us
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-800 my-8"></div>
+
+    <!-- Footer Bottom Section -->
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="text-gray-500 text-sm mb-4 md:mb-0">
+        &copy; {currentYear} NosytLabs. All rights reserved.
+      </div>
+      <div class="flex flex-wrap justify-center gap-4">
+        {footerNavItems.slice(6).map((item) => (
+          <a
+            href={item.path}
+            class="text-gray-500 hover:text-accent text-sm transition-colors duration-300"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Footer styling */
+  footer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgba(76, 29, 149, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 90% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+</style>

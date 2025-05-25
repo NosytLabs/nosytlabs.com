@@ -1,0 +1,149 @@
+/**
+ * 3D Effects for NosytLabs website
+ * These effects add depth and interactivity to elements
+ */
+
+/* 3D Card Effect */
+.card-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card-3d-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.card-3d:hover .card-3d-inner {
+  transform: rotateY(5deg) rotateX(5deg);
+}
+
+.card-3d-front,
+.card-3d-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-3d-back {
+  transform: rotateY(180deg);
+}
+
+/* 3D Tilt Effect */
+.tilt-element {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  transition: transform 0.3s ease;
+}
+
+.tilt-element > * {
+  transform: translateZ(20px);
+}
+
+/* 3D Button Effect */
+.button-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-3d::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: inherit;
+  border-radius: inherit;
+  transform: translateZ(-6px);
+  filter: brightness(0.8);
+}
+
+.button-3d:hover {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d:active {
+  transform: translateY(0) translateZ(0);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 3D Text Effect */
+.text-3d {
+  text-shadow: 
+    0px 1px 0px rgba(255, 255, 255, 0.3),
+    0px 2px 0px rgba(0, 0, 0, 0.1),
+    0px 3px 0px rgba(0, 0, 0, 0.1),
+    0px 4px 0px rgba(0, 0, 0, 0.1),
+    0px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 3D Layered Background */
+.layered-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.layered-bg::before,
+.layered-bg::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+
+.layered-bg::before {
+  filter: blur(5px);
+  transform: translateZ(-10px) scale(1.1);
+}
+
+.layered-bg::after {
+  filter: brightness(1.2);
+  transform: translateZ(10px) scale(0.9);
+}
+
+.layered-bg:hover::before {
+  transform: translateZ(-15px) scale(1.15);
+}
+
+.layered-bg:hover::after {
+  transform: translateZ(15px) scale(0.85);
+}
+
+/* Mouse tracking 3D effect */
+.mouse-tracking-3d {
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  transition: transform 0.1s;
+}
+
+/* Accessibility: Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  .card-3d:hover .card-3d-inner,
+  .tilt-element,
+  .button-3d:hover,
+  .button-3d:active,
+  .layered-bg::before,
+  .layered-bg::after,
+  .layered-bg:hover::before,
+  .layered-bg:hover::after,
+  .mouse-tracking-3d {
+    transform: none !important;
+    transition: none !important;
+  }
+}

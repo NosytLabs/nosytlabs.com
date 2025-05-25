@@ -1,0 +1,304 @@
+---
+/**
+ * PassiveIncomeCalculator Component
+ * An interactive calculator for estimating potential passive income
+ */
+
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+
+// Generate a unique ID for this component
+const componentId = `calculator-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class={`bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden ${className}`}>
+  <div class="bg-primary text-white p-6">
+    <h2 class="text-2xl font-bold">Passive Income Calculator</h2>
+    <p class="opacity-90">Estimate your potential monthly earnings from multiple passive income sources</p>
+  </div>
+
+  <div class="p-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Calculator Inputs -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Your Setup</h3>
+
+        <div class="space-y-6">
+          <!-- Devices Section -->
+          <div>
+            <label class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Available Devices</label>
+
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <input type="checkbox" id={`desktop-${componentId}`} class="device-checkbox w-4 h-4 text-primary" checked>
+                <label for={`desktop-${componentId}`} class="ml-2 text-gray-700 dark:text-gray-300">Desktop Computer</label>
+                <select id={`desktop-count-${componentId}`} class="device-count ml-auto bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4+</option>
+                </select>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id={`laptop-${componentId}`} class="device-checkbox w-4 h-4 text-primary" checked>
+                <label for={`laptop-${componentId}`} class="ml-2 text-gray-700 dark:text-gray-300">Laptop</label>
+                <select id={`laptop-count-${componentId}`} class="device-count ml-auto bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4+</option>
+                </select>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id={`smartphone-${componentId}`} class="device-checkbox w-4 h-4 text-primary" checked>
+                <label for={`smartphone-${componentId}`} class="ml-2 text-gray-700 dark:text-gray-300">Smartphone</label>
+                <select id={`smartphone-count-${componentId}`} class="device-count ml-auto bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4+</option>
+                </select>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id={`tablet-${componentId}`} class="device-checkbox w-4 h-4 text-primary">
+                <label for={`tablet-${componentId}`} class="ml-2 text-gray-700 dark:text-gray-300">Tablet</label>
+                <select id={`tablet-count-${componentId}`} class="device-count ml-auto bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4+</option>
+                </select>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id={`raspberry-${componentId}`} class="device-checkbox w-4 h-4 text-primary">
+                <label for={`raspberry-${componentId}`} class="ml-2 text-gray-700 dark:text-gray-300">Raspberry Pi</label>
+                <select id={`raspberry-count-${componentId}`} class="device-count ml-auto bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4+</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Internet Connection -->
+          <div>
+            <label for={`internet-speed-${componentId}`} class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Internet Connection Speed</label>
+            <select id={`internet-speed-${componentId}`} class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-4 py-2">
+              <option value="slow">Basic (< 50 Mbps)</option>
+              <option value="medium" selected>Standard (50-200 Mbps)</option>
+              <option value="fast">Fast (200-500 Mbps)</option>
+              <option value="very-fast">Very Fast (500+ Mbps)</option>
+            </select>
+          </div>
+
+          <!-- Time Available -->
+          <div>
+            <label for={`time-available-${componentId}`} class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Time Available Monthly</label>
+            <select id={`time-available-${componentId}`} class="w-full bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md px-4 py-2">
+              <option value="minimal">Minimal (< 1 hour)</option>
+              <option value="low" selected>Low (1-3 hours)</option>
+              <option value="medium">Medium (3-10 hours)</option>
+              <option value="high">High (10+ hours)</option>
+            </select>
+          </div>
+
+          <!-- Income Methods -->
+          <div>
+            <label class="block text-gray-700 dark:text-gray-300 mb-2 font-medium">Income Methods</label>
+
+            <div class="space-y-3">
+              <div class="flex items-center">
+                <input type="checkbox" id={`bandwidth-sharing-${componentId}`} class="method-checkbox w-4 h-4 text-primary" checked>
+                <label for={`bandwidth-sharing-${componentId}`} class="ml-2 text-gray-700 dark:text-gray-300">Bandwidth Sharing</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id={`surveys-${componentId}`} class="method-checkbox w-4 h-4 text-primary" checked>
+                <label for={`surveys-${componentId}`} class="ml-2 text-gray-700 dark:text-gray-300">Surveys & Micro-Tasks</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id={`cashback-${componentId}`} class="method-checkbox w-4 h-4 text-primary" checked>
+                <label for={`cashback-${componentId}`} class="ml-2 text-gray-700 dark:text-gray-300">Cashback & Rewards</label>
+              </div>
+
+              <div class="flex items-center">
+                <input type="checkbox" id={`content-${componentId}`} class="method-checkbox w-4 h-4 text-primary">
+                <label for={`content-${componentId}`} class="ml-2 text-gray-700 dark:text-gray-300">Content Creation</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Estimated Monthly Earnings</h3>
+
+        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6">
+          <div class="text-center mb-6">
+            <div class="text-4xl font-bold text-primary mb-2">$<span id={`total-earnings-${componentId}`}>0</span></div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Total Monthly Estimate</div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <div class="text-gray-700 dark:text-gray-300">Bandwidth Sharing</div>
+              <div class="font-medium">$<span id={`bandwidth-earnings-${componentId}`}>0</span></div>
+            </div>
+
+            <div class="flex justify-between items-center">
+              <div class="text-gray-700 dark:text-gray-300">Surveys & Micro-Tasks</div>
+              <div class="font-medium">$<span id={`surveys-earnings-${componentId}`}>0</span></div>
+            </div>
+
+            <div class="flex justify-between items-center">
+              <div class="text-gray-700 dark:text-gray-300">Cashback & Rewards</div>
+              <div class="font-medium">$<span id={`cashback-earnings-${componentId}`}>0</span></div>
+            </div>
+
+            <div class="flex justify-between items-center">
+              <div class="text-gray-700 dark:text-gray-300">Content Creation</div>
+              <div class="font-medium">$<span id={`content-earnings-${componentId}`}>0</span></div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-600">
+            <div class="flex justify-between items-center">
+              <div class="text-gray-700 dark:text-gray-300">Annual Estimate</div>
+              <div class="font-bold text-xl">$<span id={`annual-earnings-${componentId}`}>0</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border-l-4 border-blue-500">
+          <p class="text-sm text-gray-700 dark:text-gray-300">
+            This calculator provides estimates based on publicly available information. Your actual results may vary significantly based on location,
+            usage patterns, and other factors. All estimates assume consistent usage throughout the month.
+          </p>
+          <p class="text-sm text-gray-700 dark:text-gray-300 mt-2">
+            <strong>Important:</strong> We have not personally verified these earnings. This information is provided for educational purposes only
+            and should not be considered financial advice. See the Data Sources section for information on where this data was collected.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ componentId }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Base earnings rates per device type per month (based on public data sources)
+    const earningsRates = {
+      desktop: 1.5,  // Estimated from Honeygain, EarnApp, Repocket data
+      laptop: 1.2,   // Slightly lower than desktop due to less uptime
+      smartphone: 0.8, // Based on mobile bandwidth sharing apps
+      tablet: 0.7,   // Based on mobile bandwidth sharing apps
+      raspberry: 1.8  // Based on dedicated Raspberry Pi setups
+    };
+
+    // Multipliers based on internet speed (estimated impact on earnings)
+    const speedMultipliers = {
+      'slow': 0.6,    // Below 50 Mbps limits earnings
+      'medium': 1.0,   // Standard baseline (50-200 Mbps)
+      'fast': 1.2,    // 200-500 Mbps provides moderate boost
+      'very-fast': 1.3 // Diminishing returns above 500 Mbps
+    };
+
+    // Base earnings for other methods (based on public data sources)
+    const methodBaseEarnings = {
+      'bandwidth-sharing': 3,   // Estimated from bandwidth sharing apps
+      'surveys': 10,            // Estimated from Prolific, MTurk, UserTesting
+      'cashback': 5,            // Estimated from Rakuten, Ibotta, Microsoft Rewards
+      'content': 15             // Estimated from YouTube, Medium, Print on Demand
+    };
+
+    // Time available multipliers (estimated based on time investment)
+    const timeMultipliers = {
+      'minimal': { surveys: 0.2, cashback: 0.3, content: 0.05 },  // Less than 1 hour/month
+      'low': { surveys: 0.5, cashback: 0.6, content: 0.2 },       // 1-3 hours/month
+      'medium': { surveys: 1.0, cashback: 1.0, content: 0.5 },    // 3-10 hours/month
+      'high': { surveys: 1.5, cashback: 1.2, content: 1.0 }       // 10+ hours/month
+    };
+
+    // Function to calculate earnings
+    function calculateEarnings() {
+      // Get device counts
+      let bandwidthEarnings = 0;
+
+      // Calculate bandwidth sharing earnings
+      if (document.getElementById(`bandwidth-sharing-${componentId}`).checked) {
+        const deviceTypes = ['desktop', 'laptop', 'smartphone', 'tablet', 'raspberry'];
+
+        deviceTypes.forEach(type => {
+          const checkbox = document.getElementById(`${type}-${componentId}`);
+          if (checkbox && checkbox.checked) {
+            const countSelect = document.getElementById(`${type}-count-${componentId}`);
+            const count = parseInt(countSelect.value);
+            bandwidthEarnings += earningsRates[type] * count;
+          }
+        });
+
+        // Apply internet speed multiplier
+        const speedSelect = document.getElementById(`internet-speed-${componentId}`);
+        const speedMultiplier = speedMultipliers[speedSelect.value];
+        bandwidthEarnings *= speedMultiplier;
+      }
+
+      // Get time available
+      const timeSelect = document.getElementById(`time-available-${componentId}`);
+      const timeAvailable = timeSelect.value;
+      const timeMultiplier = timeMultipliers[timeAvailable];
+
+      // Calculate surveys earnings
+      let surveysEarnings = 0;
+      if (document.getElementById(`surveys-${componentId}`).checked) {
+        surveysEarnings = methodBaseEarnings['surveys'] * timeMultiplier.surveys;
+      }
+
+      // Calculate cashback earnings
+      let cashbackEarnings = 0;
+      if (document.getElementById(`cashback-${componentId}`).checked) {
+        cashbackEarnings = methodBaseEarnings['cashback'] * timeMultiplier.cashback;
+      }
+
+      // Calculate content creation earnings
+      let contentEarnings = 0;
+      if (document.getElementById(`content-${componentId}`).checked) {
+        contentEarnings = methodBaseEarnings['content'] * timeMultiplier.content;
+      }
+
+      // Update display
+      document.getElementById(`bandwidth-earnings-${componentId}`).textContent = bandwidthEarnings.toFixed(2);
+      document.getElementById(`surveys-earnings-${componentId}`).textContent = surveysEarnings.toFixed(2);
+      document.getElementById(`cashback-earnings-${componentId}`).textContent = cashbackEarnings.toFixed(2);
+      document.getElementById(`content-earnings-${componentId}`).textContent = contentEarnings.toFixed(2);
+
+      // Calculate and update total
+      const totalMonthly = bandwidthEarnings + surveysEarnings + cashbackEarnings + contentEarnings;
+      document.getElementById(`total-earnings-${componentId}`).textContent = totalMonthly.toFixed(2);
+
+      // Calculate and update annual
+      const totalAnnual = totalMonthly * 12;
+      document.getElementById(`annual-earnings-${componentId}`).textContent = totalAnnual.toFixed(2);
+    }
+
+    // Add event listeners to all inputs
+    const inputs = document.querySelectorAll(`#calculator-${componentId} input, #calculator-${componentId} select`);
+    inputs.forEach(input => {
+      input.addEventListener('change', calculateEarnings);
+    });
+
+    // Initial calculation
+    calculateEarnings();
+  });
+</script>

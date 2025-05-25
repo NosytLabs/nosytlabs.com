@@ -1,0 +1,731 @@
+---
+// Admin Projects Management Page
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import AdminSidebar from '../../../components/admin/AdminSidebar.astro';
+import AdminHeader from '../../../components/admin/AdminHeader.astro';
+
+// Check if user is authenticated (this will be replaced with actual auth logic)
+const isAuthenticated = true; // Placeholder for authentication check
+
+// Mock projects data (will be replaced with actual data fetching)
+const projects = [
+  {
+    id: '1',
+    title: 'NosytOS95',
+    description: 'A Windows 95-style interface with working applications.',
+    category: 'Web Development',
+    image: '/images/projects/nosytos95.jpg',
+    link: '/nosytos95',
+    date: '2025-01-15',
+    status: 'published'
+  },
+  {
+    id: '2',
+    title: '3D Printing Service',
+    description: 'Custom 3D printing service for various needs.',
+    category: 'Service',
+    image: '/images/projects/3d-printing.jpg',
+    link: '/3d-printing',
+    date: '2025-01-10',
+    status: 'published'
+  },
+  {
+    id: '3',
+    title: 'AI Content Generator',
+    description: 'Generate content using advanced AI models.',
+    category: 'AI',
+    image: '/images/projects/ai-generator.jpg',
+    link: '/projects/ai-generator',
+    date: '2024-12-28',
+    status: 'draft'
+  },
+  {
+    id: '4',
+    title: 'Streaming Setup',
+    description: 'Professional streaming setup for content creators.',
+    category: 'Streaming',
+    image: '/images/projects/streaming.jpg',
+    link: '/projects/streaming',
+    date: '2024-12-15',
+    status: 'published'
+  }
+];
+---
+
+{isAuthenticated ? (
+  <BaseLayout 
+    title="Projects Management - NosytLabs Admin" 
+    description="Manage your projects in the NosytLabs Admin Panel"
+  >
+    <div class="admin-container">
+      <AdminSidebar />
+      <div class="admin-content">
+        <AdminHeader title="Projects Management" />
+        
+        <div class="content-container">
+          <div class="content-header">
+            <h2>All Projects</h2>
+            <a href="/admin/projects/new" class="btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              Add New Project
+            </a>
+          </div>
+          
+          <div class="filter-bar">
+            <div class="search-box">
+              <input type="text" id="search-projects" placeholder="Search projects...">
+              <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            
+            <div class="filter-options">
+              <select id="category-filter">
+                <option value="">All Categories</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Service">Service</option>
+                <option value="AI">AI</option>
+                <option value="Streaming">Streaming</option>
+              </select>
+              
+              <select id="status-filter">
+                <option value="">All Status</option>
+                <option value="published">Published</option>
+                <option value="draft">Draft</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="projects-table-container">
+            <table class="admin-table projects-table">
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="projects-table-body">
+                {projects.map(project => (
+                  <tr data-id={project.id}>
+                    <td class="image-cell">
+                      <img src={project.image} alt={project.title} class="project-thumbnail" onerror="this.src='/images/placeholder.jpg'">
+                    </td>
+                    <td>{project.title}</td>
+                    <td>{project.category}</td>
+                    <td>{project.date}</td>
+                    <td>
+                      <span class={`status-badge status-${project.status}`}>
+                        {project.status === 'published' ? 'Published' : 'Draft'}
+                      </span>
+                    </td>
+                    <td class="actions-cell">
+                      <a href={`/admin/projects/edit/${project.id}`} class="action-btn edit-btn" aria-label="Edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                      </a>
+                      <button class="action-btn view-btn" aria-label="View" data-link={project.link}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                      </button>
+                      <button class="action-btn delete-btn" aria-label="Delete" data-id={project.id}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="pagination">
+            <button class="pagination-btn" disabled>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pagination-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <span class="pagination-info">Page 1 of 1</span>
+            <button class="pagination-btn" disabled>
+              <svg xmlns="http://www.w3.org/2000/svg" class="pagination-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Confirm Deletion</h3>
+          <button id="close-modal" class="close-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this project? This action cannot be undone.</p>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel-delete" class="btn-secondary">Cancel</button>
+          <button id="confirm-delete" class="btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </BaseLayout>
+) : (
+  <BaseLayout 
+    title="Admin Login - NosytLabs" 
+    description="NosytLabs Admin Login"
+  >
+    <div class="login-container">
+      <div class="login-form">
+        <h1>Admin Login</h1>
+        <form id="login-form" method="post">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <button type="submit" class="btn-primary">Login</button>
+        </form>
+      </div>
+    </div>
+  </BaseLayout>
+)}
+
+<style>
+  .admin-container {
+    display: flex;
+    min-height: calc(100vh - 64px);
+  }
+
+  .admin-content {
+    flex: 1;
+    padding: 1rem;
+    background-color: var(--color-bg-secondary);
+  }
+
+  .content-container {
+    padding: 1.5rem;
+    background-color: var(--color-bg-primary);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .dark .content-container {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .content-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--nosyt-purple-main);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--nosyt-purple-dark);
+  }
+
+  .btn-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5rem;
+  }
+
+  .filter-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-box {
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: var(--color-text-secondary);
+  }
+
+  .filter-options {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .filter-options select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+
+  .projects-table-container {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .admin-table th {
+    text-align: left;
+    padding: 0.75rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .admin-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .image-cell {
+    width: 80px;
+  }
+
+  .project-thumbnail {
+    width: 64px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .status-published {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+  }
+
+  .dark .status-published {
+    background-color: rgba(16, 185, 129, 0.2);
+  }
+
+  .status-draft {
+    background-color: rgba(107, 114, 128, 0.1);
+    color: #6b7280;
+  }
+
+  .dark .status-draft {
+    background-color: rgba(107, 114, 128, 0.2);
+  }
+
+  .actions-cell {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .action-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .edit-btn {
+    color: #3b82f6;
+  }
+
+  .edit-btn:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+
+  .dark .edit-btn:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+  }
+
+  .view-btn {
+    color: #10b981;
+  }
+
+  .view-btn:hover {
+    background-color: rgba(16, 185, 129, 0.1);
+  }
+
+  .dark .view-btn:hover {
+    background-color: rgba(16, 185, 129, 0.2);
+  }
+
+  .delete-btn {
+    color: #ef4444;
+  }
+
+  .delete-btn:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+
+  .dark .delete-btn:hover {
+    background-color: rgba(239, 68, 68, 0.2);
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pagination-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 0.25rem;
+    background: none;
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .pagination-btn:not(:disabled):hover {
+    background-color: var(--color-bg-secondary);
+  }
+
+  .pagination-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-text-primary);
+  }
+
+  .pagination-info {
+    margin: 0 1rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background-color: var(--color-bg-primary);
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .modal-content {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .modal-header h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  .close-modal {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+  }
+
+  .close-modal svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .btn-secondary {
+    padding: 0.5rem 1rem;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-bg-tertiary);
+  }
+
+  .btn-danger {
+    padding: 0.5rem 1rem;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-danger:hover {
+    background-color: #dc2626;
+  }
+
+  /* Login Styles */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 64px);
+    background-color: var(--color-bg-secondary);
+  }
+
+  .login-form {
+    background-color: var(--color-bg-primary);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .login-form h1 {
+    margin-bottom: 1.5rem;
+    color: var(--nosyt-purple-main);
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
+</style>
+
+<script>
+  // Client-side functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // Authentication check
+    const isAuthenticated = localStorage.getItem('admin-auth') === 'true';
+    
+    if (!isAuthenticated && window.location.pathname.startsWith('/admin')) {
+      // Redirect to login page if not authenticated
+      window.location.href = '/admin';
+    }
+    
+    // Delete modal functionality
+    const deleteModal = document.getElementById('delete-modal');
+    const closeModal = document.getElementById('close-modal');
+    const cancelDelete = document.getElementById('cancel-delete');
+    const confirmDelete = document.getElementById('confirm-delete');
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+    
+    let projectIdToDelete = null;
+    
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        projectIdToDelete = this.getAttribute('data-id');
+        deleteModal.classList.add('active');
+      });
+    });
+    
+    if (closeModal) {
+      closeModal.addEventListener('click', function() {
+        deleteModal.classList.remove('active');
+      });
+    }
+    
+    if (cancelDelete) {
+      cancelDelete.addEventListener('click', function() {
+        deleteModal.classList.remove('active');
+      });
+    }
+    
+    if (confirmDelete) {
+      confirmDelete.addEventListener('click', function() {
+        // Delete project logic (will be implemented with actual API)
+        console.log(`Deleting project with ID: ${projectIdToDelete}`);
+        
+        // Remove from DOM for demo purposes
+        const projectRow = document.querySelector(`tr[data-id="${projectIdToDelete}"]`);
+        if (projectRow) {
+          projectRow.remove();
+        }
+        
+        deleteModal.classList.remove('active');
+      });
+    }
+    
+    // View project functionality
+    const viewButtons = document.querySelectorAll('.view-btn');
+    
+    viewButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const projectLink = this.getAttribute('data-link');
+        if (projectLink) {
+          window.open(projectLink, '_blank');
+        }
+      });
+    });
+    
+    // Search and filter functionality
+    const searchInput = document.getElementById('search-projects');
+    const categoryFilter = document.getElementById('category-filter');
+    const statusFilter = document.getElementById('status-filter');
+    
+    function filterProjects() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const categoryValue = categoryFilter.value;
+      const statusValue = statusFilter.value;
+      
+      const projectRows = document.querySelectorAll('#projects-table-body tr');
+      
+      projectRows.forEach(row => {
+        const title = row.children[1].textContent.toLowerCase();
+        const category = row.children[2].textContent;
+        const status = row.children[4].querySelector('.status-badge').classList.contains('status-published') ? 'published' : 'draft';
+        
+        const matchesSearch = title.includes(searchTerm);
+        const matchesCategory = categoryValue === '' || category === categoryValue;
+        const matchesStatus = statusValue === '' || status === statusValue;
+        
+        if (matchesSearch && matchesCategory && matchesStatus) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+    
+    if (searchInput) {
+      searchInput.addEventListener('input', filterProjects);
+    }
+    
+    if (categoryFilter) {
+      categoryFilter.addEventListener('change', filterProjects);
+    }
+    
+    if (statusFilter) {
+      statusFilter.addEventListener('change', filterProjects);
+    }
+  });
+</script>

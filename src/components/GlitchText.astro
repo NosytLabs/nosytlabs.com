@@ -1,0 +1,95 @@
+---
+// GlitchText.astro
+// Text with modern highlight effect
+
+interface Props {
+  text: string;
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div';
+  color?: string;
+  size?: string;
+  weight?: string;
+  className?: string;
+  glitchOnHover?: boolean;
+}
+
+const {
+  text,
+  tag = 'h2',
+  color = 'text-white',
+  size = 'text-3xl md:text-4xl',
+  weight = 'font-bold',
+  className = '',
+  glitchOnHover = false
+} = Astro.props;
+
+const Tag = tag;
+const effectClass = glitchOnHover ? 'highlight-text-hover' : 'highlight-text';
+---
+
+<Tag class={`${effectClass} ${color} ${size} ${weight} ${className}`}>
+  {text}
+</Tag>
+
+<style>
+  /* Modern highlight effect */
+  .highlight-text,
+  .highlight-text-hover {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .highlight-text::after,
+  .highlight-text-hover:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.5s ease;
+  }
+
+  .highlight-text::after {
+    animation: highlight-reveal 1.5s ease forwards 0.5s;
+  }
+
+  .highlight-text-hover:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* Subtle text shadow for depth */
+  .highlight-text,
+  .highlight-text-hover {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: text-shadow 0.3s ease;
+  }
+
+  .highlight-text-hover:hover {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  @keyframes highlight-reveal {
+    0% {
+      transform: scaleX(0);
+      transform-origin: bottom left;
+    }
+    100% {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+
+  /* Respect user preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .highlight-text::after,
+    .highlight-text-hover:hover::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

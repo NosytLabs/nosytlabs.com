@@ -1,0 +1,529 @@
+---
+/**
+ * Windows95Window.astro
+ * A reusable Windows 95 style window component with proper centering and resizing
+ */
+
+interface Props {
+  title: string;
+  initialWidth?: string;
+  initialHeight?: string;
+  isMaximized?: boolean;
+  isOpen?: boolean;
+  centerScreen?: boolean;
+  className?: string;
+  id?: string;
+}
+
+const {
+  title,
+  initialWidth = "800px",
+  initialHeight = "600px",
+  isMaximized = false,
+  isOpen = true,
+  centerScreen = true,
+  className = "",
+  id = "win95-window-" + Math.random().toString(36).substring(2, 9)
+} = Astro.props;
+---
+
+<div 
+  id={id}
+  class:list={[
+    "win95-window", 
+    className, 
+    { "maximized": isMaximized, "centered": centerScreen }
+  ]}
+  style={`
+    width: ${isMaximized ? '100%' : initialWidth}; 
+    height: ${isMaximized ? 'calc(100vh - 28px)' : initialHeight};
+    display: ${isOpen ? 'flex' : 'none'};
+    ${isMaximized ? 'top: 0; left: 0;' : ''}
+  `}
+  data-resizable="true"
+>
+  <div class="window-header">
+    <div class="window-title">
+      <slot name="icon">
+        <img src="/images/win95/window-icon.png" alt="Window" class="window-icon">
+      </slot>
+      <span>{title}</span>
+    </div>
+    <div class="window-controls">
+      <button class="window-minimize" title="Minimize">_</button>
+      <button class="window-maximize" title={isMaximized ? "Restore" : "Maximize"}>
+        {isMaximized ? "❐" : "□"}
+      </button>
+      <button class="window-close" title="Close">×</button>
+    </div>
+  </div>
+  
+  <div class="window-content">
+    <slot />
+  </div>
+  
+  <!-- Resize handles for all directions -->
+  <div class="resize-handle resize-handle-n" data-direction="n"></div>
+  <div class="resize-handle resize-handle-ne" data-direction="ne"></div>
+  <div class="resize-handle resize-handle-e" data-direction="e"></div>
+  <div class="resize-handle resize-handle-se" data-direction="se"></div>
+  <div class="resize-handle resize-handle-s" data-direction="s"></div>
+  <div class="resize-handle resize-handle-sw" data-direction="sw"></div>
+  <div class="resize-handle resize-handle-w" data-direction="w"></div>
+  <div class="resize-handle resize-handle-nw" data-direction="nw"></div>
+</div>
+
+<script>
+  // Initialize all Windows 95 windows
+  document.addEventListener('DOMContentLoaded', () => {
+    const windows = document.querySelectorAll('.win95-window');
+    
+    windows.forEach(window => {
+      initializeWindow(window);
+    });
+    
+    // Center windows with the 'centered' class
+    const centeredWindows = document.querySelectorAll('.win95-window.centered');
+    centeredWindows.forEach(window => {
+      centerWindow(window);
+    });
+  });
+  
+  // Center a window on the screen
+  function centerWindow(window) {
+    if (window.classList.contains('maximized')) return;
+    
+    const windowWidth = window.offsetWidth;
+    const windowHeight = window.offsetHeight;
+    const viewportWidth = window.parentElement.offsetWidth || document.documentElement.clientWidth;
+    const viewportHeight = window.parentElement.offsetHeight || document.documentElement.clientHeight;
+    
+    const left = Math.max(0, (viewportWidth - windowWidth) / 2);
+    const top = Math.max(0, (viewportHeight - windowHeight) / 2);
+    
+    window.style.left = `${left}px`;
+    window.style.top = `${top}px`;
+  }
+  
+  // Initialize window functionality
+  function initializeWindow(window) {
+    // Set up dragging
+    setupDragging(window);
+    
+    // Set up resizing
+    if (window.dataset.resizable !== 'false') {
+      setupResizing(window);
+    }
+    
+    // Set up window controls
+    setupWindowControls(window);
+    
+    // Bring window to front when clicked
+    window.addEventListener('mousedown', () => {
+      bringToFront(window);
+    });
+  }
+  
+  // Set up window dragging
+  function setupDragging(window) {
+    const header = window.querySelector('.window-header');
+    if (!header) return;
+    
+    let isDragging = false;
+    let offsetX, offsetY;
+    
+    header.addEventListener('mousedown', (e) => {
+      // Don't drag if clicking on window controls
+      if (e.target.closest('.window-controls')) return;
+      
+      // Don't drag maximized windows
+      if (window.classList.contains('maximized')) return;
+      
+      isDragging = true;
+      offsetX = e.clientX - window.getBoundingClientRect().left;
+      offsetY = e.clientY - window.getBoundingClientRect().top;
+      
+      // Add dragging class for visual feedback
+      window.classList.add('dragging');
+      
+      // Bring window to front
+      bringToFront(window);
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      
+      const x = e.clientX - offsetX;
+      const y = e.clientY - offsetY;
+      
+      // Constrain to viewport
+      const maxX = window.parentElement.offsetWidth - window.offsetWidth;
+      const maxY = window.parentElement.offsetHeight - window.offsetHeight;
+      
+      window.style.left = `${Math.max(0, Math.min(x, maxX))}px`;
+      window.style.top = `${Math.max(0, Math.min(y, maxY))}px`;
+    });
+    
+    document.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        window.classList.remove('dragging');
+      }
+    });
+  }
+  
+  // Set up window resizing
+  function setupResizing(window) {
+    const handles = window.querySelectorAll('.resize-handle');
+    
+    handles.forEach(handle => {
+      let isResizing = false;
+      let startX, startY, startWidth, startHeight, startLeft, startTop;
+      const direction = handle.dataset.direction;
+      
+      handle.addEventListener('mousedown', (e) => {
+        // Don't resize maximized windows
+        if (window.classList.contains('maximized')) return;
+        
+        isResizing = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        startWidth = window.offsetWidth;
+        startHeight = window.offsetHeight;
+        startLeft = window.offsetLeft;
+        startTop = window.offsetTop;
+        
+        // Add resizing class for visual feedback
+        window.classList.add('resizing');
+        
+        // Bring window to front
+        bringToFront(window);
+        
+        e.preventDefault();
+      });
+      
+      document.addEventListener('mousemove', (e) => {
+        if (!isResizing) return;
+        
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        
+        // Minimum window size
+        const minWidth = 200;
+        const minHeight = 150;
+        
+        // Resize based on direction
+        if (direction.includes('e')) {
+          const newWidth = Math.max(minWidth, startWidth + dx);
+          window.style.width = `${newWidth}px`;
+        }
+        
+        if (direction.includes('s')) {
+          const newHeight = Math.max(minHeight, startHeight + dy);
+          window.style.height = `${newHeight}px`;
+        }
+        
+        if (direction.includes('w')) {
+          const newWidth = Math.max(minWidth, startWidth - dx);
+          if (newWidth !== startWidth) {
+            window.style.width = `${newWidth}px`;
+            window.style.left = `${startLeft + startWidth - newWidth}px`;
+          }
+        }
+        
+        if (direction.includes('n')) {
+          const newHeight = Math.max(minHeight, startHeight - dy);
+          if (newHeight !== startHeight) {
+            window.style.height = `${newHeight}px`;
+            window.style.top = `${startTop + startHeight - newHeight}px`;
+          }
+        }
+      });
+      
+      document.addEventListener('mouseup', () => {
+        if (isResizing) {
+          isResizing = false;
+          window.classList.remove('resizing');
+        }
+      });
+    });
+  }
+  
+  // Set up window control buttons
+  function setupWindowControls(window) {
+    const minimizeBtn = window.querySelector('.window-minimize');
+    const maximizeBtn = window.querySelector('.window-maximize');
+    const closeBtn = window.querySelector('.window-close');
+    
+    if (minimizeBtn) {
+      minimizeBtn.addEventListener('click', () => {
+        // For now, just hide the window
+        window.style.display = 'none';
+      });
+    }
+    
+    if (maximizeBtn) {
+      maximizeBtn.addEventListener('click', () => {
+        toggleMaximize(window);
+      });
+    }
+    
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        window.style.display = 'none';
+      });
+    }
+  }
+  
+  // Toggle window maximize/restore
+  function toggleMaximize(window) {
+    if (window.classList.contains('maximized')) {
+      // Restore window
+      window.classList.remove('maximized');
+      
+      // Restore previous size and position
+      window.style.width = window.dataset.restoreWidth || '800px';
+      window.style.height = window.dataset.restoreHeight || '600px';
+      window.style.left = window.dataset.restoreLeft || '50px';
+      window.style.top = window.dataset.restoreTop || '50px';
+      
+      // Update maximize button
+      const maximizeBtn = window.querySelector('.window-maximize');
+      if (maximizeBtn) {
+        maximizeBtn.textContent = '□';
+        maximizeBtn.title = 'Maximize';
+      }
+      
+      // Show resize handles
+      const handles = window.querySelectorAll('.resize-handle');
+      handles.forEach(handle => {
+        handle.style.display = 'block';
+      });
+    } else {
+      // Save current size and position
+      window.dataset.restoreWidth = window.style.width;
+      window.dataset.restoreHeight = window.style.height;
+      window.dataset.restoreLeft = window.style.left;
+      window.dataset.restoreTop = window.style.top;
+      
+      // Maximize window
+      window.classList.add('maximized');
+      window.style.width = '100%';
+      window.style.height = 'calc(100vh - 28px)';
+      window.style.left = '0';
+      window.style.top = '0';
+      
+      // Update maximize button
+      const maximizeBtn = window.querySelector('.window-maximize');
+      if (maximizeBtn) {
+        maximizeBtn.textContent = '❐';
+        maximizeBtn.title = 'Restore';
+      }
+      
+      // Hide resize handles
+      const handles = window.querySelectorAll('.resize-handle');
+      handles.forEach(handle => {
+        handle.style.display = 'none';
+      });
+    }
+  }
+  
+  // Bring window to front
+  function bringToFront(window) {
+    const windows = document.querySelectorAll('.win95-window');
+    let maxZ = 1000;
+    
+    windows.forEach(w => {
+      const zIndex = parseInt(w.style.zIndex || '1000');
+      maxZ = Math.max(maxZ, zIndex);
+      w.classList.remove('active-window');
+    });
+    
+    window.style.zIndex = (maxZ + 1).toString();
+    window.classList.add('active-window');
+  }
+</script>
+
+<style>
+  /* Windows 95 Window Styles */
+  .win95-window {
+    position: absolute;
+    background-color: var(--win95-window-bg, #c0c0c0);
+    border: 2px solid;
+    border-color: var(--win95-button-highlight, #ffffff) var(--win95-button-shadow, #808080) var(--win95-button-shadow, #808080) var(--win95-button-highlight, #ffffff);
+    box-shadow: 1px 1px 0 white inset, -1px -1px 0 #707070 inset;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .win95-window.active-window {
+    box-shadow: 1px 1px 0 white inset, -1px -1px 0 #707070 inset, 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .win95-window.dragging {
+    opacity: 0.9;
+    transition: none;
+  }
+  
+  .win95-window.resizing {
+    opacity: 0.9;
+    transition: none;
+  }
+  
+  .win95-window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100vh - 28px) !important;
+    border-width: 0 !important;
+  }
+  
+  .window-header {
+    background-color: var(--win95-window-header, #000080);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 4px;
+    cursor: move;
+    user-select: none;
+  }
+  
+  .active-window .window-header {
+    background-color: var(--win95-window-header, #000080);
+  }
+  
+  .win95-window:not(.active-window) .window-header {
+    background-color: #808080;
+    color: #d0d0d0;
+  }
+  
+  .window-title {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .window-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+  
+  .window-controls {
+    display: flex;
+  }
+  
+  .window-controls button {
+    width: 16px;
+    height: 14px;
+    margin-left: 2px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--win95-button-face, #c0c0c0);
+    border: 1px solid;
+    border-color: var(--win95-button-highlight, #ffffff) var(--win95-button-shadow, #808080) var(--win95-button-shadow, #808080) var(--win95-button-highlight, #ffffff);
+    cursor: pointer;
+  }
+  
+  .window-controls button:active {
+    border-color: var(--win95-button-shadow, #808080) var(--win95-button-highlight, #ffffff) var(--win95-button-highlight, #ffffff) var(--win95-button-shadow, #808080);
+  }
+  
+  .window-content {
+    flex: 1;
+    overflow: auto;
+    background-color: var(--win95-window-bg, #c0c0c0);
+    position: relative;
+  }
+  
+  /* Resize handles */
+  .resize-handle {
+    position: absolute;
+    z-index: 10;
+  }
+  
+  .resize-handle-n {
+    top: 0;
+    left: 3px;
+    right: 3px;
+    height: 3px;
+    cursor: n-resize;
+  }
+  
+  .resize-handle-ne {
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 6px;
+    cursor: ne-resize;
+  }
+  
+  .resize-handle-e {
+    top: 3px;
+    right: 0;
+    bottom: 3px;
+    width: 3px;
+    cursor: e-resize;
+  }
+  
+  .resize-handle-se {
+    right: 0;
+    bottom: 0;
+    width: 6px;
+    height: 6px;
+    cursor: se-resize;
+    background-image: url('/images/win95/resize-handle.png');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+  }
+  
+  .resize-handle-s {
+    bottom: 0;
+    left: 3px;
+    right: 3px;
+    height: 3px;
+    cursor: s-resize;
+  }
+  
+  .resize-handle-sw {
+    bottom: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    cursor: sw-resize;
+  }
+  
+  .resize-handle-w {
+    top: 3px;
+    left: 0;
+    bottom: 3px;
+    width: 3px;
+    cursor: w-resize;
+  }
+  
+  .resize-handle-nw {
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    cursor: nw-resize;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .win95-window:not(.maximized) {
+      width: 90vw !important;
+      height: 80vh !important;
+    }
+  }
+</style>

@@ -1,0 +1,153 @@
+---
+/**
+ * PassiveIncomeTips Component
+ * Displays practical tips for maximizing passive income
+ */
+
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+
+// Tips data
+const tips = [
+  {
+    title: "Run Multiple Apps Simultaneously",
+    description: "Most bandwidth sharing apps can run together without conflicts. Install multiple apps on each device to maximize earnings.",
+    icon: "layers"
+  },
+  {
+    title: "Use Multiple Devices",
+    description: "Install passive income apps on all eligible devices - computers, smartphones, and tablets to multiply your earnings.",
+    icon: "devices"
+  },
+  {
+    title: "Optimize for 24/7 Operation",
+    description: "For maximum earnings, keep your devices running continuously. Consider using older devices dedicated to passive income.",
+    icon: "clock"
+  },
+  {
+    title: "Leverage Referral Programs",
+    description: "Many apps offer generous referral bonuses. Share your referral links with friends and family to boost your earnings.",
+    icon: "users"
+  },
+  {
+    title: "Combine Different Income Types",
+    description: "Mix bandwidth sharing with surveys, content creation, and investments for a diversified passive income portfolio.",
+    icon: "chart-pie"
+  },
+  {
+    title: "Monitor Resource Usage",
+    description: "Regularly check CPU, memory, and bandwidth usage to ensure apps aren't negatively impacting your devices' performance.",
+    icon: "chart-bar"
+  }
+];
+
+// Generate a unique ID for this component
+const componentId = `tips-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class={`bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 ${className}`}>
+  <h2 class="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Maximize Your Passive Income</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {tips.map((tip, index) => (
+      <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 dark:border-gray-600">
+        <div class="flex items-start">
+          <div class="bg-primary text-white p-3 rounded-lg mr-4">
+            {tip.icon === "layers" && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            )}
+            {tip.icon === "devices" && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            )}
+            {tip.icon === "clock" && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            )}
+            {tip.icon === "users" && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            )}
+            {tip.icon === "chart-pie" && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+              </svg>
+            )}
+            {tip.icon === "chart-bar" && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            )}
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{tip.title}</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-sm">{tip.description}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="mt-8 bg-gray-50 dark:bg-gray-700 p-6 rounded-lg border border-gray-100 dark:border-gray-600">
+    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Pro Tip: Track Your Earnings</h3>
+    <p class="text-gray-600 dark:text-gray-300">
+      Create a spreadsheet to track your earnings across all passive income sources. This helps you identify which methods are most profitable for your specific situation and optimize your strategy accordingly. Set monthly goals and celebrate when you reach them!
+    </p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm mt-4">
+      These tips are compiled from public resources including Reddit communities and online forums. For more detailed strategies, see the <a href="https://www.reddit.com/r/beermoney/wiki/index/" class="text-primary hover:underline" target="_blank" rel="noopener noreferrer">r/beermoney wiki</a> and <a href="https://www.reddit.com/r/passive_income/wiki/index/" class="text-primary hover:underline" target="_blank" rel="noopener noreferrer">r/passive_income resources</a>.
+    </p>
+  </div>
+</div>
+
+<script>
+  // Add animation when tips come into view
+  document.addEventListener('DOMContentLoaded', function() {
+    const tipCards = document.querySelectorAll('.bg-gray-50, .dark\\:bg-gray-700');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    });
+
+    tipCards.forEach((card, index) => {
+      // Add staggered animation delay
+      card.style.animationDelay = `${index * 0.1}s`;
+      observer.observe(card);
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+  }
+</style>

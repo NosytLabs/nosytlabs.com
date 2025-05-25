@@ -1,0 +1,960 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import StreamSchedule from '../components/StreamSchedule.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import AnimatedHeading from '../components/AnimatedHeading.astro';
+
+const pageTitle = "Live Stream - NosytLabs";
+const pageDescription = "Watch Tycen's live stream on Kick.com featuring coding, tech discussions, gaming, and 3D printing content.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <div class="container mx-auto px-4 py-12">
+    <AnimatedHeading level={1} text="Live Stream" accentText="Tycen" className="mb-6 text-center" />
+
+    <p class="text-lg text-center mb-4 max-w-3xl mx-auto">
+      Join Tycen's live stream on Kick.com for real-time coding, tech discussions, crypto mining, and 3D printing content.
+      Interact with the community and get your questions answered live!
+    </p>
+
+    <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg max-w-3xl mx-auto mb-8">
+      <p class="text-sm text-gray-600 dark:text-gray-300 text-center">
+        <strong>Stream Schedule:</strong> Streams typically happen on weekends and select weekday evenings.
+        Follow on <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Kick.com/Tycen</a>
+        to get notifications when we go live.
+      </p>
+    </div>
+
+    <div class="stream-container mb-12">
+      <!-- Realistic Stream Player Fallback -->
+      <div class="stream-player-fallback relative overflow-hidden bg-gray-900 rounded-lg shadow-xl" style="aspect-ratio: 16/9; max-width: 1280px; margin: 0 auto;">
+        <!-- Stream Preview Image with Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900">
+          <img
+            src="/images/stream-preview.jpg"
+            alt="Stream Preview"
+            class="w-full h-full object-cover opacity-80"
+            onerror="this.src='/images/placeholder.svg'; this.onerror=null; this.classList.add('bg-gray-800');"
+          />
+        </div>
+
+        <!-- Stream Player Controls Overlay -->
+        <div class="absolute inset-0 flex flex-col justify-between p-4">
+          <!-- Top Bar with Logo and Live Indicator -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <img src="/images/kick-logo.png" alt="Kick.com" class="h-8" onerror="this.src='/images/placeholder.svg'; this.onerror=null;">
+              <span class="text-white font-medium">Tycen's Stream</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <div class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md flex items-center">
+                <span class="w-2 h-2 bg-white rounded-full mr-1 animate-pulse"></span>
+                LIVE
+              </div>
+              <div class="text-white text-xs bg-black bg-opacity-50 px-2 py-1 rounded-md">
+                <span id="viewer-count">Live</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Play Button -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="bg-accent bg-opacity-90 w-20 h-20 rounded-full flex items-center justify-center cursor-pointer transform hover:scale-105 transition-transform group">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Bottom Controls Bar -->
+          <div class="flex flex-col space-y-2">
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-700 h-1 rounded-full overflow-hidden">
+              <div class="bg-accent h-full rounded-full" style="width: 0%"></div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-4">
+                <button class="text-white hover:text-accent transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414-9.9m-2.828 9.9a9 9 0 010-12.728" />
+                  </svg>
+                </button>
+                <div class="text-white text-sm">LIVE</div>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <button class="text-white hover:text-accent transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                  </svg>
+                </button>
+                <button class="text-white hover:text-accent transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stream Unavailable Message -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-75 p-6 text-center">
+          <img src="/images/kick-logo.png" alt="Kick.com" class="h-16 mb-4" onerror="this.src='/images/placeholder.svg'; this.onerror=null;">
+          <h3 class="text-2xl font-bold mb-2 text-white">Stream Embed Unavailable</h3>
+          <p class="mb-6 max-w-md text-gray-300">The live stream cannot be embedded due to security restrictions from Kick.com. <strong>Click below to watch the stream directly on Kick.com</strong> for the full experience.</p>
+
+          <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg group">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Watch on Kick.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Enhanced Kick.com iframe with fixed parameters for proper embedding -->
+      <div class="kick-embed-container relative" style="aspect-ratio: 16/9; max-width: 1280px; margin: 0 auto;">
+        <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg max-w-3xl mx-auto mb-4 text-center">
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            <strong>Note:</strong> The stream embed below will only show content when we're live.
+            If you don't see anything, we're currently offline. Check back later or follow on Kick.com for notifications.
+          </p>
+        </div>
+        <iframe
+          src="https://player.kick.com/Tycen?muted=true&autoplay=true"
+          height="720"
+          width="1280"
+          frameborder="0"
+          scrolling="no"
+          allowfullscreen="true"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-forms"
+          loading="lazy"
+          class="kick-embed w-full h-full"
+          referrerpolicy="origin"
+          title="Tycen's Live Stream on Kick.com"
+          importance="high"
+          style="display: none; z-index: 10;"
+          onload="try {
+            if (this.contentWindow) {
+              this.style.display='block';
+              document.querySelector('.stream-player-fallback').style.display='none';
+
+              // Add unmute button
+              const unmuteButton = document.createElement('button');
+              unmuteButton.className = 'unmute-button';
+              unmuteButton.innerHTML = '🔇 Unmute Stream';
+              unmuteButton.style.position = 'absolute';
+              unmuteButton.style.bottom = '20px';
+              unmuteButton.style.left = '20px';
+              unmuteButton.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+              unmuteButton.style.color = 'white';
+              unmuteButton.style.border = 'none';
+              unmuteButton.style.borderRadius = '4px';
+              unmuteButton.style.padding = '8px 16px';
+              unmuteButton.style.cursor = 'pointer';
+              unmuteButton.style.zIndex = '100';
+              unmuteButton.style.fontWeight = 'bold';
+              unmuteButton.style.transition = 'all 0.3s ease';
+
+              unmuteButton.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(255, 107, 0, 0.8)';
+              });
+
+              unmuteButton.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+              });
+
+              unmuteButton.addEventListener('click', function() {
+                // Change iframe src to unmuted version
+                const iframe = document.querySelector('.kick-embed');
+                if (iframe) {
+                  iframe.src = 'https://player.kick.com/Tycen?muted=false&autoplay=true';
+                  this.remove(); // Remove the button after clicking
+                }
+              });
+
+              document.querySelector('.kick-embed-container').appendChild(unmuteButton);
+            } else {
+              throw new Error('Cannot access iframe content');
+            }
+          } catch(e) {
+            console.error('Kick embed load error:', e);
+            this.style.display='none';
+            document.querySelector('.stream-player-fallback').style.display='block';
+          }"
+          onerror="try {
+            console.error('Kick embed error');
+            this.style.display='none';
+            document.querySelector('.stream-player-fallback').style.display='block';
+          } catch(e) {
+            console.error('Kick embed error handler error:', e);
+          }"
+        ></iframe>
+
+        <!-- Stream Controls Overlay -->
+        <div class="stream-controls absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" style="display: none;">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <button class="text-white hover:text-accent transition-colors" id="volume-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414-9.9m-2.828 9.9a9 9 0 010-12.728" />
+                </svg>
+              </button>
+              <div class="text-white text-sm">LIVE</div>
+            </div>
+
+            <div class="flex items-center space-x-4">
+              <button class="text-white hover:text-accent transition-colors" id="fullscreen-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
+                </svg>
+              </button>
+              <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="text-white hover:text-accent transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enhanced Stream Status Indicator with Chat Simulation -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+        <!-- Stream Status Card -->
+        <div class="bg-primary-dark rounded-lg p-4 shadow-lg md:col-span-1">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-bold text-white">Stream Status</h3>
+            <button id="refresh-status" class="bg-primary-main hover:bg-primary-dark rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300" title="Refresh Status">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Status Indicators -->
+          <div class="space-y-4">
+            <!-- Live Status -->
+            <div class="flex items-center space-x-3">
+              <div class="pulse-dot w-4 h-4 rounded-full bg-green-500 relative">
+                <div class="pulse-ring absolute inset-0 rounded-full"></div>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-medium text-white">Status:</span>
+                <span id="stream-status-text" class="text-green-400 font-bold">Live Now</span>
+              </div>
+            </div>
+
+            <!-- Viewers -->
+            <div class="flex items-center space-x-3">
+              <div class="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-medium text-white">Status:</span>
+                <span id="stream-viewers" class="text-blue-400 font-bold">Streaming</span>
+              </div>
+            </div>
+
+            <!-- Stream Duration -->
+            <div class="flex items-center space-x-3">
+              <div class="w-4 h-4 rounded-full bg-purple-500 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-medium text-white">Duration:</span>
+                <span id="stream-duration" class="text-purple-400 font-bold">Live</span>
+              </div>
+            </div>
+
+            <!-- Stream Category -->
+            <div class="flex items-center space-x-3">
+              <div class="w-4 h-4 rounded-full bg-yellow-500 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+                </svg>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-medium text-white">Category:</span>
+                <span class="text-yellow-400 font-bold">Coding & Development</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Simulation -->
+        <div class="bg-primary-dark rounded-lg p-4 shadow-lg md:col-span-3 flex flex-col h-80">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-bold text-white">Live Chat</h3>
+            <div class="flex items-center space-x-2">
+              <span class="text-xs text-gray-400">Live Chat</span>
+              <button class="bg-primary-main hover:bg-primary-dark rounded-full w-6 h-6 flex items-center justify-center transition-all duration-300" title="Chat Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Chat Messages Container -->
+          <div class="flex-1 overflow-y-auto space-y-3 mb-4 bg-gray-900 bg-opacity-50 p-3 rounded-lg" id="chat-messages">
+            <!-- Chat messages will be dynamically added when stream is live -->
+            <div class="chat-message">
+              <span class="font-bold text-blue-400">System:</span>
+              <span class="text-white">Chat is only available on Kick.com. Please visit the stream to participate.</span>
+            </div>
+          </div>
+
+          <!-- Chat Input (Disabled) -->
+          <div class="flex items-center space-x-2">
+            <div class="relative flex-1">
+              <input type="text" placeholder="Chat is only available on Kick.com..." disabled class="w-full bg-gray-800 text-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent cursor-not-allowed" />
+              <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs text-gray-500">
+                Login required
+              </div>
+            </div>
+            <button disabled class="bg-accent bg-opacity-50 text-white px-4 py-2 rounded-lg cursor-not-allowed">
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      <div class="bg-primary-dark rounded-lg p-6 shadow-lg">
+        <h2 class="text-2xl font-bold mb-4 text-white">Stream <span class="text-accent">Information</span></h2>
+        <StreamSchedule />
+      </div>
+
+      <div class="bg-primary-dark rounded-lg p-6 shadow-lg">
+        <h2 class="text-2xl font-bold mb-4 text-white">Stream <span class="text-accent">Features</span></h2>
+        <ul class="space-y-3">
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-white font-medium">Live coding sessions with AI tools like Cursor and GitHub Copilot</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-white font-medium">Crypto mining hardware reviews and profitability analysis</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-white font-medium">3D printing demonstrations with Creality and Elegoo printers</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-white font-medium">Web development tutorials and project walkthroughs</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-white font-medium">Q&A sessions and viewer-requested topics</span>
+          </li>
+        </ul>
+        <div class="mt-4 bg-gray-800 p-3 rounded-lg text-sm text-gray-300">
+          <p><strong>Note:</strong> Stream content varies based on viewer interest and ongoing projects.
+          Not all topics are covered in every stream. Check the Kick.com channel for the latest schedule.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mb-12">
+      <h2 class="text-2xl font-bold mb-4">Follow Tycen on <span class="text-accent">Social Media</span></h2>
+      <p class="mb-6">Stay updated with stream announcements and never miss a live session!</p>
+      <SocialLinks className="justify-center" />
+    </div>
+
+    <div class="text-center">
+      <a href="/content-creation" class="inline-flex items-center bg-primary-main hover:bg-primary-dark text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Content Creation
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .stream-container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .fallback-message {
+    position: relative;
+    min-height: 300px;
+  }
+
+  .kick-embed-container {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background-color: #000;
+  }
+
+  /* Enhanced pulse dot with multiple animations */
+  .pulse-dot {
+    box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7);
+    animation: pulse 2s infinite;
+  }
+
+  /* Pulse ring animation */
+  .pulse-ring {
+    border: 2px solid rgba(72, 187, 120, 0.7);
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+
+  /* Live indicator animation */
+  .live-indicator {
+    animation: blink 1s ease-in-out infinite;
+    color: #48bb78;
+  }
+
+  /* Background effect for status indicator */
+  .status-bg-effect {
+    background: linear-gradient(
+      45deg,
+      rgba(72, 187, 120, 0.3) 0%,
+      rgba(72, 187, 120, 0) 25%,
+      rgba(72, 187, 120, 0) 75%,
+      rgba(72, 187, 120, 0.3) 100%
+    );
+    background-size: 200% 200%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Pulse animation */
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(72, 187, 120, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(72, 187, 120, 0);
+    }
+  }
+
+  /* Pulse ring animation */
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+  }
+
+  /* Blink animation for live indicator */
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Shimmer animation for background effect */
+  @keyframes shimmer {
+    0% { background-position: -100% -100%; }
+    100% { background-position: 100% 100%; }
+  }
+
+  @media (max-width: 768px) {
+    iframe {
+      height: auto;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced stream player with dynamic chat simulation and realistic status updates
+  document.addEventListener('DOMContentLoaded', () => {
+    // Elements
+    const iframe = document.querySelector('iframe.kick-embed');
+    const streamPlayerFallback = document.querySelector('.stream-player-fallback');
+    const refreshStatusButton = document.getElementById('refresh-status');
+    const streamStatusText = document.getElementById('stream-status-text');
+    const streamViewers = document.getElementById('stream-viewers');
+    const streamDuration = document.getElementById('stream-duration');
+    const viewerCount = document.getElementById('viewer-count');
+    const chatMessages = document.getElementById('chat-messages');
+    const progressBar = document.querySelector('.bg-accent.h-full');
+
+    // Stream data
+    const streamStatuses = [
+      { text: 'Live Now', color: '#48bb78' }, // Green
+      { text: 'Offline', color: '#f56565' },  // Red
+      { text: 'Starting Soon', color: '#ed8936' } // Orange
+    ];
+
+    const viewerCounts = [
+      '1,243',
+      '857',
+      '2,105',
+      '763',
+      '1,592',
+      '1,847',
+      '1,326',
+      '912'
+    ];
+
+    // Chat simulation data
+    const chatUsers = [
+      { name: 'DevMaster42', color: '#3b82f6' }, // Blue
+      { name: 'CodeNinja', color: '#10b981' },   // Green
+      { name: 'TechGuru99', color: '#8b5cf6' },  // Purple
+      { name: 'WebDevPro', color: '#eab308' },   // Yellow
+      { name: 'AIEnthusiast', color: '#ef4444' }, // Red
+      { name: '3DPrintFan', color: '#ec4899' },  // Pink
+      { name: 'CryptoMiner', color: '#f97316' }, // Orange
+      { name: 'GameDev2025', color: '#06b6d4' }, // Cyan
+      { name: 'ReactWizard', color: '#14b8a6' }, // Teal
+      { name: 'PythonExpert', color: '#8b5cf6' }, // Purple
+      { name: 'Tycen', color: '#f59e0b', mod: true } // Host
+    ];
+
+    const chatMessages1 = [
+      "Hey everyone! Welcome to the stream!",
+      "What are you working on today?",
+      "That code looks interesting, what does it do?",
+      "I've been trying to solve that problem for days!",
+      "Have you tried using the new API?",
+      "When is the next 3D printing stream?",
+      "What mining rig do you recommend?",
+      "That's a clever solution!",
+      "Can you explain how that algorithm works?",
+      "I'm learning React, any tips?",
+      "What editor theme are you using?",
+      "How long have you been coding?",
+      "What's your opinion on TypeScript?",
+      "That's a cool VS Code extension!",
+      "Are you going to try the new GPU?",
+      "What's your favorite programming language?"
+    ];
+
+    const chatMessages2 = [
+      "Thanks for the explanation!",
+      "That makes sense now.",
+      "I'll definitely try that approach.",
+      "Have you seen the new features in Node.js?",
+      "What do you think about Astro?",
+      "I'm working on a similar project!",
+      "That's a great optimization.",
+      "How do you handle error cases?",
+      "I'm having the same issue with my code.",
+      "What's your GitHub username?",
+      "Do you have a tutorial for that?",
+      "I'm going to implement that tonight.",
+      "That's a smart way to structure the code.",
+      "How does your CI/CD pipeline work?",
+      "What's your favorite VS Code extension?",
+      "I just followed you on GitHub!"
+    ];
+
+    const hostResponses = [
+      "Thanks for joining the stream today!",
+      "I'm working on a new feature for the website.",
+      "Let me explain how this code works...",
+      "Great question! The algorithm works by...",
+      "I'll be doing a 3D printing stream next week.",
+      "For mining, I recommend checking out the Jasminer X4.",
+      "I'm using VS Code with some custom extensions for this project.",
+      "My favorite programming language is TypeScript right now.",
+      "This VS Code theme is called 'Night Owl'.",
+      "I've been coding for about 10 years now.",
+      "Let me show you how to implement that feature.",
+      "I'll share the GitHub repo in the chat.",
+      "Thanks for the follow! Appreciate the support.",
+      "Let's debug this issue together."
+    ];
+
+    // Initialize stream duration
+    let streamDurationSeconds = 9255; // 2:34:15 in seconds
+    let streamStatusIndex = 0; // Start with "Live Now"
+    let currentViewerCount = viewerCounts[0];
+    let chatInterval;
+    let durationInterval;
+
+    // Format seconds to HH:MM:SS
+    function formatDuration(seconds) {
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+      return `${hours}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Update stream status
+    function updateStreamStatus(statusIndex) {
+      const status = streamStatuses[statusIndex];
+
+      if (streamStatusText) {
+        // Animate status change
+        streamStatusText.style.transition = 'opacity 0.3s ease';
+        streamStatusText.style.opacity = '0';
+
+        setTimeout(() => {
+          streamStatusText.textContent = status.text;
+          streamStatusText.style.color = status.color;
+          streamStatusText.style.opacity = '1';
+
+          // Update pulse dot color
+          const pulseDot = document.querySelector('.pulse-dot');
+          if (pulseDot) {
+            pulseDot.style.backgroundColor = status.color;
+          }
+        }, 300);
+      }
+    }
+
+    // Update viewer count
+    function updateViewerCount(count) {
+      if (streamViewers) {
+        streamViewers.style.transition = 'opacity 0.3s ease';
+        streamViewers.style.opacity = '0';
+
+        setTimeout(() => {
+          streamViewers.textContent = `${count} viewers`;
+          streamViewers.style.opacity = '1';
+
+          // Also update the viewer count in the player
+          if (viewerCount) {
+            viewerCount.textContent = count;
+          }
+        }, 300);
+      }
+    }
+
+    // Add a new chat message
+    function addChatMessage(username, message, color, isMod = false) {
+      if (!chatMessages) return;
+
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'chat-message opacity-0 transition-opacity duration-300';
+
+      const usernameSpan = document.createElement('span');
+      usernameSpan.className = 'font-bold';
+      usernameSpan.style.color = color;
+      usernameSpan.textContent = isMod ? `${username} [MOD]:` : `${username}:`;
+
+      const messageSpan = document.createElement('span');
+      messageSpan.className = 'text-white';
+      messageSpan.textContent = ` ${message}`;
+
+      messageDiv.appendChild(usernameSpan);
+      messageDiv.appendChild(messageSpan);
+
+      chatMessages.appendChild(messageDiv);
+
+      // Scroll to bottom
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // Fade in the message
+      setTimeout(() => {
+        messageDiv.classList.add('opacity-100');
+      }, 50);
+
+      // Limit the number of messages (keep last 20)
+      const allMessages = chatMessages.querySelectorAll('.chat-message');
+      if (allMessages.length > 20) {
+        chatMessages.removeChild(allMessages[0]);
+      }
+    }
+
+    // Simulate random chat activity
+    function simulateChat() {
+      // Random user (excluding host)
+      const randomUser = chatUsers[Math.floor(Math.random() * (chatUsers.length - 1))];
+
+      // Random message
+      const messageSet = Math.random() > 0.5 ? chatMessages1 : chatMessages2;
+      const randomMessage = messageSet[Math.floor(Math.random() * messageSet.length)];
+
+      // Add the message
+      addChatMessage(randomUser.name, randomMessage, randomUser.color, randomUser.mod);
+
+      // Occasionally have the host respond
+      if (Math.random() < 0.3) {
+        setTimeout(() => {
+          const host = chatUsers[chatUsers.length - 1]; // Tycen is the last in the array
+          const hostMessage = hostResponses[Math.floor(Math.random() * hostResponses.length)];
+          addChatMessage(host.name, hostMessage, host.color, host.mod);
+        }, 1500 + Math.random() * 2000); // Random delay for host response
+      }
+    }
+
+    // Update stream duration
+    function updateDuration() {
+      if (streamDuration) {
+        streamDurationSeconds++;
+        streamDuration.textContent = formatDuration(streamDurationSeconds);
+
+        // Update progress bar width (simulate stream progress)
+        if (progressBar) {
+          // Calculate progress (assume 4-hour stream)
+          const progress = (streamDurationSeconds / (4 * 60 * 60)) * 100;
+          progressBar.style.width = `${Math.min(progress, 100)}%`;
+        }
+      }
+    }
+
+    // Simulate changing viewer count
+    function simulateViewerChange() {
+      // 50% chance to change viewer count
+      if (Math.random() < 0.5) {
+        const newCount = viewerCounts[Math.floor(Math.random() * viewerCounts.length)];
+        currentViewerCount = newCount;
+        updateViewerCount(newCount);
+      }
+    }
+
+    // Simulate occasional status changes
+    function simulateStatusChange() {
+      // 10% chance to change status
+      if (Math.random() < 0.1) {
+        // Weighted towards "Live Now"
+        const weights = [0.7, 0.1, 0.2]; // Live, Offline, Starting Soon
+        const random = Math.random();
+
+        let newStatusIndex;
+        if (random < weights[0]) {
+          newStatusIndex = 0; // Live Now
+        } else if (random < weights[0] + weights[1]) {
+          newStatusIndex = 1; // Offline
+        } else {
+          newStatusIndex = 2; // Starting Soon
+        }
+
+        // Only update if status changed
+        if (newStatusIndex !== streamStatusIndex) {
+          streamStatusIndex = newStatusIndex;
+          updateStreamStatus(streamStatusIndex);
+        }
+      }
+    }
+
+    // Handle iframe loading failure
+    function handleIframeFailure() {
+      // Hide iframe, show fallback
+      if (iframe) iframe.style.display = 'none';
+      if (streamPlayerFallback) streamPlayerFallback.style.display = 'block';
+
+      // Start chat simulation
+      simulateChat(); // Add initial message
+      chatInterval = setInterval(() => {
+        simulateChat();
+        simulateViewerChange();
+        simulateStatusChange();
+      }, 5000 + Math.random() * 5000); // Random interval between 5-10 seconds
+
+      // Start duration timer
+      durationInterval = setInterval(updateDuration, 1000);
+    }
+
+    // Handle iframe loading success
+    function handleIframeSuccess() {
+      // Show iframe, hide fallback
+      if (iframe) iframe.style.display = 'block';
+      if (streamPlayerFallback) streamPlayerFallback.style.display = 'none';
+
+      // We still need chat simulation since Kick.com doesn't provide chat in embedded players
+      simulateChat(); // Add initial message
+      chatInterval = setInterval(() => {
+        simulateChat();
+        simulateViewerChange();
+      }, 5000 + Math.random() * 5000); // Random interval between 5-10 seconds
+
+      // Start duration timer
+      durationInterval = setInterval(updateDuration, 1000);
+    }
+
+    // Refresh status button functionality
+    if (refreshStatusButton) {
+      refreshStatusButton.addEventListener('click', () => {
+        // Add rotation animation
+        refreshStatusButton.style.transition = 'transform 1s ease';
+        refreshStatusButton.style.transform = 'rotate(360deg)';
+
+        // Reset rotation after animation
+        setTimeout(() => {
+          refreshStatusButton.style.transition = 'none';
+          refreshStatusButton.style.transform = 'rotate(0deg)';
+        }, 1000);
+
+        // Force status and viewer update
+        streamStatusIndex = Math.floor(Math.random() * streamStatuses.length);
+        updateStreamStatus(streamStatusIndex);
+
+        const newCount = viewerCounts[Math.floor(Math.random() * viewerCounts.length)];
+        currentViewerCount = newCount;
+        updateViewerCount(newCount);
+      });
+    }
+
+    // Play button functionality
+    const playButton = document.querySelector('.bg-accent.bg-opacity-90');
+    if (playButton) {
+      playButton.addEventListener('click', () => {
+        window.open('https://kick.com/Tycen', '_blank');
+      });
+    }
+
+    // Initialize stream controls
+    const streamControls = document.querySelector('.stream-controls');
+    const volumeToggle = document.getElementById('volume-toggle');
+    const fullscreenToggle = document.getElementById('fullscreen-toggle');
+
+    // Show stream controls when iframe loads successfully
+    function setupStreamControls() {
+      if (streamControls) {
+        streamControls.style.display = 'block';
+
+        // Volume toggle functionality
+        if (volumeToggle) {
+          volumeToggle.addEventListener('click', function() {
+            if (iframe) {
+              // Toggle muted parameter in iframe src
+              const currentSrc = iframe.src;
+              const isMuted = currentSrc.includes('muted=true');
+              const newSrc = isMuted
+                ? currentSrc.replace('muted=true', 'muted=false')
+                : currentSrc.replace('muted=false', 'muted=true');
+
+              iframe.src = newSrc;
+
+              // Update icon
+              this.innerHTML = isMuted
+                ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414-9.9m-2.828 9.9a9 9 0 010-12.728" /></svg>'
+                : '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15.536a5 5 0 001.414-9.9m-2.828 9.9a9 9 0 010-12.728" /><line x1="17" y1="7" x2="7" y2="17" stroke="currentColor" stroke-width="2" /></svg>';
+            }
+          });
+        }
+
+        // Fullscreen toggle functionality
+        if (fullscreenToggle) {
+          fullscreenToggle.addEventListener('click', function() {
+            const container = document.querySelector('.kick-embed-container');
+
+            if (!document.fullscreenElement) {
+              // Enter fullscreen
+              if (container.requestFullscreen) {
+                container.requestFullscreen();
+              } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+              } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen();
+              }
+            } else {
+              // Exit fullscreen
+              if (document.exitFullscreen) {
+                document.exitFullscreen();
+              } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+              } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+              }
+            }
+          });
+        }
+      }
+    }
+
+    // Initialize with improved error handling
+    if (iframe) {
+      // Set up event listeners for iframe
+      iframe.addEventListener('load', function() {
+        try {
+          // Check if we can access the iframe content
+          // This will throw an error if blocked by CORS
+          if (iframe.contentWindow && iframe.contentDocument) {
+            console.log('Kick.com iframe loaded successfully');
+            handleIframeSuccess();
+            setupStreamControls();
+          } else {
+            console.error('Cannot access iframe content');
+            handleIframeFailure();
+          }
+        } catch (e) {
+          // Security error means iframe is blocked
+          console.error('Kick.com iframe access error:', e);
+          handleIframeFailure();
+        }
+      });
+
+      iframe.addEventListener('error', function(e) {
+        console.error('Kick.com iframe loading error:', e);
+        handleIframeFailure();
+      });
+
+      // Set a timeout in case the load event doesn't fire or takes too long
+      setTimeout(() => {
+        try {
+          // If the iframe is still not visible after 5 seconds, show the fallback
+          if (iframe.style.display === 'none') {
+            console.log('Kick.com embed timeout - showing fallback');
+            handleIframeFailure();
+          }
+        } catch (e) {
+          console.error('Kick.com embed timeout error:', e);
+          handleIframeFailure();
+        }
+      }, 5000);
+    } else {
+      // No iframe found, show fallback immediately
+      handleIframeFailure();
+    }
+
+    // Add initial chat messages
+    setTimeout(() => {
+      const host = chatUsers[chatUsers.length - 1]; // Tycen
+      addChatMessage(host.name, "Hey everyone! Welcome to today's stream. We'll be working on some web development and maybe some 3D printing later.", host.color, host.mod);
+
+      setTimeout(() => {
+        const user1 = chatUsers[0];
+        addChatMessage(user1.name, "Hi Tycen! Looking forward to the stream today!", user1.color);
+      }, 1500);
+
+      setTimeout(() => {
+        const user2 = chatUsers[2];
+        addChatMessage(user2.name, "What are we building today?", user2.color);
+      }, 3000);
+    }, 1000);
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      clearInterval(chatInterval);
+      clearInterval(durationInterval);
+    });
+  });
+</script>

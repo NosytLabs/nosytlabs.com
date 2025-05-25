@@ -1,0 +1,371 @@
+---
+/**
+ * EnhancedWindows95Window.astro
+ * An enhanced Windows 95 window component with better resizing, animations, and z-index management.
+ * 
+ * Features:
+ * - Smooth animations for opening, closing, minimizing, and maximizing
+ * - Proper resize handles with constraints
+ * - Better z-index management for window stacking
+ * - Window snapping to screen edges and other windows
+ * - Keyboard shortcuts for window management
+ */
+
+export interface Props {
+  id: string;
+  title: string;
+  icon?: string;
+  initialWidth?: number;
+  initialHeight?: number;
+  initialX?: number;
+  initialY?: number;
+  minWidth?: number;
+  minHeight?: number;
+  isOpen?: boolean;
+  isMaximized?: boolean;
+  hasMenu?: boolean;
+  hasStatusBar?: boolean;
+  zIndex?: number;
+  className?: string;
+}
+
+const {
+  id,
+  title,
+  icon = "/images/win95/default.png",
+  initialWidth = 640,
+  initialHeight = 480,
+  initialX = 50,
+  initialY = 50,
+  minWidth = 200,
+  minHeight = 150,
+  isOpen = false,
+  isMaximized = false,
+  hasMenu = true,
+  hasStatusBar = false,
+  zIndex = 1000,
+  className = ""
+} = Astro.props;
+
+// Generate a unique ID for this window instance
+const windowId = `win95-window-${id}`;
+---
+
+<div 
+  id={windowId}
+  class={`win95-window ${isMaximized ? 'maximized' : ''} ${isOpen ? 'open' : ''} ${className}`}
+  data-window-id={id}
+  data-min-width={minWidth}
+  data-min-height={minHeight}
+  style={`
+    width: ${initialWidth}px; 
+    height: ${initialHeight}px; 
+    left: ${initialX}px; 
+    top: ${initialY}px; 
+    z-index: ${zIndex};
+    display: ${isOpen ? 'block' : 'none'};
+  `}
+>
+  <!-- Window Header -->
+  <div class="window-header" data-window-drag="true">
+    <div class="window-title">
+      {icon && <img src={icon} alt={title} class="window-icon" />}
+      <span>{title}</span>
+    </div>
+    <div class="window-controls">
+      <button class="window-minimize" title="Minimize" aria-label="Minimize window">_</button>
+      <button class="window-maximize" title={isMaximized ? "Restore" : "Maximize"} aria-label={isMaximized ? "Restore window" : "Maximize window"}>
+        {isMaximized ? '❐' : '□'}
+      </button>
+      <button class="window-close" title="Close" aria-label="Close window">×</button>
+    </div>
+  </div>
+
+  <!-- Window Menu (optional) -->
+  {hasMenu && (
+    <div class="window-menu">
+      <slot name="menu">
+        <div class="menu-item">File</div>
+        <div class="menu-item">Edit</div>
+        <div class="menu-item">View</div>
+        <div class="menu-item">Help</div>
+      </slot>
+    </div>
+  )}
+
+  <!-- Window Content -->
+  <div class="window-content">
+    <slot />
+  </div>
+
+  <!-- Window Status Bar (optional) -->
+  {hasStatusBar && (
+    <div class="window-statusbar">
+      <slot name="statusbar">
+        <span>Ready</span>
+      </slot>
+    </div>
+  )}
+
+  <!-- Resize Handles -->
+  <div class="resize-handle resize-handle-n" data-resize="n"></div>
+  <div class="resize-handle resize-handle-ne" data-resize="ne"></div>
+  <div class="resize-handle resize-handle-e" data-resize="e"></div>
+  <div class="resize-handle resize-handle-se" data-resize="se"></div>
+  <div class="resize-handle resize-handle-s" data-resize="s"></div>
+  <div class="resize-handle resize-handle-sw" data-resize="sw"></div>
+  <div class="resize-handle resize-handle-w" data-resize="w"></div>
+  <div class="resize-handle resize-handle-nw" data-resize="nw"></div>
+</div>
+
+<style>
+  .win95-window {
+    position: absolute;
+    background-color: var(--win95-window-bg, #c0c0c0);
+    border: 3px solid var(--win95-window-bg, #c0c0c0);
+    box-shadow: 
+      inset 1px 1px 0px var(--win95-button-highlight, #ffffff),
+      inset -1px -1px 0px var(--win95-button-shadow, #808080),
+      2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+    will-change: transform, width, height;
+  }
+
+  .win95-window.active {
+    box-shadow: 
+      inset 1px 1px 0px var(--win95-button-highlight, #ffffff),
+      inset -1px -1px 0px var(--win95-button-shadow, #808080),
+      4px 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .win95-window.open {
+    display: flex;
+    animation: windowOpen 0.2s ease-out forwards;
+  }
+
+  .win95-window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - 28px) !important; /* Account for taskbar */
+    border-radius: 0;
+  }
+
+  .window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--win95-window-header, #000080);
+    color: var(--win95-window-header-text, #ffffff);
+    padding: 2px 4px;
+    cursor: move;
+    user-select: none;
+  }
+
+  .window-title {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .window-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+
+  .window-controls {
+    display: flex;
+    align-items: center;
+  }
+
+  .window-controls button {
+    width: 16px;
+    height: 14px;
+    margin-left: 2px;
+    background-color: var(--win95-button-face, #c0c0c0);
+    border: 1px solid var(--win95-button-shadow, #808080);
+    box-shadow: 
+      inset 1px 1px 0px var(--win95-button-highlight, #ffffff),
+      inset -1px -1px 0px var(--win95-button-shadow, #808080);
+    color: var(--win95-button-text, #000000);
+    font-size: 9px;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  .window-controls button:hover {
+    background-color: var(--win95-button-hover, #d0d0d0);
+  }
+
+  .window-controls button:active {
+    background-color: var(--win95-button-active, #a0a0a0);
+    box-shadow: 
+      inset -1px -1px 0px var(--win95-button-highlight, #ffffff),
+      inset 1px 1px 0px var(--win95-button-shadow, #808080);
+  }
+
+  .window-menu {
+    display: flex;
+    background-color: var(--win95-menu-bg, #c0c0c0);
+    border-bottom: 1px solid var(--win95-button-shadow, #808080);
+    padding: 1px 0;
+  }
+
+  .menu-item {
+    padding: 2px 6px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .menu-item:hover {
+    background-color: var(--win95-menu-hover, #d0d0d0);
+  }
+
+  .window-content {
+    flex: 1;
+    overflow: auto;
+    background-color: var(--win95-window-bg, #c0c0c0);
+    position: relative;
+  }
+
+  .window-statusbar {
+    display: flex;
+    align-items: center;
+    padding: 2px 4px;
+    font-size: 11px;
+    background-color: var(--win95-window-bg, #c0c0c0);
+    border-top: 1px solid var(--win95-button-shadow, #808080);
+  }
+
+  /* Resize handles */
+  .resize-handle {
+    position: absolute;
+    background-color: transparent;
+  }
+
+  .resize-handle-n {
+    top: 0;
+    left: 3px;
+    right: 3px;
+    height: 3px;
+    cursor: n-resize;
+  }
+
+  .resize-handle-ne {
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 6px;
+    cursor: ne-resize;
+  }
+
+  .resize-handle-e {
+    top: 3px;
+    right: 0;
+    bottom: 3px;
+    width: 3px;
+    cursor: e-resize;
+  }
+
+  .resize-handle-se {
+    right: 0;
+    bottom: 0;
+    width: 6px;
+    height: 6px;
+    cursor: se-resize;
+  }
+
+  .resize-handle-s {
+    bottom: 0;
+    left: 3px;
+    right: 3px;
+    height: 3px;
+    cursor: s-resize;
+  }
+
+  .resize-handle-sw {
+    bottom: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    cursor: sw-resize;
+  }
+
+  .resize-handle-w {
+    top: 3px;
+    left: 0;
+    bottom: 3px;
+    width: 3px;
+    cursor: w-resize;
+  }
+
+  .resize-handle-nw {
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    cursor: nw-resize;
+  }
+
+  /* Animations */
+  @keyframes windowOpen {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes windowClose {
+    from {
+      transform: scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+  }
+
+  @keyframes windowMinimize {
+    from {
+      transform: scale(1);
+      opacity: 1;
+    }
+    to {
+      transform: scale(0.1) translateY(500px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes windowMaximize {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.02);
+    }
+  }
+</style>
+
+<script define:vars={{ windowId, isMaximized, minWidth, minHeight }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeWindow(windowId, isMaximized, minWidth, minHeight);
+  });
+</script>

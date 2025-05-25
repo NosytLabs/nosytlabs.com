@@ -1,0 +1,515 @@
+---
+// Projects page for NosytLabs
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EnhancedProjectCard from '../components/EnhancedProjectCard.astro';
+
+// Import data
+import projectsData from '../../public/data/projects.json';
+const { featured, recent, categories } = projectsData;
+const allProjects = [...featured, ...recent];
+---
+
+<BaseLayout
+  title="Projects - NosytLabs"
+  description="Explore our portfolio of innovative projects including AI solutions, web applications, mobile apps, and more."
+>
+  <!-- Enhanced Hero Section with 3D effect -->
+  <div class="relative bg-gradient-to-br from-primary-dark via-primary to-secondary text-white py-20 overflow-hidden">
+    <!-- Background particles with enhanced animation -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="particles-enhanced"></div>
+
+      <!-- Light beam effect -->
+      <div class="absolute inset-0 light-beam"></div>
+
+      <!-- Decorative elements -->
+      <div class="absolute top-10 right-10 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 left-10 w-60 h-60 bg-primary-light/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-3xl">
+        <!-- Decorative elements -->
+        <div class="inline-block relative mb-4">
+          <div class="absolute -top-6 -left-6 w-12 h-12 border-t-2 border-l-2 border-accent opacity-70"></div>
+          <div class="absolute -bottom-6 -right-6 w-12 h-12 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 relative">
+            Our <span class="text-accent gradient-text shadow-text-3d">Projects</span>
+            <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h1>
+        </div>
+
+        <p class="text-xl backdrop-blur-sm bg-black/10 p-4 rounded-lg">
+          Explore our portfolio of innovative solutions that have helped businesses transform and grow.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced Projects Filter Section -->
+  <section class="py-12 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="relative inline-block">
+          <h2 class="text-2xl font-bold relative inline-block text-gray-800 dark:text-white">
+            Filter Projects
+            <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h2>
+        </div>
+
+        <div class="filter-container p-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-wrap gap-2 max-w-full overflow-x-auto">
+          <button
+            class="filter-btn active px-4 py-2 bg-accent text-white rounded-lg shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            data-category="all"
+          >
+            <span class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              All
+            </span>
+          </button>
+
+          {categories.map(category => (
+            <button
+              class="filter-btn px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg transition-all duration-300 hover:shadow-md transform hover:scale-105"
+              data-category={category.id}
+            >
+              <span class="flex items-center">
+                {category.id === 'web-development' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                  </svg>
+                )}
+                {category.id === 'mobile-development' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                )}
+                {category.id === 'artificial-intelligence' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                )}
+                {category.id === 'blockchain' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                )}
+                {category.id === 'iot' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                  </svg>
+                )}
+                {category.id === 'vr-ar' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                )}
+                {category.id === 'data-visualization' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                )}
+                {category.name}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Projects Grid Section -->
+  <section class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+        {allProjects.map((project, index) => (
+          <div data-category={project.category.toLowerCase().replace(/\s+/g, '-')}>
+            <EnhancedProjectCard
+              title={project.title}
+              description={project.description}
+              image={project.imageUrl || "/images/placeholder.svg"}
+              imageAlt={project.title}
+              link={project.githubUrl || project.demoUrl || `https://github.com/NosytLabs/${project.id}`}
+              tags={project.technologies.slice(0, 4)}
+              category={project.category}
+              date={project.completionDate}
+              animationDelay={index * 0.1}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Enhanced project filtering functionality with animations
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('[data-category]');
+    const projectsGrid = document.getElementById('projects-grid');
+
+    // Initialize Isotope-like layout if available
+    let iso;
+    if (window.Isotope) {
+      iso = new Isotope(projectsGrid, {
+        itemSelector: '[data-category]',
+        layoutMode: 'fitRows',
+        transitionDuration: '0.6s'
+      });
+    }
+
+    // Filter functionality
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Get the category
+        const category = this.getAttribute('data-category');
+
+        // Update active button styles with animation
+        filterButtons.forEach(btn => {
+          // Remove active classes
+          btn.classList.remove('active', 'bg-accent', 'text-white', 'shadow-md');
+          btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
+
+          // Remove scale effect
+          btn.style.transform = 'scale(1)';
+        });
+
+        // Add active classes to clicked button with animation
+        this.classList.add('active', 'bg-accent', 'text-white', 'shadow-md');
+        this.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
+
+        // Add scale effect
+        this.style.transform = 'scale(1.05)';
+
+        // Filter projects with animation
+        if (iso) {
+          // If Isotope is available, use it for filtering
+          if (category === 'all') {
+            iso.arrange({ filter: '*' });
+          } else {
+            iso.arrange({ filter: `[data-category="${category}"]` });
+          }
+        } else {
+          // Fallback to basic filtering with animation
+          projectCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              // Show card with animation
+              card.style.opacity = '0';
+              card.style.transform = 'scale(0.8)';
+              card.style.display = 'block';
+
+              // Trigger animation after a small delay
+              setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+              }, 10);
+            } else {
+              // Hide card with animation
+              card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+              card.style.opacity = '0';
+              card.style.transform = 'scale(0.8)';
+
+              // After animation completes, hide the element
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 500);
+            }
+          });
+        }
+
+        // Update URL hash for bookmarking
+        window.location.hash = category;
+      });
+    });
+
+    // Check URL hash on page load for direct filtering
+    const hashCategory = window.location.hash.substring(1);
+    if (hashCategory) {
+      const hashButton = document.querySelector(`.filter-btn[data-category="${hashCategory}"]`);
+      if (hashButton) {
+        hashButton.click();
+      }
+    }
+  });
+</script>
+
+<style>
+  /* Projects page specific styles */
+
+  /* Card 3D effect */
+  .card-3d {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+
+  /* Mouse tracking 3D effect */
+  .mouse-tracking-3d > div {
+    transition: transform 0.2s ease-out;
+    will-change: transform;
+  }
+
+  /* Filter buttons */
+  .filter-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--nosyt-orange-main) transparent;
+  }
+
+  .filter-container::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .filter-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .filter-container::-webkit-scrollbar-thumb {
+    background-color: var(--nosyt-orange-main);
+    border-radius: 20px;
+  }
+
+  .filter-btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .filter-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+
+  .filter-btn:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 0.5;
+    }
+    20% {
+      transform: scale(25, 25);
+      opacity: 0.3;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(40, 40);
+    }
+  }
+
+  /* Project cards */
+  .project-card {
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px);
+  }
+
+  /* Staggered animations */
+  .staggered-container > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .project-card:hover .staggered-container > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .project-card:hover .staggered-container > *:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+
+  .project-card:hover .staggered-container > *:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+
+  .project-card:hover .staggered-container > *:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+
+  .project-card:hover .staggered-container > *:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+
+  /* Text reveal animation */
+  .text-reveal {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .text-reveal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--nosyt-orange-main);
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+    z-index: 1;
+  }
+
+  .project-card:hover .text-reveal::after {
+    transform: translateX(100%);
+  }
+
+  /* Fade in scale animation */
+  .fade-in-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .project-card:hover .fade-in-scale {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Slide up fade animation */
+  .slide-up-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .project-card:hover .slide-up-fade {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* CTA Button styles */
+  .cta-button-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--nosyt-orange-main);
+    color: white;
+    font-medium: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transform: translateY(0);
+  }
+
+  .cta-button-primary:hover {
+    background-color: var(--nosyt-orange-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  .cta-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Particles animation */
+  .particles-enhanced {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+      radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+      radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+      radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+      radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: particlesEnhanced 30s linear infinite;
+  }
+
+  /* Light beam effect */
+  .light-beam {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.05) 50%, transparent 55%);
+    animation: light-beam-move 15s ease-in-out infinite;
+  }
+
+  /* Animation keyframes */
+  @keyframes particlesEnhanced {
+    0% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.7;
+    }
+    25% {
+      transform: translateY(-15px) translateX(15px) scale(1.05);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.7;
+    }
+    75% {
+      transform: translateY(15px) translateX(-15px) scale(0.95);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes light-beam-move {
+    0% { transform: rotate(0deg) translateX(0) scale(1); opacity: 0; }
+    25% { transform: rotate(45deg) translateX(50px) scale(1.5); opacity: 0.1; }
+    50% { transform: rotate(90deg) translateX(0) scale(1); opacity: 0; }
+    75% { transform: rotate(135deg) translateX(-50px) scale(1.5); opacity: 0.1; }
+    100% { transform: rotate(180deg) translateX(0) scale(1); opacity: 0; }
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--nosyt-orange-main), var(--nosyt-orange-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+
+  /* 3D text shadow */
+  .shadow-text-3d {
+    text-shadow:
+      1px 1px 0 rgba(255, 107, 0, 0.4),
+      2px 2px 0 rgba(255, 107, 0, 0.3),
+      3px 3px 0 rgba(255, 107, 0, 0.2),
+      4px 4px 0 rgba(255, 107, 0, 0.1),
+      4px 4px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Line clamp for text truncation */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

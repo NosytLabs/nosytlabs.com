@@ -1,0 +1,187 @@
+---
+/**
+ * Spacer Component
+ * A consistent spacer component for adding vertical space between elements
+ */
+
+export interface Props {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
+  responsive?: boolean;
+  class?: string;
+}
+
+const {
+  size = 'md',
+  responsive = true,
+  class: className = '',
+} = Astro.props;
+
+// Size classes
+const sizeClasses = {
+  xs: 'h-2',
+  sm: 'h-4',
+  md: 'h-8',
+  lg: 'h-12',
+  xl: 'h-16',
+  '2xl': 'h-24',
+  '3xl': 'h-32',
+  '4xl': 'h-40',
+};
+
+// Responsive classes
+const responsiveClasses = responsive ? {
+  xs: 'sm:h-3 md:h-4',
+  sm: 'sm:h-6 md:h-8',
+  md: 'sm:h-10 md:h-12',
+  lg: 'sm:h-16 md:h-20',
+  xl: 'sm:h-20 md:h-24',
+  '2xl': 'sm:h-28 md:h-32',
+  '3xl': 'sm:h-36 md:h-40',
+  '4xl': 'sm:h-44 md:h-48',
+} : {};
+
+// Combine all classes
+const spacerClasses = [
+  sizeClasses[size],
+  responsive ? responsiveClasses[size] : '',
+  className,
+].filter(Boolean).join(' ');
+---
+
+<div class={spacerClasses} aria-hidden="true"></div>
+
+<style>
+  /* Base height classes */
+  .h-2 {
+    height: 0.5rem;
+  }
+  
+  .h-3 {
+    height: 0.75rem;
+  }
+  
+  .h-4 {
+    height: 1rem;
+  }
+  
+  .h-6 {
+    height: 1.5rem;
+  }
+  
+  .h-8 {
+    height: 2rem;
+  }
+  
+  .h-10 {
+    height: 2.5rem;
+  }
+  
+  .h-12 {
+    height: 3rem;
+  }
+  
+  .h-16 {
+    height: 4rem;
+  }
+  
+  .h-20 {
+    height: 5rem;
+  }
+  
+  .h-24 {
+    height: 6rem;
+  }
+  
+  .h-28 {
+    height: 7rem;
+  }
+  
+  .h-32 {
+    height: 8rem;
+  }
+  
+  .h-36 {
+    height: 9rem;
+  }
+  
+  .h-40 {
+    height: 10rem;
+  }
+  
+  .h-44 {
+    height: 11rem;
+  }
+  
+  .h-48 {
+    height: 12rem;
+  }
+  
+  /* Responsive classes */
+  @media (min-width: 640px) {
+    .sm\:h-3 {
+      height: 0.75rem;
+    }
+    
+    .sm\:h-6 {
+      height: 1.5rem;
+    }
+    
+    .sm\:h-10 {
+      height: 2.5rem;
+    }
+    
+    .sm\:h-16 {
+      height: 4rem;
+    }
+    
+    .sm\:h-20 {
+      height: 5rem;
+    }
+    
+    .sm\:h-28 {
+      height: 7rem;
+    }
+    
+    .sm\:h-36 {
+      height: 9rem;
+    }
+    
+    .sm\:h-44 {
+      height: 11rem;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .md\:h-4 {
+      height: 1rem;
+    }
+    
+    .md\:h-8 {
+      height: 2rem;
+    }
+    
+    .md\:h-12 {
+      height: 3rem;
+    }
+    
+    .md\:h-20 {
+      height: 5rem;
+    }
+    
+    .md\:h-24 {
+      height: 6rem;
+    }
+    
+    .md\:h-32 {
+      height: 8rem;
+    }
+    
+    .md\:h-40 {
+      height: 10rem;
+    }
+    
+    .md\:h-48 {
+      height: 12rem;
+    }
+  }
+</style>

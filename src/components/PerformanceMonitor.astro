@@ -1,0 +1,410 @@
+---
+// Performance Monitoring Component for Core Web Vitals and Performance Metrics
+export interface Props {
+  enableAnalytics?: boolean;
+  enableConsoleLogging?: boolean;
+  sampleRate?: number;
+}
+
+const { 
+  enableAnalytics = true, 
+  enableConsoleLogging = false,
+  sampleRate = 1.0 
+} = Astro.props;
+---
+
+<script define:vars={{ enableAnalytics, enableConsoleLogging, sampleRate }}>
+  class PerformanceMonitor {
+    private metrics = {
+      navigation: {},
+      vitals: {},
+      resources: [],
+      errors: []
+    };
+    
+    private observers = new Map();
+    private startTime = performance.now();
+    
+    constructor() {
+      this.init();
+    }
+    
+    init() {
+      // Only run for a sample of users
+      if (Math.random() > sampleRate) return;
+      
+      this.observeNavigationTiming();
+      this.observeCoreWebVitals();
+      this.observeResourceTiming();
+      this.observeErrors();
+      this.observeUserInteractions();
+      
+      // Report metrics when page is about to unload
+      window.addEventListener('beforeunload', () => {
+        this.reportMetrics();
+      });
+      
+      // Report metrics after page is fully loaded
+      window.addEventListener('load', () => {
+        setTimeout(() => this.reportMetrics(), 1000);
+      });
+    }
+    
+    observeNavigationTiming() {
+      window.addEventListener('load', () => {
+        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+        
+        this.metrics.navigation = {
+          // DNS and Connection
+          dnsLookup: navigation.domainLookupEnd - navigation.domainLookupStart,
+          tcpConnection: navigation.connectEnd - navigation.connectStart,
+          tlsHandshake: navigation.secureConnectionStart > 0 ? 
+            navigation.connectEnd - navigation.secureConnectionStart : 0,
+          
+          // Request and Response
+          requestTime: navigation.responseStart - navigation.requestStart,
+          responseTime: navigation.responseEnd - navigation.responseStart,
+          
+          // DOM Processing
+          domProcessing: navigation.domContentLoadedEventStart - navigation.responseEnd,
+          domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
+          
+          // Resource Loading
+          resourceLoading: navigation.loadEventStart - navigation.domContentLoadedEventEnd,
+          
+          // Total Times
+          totalTime: navigation.loadEventEnd - navigation.startTime,
+          domInteractive: navigation.domInteractive - navigation.startTime,
+          domComplete: navigation.domComplete - navigation.startTime,
+          
+          // Page Load Type
+          navigationType: navigation.type,
+          redirectCount: navigation.redirectCount
+        };
+        
+        this.logMetric('Navigation Timing', this.metrics.navigation);
+      });
+    }
+    
+    observeCoreWebVitals() {
+      // Largest Contentful Paint (LCP)
+      this.observeLCP();
+      
+      // First Input Delay (FID)
+      this.observeFID();
+      
+      // Cumulative Layout Shift (CLS)
+      this.observeCLS();
+      
+      // First Contentful Paint (FCP)
+      this.observeFCP();
+      
+      // Time to First Byte (TTFB)
+      this.observeTTFB();
+    }
+    
+    observeLCP() {
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          const lastEntry = entries[entries.length - 1];
+          
+          this.metrics.vitals.lcp = {
+            value: lastEntry.startTime,
+            rating: this.getRating(lastEntry.startTime, [2500, 4000]),
+            element: lastEntry.element?.tagName || 'unknown'
+          };
+          
+          this.logMetric('LCP', this.metrics.vitals.lcp);
+        });
+        
+        observer.observe({ entryTypes: ['largest-contentful-paint'] });
+        this.observers.set('lcp', observer);
+      }
+    }
+    
+    observeFID() {
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          entries.forEach(entry => {
+            this.metrics.vitals.fid = {
+              value: entry.processingStart - entry.startTime,
+              rating: this.getRating(entry.processingStart - entry.startTime, [100, 300]),
+              eventType: entry.name
+            };
+            
+            this.logMetric('FID', this.metrics.vitals.fid);
+          });
+        });
+        
+        observer.observe({ entryTypes: ['first-input'] });
+        this.observers.set('fid', observer);
+      }
+    }
+    
+    observeCLS() {
+      if ('PerformanceObserver' in window) {
+        let clsValue = 0;
+        let sessionValue = 0;
+        let sessionEntries = [];
+        
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          
+          entries.forEach(entry => {
+            if (!entry.hadRecentInput) {
+              const firstSessionEntry = sessionEntries[0];
+              const lastSessionEntry = sessionEntries[sessionEntries.length - 1];
+              
+              if (sessionValue && 
+                  entry.startTime - lastSessionEntry.startTime < 1000 &&
+                  entry.startTime - firstSessionEntry.startTime < 5000) {
+                sessionValue += entry.value;
+                sessionEntries.push(entry);
+              } else {
+                sessionValue = entry.value;
+                sessionEntries = [entry];
+              }
+              
+              if (sessionValue > clsValue) {
+                clsValue = sessionValue;
+                
+                this.metrics.vitals.cls = {
+                  value: clsValue,
+                  rating: this.getRating(clsValue, [0.1, 0.25]),
+                  entries: sessionEntries.length
+                };
+                
+                this.logMetric('CLS', this.metrics.vitals.cls);
+              }
+            }
+          });
+        });
+        
+        observer.observe({ entryTypes: ['layout-shift'] });
+        this.observers.set('cls', observer);
+      }
+    }
+    
+    observeFCP() {
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          entries.forEach(entry => {
+            if (entry.name === 'first-contentful-paint') {
+              this.metrics.vitals.fcp = {
+                value: entry.startTime,
+                rating: this.getRating(entry.startTime, [1800, 3000])
+              };
+              
+              this.logMetric('FCP', this.metrics.vitals.fcp);
+            }
+          });
+        });
+        
+        observer.observe({ entryTypes: ['paint'] });
+        this.observers.set('fcp', observer);
+      }
+    }
+    
+    observeTTFB() {
+      window.addEventListener('load', () => {
+        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+        const ttfb = navigation.responseStart - navigation.requestStart;
+        
+        this.metrics.vitals.ttfb = {
+          value: ttfb,
+          rating: this.getRating(ttfb, [800, 1800])
+        };
+        
+        this.logMetric('TTFB', this.metrics.vitals.ttfb);
+      });
+    }
+    
+    observeResourceTiming() {
+      if ('PerformanceObserver' in window) {
+        const observer = new PerformanceObserver((list) => {
+          const entries = list.getEntries();
+          
+          entries.forEach(entry => {
+            const resource = {
+              name: entry.name,
+              type: this.getResourceType(entry.name),
+              size: entry.transferSize || 0,
+              duration: entry.duration,
+              startTime: entry.startTime,
+              cached: entry.transferSize === 0 && entry.decodedBodySize > 0
+            };
+            
+            this.metrics.resources.push(resource);
+          });
+        });
+        
+        observer.observe({ entryTypes: ['resource'] });
+        this.observers.set('resource', observer);
+      }
+    }
+    
+    observeErrors() {
+      window.addEventListener('error', (event) => {
+        this.metrics.errors.push({
+          type: 'javascript',
+          message: event.message,
+          filename: event.filename,
+          line: event.lineno,
+          column: event.colno,
+          timestamp: Date.now()
+        });
+      });
+      
+      window.addEventListener('unhandledrejection', (event) => {
+        this.metrics.errors.push({
+          type: 'promise',
+          message: event.reason?.message || 'Unhandled promise rejection',
+          timestamp: Date.now()
+        });
+      });
+    }
+    
+    observeUserInteractions() {
+      let interactionCount = 0;
+      
+      ['click', 'keydown', 'scroll'].forEach(eventType => {
+        document.addEventListener(eventType, () => {
+          interactionCount++;
+        }, { passive: true });
+      });
+      
+      // Track engagement time
+      let engagementTime = 0;
+      let lastActiveTime = Date.now();
+      
+      const updateEngagementTime = () => {
+        const now = Date.now();
+        engagementTime += now - lastActiveTime;
+        lastActiveTime = now;
+      };
+      
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          updateEngagementTime();
+        } else {
+          lastActiveTime = Date.now();
+        }
+      });
+      
+      window.addEventListener('beforeunload', () => {
+        updateEngagementTime();
+        this.metrics.engagement = {
+          interactions: interactionCount,
+          timeOnPage: engagementTime
+        };
+      });
+    }
+    
+    getRating(value: number, thresholds: [number, number]) {
+      if (value <= thresholds[0]) return 'good';
+      if (value <= thresholds[1]) return 'needs-improvement';
+      return 'poor';
+    }
+    
+    getResourceType(url: string) {
+      if (url.includes('.css')) return 'css';
+      if (url.includes('.js')) return 'javascript';
+      if (url.match(/\.(jpg|jpeg|png|gif|webp|avif|svg)$/i)) return 'image';
+      if (url.match(/\.(woff|woff2|ttf|otf)$/i)) return 'font';
+      return 'other';
+    }
+    
+    logMetric(name: string, data: any) {
+      if (enableConsoleLogging) {
+        console.log(`[Performance] ${name}:`, data);
+      }
+    }
+    
+    reportMetrics() {
+      const report = {
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: Date.now(),
+        sessionId: this.getSessionId(),
+        ...this.metrics
+      };
+      
+      if (enableAnalytics) {
+        this.sendToAnalytics(report);
+      }
+      
+      if (enableConsoleLogging) {
+        console.log('[Performance] Final Report:', report);
+      }
+    }
+    
+    sendToAnalytics(data: any) {
+      // Send to Google Analytics 4
+      if ('gtag' in window) {
+        // Core Web Vitals
+        Object.entries(data.vitals).forEach(([metric, value]: [string, any]) => {
+          (window as any).gtag('event', metric.toUpperCase(), {
+            event_category: 'Web Vitals',
+            value: Math.round(value.value),
+            custom_parameter_1: value.rating
+          });
+        });
+        
+        // Navigation timing
+        if (data.navigation.totalTime) {
+          (window as any).gtag('event', 'page_load_time', {
+            event_category: 'Performance',
+            value: Math.round(data.navigation.totalTime)
+          });
+        }
+      }
+      
+      // Send to custom analytics endpoint
+      if ('fetch' in window) {
+        fetch('/api/analytics/performance', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).catch(error => {
+          console.warn('Failed to send performance data:', error);
+        });
+      }
+    }
+    
+    getSessionId() {
+      let sessionId = sessionStorage.getItem('performance-session-id');
+      if (!sessionId) {
+        sessionId = Math.random().toString(36).substring(2, 15);
+        sessionStorage.setItem('performance-session-id', sessionId);
+      }
+      return sessionId;
+    }
+    
+    disconnect() {
+      this.observers.forEach(observer => observer.disconnect());
+      this.observers.clear();
+    }
+  }
+  
+  // Initialize performance monitoring
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new PerformanceMonitor();
+    });
+  } else {
+    new PerformanceMonitor();
+  }
+</script>
+
+<!-- Performance monitoring styles -->
+<style>
+  /* Performance monitoring doesn't need visual styles */
+  .performance-monitor {
+    display: none;
+  }
+</style>

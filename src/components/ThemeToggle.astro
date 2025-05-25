@@ -1,0 +1,514 @@
+---
+/**
+ * Theme Toggle Component
+ * Provides dark/light theme switching functionality
+ */
+
+interface Props {
+  /**
+   * Position of the toggle button
+   * @default "fixed"
+   */
+  position?: 'fixed' | 'relative' | 'absolute';
+  
+  /**
+   * Size of the toggle button
+   * @default "medium"
+   */
+  size?: 'small' | 'medium' | 'large';
+  
+  /**
+   * Show text labels
+   * @default false
+   */
+  showLabels?: boolean;
+  
+  /**
+   * Additional CSS classes
+   */
+  class?: string;
+}
+
+const {
+  position = 'fixed',
+  size = 'medium',
+  showLabels = false,
+  class: className = ''
+} = Astro.props;
+
+const sizeClasses = {
+  small: 'w-12 h-6',
+  medium: 'w-14 h-7',
+  large: 'w-16 h-8'
+};
+
+const iconSizes = {
+  small: 'w-4 h-4',
+  medium: 'w-5 h-5',
+  large: 'w-6 h-6'
+};
+---
+
+<div class:list={[
+  'theme-toggle-container',
+  position === 'fixed' && 'fixed top-4 right-4 z-50',
+  position === 'relative' && 'relative',
+  position === 'absolute' && 'absolute',
+  className
+]}>
+  <div class="theme-toggle-wrapper">
+    {showLabels && (
+      <span class="theme-label theme-label-light">
+        <svg class={iconSizes[size]} fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+        </svg>
+        Light
+      </span>
+    )}
+    
+    <button 
+      id="theme-toggle"
+      class:list={[
+        'theme-toggle-button',
+        sizeClasses[size]
+      ]}
+      aria-label="Toggle theme"
+      role="switch"
+      aria-checked="false"
+    >
+      <div class="theme-toggle-track">
+        <div class="theme-toggle-thumb">
+          <!-- Sun Icon -->
+          <svg class="theme-icon theme-icon-light" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+          </svg>
+          
+          <!-- Moon Icon -->
+          <svg class="theme-icon theme-icon-dark" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+        </div>
+      </div>
+    </button>
+    
+    {showLabels && (
+      <span class="theme-label theme-label-dark">
+        <svg class={iconSizes[size]} fill="currentColor" viewBox="0 0 20 20">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+        Dark
+      </span>
+    )}
+  </div>
+  
+  <!-- Theme preference indicator -->
+  <div class="theme-indicator" id="theme-indicator">
+    <span class="theme-indicator-text">Auto</span>
+  </div>
+</div>
+
+<style>
+  .theme-toggle-container {
+    user-select: none;
+  }
+  
+  .theme-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .theme-toggle-wrapper:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  :global(.dark) .theme-toggle-wrapper {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  :global(.dark) .theme-toggle-wrapper:hover {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .theme-label {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+  }
+  
+  :global(.dark) .theme-label {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .theme-label-light {
+    opacity: 1;
+  }
+  
+  .theme-label-dark {
+    opacity: 0.5;
+  }
+  
+  :global(.dark) .theme-label-light {
+    opacity: 0.5;
+  }
+  
+  :global(.dark) .theme-label-dark {
+    opacity: 1;
+  }
+  
+  .theme-toggle-button {
+    position: relative;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    outline: none;
+    focus-visible: ring-2 ring-offset-2 ring-blue-500;
+  }
+  
+  .theme-toggle-track {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    border-radius: 9999px;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  :global(.dark) .theme-toggle-track {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .theme-toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(50% - 2px);
+    height: calc(100% - 4px);
+    background: white;
+    border-radius: 9999px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateX(0);
+  }
+  
+  :global(.dark) .theme-toggle-thumb {
+    transform: translateX(100%);
+    background: #1e293b;
+  }
+  
+  .theme-icon {
+    width: 60%;
+    height: 60%;
+    transition: all 0.3s ease;
+  }
+  
+  .theme-icon-light {
+    color: #f59e0b;
+    opacity: 1;
+  }
+  
+  .theme-icon-dark {
+    color: #64748b;
+    opacity: 0;
+    position: absolute;
+  }
+  
+  :global(.dark) .theme-icon-light {
+    opacity: 0;
+  }
+  
+  :global(.dark) .theme-icon-dark {
+    opacity: 1;
+    color: #e2e8f0;
+  }
+  
+  .theme-indicator {
+    position: absolute;
+    top: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .theme-indicator::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .theme-toggle-button:hover + .theme-indicator,
+  .theme-toggle-button:focus + .theme-indicator {
+    opacity: 1;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .theme-label {
+      display: none;
+    }
+    
+    .theme-toggle-wrapper {
+      padding: 0.25rem;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .theme-toggle-track {
+      border: 2px solid currentColor;
+    }
+    
+    .theme-toggle-thumb {
+      border: 1px solid currentColor;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle-thumb,
+    .theme-toggle-track,
+    .theme-icon,
+    .theme-label {
+      transition: none;
+    }
+  }
+</style>
+
+<script type="module">
+  // Theme management system
+  class ThemeManager {
+    constructor() {
+      this.themes = ['light', 'dark', 'auto'];
+      this.currentTheme = this.getStoredTheme() || 'auto';
+      this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      this.init();
+    }
+    
+    init() {
+      // Apply initial theme
+      this.applyTheme(this.currentTheme);
+      
+      // Set up event listeners
+      this.setupEventListeners();
+      
+      // Update UI
+      this.updateUI();
+      
+      // Listen for system theme changes
+      this.mediaQuery.addEventListener('change', () => {
+        if (this.currentTheme === 'auto') {
+          this.applyTheme('auto');
+        }
+      });
+    }
+    
+    setupEventListeners() {
+      const toggleButton = document.getElementById('theme-toggle');
+      
+      if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+          this.cycleTheme();
+        });
+        
+        // Keyboard support
+        toggleButton.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.cycleTheme();
+          }
+        });
+      }
+    }
+    
+    cycleTheme() {
+      const currentIndex = this.themes.indexOf(this.currentTheme);
+      const nextIndex = (currentIndex + 1) % this.themes.length;
+      const nextTheme = this.themes[nextIndex];
+      
+      this.setTheme(nextTheme);
+      
+      // Provide haptic feedback if available
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+      
+      // Announce theme change for screen readers
+      this.announceThemeChange(nextTheme);
+    }
+    
+    setTheme(theme) {
+      this.currentTheme = theme;
+      this.applyTheme(theme);
+      this.storeTheme(theme);
+      this.updateUI();
+      
+      // Dispatch custom event
+      window.dispatchEvent(new CustomEvent('themechange', {
+        detail: { theme, resolvedTheme: this.getResolvedTheme() }
+      }));
+    }
+    
+    applyTheme(theme) {
+      const html = document.documentElement;
+      const resolvedTheme = this.getResolvedTheme(theme);
+      
+      // Remove existing theme classes
+      html.classList.remove('light', 'dark');
+      
+      // Add new theme class
+      html.classList.add(resolvedTheme);
+      
+      // Update meta theme-color
+      this.updateMetaThemeColor(resolvedTheme);
+      
+      // Update CSS custom properties
+      this.updateCSSProperties(resolvedTheme);
+    }
+    
+    getResolvedTheme(theme = this.currentTheme) {
+      if (theme === 'auto') {
+        return this.mediaQuery.matches ? 'dark' : 'light';
+      }
+      return theme;
+    }
+    
+    updateUI() {
+      const toggleButton = document.getElementById('theme-toggle');
+      const indicator = document.getElementById('theme-indicator');
+      
+      if (toggleButton) {
+        const resolvedTheme = this.getResolvedTheme();
+        toggleButton.setAttribute('aria-checked', resolvedTheme === 'dark');
+        toggleButton.setAttribute('aria-label', `Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} theme`);
+      }
+      
+      if (indicator) {
+        const indicatorText = indicator.querySelector('.theme-indicator-text');
+        if (indicatorText) {
+          indicatorText.textContent = this.getThemeDisplayName(this.currentTheme);
+        }
+      }
+    }
+    
+    getThemeDisplayName(theme) {
+      const names = {
+        light: 'Light',
+        dark: 'Dark',
+        auto: 'Auto'
+      };
+      return names[theme] || theme;
+    }
+    
+    updateMetaThemeColor(theme) {
+      let themeColorMeta = document.querySelector('meta[name="theme-color"]');
+      
+      if (!themeColorMeta) {
+        themeColorMeta = document.createElement('meta');
+        themeColorMeta.name = 'theme-color';
+        document.head.appendChild(themeColorMeta);
+      }
+      
+      const colors = {
+        light: '#ffffff',
+        dark: '#1f2937'
+      };
+      
+      themeColorMeta.content = colors[theme] || colors.light;
+    }
+    
+    updateCSSProperties(theme) {
+      const root = document.documentElement;
+      
+      if (theme === 'dark') {
+        root.style.setProperty('--theme-bg', '#1f2937');
+        root.style.setProperty('--theme-text', '#f9fafb');
+        root.style.setProperty('--theme-border', '#374151');
+      } else {
+        root.style.setProperty('--theme-bg', '#ffffff');
+        root.style.setProperty('--theme-text', '#1f2937');
+        root.style.setProperty('--theme-border', '#e5e7eb');
+      }
+    }
+    
+    announceThemeChange(theme) {
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.className = 'sr-only';
+      announcement.textContent = `Theme changed to ${this.getThemeDisplayName(theme)}`;
+      
+      document.body.appendChild(announcement);
+      
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
+    }
+    
+    getStoredTheme() {
+      try {
+        return localStorage.getItem('nosytlabs-theme');
+      } catch (e) {
+        return null;
+      }
+    }
+    
+    storeTheme(theme) {
+      try {
+        localStorage.setItem('nosytlabs-theme', theme);
+      } catch (e) {
+        console.warn('Unable to store theme preference');
+      }
+    }
+    
+    // Public API
+    getTheme() {
+      return this.currentTheme;
+    }
+    
+    getResolvedThemePublic() {
+      return this.getResolvedTheme();
+    }
+  }
+  
+  // Initialize theme manager when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    window.themeManager = new ThemeManager();
+  });
+  
+  // Export for use in other scripts
+  window.ThemeManager = ThemeManager;
+</script>

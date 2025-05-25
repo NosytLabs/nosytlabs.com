@@ -1,0 +1,526 @@
+---
+/**
+ * Structured Data Component
+ * Generates JSON-LD structured data for better SEO
+ */
+
+interface Props {
+  /**
+   * Type of structured data
+   */
+  type?: 'website' | 'organization' | 'person' | 'article' | 'service' | 'product' | 'breadcrumb' | 'faq';
+  
+  /**
+   * Data for the structured markup
+   */
+  data?: any;
+  
+  /**
+   * Page-specific data
+   */
+  page?: {
+    title?: string;
+    description?: string;
+    url?: string;
+    image?: string;
+    datePublished?: string;
+    dateModified?: string;
+    author?: string;
+  };
+}
+
+const {
+  type = 'website',
+  data = {},
+  page = {}
+} = Astro.props;
+
+// Base organization data
+const organizationData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NosytLabs",
+  "alternateName": "NOSYT LLC",
+  "description": "Notable Opportunities Shape Your Tomorrow - Innovative digital solutions, web development, 3D printing, and content creation services.",
+  "url": "https://nosytlabs.com",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://nosytlabs.com/images/nosytlabs-logo-2025.svg",
+    "width": 300,
+    "height": 100
+  },
+  "image": "https://nosytlabs.com/images/nosytlabs-hero-image.jpg",
+  "foundingDate": "2025-01-01",
+  "founder": {
+    "@type": "Person",
+    "name": "NosytLabs Team"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-555-NOSYT-LAB",
+    "contactType": "customer service",
+    "email": "info@nosytlabs.com",
+    "availableLanguage": "English"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US",
+    "addressRegion": "Virtual"
+  },
+  "sameAs": [
+    "https://github.com/NosytLabs",
+    "https://youtube.com/@nosytlabs",
+    "https://kick.com/nosytlabs"
+  ],
+  "services": [
+    {
+      "@type": "Service",
+      "name": "Web Development",
+      "description": "Custom web development with modern frameworks and technologies",
+      "provider": {
+        "@type": "Organization",
+        "name": "NosytLabs"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "3D Printing Services",
+      "description": "Professional 3D printing and prototyping services",
+      "provider": {
+        "@type": "Organization",
+        "name": "NosytLabs"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Content Creation",
+      "description": "Video content creation for YouTube and live streaming",
+      "provider": {
+        "@type": "Organization",
+        "name": "NosytLabs"
+      }
+    }
+  ]
+};
+
+// Generate structured data based on type
+function generateStructuredData(type, data, page) {
+  const baseUrl = "https://nosytlabs.com";
+  
+  switch (type) {
+    case 'website':
+      return {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "NosytLabs",
+        "description": "Notable Opportunities Shape Your Tomorrow - Innovative digital solutions, web development, 3D printing, and content creation services.",
+        "url": baseUrl,
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+          },
+          "query-input": "required name=search_term_string"
+        },
+        "publisher": organizationData
+      };
+    
+    case 'organization':
+      return organizationData;
+    
+    case 'person':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": data.name || "NosytLabs Developer",
+        "jobTitle": data.jobTitle || "Full Stack Developer",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "NosytLabs"
+        },
+        "url": data.url || baseUrl,
+        "image": data.image,
+        "sameAs": data.socialLinks || []
+      };
+    
+    case 'article':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": page.title || data.title,
+        "description": page.description || data.description,
+        "image": page.image || data.image,
+        "author": {
+          "@type": "Person",
+          "name": page.author || data.author || "NosytLabs Team"
+        },
+        "publisher": organizationData,
+        "datePublished": page.datePublished || data.datePublished,
+        "dateModified": page.dateModified || data.dateModified || page.datePublished || data.datePublished,
+        "url": page.url || data.url,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": page.url || data.url
+        }
+      };
+    
+    case 'service':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": data.name,
+        "description": data.description,
+        "provider": organizationData,
+        "serviceType": data.serviceType,
+        "areaServed": data.areaServed || "Worldwide",
+        "availableChannel": {
+          "@type": "ServiceChannel",
+          "serviceUrl": data.serviceUrl || baseUrl,
+          "serviceSmsNumber": data.phone,
+          "servicePhone": data.phone
+        },
+        "offers": data.offers ? {
+          "@type": "Offer",
+          "price": data.offers.price,
+          "priceCurrency": data.offers.currency || "USD",
+          "availability": "https://schema.org/InStock"
+        } : undefined
+      };
+    
+    case 'product':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": data.name,
+        "description": data.description,
+        "image": data.image,
+        "brand": {
+          "@type": "Brand",
+          "name": "NosytLabs"
+        },
+        "manufacturer": organizationData,
+        "offers": {
+          "@type": "Offer",
+          "price": data.price,
+          "priceCurrency": data.currency || "USD",
+          "availability": "https://schema.org/InStock",
+          "seller": organizationData
+        },
+        "aggregateRating": data.rating ? {
+          "@type": "AggregateRating",
+          "ratingValue": data.rating.value,
+          "reviewCount": data.rating.count
+        } : undefined
+      };
+    
+    case 'breadcrumb':
+      return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": data.items?.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        })) || []
+      };
+    
+    case 'faq':
+      return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": data.questions?.map(q => ({
+          "@type": "Question",
+          "name": q.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": q.answer
+          }
+        })) || []
+      };
+    
+    default:
+      return organizationData;
+  }
+}
+
+const structuredData = generateStructuredData(type, data, page);
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+
+<!-- Additional meta tags for enhanced SEO -->
+{type === 'article' && (
+  <>
+    <meta property="article:published_time" content={page.datePublished || data.datePublished} />
+    <meta property="article:modified_time" content={page.dateModified || data.dateModified} />
+    <meta property="article:author" content={page.author || data.author || "NosytLabs Team"} />
+    <meta property="article:section" content={data.section || "Technology"} />
+    {data.tags && data.tags.map(tag => (
+      <meta property="article:tag" content={tag} />
+    ))}
+  </>
+)}
+
+{type === 'product' && (
+  <>
+    <meta property="product:price:amount" content={data.price} />
+    <meta property="product:price:currency" content={data.currency || "USD"} />
+    <meta property="product:availability" content="in stock" />
+    <meta property="product:brand" content="NosytLabs" />
+  </>
+)}
+
+<!-- Open Graph enhanced data -->
+<meta property="og:site_name" content="NosytLabs" />
+<meta property="og:locale" content="en_US" />
+{page.image && <meta property="og:image:alt" content={`${page.title || data.name} - NosytLabs`} />}
+
+<!-- Twitter Card enhanced data -->
+<meta name="twitter:site" content="@nosytlabs" />
+<meta name="twitter:creator" content="@nosytlabs" />
+
+<!-- Additional structured data for specific pages -->
+{type === 'website' && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "NosytOS95",
+    "description": "Interactive Windows 95-inspired interface with working applications and games",
+    "url": `${Astro.site}/nosytos95`,
+    "applicationCategory": "Entertainment",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Duck Hunt Game",
+      "Minesweeper",
+      "Notepad Application",
+      "Terminal with Commands",
+      "Window Management System"
+    ]
+  })}></script>
+)}
+
+<style>
+  /* This component only outputs structured data, no visual styles needed */
+</style>
+
+<script type="module">
+  // Enhanced structured data management
+  class StructuredDataManager {
+    constructor() {
+      this.schemas = new Map();
+      this.init();
+    }
+    
+    init() {
+      // Track page views for analytics
+      this.trackPageView();
+      
+      // Monitor for dynamic content changes
+      this.observeContentChanges();
+    }
+    
+    // Add dynamic structured data
+    addSchema(id, schema) {
+      // Remove existing schema with same ID
+      this.removeSchema(id);
+      
+      // Create new script element
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.id = `schema-${id}`;
+      script.textContent = JSON.stringify(schema);
+      
+      // Add to head
+      document.head.appendChild(script);
+      this.schemas.set(id, script);
+    }
+    
+    // Remove structured data
+    removeSchema(id) {
+      const existing = this.schemas.get(id);
+      if (existing && existing.parentNode) {
+        existing.parentNode.removeChild(existing);
+        this.schemas.delete(id);
+      }
+    }
+    
+    // Update existing schema
+    updateSchema(id, schema) {
+      this.addSchema(id, schema);
+    }
+    
+    // Track page views for analytics
+    trackPageView() {
+      const pageData = {
+        url: window.location.href,
+        title: document.title,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer
+      };
+      
+      // Store in localStorage for analytics
+      try {
+        const pageViews = JSON.parse(localStorage.getItem('nosytlabs_page_views') || '[]');
+        pageViews.push(pageData);
+        
+        // Keep only last 100 page views
+        if (pageViews.length > 100) {
+          pageViews.splice(0, pageViews.length - 100);
+        }
+        
+        localStorage.setItem('nosytlabs_page_views', JSON.stringify(pageViews));
+      } catch (error) {
+        console.warn('Failed to track page view:', error);
+      }
+    }
+    
+    // Monitor for content changes that might need schema updates
+    observeContentChanges() {
+      if (typeof MutationObserver === 'undefined') return;
+      
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
+            // Check if any blog posts or products were added/removed
+            const addedNodes = Array.from(mutation.addedNodes);
+            const removedNodes = Array.from(mutation.removedNodes);
+            
+            [...addedNodes, ...removedNodes].forEach(node => {
+              if (node.nodeType === Node.ELEMENT_NODE) {
+                // Update breadcrumb if navigation changed
+                if (node.matches && node.matches('nav, .breadcrumb')) {
+                  this.updateBreadcrumb();
+                }
+                
+                // Update FAQ if FAQ section changed
+                if (node.matches && node.matches('.faq, [data-faq]')) {
+                  this.updateFAQ();
+                }
+              }
+            });
+          }
+        });
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+    
+    // Update breadcrumb schema
+    updateBreadcrumb() {
+      const breadcrumbItems = [];
+      const breadcrumbElements = document.querySelectorAll('.breadcrumb a, nav a');
+      
+      breadcrumbElements.forEach((link, index) => {
+        breadcrumbItems.push({
+          name: link.textContent.trim(),
+          url: link.href
+        });
+      });
+      
+      if (breadcrumbItems.length > 0) {
+        this.addSchema('breadcrumb', {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": breadcrumbItems.map((item, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "name": item.name,
+            "item": item.url
+          }))
+        });
+      }
+    }
+    
+    // Update FAQ schema
+    updateFAQ() {
+      const faqElements = document.querySelectorAll('[data-faq-question]');
+      const questions = [];
+      
+      faqElements.forEach(element => {
+        const question = element.dataset.faqQuestion;
+        const answerElement = element.querySelector('[data-faq-answer]') || 
+                             element.nextElementSibling;
+        const answer = answerElement ? answerElement.textContent.trim() : '';
+        
+        if (question && answer) {
+          questions.push({ question, answer });
+        }
+      });
+      
+      if (questions.length > 0) {
+        this.addSchema('faq', {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": questions.map(q => ({
+            "@type": "Question",
+            "name": q.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": q.answer
+            }
+          }))
+        });
+      }
+    }
+    
+    // Generate product schema for 3D printing services
+    addProductSchema(product) {
+      this.addSchema(`product-${product.id}`, {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": product.name,
+        "description": product.description,
+        "image": product.image,
+        "brand": {
+          "@type": "Brand",
+          "name": "NosytLabs"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": product.price,
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "seller": {
+            "@type": "Organization",
+            "name": "NosytLabs"
+          }
+        }
+      });
+    }
+    
+    // Generate service schema
+    addServiceSchema(service) {
+      this.addSchema(`service-${service.id}`, {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": service.name,
+        "description": service.description,
+        "provider": {
+          "@type": "Organization",
+          "name": "NosytLabs"
+        },
+        "serviceType": service.type,
+        "areaServed": "Worldwide"
+      });
+    }
+  }
+  
+  // Initialize structured data manager
+  document.addEventListener('DOMContentLoaded', () => {
+    window.structuredDataManager = new StructuredDataManager();
+  });
+  
+  // Export for use in other scripts
+  window.StructuredDataManager = StructuredDataManager;
+</script>

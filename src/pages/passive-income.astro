@@ -1,0 +1,325 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+---
+
+<Layout title="Passive Income Resources - NosyT Labs">
+  <main class="container mx-auto px-4 py-8">
+    <!-- Overview Section -->
+    <section class="mb-12">
+      <h1 class="text-4xl font-bold mb-6">Passive Income Resources</h1>
+      <p class="text-lg mb-4">Discover legitimate ways to generate passive income streams with realistic expectations and thorough guidance.</p>
+      <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+        <p class="text-yellow-700">
+          <strong>Disclaimer:</strong> Results may vary. All income strategies involve some level of risk.
+          Please consult financial and legal professionals before making investment decisions.
+        </p>
+      </div>
+    </section>
+
+    <!-- Income Categories Grid -->
+    <section class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <div class="category-card p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Bandwidth Sharing</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Network requirements</li>
+          <li>Popular platforms</li>
+          <li>Security considerations</li>
+          <li>Earnings potential</li>
+        </ul>
+      </div>
+
+      <div class="category-card p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Content Creation</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Blogging strategies</li>
+          <li>Video content</li>
+          <li>Digital products</li>
+          <li>Monetization methods</li>
+        </ul>
+      </div>
+
+      <div class="category-card p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Affiliate Marketing</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Platform selection</li>
+          <li>Niche research</li>
+          <li>Marketing strategies</li>
+          <li>Commission structures</li>
+        </ul>
+      </div>
+
+      <div class="category-card p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Investment Strategies</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Dividend stocks</li>
+          <li>Index funds</li>
+          <li>Real estate</li>
+          <li>Risk management</li>
+        </ul>
+      </div>
+
+      <div class="category-card p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Mining & Staking</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Hardware requirements</li>
+          <li>Energy costs</li>
+          <li>Pool selection</li>
+          <li>Risk factors</li>
+        </ul>
+      </div>
+
+      <div class="category-card p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Digital Products</h2>
+        <ul class="list-disc list-inside space-y-2">
+          <li>Course creation</li>
+          <li>eBook publishing</li>
+          <li>Templates & tools</li>
+          <li>Marketing tips</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Interactive Tools Section -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-6">Interactive Tools</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div id="income-calculator" class="tool-card p-6 bg-white rounded-lg shadow-md">
+          <h3 class="text-xl font-bold mb-4">Income Calculator</h3>
+          <form class="space-y-4">
+            <div>
+              <label for="income-type" class="block mb-2">Income Type</label>
+              <select id="income-type" class="w-full p-2 border rounded">
+                <option value="bandwidth">Bandwidth Sharing</option>
+                <option value="content">Content Creation</option>
+                <option value="affiliate">Affiliate Marketing</option>
+                <option value="investment">Investments</option>
+                <option value="mining">Mining/Staking</option>
+                <option value="digital">Digital Products</option>
+              </select>
+            </div>
+            <div>
+              <label for="initial-investment" class="block mb-2">Initial Investment ($)</label>
+              <input type="number" id="initial-investment" class="w-full p-2 border rounded" min="0">
+            </div>
+            <div>
+              <label for="time-investment" class="block mb-2">Time Investment (hours/week)</label>
+              <input type="number" id="time-investment" class="w-full p-2 border rounded" min="0" max="168">
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+              Calculate Potential Earnings
+            </button>
+          </form>
+          <div id="calculation-result" class="mt-4"></div>
+        </div>
+
+        <div id="risk-assessment" class="tool-card p-6 bg-white rounded-lg shadow-md">
+          <h3 class="text-xl font-bold mb-4">Risk Assessment Quiz</h3>
+          <div id="quiz-container">
+            <!-- Quiz will be dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Educational Resources -->
+    <section class="mb-12">
+      <h2 class="text-3xl font-bold mb-6">Educational Resources</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="resource-card p-6 bg-white rounded-lg shadow-md">
+          <h3 class="text-xl font-bold mb-4">Getting Started Guides</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">Complete Beginner's Guide (PDF)</a>
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">Risk Management Basics</a>
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">Platform Selection Guide</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="resource-card p-6 bg-white rounded-lg shadow-md">
+          <h3 class="text-xl font-bold mb-4">Video Tutorials</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">Setting Up Your First Stream</a>
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">Content Monetization Strategies</a>
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">Mining Setup Guide</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="resource-card p-6 bg-white rounded-lg shadow-md">
+          <h3 class="text-xl font-bold mb-4">Success Stories</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">From $0 to $1000/month</a>
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">Building Multiple Streams</a>
+            </li>
+            <li>
+              <a href="#" class="text-blue-600 hover:underline">Scaling Content Creation</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+// Income Calculator Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const calculatorForm = document.querySelector('#income-calculator form');
+  const resultDiv = document.querySelector('#calculation-result');
+
+  if (calculatorForm) {
+    calculatorForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const incomeType = document.querySelector('#income-type').value;
+      const initialInvestment = parseFloat(document.querySelector('#initial-investment').value) || 0;
+      const timeInvestment = parseFloat(document.querySelector('#time-investment').value) || 0;
+
+      // Simple calculation logic - can be expanded based on historical data
+      let monthlyEstimate = 0;
+      switch(incomeType) {
+        case 'bandwidth':
+          monthlyEstimate = initialInvestment * 0.05 + timeInvestment * 2;
+          break;
+        case 'content':
+          monthlyEstimate = initialInvestment * 0.1 + timeInvestment * 5;
+          break;
+        case 'affiliate':
+          monthlyEstimate = initialInvestment * 0.15 + timeInvestment * 4;
+          break;
+        case 'investment':
+          monthlyEstimate = initialInvestment * 0.007; // ~8.4% annual return
+          break;
+        case 'mining':
+          monthlyEstimate = initialInvestment * 0.08 - (timeInvestment * 1); // Account for electricity costs
+          break;
+        case 'digital':
+          monthlyEstimate = initialInvestment * 0.2 + timeInvestment * 6;
+          break;
+      }
+
+      resultDiv.innerHTML = `
+        <div class="mt-4 p-4 bg-gray-50 rounded">
+          <h4 class="font-bold mb-2">Estimated Monthly Income</h4>
+          <p class="text-lg">$${monthlyEstimate.toFixed(2)}</p>
+          <p class="text-sm text-gray-600 mt-2">
+            Note: This is a rough estimate based on average returns.
+            Actual results may vary significantly.
+          </p>
+        </div>
+      `;
+    });
+  }
+
+  // Risk Assessment Quiz
+  const quizContainer = document.querySelector('#quiz-container');
+  const questions = [
+    {
+      question: "What's your risk tolerance level?",
+      options: ["Conservative", "Moderate", "Aggressive"]
+    },
+    {
+      question: "How much can you afford to invest initially?",
+      options: ["$0-$500", "$501-$5000", "$5000+"]
+    },
+    {
+      question: "How much time can you dedicate weekly?",
+      options: ["0-5 hours", "6-20 hours", "20+ hours"]
+    }
+  ];
+
+  if (quizContainer) {
+    let currentQuestion = 0;
+    const results = [];
+
+    function displayQuestion() {
+      const question = questions[currentQuestion];
+      quizContainer.innerHTML = `
+        <div class="mb-4">
+          <p class="font-bold mb-2">${question.question}</p>
+          ${question.options.map((option, index) => `
+            <button
+              class="block w-full text-left p-2 mb-2 border rounded hover:bg-gray-50"
+              onclick="window.handleQuizAnswer(${index})"
+            >
+              ${option}
+            </button>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    window.handleQuizAnswer = (answerIndex) => {
+      results.push(answerIndex);
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        displayQuestion();
+      } else {
+        // Display results
+        const riskProfile = calculateRiskProfile(results);
+        quizContainer.innerHTML = `
+          <div class="p-4 bg-gray-50 rounded">
+            <h4 class="font-bold mb-2">Your Risk Profile</h4>
+            <p class="mb-4">${riskProfile.profile}</p>
+            <div class="space-y-2">
+              <p class="font-bold">Recommended Strategies:</p>
+              ${riskProfile.recommendations.map(rec => `
+                <p>• ${rec}</p>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+    };
+
+    function calculateRiskProfile(answers) {
+      const score = answers.reduce((sum, answer) => sum + answer, 0);
+
+      if (score <= 2) {
+        return {
+          profile: "Conservative Investor",
+          recommendations: [
+            "Start with content creation",
+            "Consider low-risk dividend stocks",
+            "Explore passive affiliate marketing"
+          ]
+        };
+      } else if (score <= 5) {
+        return {
+          profile: "Moderate Investor",
+          recommendations: [
+            "Mix of content creation and affiliate marketing",
+            "Consider bandwidth sharing",
+            "Explore digital product creation"
+          ]
+        };
+      } else {
+        return {
+          profile: "Growth-Focused Investor",
+          recommendations: [
+            "Mining/Staking opportunities",
+            "High-yield investment strategies",
+            "Multiple income streams"
+          ]
+        };
+      }
+    }
+
+    // Start the quiz
+    displayQuestion();
+  }
+});
+</script>

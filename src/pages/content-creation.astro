@@ -1,0 +1,1247 @@
+---
+// Content Creation page for NosytLabs
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CodeDisplay from '../components/CodeDisplay.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
+import { fetchChannelData, fetchChannelVideos } from '../utils/youtubeScraperUtil.js';
+
+// Fetch YouTube channel data
+const channelData = await fetchChannelData('@TycenYT');
+const recentVideos = await fetchChannelVideos('@TycenYT', 3);
+---
+
+<BaseLayout
+  title="Content Creation Resources - NosytLabs"
+  description="Comprehensive resources for content creators including streaming setup guides, equipment recommendations, and monetization strategies."
+>
+  <!-- Enhanced Hero Section with 3D effect -->
+  <div class="relative bg-gradient-to-br from-primary-dark via-primary to-secondary text-white py-20 overflow-hidden">
+    <!-- Background particles with enhanced animation -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="particles-enhanced"></div>
+
+      <!-- Light beam effect -->
+      <div class="absolute inset-0 light-beam"></div>
+
+      <!-- Decorative elements -->
+      <div class="absolute top-10 right-10 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 left-10 w-60 h-60 bg-primary-light/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-3xl animate-fade-in">
+        <!-- Decorative elements -->
+        <div class="inline-block relative mb-4">
+          <div class="absolute -top-6 -left-6 w-12 h-12 border-t-2 border-l-2 border-accent opacity-70"></div>
+          <div class="absolute -bottom-6 -right-6 w-12 h-12 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+          <h1 class="text-4xl md:text-5xl font-bold mb-4 relative animate-slide-up">
+            Content <span class="text-accent gradient-text shadow-text-3d">Creation</span>
+            <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h1>
+        </div>
+
+        <p class="text-xl backdrop-blur-sm bg-black/10 p-4 rounded-lg animate-slide-up" style="animation-delay: 0.2s;">
+          Everything you need to start and grow your content creation journey - from technical setup to audience engagement.
+        </p>
+
+        <!-- Quick Access Tools -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="#setup-wizard" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg hover:bg-white/20 transition-all duration-300 group">
+            <h3 class="font-bold text-lg mb-2 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-accent group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Setup Wizard
+            </h3>
+            <p class="text-sm opacity-80">Interactive guide to get your stream ready</p>
+          </a>
+
+          <a href="#equipment-calculator" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg hover:bg-white/20 transition-all duration-300 group">
+            <h3 class="font-bold text-lg mb-2 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-accent group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+              Equipment Calculator
+            </h3>
+            <p class="text-sm opacity-80">Find the right gear for your budget</p>
+          </a>
+
+          <a href="#quality-checker" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg hover:bg-white/20 transition-all duration-300 group">
+            <h3 class="font-bold text-lg mb-2 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-accent group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Stream Quality Checker
+            </h3>
+            <p class="text-sm opacity-80">Test your stream settings</p>
+          </a>
+
+          <a href="#platform-comparison" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg hover:bg-white/20 transition-all duration-300 group">
+            <h3 class="font-bold text-lg mb-2 flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-accent group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+              </svg>
+              Platform Comparison
+            </h3>
+            <p class="text-sm opacity-80">Choose the right platform</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced Live Stream Section -->
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16 animate-fade-in">
+        <div class="inline-block relative mb-4">
+          <div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+          <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up relative inline-block text-gray-800 dark:text-white">
+            Live <span class="text-accent gradient-text">Stream</span>
+            <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h2>
+        </div>
+
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-slide-up backdrop-blur-sm bg-gray-50/50 dark:bg-gray-800/50 p-4 rounded-lg" style="animation-delay: 0.2s;">
+          Join Tycen's live streams for real-time coding, tech discussions, and Q&A sessions.
+        </p>
+      </div>
+
+      <div class="max-w-5xl mx-auto animate-fade-in" style="animation-delay: 0.3s;">
+        <div class="aspect-w-16 aspect-h-9 mb-8 transform hover:scale-[1.01] transition-transform duration-500 rounded-xl overflow-hidden shadow-2xl hover:shadow-accent/20 hover:shadow-2xl">
+          <div class="w-full h-0 pb-[56.25%] relative">
+            <div class="kick-embed-container absolute top-0 left-0 w-full h-full rounded-xl shadow-lg overflow-hidden" style="min-height: 400px;">
+              <!-- Animated background for the fallback -->
+              <div class="absolute inset-0 bg-gradient-to-br from-primary-dark via-primary to-accent opacity-50 animate-pulse"></div>
+
+              <!-- Fallback image that shows when iframe fails to load -->
+              <div class="kick-fallback flex flex-col items-center justify-center bg-gray-900/80 backdrop-blur-sm w-full h-full text-white p-6 text-center relative z-10">
+                <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+                  <div class="stream-particles"></div>
+                </div>
+
+                <img src="/images/kick-logo.png" alt="Kick.com Stream" class="w-32 h-32 mb-4 object-contain animate-float" onerror="this.src='/images/placeholder.svg'; this.onerror=null;" />
+
+                <div class="relative inline-block mb-2">
+                  <h3 class="text-2xl font-bold mb-2 text-white">Tycen's <span class="text-accent">Live Stream</span></h3>
+                  <div class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-accent to-transparent"></div>
+                </div>
+
+                <p class="mb-6 max-w-md">The live stream embed cannot be displayed due to security restrictions. <strong>Click below to watch the stream directly on Kick.com</strong> for the best experience.</p>
+
+                <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg group">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Watch on Kick.com
+                </a>
+              </div>
+
+              <!-- The iframe with improved attributes and error handling -->
+              <iframe
+                src="https://player.kick.com/Tycen?muted=false&autoplay=true"
+                height="720"
+                width="1280"
+                frameborder="0"
+                scrolling="no"
+                allowfullscreen="true"
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-presentation allow-forms"
+                loading="lazy"
+                class="absolute top-0 left-0 w-full h-full"
+                style="min-height: 720px; width: 100%; height: 720px; max-height: 80vh; display: none;"
+                importance="high"
+                referrerpolicy="origin"
+                onload="try {
+                  if (this.contentWindow && this.contentDocument) {
+                    this.style.display='block';
+                    this.previousElementSibling.style.display='none';
+                    console.log('Kick.com stream loaded successfully');
+
+                    // Track stream view
+                    if (window.dataLayer) {
+                      window.dataLayer.push({
+                        'event': 'stream_view',
+                        'stream_platform': 'kick',
+                        'stream_channel': 'Tycen',
+                        'stream_quality': 'high'
+                      });
+                    }
+                  } else {
+                    throw new Error('Cannot access iframe content');
+                  }
+                } catch(e) {
+                  console.error('Kick embed load error:', e);
+                  this.style.display='none';
+                  this.previousElementSibling.style.display='flex';
+                }"
+                onerror="try {
+                  console.error('Kick embed error');
+                  this.style.display='none';
+                  this.previousElementSibling.style.display='flex';
+                } catch(e) {
+                  console.error('Kick embed error handler error:', e);
+                }"
+                referrerpolicy="origin"
+                importance="high"
+                title="Tycen's Live Stream on Kick.com"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8 bg-white dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 transform transition-all duration-500 hover:shadow-2xl relative">
+          <!-- Decorative elements -->
+          <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+          <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+          <h3 class="text-2xl font-bold mb-4 text-center relative inline-block text-gray-800 dark:text-white">
+            Stream Information
+            <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h3>
+
+          <p class="text-gray-600 dark:text-gray-300 mb-8 text-center">Check Kick.com/Tycen for current stream status and follow on social media for announcements.</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-600 card-3d">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                </div>
+                <div class="font-bold text-lg text-gray-800 dark:text-white">Web Development & Coding</div>
+              </div>
+              <div class="ml-13 pl-13 border-l-2 border-accent/20 ml-5 pl-4">
+                <div class="flex items-center mb-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <div class="text-gray-600 dark:text-gray-300">Check Kick.com/Tycen</div>
+                </div>
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div class="text-gray-600 dark:text-gray-300">For current stream status</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-600 card-3d">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div class="font-bold text-lg text-gray-800 dark:text-white">Game Development & Tech Talk</div>
+              </div>
+              <div class="ml-13 pl-13 border-l-2 border-accent/20 ml-5 pl-4">
+                <div class="flex items-center mb-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <div class="text-gray-600 dark:text-gray-300">Follow on social media</div>
+                </div>
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div class="text-gray-600 dark:text-gray-300">For stream announcements</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-600 card-3d">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                  </svg>
+                </div>
+                <div class="font-bold text-lg text-gray-800 dark:text-white">3D Printing & Projects</div>
+              </div>
+              <div class="ml-13 pl-13 border-l-2 border-accent/20 ml-5 pl-4">
+                <div class="flex items-center mb-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <div class="text-gray-600 dark:text-gray-300">Subscribe for notifications</div>
+                </div>
+                <div class="flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div class="text-gray-600 dark:text-gray-300">Never miss a stream</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 text-center">
+            <div class="flex flex-wrap justify-center gap-4">
+              <a
+                href="/live"
+                class="cta-button-primary group"
+              >
+                <span class="cta-button-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Watch Live Stream</span>
+                </span>
+                <!-- Button glow effect -->
+                <div class="absolute inset-0 rounded-lg bg-accent opacity-0 blur-xl group-hover:opacity-30 transition-opacity duration-300"></div>
+              </a>
+              <a
+                href="https://kick.com/Tycen"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cta-button-secondary group"
+              >
+                <span class="cta-button-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z" />
+                  </svg>
+                  <span>Follow on Kick</span>
+                </span>
+                <!-- Button glow effect -->
+                <div class="absolute inset-0 rounded-lg bg-accent opacity-0 blur-xl group-hover:opacity-20 transition-opacity duration-300"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Video Content Section -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+    <!-- Background particles with enhanced animation -->
+    <div class="absolute inset-0 overflow-hidden opacity-30">
+      <div class="particles-enhanced"></div>
+
+      <!-- Light beam effect -->
+      <div class="absolute inset-0 light-beam"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16 animate-fade-in">
+        <div class="inline-block relative mb-4">
+          <div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+          <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up relative inline-block text-gray-800 dark:text-white">
+            Video <span class="text-accent gradient-text">Content</span>
+            <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h2>
+        </div>
+
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-slide-up backdrop-blur-sm bg-white/50 dark:bg-gray-700/50 p-4 rounded-lg" style="animation-delay: 0.2s;">
+          Tutorials, tech reviews, and coding sessions to help you learn and stay updated.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Enhanced Video Card 1 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700 transform transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] card-3d animate-fade-in" style="animation-delay: 0.3s;">
+          <div class="aspect-w-16 aspect-h-9 relative">
+            <!-- Video overlay with play button -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center">
+              <div class="w-16 h-16 rounded-full bg-accent/80 flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+
+            <YouTubeEmbed
+              videoId="AmGSEH7QcDg"
+              title="Cursor AI: The FREE AI Coding Assistant That's Better Than GitHub Copilot"
+              aspectRatio="16/9"
+              modestBranding={true}
+              rel={false}
+              loading="lazy"
+              importance="high"
+              className="absolute top-0 left-0 w-full h-full"
+            />
+          </div>
+          <div class="p-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+              Cursor AI: The FREE AI Coding Assistant That's Better Than GitHub Copilot
+              <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              In this video, I demonstrate why Cursor AI has become my go-to coding assistant, outperforming GitHub Copilot in many scenarios. See real examples of how it helps with complex coding tasks and why it's worth trying for any developer.
+            </p>
+
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                March 15, 2024
+              </span>
+              <span class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                14:27
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced Video Card 2 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700 transform transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] card-3d animate-fade-in" style="animation-delay: 0.4s;">
+          <div class="aspect-w-16 aspect-h-9 relative">
+            <!-- Video overlay with play button -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center">
+              <div class="w-16 h-16 rounded-full bg-accent/80 flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+
+            <YouTubeEmbed
+              videoId="igEPucjeXTE"
+              title="What's Inside This Mystery Crypto Mining Box? $6 USD A DAY?"
+              aspectRatio="16/9"
+              modestBranding={true}
+              rel={false}
+              loading="lazy"
+              importance="high"
+              className="absolute top-0 left-0 w-full h-full"
+            />
+          </div>
+          <div class="p-6 relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white relative inline-block">
+              What's Inside This Mystery Crypto Mining Box? $6 USD A DAY?
+              <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+            </h3>
+
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Unboxing and testing a mystery crypto mining box that claims to earn $6 USD per day. Is it worth the investment? Watch to find out the real performance and profitability.
+            </p>
+
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                April 9, 2025
+              </span>
+              <span class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                18:45
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced Video Card 3 -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700 transform transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] card-3d animate-fade-in" style="animation-delay: 0.5s;">
+          <div class="aspect-w-16 aspect-h-9 relative">
+            <!-- Video overlay with play button -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center">
+              <div class="w-16 h-16 rounded-full bg-accent/80 flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+
+            <YouTubeEmbed
+              videoId="j7-emwgQwt8"
+              title="Jingle Mining Sent Me Their BEST Mining Rig Yet! Jasminer X16Q Unboxing"
+              aspectRatio="16/9"
+              modestBranding={true}
+              rel={false}
+              loading="lazy"
+              importance="high"
+              className="absolute top-0 left-0 w-full h-full"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Resource Grid Section -->
+      <div class="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Getting Started Guide -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 transform hover:scale-[1.02] transition-all duration-500 group">
+          <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Getting Started Guide</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Essential steps to launch your content creation journey.</p>
+          <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+            <li class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+              </svg>
+              Platform selection guide
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+              </svg>
+              Basic equipment needs
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+              </svg>
+              Content planning basics
+            </li>
+          </ul>
+        </div>
+
+        <!-- Technical Setup -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 transform hover:scale-[1.02] transition-all duration-500 group">
+          <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Technical Setup</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Detailed technical configuration guides.</p>
+          <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+            <li class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+              </svg>
+              OBS/Streamlabs setup
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+              </svg>
+              Audio configuration
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+              </svg>
+              Stream settings
+            </li>
+          </ul>
+        </div>
+
+        <!-- Monetization Guide -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 transform hover:scale-[1.02] transition-all duration-500 group">
+          <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Monetization Guide</h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Strategies to monetize your content.</p>
+          <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+            <li class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+              </svg>
+              Sponsorship strategies
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+              </svg>
+              Platform monetization
+            </li>
+            <li class="flex items-center">
+              <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" />
+              </svg>
+              Donation setup
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Interactive Tools Section -->
+      <section class="mt-20 bg-white dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-100 dark:border-gray-700">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">Interactive Tools</h2>
+          <p class="text-gray-600 dark:text-gray-300">Tools to help optimize your content creation setup and workflow</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Setup Wizard -->
+          <div id="setup-wizard" class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-600">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Stream Setup Wizard</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Interactive guide to configure your streaming setup</p>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <input type="checkbox" class="form-checkbox h-4 w-4 text-accent" />
+                <span class="ml-2 text-gray-600 dark:text-gray-300">Basic Hardware Check</span>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" class="form-checkbox h-4 w-4 text-accent" />
+                <span class="ml-2 text-gray-600 dark:text-gray-300">Software Installation</span>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" class="form-checkbox h-4 w-4 text-accent" />
+                <span class="ml-2 text-gray-600 dark:text-gray-300">Stream Settings</span>
+              </div>
+              <button class="mt-4 bg-accent hover:bg-accent/90 text-white px-6 py-2 rounded-lg transition-all duration-300">
+                Start Setup
+              </button>
+            </div>
+          </div>
+
+          <!-- Equipment Calculator -->
+          <div id="equipment-calculator" class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-600">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Equipment Calculator</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Calculate required equipment based on your needs</p>
+            <div class="space-y-4">
+              <div class="flex flex-col">
+                <label class="text-gray-600 dark:text-gray-300 mb-1">Content Type</label>
+                <select class="form-select rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
+                  <option>Gaming</option>
+                  <option>Tech Reviews</option>
+                  <option>Tutorials</option>
+                </select>
+              </div>
+              <div class="flex flex-col">
+                <label class="text-gray-600 dark:text-gray-300 mb-1">Budget Range</label>
+                <select class="form-select rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
+                  <option>Starter ($500-1000)</option>
+                  <option>Mid-Range ($1000-2000)</option>
+                  <option>Professional ($2000+)</option>
+                </select>
+              </div>
+              <button class="mt-4 bg-accent hover:bg-accent/90 text-white px-6 py-2 rounded-lg transition-all duration-300">
+                Calculate Setup
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Platform Tools Section -->
+      <section class="mt-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-700 rounded-xl p-8 shadow-xl border border-gray-100 dark:border-gray-700">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">Platform Tools</h2>
+          <p class="text-gray-600 dark:text-gray-300">Compare platforms and optimize your stream quality</p>
+        </div>
+
+        <!-- Platform Comparison Tool -->
+        <div id="platform-comparison" class="mb-12">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">YouTube</h3>
+              <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Largest audience
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Best analytics
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Twitch</h3>
+              <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Live focus
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Strong community
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg">
+              <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Kick</h3>
+              <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Better revenue
+                </li>
+                <li class="flex items-center">
+                  <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Growing platform
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stream Quality Checker -->
+        <div id="quality-checker" class="mb-12">
+          <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow-lg">
+            <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Stream Quality Checker</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-gray-600 dark:text-gray-300 mb-2">Upload Speed (Mbps)</label>
+                <input type="number" class="w-full rounded-lg border-gray-300 dark:border-gray-600" />
+              </div>
+              <div>
+                <label class="block text-gray-600 dark:text-gray-300 mb-2">Target Resolution</label>
+                <select class="w-full rounded-lg border-gray-300 dark:border-gray-600">
+                  <option>1080p60</option>
+                  <option>1080p30</option>
+                  <option>720p60</option>
+                  <option>720p30</option>
+                </select>
+              </div>
+            </div>
+            <button class="mt-4 bg-accent hover:bg-accent/90 text-white px-6 py-2 rounded-lg transition-all duration-300">
+              Check Settings
+            </button>
+          </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div class="bg-gradient-to-r from-accent/20 to-primary/20 rounded-xl p-8">
+          <div class="max-w-2xl mx-auto text-center">
+            <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Get Content Creation Tips</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">Subscribe for weekly streaming tips, equipment guides, and monetization strategies</p>
+            <form class="flex flex-col sm:flex-row gap-4">
+              <input type="email" placeholder="Enter your email" class="flex-1 rounded-lg border-gray-300 dark:border-gray-600" required />
+              <button type="submit" class="bg-accent hover:bg-accent/90 text-white px-6 py-2 rounded-lg transition-all duration-300">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <div class="flex justify-between items-center">
+              <span class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                July 9, 2023
+              </span>
+              <span class="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                22:18
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-16 animate-fade-in" style="animation-delay: 0.6s;">
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href="/live"
+            class="cta-button-primary group"
+          >
+            <span class="cta-button-content">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 group-hover:animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Watch Live Stream</span>
+            </span>
+            <!-- Button glow effect -->
+            <div class="absolute inset-0 rounded-lg bg-accent opacity-0 blur-xl group-hover:opacity-30 transition-opacity duration-300"></div>
+          </a>
+          <a
+            href="https://www.youtube.com/@TycenYT"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cta-button-secondary group"
+          >
+            <span class="cta-button-content">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              <span>View All Videos</span>
+            </span>
+            <!-- Button subtle glow effect -->
+            <div class="absolute inset-0 rounded-lg bg-accent opacity-0 blur-xl group-hover:opacity-20 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Code Editor Section -->
+  <section class="py-20 bg-white dark:bg-gray-900 relative overflow-hidden">
+    <!-- Background code pattern -->
+    <div class="absolute inset-0 overflow-hidden opacity-5 dark:opacity-10 pointer-events-none">
+      <div class="code-pattern"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center mb-16 animate-fade-in">
+        <div class="inline-block relative mb-4">
+          <div class="absolute -top-4 -left-4 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+          <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up relative inline-block text-gray-800 dark:text-white">
+            Interactive <span class="text-accent gradient-text">Code Editor</span>
+            <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
+          </h2>
+        </div>
+
+        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto animate-slide-up backdrop-blur-sm bg-white/50 dark:bg-gray-800/50 p-4 rounded-lg" style="animation-delay: 0.2s;">
+          Explore code snippets and examples from our tutorials and live streams.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto animate-fade-in" style="animation-delay: 0.3s;">
+        <div class="bg-gray-900 rounded-xl overflow-hidden shadow-2xl border border-gray-800 transform transition-all duration-500 hover:shadow-accent/20 hover:shadow-2xl">
+          <!-- Code editor header -->
+          <div class="bg-gray-800 px-4 py-2 flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="flex space-x-2 mr-4">
+                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <div class="text-white font-mono flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+                <span>web-tools.js</span>
+              </div>
+            </div>
+            <div class="flex space-x-2 text-gray-400 text-sm">
+              <span class="px-2 py-1 bg-gray-700 rounded text-xs">JavaScript</span>
+              <span class="px-2 py-1 bg-gray-700 rounded text-xs">NosytLabs</span>
+            </div>
+          </div>
+
+          <!-- Code editor content -->
+          <CodeDisplay
+            title="web-tools.js"
+            language="javascript"
+            videoSrc="https://www.youtube.com/embed/AmGSEH7QcDg"
+            videoFallbackUrl="https://www.youtube.com/watch?v=AmGSEH7QcDg"
+            code={`// NosytLabs Web Development Tools
+class WebDevTools {
+  constructor(projectName) {
+    this.projectName = projectName;
+    this.version = '1.0.0';
+    this.components = [];
+  }
+
+  async initialize() {
+    console.log(\`Initializing \${this.projectName} tools...\`);
+    await this.loadComponents();
+    this.setupEventListeners();
+    console.log(\`\${this.projectName} tools are ready!\`);
+  }
+
+  async loadComponents() {
+    try {
+      // Load project components
+      const response = await fetch('/api/components');
+      const componentData = await response.json();
+
+      console.log('Components loaded successfully');
+      return componentData;
+    } catch (error) {
+      console.error('Error loading components:', error);
+      throw new Error('Failed to initialize web components');
+    }
+  }
+
+  setupEventListeners() {
+    // Listen for user interactions
+    document.querySelector('#component-selector')
+      .addEventListener('change', this.handleComponentSelection.bind(this));
+
+    // Setup live preview updates
+    document.querySelector('#code-editor')
+      .addEventListener('input', this.updatePreview.bind(this));
+  }
+
+  handleComponentSelection(event) {
+    const componentId = event.target.value;
+    if (!componentId) return;
+
+    this.loadComponentCode(componentId)
+      .then(code => this.displayCode(code))
+      .catch(error => {
+        console.error('Error loading component:', error);
+        this.displayError('Failed to load component. Please try again.');
+      });
+  }
+
+  updatePreview(event) {
+    // Update live preview with current code
+    const code = event.target.value;
+    const previewFrame = document.querySelector('#preview-frame');
+
+    if (previewFrame && previewFrame.contentDocument) {
+      previewFrame.contentDocument.body.innerHTML = code;
+    }
+  }
+}`}
+          />
+
+          <!-- Code editor footer -->
+          <div class="bg-gray-800 px-4 py-2 flex items-center justify-between text-gray-400 text-sm">
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+              </svg>
+              <span>Download</span>
+            </div>
+            <div>
+              <span>Line: 32, Col: 15</span>
+            </div>
+            <div class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+              <span>Share</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center animate-fade-in" style="animation-delay: 0.4s;">
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 transform transition-all duration-500 hover:shadow-2xl relative">
+            <!-- Decorative elements -->
+            <div class="absolute -top-2 -left-2 w-8 h-8 border-t-2 border-l-2 border-accent opacity-70"></div>
+            <div class="absolute -bottom-2 -right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-70"></div>
+
+            <p class="text-gray-600 dark:text-gray-300 mb-6 text-lg">
+              Want to see more code examples and tutorials? Check out our GitHub repositories.
+            </p>
+
+            <a
+              href="https://github.com/NosytLabs"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cta-button-secondary group"
+            >
+              <span class="cta-button-content">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+                <span>Visit GitHub</span>
+              </span>
+              <!-- Button subtle glow effect -->
+              <div class="absolute inset-0 rounded-lg bg-accent opacity-0 blur-xl group-hover:opacity-20 transition-opacity duration-300"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Animation keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+  }
+
+  @keyframes particlesEnhanced {
+    0% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.7;
+    }
+    25% {
+      transform: translateY(-15px) translateX(15px) scale(1.05);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.7;
+    }
+    75% {
+      transform: translateY(15px) translateX(-15px) scale(0.95);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes light-beam-move {
+    0% { transform: rotate(0deg) translateX(0) scale(1); opacity: 0; }
+    25% { transform: rotate(45deg) translateX(50px) scale(1.5); opacity: 0.1; }
+    50% { transform: rotate(90deg) translateX(0) scale(1); opacity: 0; }
+    75% { transform: rotate(135deg) translateX(-50px) scale(1.5); opacity: 0.1; }
+    100% { transform: rotate(180deg) translateX(0) scale(1); opacity: 0; }
+  }
+
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-in-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-in-out forwards;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.8s ease-in-out forwards;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Ensure iframe content is non-scrollable */
+  iframe {
+    overflow: hidden;
+  }
+
+  /* Card 3D effect */
+  .card-3d {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+
+  /* Particles animation */
+  .particles-enhanced {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+      radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+      radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+      radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+      radial-gradient(circle at 90% 30%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: particlesEnhanced 30s linear infinite;
+  }
+
+  /* Stream particles */
+  .stream-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      linear-gradient(to right, transparent 49.5%, rgba(255, 255, 255, 0.05) 50%, transparent 50.5%),
+      linear-gradient(to bottom, transparent 49.5%, rgba(255, 255, 255, 0.05) 50%, transparent 50.5%);
+    background-size: 30px 30px;
+    animation: particlesEnhanced 20s linear infinite;
+  }
+
+  /* Light beam effect */
+  .light-beam {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.05) 50%, transparent 55%);
+    animation: light-beam-move 15s ease-in-out infinite;
+  }
+
+  /* Code pattern background */
+  .code-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      linear-gradient(to right, transparent 49.5%, rgba(255, 107, 0, 0.05) 50%, transparent 50.5%),
+      linear-gradient(to bottom, transparent 49.5%, rgba(255, 107, 0, 0.05) 50%, transparent 50.5%);
+    background-size: 20px 20px;
+    animation: particlesEnhanced 30s linear infinite;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--nosyt-orange-main), var(--nosyt-orange-light));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+  }
+
+  /* 3D text shadow */
+  .shadow-text-3d {
+    text-shadow:
+      1px 1px 0 rgba(255, 107, 0, 0.4),
+      2px 2px 0 rgba(255, 107, 0, 0.3),
+      3px 3px 0 rgba(255, 107, 0, 0.2),
+      4px 4px 0 rgba(255, 107, 0, 0.1),
+      4px 4px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  /* CTA Button styles */
+  .cta-button-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--nosyt-orange-main);
+    color: white;
+    font-medium: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(0);
+  }
+
+  .cta-button-primary:hover {
+    background-color: var(--nosyt-orange-dark);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
+  .cta-button-secondary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--nosyt-orange-main);
+    font-medium: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--nosyt-orange-main);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transform: translateY(0);
+  }
+
+  .cta-button-secondary:hover {
+    background-color: var(--nosyt-orange-main);
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  .cta-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+  }
+</style>
+
+<script>
+  // Enhanced Kick.com embed handling
+  document.addEventListener('DOMContentLoaded', () => {
+    const kickEmbed = document.querySelector('.kick-embed-container iframe');
+    const kickFallback = document.querySelector('.kick-fallback');
+
+    if (kickEmbed && kickFallback) {
+      // Set a timeout to check if the iframe loaded successfully
+      setTimeout(() => {
+        try {
+          // If the iframe is still not visible after 5 seconds, show the fallback
+          if (kickEmbed.style.display === 'none') {
+            console.log('Kick.com embed timeout - showing fallback');
+            kickEmbed.style.display = 'none';
+            kickFallback.style.display = 'flex';
+          }
+        } catch (e) {
+          console.error('Kick.com embed timeout error:', e);
+          kickEmbed.style.display = 'none';
+          kickFallback.style.display = 'flex';
+        }
+      }, 5000);
+
+      // Add event listener for iframe load
+      kickEmbed.addEventListener('load', function() {
+        try {
+          // Check if we can access the iframe content
+          if (kickEmbed.contentWindow && kickEmbed.contentDocument) {
+            console.log('Kick.com embed loaded successfully');
+            kickEmbed.style.display = 'block';
+            kickFallback.style.display = 'none';
+          } else {
+            throw new Error('Cannot access iframe content');
+          }
+        } catch (e) {
+          console.error('Kick.com embed load error:', e);
+          kickEmbed.style.display = 'none';
+          kickFallback.style.display = 'flex';
+        }
+      });
+
+      // Add event listener for iframe error
+      kickEmbed.addEventListener('error', function(e) {
+        console.error('Kick.com embed error:', e);
+        kickEmbed.style.display = 'none';
+        kickFallback.style.display = 'flex';
+      });
+    }
+  });
+</script>

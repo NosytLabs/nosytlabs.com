@@ -1,0 +1,101 @@
+---
+// InfoCard.astro
+// A simple card component to replace code editor components
+import YouTubeEmbed from './YouTubeEmbed.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  videoSrc?: string;
+  videoFallbackUrl?: string;
+  dark?: boolean;
+  theme?: 'default' | 'purple' | 'orange';
+}
+
+const {
+  title = "Information",
+  description = "",
+  videoSrc = "",
+  videoFallbackUrl = "",
+  dark = true,
+  theme = 'default'
+} = Astro.props;
+
+// Determine theme classes
+let themeClasses = '';
+if (theme === 'purple') {
+  themeClasses = 'bg-primary-dark border-primary-main';
+} else if (theme === 'orange') {
+  themeClasses = 'bg-secondary-dark border-secondary-main';
+} else {
+  themeClasses = dark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200';
+}
+---
+
+<div class={`info-card rounded-lg overflow-hidden shadow-lg ${themeClasses} border transition-all duration-300 hover:shadow-xl`}>
+  <!-- Card Header -->
+  <div class={`card-header px-4 py-3 flex items-center justify-between ${theme === 'purple' ? 'bg-primary-main' : theme === 'orange' ? 'bg-secondary-main' : dark ? 'bg-gray-700' : 'bg-gray-100'}`}>
+    <div class={`text-lg font-semibold ${dark ? 'text-white' : 'text-gray-800'}`}>{title}</div>
+  </div>
+
+  <!-- Card Content -->
+  <div class="card-content p-4">
+    {videoSrc && (
+      <div class="mb-4 video-container relative pt-[56.25%]">
+        {videoSrc.includes('youtube.com/embed/') ? (
+          <YouTubeEmbed
+            videoId={videoSrc.split('/').pop()?.split('?')[0] || ''}
+            title={title}
+            aspectRatio="16/9"
+            modestBranding={true}
+            rel={false}
+            loading="lazy"
+            importance="high"
+            className="absolute top-0 left-0 w-full h-full"
+          />
+        ) : (
+          <div class="relative w-full h-full">
+            <div class="fallback-message hidden">
+              <p>Video could not be loaded.
+                {videoFallbackUrl && (
+                  <a href={videoFallbackUrl} target="_blank" rel="noopener noreferrer" class="text-accent underline">
+                    Watch on YouTube
+                  </a>
+                )}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    )}
+
+    {description && (
+      <div class={`description ${dark ? 'text-gray-300' : 'text-gray-700'}`}>
+        <p>{description}</p>
+      </div>
+    )}
+
+    <slot />
+  </div>
+</div>
+
+<style>
+  .info-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Video container */
+  .video-container {
+    border-radius: 0.25rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .description {
+    line-height: 1.6;
+  }
+</style>

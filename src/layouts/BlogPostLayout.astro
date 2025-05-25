@@ -1,0 +1,300 @@
+---
+// Blog Post Layout
+import BaseLayout from './BaseLayout.astro';
+
+const { frontmatter } = Astro.props;
+const { title, description, date, author, authorImage, image, category, tags } = frontmatter;
+---
+
+<BaseLayout title={`${title} - NosytLabs Blog`} description={description}>
+  <article class="blog-post">
+    <!-- Hero Section -->
+    <div class="relative">
+      <div class="w-full h-[40vh] md:h-[60vh]">
+        <img
+          src={image}
+          alt={title}
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+      </div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center text-white px-4 max-w-4xl animate-fade-in">
+          <h1 class="text-3xl md:text-5xl font-bold mb-4 animate-slide-up">{title}</h1>
+          <p class="text-xl md:text-2xl mb-6 animate-slide-up" style="animation-delay: 0.2s;">{description}</p>
+          <div class="flex items-center justify-center mb-4 animate-fade-in" style="animation-delay: 0.3s;">
+            <img
+              src={authorImage}
+              alt={author}
+              class="w-12 h-12 rounded-full mr-4"
+            />
+            <div class="text-left">
+              <div class="font-medium">{author}</div>
+              <div class="text-sm opacity-75">{date}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="container mx-auto px-4 py-16">
+      <div class="max-w-3xl mx-auto">
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mb-8 animate-fade-in" style="animation-delay: 0.4s;">
+          <span class="px-3 py-1 bg-indigo-100 text-indigo-800 font-medium rounded-full">
+            {category}
+          </span>
+          {tags.map(tag => (
+            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <!-- Post Content -->
+        <div class="prose prose-lg max-w-none animate-fade-in" style="animation-delay: 0.5s;">
+          <slot />
+        </div>
+
+        <!-- Author Bio -->
+        <div class="mt-16 p-6 bg-gray-50 rounded-lg animate-fade-in" style="animation-delay: 0.6s;">
+          <div class="flex items-start">
+            <img
+              src={authorImage}
+              alt={author}
+              class="w-16 h-16 rounded-full mr-6"
+            />
+            <div>
+              <h3 class="text-xl font-bold mb-2">About {author}</h3>
+              <p class="text-gray-600 mb-4">
+                {author} is the founder of NosytLabs and a full-stack developer specializing in React, Next.js, and AI-assisted development tools. With a background in both web development and content creation, {author} shares practical insights from real-world projects and experiments with cutting-edge technologies like Cursor AI, 3D printing, and cryptocurrency mining.
+              </p>
+              <div class="flex space-x-4">
+                <a href="https://github.com/NosytLabs" class="text-indigo-600 hover:text-indigo-800" target="_blank" rel="noopener noreferrer">
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                  </svg>
+                </a>
+                <a href="https://kick.com/Tycen" class="text-indigo-600 hover:text-indigo-800" target="_blank" rel="noopener noreferrer">
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm-1-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm5 7h-2v-3.5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5V17h-2v-6h2v1.1c.52-.7 1.37-1.1 2.25-1.1 1.65 0 3 1.35 3 3V17z" clip-rule="evenodd"></path>
+                  </svg>
+                </a>
+                <a href="https://www.youtube.com/@TycenYT" class="text-indigo-600 hover:text-indigo-800" target="_blank" rel="noopener noreferrer">
+                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Posts Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-12 text-center animate-fade-in">You Might Also Like</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in" style="animation-delay: 0.3s;">
+            <img
+              src="/images/blog/ai-trends-2025.jpg"
+              alt="AI Trends to Watch in 2025"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 hover:text-indigo-600 transition-colors">
+                <a href="/blog/ai-trends-2025">AI Trends to Watch in 2025</a>
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">Explore the cutting-edge AI technologies and trends that will shape the business landscape in 2025 and beyond.</p>
+              <a
+                href="/blog/ai-trends-2025"
+                class="inline-block text-indigo-600 hover:text-indigo-800 font-medium text-sm"
+              >
+                Read More &rarr;
+              </a>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in" style="animation-delay: 0.4s;">
+            <img
+              src="/images/blog/web3-blockchain.jpg"
+              alt="How Web3 and Blockchain Are Transforming Business"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 hover:text-indigo-600 transition-colors">
+                <a href="/blog/web3-blockchain-business">How Web3 and Blockchain Are Transforming Business</a>
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">Discover how decentralized technologies are creating new business models and opportunities across industries.</p>
+              <a
+                href="/blog/web3-blockchain-business"
+                class="inline-block text-indigo-600 hover:text-indigo-800 font-medium text-sm"
+              >
+                Read More &rarr;
+              </a>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-fade-in" style="animation-delay: 0.5s;">
+            <img
+              src="/images/blog/3d-printing-manufacturing.jpg"
+              alt="The Future of Manufacturing: 3D Printing Revolution"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 hover:text-indigo-600 transition-colors">
+                <a href="/blog/3d-printing-manufacturing">The Future of Manufacturing: 3D Printing Revolution</a>
+              </h3>
+              <p class="text-gray-600 mb-4 text-sm">How additive manufacturing is reshaping production processes and enabling new possibilities in product development.</p>
+              <a
+                href="/blog/3d-printing-manufacturing"
+                class="inline-block text-indigo-600 hover:text-indigo-800 font-medium text-sm"
+              >
+                Read More &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-indigo-700 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center animate-fade-in">
+          <h2 class="text-3xl font-bold mb-6 animate-slide-up">Never Miss an Update</h2>
+          <p class="text-xl mb-8 animate-slide-up" style="animation-delay: 0.2s;">
+            Subscribe to our newsletter for the latest articles, tutorials, and updates.
+          </p>
+          <form class="flex flex-col md:flex-row gap-4 animate-fade-in" style="animation-delay: 0.4s;">
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              class="flex-1 px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
+            <button
+              type="submit"
+              class="bg-white text-indigo-700 hover:bg-gray-100 font-medium py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
+            >
+              Subscribe
+            </button>
+          </form>
+          <p class="text-sm mt-4 text-indigo-200 animate-fade-in" style="animation-delay: 0.5s;">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  /* Animation keyframes */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-in-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-in-out forwards;
+  }
+
+  /* Blog post content styling */
+  .prose h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #2d3748;
+  }
+
+  .prose h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+  }
+
+  .prose p {
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
+  }
+
+  .prose ul, .prose ol {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid #4f46e5;
+    padding-left: 1rem;
+    font-style: italic;
+    color: #4b5563;
+    margin: 1.5rem 0;
+  }
+
+  .prose a {
+    color: #4f46e5;
+    text-decoration: underline;
+  }
+
+  .prose a:hover {
+    color: #4338ca;
+  }
+
+  .prose code {
+    background-color: #f1f5f9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .prose pre {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .prose pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+  }
+
+  .prose img {
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .prose figure {
+    margin: 1.5rem 0;
+  }
+
+  .prose figcaption {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+  }
+</style>
