@@ -178,3 +178,10 @@ Thumbs.db
 *.tar.gz
 *.rar
 *.7z
+
+# Optimization artifacts
+public/scripts/bundles/
+*.optimization.log
+# Temporary files
+*.tmp
+*.temp

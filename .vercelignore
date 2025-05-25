@@ -40,3 +40,8 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Optimization artifacts
+scripts/optimization/
+performance-reports/
+*.optimization.log
