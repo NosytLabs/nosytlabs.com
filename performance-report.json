@@ -1,0 +1,106 @@
+{
+  "timestamp": "2025-05-25T03:41:06.606Z",
+  "metrics": {
+    "fileCount": {
+      "public/scripts": {
+        "total": 89,
+        "js": 89,
+        "css": 0,
+        "images": 0
+      },
+      "public/styles": {
+        "total": 34,
+        "js": 0,
+        "css": 34,
+        "images": 0
+      },
+      "public/images": {
+        "total": 1891,
+        "js": 0,
+        "css": 0,
+        "images": 1658
+      },
+      "src": {
+        "total": 145,
+        "js": 16,
+        "css": 1,
+        "images": 0
+      }
+    },
+    "bundleSizes": {
+      "games-bundle.js": {
+        "size": 175885,
+        "sizeKB": "171.76"
+      },
+      "utils-bundle.js": {
+        "size": 32019,
+        "sizeKB": "31.27"
+      },
+      "windows95-apps.js": {
+        "size": 76265,
+        "sizeKB": "74.48"
+      },
+      "windows95-core.js": {
+        "size": 46636,
+        "sizeKB": "45.54"
+      }
+    },
+    "duplicates": [],
+    "suggestions": [
+      {
+        "type": "info",
+        "message": "Potential duplicates: animations.js, animations.js"
+      },
+      {
+        "type": "info",
+        "message": "Potential duplicates: nosyt-ai.js, nosyt-ai.js"
+      },
+      {
+        "type": "info",
+        "message": "Potential duplicates: main.js, main.js"
+      },
+      {
+        "type": "info",
+        "message": "Potential duplicates: easter-eggs.js, easter-eggs-fix.js"
+      },
+      {
+        "type": "info",
+        "message": "Potential duplicates: duck-hunt.js, duck-hunt.js"
+      },
+      {
+        "type": "info",
+        "message": "Potential duplicates: sound-manager.js, sound-manager.js"
+      },
+      {
+        "type": "info",
+        "message": "Potential duplicates: start-menu.js, start-menu-fix.js"
+      },
+      {
+        "type": "info",
+        "message": "Potential duplicates: terminal.js, terminal.js, terminal-fix.js"
+      },
+      {
+        "type": "info",
+        "message": "Potential duplicates: theme.js, theme.js"
+      },
+      {
+        "type": "info",
+        "message": "Potential duplicates: nosytos95.js, nosytos95.js"
+      },
+      {
+        "type": "info",
+        "message": "Consider running: npx unimported to find unused files"
+      },
+      {
+        "type": "warning",
+        "message": "2 large images found - consider optimization with npm run optimize:images"
+      }
+    ]
+  },
+  "summary": {
+    "totalFiles": 2159,
+    "totalBundles": 4,
+    "totalSuggestions": 12,
+    "warnings": 1
+  }
+}

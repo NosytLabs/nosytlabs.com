@@ -25,6 +25,7 @@
     "test:performance": "node scripts/performance-test.js",
     "optimize:all": "npm run optimize:images && npm run optimize:css",
     "consolidate:scripts": "node scripts/optimization/consolidate-scripts.js",
+    "monitor:performance": "node scripts/optimization/performance-monitor.js",
     "build:optimized": "npm run optimize:all && npm run consolidate:scripts && npm run build",
     "lighthouse": "npx lighthouse http://localhost:4321 --output html --output-path ./performance-reports/lighthouse.html",
     "perf:audit": "npm run build && npm run preview & sleep 5 && npm run test:performance && kill %1"
