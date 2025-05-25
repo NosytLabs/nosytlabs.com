@@ -5,9 +5,7 @@
     .nosyt-purple { fill: #4C1D95; }
     .nosyt-orange { fill: #FF6B00; }
   </style>
-  <rect class="nosyt-purple-dark" x="0" y="0" width="100" height="100" rx="10" />
-  <!-- N letter with stylized design -->
-  <path class="nosyt-purple" d="M25 20 L25 80 L35 80 L35 40 L65 80 L75 80 L75 20 L65 20 L65 60 L35 20 Z" fill="#4C1D95" />
-  <!-- Orange accent -->
-  <path class="nosyt-orange" d="M75 60 L85 60 L85 80 L75 80 Z" fill="#FF6B00" />
+  <rect class="nosyt-purple-dark" x="0" y="0" width="100" height="100" rx="0" />
+  <path class="nosyt-purple" d="M20 20 C20 20, 30 30, 40 30 C50 30, 50 20, 60 20 C70 20, 80 30, 80 40 C80 50, 70 60, 60 60 C50 60, 50 50, 40 50 C30 50, 20 60, 20 70 C20 80, 30 80, 40 80" stroke-width="15" stroke-linecap="round" fill="none" stroke="#4C1D95" />
+  <path class="nosyt-orange" d="M60 40 C70 40, 80 50, 80 60 C80 70, 70 80, 60 80 L80 80 L90 70" stroke-width="15" stroke-linecap="round" fill="none" stroke="#FF6B00" />
 </svg>

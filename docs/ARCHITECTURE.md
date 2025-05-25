@@ -1,153 +1,226 @@
-# System Architecture Documentation
+# 🏗️ NosytLabs Architecture Documentation
 
-## Overview
+## 📋 Overview
 
-This document outlines the architecture, performance optimizations, and testing infrastructure implemented in the NosytLabs website.
+NosytLabs is a modern web application built with Astro, featuring a unique Windows 95-inspired interface alongside a professional business website. The architecture is designed for performance, scalability, and maintainability.
 
-## Performance Optimizations
+## 🛠️ Technology Stack
 
-### Resource Loading
-- **Critical Resource Preloading**: Key assets (logo, main CSS, core JS) are preloaded using `<link rel="preload">`
-- **Image Optimization**: 
-  - WebP format with JPEG fallback
-  - Appropriate `loading` attributes (eager for above-fold, lazy for below-fold)
-  - Proper image dimensions specified
-  - High-priority fetch for critical images
+### Core Framework
+- **Astro 4.x**: Static site generator with islands architecture
+- **TypeScript**: Type-safe JavaScript development
+- **Tailwind CSS**: Utility-first CSS framework
+- **Vite**: Fast build tool and development server
 
-### Caching Strategy
-1. **Static Assets** (Cache-First)
-   - Core stylesheets
-   - JavaScript files
-   - Images and icons
-   - Font files
+### Performance Optimizations
+- **Critical CSS Inlining**: Above-the-fold optimization
+- **Lazy Loading**: Advanced image and component loading
+- **Service Worker**: Offline support and caching
+- **Bundle Splitting**: Intelligent code chunking
+- **Image Optimization**: WebP/AVIF with fallbacks
 
-2. **Dynamic Content** (Network-First)
-   - API responses
-   - User-specific content
-   - Frequently updated sections
+### UI Components
+- **Astro Components**: Server-side rendered components
+- **React Islands**: Interactive client-side components
+- **Win95 Theme System**: Authentic Windows 95 recreation
+- **Responsive Design**: Mobile-first approach
 
-3. **Offline Support**
-   - Offline fallback page
-   - Cached core assets
-   - Graceful degradation
+## 📁 Project Structure
 
-### Code Optimization
-- Deferred script loading
-- Proper ARIA attributes for accessibility
-- Memory management for inactive windows
-- Event delegation for performance
+```
+nosytlabs.com/
+├── 📁 src/                        # Source code
+│   ├── components/                # Reusable components
+│   │   ├── ui/                   # Basic UI components
+│   │   ├── layout/               # Layout components
+│   │   ├── performance/          # Performance components
+│   │   └── win95/                # Windows 95 components
+│   ├── layouts/                  # Page layouts
+│   ├── pages/                    # Route pages
+│   ├── styles/                   # Global styles
+│   ├── scripts/                  # Client-side scripts
+│   └── utils/                    # Utility functions
+├── 📁 public/                     # Static assets
+│   ├── images/                   # Optimized images
+│   ├── audio/                    # Sound files
+│   ├── scripts/                  # Legacy scripts
+│   └── styles/                   # Legacy styles
+├── 📁 scripts/                    # Build scripts
+│   ├── optimization/             # Performance scripts
+│   ├── build/                    # Build utilities
+│   └── development/              # Dev tools
+└── 📁 docs/                       # Documentation
+```
 
-## Accessibility Features
+## 🎯 Core Features
 
-### Semantic HTML
-- Proper heading hierarchy
-- Semantic landmarks (`<header>`, `<main>`, `<nav>`, `<footer>`)
-- ARIA roles and labels
+### 1. Dual Interface System
+- **Professional Site**: Modern business website
+- **NosytOS95**: Windows 95 recreation with games and apps
 
-### Keyboard Navigation
-- Logical tab order
-- Focus management
-- Skip links for main content
-- Visible focus indicators
+### 2. Performance Optimization
+- **Core Web Vitals**: Optimized for Google's performance metrics
+- **Bundle Optimization**: Intelligent code splitting
+- **Image Optimization**: Next-gen formats with fallbacks
+- **Caching Strategy**: Multi-tier caching system
 
-### Screen Reader Support
-- Alt text for images
-- ARIA labels for interactive elements
-- Proper heading structure
-- Status announcements
+### 3. Interactive Elements
+- **Duck Hunt Game**: Classic Nintendo game recreation
+- **Doom Game**: Browser-based Doom implementation
+- **File Explorer**: Functional Windows 95 file system
+- **Terminal**: Interactive command-line interface
 
-### High Contrast Support
-- Sufficient color contrast ratios
-- Focus indicators
-- Text alternatives for icons
+### 4. Content Management
+- **Blog System**: Markdown-based blog with categories
+- **Project Showcase**: Portfolio with detailed case studies
+- **Service Pages**: Business service descriptions
+- **Contact Forms**: Interactive contact and booking
 
-## Testing Infrastructure
+## 🔧 Build System
 
-### Unit Tests
-Location: `tests/performance.spec.ts`
+### Development
+```bash
+npm run dev          # Start development server
+npm run build        # Production build
+npm run preview      # Preview production build
+```
 
-Tests cover:
-- Resource preloading
+### Optimization
+```bash
+npm run optimize:images    # Optimize images
+npm run optimize:css       # Optimize CSS
+npm run optimize:all       # Run all optimizations
+```
+
+### Testing
+```bash
+npm run test:performance   # Performance testing
+npm run lighthouse         # Lighthouse audit
+npm run perf:audit        # Full performance audit
+```
+
+## 📊 Performance Targets
+
+### Core Web Vitals
+- **LCP (Largest Contentful Paint)**: < 2.5s
+- **FID (First Input Delay)**: < 100ms
+- **CLS (Cumulative Layout Shift)**: < 0.1
+
+### Lighthouse Scores
+- **Performance**: 90+
+- **Accessibility**: 95+
+- **Best Practices**: 95+
+- **SEO**: 95+
+
+### Bundle Sizes
+- **Initial Bundle**: < 150KB (gzipped)
+- **Critical CSS**: < 20KB (inlined)
+- **Images**: WebP/AVIF with fallbacks
+
+## 🔄 Data Flow
+
+### 1. Static Generation
+```
+Markdown → Astro → HTML/CSS/JS → CDN
+```
+
+### 2. Client Hydration
+```
+HTML → JavaScript Islands → Interactive Components
+```
+
+### 3. Performance Monitoring
+```
+User Interaction → Web Vitals → Analytics → Optimization
+```
+
+## 🛡️ Security
+
+### Content Security Policy
+- Strict CSP headers
+- XSS protection
+- CSRF protection
+
+### Asset Security
+- Subresource integrity
+- HTTPS enforcement
+- Secure headers
+
+## 🚀 Deployment
+
+### Build Process
+1. **Asset Optimization**: Images, CSS, JS
+2. **Bundle Generation**: Code splitting and minification
+3. **Static Generation**: Pre-rendered HTML
+4. **Performance Validation**: Lighthouse audits
+
+### Hosting
+- **Static Hosting**: Optimized for CDN delivery
+- **Service Worker**: Offline functionality
+- **Progressive Enhancement**: Works without JavaScript
+
+## 📈 Monitoring
+
+### Performance Metrics
+- Real User Monitoring (RUM)
+- Core Web Vitals tracking
+- Bundle size monitoring
+- Error tracking
+
+### Analytics
+- Google Analytics 4
+- Custom performance events
+- User interaction tracking
+- Conversion funnel analysis
+
+## 🔧 Development Guidelines
+
+### Code Standards
+- TypeScript for type safety
+- ESLint for code quality
+- Prettier for formatting
+- Conventional commits
+
+### Component Architecture
+- Single responsibility principle
+- Composition over inheritance
+- Props validation
+- Accessibility first
+
+### Performance Best Practices
+- Lazy loading for non-critical resources
+- Critical CSS inlining
 - Image optimization
-- Service worker functionality
-- Accessibility compliance
-- Performance metrics
+- Bundle size monitoring
 
-### Performance Benchmarks
-Metrics monitored:
-- First Contentful Paint (FCP) < 1000ms
-- Largest Contentful Paint (LCP) < 2500ms
-- DOM Content Loaded < 2000ms
-- Load Complete < 3000ms
+## 🎨 Design System
 
-### Accessibility Testing
-Automated checks for:
-- ARIA roles and labels
-- Color contrast
-- Keyboard navigation
-- Screen reader compatibility
+### Color Palette
+- Primary: NosytLabs brand colors
+- Win95: Authentic Windows 95 colors
+- Accessibility: WCAG AA compliant
 
-### Offline Testing
-Verifies:
-- Service worker registration
-- Cache storage
-- Offline fallback page
-- Resource availability
+### Typography
+- Modern: Inter font family
+- Win95: MS Sans Serif recreation
+- Responsive scaling
 
-## Development Guidelines
+### Components
+- Consistent spacing system
+- Reusable component library
+- Responsive breakpoints
+- Dark/light mode support
 
-### Adding New Features
-1. Implement with accessibility in mind
-2. Add appropriate performance optimizations
-3. Include unit tests
-4. Update documentation
+## 🔮 Future Enhancements
 
-### Performance Considerations
-- Minimize bundle size
-- Optimize asset loading
-- Implement proper caching
-- Monitor Core Web Vitals
+### Planned Features
+- PWA capabilities
+- Real-time collaboration
+- Advanced analytics
+- Performance budgets
 
-### Accessibility Checklist
-- [ ] Semantic HTML
-- [ ] ARIA labels
-- [ ] Keyboard navigation
-- [ ] Screen reader testing
-- [ ] Color contrast verification
-
-## Troubleshooting Guide
-
-### Common Issues
-
-1. **Service Worker Caching**
-   - Clear cache: `await caches.delete('static-cache-v1')`
-   - Update service worker: `await navigator.serviceWorker.register('/service-worker.js')`
-
-2. **Performance Issues**
-   - Check network waterfall
-   - Verify cache hit rates
-   - Monitor memory usage
-   - Review bundle sizes
-
-3. **Accessibility Problems**
-   - Validate ARIA roles
-   - Test keyboard navigation
-   - Verify screen reader output
-   - Check color contrast
-
-## Keyboard Shortcuts
-
-| Action | Windows/Linux | macOS |
-|--------|--------------|-------|
-| Skip to main | Tab | Tab |
-| Open menu | Alt + M | ⌘ + M |
-| Search | Ctrl + / | ⌘ + / |
-| Toggle theme | Alt + T | ⌘ + T |
-
-## Contributing
-
-1. Follow established patterns
-2. Include tests for new features
-3. Maintain accessibility standards
-4. Document changes
-5. Monitor performance impact
+### Technical Debt
+- Legacy script consolidation
+- CSS optimization
+- Bundle size reduction
+- Test coverage improvement
