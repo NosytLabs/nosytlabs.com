@@ -50,8 +50,18 @@
   ],
   "redirects": [
     {
-      "source": "/about",
-      "destination": "/#about-cta",
+      "source": "/blog-page",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog-posts",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blogs",
+      "destination": "/blog",
       "permanent": true
     }
   ],
