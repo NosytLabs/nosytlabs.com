@@ -19,7 +19,14 @@
     "check-links": "node scripts/check-links.js",
     "fix-css": "node scripts/fix-css.js",
     "build:prod": "npm run generate-assets && npm run fix-css && astro build",
-    "build:full": "npm run generate-assets && npm run fix-css && astro build && npm run check-links"
+    "build:full": "npm run generate-assets && npm run fix-css && astro build && npm run check-links",
+    "optimize:images": "node scripts/image-optimization.js",
+    "optimize:css": "node scripts/css-optimization.js",
+    "test:performance": "node scripts/performance-test.js",
+    "optimize:all": "npm run optimize:images && npm run optimize:css",
+    "build:optimized": "npm run optimize:all && npm run build",
+    "lighthouse": "npx lighthouse http://localhost:4321 --output html --output-path ./performance-reports/lighthouse.html",
+    "perf:audit": "npm run build && npm run preview & sleep 5 && npm run test:performance && kill %1"
   },
   "dependencies": {
     "@vercel/analytics": "^1.3.1",

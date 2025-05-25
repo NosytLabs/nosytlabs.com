@@ -1,0 +1,437 @@
+---
+// Font Optimizer Component for Advanced Font Loading Strategies
+export interface Props {
+  fonts?: Array<{
+    family: string;
+    weights?: number[];
+    styles?: string[];
+    display?: 'auto' | 'block' | 'swap' | 'fallback' | 'optional';
+    preload?: boolean;
+    subset?: string;
+  }>;
+  strategy?: 'preload' | 'swap' | 'optional' | 'critical';
+}
+
+const { 
+  fonts = [
+    {
+      family: 'Inter',
+      weights: [400, 500, 600, 700],
+      styles: ['normal'],
+      display: 'swap',
+      preload: true,
+      subset: 'latin'
+    }
+  ],
+  strategy = 'swap'
+} = Astro.props;
+
+// Generate font URLs and preload links
+const fontPreloads = fonts
+  .filter(font => font.preload)
+  .map(font => {
+    const weights = font.weights || [400];
+    const styles = font.styles || ['normal'];
+    
+    return weights.flatMap(weight => 
+      styles.map(style => ({
+        family: font.family,
+        weight,
+        style,
+        display: font.display || 'swap',
+        subset: font.subset || 'latin'
+      }))
+    );
+  })
+  .flat();
+
+// Generate Google Fonts URL
+const googleFontsUrl = fonts
+  .filter(font => font.family !== 'system')
+  .map(font => {
+    const weights = font.weights || [400];
+    const styles = font.styles || ['normal'];
+    
+    const weightString = weights.join(';');
+    const styleString = styles.includes('italic') ? 'ital,' : '';
+    
+    return `${font.family}:${styleString}wght@${weightString}`;
+  })
+  .join('&family=');
+---
+
+<!-- Font Preconnect -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Critical Font Preloads -->
+{fontPreloads.slice(0, 2).map(font => (
+  <link
+    rel="preload"
+    href={`https://fonts.gstatic.com/s/${font.family.toLowerCase()}/v1/${font.family.toLowerCase()}-${font.weight}-${font.subset}.woff2`}
+    as="font"
+    type="font/woff2"
+    crossorigin
+  />
+))}
+
+<!-- Font CSS with optimized loading -->
+{googleFontsUrl && (
+  <link
+    rel="stylesheet"
+    href={`https://fonts.googleapis.com/css2?family=${googleFontsUrl}&display=${strategy}`}
+    media="print"
+    onload="this.media='all'"
+  />
+)}
+
+<!-- Fallback for no-JS -->
+<noscript>
+  {googleFontsUrl && (
+    <link
+      rel="stylesheet"
+      href={`https://fonts.googleapis.com/css2?family=${googleFontsUrl}&display=${strategy}`}
+    />
+  )}
+</noscript>
+
+<!-- Font Loading Optimization Script -->
+<script define:vars={{ fonts, strategy }}>
+  class FontOptimizer {
+    constructor() {
+      this.loadedFonts = new Set();
+      this.fontLoadPromises = new Map();
+      this.init();
+    }
+    
+    init() {
+      this.setupFontDisplay();
+      this.preloadCriticalFonts();
+      this.setupFontLoadingEvents();
+      this.optimizeFontRendering();
+    }
+    
+    setupFontDisplay() {
+      // Add font-display CSS if not already present
+      const style = document.createElement('style');
+      style.textContent = `
+        @font-face {
+          font-family: 'Inter-fallback';
+          src: local('Arial'), local('Helvetica'), local('sans-serif');
+          font-display: block;
+          ascent-override: 90%;
+          descent-override: 22%;
+          line-gap-override: 0%;
+        }
+        
+        .font-loading {
+          font-family: 'Inter-fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .font-loaded {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        /* Prevent invisible text during font swap period */
+        .font-loading * {
+          font-display: ${strategy};
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    preloadCriticalFonts() {
+      fonts.forEach(font => {
+        if (font.preload) {
+          this.loadFont(font.family, font.weights?.[0] || 400, font.styles?.[0] || 'normal');
+        }
+      });
+    }
+    
+    async loadFont(family, weight = 400, style = 'normal') {
+      const fontKey = `${family}-${weight}-${style}`;
+      
+      if (this.loadedFonts.has(fontKey)) {
+        return Promise.resolve();
+      }
+      
+      if (this.fontLoadPromises.has(fontKey)) {
+        return this.fontLoadPromises.get(fontKey);
+      }
+      
+      const fontFace = new FontFace(
+        family,
+        `url(https://fonts.gstatic.com/s/${family.toLowerCase()}/v1/${family.toLowerCase()}-${weight}-latin.woff2)`,
+        {
+          weight: weight.toString(),
+          style: style,
+          display: strategy
+        }
+      );
+      
+      const loadPromise = fontFace.load().then(() => {
+        document.fonts.add(fontFace);
+        this.loadedFonts.add(fontKey);
+        this.onFontLoaded(family, weight, style);
+        return fontFace;
+      }).catch(error => {
+        console.warn(`Failed to load font ${fontKey}:`, error);
+        this.onFontError(family, weight, style, error);
+      });
+      
+      this.fontLoadPromises.set(fontKey, loadPromise);
+      return loadPromise;
+    }
+    
+    setupFontLoadingEvents() {
+      // Monitor font loading status
+      if ('fonts' in document) {
+        document.fonts.addEventListener('loadingdone', () => {
+          this.onAllFontsLoaded();
+        });
+        
+        document.fonts.addEventListener('loadingerror', (event) => {
+          console.warn('Font loading error:', event);
+        });
+      }
+      
+      // Fallback timeout for font loading
+      setTimeout(() => {
+        if (document.fonts.status !== 'loaded') {
+          this.onFontTimeout();
+        }
+      }, 3000); // 3 second timeout
+    }
+    
+    optimizeFontRendering() {
+      // Add loading class to body
+      document.body.classList.add('font-loading');
+      
+      // Use Intersection Observer to load fonts for visible text
+      if ('IntersectionObserver' in window) {
+        const textObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              this.loadFontsForElement(entry.target);
+              textObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          rootMargin: '50px'
+        });
+        
+        // Observe text elements
+        const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, div');
+        textElements.forEach(el => {
+          if (this.hasCustomFont(el)) {
+            textObserver.observe(el);
+          }
+        });
+      }
+    }
+    
+    hasCustomFont(element) {
+      const computedStyle = window.getComputedStyle(element);
+      const fontFamily = computedStyle.fontFamily;
+      return fontFamily.includes('Inter') || fontFamily.includes('custom');
+    }
+    
+    loadFontsForElement(element) {
+      const computedStyle = window.getComputedStyle(element);
+      const fontFamily = computedStyle.fontFamily;
+      const fontWeight = computedStyle.fontWeight;
+      const fontStyle = computedStyle.fontStyle;
+      
+      // Extract font family name
+      const familyMatch = fontFamily.match(/['"]?([^'"]+)['"]?/);
+      if (familyMatch) {
+        const family = familyMatch[1];
+        this.loadFont(family, parseInt(fontWeight) || 400, fontStyle);
+      }
+    }
+    
+    onFontLoaded(family, weight, style) {
+      // Dispatch custom event
+      document.dispatchEvent(new CustomEvent('fontLoaded', {
+        detail: { family, weight, style }
+      }));
+      
+      // Update classes for better font rendering
+      this.updateFontClasses();
+      
+      // Track font loading performance
+      this.trackFontPerformance(family, weight, style);
+    }
+    
+    onFontError(family, weight, style, error) {
+      console.warn(`Font loading failed: ${family} ${weight} ${style}`, error);
+      
+      // Dispatch error event
+      document.dispatchEvent(new CustomEvent('fontError', {
+        detail: { family, weight, style, error }
+      }));
+      
+      // Fallback to system fonts
+      this.fallbackToSystemFonts();
+    }
+    
+    onAllFontsLoaded() {
+      document.body.classList.remove('font-loading');
+      document.body.classList.add('font-loaded');
+      
+      // Dispatch event
+      document.dispatchEvent(new CustomEvent('allFontsLoaded'));
+      
+      // Track performance
+      this.trackAllFontsLoaded();
+    }
+    
+    onFontTimeout() {
+      console.warn('Font loading timeout reached');
+      document.body.classList.remove('font-loading');
+      document.body.classList.add('font-timeout');
+      
+      // Fallback to system fonts
+      this.fallbackToSystemFonts();
+    }
+    
+    updateFontClasses() {
+      // Update elements with loaded fonts
+      const elements = document.querySelectorAll('.font-loading');
+      elements.forEach(el => {
+        if (this.elementFontsLoaded(el)) {
+          el.classList.remove('font-loading');
+          el.classList.add('font-loaded');
+        }
+      });
+    }
+    
+    elementFontsLoaded(element) {
+      const computedStyle = window.getComputedStyle(element);
+      const fontFamily = computedStyle.fontFamily;
+      const fontWeight = computedStyle.fontWeight;
+      const fontStyle = computedStyle.fontStyle;
+      
+      const familyMatch = fontFamily.match(/['"]?([^'"]+)['"]?/);
+      if (familyMatch) {
+        const family = familyMatch[1];
+        const fontKey = `${family}-${fontWeight}-${fontStyle}`;
+        return this.loadedFonts.has(fontKey);
+      }
+      
+      return false;
+    }
+    
+    fallbackToSystemFonts() {
+      const style = document.createElement('style');
+      style.textContent = `
+        * {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+    
+    trackFontPerformance(family, weight, style) {
+      // Track font loading time
+      if ('performance' in window && 'getEntriesByType' in performance) {
+        const resourceEntries = performance.getEntriesByType('resource');
+        const fontEntry = resourceEntries.find(entry => 
+          entry.name.includes(family.toLowerCase()) && 
+          entry.name.includes('woff')
+        );
+        
+        if (fontEntry) {
+          const loadTime = fontEntry.responseEnd - fontEntry.startTime;
+          
+          // Send to analytics
+          if ('gtag' in window) {
+            window.gtag('event', 'font_load', {
+              event_category: 'Performance',
+              event_label: `${family}-${weight}-${style}`,
+              value: Math.round(loadTime)
+            });
+          }
+        }
+      }
+    }
+    
+    trackAllFontsLoaded() {
+      const loadTime = performance.now();
+      
+      // Send to analytics
+      if ('gtag' in window) {
+        window.gtag('event', 'all_fonts_loaded', {
+          event_category: 'Performance',
+          value: Math.round(loadTime)
+        });
+      }
+    }
+    
+    // Public API
+    async loadFontFamily(family, weights = [400], styles = ['normal']) {
+      const promises = weights.flatMap(weight => 
+        styles.map(style => this.loadFont(family, weight, style))
+      );
+      
+      return Promise.all(promises);
+    }
+    
+    getFontLoadStatus() {
+      return {
+        loaded: Array.from(this.loadedFonts),
+        pending: Array.from(this.fontLoadPromises.keys()).filter(key => !this.loadedFonts.has(key)),
+        status: document.fonts.status
+      };
+    }
+  }
+  
+  // Initialize font optimizer
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      window.fontOptimizer = new FontOptimizer();
+    });
+  } else {
+    window.fontOptimizer = new FontOptimizer();
+  }
+</script>
+
+<style>
+  /* Font loading optimization styles */
+  .font-loading {
+    /* Use system fonts during loading */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .font-loaded {
+    /* Switch to custom fonts when loaded */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .font-timeout {
+    /* Fallback for timeout */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  /* Prevent layout shift during font loading */
+  @font-face {
+    font-family: 'Inter-fallback';
+    src: local('Arial'), local('Helvetica'), local('sans-serif');
+    font-display: block;
+    ascent-override: 90%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+  }
+  
+  /* Smooth transition between font states */
+  * {
+    transition: font-family 0.1s ease-in-out;
+  }
+  
+  /* Optimize font rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+</style>

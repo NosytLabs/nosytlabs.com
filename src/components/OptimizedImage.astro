@@ -1,0 +1,296 @@
+---
+// Optimized Image Component with next-gen formats and responsive loading
+export interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  priority?: boolean;
+  quality?: number;
+  format?: 'webp' | 'avif' | 'auto';
+  placeholder?: 'blur' | 'empty';
+  className?: string;
+  style?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  loading = 'lazy',
+  priority = false,
+  quality = 80,
+  format = 'auto',
+  placeholder = 'blur',
+  className = '',
+  style = ''
+} = Astro.props;
+
+// Generate responsive image URLs
+function generateResponsiveUrls(baseSrc: string, widths: number[]) {
+  const ext = baseSrc.split('.').pop();
+  const baseName = baseSrc.replace(`.${ext}`, '');
+  
+  return widths.map(w => ({
+    width: w,
+    webp: `${baseName}-${w}w.webp`,
+    avif: `${baseName}-${w}w.avif`,
+    original: `${baseName}-${w}w.${ext}`
+  }));
+}
+
+// Standard responsive widths
+const responsiveWidths = [320, 640, 768, 1024, 1280, 1920];
+const imageVariants = generateResponsiveUrls(src, responsiveWidths);
+
+// Generate srcset strings
+const webpSrcSet = imageVariants.map(v => `${v.webp} ${v.width}w`).join(', ');
+const avifSrcSet = imageVariants.map(v => `${v.avif} ${v.width}w`).join(', ');
+const originalSrcSet = imageVariants.map(v => `${v.original} ${v.width}w`).join(', ');
+
+// Placeholder data URL for blur effect
+const blurDataUrl = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRjNGNEY2Ii8+Cjwvc3ZnPgo=';
+
+// Generate unique ID for this image
+const imageId = `img-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div 
+  class={`optimized-image-container ${className}`}
+  style={style}
+  data-image-id={imageId}
+>
+  <picture>
+    <!-- AVIF format (best compression) -->
+    {format === 'auto' || format === 'avif' ? (
+      <source
+        type="image/avif"
+        srcset={avifSrcSet}
+        sizes={sizes}
+      />
+    ) : null}
+    
+    <!-- WebP format (good compression, wide support) -->
+    {format === 'auto' || format === 'webp' ? (
+      <source
+        type="image/webp"
+        srcset={webpSrcSet}
+        sizes={sizes}
+      />
+    ) : null}
+    
+    <!-- Fallback to original format -->
+    <img
+      id={imageId}
+      src={src}
+      srcset={originalSrcSet}
+      sizes={sizes}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={priority ? 'eager' : loading}
+      decoding="async"
+      class="optimized-image"
+      data-placeholder={placeholder}
+      style={placeholder === 'blur' ? `background-image: url(${blurDataUrl}); background-size: cover;` : ''}
+    />
+  </picture>
+  
+  <!-- Loading placeholder -->
+  {placeholder === 'blur' && (
+    <div class="image-placeholder" aria-hidden="true"></div>
+  )}
+</div>
+
+<!-- Preload critical images -->
+{priority && (
+  <>
+    <link rel="preload" as="image" href={imageVariants[2]?.avif || imageVariants[2]?.webp || imageVariants[2]?.original} />
+    <link rel="preload" as="image" href={imageVariants[1]?.avif || imageVariants[1]?.webp || imageVariants[1]?.original} media="(max-width: 768px)" />
+  </>
+)}
+
+<script>
+  class OptimizedImageLoader {
+    private observer: IntersectionObserver;
+    
+    constructor() {
+      this.observer = new IntersectionObserver(
+        this.handleIntersection.bind(this),
+        {
+          threshold: 0.1,
+          rootMargin: '50px'
+        }
+      );
+      
+      this.init();
+    }
+    
+    init() {
+      const images = document.querySelectorAll('.optimized-image[loading="lazy"]');
+      images.forEach(img => {
+        this.observer.observe(img);
+        this.setupImageLoadHandlers(img as HTMLImageElement);
+      });
+      
+      // Handle eager loading images
+      const eagerImages = document.querySelectorAll('.optimized-image[loading="eager"]');
+      eagerImages.forEach(img => {
+        this.setupImageLoadHandlers(img as HTMLImageElement);
+      });
+    }
+    
+    setupImageLoadHandlers(img: HTMLImageElement) {
+      const container = img.closest('.optimized-image-container');
+      const placeholder = container?.querySelector('.image-placeholder');
+      
+      img.addEventListener('load', () => {
+        img.classList.add('loaded');
+        container?.classList.add('image-loaded');
+        
+        // Fade out placeholder
+        if (placeholder) {
+          placeholder.classList.add('fade-out');
+          setTimeout(() => {
+            placeholder.remove();
+          }, 300);
+        }
+        
+        // Performance tracking
+        this.trackImageLoad(img);
+      });
+      
+      img.addEventListener('error', () => {
+        img.classList.add('error');
+        container?.classList.add('image-error');
+        console.warn(`Failed to load image: ${img.src}`);
+      });
+    }
+    
+    handleIntersection(entries: IntersectionObserverEntry[]) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target as HTMLImageElement;
+          
+          // Trigger loading by setting src if not already set
+          if (!img.src && img.dataset.src) {
+            img.src = img.dataset.src;
+          }
+          
+          this.observer.unobserve(img);
+        }
+      });
+    }
+    
+    trackImageLoad(img: HTMLImageElement) {
+      // Track image loading performance
+      if ('performance' in window && 'getEntriesByName' in performance) {
+        const entries = performance.getEntriesByName(img.src);
+        if (entries.length > 0) {
+          const entry = entries[0] as PerformanceResourceTiming;
+          const loadTime = entry.responseEnd - entry.startTime;
+          
+          // Send to analytics if available
+          if ('gtag' in window) {
+            (window as any).gtag('event', 'image_load', {
+              event_category: 'performance',
+              event_label: img.alt || 'unnamed',
+              value: Math.round(loadTime)
+            });
+          }
+        }
+      }
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new OptimizedImageLoader();
+    });
+  } else {
+    new OptimizedImageLoader();
+  }
+</script>
+
+<style>
+  .optimized-image-container {
+    position: relative;
+    overflow: hidden;
+    background-color: #f3f4f6;
+  }
+  
+  .optimized-image {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+  }
+  
+  .optimized-image.loaded {
+    opacity: 1;
+  }
+  
+  .optimized-image.error {
+    opacity: 0.5;
+    filter: grayscale(100%);
+  }
+  
+  .image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    transition: opacity 0.3s ease;
+  }
+  
+  .image-placeholder.fade-out {
+    opacity: 0;
+  }
+  
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* Aspect ratio preservation */
+  .optimized-image-container.aspect-16-9 {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .optimized-image-container.aspect-4-3 {
+    aspect-ratio: 4 / 3;
+  }
+  
+  .optimized-image-container.aspect-1-1 {
+    aspect-ratio: 1 / 1;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .optimized-image-container {
+      border-radius: 8px;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .optimized-image,
+    .image-placeholder {
+      transition: none;
+    }
+    
+    .image-placeholder {
+      animation: none;
+      background: #e0e0e0;
+    }
+  }
+</style>

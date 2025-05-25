@@ -1,0 +1,234 @@
+---
+// Lazy Loading Component for Performance Optimization
+export interface Props {
+  component: string;
+  threshold?: number;
+  rootMargin?: string;
+  fallback?: string;
+  priority?: 'high' | 'low' | 'idle';
+  defer?: boolean;
+}
+
+const { 
+  component, 
+  threshold = 0.1, 
+  rootMargin = '50px',
+  fallback = 'Loading...',
+  priority = 'low',
+  defer = false
+} = Astro.props;
+
+// Generate unique ID for this lazy loader instance
+const loaderId = `lazy-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div 
+  id={loaderId}
+  class="lazy-loader"
+  data-component={component}
+  data-threshold={threshold}
+  data-root-margin={rootMargin}
+  data-priority={priority}
+  data-defer={defer}
+>
+  <div class="lazy-fallback">
+    <div class="loading-skeleton">
+      {fallback}
+    </div>
+  </div>
+</div>
+
+<script>
+  class LazyLoader {
+    private observer: IntersectionObserver;
+    private loadedComponents = new Set<string>();
+    
+    constructor() {
+      this.observer = new IntersectionObserver(
+        this.handleIntersection.bind(this),
+        {
+          threshold: 0.1,
+          rootMargin: '50px'
+        }
+      );
+      
+      this.init();
+    }
+    
+    init() {
+      // Find all lazy loader elements
+      const lazyElements = document.querySelectorAll('.lazy-loader');
+      lazyElements.forEach(element => {
+        this.observer.observe(element);
+      });
+    }
+    
+    async handleIntersection(entries: IntersectionObserverEntry[]) {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const element = entry.target as HTMLElement;
+          const component = element.dataset.component;
+          const priority = element.dataset.priority || 'low';
+          const defer = element.dataset.defer === 'true';
+          
+          if (component && !this.loadedComponents.has(component)) {
+            this.loadedComponents.add(component);
+            this.observer.unobserve(element);
+            
+            if (defer) {
+              // Defer loading until idle
+              this.scheduleIdleLoad(element, component);
+            } else {
+              await this.loadComponent(element, component, priority);
+            }
+          }
+        }
+      }
+    }
+    
+    scheduleIdleLoad(element: HTMLElement, component: string) {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          this.loadComponent(element, component, 'idle');
+        });
+      } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(() => {
+          this.loadComponent(element, component, 'idle');
+        }, 100);
+      }
+    }
+    
+    async loadComponent(element: HTMLElement, component: string, priority: string) {
+      try {
+        // Show loading state
+        element.classList.add('loading');
+        
+        let modulePromise: Promise<any>;
+        
+        // Load component based on type
+        switch (component) {
+          case 'duck-hunt':
+            modulePromise = import('/scripts/nosyt-duck-hunt.js');
+            break;
+          case 'window-manager':
+            modulePromise = import('/scripts/nosyt-window-manager.js');
+            break;
+          case 'particles':
+            modulePromise = import('/scripts/particles.min.js');
+            break;
+          case 'animations':
+            modulePromise = import('/scripts/animations.js');
+            break;
+          case 'admin-dashboard':
+            modulePromise = import('/scripts/admin/dashboard.js');
+            break;
+          default:
+            console.warn(`Unknown component: ${component}`);
+            return;
+        }
+        
+        const module = await modulePromise;
+        
+        // Initialize the component
+        if (module.default) {
+          if (typeof module.default === 'function') {
+            module.default(element);
+          } else if (module.default.init) {
+            module.default.init(element);
+          }
+        }
+        
+        // Remove loading state and show content
+        element.classList.remove('loading');
+        element.classList.add('loaded');
+        
+        // Dispatch custom event for component loaded
+        element.dispatchEvent(new CustomEvent('componentLoaded', {
+          detail: { component, priority }
+        }));
+        
+      } catch (error) {
+        console.error(`Failed to load component ${component}:`, error);
+        element.classList.add('error');
+        element.innerHTML = `<div class="error-message">Failed to load ${component}</div>`;
+      }
+    }
+  }
+  
+  // Initialize lazy loader when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new LazyLoader();
+    });
+  } else {
+    new LazyLoader();
+  }
+</script>
+
+<style>
+  .lazy-loader {
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .lazy-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 200px;
+  }
+  
+  .loading-skeleton {
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  .lazy-loader.loading .lazy-fallback {
+    opacity: 0.7;
+  }
+  
+  .lazy-loader.loaded .lazy-fallback {
+    display: none;
+  }
+  
+  .lazy-loader.error {
+    background-color: #fee;
+    border: 1px solid #fcc;
+  }
+  
+  .error-message {
+    color: #c33;
+    text-align: center;
+    padding: 2rem;
+    font-size: 14px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .lazy-loader {
+      min-height: 150px;
+    }
+    
+    .loading-skeleton {
+      height: 80px;
+      font-size: 12px;
+    }
+  }
+</style>

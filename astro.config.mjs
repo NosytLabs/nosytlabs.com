@@ -34,39 +34,49 @@ export default defineConfig({
           comments: false
         }
       },
-      cssMinify: false, // Disable CSS minification to avoid empty selector issues
+      cssMinify: false, // Disable CSS minification to avoid pseudo-element issues
       cssCodeSplit: true,
-      assetsInlineLimit: 4096, // 4kb - inline small assets
+      assetsInlineLimit: 2048, // Reduced to 2kb for better caching
       sourcemap: false, // Disable sourcemaps in production
+      target: 'es2020', // Modern target for better optimization
       rollupOptions: {
         output: {
-          manualChunks: {
-            // Framework chunks
-            'react-vendor': ['react', 'react-dom'],
+          manualChunks: (id) => {
+            // Vendor chunks
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'react-vendor';
+              }
+              if (id.includes('@vercel')) {
+                return 'analytics';
+              }
+              return 'vendor';
+            }
 
-            // Feature-based chunks
-            'core': [
-              './src/layouts/BaseLayout.astro'
-            ],
-            'ui-components': [
-              './src/components/ui/Button.astro',
-              './src/components/ui/Card.astro',
-              './src/components/ui/Section.astro',
-              './src/components/ui/ResponsiveImage.astro'
-            ],
-            'win95': [
-              './src/components/win95/Window.astro',
-              './src/components/win95/Desktop.astro',
-              './src/components/win95/Taskbar.astro'
-            ],
-            'animations': [
-              './public/scripts/animations.js'
-            ],
-            'performance': [
-              './public/scripts/image-optimization.js',
-              './public/scripts/performance/resourceOptimizer.js',
-              './public/scripts/performance/lazyLoadingInit.js'
-            ]
+            // Game chunks (lazy loaded)
+            if (id.includes('duck-hunt') || id.includes('nosyt-duck-hunt')) {
+              return 'games';
+            }
+
+            // Windows 95 specific chunks
+            if (id.includes('nosytos95') || id.includes('win95')) {
+              return 'win95';
+            }
+
+            // Animation chunks
+            if (id.includes('animation') || id.includes('particles')) {
+              return 'animations';
+            }
+
+            // Admin chunks
+            if (id.includes('admin')) {
+              return 'admin';
+            }
+
+            // Blog chunks
+            if (id.includes('blog')) {
+              return 'blog';
+            }
           },
           // Use content hashing for better caching
           assetFileNames: 'assets/[name]-[hash][extname]',

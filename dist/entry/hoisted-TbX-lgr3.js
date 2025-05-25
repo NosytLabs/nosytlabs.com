@@ -1,1 +1,0 @@
-import"./hoisted-C8kgOObh.js";document.addEventListener("DOMContentLoaded",(()=>{const e=document.querySelector("form");e&&e.addEventListener("submit",(t=>{t.preventDefault();const n=new FormData(e);Object.fromEntries(n),alert("Thank you for your feedback! We appreciate your input."),e.reset()}))}));

@@ -4,19 +4,25 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SearchModal from '../components/SearchModal.astro';
 import VercelAnalytics from '../components/VercelAnalytics.astro';
+import CriticalCSS from '../components/CriticalCSS.astro';
+import PerformanceMonitor from '../components/PerformanceMonitor.astro';
+import WebVitalsTracker from '../components/WebVitalsTracker.astro';
+import FontOptimizer from '../components/FontOptimizer.astro';
 
 export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
   isNosytOS95?: boolean;
+  pageType?: 'home' | 'blog' | 'nosytos95' | 'default';
 }
 
 const {
   title = 'NosytLabs - Notable Opportunities Shape Your Tomorrow',
   description = 'NosytLabs - Innovative digital solutions that help businesses thrive in the modern landscape.',
   ogImage = '/images/nosytlabs-og.jpg',
-  isNosytOS95 = false
+  isNosytOS95 = false,
+  pageType = 'default'
 } = Astro.props;
 
 // Generate a unique ID for this page
@@ -80,10 +86,18 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
     }
   </script>
 
+  <!-- Critical CSS Inlining -->
+  <CriticalCSS page={isNosytOS95 ? 'nosytos95' : pageType} />
+
+  <!-- Font Optimization -->
+  <FontOptimizer strategy="swap" />
+
   <!-- Resource hints for critical resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://vercel-insights.com">
+  <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com">
 
   <!-- Preload critical resources -->
   <link rel="preload" href="/images/nosytlabs-logo-2025.svg" as="image" fetchpriority="high">
@@ -239,6 +253,12 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
       }
     });
   </script>
+
+  <!-- Performance Monitoring -->
+  <PerformanceMonitor enableAnalytics={true} enableConsoleLogging={false} sampleRate={0.1} />
+
+  <!-- Web Vitals Tracking -->
+  <WebVitalsTracker enableReporting={true} sampleRate={0.1} />
 
   <!-- Vercel Analytics -->
   <VercelAnalytics />
