@@ -137,7 +137,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               <div class="absolute bottom-0 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
             </h2>
 
-            <form class="space-y-6" id="contact-form">
+            <form class="space-y-6" id="contact-form" action="/api/contact" method="POST" enctype="multipart/form-data">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="form-group">
                   <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
@@ -503,19 +503,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <span>Sending...</span>
         `;
 
-        // Simulate form submission (in a real implementation, you would send the data to a server)
-        setTimeout(() => {
-          // Create success message
-          const successMessage = document.createElement('div');
-          successMessage.className = 'bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded';
-          successMessage.innerHTML = `
-            <div class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <p class="font-medium">Thank you for your message! We will get back to you soon.</p>
-            </div>
-          `;
+        // Submit form to API
+        fetch('/api/contact', {
+          method: 'POST',
+          body: new FormData(contactForm)
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            showSuccessMessage(data.message);
+          } else {
+            showErrorMessage(data.error);
+          }
+        })
+        .catch(error => {
+          console.error('Form submission error:', error);
+          showErrorMessage('An error occurred while sending your message. Please try again.');
+        });
+      });
+    }
+
+    function showSuccessMessage(message) {
+      // Create success message
+      const successMessage = document.createElement('div');
+      successMessage.className = 'bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded';
+      successMessage.innerHTML = `
+        <div class="flex items-center">
+          <svg class="h-6 w-6 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <p class="font-medium">${message}</p>
+        </div>
+      `;
 
           // Insert success message at the top of the form
           contactForm.prepend(successMessage);
@@ -557,8 +576,44 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               successMessage.remove();
             }, 500);
           }, 5000);
-        }, 1500);
-      });
+    }
+
+    function showErrorMessage(message) {
+      // Create error message
+      const errorMessage = document.createElement('div');
+      errorMessage.className = 'bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded';
+      errorMessage.innerHTML = `
+        <div class="flex items-center">
+          <svg class="h-6 w-6 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p class="font-medium">${message}</p>
+        </div>
+      `;
+
+      // Insert error message at the top of the form
+      contactForm.prepend(errorMessage);
+      resetFormState();
+
+      // Scroll to error message
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Remove error message after 5 seconds
+      setTimeout(() => {
+        errorMessage.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        errorMessage.style.opacity = '0';
+        errorMessage.style.transform = 'translateY(-20px)';
+
+        setTimeout(() => {
+          errorMessage.remove();
+        }, 500);
+      }, 5000);
+    }
+
+    function resetFormState() {
+      // Reset submit button
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalButtonContent;
     }
   });
 </script>

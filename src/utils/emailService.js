@@ -10,7 +10,7 @@ const EMAIL_CONFIG = {
   fromEmail: 'noreply@nosytlabs.com',
   toEmail: 'info@nosytlabs.com',
   adminEmail: 'admin@nosytlabs.com',
-  
+
   // Email templates
   templates: {
     contact: 'contact-form',
@@ -43,12 +43,17 @@ class EmailService {
     this.isDemo = true; // Set to false in production
   }
 
+  // Send contact form email with file attachments
+  async sendContactFormEmail(formData, files = []) {
+    return this.sendContactForm(formData, files);
+  }
+
   // Send contact form email
-  async sendContactForm(formData) {
+  async sendContactForm(formData, files = []) {
     try {
       // Validate required fields
       const { name, email, subject, message } = formData;
-      
+
       if (!name || !email || !subject || !message) {
         throw new Error('All fields are required');
       }
@@ -71,13 +76,13 @@ class EmailService {
       // In demo mode, just log and return success
       if (this.isDemo) {
         console.log('📧 Contact Form Submission (Demo Mode):', sanitizedData);
-        
+
         // Simulate email sending delay
         await new Promise(resolve => setTimeout(resolve, 1000));
-        
+
         // Store in localStorage for demo purposes
         this.storeContactSubmission(sanitizedData);
-        
+
         return {
           success: true,
           message: 'Thank you for your message! We\'ll get back to you soon.',
@@ -87,7 +92,7 @@ class EmailService {
 
       // In production, integrate with actual email service
       return await this.sendProductionEmail('contact', sanitizedData);
-      
+
     } catch (error) {
       console.error('Email service error:', error);
       return {
@@ -101,7 +106,7 @@ class EmailService {
   async sendBookingForm(formData) {
     try {
       const { name, email, service, budget, timeline, description } = formData;
-      
+
       if (!name || !email || !service) {
         throw new Error('Name, email, and service are required');
       }
@@ -125,7 +130,7 @@ class EmailService {
         console.log('📅 Service Booking Submission (Demo Mode):', sanitizedData);
         await new Promise(resolve => setTimeout(resolve, 1000));
         this.storeBookingSubmission(sanitizedData);
-        
+
         return {
           success: true,
           message: 'Booking request received! We\'ll contact you within 24 hours.',
@@ -134,7 +139,7 @@ class EmailService {
       }
 
       return await this.sendProductionEmail('booking', sanitizedData);
-      
+
     } catch (error) {
       console.error('Booking service error:', error);
       return {
@@ -162,7 +167,7 @@ class EmailService {
         console.log('📰 Newsletter Subscription (Demo Mode):', sanitizedData);
         await new Promise(resolve => setTimeout(resolve, 500));
         this.storeNewsletterSubscription(sanitizedData);
-        
+
         return {
           success: true,
           message: 'Successfully subscribed to our newsletter!'
@@ -170,7 +175,7 @@ class EmailService {
       }
 
       return await this.sendProductionEmail('newsletter', sanitizedData);
-      
+
     } catch (error) {
       console.error('Newsletter service error:', error);
       return {
@@ -224,7 +229,7 @@ class EmailService {
     // - Mailgun
     // - AWS SES
     // - Nodemailer with SMTP
-    
+
     const emailData = {
       to: EMAIL_CONFIG.toEmail,
       from: EMAIL_CONFIG.fromEmail,
@@ -237,7 +242,7 @@ class EmailService {
     /*
     const sgMail = require('@sendgrid/mail');
     sgMail.setApiKey(EMAIL_CONFIG.apiKey);
-    
+
     try {
       await sgMail.send(emailData);
       return { success: true, message: 'Email sent successfully' };
