@@ -1,0 +1,616 @@
+---
+// Blog Editor Component for Admin Panel
+// Allows creating and editing blog posts
+---
+
+<div class="blog-editor">
+  <div class="editor-header">
+    <h2>Blog Post Editor</h2>
+    <div class="editor-actions">
+      <button id="save-draft" class="btn btn-secondary">Save Draft</button>
+      <button id="preview-post" class="btn btn-outline">Preview</button>
+      <button id="publish-post" class="btn btn-primary">Publish</button>
+    </div>
+  </div>
+
+  <form id="blog-editor-form" class="editor-form">
+    <!-- Post Metadata -->
+    <div class="form-section">
+      <h3>Post Information</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="post-title">Title *</label>
+          <input type="text" id="post-title" name="title" required placeholder="Enter post title">
+        </div>
+        
+        <div class="form-group">
+          <label for="post-slug">URL Slug</label>
+          <input type="text" id="post-slug" name="slug" placeholder="auto-generated-from-title">
+          <small>Leave blank to auto-generate from title</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="post-category">Category</label>
+          <select id="post-category" name="category">
+            <option value="ai-tools">AI Tools</option>
+            <option value="web-development">Web Development</option>
+            <option value="3d-printing">3D Printing</option>
+            <option value="tutorials">Tutorials</option>
+            <option value="reviews">Reviews</option>
+            <option value="news">News</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="post-status">Status</label>
+          <select id="post-status" name="status">
+            <option value="draft">Draft</option>
+            <option value="published">Published</option>
+            <option value="scheduled">Scheduled</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Image -->
+    <div class="form-section">
+      <h3>Featured Image</h3>
+      <div class="image-upload-area">
+        <input type="file" id="featured-image" name="featuredImage" accept="image/*">
+        <div class="upload-placeholder">
+          <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7,10 12,15 17,10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <p>Click to upload featured image</p>
+          <small>Recommended: 1200x630px, JPG/PNG/WebP</small>
+        </div>
+        <div id="image-preview" class="image-preview hidden">
+          <img id="preview-img" src="" alt="Preview">
+          <button type="button" id="remove-image" class="remove-btn">×</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Content -->
+    <div class="form-section">
+      <h3>Content</h3>
+      
+      <!-- Excerpt -->
+      <div class="form-group">
+        <label for="post-excerpt">Excerpt</label>
+        <textarea id="post-excerpt" name="excerpt" rows="3" placeholder="Brief description for previews and SEO"></textarea>
+        <small>Recommended: 150-160 characters</small>
+      </div>
+
+      <!-- Content Editor -->
+      <div class="editor-container">
+        <div class="editor-toolbar">
+          <button type="button" class="toolbar-btn" data-action="bold" title="Bold">
+            <strong>B</strong>
+          </button>
+          <button type="button" class="toolbar-btn" data-action="italic" title="Italic">
+            <em>I</em>
+          </button>
+          <button type="button" class="toolbar-btn" data-action="heading" title="Heading">
+            H1
+          </button>
+          <button type="button" class="toolbar-btn" data-action="link" title="Link">
+            🔗
+          </button>
+          <button type="button" class="toolbar-btn" data-action="image" title="Image">
+            🖼️
+          </button>
+          <button type="button" class="toolbar-btn" data-action="code" title="Code">
+            &lt;/&gt;
+          </button>
+          <button type="button" class="toolbar-btn" data-action="list" title="List">
+            ≡
+          </button>
+        </div>
+        
+        <div class="editor-tabs">
+          <button type="button" class="tab-btn active" data-tab="write">Write</button>
+          <button type="button" class="tab-btn" data-tab="preview">Preview</button>
+        </div>
+        
+        <div class="editor-content">
+          <textarea id="post-content" name="content" placeholder="Write your blog post content here...
+
+You can use Markdown syntax:
+# Heading 1
+## Heading 2
+**Bold text**
+*Italic text*
+[Link text](URL)
+![Image alt](image-url)
+`code`
+- List item
+1. Numbered list
+
+"></textarea>
+          <div id="content-preview" class="content-preview hidden"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Settings -->
+    <div class="form-section">
+      <h3>SEO Settings</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="meta-title">Meta Title</label>
+          <input type="text" id="meta-title" name="metaTitle" placeholder="SEO title (auto-generated from post title)">
+          <small id="title-length">0/60 characters</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="meta-description">Meta Description</label>
+          <textarea id="meta-description" name="metaDescription" rows="3" placeholder="SEO description (auto-generated from excerpt)"></textarea>
+          <small id="description-length">0/160 characters</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="post-tags">Tags</label>
+          <input type="text" id="post-tags" name="tags" placeholder="ai, machine-learning, tutorial (comma-separated)">
+        </div>
+        
+        <div class="form-group">
+          <label for="canonical-url">Canonical URL</label>
+          <input type="url" id="canonical-url" name="canonicalUrl" placeholder="https://nosytlabs.com/blog/post-slug">
+        </div>
+      </div>
+    </div>
+
+    <!-- Publishing Options -->
+    <div class="form-section">
+      <h3>Publishing Options</h3>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="publish-date">Publish Date</label>
+          <input type="datetime-local" id="publish-date" name="publishDate">
+        </div>
+        
+        <div class="form-group">
+          <label for="author">Author</label>
+          <select id="author" name="author">
+            <option value="tycen">Tycen (NosytLabs)</option>
+            <option value="guest">Guest Author</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="featured-post" name="featured">
+            <span class="checkmark"></span>
+            Featured Post
+          </label>
+        </div>
+        
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="comments-enabled" name="commentsEnabled" checked>
+            <span class="checkmark"></span>
+            Enable Comments
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<style>
+.blog-editor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.editor-header h2 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.form-section h3 {
+  margin: 0 0 1rem 0;
+  color: #374151;
+  font-size: 1.125rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4c1d95;
+  box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.1);
+}
+
+.form-group small {
+  margin-top: 0.25rem;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.image-upload-area {
+  position: relative;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.upload-placeholder:hover {
+  border-color: #4c1d95;
+}
+
+.upload-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.image-preview {
+  position: relative;
+  max-width: 300px;
+}
+
+.image-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.remove-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.editor-container {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: #f3f4f6;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.toolbar-btn {
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toolbar-btn:hover {
+  background: #e5e7eb;
+}
+
+.editor-tabs {
+  display: flex;
+  background: #f9fafb;
+  border-bottom: 1px solid #d1d5db;
+}
+
+.tab-btn {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.tab-btn.active {
+  color: #4c1d95;
+  background: white;
+  border-bottom: 2px solid #4c1d95;
+}
+
+.editor-content {
+  position: relative;
+}
+
+#post-content {
+  width: 100%;
+  min-height: 400px;
+  padding: 1rem;
+  border: none;
+  resize: vertical;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.content-preview {
+  padding: 1rem;
+  min-height: 400px;
+  background: white;
+  overflow-y: auto;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background: #4c1d95;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #3b0764;
+}
+
+.btn-secondary {
+  background: #6b7280;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: #4b5563;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #4c1d95;
+  border: 1px solid #4c1d95;
+}
+
+.btn-outline:hover {
+  background: #4c1d95;
+  color: white;
+}
+</style>
+
+<script>
+// Blog Editor JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('blog-editor-form');
+  const titleInput = document.getElementById('post-title');
+  const slugInput = document.getElementById('post-slug');
+  const contentTextarea = document.getElementById('post-content');
+  const previewDiv = document.getElementById('content-preview');
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const featuredImageInput = document.getElementById('featured-image');
+  const imagePreview = document.getElementById('image-preview');
+  const previewImg = document.getElementById('preview-img');
+  const removeImageBtn = document.getElementById('remove-image');
+
+  // Auto-generate slug from title
+  titleInput.addEventListener('input', function() {
+    if (!slugInput.value || slugInput.dataset.autoGenerated) {
+      const slug = this.value
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim('-');
+      slugInput.value = slug;
+      slugInput.dataset.autoGenerated = 'true';
+    }
+  });
+
+  // Manual slug editing
+  slugInput.addEventListener('input', function() {
+    this.dataset.autoGenerated = 'false';
+  });
+
+  // Tab switching
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const tab = this.dataset.tab;
+      
+      // Update active tab
+      tabBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Show/hide content
+      if (tab === 'write') {
+        contentTextarea.style.display = 'block';
+        previewDiv.classList.add('hidden');
+      } else {
+        contentTextarea.style.display = 'none';
+        previewDiv.classList.remove('hidden');
+        updatePreview();
+      }
+    });
+  });
+
+  // Update preview
+  function updatePreview() {
+    const content = contentTextarea.value;
+    // Simple markdown-to-HTML conversion (basic)
+    let html = content
+      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+      .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+      .replace(/\*(.*)\*/gim, '<em>$1</em>')
+      .replace(/`(.*)`/gim, '<code>$1</code>')
+      .replace(/\n/gim, '<br>');
+    
+    previewDiv.innerHTML = html;
+  }
+
+  // Featured image handling
+  featuredImageInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        previewImg.src = e.target.result;
+        imagePreview.classList.remove('hidden');
+        featuredImageInput.parentElement.querySelector('.upload-placeholder').style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Remove image
+  removeImageBtn.addEventListener('click', function() {
+    featuredImageInput.value = '';
+    imagePreview.classList.add('hidden');
+    featuredImageInput.parentElement.querySelector('.upload-placeholder').style.display = 'flex';
+  });
+
+  // Character counters
+  const metaTitleInput = document.getElementById('meta-title');
+  const metaDescInput = document.getElementById('meta-description');
+  const titleLengthSpan = document.getElementById('title-length');
+  const descLengthSpan = document.getElementById('description-length');
+
+  function updateCharCount(input, counter, max) {
+    const length = input.value.length;
+    counter.textContent = `${length}/${max} characters`;
+    counter.style.color = length > max ? '#ef4444' : '#6b7280';
+  }
+
+  metaTitleInput.addEventListener('input', () => updateCharCount(metaTitleInput, titleLengthSpan, 60));
+  metaDescInput.addEventListener('input', () => updateCharCount(metaDescInput, descLengthSpan, 160));
+
+  // Form submission handlers
+  document.getElementById('save-draft').addEventListener('click', function() {
+    saveBlogPost('draft');
+  });
+
+  document.getElementById('publish-post').addEventListener('click', function() {
+    saveBlogPost('published');
+  });
+
+  document.getElementById('preview-post').addEventListener('click', function() {
+    // Open preview in new tab
+    const formData = new FormData(form);
+    const previewData = Object.fromEntries(formData.entries());
+    
+    // Store in sessionStorage for preview page
+    sessionStorage.setItem('blogPreview', JSON.stringify(previewData));
+    window.open('/admin/blog/preview', '_blank');
+  });
+
+  async function saveBlogPost(status) {
+    const formData = new FormData(form);
+    formData.set('status', status);
+    
+    try {
+      const response = await fetch('/api/blog/save', {
+        method: 'POST',
+        body: formData
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        alert(`Blog post ${status === 'published' ? 'published' : 'saved as draft'} successfully!`);
+        if (status === 'published') {
+          window.location.href = `/blog/${result.slug}`;
+        }
+      } else {
+        alert('Error saving blog post: ' + result.error);
+      }
+    } catch (error) {
+      alert('Error saving blog post: ' + error.message);
+    }
+  }
+});
+</script>

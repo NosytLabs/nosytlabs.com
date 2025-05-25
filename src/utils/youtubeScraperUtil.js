@@ -1,13 +1,118 @@
 /**
- * YouTube Scraper Utility
+ * YouTube API Utility
  *
- * This utility provides functions to fetch YouTube data via web scraping
- * rather than using the YouTube API. This approach is preferred for this project
- * as mentioned in the requirements.
+ * This utility provides functions to fetch YouTube data using both API and scraping
+ * with fallback mechanisms for reliability.
  */
 
+// YouTube API configuration
+const YOUTUBE_API_KEY = import.meta.env.YOUTUBE_API_KEY || process.env.YOUTUBE_API_KEY;
+const YOUTUBE_CHANNEL_ID = import.meta.env.YOUTUBE_CHANNEL_ID || process.env.YOUTUBE_CHANNEL_ID || 'UCYourChannelID';
+const API_BASE_URL = 'https://www.googleapis.com/youtube/v3';
+
 /**
- * Fetches YouTube channel data by scraping the channel page
+ * Fetches YouTube channel data using the official API
+ * @param {string} channelId - The YouTube channel ID
+ * @returns {Promise<Object>} - Channel data from API
+ */
+export async function fetchChannelDataAPI(channelId = YOUTUBE_CHANNEL_ID) {
+  if (!YOUTUBE_API_KEY) {
+    console.warn('YouTube API key not configured, falling back to scraping');
+    return fetchChannelData(channelId);
+  }
+
+  try {
+    const url = `${API_BASE_URL}/channels?part=snippet,statistics&id=${channelId}&key=${YOUTUBE_API_KEY}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`YouTube API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (!data.items || data.items.length === 0) {
+      throw new Error('Channel not found');
+    }
+
+    const channel = data.items[0];
+
+    return {
+      id: channel.id,
+      title: channel.snippet.title,
+      description: channel.snippet.description,
+      customUrl: channel.snippet.customUrl,
+      publishedAt: channel.snippet.publishedAt,
+      thumbnails: channel.snippet.thumbnails,
+      subscriberCount: parseInt(channel.statistics.subscriberCount),
+      videoCount: parseInt(channel.statistics.videoCount),
+      viewCount: parseInt(channel.statistics.viewCount),
+      country: channel.snippet.country,
+      source: 'api'
+    };
+  } catch (error) {
+    console.warn('YouTube API failed, falling back to scraping:', error.message);
+    return fetchChannelData(channelId);
+  }
+}
+
+/**
+ * Fetches recent videos from a YouTube channel using API
+ * @param {string} channelId - The YouTube channel ID
+ * @param {number} maxResults - Maximum number of videos to fetch (default: 10)
+ * @returns {Promise<Array>} - Array of video objects
+ */
+export async function fetchChannelVideosAPI(channelId = YOUTUBE_CHANNEL_ID, maxResults = 10) {
+  if (!YOUTUBE_API_KEY) {
+    console.warn('YouTube API key not configured, falling back to scraping');
+    return fetchChannelVideos(channelId, maxResults);
+  }
+
+  try {
+    // First get the uploads playlist ID
+    const channelUrl = `${API_BASE_URL}/channels?part=contentDetails&id=${channelId}&key=${YOUTUBE_API_KEY}`;
+    const channelResponse = await fetch(channelUrl);
+
+    if (!channelResponse.ok) {
+      throw new Error(`YouTube API error: ${channelResponse.status}`);
+    }
+
+    const channelData = await channelResponse.json();
+    const uploadsPlaylistId = channelData.items[0]?.contentDetails?.relatedPlaylists?.uploads;
+
+    if (!uploadsPlaylistId) {
+      throw new Error('Uploads playlist not found');
+    }
+
+    // Get videos from uploads playlist
+    const videosUrl = `${API_BASE_URL}/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${maxResults}&key=${YOUTUBE_API_KEY}`;
+    const videosResponse = await fetch(videosUrl);
+
+    if (!videosResponse.ok) {
+      throw new Error(`YouTube API error: ${videosResponse.status}`);
+    }
+
+    const videosData = await videosResponse.json();
+
+    return videosData.items.map(item => ({
+      id: item.snippet.resourceId.videoId,
+      title: item.snippet.title,
+      description: item.snippet.description,
+      publishedAt: item.snippet.publishedAt,
+      thumbnails: item.snippet.thumbnails,
+      channelTitle: item.snippet.channelTitle,
+      url: `https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`,
+      embedUrl: `https://www.youtube.com/embed/${item.snippet.resourceId.videoId}`,
+      source: 'api'
+    }));
+  } catch (error) {
+    console.warn('YouTube API failed, falling back to scraping:', error.message);
+    return fetchChannelVideos(channelId, maxResults);
+  }
+}
+
+/**
+ * Fetches YouTube channel data by scraping the channel page (fallback method)
  * @param {string} channelId - The YouTube channel ID or handle (e.g., '@TycenYT')
  * @returns {Promise<Object>} - Channel data including title, description, subscribers, etc.
  */

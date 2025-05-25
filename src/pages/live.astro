@@ -4,9 +4,31 @@ import { Image } from 'astro:assets';
 import StreamSchedule from '../components/StreamSchedule.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import AnimatedHeading from '../components/AnimatedHeading.astro';
+import { fetchKickUserData, getStreamStatus } from '../utils/kickApiUtil.js';
+import { fetchChannelDataAPI, fetchChannelVideosAPI } from '../utils/youtubeScraperUtil.js';
 
 const pageTitle = "Live Stream - NosytLabs";
 const pageDescription = "Watch Tycen's live stream on Kick.com featuring coding, tech discussions, gaming, and 3D printing content.";
+
+// Fetch live data
+let kickData = null;
+let youtubeData = null;
+let recentVideos = [];
+let streamStatus = '⚫ Offline';
+
+try {
+  // Fetch Kick.com stream data
+  kickData = await fetchKickUserData('Tycen');
+  streamStatus = getStreamStatus(kickData?.isLive, kickData?.viewerCount);
+
+  // Fetch YouTube channel data
+  youtubeData = await fetchChannelDataAPI();
+
+  // Fetch recent YouTube videos
+  recentVideos = await fetchChannelVideosAPI('UCYourChannelID', 6);
+} catch (error) {
+  console.warn('Error fetching live data:', error);
+}
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -18,12 +40,39 @@ const pageDescription = "Watch Tycen's live stream on Kick.com featuring coding,
       Interact with the community and get your questions answered live!
     </p>
 
-    <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg max-w-3xl mx-auto mb-8">
-      <p class="text-sm text-gray-600 dark:text-gray-300 text-center">
-        <strong>Stream Schedule:</strong> Streams typically happen on weekends and select weekday evenings.
-        Follow on <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Kick.com/Tycen</a>
-        to get notifications when we go live.
-      </p>
+    <!-- Live Status Banner -->
+    <div class={`p-4 rounded-lg max-w-3xl mx-auto mb-8 text-center ${
+      kickData?.isLive
+        ? 'bg-red-100 dark:bg-red-900/20 border-2 border-red-500'
+        : 'bg-gray-100 dark:bg-gray-800'
+    }`}>
+      <div class="flex items-center justify-center gap-3 mb-2">
+        <span class="text-2xl">{streamStatus}</span>
+        {kickData?.isLive && (
+          <span class="animate-pulse bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+            LIVE NOW
+          </span>
+        )}
+      </div>
+
+      {kickData?.isLive ? (
+        <div>
+          <p class="text-lg font-semibold mb-1">{kickData.streamTitle || 'Live Stream'}</p>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            {kickData.viewerCount} viewers watching now
+          </p>
+        </div>
+      ) : (
+        <div>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            <strong>Stream Schedule:</strong> Streams typically happen on weekends and select weekday evenings.
+          </p>
+          <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">
+            Follow on <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline">Kick.com/Tycen</a>
+            to get notifications when we go live.
+          </p>
+        </div>
+      )}
     </div>
 
     <div class="stream-container mb-12">
