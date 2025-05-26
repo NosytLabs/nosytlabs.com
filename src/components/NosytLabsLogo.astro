@@ -1,0 +1,84 @@
+---
+/**
+ * NosytLabs Logo Component
+ * Displays the official NosytLabs logo with proper branding
+ */
+
+interface Props {
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  variant?: 'full' | 'icon' | 'text';
+  class?: string;
+  showText?: boolean;
+}
+
+const { 
+  size = 'md', 
+  variant = 'full',
+  class: className = '',
+  showText = true 
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'w-6 h-6',
+  md: 'w-10 h-10',
+  lg: 'w-16 h-16',
+  xl: 'w-24 h-24'
+};
+
+const textSizeClasses = {
+  sm: 'text-sm',
+  md: 'text-xl',
+  lg: 'text-2xl',
+  xl: 'text-4xl'
+};
+---
+
+<div class:list={['nosytlabs-logo flex items-center gap-2', className]}>
+  {(variant === 'full' || variant === 'icon') && (
+    <div class={`logo-icon ${sizeClasses[size]} flex-shrink-0`}>
+      <img
+        src="/images/nosytlabs-logo-2025.svg"
+        alt="NosytLabs Logo"
+        class="w-full h-full object-contain"
+        width="100"
+        height="100"
+      />
+    </div>
+  )}
+  
+  {(variant === 'full' || variant === 'text') && showText && (
+    <span class={`logo-text font-bold text-primary dark:text-primary-light ${textSizeClasses[size]}`}>
+      NosytLabs
+    </span>
+  )}
+</div>
+
+<style>
+  .nosytlabs-logo {
+    transition: all 0.3s ease;
+  }
+
+  .nosytlabs-logo:hover .logo-icon {
+    transform: scale(1.05);
+  }
+
+  .nosytlabs-logo:hover .logo-text {
+    color: var(--nosyt-orange);
+  }
+
+  .logo-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .logo-text {
+    transition: color 0.3s ease;
+  }
+
+  /* Brand colors */
+  :root {
+    --nosyt-purple: #4C1D95;
+    --nosyt-purple-light: #7C3AED;
+    --nosyt-orange: #FF6B00;
+    --nosyt-orange-light: #FF9E44;
+  }
+</style>

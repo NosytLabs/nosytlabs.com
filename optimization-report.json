@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-05-26T03:42:06.302Z",
+  "duration": "0.09s",
+  "summary": {
+    "duplicatesRemoved": 6,
+    "filesReorganized": 9,
+    "cssOptimized": 2,
+    "jsOptimized": 0,
+    "errors": 0
+  },
+  "details": {
+    "duplicatesRemoved": [
+      "public/scripts/main.js",
+      "scripts/quick-optimize.js",
+      "scripts/optimize-all.js",
+      "public/components/DuckHuntGame.js",
+      "public/components/EnhancedWindowResizing.js",
+      "public/js/nosytos95.js"
+    ],
+    "filesReorganized": [
+      "scripts/generate-assets.js -> src/scripts/build/",
+      "scripts/generate-win95-icons.js -> src/scripts/build/",
+      "scripts/generate-favicons.js -> src/scripts/build/",
+      "scripts/optimize-images.js -> src/scripts/build/",
+      "scripts/image-optimization.js -> src/scripts/build/",
+      "scripts/check-links.js -> src/scripts/development/",
+      "scripts/css-consolidation.js -> src/scripts/development/",
+      "scripts/js-optimization.js -> src/scripts/development/",
+      "scripts/performance-optimization.js -> src/scripts/development/"
+    ],
+    "cssOptimized": [
+      "public/styles/global.css",
+      "public/styles/nosytlabs.css"
+    ],
+    "jsOptimized": [],
+    "errors": []
+  }
+}

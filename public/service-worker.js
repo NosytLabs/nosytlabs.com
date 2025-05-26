@@ -1,29 +1,72 @@
-const CACHE_VERSION = '3';
+const CACHE_VERSION = '4.0';
 const STATIC_CACHE = `static-cache-v${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `dynamic-cache-v${CACHE_VERSION}`;
-const SYNC_CACHE = `sync-cache-v${CACHE_VERSION}`;
-const SOUND_CACHE = `sound-cache-v${CACHE_VERSION}`;
+const IMAGE_CACHE = `image-cache-v${CACHE_VERSION}`;
+const API_CACHE = `api-cache-v${CACHE_VERSION}`;
+const FONT_CACHE = `font-cache-v${CACHE_VERSION}`;
 
-// Assets to cache immediately
+// Critical assets to cache immediately (optimized list)
 const STATIC_ASSETS = [
     '/',
     '/index.html',
     '/offline.html',
-    '/styles/main.css',
-    '/styles/global.css',
-    '/styles/clippy.css',
-    '/scripts/main.js',
-    '/scripts/enhanced-clippy.js',
-    '/scripts/sound-paths.js',
-    '/scripts/sound-manager.js',
-    '/scripts/nosyt-duck-hunt.js',
-    '/scripts/nosyt-ai-assistant.js',
-    '/scripts/nosyt-terminal.js',
-    '/scripts/nosyt-notepad.js',
-    '/images/logo-new.svg',
+    '/assets/js/module-loader.js',
+    '/assets/js/core.min.js',
+    '/assets/js/performance.min.js',
+    '/assets/optimized/critical.css',
+    '/assets/optimized/main.css',
+    '/images/nosytlabs-logo-2025.svg',
     '/images/hero-poster.webp',
-    '/images/hero-poster.jpg'
+    '/fonts/ms-sans-serif.woff2'
 ];
+
+// Assets to prefetch on idle
+const PREFETCH_ASSETS = [
+    '/assets/js/ui.min.js',
+    '/assets/optimized/components.css',
+    '/projects.html',
+    '/contact.html',
+    '/passive-income.html'
+];
+
+// Cache strategies configuration
+const CACHE_STRATEGIES = {
+    // Cache first for static assets
+    static: {
+        cacheName: STATIC_CACHE,
+        strategy: 'cache-first',
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        maxEntries: 100
+    },
+    // Network first for HTML pages
+    pages: {
+        cacheName: DYNAMIC_CACHE,
+        strategy: 'network-first',
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        maxEntries: 50
+    },
+    // Cache first for images with long expiry
+    images: {
+        cacheName: IMAGE_CACHE,
+        strategy: 'cache-first',
+        maxAge: 90 * 24 * 60 * 60 * 1000, // 90 days
+        maxEntries: 200
+    },
+    // Network first for API calls with short cache
+    api: {
+        cacheName: API_CACHE,
+        strategy: 'network-first',
+        maxAge: 5 * 60 * 1000, // 5 minutes
+        maxEntries: 50
+    },
+    // Cache first for fonts
+    fonts: {
+        cacheName: FONT_CACHE,
+        strategy: 'cache-first',
+        maxAge: 365 * 24 * 60 * 60 * 1000, // 1 year
+        maxEntries: 20
+    }
+};
 
 // Assets to prefetch after install
 const PREFETCH_ASSETS = [

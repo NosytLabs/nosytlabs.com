@@ -15,11 +15,18 @@
     "generate-win95-icons": "node scripts/generate-win95-icons.js",
     "generate-resize-handle": "node scripts/generate-resize-handle.js",
     "generate-favicons": "node scripts/generate-favicons.js",
-    "generate-assets": "node scripts/generate-assets.js",
-    "check-links": "node scripts/check-links.js",
-    "fix-css": "node scripts/fix-css.js",
+    "generate-assets": "node src/scripts/build/generate-assets.js",
+    "check-links": "node src/scripts/development/check-links.js",
+    "fix-css": "node src/scripts/development/fix-css.js",
     "build:prod": "npm run generate-assets && npm run fix-css && astro build",
-    "build:full": "npm run generate-assets && npm run fix-css && astro build && npm run check-links"
+    "build:full": "npm run generate-assets && npm run fix-css && astro build && npm run check-links",
+    "optimize": "node src/scripts/optimization/optimize-repository.js",
+    "optimize:css": "node src/scripts/development/css-consolidation.js",
+    "optimize:js": "node src/scripts/development/js-optimization.js",
+    "optimize:images": "node src/scripts/build/optimize-images.js",
+    "analyze": "node src/scripts/optimization/performance-monitor.js",
+    "build:optimized": "npm run build && npm run optimize",
+    "optimize:all": "node scripts/unified-optimizer.js"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.0",
@@ -40,7 +47,10 @@
     "serve": "^14.2.4",
     "sharp": "^0.33.5",
     "tailwindcss": "^3.4.1",
-    "terser": "^5.39.0"
+    "terser": "^5.39.0",
+    "postcss": "^8.4.35",
+    "autoprefixer": "^10.4.17",
+    "cssnano": "^6.0.3"
   },
   "keywords": [
     "astro",
