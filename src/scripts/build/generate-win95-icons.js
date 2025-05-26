@@ -154,28 +154,33 @@ icons.forEach(icon => {
 
 console.log('Windows 95 icons generated successfully!');
 
-// Now convert SVGs to PNGs (requires sharp)
-try {
-  // Dynamic import for sharp
-  const sharpModule = await import('sharp');
-  const sharp = sharpModule.default;
+// Convert SVGs to PNGs (requires sharp)
+async function convertToPNG() {
+  try {
+    // Dynamic import for sharp
+    const sharpModule = await import('sharp');
+    const sharp = sharpModule.default;
 
-  for (const icon of icons) {
-    const svgPath = path.join(win95Dir, `${icon.name}.svg`);
-    const pngPath = path.join(win95Dir, `${icon.name}.png`);
+    for (const icon of icons) {
+      const svgPath = path.join(win95Dir, `${icon.name}.svg`);
+      const pngPath = path.join(win95Dir, `${icon.name}.png`);
 
-    try {
-      await sharp(Buffer.from(icon.svg))
-        .resize(32, 32)
-        .png()
-        .toFile(pngPath);
-      console.log(`Converted to PNG: ${pngPath}`);
-    } catch (err) {
-      console.error(`Error converting ${icon.name} to PNG: ${err.message}`);
+      try {
+        await sharp(Buffer.from(icon.svg))
+          .resize(32, 32)
+          .png()
+          .toFile(pngPath);
+        console.log(`Converted to PNG: ${pngPath}`);
+      } catch (err) {
+        console.error(`Error converting ${icon.name} to PNG: ${err.message}`);
+      }
     }
+  } catch (err) {
+    console.warn('Sharp module not available. SVG to PNG conversion skipped.');
+    console.warn('Install sharp with: npm install sharp');
+    console.warn(err);
   }
-} catch (err) {
-  console.warn('Sharp module not available. SVG to PNG conversion skipped.');
-  console.warn('Install sharp with: npm install sharp');
-  console.warn(err);
 }
+
+// Run the conversion
+convertToPNG();
