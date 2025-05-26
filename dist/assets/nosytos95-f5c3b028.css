@@ -1,0 +1,300 @@
+.duck-hunt-game[data-astro-cid-my3u3m3u]{display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;background-color:#008080;padding:10px}.game-canvas[data-astro-cid-my3u3m3u]{border:2px solid #000;background-color:#87CEEB;margin-bottom:10px;box-shadow:3px 3px 5px rgba(0,0,0,0.3)}.game-controls[data-astro-cid-my3u3m3u]{display:flex;gap:10px;margin-top:10px}.win95-button[data-astro-cid-my3u3m3u]{background-color:#c0c0c0;border:2px solid #fff;border-right-color:#808080;border-bottom-color:#808080;padding:5px 10px;font-family:"MS Sans Serif",sans-serif;font-size:14px;cursor:pointer;outline:none}.win95-button[data-astro-cid-my3u3m3u]:active{border:2px solid #c0c0c0;border-right-color:#fff;border-bottom-color:#fff}.sound-toggle[data-astro-cid-my3u3m3u],.high-score-button[data-astro-cid-my3u3m3u]{min-width:40px;text-align:center}.duck-hunt-score[data-astro-cid-my3u3m3u]{position:absolute;top:10px;left:10px;background-color:rgba(0,0,0,0.5);color:white;padding:5px 10px;border-radius:5px;font-family:"MS Sans Serif",sans-serif;font-size:14px;z-index:20}.duck-hunt-message[data-astro-cid-my3u3m3u]{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background-color:rgba(0,0,0,0.5);color:white;padding:5px 10px;border-radius:5px;font-family:"MS Sans Serif",sans-serif;font-size:14px;text-align:center;z-index:20}.duck-hunt-controls[data-astro-cid-my3u3m3u]{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:20}.shot-effect[data-astro-cid-my3u3m3u]{position:absolute;width:20px;height:20px;background-color:yellow;border-radius:50%;box-shadow:0 0 10px 5px rgba(255,255,0,0.7);z-index:50;transition:transform 0.2s,opacity 0.2s}/* Start Menu Submenu Styles - Improved */
+  .submenu {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    width: 180px;
+    background-color: var(--win95-window-bg);
+    border: 2px solid;
+    border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+    z-index: 1002;
+    padding: 2px;
+    display: none; /* Hidden by default, shown via JavaScript */
+  }
+
+  /* Hover effect for submenu items */
+  .start-menu-item[data-submenu]:hover,
+  .submenu-item:hover {
+    background-color: var(--win95-window-header);
+    color: white;
+  }
+
+  /* Keep submenu visible when hovering between parent and submenu */
+  .start-menu-item[data-submenu]:hover + .submenu,
+  .submenu:hover {
+    display: block;
+  }
+
+  .submenu-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  .submenu-item img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+
+  /* Duck Hunt Game Styles - Improved */
+  .duck {
+    cursor: crosshair !important;
+    transition: transform 0.2s ease !important;
+    z-index: 100 !important;
+  }
+
+  .duck:hover {
+    filter: brightness(1.2) !important;
+    transform: scale(1.1) !important;
+  }
+
+  .duck-hunt-message {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    z-index: 30;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+
+  .duck-hunt-sky {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to bottom, #87CEEB, #E0F7FF);
+    overflow: hidden;
+  }
+
+  .duck-hunt-ground {
+    height: 50px;
+    background-color: #228B22;
+    position: relative;
+  }
+
+  .duck-hunt-score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 14px;
+    z-index: 30;
+  }
+
+  .duck {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-image: url('/images/win95/duck.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .duck.flying {
+    animation: fly 0.5s steps(2) infinite;
+  }
+
+  .duck.shot {
+    background-image: url('/images/win95/duck-shot.png');
+    animation: none;
+  }
+
+  .duck.falling {
+    background-image: url('/images/win95/duck-falling.png');
+    animation: fall 0.5s steps(2) infinite;
+  }
+
+  .score-popup {
+    position: absolute;
+    color: #FFD700;
+    font-weight: bold;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 16px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    z-index: 200;
+    pointer-events: none;
+    transition: all 0.5s ease;
+  }
+
+  .miss-effect {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-image: url('/images/win95/miss.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%);
+    z-index: 150;
+    pointer-events: none;
+    animation: fadeOut 0.3s forwards;
+  }
+
+  /* Terminal Styles */
+  .terminal-content {
+    background-color: #000;
+    color: #0F0;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .terminal-output {
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    line-height: 1.2;
+  }
+
+  .terminal-input-line {
+    display: flex;
+    align-items: center;
+  }
+
+  .terminal-prompt {
+    color: #0F0;
+    margin-right: 5px;
+  }
+
+  .terminal-input {
+    background-color: transparent;
+    border: none;
+    color: #0F0;
+    font-family: 'Courier New', monospace;
+    font-size: inherit;
+    flex-grow: 1;
+    outline: none;
+  }
+
+  /* Browser Styles */
+  .browser-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background-color: #D4D0C8;
+    border-bottom: 1px solid #808080;
+  }
+
+  .browser-button {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    background-color: #D4D0C8;
+    border: 1px solid #808080;
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  .browser-address-bar {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    margin-left: 10px;
+  }
+
+  .browser-address-bar span {
+    margin-right: 5px;
+  }
+
+  .browser-address-bar input {
+    flex-grow: 1;
+    border: 1px inset #808080;
+    padding: 2px 5px;
+    background-color: white;
+  }
+
+  .browser-go {
+    margin-left: 5px;
+    padding: 2px 8px;
+    background-color: #D4D0C8;
+    border: 1px solid #808080;
+    border-radius: 0;
+  }
+
+  .browser-content {
+    background-color: white;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .browser-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .browser-loading img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 10px;
+  }
+
+  .browser-frame {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Doom II Game styles */
+  .doom-game-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #000;
+    overflow: hidden;
+  }
+
+  #doom-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #doom-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 10;
+  }
+
+  #doom-start-button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'MS Sans Serif', sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: var(--win95-button-face);
+    border: 2px solid;
+    border-color: var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  #doom-start-button:hover {
+    background-color: var(--win95-button-hover);
+  }@font-face{font-family:"MS Sans Serif";src:url(/fonts/ms-sans-serif.woff2) format("woff2");font-weight:normal;font-style:normal}:root{--win95-bg: #008080;--win95-window-bg: #c0c0c0;--win95-window-header: #000080;--win95-text: #000000;--win95-button-highlight: #ffffff;--win95-button-shadow: #808080;--win95-button-face: #c0c0c0}.win95-container[data-astro-cid-my3u3m3u]{font-family:"MS Sans Serif","Segoe UI",Tahoma,sans-serif;color:var(--win95-text);width:100%;height:100vh;overflow:hidden;position:relative}.development-banner[data-astro-cid-my3u3m3u]{background-color:#ffcc00;color:#000000;text-align:center;padding:5px;font-size:14px;font-weight:bold;position:relative;z-index:9999}.win95-desktop[data-astro-cid-my3u3m3u]{background-color:var(--win95-bg);width:100%;height:calc(100vh - 28px);position:relative;overflow:hidden}.desktop-icons[data-astro-cid-my3u3m3u]{display:grid;grid-template-columns:repeat(auto-fill,80px);grid-gap:20px;padding:20px}.desktop-icon[data-astro-cid-my3u3m3u]{display:flex;flex-direction:column;align-items:center;width:80px;cursor:pointer;position:relative;padding:5px}.desktop-icon[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:32px;height:32px;margin-bottom:5px}.desktop-icon[data-astro-cid-my3u3m3u] span[data-astro-cid-my3u3m3u]{color:white;text-align:center;font-size:12px;text-shadow:1px 1px 1px rgba(0,0,0,0.7);max-width:100%;word-break:break-word}.functional-icon[data-astro-cid-my3u3m3u]:hover{background-color:rgba(255,255,255,0.1);outline:1px dotted white}.functional-icon[data-astro-cid-my3u3m3u]:active{background-color:rgba(0,0,255,0.3)}.disabled-icon[data-astro-cid-my3u3m3u]{cursor:not-allowed;opacity:0.7}.disabled-icon[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u].grayscale{filter:grayscale(100%)}.coming-soon-badge[data-astro-cid-my3u3m3u]{position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);background-color:rgba(0,0,0,0.7);color:white;font-size:8px;padding:1px 4px;border-radius:3px;white-space:nowrap}.win95-window[data-astro-cid-my3u3m3u]{position:absolute;background-color:var(--win95-window-bg);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);box-shadow:1px 1px 0 white inset,-1px -1px 0 #707070 inset;min-width:300px;min-height:200px;z-index:10}.window-header[data-astro-cid-my3u3m3u]{background-color:var(--win95-window-header);color:white;display:flex;justify-content:space-between;align-items:center;padding:2px 4px;cursor:move}.window-title[data-astro-cid-my3u3m3u]{display:flex;align-items:center;font-weight:bold;font-size:12px}.window-icon[data-astro-cid-my3u3m3u]{width:16px;height:16px;margin-right:4px}.window-controls[data-astro-cid-my3u3m3u]{display:flex}.window-controls[data-astro-cid-my3u3m3u] button[data-astro-cid-my3u3m3u]{width:16px;height:14px;margin-left:2px;font-size:10px;display:flex;align-items:center;justify-content:center;background-color:var(--win95-button-face);border:1px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);cursor:pointer}.window-menu[data-astro-cid-my3u3m3u]{display:flex;background-color:var(--win95-window-bg);border-bottom:1px solid var(--win95-button-shadow)}.menu-item[data-astro-cid-my3u3m3u]{padding:2px 6px;font-size:12px;cursor:pointer}.menu-item[data-astro-cid-my3u3m3u]:hover{background-color:var(--win95-window-header);color:white}.window-content[data-astro-cid-my3u3m3u]{padding:10px;overflow:auto;height:calc(100% - 60px);position:relative}.window-statusbar[data-astro-cid-my3u3m3u]{border-top:1px solid var(--win95-button-shadow);padding:2px 4px;font-size:12px}.folder-grid[data-astro-cid-my3u3m3u]{display:grid;grid-template-columns:repeat(auto-fill,80px);grid-gap:10px}.folder-item[data-astro-cid-my3u3m3u]{display:flex;flex-direction:column;align-items:center;width:80px;cursor:pointer}.folder-item[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:32px;height:32px;margin-bottom:5px}.folder-item[data-astro-cid-my3u3m3u] span[data-astro-cid-my3u3m3u]{text-align:center;font-size:12px}.about-content[data-astro-cid-my3u3m3u]{display:flex;padding:20px;align-items:center}.about-logo[data-astro-cid-my3u3m3u]{margin-right:20px}.about-info[data-astro-cid-my3u3m3u] h2[data-astro-cid-my3u3m3u]{margin-top:0;font-size:16px}.about-info[data-astro-cid-my3u3m3u] p[data-astro-cid-my3u3m3u]{margin:5px 0;font-size:12px}.user-name[data-astro-cid-my3u3m3u]{font-weight:bold}.about-buttons[data-astro-cid-my3u3m3u]{margin-top:15px;text-align:center}.win95-button[data-astro-cid-my3u3m3u]{background-color:var(--win95-button-face);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);padding:4px 10px;font-family:"MS Sans Serif",sans-serif;font-size:12px;cursor:pointer}.win95-button[data-astro-cid-my3u3m3u]:active{border-color:var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow)}.notepad-content[data-astro-cid-my3u3m3u]{width:100%;height:100%;border:1px solid var(--win95-button-shadow);resize:none;font-family:"Courier New",monospace;font-size:12px;padding:5px}.game-content[data-astro-cid-my3u3m3u]{height:400px;overflow:hidden;position:relative}.game-content[data-astro-cid-my3u3m3u] iframe[data-astro-cid-my3u3m3u]{width:100%;height:100%;border:none}.duck-hunt-game[data-astro-cid-my3u3m3u]{width:100%;height:100%;position:relative;overflow:hidden}.duck-hunt-container[data-astro-cid-my3u3m3u]{width:100%;height:100%;position:relative}.duck-hunt-sky[data-astro-cid-my3u3m3u]{width:100%;height:70%;position:relative;background:linear-gradient(to bottom,#1E90FF,#87CEEB)}.duck-hunt-ground[data-astro-cid-my3u3m3u]{width:100%;height:30%;position:absolute;bottom:0;background:linear-gradient(to bottom,#8B4513,#654321);border-top:2px solid #000;box-shadow:0 -5px 15px rgba(0,0,0,0.3)}.duck[data-astro-cid-my3u3m3u]{width:40px;height:40px;position:absolute;background-image:url(/images/win95/duck.png);background-size:contain;background-repeat:no-repeat;cursor:crosshair;transition:transform 0.1s ease;z-index:10}.duck[data-astro-cid-my3u3m3u]:hover{filter:brightness(1.2);transform:scale(1.1)}#duck1[data-astro-cid-my3u3m3u]{top:20%;left:30%}#duck2[data-astro-cid-my3u3m3u]{top:40%;left:60%}.duck-hunt-score[data-astro-cid-my3u3m3u]{position:absolute;top:10px;left:10px;font-family:"MS Sans Serif",sans-serif;font-size:16px;color:white;text-shadow:1px 1px 2px black;background-color:rgba(0,0,0,0.5);padding:5px 10px;border-radius:5px;z-index:20;box-shadow:0 2px 5px rgba(0,0,0,0.3)}.duck-hunt-message[data-astro-cid-my3u3m3u]{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-family:"MS Sans Serif",sans-serif;font-size:16px;color:white;text-shadow:1px 1px 2px black;background-color:rgba(0,0,0,0.7);padding:5px 10px;border-radius:5px;z-index:20;box-shadow:0 2px 5px rgba(0,0,0,0.3);white-space:nowrap}.maximized[data-astro-cid-my3u3m3u] .duck-hunt-game[data-astro-cid-my3u3m3u]{width:100%;height:100%}.maximized[data-astro-cid-my3u3m3u] .duck[data-astro-cid-my3u3m3u]{width:60px;height:60px}.ai-assistant-content[data-astro-cid-my3u3m3u]{display:flex;flex-direction:column;height:400px}.ai-chat-container[data-astro-cid-my3u3m3u]{flex:1;display:flex;flex-direction:column;border:1px solid var(--win95-button-shadow);margin-bottom:10px}.ai-chat-messages[data-astro-cid-my3u3m3u]{flex:1;overflow-y:auto;padding:10px;background-color:white}.ai-message[data-astro-cid-my3u3m3u]{display:flex;margin-bottom:10px;align-items:flex-start}.ai-avatar[data-astro-cid-my3u3m3u]{width:32px;height:32px;margin-right:8px}.ai-message-bubble[data-astro-cid-my3u3m3u]{background-color:#e6f7ff;border:1px solid #a0d7f3;border-radius:8px;padding:8px;max-width:80%}.ai-message-bubble[data-astro-cid-my3u3m3u] p[data-astro-cid-my3u3m3u]{margin:0;font-size:12px}.ai-user-message[data-astro-cid-my3u3m3u]{flex-direction:row-reverse}.ai-user-message[data-astro-cid-my3u3m3u] .ai-message-bubble[data-astro-cid-my3u3m3u]{background-color:#f0f0f0;border-color:#ccc}.ai-chat-input[data-astro-cid-my3u3m3u]{display:flex;padding:8px;background-color:#f0f0f0;border-top:1px solid var(--win95-button-shadow)}.ai-chat-input[data-astro-cid-my3u3m3u] input[data-astro-cid-my3u3m3u]{flex:1;border:1px solid var(--win95-button-shadow);padding:4px;font-size:12px;margin-right:8px}.ai-suggestions[data-astro-cid-my3u3m3u]{padding:8px;background-color:#f0f0f0;border:1px solid var(--win95-button-shadow)}.ai-suggestions[data-astro-cid-my3u3m3u] p[data-astro-cid-my3u3m3u]{margin:0 0 8px 0;font-size:12px;font-weight:bold}.ai-suggestion-btn[data-astro-cid-my3u3m3u]{display:block;width:100%;text-align:left;background-color:var(--win95-button-face);border:1px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);padding:4px 8px;margin-bottom:4px;font-size:12px;cursor:pointer}.ai-suggestion-btn[data-astro-cid-my3u3m3u]:hover{background-color:#e0e0e0}.ie-toolbar[data-astro-cid-my3u3m3u]{display:flex;align-items:center;padding:4px;background-color:var(--win95-window-bg);border-bottom:1px solid var(--win95-button-shadow)}.ie-button[data-astro-cid-my3u3m3u]{background-color:var(--win95-button-face);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);padding:2px 4px;margin-right:4px;font-size:11px;cursor:pointer}.ie-button[data-astro-cid-my3u3m3u]:active{border-color:var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow)}.ie-address-bar[data-astro-cid-my3u3m3u]{display:flex;align-items:center;flex:1;margin-left:4px}.ie-address-input[data-astro-cid-my3u3m3u]{flex:1;border:1px solid var(--win95-button-shadow);padding:2px;font-size:12px;margin:0 4px}.ie-content[data-astro-cid-my3u3m3u]{background-color:white;padding:0}.ie-page[data-astro-cid-my3u3m3u]{padding:20px;font-family:"Times New Roman",serif}.ie-page-header[data-astro-cid-my3u3m3u]{text-align:center;margin-bottom:20px}.ie-page-header[data-astro-cid-my3u3m3u] h1[data-astro-cid-my3u3m3u]{color:#4C1D95;font-size:24px;margin-bottom:5px}.ie-page-content[data-astro-cid-my3u3m3u]{line-height:1.5}.ie-page-content[data-astro-cid-my3u3m3u] h2[data-astro-cid-my3u3m3u]{color:#FF6B00;font-size:18px;margin:15px 0 10px;border-bottom:1px solid #ccc;padding-bottom:5px}.ie-page-content[data-astro-cid-my3u3m3u] ul[data-astro-cid-my3u3m3u]{margin-left:20px;margin-bottom:15px}.ie-page-content[data-astro-cid-my3u3m3u] a[data-astro-cid-my3u3m3u]{color:blue;text-decoration:underline}.ie-page-content[data-astro-cid-my3u3m3u] a[data-astro-cid-my3u3m3u]:visited{color:purple}.ie-contact[data-astro-cid-my3u3m3u]{background-color:#f0f0f0;padding:10px;margin-top:20px;border:1px solid #ccc}.ie-page-footer[data-astro-cid-my3u3m3u]{margin-top:30px;text-align:center;font-size:12px;color:#666}.resize-handle[data-astro-cid-my3u3m3u]{position:absolute;background-color:transparent;z-index:20}.resize-handle-se[data-astro-cid-my3u3m3u]{width:16px;height:16px;bottom:0;right:0;cursor:nwse-resize;background-image:url(/images/win95/resize-handle.png);background-repeat:no-repeat;background-position:bottom right}.resize-handle-e[data-astro-cid-my3u3m3u]{width:8px;top:0;right:0;bottom:0;cursor:ew-resize}.resize-handle-s[data-astro-cid-my3u3m3u]{height:8px;left:0;right:0;bottom:0;cursor:ns-resize}.resize-handle-sw[data-astro-cid-my3u3m3u]{width:16px;height:16px;bottom:0;left:0;cursor:nesw-resize}.resize-handle-n[data-astro-cid-my3u3m3u]{height:8px;left:0;right:0;top:0;cursor:ns-resize}.resize-handle-w[data-astro-cid-my3u3m3u]{width:8px;top:0;left:0;bottom:0;cursor:ew-resize}.resize-handle-ne[data-astro-cid-my3u3m3u]{width:16px;height:16px;top:0;right:0;cursor:nesw-resize}.resize-handle-nw[data-astro-cid-my3u3m3u]{width:16px;height:16px;top:0;left:0;cursor:nwse-resize}.win95-window[data-astro-cid-my3u3m3u]{min-width:300px;min-height:200px;resize:both;overflow:auto}.win95-window[data-astro-cid-my3u3m3u].maximized{resize:none;width:100%!important;height:calc(100% - 28px)!important;top:0!important;left:0!important}.context-menu[data-astro-cid-my3u3m3u]{position:absolute;background-color:var(--win95-window-bg);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);padding:2px;z-index:1000;display:none}.context-menu-item[data-astro-cid-my3u3m3u]{padding:4px 20px;font-size:12px;cursor:pointer}.context-menu-item[data-astro-cid-my3u3m3u]:hover{background-color:var(--win95-window-header);color:white}.context-menu-divider[data-astro-cid-my3u3m3u]{height:1px;background-color:var(--win95-button-shadow);margin:2px 0}.clippy-container[data-astro-cid-my3u3m3u]{position:absolute;bottom:50px;right:20px;z-index:100;display:flex;align-items:flex-end;opacity:0;transition:opacity 0.3s ease,transform 0.5s ease}.clippy-entrance[data-astro-cid-my3u3m3u]{animation:clippy-bounce-in 0.5s ease-out forwards}.clippy-exit[data-astro-cid-my3u3m3u]{animation:clippy-bounce-out 0.5s ease-in forwards}@keyframes clippy-bounce-in{0%{transform:translateY(20px) scale(0.8)}50%{transform:translateY(-10px) scale(1.1)}70%{transform:translateY(5px) scale(0.95)}100%{transform:translateY(0) scale(1)}}@keyframes clippy-bounce-out{0%{transform:translateY(0) scale(1)}20%{transform:translateY(-10px) scale(1.1)}100%{transform:translateY(20px) scale(0.8)}}.clippy-image[data-astro-cid-my3u3m3u]{width:80px;height:80px;cursor:pointer;transition:transform 0.3s ease}.clippy-image[data-astro-cid-my3u3m3u]:hover{transform:scale(1.1);filter:brightness(1.1)}.clippy-image[data-astro-cid-my3u3m3u]:active{transform:scale(0.95)}.clippy-bubble[data-astro-cid-my3u3m3u]{background-color:#ffffcc;border:1px solid #000;border-radius:5px;padding:10px;margin-right:10px;max-width:280px;position:relative;box-shadow:3px 3px 5px rgba(0,0,0,0.2);transition:opacity 0.3s ease,transform 0.3s ease}.clippy-bubble[data-astro-cid-my3u3m3u]:hover{transform:translateY(-2px);box-shadow:4px 4px 8px rgba(0,0,0,0.3)}.clippy-bubble[data-astro-cid-my3u3m3u]:after{content:"";position:absolute;right:-10px;bottom:20px;border-width:10px 0 10px 10px;border-style:solid;border-color:transparent transparent transparent #ffffcc;transition:border-width 0.2s ease}.clippy-bubble[data-astro-cid-my3u3m3u]:hover:after{border-width:12px 0 12px 12px}.clippy-options[data-astro-cid-my3u3m3u]{margin-top:10px;display:flex;flex-direction:column;gap:5px}.clippy-option[data-astro-cid-my3u3m3u]{transition:color 0.2s ease,transform 0.2s ease}.clippy-option[data-astro-cid-my3u3m3u]:hover{transform:translateX(3px)}.clippy-option[data-astro-cid-my3u3m3u]{display:block;width:100%;text-align:left;background:none;border:none;padding:4px 0;font-size:12px;cursor:pointer;color:blue;text-decoration:underline}.clippy-option[data-astro-cid-my3u3m3u]:hover{color:#4C1D95}.clippy-close[data-astro-cid-my3u3m3u]{position:absolute;top:2px;right:2px;background:none;border:none;font-size:12px;cursor:pointer}.win95-taskbar[data-astro-cid-my3u3m3u]{position:absolute;bottom:0;left:0;right:0;height:28px;background-color:var(--win95-window-bg);border-top:1px solid var(--win95-button-highlight);display:flex;align-items:center;padding:0 2px;z-index:1000}.start-button[data-astro-cid-my3u3m3u]{display:flex;align-items:center;background-color:var(--win95-button-face);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);padding:1px 4px;margin-right:4px;cursor:pointer;transition:background-color 0.1s ease}.start-button[data-astro-cid-my3u3m3u].active{border-color:var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow);background-color:#d0d0d0}.start-button[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:16px;height:16px;margin-right:2px}.start-button[data-astro-cid-my3u3m3u] span[data-astro-cid-my3u3m3u]{font-weight:bold;font-size:12px}.taskbar-divider[data-astro-cid-my3u3m3u]{width:1px;height:20px;background-color:var(--win95-button-shadow);margin:0 4px}.open-windows[data-astro-cid-my3u3m3u]{flex:1;display:flex;overflow:hidden}.system-tray[data-astro-cid-my3u3m3u]{display:flex;align-items:center;padding:0 4px}.clock[data-astro-cid-my3u3m3u]{font-size:12px;padding:2px 4px;border:1px solid var(--win95-button-shadow);background-color:var(--win95-window-bg)}.start-menu[data-astro-cid-my3u3m3u]{position:absolute;bottom:28px;left:0;width:220px;background-color:var(--win95-window-bg);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);z-index:1001;box-shadow:2px 2px 10px rgba(0,0,0,0.3)}.start-menu-header[data-astro-cid-my3u3m3u]{background-color:var(--win95-window-header);color:white;padding:4px 8px;font-weight:bold;font-size:14px}.start-menu-items[data-astro-cid-my3u3m3u]{padding:2px}.start-menu-item[data-astro-cid-my3u3m3u]{display:flex;align-items:center;padding:6px 8px;cursor:pointer;transition:background-color 0.1s ease}.start-menu-item[data-astro-cid-my3u3m3u]:hover{background-color:var(--win95-window-header);color:white}.start-menu-item[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:20px;height:20px;margin-right:10px}.start-menu-item[data-astro-cid-my3u3m3u] .arrow[data-astro-cid-my3u3m3u]{margin-left:auto;font-size:10px}.start-menu-divider[data-astro-cid-my3u3m3u]{height:1px;background-color:var(--win95-button-shadow);margin:4px 0}.submenu[data-astro-cid-my3u3m3u]{position:absolute;left:220px;top:0;width:200px;background-color:var(--win95-window-bg);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);z-index:1002}.submenu-items[data-astro-cid-my3u3m3u]{padding:2px}.submenu-item[data-astro-cid-my3u3m3u]{display:flex;align-items:center;padding:6px 8px;cursor:pointer}.submenu-item[data-astro-cid-my3u3m3u]:hover{background-color:var(--win95-window-header);color:white}.submenu-item[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:16px;height:16px;margin-right:8px}:root{--win95-desktop: #2D0A4F;--win95-window-bg: #c0c0c0;--win95-window-header: #4C1D95;--win95-text: #000000;--win95-button-highlight: #ffffff;--win95-button-shadow: #808080;--win95-button-face: #c0c0c0;--win95-accent: #FF6B00}@font-face{font-family:"MS Sans Serif";src:url(/fonts/ms-sans-serif.woff2) format("woff2");font-weight:normal;font-style:normal}.nosytos95-container[data-astro-cid-my3u3m3u]{font-family:"MS Sans Serif","Segoe UI",Tahoma,sans-serif;color:var(--win95-text);width:100%;height:100vh;overflow:hidden;position:relative}.win95-desktop[data-astro-cid-my3u3m3u]{background-color:var(--win95-desktop);width:100%;height:100%;position:relative;overflow:hidden;padding-bottom:28px}.desktop-icons[data-astro-cid-my3u3m3u]{display:grid;grid-template-columns:repeat(auto-fill,80px);grid-gap:20px;padding:20px}.desktop-icon[data-astro-cid-my3u3m3u]{width:80px;height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;text-align:center;color:white;position:relative}.desktop-icon[data-astro-cid-my3u3m3u]:hover{background-color:rgba(255,255,255,0.1)}.desktop-icon[data-astro-cid-my3u3m3u]:active{background-color:rgba(255,255,255,0.2)}.icon-img[data-astro-cid-my3u3m3u]{width:32px;height:32px;margin-bottom:5px}.icon-text[data-astro-cid-my3u3m3u]{font-size:12px;text-shadow:1px 1px 1px rgba(0,0,0,0.8);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.win95-window[data-astro-cid-my3u3m3u]{position:absolute;background-color:var(--win95-window-bg);border:3px solid var(--win95-window-bg);box-shadow:inset 1px 1px 0px var(--win95-button-highlight),inset -1px -1px 0px var(--win95-button-shadow),2px 2px 5px rgba(0,0,0,0.2);display:none;flex-direction:column;overflow:hidden;min-width:200px;min-height:150px;z-index:100;left:50%;top:50%;transform:translate(-50%,-50%)}.window-header[data-astro-cid-my3u3m3u]{background-color:var(--win95-window-header);color:white;display:flex;justify-content:space-between;align-items:center;height:20px;padding:2px;cursor:move}.window-title[data-astro-cid-my3u3m3u]{display:flex;align-items:center;font-weight:bold;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.window-icon[data-astro-cid-my3u3m3u]{width:16px;height:16px;margin-right:4px}.window-controls[data-astro-cid-my3u3m3u]{display:flex}.window-minimize[data-astro-cid-my3u3m3u],.window-maximize[data-astro-cid-my3u3m3u],.window-close[data-astro-cid-my3u3m3u]{width:16px;height:16px;margin-left:2px;background-color:var(--win95-button-face);border:1px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);display:flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer;color:black}.window-menu[data-astro-cid-my3u3m3u]{display:flex;background-color:var(--win95-window-bg);border-bottom:1px solid var(--win95-button-shadow);height:20px}.menu-item[data-astro-cid-my3u3m3u]{padding:2px 8px;font-size:12px;cursor:pointer}.menu-item[data-astro-cid-my3u3m3u]:hover{background-color:var(--win95-window-header);color:white}.window-content[data-astro-cid-my3u3m3u]{flex:1;background-color:white;overflow:auto;position:relative}.window-statusbar[data-astro-cid-my3u3m3u]{height:20px;background-color:var(--win95-window-bg);border-top:1px solid var(--win95-button-highlight);display:flex;align-items:center;padding:0 5px;font-size:12px}.resize-handle[data-astro-cid-my3u3m3u]{position:absolute;background-color:transparent}.resize-handle-se[data-astro-cid-my3u3m3u]{bottom:0;right:0;width:16px;height:16px;cursor:nwse-resize}.resize-handle-e[data-astro-cid-my3u3m3u]{top:0;right:0;width:3px;height:100%;cursor:ew-resize}.resize-handle-s[data-astro-cid-my3u3m3u]{bottom:0;left:0;width:100%;height:3px;cursor:ns-resize}.resize-handle-sw[data-astro-cid-my3u3m3u]{bottom:0;left:0;width:16px;height:16px;cursor:nesw-resize}.resize-handle-n[data-astro-cid-my3u3m3u]{top:0;left:0;width:100%;height:3px;cursor:ns-resize}.resize-handle-w[data-astro-cid-my3u3m3u]{top:0;left:0;width:3px;height:100%;cursor:ew-resize}.resize-handle-ne[data-astro-cid-my3u3m3u]{top:0;right:0;width:16px;height:16px;cursor:nesw-resize}.resize-handle-nw[data-astro-cid-my3u3m3u]{top:0;left:0;width:16px;height:16px;cursor:nwse-resize}.win95-taskbar[data-astro-cid-my3u3m3u]{position:fixed;bottom:0;left:0;right:0;height:28px;background-color:var(--win95-window-bg);display:flex;align-items:center;padding:0 2px;border-top:1px solid var(--win95-button-highlight);z-index:9999}.start-button[data-astro-cid-my3u3m3u]{display:flex;align-items:center;height:22px;padding:0 4px;margin-right:2px;background-color:var(--win95-button-face);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);cursor:pointer;font-weight:bold;-webkit-user-select:none;-moz-user-select:none;user-select:none}.start-button[data-astro-cid-my3u3m3u]:active{border-color:var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow)}.start-button[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:16px;height:16px;margin-right:4px}.taskbar-divider[data-astro-cid-my3u3m3u]{width:1px;height:20px;background-color:var(--win95-button-shadow);margin:0 2px;border-right:1px solid var(--win95-button-highlight)}.taskbar-items[data-astro-cid-my3u3m3u]{display:flex;flex-grow:1;height:100%;overflow:hidden;align-items:center}.taskbar-item[data-astro-cid-my3u3m3u]{height:22px;margin:0 2px;padding:0 4px;background-color:var(--win95-button-face);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);display:flex;align-items:center;font-size:11px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}.taskbar-item[data-astro-cid-my3u3m3u].active{border-color:var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow)}.taskbar-item[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:16px;height:16px;margin-right:4px}.taskbar-tray[data-astro-cid-my3u3m3u]{display:flex;align-items:center;height:22px;padding:0 4px;border-left:1px solid var(--win95-button-shadow);border-right:1px solid var(--win95-button-highlight)}.tray-item[data-astro-cid-my3u3m3u]{margin:0 4px;cursor:pointer}.tray-item[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:16px;height:16px}.clock[data-astro-cid-my3u3m3u]{font-size:11px;font-weight:bold;min-width:55px;text-align:center}.start-menu[data-astro-cid-my3u3m3u]{position:absolute;bottom:28px;left:0;width:200px;background-color:var(--win95-window-bg);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);z-index:10000;display:none}.start-header[data-astro-cid-my3u3m3u]{height:40px;background-color:var(--win95-window-header);color:white;display:flex;align-items:center;padding:0 8px;font-weight:bold;font-size:18px}.start-logo[data-astro-cid-my3u3m3u]{width:24px;height:24px;margin-right:8px}.start-menu-items[data-astro-cid-my3u3m3u]{padding:2px 0}.menu-item[data-astro-cid-my3u3m3u]{height:30px;display:flex;align-items:center;padding:0 8px;cursor:pointer;position:relative}.menu-item[data-astro-cid-my3u3m3u]:hover{background-color:var(--win95-window-header);color:white}.menu-item[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:24px;height:24px;margin-right:8px}.submenu-arrow[data-astro-cid-my3u3m3u]{margin-left:auto;font-size:10px}.submenu[data-astro-cid-my3u3m3u]{position:absolute;top:0;left:100%;width:180px;background-color:var(--win95-window-bg);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);display:none;z-index:10001}.menu-item[data-astro-cid-my3u3m3u]:hover .submenu[data-astro-cid-my3u3m3u]{display:block}.submenu-item[data-astro-cid-my3u3m3u]{height:25px;display:flex;align-items:center;padding:0 8px;cursor:pointer}.submenu-item[data-astro-cid-my3u3m3u]:hover{background-color:var(--win95-window-header);color:white}.submenu-item[data-astro-cid-my3u3m3u] img[data-astro-cid-my3u3m3u]{width:16px;height:16px;margin-right:8px}.menu-divider[data-astro-cid-my3u3m3u]{height:1px;background-color:var(--win95-button-shadow);margin:2px 0;border-bottom:1px solid var(--win95-button-highlight)}.notepad-content[data-astro-cid-my3u3m3u]{width:100%;height:100%;resize:none;border:none;outline:none;padding:5px;font-family:"Courier New",monospace;font-size:14px;line-height:1.4;white-space:pre-wrap}.duck-hunt-game-content[data-astro-cid-my3u3m3u]{background-color:#87CEEB;display:flex;justify-content:center;align-items:center}.duck-hunt-game[data-astro-cid-my3u3m3u]{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}.game-canvas[data-astro-cid-my3u3m3u]{border:2px solid #000;background-color:#87CEEB;cursor:crosshair}.game-controls[data-astro-cid-my3u3m3u]{display:flex;justify-content:center;margin-top:10px;gap:10px}.win95-button[data-astro-cid-my3u3m3u]{background-color:var(--win95-button-face);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);padding:2px 8px;font-family:"MS Sans Serif",sans-serif;font-size:12px;cursor:pointer}.win95-button[data-astro-cid-my3u3m3u]:active{border-color:var(--win95-button-shadow) var(--win95-button-highlight) var(--win95-button-highlight) var(--win95-button-shadow)}.terminal-content[data-astro-cid-my3u3m3u]{background-color:#000;color:#fff;font-family:"Courier New",monospace;font-size:14px;padding:5px;display:flex;flex-direction:column}.terminal-output[data-astro-cid-my3u3m3u]{flex:1;overflow-y:auto;white-space:pre-wrap;line-height:1.2;padding:5px}.terminal-input-container[data-astro-cid-my3u3m3u]{display:flex;padding:5px}.terminal-prompt[data-astro-cid-my3u3m3u]{color:#fff;margin-right:5px}.terminal-input[data-astro-cid-my3u3m3u]{flex:1;background-color:#000;color:#fff;border:none;outline:none;font-family:"Courier New",monospace;font-size:14px}.help-content[data-astro-cid-my3u3m3u]{display:flex;height:100%}.help-sidebar[data-astro-cid-my3u3m3u]{width:200px;background-color:var(--win95-window-bg);border-right:1px solid var(--win95-button-shadow);display:flex;flex-direction:column}.help-tab[data-astro-cid-my3u3m3u]{padding:5px 10px;cursor:pointer;border-bottom:1px solid var(--win95-button-shadow)}.help-tab-active[data-astro-cid-my3u3m3u]{background-color:var(--win95-button-highlight)}.help-topics[data-astro-cid-my3u3m3u]{flex:1;overflow-y:auto;padding:5px}.help-topic[data-astro-cid-my3u3m3u]{padding:3px 5px;cursor:pointer}.help-topic[data-astro-cid-my3u3m3u]:hover{background-color:var(--win95-window-header);color:white}.help-content-area[data-astro-cid-my3u3m3u]{flex:1;padding:10px;overflow-y:auto}.help-page[data-astro-cid-my3u3m3u]{display:none}.help-page[data-astro-cid-my3u3m3u] h2[data-astro-cid-my3u3m3u]{margin-top:0;color:var(--win95-window-header)}.clippy-container[data-astro-cid-my3u3m3u]{position:fixed;bottom:50px;right:20px;z-index:9000}.clippy-bubble[data-astro-cid-my3u3m3u]{position:absolute;bottom:40px;right:0;width:250px;background-color:var(--win95-window-bg);border:2px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);padding:10px;display:none}.clippy-bubble[data-astro-cid-my3u3m3u]:after{content:"";position:absolute;bottom:-10px;right:20px;border-width:10px 10px 0;border-style:solid;border-color:var(--win95-window-bg) transparent}.clippy-options[data-astro-cid-my3u3m3u]{display:flex;flex-direction:column;margin-top:10px}.clippy-option[data-astro-cid-my3u3m3u]{margin:2px 0;text-align:left;background-color:var(--win95-button-face);border:1px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);padding:2px 5px;font-family:"MS Sans Serif",sans-serif;font-size:12px;cursor:pointer}.clippy-close[data-astro-cid-my3u3m3u]{position:absolute;top:2px;right:2px;width:16px;height:16px;background-color:var(--win95-button-face);border:1px solid;border-color:var(--win95-button-highlight) var(--win95-button-shadow) var(--win95-button-shadow) var(--win95-button-highlight);display:flex;justify-content:center;align-items:center;font-size:10px;cursor:pointer}.clippy-image[data-astro-cid-my3u3m3u]{width:40px;height:40px;cursor:pointer}

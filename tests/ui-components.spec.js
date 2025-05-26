@@ -6,7 +6,7 @@
  */
 
 // @ts-check
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
 // Test the ProjectCard component
 test('ProjectCard component should work correctly', async ({ page }) => {
@@ -47,7 +47,7 @@ test('ProjectCard component should work correctly', async ({ page }) => {
   // Get the href attribute to check if it's a valid URL
   const href = await viewButton.getAttribute('href');
   expect(href).toBeTruthy();
-  expect(href.startsWith('http')).toBeTruthy();
+  expect(href?.startsWith('http')).toBeTruthy();
 });
 
 // Test the ProjectGrid component
@@ -213,9 +213,18 @@ test('ContactForm component should work correctly', async ({ page }) => {
   await submitButton.click();
   
   // Required fields should show validation errors
-  const nameValidation = await nameInput.evaluate(el => el.validity.valid);
-  const emailValidation = await emailInput.evaluate(el => el.validity.valid);
-  const messageValidation = await messageInput.evaluate(el => el.validity.valid);
+  const nameValidation = await nameInput.evaluate(el => {
+    if (el instanceof HTMLInputElement) return el.validity.valid;
+    return false;
+  });
+  const emailValidation = await emailInput.evaluate(el => {
+    if (el instanceof HTMLInputElement) return el.validity.valid;
+    return false;
+  });
+  const messageValidation = await messageInput.evaluate(el => {
+    if (el instanceof HTMLTextAreaElement) return el.validity.valid;
+    return false;
+  });
   
   // At least one field should be invalid
   expect(nameValidation && emailValidation && messageValidation).toBeFalsy();
@@ -231,7 +240,10 @@ test('ContactForm component should work correctly', async ({ page }) => {
   await expect(messageInput).toHaveValue('This is a test message');
   
   // Check if the form is now valid
-  const isFormValid = await contactForm.evaluate(form => form.checkValidity());
+  const isFormValid = await contactForm.evaluate(form => {
+    if (form instanceof HTMLFormElement) return form.checkValidity();
+    return false;
+  });
   expect(isFormValid).toBeTruthy();
 });
 

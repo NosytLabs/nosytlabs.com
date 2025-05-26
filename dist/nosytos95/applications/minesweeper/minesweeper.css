@@ -1,0 +1,287 @@
+/* Minesweeper Game Styles */
+
+.minesweeper-game {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--win95-window-bg);
+    padding: var(--win95-spacing-md);
+}
+
+.game-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--win95-spacing-md);
+    margin-bottom: var(--win95-spacing-md);
+}
+
+.game-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--win95-spacing-md);
+}
+
+.difficulty-select {
+    border: 2px inset var(--win95-window-bg);
+    background-color: white;
+    font-family: var(--win95-font-family);
+    font-size: var(--win95-font-size);
+    padding: var(--win95-spacing-xs);
+    min-width: 200px;
+}
+
+.game-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--win95-button-face);
+    border: 2px inset var(--win95-window-bg);
+    padding: var(--win95-spacing-md);
+    height: 40px;
+}
+
+.mine-counter,
+.timer-display {
+    background-color: #000;
+    color: #ff0000;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: bold;
+    padding: var(--win95-spacing-sm) var(--win95-spacing-md);
+    border: 1px inset var(--win95-window-bg);
+    min-width: 50px;
+    text-align: center;
+}
+
+.counter-display {
+    display: block;
+    letter-spacing: 2px;
+}
+
+.smiley-btn {
+    width: 32px;
+    height: 32px;
+    background-color: var(--win95-button-face);
+    border: 2px outset var(--win95-button-face);
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+}
+
+.smiley-btn:hover {
+    background-color: var(--win95-border-light);
+}
+
+.smiley-btn:active {
+    border: 2px inset var(--win95-button-face);
+}
+
+.game-board-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: auto;
+    padding: var(--win95-spacing-md);
+}
+
+.game-board {
+    display: grid;
+    gap: 1px;
+    background-color: var(--win95-button-shadow);
+    border: 3px inset var(--win95-window-bg);
+    padding: 3px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.mine-cell {
+    width: 20px;
+    height: 20px;
+    background-color: var(--win95-button-face);
+    border: 2px outset var(--win95-button-face);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: var(--win95-font-family);
+    user-select: none;
+    position: relative;
+}
+
+.mine-cell:hover {
+    background-color: var(--win95-border-light);
+}
+
+.mine-cell:active {
+    border: 1px inset var(--win95-button-face);
+}
+
+.mine-cell.revealed {
+    background-color: var(--win95-border-light);
+    border: 1px solid var(--win95-button-shadow);
+    cursor: default;
+}
+
+.mine-cell.revealed:hover {
+    background-color: var(--win95-border-light);
+}
+
+.mine-cell.flagged {
+    background-color: var(--win95-button-face);
+}
+
+.mine-cell.mine {
+    background-color: #ff0000;
+    color: #000;
+}
+
+/* Number colors for adjacent mine counts */
+.mine-cell.number-1 { color: #0000ff; }
+.mine-cell.number-2 { color: #008000; }
+.mine-cell.number-3 { color: #ff0000; }
+.mine-cell.number-4 { color: #000080; }
+.mine-cell.number-5 { color: #800000; }
+.mine-cell.number-6 { color: #008080; }
+.mine-cell.number-7 { color: #000000; }
+.mine-cell.number-8 { color: #808080; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .game-header {
+        padding: var(--win95-spacing-sm);
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .difficulty-select {
+        min-width: auto;
+    }
+    
+    .game-status {
+        padding: var(--win95-spacing-sm);
+        height: 35px;
+    }
+    
+    .mine-counter,
+    .timer-display {
+        font-size: 14px;
+        padding: var(--win95-spacing-xs);
+        min-width: 40px;
+    }
+    
+    .smiley-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+    
+    .mine-cell {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
+}
+
+/* Expert mode adjustments */
+.game-board.expert-mode {
+    max-width: 90vw;
+    overflow-x: auto;
+}
+
+/* Animation for mine explosion */
+@keyframes explode {
+    0% { transform: scale(1); background-color: #ff0000; }
+    50% { transform: scale(1.2); background-color: #ffff00; }
+    100% { transform: scale(1); background-color: #ff0000; }
+}
+
+.mine-cell.mine.exploded {
+    animation: explode 0.3s ease-in-out;
+}
+
+/* Flag animation */
+@keyframes flagWave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+.mine-cell.flagged {
+    animation: flagWave 0.5s ease-in-out;
+}
+
+/* Win/lose states */
+.minesweeper-game.game-won .smiley-btn {
+    background-color: #90EE90;
+}
+
+.minesweeper-game.game-lost .smiley-btn {
+    background-color: #FFB6C1;
+}
+
+/* Accessibility improvements */
+.mine-cell:focus {
+    outline: 2px solid var(--win95-accent);
+    outline-offset: -2px;
+}
+
+.mine-cell[aria-pressed="true"] {
+    background-color: var(--win95-border-light);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .mine-cell {
+        border-width: 3px;
+    }
+    
+    .mine-counter,
+    .timer-display {
+        border-width: 2px;
+        color: #ffffff;
+        background-color: #000000;
+    }
+    
+    .mine-cell.number-1 { color: #0066ff; }
+    .mine-cell.number-2 { color: #00aa00; }
+    .mine-cell.number-3 { color: #ff0000; }
+    .mine-cell.number-4 { color: #0000aa; }
+    .mine-cell.number-5 { color: #aa0000; }
+    .mine-cell.number-6 { color: #00aaaa; }
+    .mine-cell.number-7 { color: #000000; }
+    .mine-cell.number-8 { color: #666666; }
+}
+
+/* Print styles */
+@media print {
+    .game-controls {
+        display: none;
+    }
+    
+    .game-status {
+        border: 1px solid #000;
+    }
+    
+    .mine-cell {
+        border: 1px solid #000;
+        background-color: #fff;
+    }
+    
+    .mine-cell.revealed {
+        background-color: #f0f0f0;
+    }
+    
+    .mine-cell.mine {
+        background-color: #000;
+        color: #fff;
+    }
+}

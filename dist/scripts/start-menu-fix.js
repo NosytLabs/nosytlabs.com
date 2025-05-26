@@ -120,13 +120,10 @@ function replaceStartMenu() {
     <!-- Games Submenu -->
     <div class="start-submenu" id="games-submenu">
       <div class="start-menu-item" data-target="duck-hunt-window">
-        <img src="/images/win95/duck-hunt.png" alt="Duck Hunt">
+        <img src="/images/win95/icons/duck-hunt.png" alt="Duck Hunt">
         <span>Duck Hunt</span>
       </div>
-      <div class="start-menu-item" data-target="doom-window">
-        <img src="/images/win95/doom.png" alt="Doom II">
-        <span>Doom II</span>
-      </div>
+      <!-- Doom II removed as requested -->
     </div>
 
     <!-- Documents Submenu -->
@@ -354,10 +351,11 @@ function createWindowByType(windowId) {
       }
       break;
     case 'duck-hunt-window':
-      // Use the existing duck hunt fix
-      const duckHuntButton = document.querySelector('button[data-target="duck-hunt-window"]');
-      if (duckHuntButton) {
-        duckHuntButton.click();
+      // Use the Duck Hunt embed
+      if (typeof createDuckHuntWindow === 'function') {
+        createDuckHuntWindow();
+      } else {
+        console.error('Duck Hunt window creation function not found');
       }
       break;
     case 'doom-window':

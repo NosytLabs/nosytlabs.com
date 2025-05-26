@@ -24,37 +24,45 @@ const gameState = {
   elements: {}
 };
 
-// Sound configurations with fallback paths
-const SOUNDS = {
+// Use centralized sound configurations from sound-paths.js
+// If the global configuration is not available, use fallback configuration
+const SOUNDS = window.DUCK_HUNT_SOUNDS || {
   // Primary paths are in the duck-hunt folder, fallbacks in audio folder
-  shot: { src: ['/sounds/duck-hunt/shot.mp3', '/audio/gun-shot.mp3'], volume: 0.5 },
-  quack: { src: ['/sounds/duck-hunt/quack.mp3', '/audio/quack.mp3'], volume: 0.6 },
-  fall: { src: ['/sounds/duck-hunt/fall.mp3', '/audio/duck-falling.mp3'], volume: 0.6 },
-  gameStart: { src: ['/audio/game-start.mp3'], volume: 0.4 },
-  levelUp: { src: ['/sounds/duck-hunt/level-up.mp3', '/audio/level-up.mp3'], volume: 0.5 },
-  gameOver: { src: ['/audio/game-over.mp3'], volume: 0.5 },
-  dogLaugh: { src: ['/audio/dog-laugh.mp3'], volume: 0.6 },
-  dogBark: { src: ['/audio/dog-bark.mp3'], volume: 0.6 },
-  duckFlap: { src: ['/audio/duck-flap.mp3'], volume: 0.4 },
-  roundClear: { src: ['/audio/round-clear.mp3'], volume: 0.5 },
-  emptyGun: { src: ['/audio/empty-gun.mp3'], volume: 0.5 },
-  reload: { src: ['/audio/reload.mp3'], volume: 0.5 },
-  menuSelect: { src: ['/audio/menu-select.mp3'], volume: 0.4 }
+  shot: { src: ['./sounds/duck-hunt/shot.mp3', './audio/gun-shot.mp3'], volume: 0.5, preload: true },
+  quack: { src: ['./sounds/duck-hunt/quack.mp3', './audio/quack.mp3'], volume: 0.6, preload: true },
+  fall: { src: ['./sounds/duck-hunt/fall.mp3', './audio/duck-falling.mp3'], volume: 0.6, preload: true },
+  gameStart: { src: ['./audio/game-start.mp3'], volume: 0.4, preload: true },
+  levelUp: { src: ['./sounds/duck-hunt/level-up.mp3', './audio/level-up.mp3'], volume: 0.5, preload: true },
+  gameOver: { src: ['./audio/game-over.mp3'], volume: 0.5, preload: true },
+  dogLaugh: { src: ['./audio/dog-laugh.mp3'], volume: 0.6, preload: false },
+  dogBark: { src: ['./audio/dog-bark.mp3'], volume: 0.6, preload: false },
+  duckFlap: { src: ['./audio/duck-flap.mp3'], volume: 0.4, preload: false },
+  roundClear: { src: ['./audio/round-clear.mp3'], volume: 0.5, preload: false },
+  emptyGun: { src: ['./audio/empty-gun.mp3'], volume: 0.5, preload: false },
+  reload: { src: ['./audio/reload.mp3'], volume: 0.5, preload: false },
+  menuSelect: { src: ['./audio/menu-select.mp3'], volume: 0.4, preload: false }
 };
 
 /**
- * Load sounds with fallback paths
+ * Load sounds with fallback paths and service worker support
  */
 function loadSounds() {
+  // Track loading progress
+  let loadedCount = 0;
+  const totalSounds = Object.keys(SOUNDS).filter(name => SOUNDS[name].preload).length;
+
   // Load all sounds
   for (const [name, config] of Object.entries(SOUNDS)) {
     try {
       // Handle array of fallback paths
       const paths = Array.isArray(config.src) ? config.src : [config.src];
 
-      // Try to load the first path
-      const sound = new Audio(paths[0]);
+      // Create audio element but don't set src yet
+      const sound = new Audio();
       sound.volume = config.volume || 0.5;
+
+      // Set preload attribute
+      sound.preload = config.preload ? 'auto' : 'none';
 
       // Add error handling for sound loading
       sound.addEventListener('error', (e) => {
@@ -67,13 +75,66 @@ function loadSounds() {
         }
       });
 
-      // Add load event listener
-      sound.addEventListener('canplaythrough', () => {
-        console.log(`Sound ${name} loaded successfully`);
-      });
+      // Add load event listener for preloaded sounds
+      if (config.preload) {
+        sound.addEventListener('canplaythrough', () => {
+          console.log(`Sound ${name} loaded successfully`);
+          loadedCount++;
 
-      // Preload the sound
-      sound.load();
+          // Log loading progress
+          if (totalSounds > 0) {
+            console.log(`Sound loading progress: ${loadedCount}/${totalSounds}`);
+          }
+        }, { once: true }); // Use once to prevent memory leaks
+      }
+
+      // Check if service worker is active
+      if ('serviceWorker' in navigator && navigator.serviceWorker.controller && config.preload) {
+        // Fetch through service worker to ensure caching
+        fetch(paths[0])
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`Failed to load sound: ${paths[0]}`);
+            }
+            console.log(`Sound ${name} cached by service worker`);
+            // Set source after successful fetch
+            sound.src = paths[0];
+            sound.load();
+          })
+          .catch(error => {
+            console.warn(`Service worker fetch failed for ${name}:`, error);
+            // Try fallback path
+            if (paths.length > 1) {
+              fetch(paths[1])
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error(`Failed to load fallback sound: ${paths[1]}`);
+                  }
+                  console.log(`Fallback sound ${name} cached by service worker`);
+                  sound.src = paths[1];
+                  sound.load();
+                })
+                .catch(fallbackError => {
+                  console.error(`All sound loading attempts failed for ${name}:`, fallbackError);
+                  // Set source directly as last resort
+                  sound.src = paths[0];
+                  sound.load();
+                });
+            } else {
+              // Set source directly as last resort
+              sound.src = paths[0];
+              sound.load();
+            }
+          });
+      } else {
+        // Service worker not available, use traditional loading
+        sound.src = paths[0];
+
+        // Force preloading
+        if (config.preload) {
+          sound.load();
+        }
+      }
 
       // Store the sound in game state
       gameState.sounds[name] = sound;
@@ -141,18 +202,29 @@ function showMessage(text, duration = 2000) {
 }
 
 /**
- * Play a sound with error handling and visual feedback
+ * Play a sound with error handling, fallbacks, and visual feedback
  */
 function playSound(soundName) {
   const sound = gameState.sounds[soundName];
   if (sound) {
     try {
-      // Reset sound to beginning
-      sound.currentTime = 0;
+      // Reset sound to beginning if possible
+      try {
+        sound.currentTime = 0;
+      } catch (timeError) {
+        console.warn(`Could not reset sound time for ${soundName}:`, timeError);
+        // Continue anyway - this is not critical
+      }
 
       // Create a clone of the sound to allow overlapping sounds
-      const soundClone = sound.cloneNode();
-      soundClone.volume = sound.volume;
+      let soundClone;
+      try {
+        soundClone = sound.cloneNode();
+        soundClone.volume = sound.volume;
+      } catch (cloneError) {
+        console.warn(`Could not clone sound ${soundName}, using original:`, cloneError);
+        soundClone = sound; // Fallback to original sound
+      }
 
       // Add visual feedback for sound effects
       if (soundName === 'shot') {
@@ -179,9 +251,42 @@ function playSound(soundName) {
         }
       }
 
-      // Play the sound with error handling
+      // Play the sound with error handling and fallbacks
       soundClone.play().catch(error => {
         console.warn(`Error playing sound ${soundName}:`, error);
+
+        // Try to reload the sound if it failed to play
+        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+          // Get the sound configuration
+          const config = SOUNDS[soundName];
+          if (config && config.src) {
+            const paths = Array.isArray(config.src) ? config.src : [config.src];
+
+            // Try to fetch the sound through the service worker
+            fetch(paths[0])
+              .then(response => {
+                if (!response.ok) throw new Error(`Failed to fetch sound: ${paths[0]}`);
+                return response.blob();
+              })
+              .then(blob => {
+                // Create a new audio element with the fetched blob
+                const url = URL.createObjectURL(blob);
+                const newSound = new Audio(url);
+                newSound.volume = config.volume || 0.5;
+
+                // Replace the sound in the game state
+                gameState.sounds[soundName] = newSound;
+
+                // Try to play the new sound
+                newSound.play().catch(newError => {
+                  console.error(`Still failed to play sound ${soundName} after reload:`, newError);
+                });
+              })
+              .catch(fetchError => {
+                console.error(`Failed to reload sound ${soundName}:`, fetchError);
+              });
+          }
+        }
       });
     } catch (error) {
       console.warn(`Error playing sound ${soundName}:`, error);
@@ -195,19 +300,26 @@ function playSound(soundName) {
  * Create a duck element
  */
 function createDuck() {
-  const duck = document.createElement('div');
+  // Create a canvas element for the duck
+  const duck = document.createElement('canvas');
   duck.className = 'duck';
+  duck.width = 64;
+  duck.height = 64;
 
+  // Set up the canvas context
+  const ctx = duck.getContext('2d');
+
+  // Set duck styles
   Object.assign(duck.style, {
     position: 'absolute',
     width: '50px',
     height: '50px',
-    backgroundImage: 'url("/images/win95/duck/blue-right.gif")',
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
     cursor: 'crosshair',
     zIndex: '10'
   });
+
+  // Determine duck type (color) - blue is most common, then black, then red
+  const duckType = Math.random() > 0.7 ? 'red' : (Math.random() > 0.5 ? 'black' : 'blue');
 
   return duck;
 }
@@ -242,8 +354,18 @@ function startGame() {
   // Play start sound
   playSound('gameStart');
 
-  // Spawn ducks after a delay
-  setTimeout(spawnDucks, 2000);
+  // Create dog if not already created
+  if (!gameState.dog) {
+    gameState.dog = new DuckHuntDog({
+      container: gameState.elements.gameBackground
+    });
+  }
+
+  // Play dog intro animation
+  gameState.dog.playIntro(() => {
+    // Spawn ducks after dog animation
+    spawnDucks(Math.min(gameState.level, 3));
+  });
 }
 
 /**
@@ -256,12 +378,30 @@ function spawnDucks(count = 1) {
     // Create duck element
     const duck = createDuck();
 
+    // Determine duck type (color) - blue is most common, then black, then red
+    const duckType = Math.random() > 0.7 ? 'red' : (Math.random() > 0.5 ? 'black' : 'blue');
+
+    // Create sprite animator for the duck
+    const spriteAnimator = new SpriteAnimator({
+      spriteSheet: `/images/win95/duck/${duckType}-duck-sprite.png`,
+      frameWidth: 64,
+      frameHeight: 64,
+      frameCount: 3,
+      frameDuration: 150,
+      loop: true,
+      autoplay: true
+    });
+
     // Add duck to game state
     const duckData = {
       element: duck,
       hit: false,
       direction: Math.random() > 0.5 ? 'right' : 'left',
-      speed: 2 + (gameState.level * 0.5)
+      speed: 2 + (gameState.level * 0.5),
+      type: duckType,
+      animator: spriteAnimator,
+      ctx: duck.getContext('2d'),
+      lastUpdate: Date.now()
     };
 
     gameState.ducks.push(duckData);
@@ -294,7 +434,7 @@ function spawnDucks(count = 1) {
 function animateDuck(duckData) {
   if (!gameState.active || !duckData.element || !duckData.element.parentNode) return;
 
-  const { element, direction, speed } = duckData;
+  const { element, direction, speed, animator, ctx } = duckData;
   const { gameBackground } = gameState.elements;
   const bgRect = gameBackground.getBoundingClientRect();
 
@@ -313,11 +453,9 @@ function animateDuck(duckData) {
   if (left <= 0) {
     left = 0;
     duckData.direction = 'right';
-    element.style.transform = '';
   } else if (left >= bgRect.width - 50) {
     left = bgRect.width - 50;
     duckData.direction = 'left';
-    element.style.transform = 'scaleX(-1)';
   }
 
   if (top <= 0) {
@@ -329,6 +467,23 @@ function animateDuck(duckData) {
   // Update position
   element.style.left = `${left}px`;
   element.style.top = `${top}px`;
+
+  // Update sprite animation
+  if (animator && ctx) {
+    // Calculate delta time
+    const now = Date.now();
+    const deltaTime = now - duckData.lastUpdate;
+    duckData.lastUpdate = now;
+
+    // Update animation
+    animator.update(deltaTime);
+
+    // Clear canvas
+    ctx.clearRect(0, 0, element.width, element.height);
+
+    // Draw sprite
+    animator.draw(ctx, 0, 0, element.width, element.height, direction === 'left');
+  }
 
   // Continue animation
   duckData.animationId = requestAnimationFrame(() => animateDuck(duckData));
@@ -469,13 +624,33 @@ function checkHit(e) {
     const duckWidth = duckRect.width;
     const duckHeight = duckRect.height;
 
-    // Check if shot is within duck bounds
-    if (
-      x >= duckX &&
-      x <= duckX + duckWidth &&
-      y >= duckY &&
-      y <= duckY + duckHeight
-    ) {
+    // Get actual visible area of the duck (accounting for transparent parts)
+    // Most duck sprites have ~30% transparent padding around them
+    const visibleMargin = 0.15; // 15% margin from each side
+    const visibleX = duckX + (duckWidth * visibleMargin);
+    const visibleY = duckY + (duckHeight * visibleMargin);
+    const visibleWidth = duckWidth * (1 - 2 * visibleMargin);
+    const visibleHeight = duckHeight * (1 - 2 * visibleMargin);
+
+    // Calculate distance from shot to center of duck
+    const duckCenterX = duckX + (duckWidth / 2);
+    const duckCenterY = duckY + (duckHeight / 2);
+    const distanceSquared = Math.pow(x - duckCenterX, 2) + Math.pow(y - duckCenterY, 2);
+
+    // Hybrid hit detection - use both rectangle and distance for better accuracy
+    const isInRect = (
+      x >= visibleX &&
+      x <= visibleX + visibleWidth &&
+      y >= visibleY &&
+      y <= visibleY + visibleHeight
+    );
+
+    // Use a circular hit area for more natural feel
+    const hitRadius = Math.min(visibleWidth, visibleHeight) / 2;
+    const isInRadius = distanceSquared <= Math.pow(hitRadius, 2);
+
+    // Hit if either condition is met (more forgiving)
+    if (isInRect || isInRadius) {
       hitDuck(duckData);
       return true;
     }
@@ -495,6 +670,9 @@ function checkHit(e) {
  * Hit a duck
  */
 function hitDuck(duckData) {
+  // Prevent double-counting hits
+  if (duckData.hit) return;
+
   // Mark as hit
   duckData.hit = true;
 
@@ -502,8 +680,29 @@ function hitDuck(duckData) {
   cancelAnimationFrame(duckData.animationId);
   clearTimeout(duckData.escapeTimer);
 
-  // Update sprite
-  duckData.element.style.backgroundImage = 'url("/images/win95/duck/blue-hit.png")';
+  // Update sprite animator for hit animation
+  if (duckData.animator && duckData.ctx) {
+    // Create hit animator
+    const hitAnimator = new SpriteAnimator({
+      spriteSheet: `/images/win95/duck/${duckData.type}-duck-hit.png`,
+      frameWidth: 64,
+      frameHeight: 64,
+      frameCount: 1,
+      frameDuration: 500,
+      loop: false,
+      autoplay: true
+    });
+
+    // Replace animator
+    duckData.animator = hitAnimator;
+
+    // Draw hit frame
+    duckData.ctx.clearRect(0, 0, duckData.element.width, duckData.element.height);
+    hitAnimator.draw(duckData.ctx, 0, 0, duckData.element.width, duckData.element.height);
+  } else {
+    // Fallback for non-canvas ducks
+    duckData.element.style.backgroundImage = `url("/images/win95/duck/${duckData.type || 'blue'}-hit.png")`;
+  }
 
   // Play hit sound
   playSound('quack');
@@ -514,12 +713,22 @@ function hitDuck(duckData) {
     gameState.maxCombo = gameState.combo;
   }
 
-  // Calculate points with combo multiplier
+  // Calculate points with combo multiplier and level bonus
   const comboMultiplier = 1 + (gameState.combo - 1) * 0.1;
-  const points = Math.round(100 * comboMultiplier);
+  const levelBonus = gameState.level * 0.2;
+  const points = Math.round(100 * comboMultiplier * (1 + levelBonus));
 
   // Add points
   gameState.score += points;
+
+  // Increment ducks shot counter
+  gameState.ducksShot++;
+
+  // Check for high score
+  if (gameState.score > gameState.highScore) {
+    gameState.highScore = gameState.score;
+    saveHighScore();
+  }
 
   // Update UI
   updateUI();
@@ -529,35 +738,106 @@ function hitDuck(duckData) {
 
   // Start falling animation
   setTimeout(() => {
-    duckData.element.style.backgroundImage = 'url("/images/win95/duck/blue-falling.gif")';
-    duckData.element.style.transition = 'top 1s ease-in';
-    duckData.element.style.top = '100%';
+    // Create falling animator
+    if (duckData.ctx) {
+      const fallingAnimator = new SpriteAnimator({
+        spriteSheet: `/images/win95/duck/${duckData.type}-duck-falling.png`,
+        frameWidth: 64,
+        frameHeight: 64,
+        frameCount: 2,
+        frameDuration: 200,
+        loop: true,
+        autoplay: true
+      });
+
+      // Replace animator
+      duckData.animator = fallingAnimator;
+
+      // Set up falling animation
+      const fallAnimation = () => {
+        // Calculate delta time
+        const now = Date.now();
+        const deltaTime = now - duckData.lastUpdate;
+        duckData.lastUpdate = now;
+
+        // Update animation
+        fallingAnimator.update(deltaTime);
+
+        // Clear canvas
+        duckData.ctx.clearRect(0, 0, duckData.element.width, duckData.element.height);
+
+        // Draw sprite
+        fallingAnimator.draw(duckData.ctx, 0, 0, duckData.element.width, duckData.element.height);
+
+        // Move down
+        const top = parseFloat(duckData.element.style.top);
+        duckData.element.style.top = `${top + 5}px`;
+
+        // Get game background rect
+        const { gameBackground } = gameState.elements;
+        const bgRect = gameBackground.getBoundingClientRect();
+
+        // Continue animation if still on screen
+        if (top < bgRect.height) {
+          duckData.animationId = requestAnimationFrame(fallAnimation);
+        } else {
+          // Remove duck when off screen
+          if (duckData.element.parentNode) {
+            duckData.element.parentNode.removeChild(duckData.element);
+          }
+
+          // Remove from ducks array
+          const duckIndex = gameState.ducks.indexOf(duckData);
+          if (duckIndex !== -1) {
+            gameState.ducks.splice(duckIndex, 1);
+          }
+
+          // Check if level up
+          if (gameState.ducksShot >= 10 * gameState.level) {
+            levelUp();
+          } else if (gameState.ducks.length === 0 && gameState.ammo > 0) {
+            // Spawn more ducks if none left and we have ammo
+            setTimeout(() => {
+              spawnDucks(1);
+            }, 1000);
+          }
+        }
+      };
+
+      // Start falling animation
+      duckData.animationId = requestAnimationFrame(fallAnimation);
+    } else {
+      // Fallback for non-canvas ducks
+      duckData.element.style.backgroundImage = `url("/images/win95/duck/${duckData.type || 'blue'}-falling.gif")`;
+      duckData.element.style.transition = 'top 1s ease-in';
+      duckData.element.style.top = '100%';
+
+      // Remove duck after animation
+      setTimeout(() => {
+        if (duckData.element.parentNode) {
+          duckData.element.parentNode.removeChild(duckData.element);
+        }
+
+        // Remove from ducks array
+        const duckIndex = gameState.ducks.indexOf(duckData);
+        if (duckIndex !== -1) {
+          gameState.ducks.splice(duckIndex, 1);
+        }
+
+        // Check if level up
+        if (gameState.ducksShot >= 10 * gameState.level) {
+          levelUp();
+        } else if (gameState.ducks.length === 0 && gameState.ammo > 0) {
+          // Spawn more ducks if none left and we have ammo
+          setTimeout(() => {
+            spawnDucks(1);
+          }, 1000);
+        }
+      }, 1000);
+    }
 
     // Play falling sound
     playSound('fall');
-
-    // Remove duck after animation
-    setTimeout(() => {
-      if (duckData.element.parentNode) {
-        duckData.element.parentNode.removeChild(duckData.element);
-      }
-
-      // Remove from state
-      gameState.ducks = gameState.ducks.filter(d => d !== duckData);
-
-      // Increment ducks shot
-      gameState.ducksShot++;
-
-      // Check if level up
-      if (gameState.ducksShot >= 10 * gameState.level) {
-        levelUp();
-      } else if (gameState.ducks.length === 0 && gameState.ammo > 0) {
-        // Spawn more ducks if none left and we have ammo
-        setTimeout(() => {
-          spawnDucks(1);
-        }, 1000);
-      }
-    }, 1000);
   }, 500);
 }
 
@@ -589,14 +869,33 @@ function duckEscaped(duckData) {
     // Increment escaped ducks
     gameState.ducksEscaped++;
 
-    // Check if game over
-    if (gameState.ducksEscaped >= gameState.maxDucksEscaped) {
-      gameOver();
-    } else if (gameState.ducks.length === 0 && gameState.ammo > 0) {
-      // Spawn more ducks if none left and we have ammo
-      setTimeout(() => {
-        spawnDucks(1);
-      }, 1000);
+    // Show dog laughing if available
+    if (gameState.dog) {
+      // Play dog laugh sound
+      playSound('dogLaugh');
+
+      // Show dog laughing animation
+      gameState.dog.playLaugh(() => {
+        // Check if game over
+        if (gameState.ducksEscaped >= gameState.maxDucksEscaped) {
+          gameOver();
+        } else if (gameState.ducks.length === 0 && gameState.ammo > 0) {
+          // Spawn more ducks if none left and we have ammo
+          setTimeout(() => {
+            spawnDucks(1);
+          }, 1000);
+        }
+      });
+    } else {
+      // Check if game over
+      if (gameState.ducksEscaped >= gameState.maxDucksEscaped) {
+        gameOver();
+      } else if (gameState.ducks.length === 0 && gameState.ammo > 0) {
+        // Spawn more ducks if none left and we have ammo
+        setTimeout(() => {
+          spawnDucks(1);
+        }, 1000);
+      }
     }
   }, 1000);
 }
@@ -1711,10 +2010,82 @@ function initDuckHunt() {
   // Load high score
   loadHighScore();
 
+  // Add window close event listener for cleanup
+  const closeButton = duckHuntWindow.querySelector('.window-close');
+  if (closeButton) {
+    closeButton.addEventListener('click', cleanupDuckHunt);
+  }
+
   // Store the game instance in the global namespace
-  NosytDuckHunt.game = { state: gameState };
+  NosytDuckHunt.game = {
+    state: gameState,
+    cleanup: cleanupDuckHunt
+  };
 
   console.log('Duck Hunt game initialized');
+}
+
+/**
+ * Clean up Duck Hunt resources to prevent memory leaks
+ */
+function cleanupDuckHunt() {
+  console.log('Cleaning up Duck Hunt resources...');
+
+  // Stop all animations and timers
+  if (gameState.animationFrameId) {
+    cancelAnimationFrame(gameState.animationFrameId);
+    gameState.animationFrameId = null;
+  }
+
+  // Clear all timeouts
+  if (gameState.timeouts) {
+    gameState.timeouts.forEach(timeoutId => clearTimeout(timeoutId));
+    gameState.timeouts = [];
+  }
+
+  // Clear all intervals
+  if (gameState.intervals) {
+    gameState.intervals.forEach(intervalId => clearInterval(intervalId));
+    gameState.intervals = [];
+  }
+
+  // Remove duck escape timers
+  if (gameState.ducks) {
+    gameState.ducks.forEach(duck => {
+      if (duck.escapeTimer) {
+        clearTimeout(duck.escapeTimer);
+      }
+      if (duck.animationId) {
+        cancelAnimationFrame(duck.animationId);
+      }
+    });
+  }
+
+  // Remove event listeners
+  const { gameBackground, startButton } = gameState.elements;
+
+  if (gameBackground) {
+    // Use cloneNode to remove all event listeners
+    const newGameBackground = gameBackground.cloneNode(true);
+    if (gameBackground.parentNode) {
+      gameBackground.parentNode.replaceChild(newGameBackground, gameBackground);
+    }
+    gameState.elements.gameBackground = newGameBackground;
+  }
+
+  if (startButton) {
+    const newStartButton = startButton.cloneNode(true);
+    if (startButton.parentNode) {
+      startButton.parentNode.replaceChild(newStartButton, startButton);
+    }
+    gameState.elements.startButton = newStartButton;
+  }
+
+  // Reset game state
+  gameState.active = false;
+  gameState.ducks = [];
+
+  console.log('Duck Hunt cleanup complete');
 }
 
 /**

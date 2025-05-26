@@ -6,35 +6,51 @@ import GlitchText from '../../components/GlitchText.astro';
 const pageTitle = "Blog - NosytLabs";
 const pageDescription = "Explore our blog for insights on AI tools, web development, 3D printing, and content creation.";
 
-// Get all blog posts from markdown and astro files
-const mdPosts = await Astro.glob('./*.md');
-const astroPosts = await Astro.glob('./*.astro').then(posts =>
-  // Filter out the index.astro file
-  posts.filter(post => post.url !== '/blog')
+// Get all blog posts from markdown files only (astro files have different structure)
+const mdPosts = await Astro.glob('./*.md').then(posts =>
+  // Filter out the index.md file
+  posts.filter(post => !post.url?.endsWith('/blog') && !post.url?.endsWith('/blog/'))
 );
 
-// Combine all posts
-const allPosts = [...mdPosts, ...astroPosts];
+// Create blog post data from markdown files
+const blogPosts = mdPosts.map(post => {
+  // Ensure frontmatter exists and has required fields
+  const frontmatter = post.frontmatter || {};
+  const title = frontmatter.title || 'Untitled Post';
+  const excerpt = frontmatter.excerpt || 'No excerpt available';
+  const date = frontmatter.date || '2025-01-01';
+  const author = frontmatter.author || 'NosytLabs';
+  const tags = frontmatter.tags || ['AI Tools'];
+  const image = frontmatter.image || '/images/blog/default.jpg';
+  
+  let readTime = '5 min read';
+  try {
+    if (post.rawContent && typeof post.rawContent === 'function') {
+      const wordCount = post.rawContent().split(' ').length;
+      readTime = `${Math.ceil(wordCount / 200)} min read`;
+    }
+  } catch (e) {
+    // Fallback if rawContent is not available
+    readTime = '5 min read';
+  }
 
-// Create blog post data from all files
-const blogPosts = allPosts.map(post => {
   return {
     id: post.url?.split('/').pop() || '',
-    title: post.frontmatter.title,
+    title,
     slug: post.url?.split('/').pop() || '',
-    excerpt: post.frontmatter.excerpt,
-    date: new Date(post.frontmatter.date).toLocaleDateString('en-US', {
+    excerpt,
+    date: new Date(date).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     }),
-    author: post.frontmatter.author,
-    category: post.frontmatter.tags?.[0] || 'AI Tools',
-    tags: post.frontmatter.tags || [],
-    image: post.frontmatter.image || '/images/blog/default.jpg',
-    readTime: `${Math.ceil(post.rawContent().split(' ').length / 200)} min read`
+    author,
+    category: tags[0] || 'AI Tools',
+    tags,
+    image,
+    readTime
   };
-});
+}).filter(post => post.title !== 'Untitled Post'); // Filter out posts without proper frontmatter
 
 // Categories for filtering
 const categories = [...new Set(blogPosts.map(post => post.category))];

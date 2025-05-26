@@ -1,9 +1,52 @@
 /**
- * Particles.js Configuration
- * This file contains the configuration for the particles.js library
- * Used for creating interactive particle backgrounds throughout the site
- * Optimized for better performance and visual appeal
+ * Particles Configuration Script
+ *
+ * This script initializes particle backgrounds throughout the site
+ * with optimized settings for better performance and visual appeal.
+ *
+ * Features:
+ * - Robust error handling with CSS fallback
+ * - Support for reduced motion preferences
+ * - NosytLabs brand colors (purple and orange)
+ * - Optimized performance settings
  */
+
+/**
+ * Helper function to convert color string to RGB object
+ * @param {string} color - Color string in hex or rgb format
+ * @returns {object|null} RGB object with r, g, b properties or null if conversion fails
+ */
+function colorToRgb(color) {
+  let rgb = null;
+
+  // Handle different color formats
+  if (typeof color === 'string') {
+    if (color.startsWith('rgb')) {
+      // Extract RGB values from rgb/rgba string
+      const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
+      if (match) {
+        rgb = {
+          r: parseInt(match[1], 10),
+          g: parseInt(match[2], 10),
+          b: parseInt(match[3], 10)
+        };
+      }
+    } else if (color.startsWith('#')) {
+      // Convert hex to RGB
+      const hex = color.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i, (m, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      if (result) {
+        rgb = {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+        };
+      }
+    }
+  }
+
+  return rgb;
+}
 
 // Initialize particles on DOM ready with error handling
 document.addEventListener('DOMContentLoaded', function() {
@@ -47,7 +90,20 @@ function initializeParticles() {
     const connectionColor = particleContainer.getAttribute('data-connection-color') || 'rgba(255, 107, 0, 0.1)';
     const isInteractive = particleContainer.getAttribute('data-interactive') !== 'false';
 
-    // Configure particles with reduced settings for better performance
+    // Ensure container has an ID
+    if (!particleContainer.id) {
+      particleContainer.id = 'particles-container';
+    }
+
+    // Skip if already initialized
+    if (particleContainer.classList.contains('particles-initialized')) {
+      return;
+    }
+
+    // Mark as initialized
+    particleContainer.classList.add('particles-initialized');
+
+    // Configure particles
     const config = {
       "particles": {
         "number": {
@@ -96,7 +152,7 @@ function initializeParticles() {
         },
         "move": {
           "enable": !prefersReducedMotion,
-          "speed": 1,
+          "speed": 2,
           "direction": "none",
           "random": true,
           "straight": false,
@@ -131,7 +187,7 @@ function initializeParticles() {
           },
           "bubble": {
             "distance": 400,
-            "size": 40,
+            "size": 4.5,
             "duration": 2,
             "opacity": 8,
             "speed": 3
@@ -154,13 +210,32 @@ function initializeParticles() {
     // Initialize particles with error handling
     try {
       // Check if element exists first
-      if (document.getElementById('particle-background')) {
-        particlesJS('particle-background', config);
+      if (document.getElementById(particleContainer.id)) {
+        // Add color_rgb_line property to prevent "Cannot read properties of null (reading 'r')" error
+        if (config.particles.line_linked && config.particles.line_linked.enable) {
+          // Convert color to RGB format using helper function
+          const color = config.particles.line_linked.color;
+          const rgb = colorToRgb(color);
+
+          // Set color_rgb_line property to prevent error
+          if (rgb) {
+            config.particles.line_linked.color_rgb_line = rgb;
+          } else {
+            // Default fallback color
+            config.particles.line_linked.color_rgb_line = { r: 124, g: 58, b: 237 }; // Purple
+          }
+        }
+
+        particlesJS(particleContainer.id, config);
+        console.log(`Particles initialized for ${particleContainer.id}`);
       } else {
-        console.log('Particle background element not found, skipping initialization');
+        console.log('Particle container element not found, skipping initialization');
       }
     } catch (error) {
-      console.error('Failed to initialize particle background:', error);
+      console.error('Failed to initialize particle container:', error);
+
+      // Create CSS fallback animation
+      createCSSFallback(particleContainer, particleContainer.id);
     }
   }
 
@@ -187,7 +262,7 @@ function initializeParticles() {
     const interactive = background.getAttribute('data-interactive') !== 'false';
     const connectParticles = background.getAttribute('data-connect-particles') !== 'false';
 
-    // Create configuration
+    // Configure particles
     const config = {
       "particles": {
         "number": {
@@ -295,14 +370,111 @@ function initializeParticles() {
     try {
       // Check if element exists first
       if (document.getElementById(id)) {
+        // Add color_rgb_line property to prevent "Cannot read properties of null (reading 'r')" error
+        if (config.particles.line_linked && config.particles.line_linked.enable) {
+          // Convert color to RGB format using helper function
+          const color = config.particles.line_linked.color;
+          const rgb = colorToRgb(color);
+
+          // Set color_rgb_line property to prevent error
+          if (rgb) {
+            config.particles.line_linked.color_rgb_line = rgb;
+          } else {
+            // Default fallback color
+            config.particles.line_linked.color_rgb_line = { r: 124, g: 58, b: 237 }; // Purple
+          }
+        }
+
         particlesJS(id, config);
+        console.log(`Particles initialized for ${id}`);
       } else {
         console.log(`Particle element with ID ${id} not found, skipping initialization`);
       }
     } catch (error) {
       console.error(`Failed to initialize particles for ${id}:`, error);
+
+      // Create CSS fallback animation
+      createCSSFallback(background, id);
     }
   });
+}
+
+/**
+ * Create a CSS fallback animation when particles.js fails to initialize
+ * @param {Element} element - The element to add the fallback animation to
+ * @param {string} id - The ID of the element
+ */
+function createCSSFallback(element, id) {
+  if (!element) return;
+
+  // Add a class to indicate fallback is active
+  element.classList.add('particles-fallback');
+
+  // Get colors from data attributes or use defaults
+  const primaryColor = element.getAttribute('data-color') || 'rgba(124, 58, 237, 0.5)'; // Purple
+  const secondaryColor = element.getAttribute('data-secondary-color') || 'rgba(255, 107, 0, 0.5)'; // Orange
+
+  // Create fallback particles
+  const particleCount = Math.min(parseInt(element.getAttribute('data-particle-count') || '20'), 20);
+
+  // Clear any existing fallback particles
+  const existingParticles = element.querySelectorAll('.fallback-particle');
+  existingParticles.forEach(p => p.remove());
+
+  // Create new fallback particles
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'fallback-particle';
+
+    // Randomize particle properties
+    const size = Math.floor(Math.random() * 5) + 2; // 2-6px
+    const posX = Math.random() * 100; // 0-100%
+    const posY = Math.random() * 100; // 0-100%
+    const opacity = Math.random() * 0.5 + 0.1; // 0.1-0.6
+    const color = Math.random() > 0.5 ? primaryColor : secondaryColor;
+    const delay = Math.random() * 5; // 0-5s delay
+    const duration = Math.random() * 20 + 10; // 10-30s duration
+
+    // Apply styles
+    particle.style.position = 'absolute';
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.borderRadius = '50%';
+    particle.style.backgroundColor = color;
+    particle.style.opacity = opacity;
+    particle.style.left = `${posX}%`;
+    particle.style.top = `${posY}%`;
+    particle.style.animation = `particle-float ${duration}s ease-in-out ${delay}s infinite`;
+
+    // Add to container
+    element.appendChild(particle);
+  }
+
+  // Add animation keyframes if they don't exist
+  if (!document.getElementById('particle-fallback-keyframes')) {
+    const style = document.createElement('style');
+    style.id = 'particle-fallback-keyframes';
+    style.textContent = `
+      @keyframes particle-float {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(10px, -10px); }
+        50% { transform: translate(20px, 10px); }
+        75% { transform: translate(-10px, 15px); }
+      }
+      .particles-fallback {
+        position: relative;
+        overflow: hidden;
+      }
+      .fallback-particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  console.log(`Created CSS fallback animation for ${id}`);
 }
 
 /**
@@ -344,31 +516,32 @@ function initializeHeroParticles() {
 
     // Mark as initialized
     heroParticles.classList.add('particles-initialized');
-    console.log(`Initializing hero particles for ${heroParticles.id}`);
 
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Get configuration from data attributes with fallbacks
-    const color = heroParticles.getAttribute('data-color') || 'rgba(255, 255, 255, 0.7)';
-    const particleCount = parseInt(heroParticles.getAttribute('data-particle-count') || '40', 10); // Reduced count for better performance
-    const particleSize = parseFloat(heroParticles.getAttribute('data-particle-size') || '3');
-    const particleSpeed = parseFloat(heroParticles.getAttribute('data-particle-speed') || '0.8'); // Slightly slower for better performance
+    // Get custom attributes if available
+    const color = heroParticles.getAttribute('data-color') || 'rgba(124, 58, 237, 0.5)'; // Purple
+    const secondaryColor = heroParticles.getAttribute('data-secondary-color') || 'rgba(255, 107, 0, 0.5)'; // Orange
+    const particleCount = parseInt(heroParticles.getAttribute('data-particle-count') || '100');
+    const particleSize = parseInt(heroParticles.getAttribute('data-particle-size') || '3');
+    const particleSpeed = parseFloat(heroParticles.getAttribute('data-particle-speed') || '1');
     const interactive = heroParticles.getAttribute('data-interactive') !== 'false';
     const connectParticles = heroParticles.getAttribute('data-connect-particles') !== 'false';
+    const useGradient = heroParticles.getAttribute('data-gradient') === 'true';
 
-    // Enhanced configuration for hero section with better performance
+    // Configure particles with brand colors
     const config = {
       "particles": {
         "number": {
-          "value": prefersReducedMotion ? Math.min(15, particleCount) : particleCount,
+          "value": prefersReducedMotion ? Math.min(30, particleCount) : particleCount,
           "density": {
             "enable": true,
-            "value_area": 1200 // Increased for better distribution
+            "value_area": 800
           }
         },
         "color": {
-          "value": color
+          "value": useGradient ? [color, secondaryColor] : color
         },
         "shape": {
           "type": "circle",
@@ -378,11 +551,11 @@ function initializeHeroParticles() {
           }
         },
         "opacity": {
-          "value": 0.6,
+          "value": 0.5,
           "random": true,
           "anim": {
             "enable": !prefersReducedMotion,
-            "speed": 0.5, // Slower animation for better performance
+            "speed": 1,
             "opacity_min": 0.1,
             "sync": false
           }
@@ -392,15 +565,15 @@ function initializeHeroParticles() {
           "random": true,
           "anim": {
             "enable": !prefersReducedMotion,
-            "speed": 1,
-            "size_min": 0.5,
+            "speed": 2,
+            "size_min": 0.1,
             "sync": false
           }
         },
         "line_linked": {
           "enable": connectParticles,
           "distance": 150,
-          "color": color,
+          "color": useGradient ? secondaryColor : color,
           "opacity": 0.4,
           "width": 1
         },
@@ -413,7 +586,7 @@ function initializeHeroParticles() {
           "out_mode": "out",
           "bounce": false,
           "attract": {
-            "enable": false,
+            "enable": true,
             "rotateX": 600,
             "rotateY": 1200
           }
@@ -441,7 +614,7 @@ function initializeHeroParticles() {
           },
           "bubble": {
             "distance": 400,
-            "size": 40,
+            "size": particleSize * 1.5,
             "duration": 2,
             "opacity": 8,
             "speed": 3
@@ -463,6 +636,21 @@ function initializeHeroParticles() {
 
     // Initialize particles.js for hero section
     try {
+      // Add color_rgb_line property to prevent "Cannot read properties of null (reading 'r')" error
+      if (config.particles.line_linked && config.particles.line_linked.enable) {
+        // Convert color to RGB format using helper function
+        const color = config.particles.line_linked.color;
+        const rgb = colorToRgb(color);
+
+        // Set color_rgb_line property to prevent error
+        if (rgb) {
+          config.particles.line_linked.color_rgb_line = rgb;
+        } else {
+          // Default fallback color
+          config.particles.line_linked.color_rgb_line = { r: 124, g: 58, b: 237 }; // Purple
+        }
+      }
+
       particlesJS(heroParticles.id, config);
       console.log(`Hero particles initialized with optimized settings for ${heroParticles.id}`);
     } catch (error) {
@@ -481,11 +669,18 @@ function initializeHeroParticles() {
         canvas.className = 'particles-js-canvas-el';
         heroParticles.appendChild(canvas);
 
-        // Try to initialize again
+        // Try to initialize again with color_rgb_line explicitly set
+        if (config.particles.line_linked && config.particles.line_linked.enable) {
+          config.particles.line_linked.color_rgb_line = { r: 124, g: 58, b: 237 }; // Purple
+        }
+
         particlesJS(heroParticles.id, config);
         console.log(`Hero particles initialized with fallback method for ${heroParticles.id}`);
       } catch (fallbackError) {
         console.error('Fallback initialization also failed:', fallbackError);
+
+        // Create CSS fallback animation as last resort
+        createCSSFallback(heroParticles, heroParticles.id);
       }
     }
   } else {

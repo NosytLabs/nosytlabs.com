@@ -1,8 +1,10 @@
-# Doom II WebAssembly Integration
+# Doom II WebAssembly Integration [REMOVED]
 
-This directory contains the WebAssembly build of Doom II and its required assets for NosytOS95.
+> **Note: Doom II has been intentionally removed from the current version of NosytOS95.**
+>
+> This directory is maintained for historical reference and potential future reintegration.
 
-## Required Files
+## Original Required Files (Not Currently Used)
 
 - `doom2.wasm` - The WebAssembly module containing the Doom II engine
 - `doom2.data` - Game data file containing textures, sprites, and levels

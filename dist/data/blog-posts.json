@@ -63,25 +63,25 @@
     {
       "id": "ai-trends-2025",
       "title": "AI Trends to Watch in 2025",
-      "excerpt": "Explore the cutting-edge AI technologies and trends that will shape the business landscape in 2025 and beyond.",
-      "image": "/images/blog/placeholder.svg",
+      "excerpt": "Explore the cutting-edge AI technologies and trends that will shape the business landscape in 2025 and beyond, from generative AI to autonomous systems.",
+      "image": "/images/blog/ai-trends-2025.jpg",
       "author": "Tycen",
       "authorImage": "/images/authors/tycen.jpg",
       "date": "April 15, 2025",
       "category": "Artificial Intelligence",
-      "tags": ["AI", "Machine Learning", "Business Technology", "Future Tech"],
+      "tags": ["AI", "Machine Learning", "Business Technology", "Future Tech", "Generative AI", "Autonomous Systems"],
       "featured": false
     },
     {
       "id": "future-of-3d-printing-2025",
       "title": "The Future of 3D Printing in 2025 and Beyond",
-      "excerpt": "Explore the latest advancements in 3D printing technology, from high-resolution resin printers to AI-assisted modeling and sustainable materials.",
-      "image": "/images/blog/placeholder.svg",
+      "excerpt": "Explore the latest advancements in 3D printing technology, from high-resolution resin printers to AI-assisted modeling and sustainable materials that are revolutionizing manufacturing.",
+      "image": "/images/blog/future-3d-printing.jpg",
       "author": "Tycen",
       "authorImage": "/images/authors/tycen.jpg",
       "date": "April 10, 2025",
       "category": "3D Printing",
-      "tags": ["3D Printing", "Creality", "Manufacturing", "Technology"],
+      "tags": ["3D Printing", "Creality", "Manufacturing", "Technology", "Sustainable Materials", "AI Modeling"],
       "featured": false
     },
     {

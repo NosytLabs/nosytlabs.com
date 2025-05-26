@@ -8,14 +8,25 @@
  * - Theme management and UI interactions
  * - Service worker registration
  *
- * Version 4.0 - Performance Optimized:
+ * Version 4.1 - Performance and Reliability Optimized:
  * - Implemented advanced resource loading strategies
  * - Added network-aware loading for better performance on all devices
  * - Enhanced image loading with WebP and AVIF support
  * - Improved code splitting and lazy loading
  * - Reduced initial load time with critical CSS extraction
  * - Added support for responsive images and better caching
+ * - Enhanced service worker for sound file caching and offline support
+ * - Improved error handling for sound loading
  */
+
+// Load service worker registration script
+document.addEventListener('DOMContentLoaded', function() {
+  // Load the service worker registration script
+  const script = document.createElement('script');
+  script.src = '/scripts/service-worker-registration.js';
+  script.defer = true;
+  document.head.appendChild(script);
+});
 
 (function() {
   'use strict';
@@ -508,144 +519,25 @@
       return;
     }
 
-    const particleContainers = document.querySelectorAll('.particles-container, .particle-container, #particles-js');
-    if (particleContainers.length === 0) return;
-
-    // Check if user prefers reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      console.log('Reduced motion preference detected, disabling particle effects');
+    // Check if particles.js is loaded
+    if (typeof particlesJS === 'undefined') {
+      console.warn('Particles.js library not found. Please check script inclusion.');
       return;
     }
 
-    // Initialize particles.js if available
-    if (typeof particlesJS !== 'undefined') {
-      particleContainers.forEach(container => {
-        const containerId = container.id;
-        if (!containerId) {
-          console.warn('Particle container missing ID, skipping initialization');
-          return;
-        }
-
-        // Mark as initialized to prevent double initialization
-        container.classList.add('particles-initialized');
-
-        // Get custom attributes if available
-        const color = container.getAttribute('data-color') || '#ffffff';
-        const particleCount = parseInt(container.getAttribute('data-particle-count') || '80');
-        const particleSize = parseInt(container.getAttribute('data-particle-size') || '3');
-        const particleSpeed = parseFloat(container.getAttribute('data-particle-speed') || '1');
-        const interactive = container.getAttribute('data-interactive') !== 'false';
-        const connectParticles = container.getAttribute('data-connect-particles') !== 'false';
-
-        particlesJS(containerId, {
-          "particles": {
-            "number": {
-              "value": prefersReducedMotion ? Math.min(30, particleCount) : particleCount,
-              "density": {
-                "enable": true,
-                "value_area": 800
-              }
-            },
-            "color": {
-              "value": color
-            },
-            "shape": {
-              "type": "circle",
-              "stroke": {
-                "width": 0,
-                "color": "#000000"
-              }
-            },
-            "opacity": {
-              "value": 0.5,
-              "random": true,
-              "anim": {
-                "enable": !prefersReducedMotion,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-              }
-            },
-            "size": {
-              "value": particleSize,
-              "random": true,
-              "anim": {
-                "enable": !prefersReducedMotion,
-                "speed": 2,
-                "size_min": 0.1,
-                "sync": false
-              }
-            },
-            "line_linked": {
-              "enable": connectParticles,
-              "distance": 150,
-              "color": color,
-              "opacity": 0.4,
-              "width": 1
-            },
-            "move": {
-              "enable": !prefersReducedMotion,
-              "speed": particleSpeed,
-              "direction": "none",
-              "random": true,
-              "straight": false,
-              "out_mode": "out",
-              "bounce": false,
-              "attract": {
-                "enable": true,
-                "rotateX": 600,
-                "rotateY": 1200
-              }
-            }
-          },
-          "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-              "onhover": {
-                "enable": interactive && !prefersReducedMotion,
-                "mode": "grab"
-              },
-              "onclick": {
-                "enable": interactive && !prefersReducedMotion,
-                "mode": "push"
-              },
-              "resize": true
-            },
-            "modes": {
-              "grab": {
-                "distance": 140,
-                "line_linked": {
-                  "opacity": 1
-                }
-              },
-              "bubble": {
-                "distance": 400,
-                "size": particleSize * 1.5,
-                "duration": 2,
-                "opacity": 8,
-                "speed": 3
-              },
-              "repulse": {
-                "distance": 200,
-                "duration": 0.4
-              },
-              "push": {
-                "particles_nb": 4
-              },
-              "remove": {
-                "particles_nb": 2
-              }
-            }
-          },
-          "retina_detect": true
-        });
-
-        console.log(`Particles initialized for ${containerId}`);
-      });
-    } else {
-      console.warn('Particles.js library not found. Please check script inclusion.');
+    // Delegate to particles-config.js if available
+    if (typeof initializeParticles === 'function' && typeof initializeHeroParticles === 'function') {
+      try {
+        initializeParticles();
+        initializeHeroParticles();
+        console.log('Particles initialized via particles-config.js');
+      } catch (error) {
+        console.error('Error initializing particles via particles-config.js:', error);
+      }
+      return;
     }
+
+    console.log('Particles-config.js not found, skipping particle initialization');
   }
 
   /**

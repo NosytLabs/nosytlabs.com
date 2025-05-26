@@ -130,11 +130,11 @@
             <div class="title-bar-text">NosytLabs - Network Error</div>
         </div>
         <div class="window-content">
-            <img src="images/logo-new.svg" alt="NosytLabs Logo" class="logo">
+            <img src="images/nosytlabs-logo-2025.svg" alt="NosytLabs Logo" class="logo">
             <span class="offline-status" role="status" aria-live="polite">You're currently offline</span>
             <h2 style="font-size: 16px; margin: 10px 0;">No Internet Connection</h2>
             <p style="font-size: 12px;">The page you're trying to view is not currently available. Please check your connection and try again.</p>
-            
+
             <div>
                 <button class="button" onclick="window.location.reload()" aria-label="Retry connection">
                     Try Again
@@ -158,12 +158,12 @@
         async function showCachedContent() {
             const cachedContent = document.getElementById('cachedContent');
             const cachedList = document.getElementById('cachedList');
-            
+
             try {
                 // Get all caches
                 const cacheKeys = await caches.keys();
                 const cachedRequests = new Set();
-                
+
                 // Collect all cached URLs
                 for (const key of cacheKeys) {
                     const cache = await caches.open(key);
@@ -175,7 +175,7 @@
                         }
                     });
                 }
-                
+
                 // Clear and populate the list
                 cachedList.innerHTML = '';
                 Array.from(cachedRequests)
@@ -186,7 +186,7 @@
                         li.onclick = () => window.location.href = path;
                         cachedList.appendChild(li);
                     });
-                
+
                 cachedContent.style.display = 'block';
             } catch (error) {
                 console.error('Error loading cached content:', error);

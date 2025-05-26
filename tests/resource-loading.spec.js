@@ -6,7 +6,7 @@
  */
 
 // @ts-check
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
 // Test resource preloading
 test('Critical resources should be preloaded', async ({ page }) => {

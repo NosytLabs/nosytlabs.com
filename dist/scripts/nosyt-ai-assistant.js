@@ -1,6 +1,9 @@
 /**
  * Nosyt AI Assistant (Clippy-style) for NosytOS95
  * An interactive AI assistant that provides helpful responses and suggestions
+ *
+ * NOTE: This feature is currently in development and marked as "Coming Soon - Q3 2025"
+ * Basic functionality is implemented but full capabilities are still being developed
  */
 
 class NosytAIAssistant {
@@ -25,9 +28,9 @@ class NosytAIAssistant {
     // Predefined responses
     this.responses = {
       greeting: [
-        "Hello! I'm Nosyt AI Assistant. How can I help you today?",
-        "Welcome to NosytOS95! I'm here to assist you with anything you need.",
-        "Hi there! I'm your friendly AI assistant. What would you like to know?"
+        "Hello! I'm Nosyt AI Assistant (Coming Soon - Q3 2025). I have limited functionality right now, but I'll try to help!",
+        "Welcome to NosytOS95! I'm the AI Assistant preview (Full version coming Q3 2025). What would you like to know?",
+        "Hi there! I'm your friendly AI assistant preview. Full functionality will be available in Q3 2025, but I can answer basic questions now!"
       ],
       farewell: [
         "Goodbye! Feel free to ask if you need anything else.",
