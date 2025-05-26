@@ -1,0 +1,519 @@
+---
+// Vault Shelter Game Page
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Vault Shelter - Resource Management Game | NosytLabs";
+const pageDescription = "Play Vault Shelter, an interactive resource management game inspired by Fallout. Manage your vault, assign dwellers, and survive in the wasteland.";
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
+  <!-- Game Container -->
+  <div class="vault-shelter-container">
+    <!-- Game Header -->
+    <div class="game-header">
+      <div class="vault-info">
+        <h1 class="vault-title">Vault 111</h1>
+        <div class="vault-stats">
+          <div class="stat">
+            <span class="stat-label">Population:</span>
+            <span class="stat-value" id="population">10</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Power:</span>
+            <span class="stat-value" id="power">100</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Food:</span>
+            <span class="stat-value" id="food">100</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Water:</span>
+            <span class="stat-value" id="water">100</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Caps:</span>
+            <span class="stat-value" id="caps">500</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-controls">
+        <button id="pause-btn" class="control-btn">⏸️ Pause</button>
+        <button id="speed-btn" class="control-btn">⏩ Speed</button>
+        <button id="save-btn" class="control-btn">💾 Save</button>
+      </div>
+    </div>
+
+    <!-- Game Canvas -->
+    <div class="game-canvas-container">
+      <canvas id="vault-canvas" width="1200" height="800"></canvas>
+
+      <!-- Game UI Overlay -->
+      <div class="game-ui-overlay">
+        <!-- Resource Bars -->
+        <div class="resource-bars">
+          <div class="resource-bar">
+            <div class="resource-icon">⚡</div>
+            <div class="resource-progress">
+              <div class="progress-bar" id="power-bar" style="width: 100%"></div>
+            </div>
+            <span class="resource-text">Power</span>
+          </div>
+
+          <div class="resource-bar">
+            <div class="resource-icon">🍖</div>
+            <div class="resource-progress">
+              <div class="progress-bar" id="food-bar" style="width: 100%"></div>
+            </div>
+            <span class="resource-text">Food</span>
+          </div>
+
+          <div class="resource-bar">
+            <div class="resource-icon">💧</div>
+            <div class="resource-progress">
+              <div class="progress-bar" id="water-bar" style="width: 100%"></div>
+            </div>
+            <span class="resource-text">Water</span>
+          </div>
+        </div>
+
+        <!-- Build Menu -->
+        <div class="build-menu" id="build-menu">
+          <h3>Build Rooms</h3>
+          <div class="build-options">
+            <button class="build-option" data-room="power">
+              <div class="build-icon">⚡</div>
+              <div class="build-info">
+                <div class="build-name">Power Generator</div>
+                <div class="build-cost">100 Caps</div>
+              </div>
+            </button>
+
+            <button class="build-option" data-room="food">
+              <div class="build-icon">🍖</div>
+              <div class="build-info">
+                <div class="build-name">Diner</div>
+                <div class="build-cost">150 Caps</div>
+              </div>
+            </button>
+
+            <button class="build-option" data-room="water">
+              <div class="build-icon">💧</div>
+              <div class="build-info">
+                <div class="build-name">Water Treatment</div>
+                <div class="build-cost">120 Caps</div>
+              </div>
+            </button>
+
+            <button class="build-option" data-room="living">
+              <div class="build-icon">🏠</div>
+              <div class="build-info">
+                <div class="build-name">Living Quarters</div>
+                <div class="build-cost">200 Caps</div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dweller Panel -->
+        <div class="dweller-panel" id="dweller-panel">
+          <h3>Dwellers</h3>
+          <div class="dweller-list" id="dweller-list">
+            <!-- Dwellers will be populated by JavaScript -->
+          </div>
+          <button id="recruit-btn" class="recruit-btn">Recruit Dweller (50 Caps)</button>
+        </div>
+
+        <!-- Notifications -->
+        <div class="notifications" id="notifications">
+          <!-- Game notifications will appear here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Instructions -->
+    <div class="game-instructions">
+      <h3>How to Play</h3>
+      <ul>
+        <li><strong>Build Rooms:</strong> Click on build options to construct new rooms in your vault</li>
+        <li><strong>Manage Resources:</strong> Keep power, food, and water levels stable</li>
+        <li><strong>Assign Dwellers:</strong> Drag dwellers to rooms to increase production</li>
+        <li><strong>Recruit:</strong> Spend caps to recruit new dwellers for your vault</li>
+        <li><strong>Survive:</strong> Balance resources and population to keep your vault thriving</li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .vault-shelter-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    font-family: 'Courier New', monospace;
+  }
+
+  .game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 2px solid #ffd700;
+  }
+
+  .vault-title {
+    font-size: 2rem;
+    color: #ffd700;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .vault-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: #ccc;
+  }
+
+  .stat-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffd700;
+  }
+
+  .game-controls {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .control-btn {
+    padding: 0.5rem 1rem;
+    background: #4a5568;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background-color 0.3s;
+  }
+
+  .control-btn:hover {
+    background: #2d3748;
+  }
+
+  .game-canvas-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background: #0f0f23;
+  }
+
+  #vault-canvas {
+    border: 2px solid #ffd700;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  }
+
+  .game-ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
+  .resource-bars {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: auto;
+  }
+
+  .resource-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ffd700;
+  }
+
+  .resource-icon {
+    font-size: 1.2rem;
+  }
+
+  .resource-progress {
+    width: 100px;
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff4444, #ffff44, #44ff44);
+    transition: width 0.3s ease;
+  }
+
+  .resource-text {
+    font-size: 0.8rem;
+    color: #ffd700;
+    min-width: 40px;
+  }
+
+  .build-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    padding: 1rem;
+    min-width: 200px;
+    pointer-events: auto;
+  }
+
+  .build-menu h3 {
+    margin: 0 0 1rem 0;
+    color: #ffd700;
+    text-align: center;
+  }
+
+  .build-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .build-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #2d3748;
+    border: 1px solid #4a5568;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .build-option:hover {
+    background: #4a5568;
+    border-color: #ffd700;
+  }
+
+  .build-icon {
+    font-size: 1.5rem;
+  }
+
+  .build-info {
+    flex: 1;
+  }
+
+  .build-name {
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+
+  .build-cost {
+    font-size: 0.8rem;
+    color: #ffd700;
+  }
+
+  .dweller-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    padding: 1rem;
+    min-width: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    pointer-events: auto;
+  }
+
+  .dweller-panel h3 {
+    margin: 0 0 1rem 0;
+    color: #ffd700;
+    text-align: center;
+  }
+
+  .dweller-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .dweller-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: #2d3748;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .dweller-item:hover {
+    background: #4a5568;
+  }
+
+  .recruit-btn {
+    width: 100%;
+    padding: 0.5rem;
+    background: #38a169;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .recruit-btn:hover {
+    background: #2f855a;
+  }
+
+  .recruit-btn:disabled {
+    background: #4a5568;
+    cursor: not-allowed;
+  }
+
+  .notifications {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .notification {
+    background: rgba(0, 0, 0, 0.9);
+    color: #ffd700;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    border: 1px solid #ffd700;
+    margin-bottom: 0.5rem;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .game-instructions {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 8px;
+    border: 1px solid #ffd700;
+  }
+
+  .game-instructions h3 {
+    color: #ffd700;
+    margin-bottom: 1rem;
+  }
+
+  .game-instructions ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .game-instructions li {
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .game-instructions li::before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    color: #ffd700;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .game-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .vault-stats {
+      gap: 1rem;
+    }
+
+    #vault-canvas {
+      width: 100%;
+      height: auto;
+    }
+
+    .build-menu,
+    .dweller-panel {
+      position: relative;
+      margin: 1rem;
+    }
+
+    .resource-bars {
+      position: relative;
+      margin: 1rem;
+    }
+  }
+</style>
+
+<!-- Load the Vault Shelter Game Script -->
+<script src="/scripts/vault-shelter-game.js" defer></script>
+
+<script>
+  // Initialize game when page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('Vault Shelter game page loaded');
+
+    // Show welcome notification
+    setTimeout(() => {
+      showNotification('Welcome to Vault 111! Manage your resources wisely.');
+    }, 1000);
+  });
+
+  function showNotification(message) {
+    const notifications = document.getElementById('notifications');
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    notifications.appendChild(notification);
+
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  }
+</script>

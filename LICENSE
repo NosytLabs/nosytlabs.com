@@ -1,0 +1,91 @@
+MIT License
+
+Copyright (c) 2025 NosytLabs (NOSYT LLC)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## Additional Terms and Acknowledgements
+
+### Third-Party Assets and Inspirations
+
+This project includes recreations and inspirations from various sources:
+
+1. **Windows 95 Interface**: The NosytOS95 interface is a recreation of Microsoft Windows 95 
+   for educational and nostalgic purposes. Microsoft Windows 95 is a trademark of Microsoft Corporation.
+
+2. **Duck Hunt Game**: The Duck Hunt game is an educational recreation inspired by the original 
+   Nintendo Duck Hunt game. Nintendo and Duck Hunt are trademarks of Nintendo Co., Ltd.
+
+3. **Fallout Shelter Mechanics**: The Vault Shelter game mechanics are inspired by Fallout Shelter 
+   by Bethesda Game Studios. Fallout is a trademark of Bethesda Softworks LLC.
+
+### Content and Branding
+
+- **NosytLabs Branding**: All NosytLabs branding, logos, and original content are proprietary 
+  to NOSYT LLC and are not covered under the MIT License.
+
+- **Original Content**: Blog posts, articles, and original written content are proprietary 
+  to NosytLabs and are not covered under the MIT License.
+
+- **User-Generated Content**: Any user-generated content submitted through the website 
+  remains the property of the respective users.
+
+### External Services and APIs
+
+This project integrates with various external services:
+
+- **Creality Cloud**: 3D model integration uses Creality Cloud services
+- **YouTube**: Video content integration uses YouTube's embed system
+- **Kick.com**: Streaming integration uses Kick.com's embed system
+- **Vercel**: Hosting and analytics services
+
+### Usage Guidelines
+
+While the code is open source under the MIT License, please note:
+
+1. **Commercial Use**: You may use this code for commercial purposes, but you cannot 
+   use NosytLabs branding or claim affiliation with NOSYT LLC.
+
+2. **Attribution**: While not required by the MIT License, attribution is appreciated 
+   when using substantial portions of this codebase.
+
+3. **Trademark Respect**: Please respect all third-party trademarks and intellectual 
+   property rights when using or modifying this code.
+
+### Disclaimer
+
+The recreations of Windows 95, Duck Hunt, and other nostalgic elements are created 
+for educational and entertainment purposes only. These recreations are not affiliated 
+with, endorsed by, or connected to the original creators or trademark holders.
+
+### Contact
+
+For questions about licensing, usage, or permissions:
+
+- **Email**: [info@nosytlabs.com](mailto:info@nosytlabs.com)
+- **Website**: [https://nosytlabs.com](https://nosytlabs.com)
+- **GitHub**: [https://github.com/NosytLabs](https://github.com/NosytLabs)
+
+---
+
+**© 2025 NosytLabs (NOSYT LLC). All rights reserved.**
+
+*"Notable Opportunities Shape Your Tomorrow"*

@@ -1,0 +1,211 @@
+{
+  "services": [
+    {
+      "id": "dev-tools",
+      "title": "Development Tools",
+      "shortDescription": "Development tools and resources to help streamline your coding workflow and improve productivity.",
+      "fullDescription": "We offer resources and guidance on development tools that can help improve your coding workflow. Based on our experience with tools like Cursor AI, VS Code extensions, and other productivity enhancers, we can provide recommendations tailored to your specific needs. Note that our services in this area are currently limited to consultation and guidance rather than full implementation.",
+      "icon": "🛠️",
+      "iconType": "tools",
+      "image": "/images/services/web-development.jpg",
+      "features": [
+        "Development environment recommendations",
+        "VS Code extension suggestions",
+        "AI coding tool guidance (Cursor AI, GitHub Copilot)",
+        "Basic workflow optimization tips",
+        "Code quality tool recommendations",
+        "Resource sharing and tutorials",
+        "Limited consultation services (subject to availability)"
+      ],
+      "aiTools": [
+        {
+          "name": "Cursor AI",
+          "description": "A revolutionary code editor built on VSCode that integrates Claude and GPT-4 language models to provide intelligent coding assistance with full codebase context understanding.",
+          "logo": "/images/ai-tools/cursor-ai-logo.png",
+          "website": "https://cursor.com"
+        },
+        {
+          "name": "GitHub Copilot",
+          "description": "An AI pair programmer that offers suggestions for whole lines or entire functions right inside your editor, powered by OpenAI Codex.",
+          "logo": "/images/ai-tools/github-copilot-logo.png",
+          "website": "https://github.com/features/copilot"
+        },
+        {
+          "name": "Docker",
+          "description": "A platform for developing, shipping, and running applications in containers, ensuring consistency across development and production environments.",
+          "logo": "/images/ai-tools/docker-logo.png",
+          "website": "https://www.docker.com"
+        },
+        {
+          "name": "Jest",
+          "description": "A comprehensive JavaScript testing framework with a focus on simplicity, supporting projects using Babel, TypeScript, Node.js, React, and more with intelligent test generation capabilities.",
+          "logo": "/images/ai-tools/jest-logo.png",
+          "website": "https://jestjs.io"
+        }
+      ],
+      "caseStudies": [
+        {
+          "title": "Development Workflow Optimization",
+          "client": "Fortune 500 Financial Institution",
+          "date": "May 2025",
+          "outcome": "25% reduction in development time and 40% improvement in code quality metrics"
+        },
+        {
+          "title": "Developer Productivity Enhancement",
+          "client": "Enterprise Software Company",
+          "date": "April 2025",
+          "outcome": "40% increase in developer productivity and 30% reduction in bugs by implementing modern development tools and practices"
+        }
+      ]
+    },
+    {
+      "id": "vibe-coding",
+      "title": "Vibe Coding",
+      "shortDescription": "Custom web development with a focus on aesthetics, user experience, and unique visual identity.",
+      "fullDescription": "Our upcoming 'Vibe Coding' services will focus on creating visually stunning and unique web experiences that capture your brand's essence and personality. We combine modern frameworks like React and Astro with creative design principles to build websites that stand out from the crowd. This service is currently in development and will be launching soon.",
+      "icon": "🌐",
+      "iconType": "web",
+      "image": "/images/services/web-development.jpg",
+      "features": [
+        "Unique visual identity and aesthetic design",
+        "Custom animations and interactive elements",
+        "Immersive user experiences",
+        "Modern frameworks (React, Astro, Three.js)",
+        "Responsive design with visual flair",
+        "Brand personality integration",
+        "Coming soon (currently in development)"
+      ],
+      "caseStudies": [
+        {
+          "title": "NosytLabs Website",
+          "client": "Internal Project",
+          "date": "2025",
+          "outcome": "Our own website showcases our Vibe Coding approach with unique aesthetics, animations, and interactive elements"
+        }
+      ]
+    },
+    {
+      "id": "web-development",
+      "title": "Web Development",
+      "shortDescription": "Web development services with a focus on modern frameworks like React and Astro.",
+      "fullDescription": "We offer web development services with a focus on modern frameworks like React, Vue, and Astro. Our availability is limited as we primarily work on select projects that align with our expertise. We prioritize responsive design, performance optimization, and SEO best practices in all our web development work.",
+      "icon": "🌐",
+      "iconType": "web",
+      "image": "/images/services/web-development.jpg",
+      "features": [
+        "Responsive design for all devices",
+        "Front-end development (React, Astro, Vue)",
+        "Basic back-end development (Node.js)",
+        "Simple content management systems",
+        "Performance optimization",
+        "SEO best practices implementation",
+        "Limited availability (select projects only)"
+      ],
+      "caseStudies": [
+        {
+          "title": "Portfolio Website Redesign",
+          "client": "Freelance Developer",
+          "date": "February 2025",
+          "outcome": "Created a responsive portfolio website using Astro and TailwindCSS, improving page load times and mobile experience"
+        }
+      ]
+    },
+    {
+      "id": "mobile-development",
+      "title": "Mobile Development",
+      "shortDescription": "Basic mobile application development with React Native for simple use cases.",
+      "fullDescription": "We offer limited mobile development services primarily using React Native for cross-platform applications. Our focus is on simple, functional applications rather than complex enterprise solutions. Please note that our mobile development services are currently in beta and have limited availability.",
+      "icon": "📱",
+      "iconType": "mobile",
+      "image": "/images/services/mobile-development.jpg",
+      "features": [
+        "Cross-platform development with React Native",
+        "Basic UI/UX design for mobile",
+        "Simple app functionality implementation",
+        "Testing on limited device configurations",
+        "Guidance for App Store and Google Play submission",
+        "Basic push notification setup",
+        "Limited availability (beta service)"
+      ],
+      "caseStudies": [
+        {
+          "title": "Simple Task Management App",
+          "client": "Independent Contractor",
+          "date": "January 2025",
+          "outcome": "Developed a basic task management app with React Native for personal productivity tracking"
+        }
+      ]
+    },
+    {
+      "id": "3d-printing",
+      "title": "3D Printing Services",
+      "shortDescription": "Small-scale 3D printing services for simple models and prototypes using Creality and Elegoo printers.",
+      "fullDescription": "We offer small-scale 3D printing services for simple models and prototypes using our Creality and Elegoo printers. Our service is best suited for hobbyists, small projects, and educational purposes. Please note that our capacity is limited, and we primarily focus on FDM printing with PLA and PETG materials, with some resin printing capabilities for smaller detailed objects.",
+      "icon": "🖨️",
+      "iconType": "3dprinting",
+      "image": "/images/services/3d-printing.jpg",
+      "features": [
+        "FDM printing with Creality Ender printers",
+        "Resin printing with Elegoo Mars (limited capacity)",
+        "Basic materials: PLA and PETG for FDM, standard resins",
+        "Simple post-processing (support removal)",
+        "STL file preparation assistance",
+        "Local pickup or basic shipping options",
+        "Limited capacity (small batch projects only)"
+      ],
+      "caseStudies": [
+        {
+          "title": "Tabletop Gaming Miniatures",
+          "client": "Local Gaming Group",
+          "date": "February 2025",
+          "outcome": "Created a set of custom gaming miniatures and terrain pieces for a local D&D group using resin printing"
+        },
+        {
+          "title": "Replacement Parts for Home Appliances",
+          "client": "Residential Customer",
+          "date": "January 2025",
+          "outcome": "Printed replacement knobs and brackets for household appliances, saving the cost of full replacements"
+        },
+        {
+          "title": "Educational Models",
+          "client": "High School Teacher",
+          "date": "March 2025",
+          "outcome": "Produced anatomical models for a biology class to enhance hands-on learning experiences"
+        }
+      ]
+    },
+    {
+      "id": "content-creation",
+      "title": "Content Creation",
+      "shortDescription": "Basic content creation guidance for YouTube and Kick.com with a focus on tech and gaming content.",
+      "fullDescription": "Based on our experience creating content for YouTube (formerly TycenYT) and Kick.com, we offer basic guidance and tips for content creators. Our focus is on tech reviews, gaming content, and tutorials. Please note that we offer limited consultation services rather than full production services, and our availability depends on our own content creation schedule.",
+      "icon": "🎬",
+      "iconType": "video",
+      "image": "/images/services/content-creation.jpg",
+      "features": [
+        "Basic YouTube channel setup guidance",
+        "Kick.com streaming setup recommendations",
+        "Simple content strategy suggestions",
+        "Thumbnail design tips and feedback",
+        "Video editing software recommendations",
+        "Equipment recommendations for beginners",
+        "Basic SEO and discoverability tips",
+        "Limited consultation availability"
+      ],
+      "caseStudies": [
+        {
+          "title": "YouTube Setup Guidance",
+          "client": "Tech Enthusiast",
+          "date": "March 2025",
+          "outcome": "Helped a tech enthusiast set up their first YouTube channel with proper equipment and basic SEO practices"
+        },
+        {
+          "title": "Kick.com Stream Setup",
+          "client": "Gaming Hobbyist",
+          "date": "January 2025",
+          "outcome": "Provided guidance on basic stream setup, OBS configuration, and engagement strategies for a new Kick.com streamer"
+        }
+      ]
+    }
+  ]
+}

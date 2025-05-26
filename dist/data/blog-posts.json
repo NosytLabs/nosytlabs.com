@@ -1,0 +1,124 @@
+{
+  "posts": [
+    {
+      "id": "cursor-ai",
+      "title": "Cursor AI: A Review of the Free AI Coding Assistant",
+      "excerpt": "A hands-on review of Cursor AI, a code editor built on VSCode that offers AI-assisted features like code completion, explanations, and refactoring suggestions.",
+      "image": "/images/blog/cursor-ai.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "March 15, 2025",
+      "category": "Development Tools",
+      "tags": ["Cursor AI", "Code Editor", "Development", "Coding", "Productivity", "AI Tools"],
+      "featured": true
+    },
+    {
+      "id": "crypto-mining-box",
+      "title": "What's Inside This Mystery Crypto Mining Box?",
+      "excerpt": "An unboxing and analysis of a mystery crypto mining device that claims to earn passive income. We examine its hardware, power consumption, and actual earnings.",
+      "image": "/images/blog/crypto-box-thumbnail.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "February 22, 2025",
+      "category": "Crypto Mining",
+      "tags": ["Crypto Mining", "Hardware Review", "Passive Income", "Cryptocurrency", "Mining Rig"],
+      "featured": true
+    },
+    {
+      "id": "jasminer-mining-rig",
+      "title": "Jasminer X16Q Mining Rig: Unboxing and Performance Review",
+      "excerpt": "A detailed review of the Jasminer X16Q mining rig, including unboxing, setup process, power consumption, and mining performance for Ethereum and other cryptocurrencies.",
+      "image": "/images/blog/jasminer-thumbnail.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "January 18, 2025",
+      "category": "Crypto Mining",
+      "tags": ["Jasminer", "Mining Rig", "Ethereum Mining", "Hardware Review", "Cryptocurrency"],
+      "featured": false
+    },
+    {
+      "id": "3d-printing-basics",
+      "title": "3D Printing Basics: Getting Started with FDM and Resin Printing",
+      "excerpt": "A beginner's guide to 3D printing covering the differences between FDM and resin printing, recommended starter printers, filament types, and basic troubleshooting tips.",
+      "image": "/images/blog/3d-printing-basics.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "February 5, 2025",
+      "category": "3D Printing",
+      "tags": ["3D Printing", "FDM", "Resin Printing", "Beginner Guide", "Creality", "Elegoo"],
+      "featured": false
+    },
+    {
+      "id": "passive-income-apps",
+      "title": "Realistic Earnings from Passive Income Apps: What to Expect",
+      "excerpt": "An honest look at what you can realistically earn from passive income apps like HoneyGain, EarnApp, and Repocket based on actual data and user reports.",
+      "image": "/images/blog/passive-income-apps.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "January 25, 2025",
+      "category": "Passive Income",
+      "tags": ["Passive Income", "HoneyGain", "EarnApp", "Repocket", "Bandwidth Sharing", "Realistic Earnings"],
+      "featured": true
+    },
+    {
+      "id": "ai-trends-2025",
+      "title": "AI Trends to Watch in 2025",
+      "excerpt": "Explore the cutting-edge AI technologies and trends that will shape the business landscape in 2025 and beyond, from generative AI to autonomous systems.",
+      "image": "/images/blog/ai-trends-2025.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "April 15, 2025",
+      "category": "Artificial Intelligence",
+      "tags": ["AI", "Machine Learning", "Business Technology", "Future Tech", "Generative AI", "Autonomous Systems"],
+      "featured": false
+    },
+    {
+      "id": "future-of-3d-printing-2025",
+      "title": "The Future of 3D Printing in 2025 and Beyond",
+      "excerpt": "Explore the latest advancements in 3D printing technology, from high-resolution resin printers to AI-assisted modeling and sustainable materials that are revolutionizing manufacturing.",
+      "image": "/images/blog/future-3d-printing.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "April 10, 2025",
+      "category": "3D Printing",
+      "tags": ["3D Printing", "Creality", "Manufacturing", "Technology", "Sustainable Materials", "AI Modeling"],
+      "featured": false
+    },
+    {
+      "id": "web3-blockchain-business",
+      "title": "How Web3 and Blockchain Are Transforming Business",
+      "excerpt": "Discover how decentralized technologies are creating new business models and opportunities across industries.",
+      "image": "/images/blog/web3-blockchain.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "April 5, 2025",
+      "category": "Blockchain",
+      "tags": ["Blockchain", "Web3", "Decentralization", "Business Innovation"],
+      "featured": false
+    },
+    {
+      "id": "3d-printing-manufacturing",
+      "title": "The Future of Manufacturing: 3D Printing Revolution",
+      "excerpt": "How additive manufacturing is reshaping production processes and enabling new possibilities in product development.",
+      "image": "/images/blog/3d-printing-manufacturing.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "March 25, 2025",
+      "category": "3D Printing",
+      "tags": ["3D Printing", "Manufacturing", "Product Development", "Innovation"],
+      "featured": false
+    },
+    {
+      "id": "mobile-app-development-trends",
+      "title": "Mobile App Development Trends for 2025",
+      "excerpt": "Stay ahead of the curve with these emerging trends in mobile application development.",
+      "image": "/images/blog/mobile-app-development.jpg",
+      "author": "Tycen",
+      "authorImage": "/images/authors/tycen.jpg",
+      "date": "March 15, 2025",
+      "category": "Mobile Development",
+      "tags": ["Mobile Apps", "App Development", "Cross-Platform", "UI/UX"],
+      "featured": false
+    }
+  ]
+}

@@ -6,38 +6,39 @@ import GlitchText from '../../components/GlitchText.astro';
 const pageTitle = "Blog - NosytLabs";
 const pageDescription = "Explore our blog for insights on AI tools, web development, 3D printing, and content creation.";
 
-// Get all blog posts from markdown files only (astro files have different structure)
-const mdPosts = await Astro.glob('./*.md').then(posts =>
-  // Filter out the index.md file
+// Get all blog posts from astro files (excluding index.astro)
+const allPosts = await Astro.glob('./*.astro').then(posts =>
   posts.filter(post => !post.url?.endsWith('/blog') && !post.url?.endsWith('/blog/'))
 );
 
-// Create blog post data from markdown files
-const blogPosts = mdPosts.map(post => {
-  // Ensure frontmatter exists and has required fields
+// Create blog post data from astro files
+const blogPosts = allPosts.map(post => {
+  // Get frontmatter from the astro file
   const frontmatter = post.frontmatter || {};
   const title = frontmatter.title || 'Untitled Post';
-  const excerpt = frontmatter.excerpt || 'No excerpt available';
+  const excerpt = frontmatter.description || frontmatter.excerpt || 'No excerpt available';
   const date = frontmatter.date || '2025-01-01';
   const author = frontmatter.author || 'NosytLabs';
   const tags = frontmatter.tags || ['AI Tools'];
   const image = frontmatter.image || '/images/blog/default.jpg';
-  
+
+  // Calculate read time based on content length estimate
   let readTime = '5 min read';
   try {
-    if (post.rawContent && typeof post.rawContent === 'function') {
-      const wordCount = post.rawContent().split(' ').length;
-      readTime = `${Math.ceil(wordCount / 200)} min read`;
-    }
+    // Estimate word count for astro files (approximate)
+    const estimatedWords = 800; // Average blog post length
+    readTime = `${Math.ceil(estimatedWords / 200)} min read`;
   } catch (e) {
-    // Fallback if rawContent is not available
     readTime = '5 min read';
   }
 
+  // Extract slug from URL
+  const slug = post.url?.split('/').pop() || post.file?.split('/').pop()?.replace('.astro', '') || '';
+
   return {
-    id: post.url?.split('/').pop() || '',
+    id: slug,
     title,
-    slug: post.url?.split('/').pop() || '',
+    slug,
     excerpt,
     date: new Date(date).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -50,7 +51,7 @@ const blogPosts = mdPosts.map(post => {
     image,
     readTime
   };
-}).filter(post => post.title !== 'Untitled Post'); // Filter out posts without proper frontmatter
+}).filter(post => post.title !== 'Untitled Post' && post.slug); // Filter out posts without proper frontmatter
 
 // Categories for filtering
 const categories = [...new Set(blogPosts.map(post => post.category))];
