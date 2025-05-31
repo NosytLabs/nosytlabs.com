@@ -1,0 +1,243 @@
+---
+// Skills page for NosytLabs
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimatedSection from '../components/animations/AnimatedSection.astro';
+import SkillsMatrix from '../components/SkillsMatrix.astro';
+
+const pageTitle = "Skills & Expertise - NosytLabs";
+const pageDescription = "Explore our technical skills and expertise in web development, AI tools, 3D printing, content creation, and more.";
+
+// Skills data organized by category
+const skillsData = {
+  "Web Development": [
+    { name: "JavaScript", level: 95, experience: "5+ years" },
+    { name: "TypeScript", level: 90, experience: "3+ years" },
+    { name: "React", level: 88, experience: "4+ years" },
+    { name: "Astro", level: 92, experience: "2+ years" },
+    { name: "Node.js", level: 85, experience: "4+ years" },
+    { name: "HTML/CSS", level: 98, experience: "6+ years" },
+    { name: "Tailwind CSS", level: 90, experience: "3+ years" }
+  ],
+  "AI & Development Tools": [
+    { name: "Cursor AI", level: 95, experience: "Expert" },
+    { name: "Trae AI", level: 88, experience: "Advanced" },
+    { name: "Roo Code Windsurf", level: 85, experience: "Advanced" },
+    { name: "GitHub Copilot", level: 80, experience: "Proficient" },
+    { name: "ChatGPT Integration", level: 90, experience: "Expert" }
+  ],
+  "3D Printing & Design": [
+    { name: "Creality Printers", level: 92, experience: "Expert" },
+    { name: "Fusion 360", level: 78, experience: "Intermediate" },
+    { name: "Blender", level: 75, experience: "Intermediate" },
+    { name: "STL Optimization", level: 88, experience: "Advanced" },
+    { name: "Print Quality Control", level: 95, experience: "Expert" }
+  ],
+  "Content Creation": [
+    { name: "YouTube Production", level: 85, experience: "4+ years" },
+    { name: "Live Streaming", level: 90, experience: "3+ years" },
+    { name: "Video Editing", level: 80, experience: "3+ years" },
+    { name: "SEO Optimization", level: 88, experience: "Advanced" },
+    { name: "Social Media", level: 85, experience: "Advanced" }
+  ],
+  "Backend & Database": [
+    { name: "Python", level: 82, experience: "3+ years" },
+    { name: "MongoDB", level: 78, experience: "2+ years" },
+    { name: "PostgreSQL", level: 75, experience: "2+ years" },
+    { name: "API Development", level: 85, experience: "3+ years" },
+    { name: "Server Management", level: 80, experience: "2+ years" }
+  ]
+};
+
+const certifications = [
+  {
+    name: "AI-Powered Development Certification",
+    issuer: "Tech Institute",
+    date: "2024",
+    description: "Advanced certification in AI-assisted development workflows"
+  },
+  {
+    name: "3D Printing Professional",
+    issuer: "Creality Academy",
+    date: "2023",
+    description: "Professional certification in 3D printing technologies and optimization"
+  },
+  {
+    name: "Content Creator Certification",
+    issuer: "YouTube Creator Academy",
+    date: "2023",
+    description: "Certification in professional content creation and audience engagement"
+  }
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-primary-dark to-primary-main text-white py-20">
+    <div class="container mx-auto px-4">
+      <AnimatedSection>
+        <div class="text-center">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6">
+            Skills & Expertise
+          </h1>
+          <p class="text-xl mb-8 max-w-3xl mx-auto">
+            Comprehensive technical skills across web development, AI tools, 3D printing, 
+            and content creation, backed by years of hands-on experience.
+          </p>
+        </div>
+      </AnimatedSection>
+    </div>
+  </section>
+
+  <!-- Skills Matrix -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <AnimatedSection>
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold mb-4">Technical Proficiency</h2>
+          <p class="text-lg text-gray-600 dark:text-gray-300">
+            Interactive skills matrix showing expertise levels across different technologies
+          </p>
+        </div>
+        <SkillsMatrix skills={skillsData} />
+      </AnimatedSection>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-20">
+    <div class="container mx-auto px-4">
+      <AnimatedSection>
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold mb-4">Certifications & Achievements</h2>
+          <p class="text-lg text-gray-600 dark:text-gray-300">
+            Professional certifications and industry recognition
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {certifications.map((cert) => (
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-primary-main rounded-lg flex items-center justify-center mr-4">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg">{cert.name}</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-400">{cert.issuer} • {cert.date}</p>
+                </div>
+              </div>
+              <p class="text-gray-700 dark:text-gray-300">{cert.description}</p>
+            </div>
+          ))}
+        </div>
+      </AnimatedSection>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-20 bg-primary-main text-white">
+    <div class="container mx-auto px-4 text-center">
+      <AnimatedSection>
+        <h2 class="text-3xl font-bold mb-6">Ready to Work Together?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+          Let's discuss how our expertise can help bring your project to life.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-white text-primary-main px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            Get In Touch
+          </a>
+          <a href="/projects" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-main transition-colors">
+            View Projects
+          </a>
+        </div>
+      </AnimatedSection>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .skill-category {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .skill-category:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .skill-item:last-child {
+    border-bottom: none;
+  }
+  
+  .skill-bar {
+    width: 100px;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #7c3aed, #ff6b00);
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .skill-category {
+      background: #1f2937;
+      color: white;
+    }
+    
+    .skill-item {
+      border-bottom-color: #374151;
+    }
+    
+    .skill-bar {
+      background: #374151;
+    }
+  }
+</style>
+
+<script>
+  // Animate skill bars on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const level = bar.dataset.level;
+          bar.style.width = level + '%';
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    skillBars.forEach(bar => observer.observe(bar));
+  });
+</script>

@@ -1,7 +1,7 @@
 ---
 /**
  * HeroSection Component
- * 
+ *
  * A modern, animated hero section with particle background
  * and call-to-action buttons.
  */
@@ -13,50 +13,50 @@ interface Props {
    * Main heading text
    */
   title: string;
-  
+
   /**
    * Subheading text
    */
   subtitle?: string;
-  
+
   /**
    * Text for the primary CTA button
    */
   primaryButtonText?: string;
-  
+
   /**
    * URL for the primary CTA button
    */
   primaryButtonUrl?: string;
-  
+
   /**
    * Text for the secondary CTA button
    */
   secondaryButtonText?: string;
-  
+
   /**
    * URL for the secondary CTA button
    */
   secondaryButtonUrl?: string;
-  
+
   /**
    * Whether to show a scroll indicator
    * @default true
    */
   showScrollIndicator?: boolean;
-  
+
   /**
    * Whether to use a particle background
    * @default true
    */
   useParticles?: boolean;
-  
+
   /**
    * Height of the hero section
    * @default "100vh"
    */
   height?: string;
-  
+
   /**
    * Additional CSS classes
    */
@@ -77,8 +77,8 @@ const {
 } = Astro.props;
 ---
 
-<section 
-  class:list={['hero-section', className]} 
+<section
+  class:list={['hero-section', className]}
   style={`min-height: ${height};`}
 >
   {useParticles && (
@@ -95,33 +95,90 @@ const {
       zIndex={0}
     />
   )}
-  
+
+  <!-- Enhanced Background Elements -->
+  <div class="hero-background-elements">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+    <div class="floating-shape shape-4"></div>
+    <div class="grid-overlay"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+  </div>
+
   <div class="hero-section__content">
+    <!-- Badge -->
+    <div class="hero-badge">
+      <div class="badge-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </div>
+      <span class="badge-text">NosytLabs</span>
+    </div>
+
+    <!-- Enhanced Title with Gradient -->
     <h1 class="hero-section__title">
-      {title.split(' ').map((word, i) => (
-        <span class="hero-section__title-word" style={`animation-delay: ${i * 0.1}s;`}>{word}</span>
-      ))}
+      <span class="title-line title-line-1">
+        {title.split(' ').slice(0, 2).map((word, i) => (
+          <span class="hero-section__title-word" style={`animation-delay: ${i * 0.1}s;`}>{word}</span>
+        ))}
+      </span>
+      <span class="title-line title-line-2">
+        {title.split(' ').slice(2).map((word, i) => (
+          <span class="hero-section__title-word gradient-text" style={`animation-delay: ${(i + 2) * 0.1}s;`}>{word}</span>
+        ))}
+      </span>
     </h1>
-    
+
+    <!-- Rotating Text -->
+    <div class="rotating-text-container">
+      <span class="static-text">Specializing in </span>
+      <span class="rotating-text" id="rotatingText">Web Development</span>
+    </div>
+
     {subtitle && (
       <p class="hero-section__subtitle">{subtitle}</p>
     )}
-    
+
+    <!-- Enhanced Buttons -->
     <div class="hero-section__buttons">
       <a href={primaryButtonUrl} class="hero-section__button hero-section__button--primary">
-        {primaryButtonText}
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14"></path>
-          <path d="M12 5l7 7-7 7"></path>
-        </svg>
+        <span class="button-content">
+          <span class="button-text">{primaryButtonText}</span>
+          <svg class="button-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="M12 5l7 7-7 7"></path>
+          </svg>
+        </span>
+        <div class="button-ripple"></div>
       </a>
-      
+
       <a href={secondaryButtonUrl} class="hero-section__button hero-section__button--secondary">
-        {secondaryButtonText}
+        <span class="button-content">
+          <span class="button-text">{secondaryButtonText}</span>
+        </span>
       </a>
     </div>
+
+    <!-- Stats -->
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number" data-count="50">0+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-count="100">0%</span>
+        <span class="stat-label">Satisfaction</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Support</span>
+      </div>
+    </div>
   </div>
-  
+
   {showScrollIndicator && (
     <div class="hero-section__scroll-indicator">
       <div class="hero-section__scroll-icon">
@@ -152,6 +209,114 @@ const {
     min-height: 100vh;
     padding: 2rem;
     overflow: hidden;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  }
+
+  :global(.dark) .hero-section {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  }
+
+  /* Enhanced Background Elements */
+  .hero-background-elements {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(124, 58, 237, 0.1), rgba(255, 107, 0, 0.1));
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .shape-1 {
+    width: 300px;
+    height: 120px;
+    top: 15%;
+    left: -5%;
+    animation-delay: 0s;
+    border-radius: 60px;
+    transform: rotate(12deg);
+  }
+
+  .shape-2 {
+    width: 200px;
+    height: 80px;
+    top: 70%;
+    right: -3%;
+    animation-delay: 2s;
+    border-radius: 40px;
+    transform: rotate(-15deg);
+  }
+
+  .shape-3 {
+    width: 150px;
+    height: 60px;
+    bottom: 10%;
+    left: 10%;
+    animation-delay: 4s;
+    border-radius: 30px;
+    transform: rotate(-8deg);
+  }
+
+  .shape-4 {
+    width: 100px;
+    height: 40px;
+    top: 10%;
+    right: 20%;
+    animation-delay: 1s;
+    border-radius: 20px;
+    transform: rotate(20deg);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
+    50% { transform: translateY(-20px) rotate(var(--rotation, 0deg)); }
+  }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
+      radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 30px 30px, 60px 60px;
+    background-position: 0 0, 15px 15px;
+    opacity: 0.3;
+  }
+
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.3), transparent);
+    top: 20%;
+    right: 10%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 107, 0, 0.2), transparent);
+    bottom: 20%;
+    left: 10%;
+    animation-delay: 2s;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
   }
 
   .hero-section__content {
@@ -174,20 +339,93 @@ const {
     }
   }
 
+  /* Hero Badge */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease-out 0.2s both;
+  }
+
+  .badge-icon {
+    color: var(--nosyt-orange);
+    display: flex;
+    align-items: center;
+  }
+
+  .badge-text {
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
   .hero-section__title {
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 800;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1rem 0;
     line-height: 1.1;
-    color: var(--nosyt-purple);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .title-line {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
   }
 
-  :global(.dark) .hero-section__title {
-    color: white;
+  .gradient-text {
+    background: linear-gradient(135deg, var(--nosyt-purple-light), var(--nosyt-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Rotating Text */
+  .rotating-text-container {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    color: #D1D5DB;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 1s ease-out 0.4s both;
+  }
+
+  .static-text {
+    color: #9CA3AF;
+  }
+
+  .rotating-text {
+    color: var(--nosyt-orange);
+    position: relative;
+    display: inline-block;
+    min-width: 200px;
+    text-align: left;
+  }
+
+  .rotating-text::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: var(--nosyt-orange);
+    animation: blink 1s infinite;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
   }
 
   .hero-section__title-word {
@@ -227,56 +465,112 @@ const {
     animation: fadeIn 1s ease-out 0.5s both;
   }
 
+  /* Enhanced Buttons */
   .hero-section__button {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.875rem 1.75rem;
-    border-radius: 0.5rem;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border-radius: 12px;
     font-weight: 600;
     font-size: 1rem;
-    transition: all 0.3s ease;
     text-decoration: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+  }
+
+  .button-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .button-icon {
+    transition: transform 0.3s ease;
   }
 
   .hero-section__button--primary {
-    background-color: var(--nosyt-purple);
+    background: linear-gradient(135deg, var(--nosyt-purple), var(--nosyt-purple-light));
     color: white;
-    box-shadow: 0 4px 6px -1px rgba(76, 29, 149, 0.2), 0 2px 4px -1px rgba(76, 29, 149, 0.1);
+    box-shadow:
+      0 4px 15px rgba(124, 58, 237, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset;
   }
 
   .hero-section__button--primary:hover {
-    background-color: var(--nosyt-purple-light);
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(76, 29, 149, 0.2), 0 4px 6px -2px rgba(76, 29, 149, 0.1);
+    box-shadow:
+      0 8px 25px rgba(124, 58, 237, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.2) inset;
   }
 
-  .hero-section__button--primary svg {
-    transition: transform 0.2s ease;
-  }
-
-  .hero-section__button--primary:hover svg {
+  .hero-section__button--primary:hover .button-icon {
     transform: translateX(3px);
   }
 
+  .button-ripple {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+  }
+
+  .hero-section__button--primary:hover .button-ripple {
+    opacity: 1;
+    transform: scale(1);
+  }
+
   .hero-section__button--secondary {
-    background-color: transparent;
-    color: var(--nosyt-purple);
-    border: 2px solid var(--nosyt-purple);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
   }
 
   .hero-section__button--secondary:hover {
-    background-color: rgba(124, 58, 237, 0.1);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
   }
 
-  :global(.dark) .hero-section__button--secondary {
-    color: white;
-    border-color: white;
+  /* Hero Stats */
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    animation: fadeIn 1s ease-out 0.8s both;
   }
 
-  :global(.dark) .hero-section__button--secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  .stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    min-width: 100px;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--nosyt-orange);
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: #9CA3AF;
+    font-weight: 500;
   }
 
   .hero-section__scroll-indicator {
@@ -328,18 +622,18 @@ const {
     .hero-section {
       padding: 1rem;
     }
-    
+
     .hero-section__content {
       padding: 1rem;
     }
-    
+
     .hero-section__buttons {
       flex-direction: column;
       width: 100%;
       max-width: 300px;
       margin: 0 auto;
     }
-    
+
     .hero-section__button {
       width: 100%;
       justify-content: center;

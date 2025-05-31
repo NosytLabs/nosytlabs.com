@@ -13,10 +13,14 @@ export default defineConfig({
   ],
   output: 'static',
   build: {
-    format: 'file'
+    format: 'file',
+    // Enhanced build optimizations
+    inlineStylesheets: 'auto', // Inline small CSS files
+    assets: 'assets', // Organize assets in dedicated folder
+    assetsPrefix: process.env.NODE_ENV === 'production' ? 'https://cdn.nosytlabs.com' : undefined
   },
   server: {
-    port: 3000, // Changed to 3000 to match expected configuration
+    port: 3000,
     host: true
   },
   vite: {
@@ -24,58 +28,78 @@ export default defineConfig({
       minify: 'terser',
       terserOptions: {
         compress: {
-          drop_console: true,
+          drop_console: process.env.NODE_ENV === 'production',
           drop_debugger: true,
           pure_funcs: ['console.log', 'console.debug', 'console.info'],
-          passes: 2
+          passes: 3, // Increased passes for better compression
+          unsafe: true,
+          unsafe_comps: true,
+          unsafe_math: true,
+          unsafe_proto: true
         },
-        mangle: true,
+        mangle: {
+          toplevel: true,
+          safari10: true
+        },
         format: {
-          comments: false
+          comments: false,
+          ecma: 2020
         }
       },
-      cssMinify: false, // Disable CSS minification to avoid empty selector issues
+      cssMinify: 'lightningcss', // Use Lightning CSS for better performance
       cssCodeSplit: true,
-      assetsInlineLimit: 4096, // 4kb - inline small assets
-      sourcemap: false, // Disable sourcemaps in production
+      assetsInlineLimit: 2048, // Reduced to 2KB for better caching
+      sourcemap: false,
+      target: ['es2020', 'chrome80', 'firefox78', 'safari14'], // Modern browser targets
       rollupOptions: {
         output: {
-          manualChunks: {
-            // Framework chunks
-            'react-vendor': ['react', 'react-dom'],
+          manualChunks: (id) => {
+            // Vendor chunks
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'react-vendor';
+              }
+              if (id.includes('@vercel')) {
+                return 'analytics';
+              }
+              return 'vendor';
+            }
 
             // Feature-based chunks
-            'core': [
-              './src/layouts/BaseLayout.astro'
-            ],
-            'ui-components': [
-              './src/components/ui/Button.astro',
-              './src/components/ui/Card.astro',
-              './src/components/ui/Section.astro',
-              './src/components/ui/ResponsiveImage.astro'
-            ],
-            'win95': [
-              './src/components/win95/Window.astro',
-              './src/components/win95/Desktop.astro',
-              './src/components/win95/Taskbar.astro'
-            ],
-            'animations': [
-              './public/scripts/animations.js'
-            ],
-            'performance': [
-              './public/scripts/image-optimization.js',
-              './public/scripts/performance/resourceOptimizer.js',
-              './public/scripts/performance/lazyLoadingInit.js'
-            ]
+            if (id.includes('nosytos95') || id.includes('win95')) {
+              return 'nosytos95';
+            }
+            if (id.includes('performance') || id.includes('lazy')) {
+              return 'performance';
+            }
+            if (id.includes('animation') || id.includes('ui')) {
+              return 'ui';
+            }
           },
-          // Use content hashing for better caching
-          assetFileNames: 'assets/[name]-[hash][extname]',
-          chunkFileNames: 'chunks/[name]-[hash].js',
-          entryFileNames: 'entry/[name]-[hash].js',
-          // Optimize chunk size
+          // Optimized file naming with shorter hashes
+          assetFileNames: (assetInfo) => {
+            const extType = assetInfo.name.split('.').at(1);
+            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+              return `img/[name]-[hash:8][extname]`;
+            }
+            if (/css/i.test(extType)) {
+              return `css/[name]-[hash:8][extname]`;
+            }
+            return `assets/[name]-[hash:8][extname]`;
+          },
+          chunkFileNames: 'js/[name]-[hash:8].js',
+          entryFileNames: 'js/[name]-[hash:8].js',
+          // Advanced optimizations
           minifyInternalExports: true,
           compact: true,
-          preserveModules: false
+          preserveModules: false,
+          experimentalMinChunkSize: 1000 // Minimum chunk size
+        },
+        // Tree shaking optimizations
+        treeshake: {
+          moduleSideEffects: false,
+          propertyReadSideEffects: false,
+          unknownGlobalSideEffects: false
         }
       }
     },
@@ -90,16 +114,40 @@ export default defineConfig({
       noExternal: ['@fortawesome/*']
     },
     optimizeDeps: {
-      exclude: ['@vercel/analytics', '@vercel/speed-insights']
-    },
-    // Optimize asset handling
-    assetsInclude: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp', '**/*.avif'],
-    // Improve CSS handling
-    css: {
-      devSourcemap: true,
-      modules: {
-        generateScopedName: '[name]__[local]__[hash:base64:5]'
+      exclude: ['@vercel/analytics', '@vercel/speed-insights'],
+      include: ['react', 'react-dom'], // Pre-bundle common dependencies
+      esbuildOptions: {
+        target: 'es2020'
       }
+    },
+    // Enhanced asset handling
+    assetsInclude: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp', '**/*.avif', '**/*.woff2'],
+    // Improved CSS handling
+    css: {
+      devSourcemap: false, // Disable in production
+      lightningcss: {
+        targets: {
+          chrome: 80,
+          firefox: 78,
+          safari: 14
+        },
+        drafts: {
+          customMedia: true
+        }
+      },
+      modules: {
+        generateScopedName: process.env.NODE_ENV === 'production'
+          ? '[hash:base64:5]'
+          : '[name]__[local]__[hash:base64:5]'
+      }
+    },
+    // Performance optimizations
+    esbuild: {
+      target: 'es2020',
+      legalComments: 'none',
+      minifyIdentifiers: true,
+      minifySyntax: true,
+      minifyWhitespace: true
     }
   }
 });

@@ -1,8 +1,0 @@
-/* 
- * Global CSS Import File
- * This file imports all global styles
- */
-
-/* Import design system */
-@import '/styles/design-system.css';
-@import '/styles/global.css';

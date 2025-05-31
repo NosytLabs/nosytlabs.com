@@ -1,0 +1,93 @@
+---
+/**
+ * NewHero Component
+ * A modern hero section for the new-index page
+ */
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  primaryButtonText?: string;
+  primaryButtonUrl?: string;
+  secondaryButtonText?: string;
+  secondaryButtonUrl?: string;
+}
+
+const {
+  title = "Notable Opportunities Shape Your Tomorrow",
+  subtitle = "NosytLabs provides innovative digital solutions including web development, content creation, crypto mining, and 3D printing services.",
+  primaryButtonText = "Our Services",
+  primaryButtonUrl = "/services",
+  secondaryButtonText = "Contact Us",
+  secondaryButtonUrl = "/contact"
+} = Astro.props;
+---
+
+<section class="hero-section bg-gradient-to-br from-primary-dark to-primary-main text-white py-20 relative overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="flex flex-col lg:flex-row items-center">
+      <div class="lg:w-1/2 mb-10 lg:mb-0">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
+          {title}
+        </h1>
+        <p class="text-xl mb-8 animate-fade-in opacity-90" style="animation-delay: 0.2s;">
+          {subtitle}
+        </p>
+        <div class="flex flex-wrap gap-4 animate-fade-in" style="animation-delay: 0.4s;">
+          <a href={primaryButtonUrl} class="btn btn-accent hover:btn-accent-hover inline-flex items-center px-6 py-3 bg-accent text-white font-semibold rounded-lg transition-all duration-300 hover:bg-accent-hover hover:scale-105">
+            {primaryButtonText}
+          </a>
+          <a href={secondaryButtonUrl} class="btn btn-outline-light hover:btn-light inline-flex items-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg transition-all duration-300 hover:bg-white hover:text-primary">
+            {secondaryButtonText}
+          </a>
+        </div>
+      </div>
+      
+      <div class="lg:w-1/2 flex justify-center">
+        <div class="relative w-full max-w-md animate-fade-in" style="animation-delay: 0.6s;">
+          <img
+            src="/images/nosytlabs-hero.webp"
+            alt="NosytLabs Digital Solutions"
+            class="rounded-lg shadow-2xl w-full h-auto"
+            width="600"
+            height="400"
+            loading="eager"
+          />
+          <div class="absolute -bottom-4 -right-4 bg-accent text-white p-4 rounded-lg shadow-lg">
+            <p class="font-bold text-sm">Est. 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+</style>
