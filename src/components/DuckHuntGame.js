@@ -460,3 +460,59 @@ function updateDuckHuntGame() {
 window.updateDuckHuntGame = updateDuckHuntGame;
 window.startDuckHuntGame = startGame;
 window.stopDuckHuntGame = stopGame;
+
+/**
+ * DuckHuntGame class for ES module compatibility
+ *
+ * @class DuckHuntGame
+ * @example
+ * import { DuckHuntGame } from './DuckHuntGame.js';
+ * const game = new DuckHuntGame();
+ * game.start();
+ */
+export class DuckHuntGame {
+  constructor() {
+    this.initialized = false;
+  }
+
+  /**
+   * Initialize the Duck Hunt game
+   * @returns {Promise<void>}
+   */
+  async init() {
+    if (this.initialized) return;
+
+    if (document.readyState === 'loading') {
+      await new Promise(resolve => {
+        document.addEventListener('DOMContentLoaded', resolve);
+      });
+    }
+
+    initializeDuckHunt();
+    this.initialized = true;
+  }
+
+  /**
+   * Start the game
+   * @returns {void}
+   */
+  start() {
+    startGame();
+  }
+
+  /**
+   * Stop the game
+   * @returns {void}
+   */
+  stop() {
+    stopGame();
+  }
+
+  /**
+   * Update the game display
+   * @returns {void}
+   */
+  update() {
+    updateDuckHuntGame();
+  }
+}

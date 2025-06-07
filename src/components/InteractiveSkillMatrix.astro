@@ -1,0 +1,381 @@
+---
+/**
+ * Interactive Skill Matrix Component
+ * Visual representation of skills with interactive hover effects
+ */
+
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+
+const skillCategories = [
+  {
+    name: 'Frontend Development',
+    skills: [
+      { name: 'React/Astro', level: 95, color: '#61DAFB' },
+      { name: 'TypeScript', level: 90, color: '#3178C6' },
+      { name: 'CSS/Tailwind', level: 92, color: '#06B6D4' },
+      { name: 'JavaScript', level: 94, color: '#F7DF1E' }
+    ]
+  },
+  {
+    name: 'Backend Development',
+    skills: [
+      { name: 'Node.js', level: 88, color: '#339933' },
+      { name: 'Python', level: 85, color: '#3776AB' },
+      { name: 'Databases', level: 82, color: '#336791' },
+      { name: 'APIs', level: 90, color: '#FF6B6B' }
+    ]
+  },
+  {
+    name: 'Creative & Design',
+    skills: [
+      { name: '3D Printing', level: 87, color: '#FF9500' },
+      { name: 'Content Creation', level: 89, color: '#E91E63' },
+      { name: 'UI/UX Design', level: 83, color: '#9C27B0' },
+      { name: 'Video Editing', level: 78, color: '#FF5722' }
+    ]
+  }
+];
+---
+
+<section class={`interactive-skill-matrix ${className}`}>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Skills & Expertise</h2>
+      <p class="section-description">Interactive visualization of technical and creative capabilities</p>
+    </div>
+    
+    <div class="skill-categories">
+      {skillCategories.map((category, categoryIndex) => (
+        <div class="skill-category" data-category={categoryIndex}>
+          <h3 class="category-title">{category.name}</h3>
+          <div class="skills-grid">
+            {category.skills.map((skill, skillIndex) => (
+              <div 
+                class="skill-item" 
+                data-skill={skillIndex}
+                style={`--skill-color: ${skill.color}; --skill-level: ${skill.level}%;`}
+              >
+                <div class="skill-header">
+                  <span class="skill-name">{skill.name}</span>
+                  <span class="skill-percentage">{skill.level}%</span>
+                </div>
+                <div class="skill-bar">
+                  <div class="skill-progress" style={`width: ${skill.level}%;`}></div>
+                  <div class="skill-glow"></div>
+                </div>
+                <div class="skill-tooltip">
+                  <span class="tooltip-text">Proficiency: {skill.level}%</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+<script>
+  // Enhanced Accessibility for Interactive Components
+  document.addEventListener('DOMContentLoaded', () => {
+    // Add keyboard navigation support
+    const interactiveElements = document.querySelectorAll('.interactive-element, .skill-item, .calculator-input, .terminal-window');
+    
+    interactiveElements.forEach((element, index) => {
+      // Make elements focusable
+      if (!element.hasAttribute('tabindex')) {
+        element.setAttribute('tabindex', '0');
+      }
+      
+      // Add ARIA roles if not present
+      if (!element.hasAttribute('role')) {
+        element.setAttribute('role', 'button');
+      }
+      
+      // Add keyboard event listeners
+      element.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          element.click();
+        }
+      });
+      
+      // Add focus indicators
+      element.addEventListener('focus', () => {
+        element.style.outline = '3px solid var(--color-accent, #0066cc)';
+        element.style.outlineOffset = '2px';
+      });
+      
+      element.addEventListener('blur', () => {
+        element.style.outline = '';
+        element.style.outlineOffset = '';
+      });
+    });
+    
+    // Announce dynamic content changes to screen readers
+    const announceToScreenReader = (message) => {
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.className = 'sr-only';
+      announcement.textContent = message;
+      document.body.appendChild(announcement);
+      
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
+    };
+    
+    // Export for use by components
+    window.announceToScreenReader = announceToScreenReader;
+  });
+</script>
+</section>
+
+<style>
+  .interactive-skill-matrix {
+    padding: var(--spacing-20) 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .interactive-skill-matrix::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+  }
+  
+  .container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-4);
+    background: linear-gradient(45deg, #ffffff, #e0e7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .section-description {
+    font-size: var(--font-size-lg);
+    opacity: 0.9;
+  }
+  
+  .skill-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-12);
+  }
+  
+  .skill-category {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .skill-category:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .category-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-6);
+    text-align: center;
+  }
+  
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+  
+  .skill-item {
+    position: relative;
+    padding: var(--spacing-4);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .skill-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(8px);
+  }
+  
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .skill-name {
+    font-weight: var(--font-weight-semibold);
+  }
+  
+  .skill-percentage {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+  }
+  
+  .skill-bar {
+    position: relative;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+  
+  .skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--skill-color), color-mix(in srgb, var(--skill-color) 80%, white));
+    border-radius: inherit;
+    transition: width 1s ease-out;
+    position: relative;
+  }
+  
+  .skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+  }
+  
+  .skill-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--skill-level);
+    background: var(--skill-color);
+    border-radius: inherit;
+    filter: blur(4px);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+  }
+  
+  .skill-item:hover .skill-glow {
+    opacity: 0.8;
+    filter: blur(6px);
+  }
+  
+  .skill-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .skill-item:hover .skill-tooltip {
+    opacity: 1;
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @media (max-width: 768px) {
+    .skill-categories {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-8);
+    }
+    
+    .skill-category {
+      padding: var(--spacing-6);
+    }
+  }
+</style>
+
+<script>
+  // Enhanced skill matrix interactions
+  class InteractiveSkillMatrix {
+    constructor() {
+      this.init();
+    }
+    
+    init() {
+      this.setupSkillAnimations();
+      this.setupCategoryInteractions();
+    }
+    
+    setupSkillAnimations() {
+      const skillItems = document.querySelectorAll('.skill-item');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const progress = entry.target.querySelector('.skill-progress');
+            const skillLevel = entry.target.style.getPropertyValue('--skill-level');
+            
+            setTimeout(() => {
+              progress.style.width = skillLevel;
+            }, Math.random() * 500);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      skillItems.forEach(item => observer.observe(item));
+    }
+    
+    setupCategoryInteractions() {
+      const categories = document.querySelectorAll('.skill-category');
+      
+      categories.forEach(category => {
+        category.addEventListener('mouseenter', () => {
+          category.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        category.addEventListener('mouseleave', () => {
+          category.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+    }
+  }
+  
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new InteractiveSkillMatrix();
+  });
+</script>

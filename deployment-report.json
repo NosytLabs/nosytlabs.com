@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-06-03T06:33:12.250Z",
+  "score": 88,
+  "passedChecks": 7,
+  "totalChecks": 8,
+  "buildInfo": {
+    "size": "28.6 MB",
+    "pages": 47,
+    "jsFiles": 64,
+    "cssFiles": 29,
+    "imageFiles": 1350
+  },
+  "readyForDeployment": true
+}

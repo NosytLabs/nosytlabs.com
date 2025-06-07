@@ -1,0 +1,797 @@
+---
+/**
+ * Unified Card Component for NosytLabs - 2025 Enhanced
+ * Consolidates all card variants into a single, flexible component
+ * Supports service, project, blog, feature, and expandable card types
+ */
+
+interface Badge {
+  text: string;
+  variant?: 'new' | 'hot' | 'featured' | 'coming-soon' | 'popular';
+}
+
+interface Action {
+  text: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  icon?: string;
+  external?: boolean;
+}
+
+interface Props {
+  // Content
+  title: string;
+  description?: string;
+  content?: string;
+  image?: string;
+  imageAlt?: string;
+  icon?: string;
+
+  // Layout and behavior
+  variant?: 'default' | 'service' | 'project' | 'blog' | 'feature' | 'stat' | 'expandable' | '3d';
+  layout?: 'vertical' | 'horizontal' | 'compact';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+
+  // Interactive features
+  expandable?: boolean;
+  hoverable?: boolean;
+  clickable?: boolean;
+
+  // Visual elements
+  badge?: Badge;
+  category?: string;
+  tags?: string[];
+  stats?: { label: string; value: string }[];
+
+  // Actions
+  primaryAction?: Action;
+  secondaryAction?: Action;
+
+  // Customization
+  className?: string;
+  theme?: 'light' | 'dark' | 'gradient' | 'glass';
+  borderColor?: string;
+
+  // Metadata
+  date?: string;
+  author?: string;
+  readTime?: string;
+
+  // Enhanced features for consolidation
+  monthlyEarnings?: string;
+  minPayout?: string;
+  paymentMethods?: string[];
+  platforms?: string[];
+  setupDifficulty?: string;
+  resourceUsage?: string;
+  referralProgram?: string;
+  pros?: string[];
+  cons?: string[];
+  animationDelay?: number;
+}
+
+const {
+  title,
+  description,
+  content,
+  image,
+  imageAlt = title,
+  icon,
+
+  variant = 'default',
+  layout = 'vertical',
+  size = 'md',
+
+  expandable = false,
+  hoverable = true,
+  clickable = false,
+
+  badge,
+  category,
+  tags = [],
+  stats = [],
+
+  primaryAction,
+  secondaryAction,
+
+  className = '',
+  theme = 'glass',
+  borderColor,
+
+  date,
+  author,
+  readTime,
+
+  // Enhanced features
+  monthlyEarnings,
+  minPayout,
+  paymentMethods = [],
+  platforms = [],
+  setupDifficulty,
+  resourceUsage,
+  referralProgram,
+  pros = [],
+  cons = [],
+  animationDelay = 0
+} = Astro.props;
+
+// Generate dynamic classes
+const cardClasses = [
+  'unified-card',
+  `card-${variant}`,
+  `card-${theme}`,
+  `card-${size}`,
+  `card-${layout}`,
+  hoverable && 'card-hoverable',
+  clickable && 'card-clickable',
+  expandable && 'card-expandable',
+  variant === '3d' && 'card-3d',
+  badge && 'card-with-badge',
+  className
+].filter(Boolean).join(' ');
+
+// Generate card props
+const isLinkCard = clickable && primaryAction;
+const CardElement = isLinkCard ? 'a' : 'div';
+const cardProps = isLinkCard ? {
+  href: primaryAction.href,
+  ...(primaryAction.external && { target: "_blank", rel: "noopener noreferrer" })
+} : {
+  ...(animationDelay && { style: `--animation-delay: ${animationDelay}s;` }),
+  ...(borderColor && { style: `--border-color: ${borderColor};` })
+};
+
+// Generate unique ID for expandable cards
+const cardId = expandable ? `card-${Math.random().toString(36).substring(2, 9)}` : undefined;
+---
+
+<CardElement class={cardClasses} {...cardProps} {...(cardId && { id: cardId })}>
+  {/* Badge */}
+  {badge && (
+    <div class={`card-badge badge-${badge.variant || 'default'}`}>
+      <span class="badge-text">{badge.text}</span>
+    </div>
+  )}
+
+  {/* Image Header */}
+  {image && (
+    <div class="card-header">
+      <div class="card-image-container">
+        <img
+          src={image}
+          alt={imageAlt}
+          class="card-image"
+          loading="lazy"
+        />
+        {variant === '3d' && <div class="image-overlay"></div>}
+      </div>
+    </div>
+  )}
+
+  {/* Icon Header (for service cards) */}
+  {icon && !image && (
+    <div class="card-icon-header">
+      <div class="card-icon">{icon}</div>
+    </div>
+  )}
+
+  <div class="card-content">
+    {/* Title */}
+    <h3 class="card-title">{title}</h3>
+
+    {/* Description */}
+    {description && (
+      <p class="card-description">{description}</p>
+    )}
+
+    {/* Enhanced content for specific variants */}
+    {content && (
+      <div class="card-extended-content">{content}</div>
+    )}
+
+    {/* Earnings info for passive income cards */}
+    {monthlyEarnings && (
+      <div class="card-earnings">
+        <span class="earnings-label">Monthly Earnings:</span>
+        <span class="earnings-value">{monthlyEarnings}</span>
+      </div>
+    )}
+
+    {/* Stats for stat cards */}
+    {stats.length > 0 && (
+      <div class="card-stats">
+        {stats.map((stat) => (
+          <div class="stat-item">
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* Tags */}
+    {tags.length > 0 && (
+      <div class="card-tags">
+        {tags.map((tag) => (
+          <span class="card-tag">{tag}</span>
+        ))}
+      </div>
+    )}
+
+    {/* Metadata */}
+    {(category || date || author || readTime) && (
+      <div class="card-meta">
+        {category && <span class="meta-category">{category}</span>}
+        {date && <span class="meta-date">{date}</span>}
+        {author && <span class="meta-author">by {author}</span>}
+        {readTime && <span class="meta-read-time">{readTime}</span>}
+      </div>
+    )}
+  </div>
+
+  {/* Actions */}
+  {(primaryAction || secondaryAction) && !isLinkCard && (
+    <div class="card-actions">
+      {primaryAction && (
+        <a
+          href={primaryAction.href}
+          class={`card-action action-${primaryAction.variant || 'primary'}`}
+          {...(primaryAction.external && { target: "_blank", rel: "noopener noreferrer" })}
+        >
+          <span>{primaryAction.text}</span>
+          {primaryAction.icon && (
+            <span class="action-icon">{primaryAction.icon}</span>
+          )}
+        </a>
+      )}
+
+      {secondaryAction && (
+        <a
+          href={secondaryAction.href}
+          class={`card-action action-${secondaryAction.variant || 'secondary'}`}
+          {...(secondaryAction.external && { target: "_blank", rel: "noopener noreferrer" })}
+        >
+          <span>{secondaryAction.text}</span>
+          {secondaryAction.icon && (
+            <span class="action-icon">{secondaryAction.icon}</span>
+          )}
+        </a>
+      )}
+    </div>
+  )}
+
+  {/* Expandable Content */}
+  {expandable && (
+    <div class="card-expandable-content">
+      <button class="expand-toggle" aria-label="Expand card content">
+        <span class="expand-icon">▼</span>
+      </button>
+      <div class="expandable-content">
+        <slot name="expandable" />
+
+        {/* Pros/Cons for passive income cards */}
+        {(pros.length > 0 || cons.length > 0) && (
+          <div class="pros-cons-section">
+            {pros.length > 0 && (
+              <div class="pros-section">
+                <h4>Pros:</h4>
+                <ul>
+                  {pros.map((pro) => <li>{pro}</li>)}
+                </ul>
+              </div>
+            )}
+            {cons.length > 0 && (
+              <div class="cons-section">
+                <h4>Cons:</h4>
+                <ul>
+                  {cons.map((con) => <li>{con}</li>)}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+</CardElement>
+
+<style>
+  .unified-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 0.6s ease-out;
+    animation-delay: var(--animation-delay, 0s);
+    animation-fill-mode: both;
+  }
+
+  .card-hoverable:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-clickable {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Badge styles */
+  .card-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-popular {
+    background: linear-gradient(135deg, #ff6b00, #ff8c42);
+    color: white;
+  }
+
+  .badge-new {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: white;
+  }
+
+  .badge-featured {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+  }
+
+  /* 3D Card variant */
+  .card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .card-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg) translateY(-8px);
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .card-3d:hover .image-overlay {
+    opacity: 1;
+  }
+
+  .card-header {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .card-hoverable:hover .card-image {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .card-description {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+
+  .card-tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366f1;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  /* Icon header for service cards */
+  .card-icon-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  }
+
+  /* Enhanced content sections */
+  .card-extended-content {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 0.5rem;
+    border-left: 3px solid #6366f1;
+  }
+
+  .card-earnings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .earnings-label {
+    font-weight: 500;
+    color: #065f46;
+  }
+
+  .earnings-value {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: #10b981;
+  }
+
+  /* Stats section */
+  .card-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 0.5rem;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #6366f1;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .meta-author,
+  .meta-read-time {
+    font-style: italic;
+  }
+
+  .card-actions {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .card-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .action-primary {
+    background: #6366f1;
+    color: white;
+  }
+
+  .action-primary:hover {
+    background: #5b21b6;
+    transform: translateY(-1px);
+  }
+
+  .action-secondary {
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366f1;
+  }
+
+  .action-secondary:hover {
+    background: #6366f1;
+    color: white;
+  }
+
+  /* Expandable content */
+  .card-expandable-content {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .expand-toggle {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(99, 102, 241, 0.05);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #6366f1;
+    transition: all 0.3s ease;
+  }
+
+  .expand-toggle:hover {
+    background: rgba(99, 102, 241, 0.1);
+  }
+
+  .expand-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .card-expandable.expanded .expand-icon {
+    transform: rotate(180deg);
+  }
+
+  .expandable-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .card-expandable.expanded .expandable-content {
+    max-height: 1000px;
+  }
+
+  .pros-cons-section {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .pros-section h4,
+  .cons-section h4 {
+    margin: 0 0 0.75rem 0;
+    font-weight: 600;
+  }
+
+  .pros-section h4 {
+    color: #10b981;
+  }
+
+  .cons-section h4 {
+    color: #ef4444;
+  }
+
+  .pros-section ul,
+  .cons-section ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style: none;
+  }
+
+  .pros-section li::before {
+    content: "✓";
+    color: #10b981;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+
+  .cons-section li::before {
+    content: "✗";
+    color: #ef4444;
+    font-weight: bold;
+    margin-right: 0.5rem;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card-content {
+      padding: 1rem;
+    }
+
+    .card-actions {
+      padding: 1rem;
+      flex-direction: column;
+    }
+
+    .pros-cons-section {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .card-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<script>
+  // Enhanced unified card functionality
+  class UnifiedCard {
+    constructor() {
+      this.cards = document.querySelectorAll('.unified-card');
+      this.init();
+    }
+
+    init() {
+      this.setupExpandableCards();
+      this.setupHoverEffects();
+      this.setupKeyboardNavigation();
+      this.setupClickableCards();
+    }
+
+    setupExpandableCards() {
+      const expandableCards = document.querySelectorAll('.card-expandable');
+
+      expandableCards.forEach(card => {
+        const toggle = card.querySelector('.expand-toggle');
+
+        if (toggle) {
+          toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            card.classList.toggle('expanded');
+
+            // Update ARIA attributes
+            const isExpanded = card.classList.contains('expanded');
+            toggle.setAttribute('aria-expanded', isExpanded.toString());
+          });
+        }
+      });
+    }
+
+    setupHoverEffects() {
+      this.cards.forEach(card => {
+        if (card.classList.contains('card-3d')) {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+          });
+
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+          });
+        }
+      });
+    }
+
+    setupKeyboardNavigation() {
+      this.cards.forEach(card => {
+        if (card.classList.contains('card-clickable')) {
+          card.setAttribute('tabindex', '0');
+          card.setAttribute('role', 'button');
+
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              const href = card.dataset.href;
+              if (href) {
+                if (card.dataset.external === 'true') {
+                  window.open(href, '_blank', 'noopener,noreferrer');
+                } else {
+                  window.location.href = href;
+                }
+              }
+            }
+          });
+        }
+      });
+    }
+
+    setupClickableCards() {
+      this.cards.forEach(card => {
+        if (card.classList.contains('card-clickable') && card.dataset.href) {
+          card.addEventListener('click', (e) => {
+            // Don't trigger if clicking on buttons or links inside the card
+            if (e.target.closest('button, a, .expand-toggle')) {
+              return;
+            }
+
+            const href = card.dataset.href;
+            if (href) {
+              if (card.dataset.external === 'true') {
+                window.open(href, '_blank', 'noopener,noreferrer');
+              } else {
+                window.location.href = href;
+              }
+            }
+          });
+        }
+      });
+    }
+  }
+
+  // Initialize when DOM is loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new UnifiedCard());
+  } else {
+    new UnifiedCard();
+  }
+</script>

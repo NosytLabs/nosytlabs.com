@@ -1,0 +1,396 @@
+{
+  "timestamp": "2025-06-03T04:47:53.458Z",
+  "summary": {
+    "filesAnalyzed": 183,
+    "filesUpdated": 1,
+    "improvements": 2,
+    "errors": 0
+  },
+  "details": {
+    "filesAnalyzed": 183,
+    "filesUpdated": 1,
+    "patterns": {
+      "inconsistentTryCatch": [],
+      "directConsoleError": [],
+      "missingAsyncErrorHandling": [],
+      "resourceErrorHandling": [],
+      "apiErrorHandling": [],
+      "logging": [
+        {
+          "file": "src\\components\\ContactForm.astro",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\components\\CrealityEmbed.astro",
+          "pattern": "Direct console.error calls",
+          "count": 4
+        },
+        {
+          "file": "src\\components\\DuckHuntGame.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\components\\IntroAnimation.astro",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 3
+        },
+        {
+          "file": "src\\components\\ParticleBackground.astro",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\components\\passive-income\\ExpandableAppCard.astro",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\components\\ProjectSubmissionForm.astro",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\components\\YouTubeEmbed.astro",
+          "pattern": "Direct console.error calls",
+          "count": 4
+        },
+        {
+          "file": "src\\layouts\\BaseLayout.astro",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\pages\\blog\\ai-tools-comparison-2025.astro",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\pages\\blog\\cursor-ai-review.astro",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\pages\\content-creation.astro",
+          "pattern": "Direct console.error calls",
+          "count": 8
+        },
+        {
+          "file": "src\\pages\\live.astro",
+          "pattern": "Direct console.error calls",
+          "count": 7
+        },
+        {
+          "file": "src\\pages\\passive-income\\brave.astro",
+          "pattern": "Direct console.error calls",
+          "count": 2
+        },
+        {
+          "file": "src\\scripts\\build\\generate-assets.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\scripts\\build\\generate-favicons.js",
+          "pattern": "Direct console.error calls",
+          "count": 3
+        },
+        {
+          "file": "src\\scripts\\build\\generate-win95-icons.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\scripts\\build\\image-optimization.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\scripts\\build\\optimize-images.js",
+          "pattern": "Direct console.error calls",
+          "count": 3
+        },
+        {
+          "file": "src\\scripts\\build\\optimize-images.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 3
+        },
+        {
+          "file": "src\\scripts\\development\\check-links.js",
+          "pattern": "Direct console.error calls",
+          "count": 3
+        },
+        {
+          "file": "src\\scripts\\development\\js-optimization.js",
+          "pattern": "Direct console.error calls",
+          "count": 2
+        },
+        {
+          "file": "src\\scripts\\development\\js-optimization.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 2
+        },
+        {
+          "file": "src\\scripts\\development\\performance-optimization.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 1
+        },
+        {
+          "file": "src\\scripts\\vault-shelter-game.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\utils\\domUtils.js",
+          "pattern": "Direct console.error calls",
+          "count": 3
+        },
+        {
+          "file": "src\\utils\\fileUtils.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "src\\utils\\knowledgeGraph.js",
+          "pattern": "Direct console.error calls",
+          "count": 3
+        },
+        {
+          "file": "src\\utils\\youtubeScraperUtil.js",
+          "pattern": "Direct console.error calls",
+          "count": 3
+        },
+        {
+          "file": "public\\scripts\\core\\main.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "public\\scripts\\core\\utils.js",
+          "pattern": "Direct console.error calls",
+          "count": 2
+        },
+        {
+          "file": "public\\scripts\\creality-embed.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "public\\scripts\\particles-config.js",
+          "pattern": "Direct console.error calls",
+          "count": 5
+        },
+        {
+          "file": "public\\scripts\\particles-init.js",
+          "pattern": "Direct console.error calls",
+          "count": 3
+        },
+        {
+          "file": "public\\scripts\\passive-income-particles.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "public\\scripts\\service-worker-registration.js",
+          "pattern": "Direct console.error calls",
+          "count": 2
+        },
+        {
+          "file": "public\\scripts\\service-worker-registration.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 1
+        },
+        {
+          "file": "public\\scripts\\sound-manager.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "public\\scripts\\sound-manager.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 2
+        },
+        {
+          "file": "public\\scripts\\vault-shelter-game.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\analyze-code-duplication.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\analyze-code-duplication.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 3
+        },
+        {
+          "file": "scripts\\analyze-export-patterns.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\analyze-export-patterns.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 1
+        },
+        {
+          "file": "scripts\\comprehensive-ui-audit.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\fix-syntax-errors.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\implement-ui-improvements.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\live-site-testing.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\remove-duplicates.js",
+          "pattern": "Direct console.error calls",
+          "count": 2
+        },
+        {
+          "file": "scripts\\standardize-error-handling.js",
+          "pattern": "Direct console.error calls",
+          "count": 3
+        },
+        {
+          "file": "scripts\\standardize-error-handling.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 1
+        },
+        {
+          "file": "scripts\\standardize-jsdoc.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\standardize-jsdoc.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 2
+        },
+        {
+          "file": "scripts\\test-ui-improvements.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\unified-optimizer.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\validate-deduplication.js",
+          "pattern": "Direct console.error calls",
+          "count": 2
+        },
+        {
+          "file": "scripts\\validate-deduplication.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 1
+        },
+        {
+          "file": "scripts\\validate-error-handling.js",
+          "pattern": "Direct console.error calls",
+          "count": 5
+        },
+        {
+          "file": "scripts\\validate-error-handling.js",
+          "pattern": "Direct console.warn calls for errors",
+          "count": 2
+        },
+        {
+          "file": "scripts\\validate-export-improvements.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        },
+        {
+          "file": "scripts\\validate-jsdoc-improvements.js",
+          "pattern": "Direct console.error calls",
+          "count": 1
+        }
+      ],
+      "error-handling": [
+        {
+          "file": "src\\components\\CrealityEmbed.astro",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "src\\components\\YouTubeEmbed.astro",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "src\\pages\\content-creation.astro",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "src\\pages\\live.astro",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "src\\scripts\\build\\generate-favicons.js",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "public\\scripts\\particles-config.js",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "public\\scripts\\particles-init.js",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "scripts\\remove-duplicates.js",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "scripts\\standardize-error-handling.js",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "scripts\\validate-deduplication.js",
+          "pattern": "Basic try-catch with console.error",
+          "count": 1
+        },
+        {
+          "file": "scripts\\validate-error-handling.js",
+          "pattern": "Basic try-catch with console.error",
+          "count": 2
+        }
+      ],
+      "async-error-handling": [
+        {
+          "file": "scripts\\validate-error-handling.js",
+          "pattern": "Async try-catch with console.error",
+          "count": 1
+        }
+      ]
+    },
+    "improvements": [
+      "public/scripts/contact-booking.js: Replace form submission error with standardized utility",
+      "Created global error handler setup"
+    ],
+    "errors": []
+  }
+}

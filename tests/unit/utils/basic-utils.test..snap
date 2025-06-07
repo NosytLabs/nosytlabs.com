@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Basic Utilities Testing Framework > Snapshot Testing > should support snapshot testing 1`] = `
+{
+  "features": [
+    "testing",
+    "performance",
+    "accessibility",
+  ],
+  "name": "NosytLabs",
+  "version": "1.0.0",
+}
+`;

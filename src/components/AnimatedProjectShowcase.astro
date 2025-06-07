@@ -1,0 +1,140 @@
+---
+/**
+ * Animated Project Showcase Component
+ * Interactive 3D card showcase with smooth animations
+ */
+
+interface Props {
+  className?: string;
+  maxProjects?: number;
+}
+
+const { className = '', maxProjects = 6 } = Astro.props;
+
+const featuredProjects = [
+  {
+    id: 'nosytlabs-website',
+    title: 'NosytLabs Portfolio',
+    description: 'Modern portfolio website with retro Windows 95 experience',
+    image: '/images/projects/nosytlabs-preview.jpg',
+    tech: ['Astro', 'TypeScript', 'CSS3'],
+    status: 'Live',
+    link: '/',
+    github: 'https://github.com/NosytLabs/nosytlabs.com'
+  },
+  {
+    id: 'roi-calculator',
+    title: 'Interactive ROI Calculator',
+    description: 'Real-time calculation tool for investment analysis',
+    image: '/images/projects/calculator-preview.jpg',
+    tech: ['JavaScript', 'CSS3', 'HTML5'],
+    status: 'Featured',
+    link: '/services#calculator',
+    github: '#'
+  },
+  {
+    id: 'nosytos95',
+    title: 'NosytOS95',
+    description: 'Authentic Windows 95 experience in the browser',
+    image: '/images/projects/nosytos95-preview.jpg',
+    tech: ['JavaScript', 'CSS3', 'Canvas'],
+    status: 'Interactive',
+    link: '/nosytos95',
+    github: '#'
+  },
+  {
+    id: 'passive-income-tracker',
+    title: 'Passive Income Tracker',
+    description: 'Comprehensive tracking for multiple income streams',
+    image: '/images/projects/income-tracker-preview.jpg',
+    tech: ['React', 'Node.js', 'MongoDB'],
+    status: 'Development',
+    link: '/passive-income',
+    github: '#'
+  },
+  {
+    id: '3d-printing-service',
+    title: '3D Printing Service',
+    description: 'Custom 3D printing solutions and tutorials',
+    image: '/images/projects/3d-printing-preview.jpg',
+    tech: ['CAD', 'Fusion 360', 'PrusaSlicer'],
+    status: 'Active',
+    link: '/3d-printing',
+    github: '#'
+  },
+  {
+    id: 'crypto-mining-guide',
+    title: 'Crypto Mining Guide',
+    description: 'Comprehensive cryptocurrency mining resources',
+    image: '/images/projects/mining-preview.jpg',
+    tech: ['Hardware', 'Software', 'Analytics'],
+    status: 'Updated',
+    link: '/crypto-mining',
+    github: '#'
+  }
+].slice(0, maxProjects);
+---
+
+<section class={`animated-project-showcase ${className}`}>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-description">Interactive showcase of innovative solutions and creative work</p>
+    </div>
+    
+    <div class="projects-grid">
+      {featuredProjects.map((project, index) => (
+        <article 
+          class="project-card" 
+          data-project={project.id}
+          style={`--delay: ${index * 0.1}s;`}
+        >
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="project-image">
+                <img src={project.image} alt={project.title} loading="lazy" />
+                <div class="image-overlay">
+                  <div class="status-badge" data-status={project.status.toLowerCase()}>
+                    {project.status}
+                  </div>
+                </div>
+              </div>
+              
+              <div class="project-content">
+                <h3 class="project-title">{project.title}</h3>
+                <p class="project-description">{project.description}</p>
+                
+                <div class="tech-stack">
+                  {project.tech.map(tech => (
+                    <span class="tech-tag">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <div class="card-back">
+              <div class="project-details">
+                <h3 class="project-title">{project.title}</h3>
+                <p class="project-description">{project.description}</p>
+                
+                <div class="project-actions">
+                  <a href={project.link} class="action-btn primary">
+                    <span class="btn-text">View Project</span>
+                    <span class="btn-icon">→</span>
+                  </a>
+                  
+                  {project.github !== '#' && (
+                    <a href={project.github} class="action-btn secondary" target="_blank" rel="noopener">
+                      <span class="btn-text">GitHub</span>
+                      <span class="btn-icon">⧉</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

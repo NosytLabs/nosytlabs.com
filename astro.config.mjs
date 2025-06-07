@@ -1,6 +1,13 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import { securityHeaders } from './src/config/security.js';
+import { getDevViteConfig } from './src/config/development.js';
+import { getProductionViteConfig, getAstroBuildConfig } from './src/config/build-optimization.js';
+
+// Get development configuration
+const isDev = process.env.NODE_ENV !== 'production';
+const devConfig = isDev ? getDevViteConfig() : {};
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,39 +20,25 @@ export default defineConfig({
   ],
   output: 'static',
   build: {
-    format: 'file',
-    // Enhanced build optimizations
-    inlineStylesheets: 'auto', // Inline small CSS files
-    assets: 'assets', // Organize assets in dedicated folder
-    assetsPrefix: process.env.NODE_ENV === 'production' ? 'https://cdn.nosytlabs.com' : undefined
+    ...getAstroBuildConfig(),
+    assetsPrefix: process.env.NODE_ENV === 'production' ? 'https://cdn.nosytlabs.com' : undefined,
   },
   server: {
     port: 3000,
-    host: true
+    host: true,
+    headers: securityHeaders,
+    hmr: {
+      port: 3001,
+      host: 'localhost',
+      protocol: 'ws'
+    }
   },
-  vite: {
-    build: {
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          drop_console: process.env.NODE_ENV === 'production',
-          drop_debugger: true,
-          pure_funcs: ['console.log', 'console.debug', 'console.info'],
-          passes: 3, // Increased passes for better compression
-          unsafe: true,
-          unsafe_comps: true,
-          unsafe_math: true,
-          unsafe_proto: true
-        },
-        mangle: {
-          toplevel: true,
-          safari10: true
-        },
-        format: {
-          comments: false,
-          ecma: 2020
-        }
-      },
+  vite: isDev ? {
+    // Development configuration
+    ...devConfig
+  } : {
+    // Production configuration using centralized build optimization
+    ...getProductionViteConfig(),
       cssMinify: 'lightningcss', // Use Lightning CSS for better performance
       cssCodeSplit: true,
       assetsInlineLimit: 2048, // Reduced to 2KB for better caching
@@ -54,27 +47,18 @@ export default defineConfig({
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            // Vendor chunks
+            // Only create chunks for modules that actually exist and are imported
             if (id.includes('node_modules')) {
+              // React vendor chunk - only if React is actually used
               if (id.includes('react') || id.includes('react-dom')) {
                 return 'react-vendor';
               }
-              if (id.includes('@vercel')) {
-                return 'analytics';
-              }
+              // General vendor chunk for other node_modules
               return 'vendor';
             }
 
-            // Feature-based chunks
-            if (id.includes('nosytos95') || id.includes('win95')) {
-              return 'nosytos95';
-            }
-            if (id.includes('performance') || id.includes('lazy')) {
-              return 'performance';
-            }
-            if (id.includes('animation') || id.includes('ui')) {
-              return 'ui';
-            }
+            // No feature-based chunking to avoid empty chunks
+            return undefined;
           },
           // Optimized file naming with shorter hashes
           assetFileNames: (assetInfo) => {
@@ -93,7 +77,9 @@ export default defineConfig({
           minifyInternalExports: true,
           compact: true,
           preserveModules: false,
-          experimentalMinChunkSize: 1000 // Minimum chunk size
+          experimentalMinChunkSize: 1000, // Minimum chunk size
+          // Prevent empty hoisted chunks
+          hoistTransitiveImports: false
         },
         // Tree shaking optimizations
         treeshake: {
@@ -101,13 +87,6 @@ export default defineConfig({
           propertyReadSideEffects: false,
           unknownGlobalSideEffects: false
         }
-      }
-    },
-    server: {
-      hmr: {
-        port: 3000,
-        host: 'localhost',
-        protocol: 'ws'
       }
     },
     ssr: {
@@ -124,7 +103,7 @@ export default defineConfig({
     assetsInclude: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp', '**/*.avif', '**/*.woff2'],
     // Improved CSS handling
     css: {
-      devSourcemap: false, // Disable in production
+      devSourcemap: process.env.NODE_ENV !== 'production', // Enable in development
       lightningcss: {
         targets: {
           chrome: 80,
@@ -139,6 +118,17 @@ export default defineConfig({
         generateScopedName: process.env.NODE_ENV === 'production'
           ? '[hash:base64:5]'
           : '[name]__[local]__[hash:base64:5]'
+      }
+    },
+    // Development server optimizations
+    server: {
+      fs: {
+        strict: false,
+        allow: ['..']
+      },
+      watch: {
+        usePolling: false,
+        interval: 100
       }
     },
     // Performance optimizations

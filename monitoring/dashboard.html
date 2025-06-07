@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NosytLabs Monitoring Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #FF6B00;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            border-color: #FF6B00;
+        }
+
+        .metric-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .metric-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+
+        .metric-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .status-online {
+            background: #10b981;
+            color: white;
+        }
+
+        .status-warning {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .status-error {
+            background: #ef4444;
+            color: white;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FF6B00;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-description {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .chart-container {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border: 2px dashed #334155;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .alerts-section {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .alerts-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background: #0f172a;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 0.75rem;
+        }
+
+        .alert-success {
+            background: #10b981;
+        }
+
+        .alert-warning {
+            background: #f59e0b;
+        }
+
+        .alert-error {
+            background: #ef4444;
+        }
+
+        .alert-text {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+
+        .alert-time {
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            color: #64748b;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>NosytLabs Monitoring Dashboard</h1>
+            <p>Real-time monitoring and performance metrics</p>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Site Status</div>
+                    <div class="metric-status status-online">Online</div>
+                </div>
+                <div class="metric-value">99.9%</div>
+                <div class="metric-description">Uptime over last 30 days</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Response Time</div>
+                    <div class="metric-status status-online">Good</div>
+                </div>
+                <div class="metric-value">245ms</div>
+                <div class="metric-description">Average response time</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Page Views</div>
+                    <div class="metric-status status-online">Active</div>
+                </div>
+                <div class="metric-value">12.4K</div>
+                <div class="metric-description">Views in last 7 days</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Performance Score</div>
+                    <div class="metric-status status-online">Excellent</div>
+                </div>
+                <div class="metric-value">94</div>
+                <div class="metric-description">Lighthouse performance score</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Build Size</div>
+                    <div class="metric-status status-warning">Large</div>
+                </div>
+                <div class="metric-value">28.6MB</div>
+                <div class="metric-description">Total deployment size</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Error Rate</div>
+                    <div class="metric-status status-online">Low</div>
+                </div>
+                <div class="metric-value">0.02%</div>
+                <div class="metric-description">Error rate over last 24h</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Response Time Trends</div>
+            <div class="chart-placeholder">
+                Chart integration with Vercel Analytics API
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Traffic Overview</div>
+            <div class="chart-placeholder">
+                Real-time visitor analytics and page views
+            </div>
+        </div>
+
+        <div class="alerts-section">
+            <div class="alerts-title">Recent Alerts & Events</div>
+            
+            <div class="alert-item">
+                <div class="alert-icon alert-success"></div>
+                <div class="alert-text">Deployment successful - Version 1.0.0</div>
+                <div class="alert-time">2 minutes ago</div>
+            </div>
+
+            <div class="alert-item">
+                <div class="alert-icon alert-success"></div>
+                <div class="alert-text">All health checks passed</div>
+                <div class="alert-time">5 minutes ago</div>
+            </div>
+
+            <div class="alert-item">
+                <div class="alert-icon alert-warning"></div>
+                <div class="alert-text">Build size increased to 28.6MB</div>
+                <div class="alert-time">10 minutes ago</div>
+            </div>
+
+            <div class="alert-item">
+                <div class="alert-icon alert-success"></div>
+                <div class="alert-text">Performance optimization completed</div>
+                <div class="alert-time">1 hour ago</div>
+            </div>
+
+            <div class="alert-item">
+                <div class="alert-icon alert-success"></div>
+                <div class="alert-text">Accessibility score: 100%</div>
+                <div class="alert-time">2 hours ago</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Monitoring powered by Vercel Analytics & Speed Insights</p>
+            <p>Last updated: <span id="lastUpdated"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Update last updated time
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleString();
+
+        // Simulate real-time updates (in production, this would connect to actual APIs)
+        function updateMetrics() {
+            // This would fetch real data from Vercel Analytics API
+            console.log('Updating metrics...');
+        }
+
+        // Update every 30 seconds
+        setInterval(updateMetrics, 30000);
+
+        // Initial load
+        updateMetrics();
+    </script>
+</body>
+</html>

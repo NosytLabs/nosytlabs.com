@@ -1,0 +1,105 @@
+<!-- Enhanced NosytLabs Hero Image SVG -->
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <!-- Main gradient background -->
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4C1D95;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#8B5CF6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B00;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Overlay gradient for depth -->
+    <radialGradient id="overlayGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Tech pattern -->
+    <pattern id="techPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/>
+      <circle cx="0" cy="0" r="1" fill="rgba(255,255,255,0.05)"/>
+      <circle cx="40" cy="40" r="1" fill="rgba(255,255,255,0.05)"/>
+    </pattern>
+
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#heroGradient)"/>
+  <rect width="800" height="600" fill="url(#techPattern)"/>
+  <rect width="800" height="600" fill="url(#overlayGradient)"/>
+
+  <!-- Floating geometric shapes -->
+  <circle cx="120" cy="100" r="35" fill="rgba(255,255,255,0.15)" opacity="0.8">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 10,-5; 0,0" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <rect x="650" y="80" width="60" height="60" rx="8" fill="rgba(255,255,255,0.1)" opacity="0.6">
+    <animateTransform attributeName="transform" type="rotate" values="0 680 110; 5 680 110; 0 680 110" dur="6s" repeatCount="indefinite"/>
+  </rect>
+  <polygon points="100,450 130,420 160,450 130,480" fill="rgba(255,255,255,0.12)" opacity="0.7">
+    <animateTransform attributeName="transform" type="translate" values="0,0; -5,8; 0,0" dur="5s" repeatCount="indefinite"/>
+  </polygon>
+
+  <!-- Tech icons/symbols -->
+  <g transform="translate(600, 400)" opacity="0.3">
+    <rect x="0" y="0" width="20" height="20" rx="2" fill="rgba(255,255,255,0.4)"/>
+    <rect x="25" y="0" width="20" height="20" rx="2" fill="rgba(255,255,255,0.3)"/>
+    <rect x="50" y="0" width="20" height="20" rx="2" fill="rgba(255,255,255,0.2)"/>
+  </g>
+
+  <!-- Central content area -->
+  <g transform="translate(400, 300)">
+    <!-- Main logo/brand area -->
+    <circle cx="0" cy="-50" r="80" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="2" filter="url(#glow)"/>
+
+    <!-- Brand text -->
+    <text x="0" y="-40" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="42" font-weight="bold" filter="url(#glow)">
+      NosytLabs
+    </text>
+
+    <!-- Tagline -->
+    <text x="0" y="10" text-anchor="middle" fill="rgba(255,255,255,0.95)" font-family="Arial, sans-serif" font-size="18" font-weight="500">
+      Digital Solutions & Innovation
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="40" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="Arial, sans-serif" font-size="14" font-weight="400">
+      Notable Opportunities Shape Your Tomorrow
+    </text>
+
+    <!-- Service indicators -->
+    <g transform="translate(0, 80)" opacity="0.9">
+      <rect x="-120" y="0" width="60" height="30" rx="15" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+      <text x="-90" y="20" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="500">Web Dev</text>
+
+      <rect x="-30" y="0" width="60" height="30" rx="15" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+      <text x="0" y="20" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="500">AI Tools</text>
+
+      <rect x="60" y="0" width="60" height="30" rx="15" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+      <text x="90" y="20" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="500">3D Print</text>
+    </g>
+  </g>
+
+  <!-- Corner accents -->
+  <path d="M0,0 L60,0 L60,5 L5,5 L5,60 L0,60 Z" fill="rgba(255,255,255,0.1)"/>
+  <path d="M800,600 L740,600 L740,595 L795,595 L795,540 L800,540 Z" fill="rgba(255,255,255,0.1)"/>
+
+  <!-- Animated particles -->
+  <circle cx="200" cy="150" r="2" fill="rgba(255,255,255,0.6)">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="600" cy="200" r="2" fill="rgba(255,255,255,0.6)">
+    <animate attributeName="opacity" values="1;0.6;1" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="150" cy="400" r="2" fill="rgba(255,255,255,0.6)">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="5s" repeatCount="indefinite"/>
+  </circle>
+</svg>

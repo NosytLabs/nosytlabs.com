@@ -1,0 +1,723 @@
+---
+/**
+ * Unified Navigation Component for NosytLabs - 2025 Refactored
+ * Consolidates all navigation variants into a single, maintainable component
+ * Supports modern, retro, and mobile variants with responsive design
+ */
+
+import ModernIconSystem from '../ModernIconSystem.astro';
+import MobileNavigation from '../MobileNavigation.astro';
+
+interface NavigationItem {
+  name: string;
+  path: string;
+  icon: string;
+  description?: string;
+  badge?: string;
+  isSpecial?: boolean;
+  isLive?: boolean;
+  external?: boolean;
+}
+
+interface Props {
+  currentPath?: string;
+  variant?: 'modern' | 'retro' | 'minimal';
+  isRetroMode?: boolean;
+  className?: string;
+  showMobileMenu?: boolean;
+  logoVariant?: 'full' | 'icon' | 'text';
+}
+
+const {
+  currentPath = '',
+  variant = 'modern',
+  isRetroMode = false,
+  className = '',
+  showMobileMenu = true,
+  logoVariant = 'full'
+} = Astro.props;
+
+// Unified navigation data structure
+const navigationData = {
+  primary: [
+    { 
+      name: "Services", 
+      path: "/services", 
+      icon: "web-development", 
+      description: "Web development, AI solutions, and digital services"
+    },
+    { 
+      name: "Projects", 
+      path: "/projects", 
+      icon: "external-link", 
+      description: "Portfolio of completed work and case studies"
+    },
+    { 
+      name: "Content", 
+      path: "/content-creation", 
+      icon: "content-creation", 
+      description: "YouTube, streaming, and educational content",
+      badge: "New"
+    },
+    { 
+      name: "Blog", 
+      path: "/blog", 
+      icon: "star", 
+      description: "Latest insights and tutorials"
+    }
+  ],
+  secondary: [
+    { 
+      name: "Income", 
+      path: "/passive-income", 
+      icon: "star", 
+      description: "Passive income strategies and resources",
+      badge: "Hot"
+    },
+    { 
+      name: "Mining", 
+      path: "/crypto-mining", 
+      icon: "crypto-mining", 
+      description: "Cryptocurrency mining guides and hardware"
+    },
+    { 
+      name: "3D Print", 
+      path: "/3d-printing", 
+      icon: "3d-printing", 
+      description: "3D printing services and tutorials"
+    },
+    { 
+      name: "Contact", 
+      path: "/contact", 
+      icon: "external-link", 
+      description: "Get in touch with us"
+    }
+  ],
+  special: [
+    { 
+      name: "NosytOS95", 
+      path: "/nosytos95", 
+      icon: "mobile-development", 
+      description: "Retro Windows 95 experience",
+      badge: "Retro",
+      isSpecial: true
+    },
+    { 
+      name: "Live", 
+      path: "/live", 
+      icon: "star", 
+      description: "Live streaming on Kick.com",
+      badge: "Live",
+      isLive: true
+    }
+  ]
+};
+
+// Helper functions
+const isActive = (path: string) => currentPath === path || currentPath.startsWith(path + '/');
+const getVariantClasses = () => {
+  const baseClasses = 'navigation-unified';
+  const variantClasses = {
+    modern: 'nav-modern',
+    retro: 'nav-retro win95-header',
+    minimal: 'nav-minimal'
+  };
+  return `${baseClasses} ${variantClasses[variant]} ${className}`;
+};
+
+// All navigation items for mobile menu
+const allNavItems = [...navigationData.primary, ...navigationData.secondary, ...navigationData.special];
+---
+
+<header class={getVariantClasses()} role="banner">
+  <div class="nav-container">
+    <!-- Logo/Brand Section -->
+    <div class="nav-brand">
+      <a href="/" class="brand-link" aria-label="NosytLabs Home">
+        {logoVariant === 'full' && (
+          <div class="brand-full">
+            <div class="brand-icon">N</div>
+            <div class="brand-text">
+              <span class="brand-name">NosytLabs</span>
+              <span class="brand-tagline">Notable Opportunities</span>
+            </div>
+          </div>
+        )}
+        {logoVariant === 'icon' && (
+          <div class="brand-icon-only">N</div>
+        )}
+        {logoVariant === 'text' && (
+          <span class="brand-text-only">NosytLabs</span>
+        )}
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="nav-desktop" role="navigation" aria-label="Main navigation">
+      {variant !== 'retro' && (
+        <ul class="nav-list" role="menubar">
+          {navigationData.primary.map((item) => (
+            <li class="nav-item" role="none">
+              <a 
+                href={item.path}
+                class={`nav-link ${isActive(item.path) ? 'active' : ''}`}
+                role="menuitem"
+                aria-current={isActive(item.path) ? 'page' : undefined}
+                title={item.description}
+              >
+                <ModernIconSystem name={item.icon} size="sm" className="nav-icon" />
+                <span class="nav-text">{item.name}</span>
+                {item.badge && (
+                  <span class={`nav-badge badge-${item.badge.toLowerCase()}`}>{item.badge}</span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {variant === 'retro' && (
+        <div class="nav-retro-links">
+          {navigationData.primary.slice(0, 4).map((item) => (
+            <a 
+              href={item.path}
+              class={`retro-link ${isActive(item.path) ? 'active' : ''}`}
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+      )}
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    {showMobileMenu && (
+      <button 
+        class="mobile-toggle"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        data-mobile-toggle
+      >
+        <ModernIconSystem name="menu" size="md" />
+      </button>
+    )}
+
+    <!-- Theme Toggle -->
+    <button 
+      class="theme-toggle"
+      aria-label="Toggle dark mode"
+      data-theme-toggle
+    >
+      <ModernIconSystem name="star" size="sm" />
+    </button>
+  </div>
+
+  <!-- Mobile Navigation Overlay -->
+  {showMobileMenu && (
+    <div class="mobile-nav-overlay" data-mobile-overlay aria-hidden="true">
+      <div class="mobile-nav-panel">
+        <!-- Mobile Header -->
+        <div class="mobile-nav-header">
+          <div class="mobile-brand">
+            <div class="mobile-logo">N</div>
+            <span class="mobile-brand-text">NosytLabs</span>
+          </div>
+          <button class="mobile-close" aria-label="Close mobile menu" data-mobile-close>
+            <ModernIconSystem name="close" size="sm" />
+          </button>
+        </div>
+
+        <!-- Mobile Navigation Content -->
+        <nav class="mobile-nav-content" role="navigation" aria-label="Mobile navigation">
+          <!-- Primary Section -->
+          <div class="mobile-nav-section">
+            <h3 class="mobile-section-title">Main</h3>
+            <ul class="mobile-nav-list">
+              {navigationData.primary.map((item) => (
+                <li>
+                  <a 
+                    href={item.path}
+                    class={`mobile-nav-link ${isActive(item.path) ? 'active' : ''}`}
+                    aria-current={isActive(item.path) ? 'page' : undefined}
+                  >
+                    <ModernIconSystem name={item.icon} size="sm" className="mobile-nav-icon" />
+                    <div class="mobile-nav-content">
+                      <span class="mobile-nav-text">{item.name}</span>
+                      <span class="mobile-nav-desc">{item.description}</span>
+                    </div>
+                    {item.badge && (
+                      <span class="mobile-nav-badge">{item.badge}</span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Secondary Section -->
+          <div class="mobile-nav-section">
+            <h3 class="mobile-section-title">More</h3>
+            <ul class="mobile-nav-list">
+              {navigationData.secondary.map((item) => (
+                <li>
+                  <a 
+                    href={item.path}
+                    class={`mobile-nav-link ${isActive(item.path) ? 'active' : ''}`}
+                    aria-current={isActive(item.path) ? 'page' : undefined}
+                  >
+                    <ModernIconSystem name={item.icon} size="sm" className="mobile-nav-icon" />
+                    <div class="mobile-nav-content">
+                      <span class="mobile-nav-text">{item.name}</span>
+                      <span class="mobile-nav-desc">{item.description}</span>
+                    </div>
+                    {item.badge && (
+                      <span class="mobile-nav-badge">{item.badge}</span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Special Section -->
+          <div class="mobile-nav-section">
+            <h3 class="mobile-section-title">Special</h3>
+            <ul class="mobile-nav-list">
+              {navigationData.special.map((item) => (
+                <li>
+                  <a 
+                    href={item.path}
+                    class={`mobile-nav-link ${isActive(item.path) ? 'active' : ''} ${item.isSpecial ? 'special' : ''} ${item.isLive ? 'live' : ''}`}
+                    aria-current={isActive(item.path) ? 'page' : undefined}
+                  >
+                    <ModernIconSystem name={item.icon} size="sm" className="mobile-nav-icon" />
+                    <div class="mobile-nav-content">
+                      <span class="mobile-nav-text">{item.name}</span>
+                      <span class="mobile-nav-desc">{item.description}</span>
+                    </div>
+                    {item.badge && (
+                      <span class="mobile-nav-badge">{item.badge}</span>
+                    )}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  )}
+</header>
+
+<style>
+  /* Base Navigation Styles */
+  .navigation-unified {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--glass-white-strong);
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border-bottom: var(--glass-border);
+    transition: all 0.3s ease;
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  /* Brand Styles */
+  .nav-brand {
+    display: flex;
+    align-items: center;
+  }
+
+  .brand-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .brand-full {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .brand-icon,
+  .brand-icon-only {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 18px;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-name {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1;
+  }
+
+  .brand-tagline {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    line-height: 1;
+  }
+
+  .brand-text-only {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  /* Desktop Navigation */
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-primary-600);
+    background: var(--glass-primary);
+  }
+
+  .nav-badge {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-new {
+    background: var(--color-success-500);
+    color: white;
+  }
+
+  .badge-hot {
+    background: var(--color-accent-500);
+    color: white;
+  }
+
+  .badge-retro {
+    background: var(--color-secondary-500);
+    color: white;
+  }
+
+  .badge-live {
+    background: var(--color-error-500);
+    color: white;
+    animation: pulse 2s infinite;
+  }
+
+  /* Mobile Navigation - Touch Optimized */
+  .mobile-toggle,
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--touch-target-comfortable);
+    min-height: var(--touch-target-comfortable);
+    border: none;
+    background: var(--glass-white);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .mobile-toggle:active,
+  .theme-toggle:active {
+    transform: scale(0.95);
+    transition-duration: var(--duration-fast);
+  }
+
+  .mobile-toggle:hover,
+  .theme-toggle:hover {
+    background: var(--glass-primary);
+    color: var(--color-primary-600);
+  }
+
+  .mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-nav-panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 380px;
+    height: 100%;
+    background: var(--glass-white-strong);
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border-left: var(--glass-border);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .mobile-nav-overlay.active .mobile-nav-panel {
+    transform: translateX(0);
+  }
+
+  /* Responsive Design */
+  @media (min-width: 768px) {
+    .nav-desktop {
+      display: block;
+    }
+
+    .mobile-toggle {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .brand-tagline {
+      display: none;
+    }
+  }
+
+  /* Variant Styles */
+  .nav-retro {
+    background: #c0c0c0;
+    border-bottom: 2px solid #808080;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nav-minimal {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+  }
+
+  /* Dark Theme Support */
+  [data-theme="dark"] .navigation-unified {
+    background: var(--glass-dark-strong);
+    border-bottom: var(--glass-border);
+  }
+
+  [data-theme="dark"] .brand-name {
+    color: var(--color-text-primary);
+  }
+
+  [data-theme="dark"] .nav-link {
+    color: var(--color-text-secondary);
+  }
+
+  [data-theme="dark"] .nav-link:hover,
+  [data-theme="dark"] .nav-link.active {
+    color: var(--color-primary-400);
+    background: var(--glass-dark);
+  }
+
+  /* Animations */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .navigation-unified,
+    .nav-link,
+    .mobile-nav-overlay,
+    .mobile-nav-panel {
+      transition: none;
+    }
+
+    .badge-live {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced navigation functionality
+  class UnifiedNavigation {
+    constructor() {
+      this.mobileOverlay = document.querySelector('.mobile-nav-overlay');
+      this.mobileToggle = document.querySelector('[data-mobile-toggle]');
+      this.mobileClose = document.querySelector('[data-mobile-close]');
+      this.themeToggle = document.querySelector('[data-theme-toggle]');
+      
+      this.init();
+    }
+
+    init() {
+      this.setupMobileMenu();
+      this.setupThemeToggle();
+      this.setupKeyboardNavigation();
+      this.setupScrollBehavior();
+    }
+
+    setupMobileMenu() {
+      if (this.mobileToggle) {
+        this.mobileToggle.addEventListener('click', () => this.toggleMobileMenu());
+      }
+
+      if (this.mobileClose) {
+        this.mobileClose.addEventListener('click', () => this.closeMobileMenu());
+      }
+
+      if (this.mobileOverlay) {
+        this.mobileOverlay.addEventListener('click', (e) => {
+          if (e.target === this.mobileOverlay) {
+            this.closeMobileMenu();
+          }
+        });
+      }
+
+      // Close on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.mobileOverlay?.classList.contains('active')) {
+          this.closeMobileMenu();
+        }
+      });
+    }
+
+    toggleMobileMenu() {
+      if (this.mobileOverlay) {
+        const isActive = this.mobileOverlay.classList.contains('active');
+        if (isActive) {
+          this.closeMobileMenu();
+        } else {
+          this.openMobileMenu();
+        }
+      }
+    }
+
+    openMobileMenu() {
+      if (this.mobileOverlay) {
+        this.mobileOverlay.classList.add('active');
+        this.mobileOverlay.setAttribute('aria-hidden', 'false');
+        this.mobileToggle?.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    closeMobileMenu() {
+      if (this.mobileOverlay) {
+        this.mobileOverlay.classList.remove('active');
+        this.mobileOverlay.setAttribute('aria-hidden', 'true');
+        this.mobileToggle?.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+    }
+
+    setupThemeToggle() {
+      if (this.themeToggle) {
+        this.themeToggle.addEventListener('click', () => {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+        });
+      }
+    }
+
+    setupKeyboardNavigation() {
+      // Enhanced keyboard navigation for accessibility
+      const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            link.click();
+          }
+        });
+      });
+    }
+
+    setupScrollBehavior() {
+      // Hide/show navigation on scroll
+      let lastScrollY = window.scrollY;
+      const nav = document.querySelector('.navigation-unified');
+
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        if (nav) {
+          if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            nav.style.transform = 'translateY(-100%)';
+          } else {
+            nav.style.transform = 'translateY(0)';
+          }
+        }
+        
+        lastScrollY = currentScrollY;
+      });
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new UnifiedNavigation();
+  });
+</script>

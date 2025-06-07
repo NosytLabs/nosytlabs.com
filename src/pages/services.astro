@@ -1,11 +1,12 @@
 ---
-// Services page for NosytLabs
+// Services page for NosytLabs - Redesigned 2025
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/unified/HeroSection.astro';
+import Card from '../components/unified/Card.astro';
 import AnimatedSection from '../components/animations/AnimatedSection.astro';
 import GlitchText from '../components/GlitchText.astro';
 import PDFViewer from '../components/PDFViewer.astro';
 import ServiceIcon from '../components/ServiceIcon.astro';
-import ServiceCard from '../components/ServiceCard.astro';
 
 // Import data
 import servicesData from '../../public/data/services.json';
@@ -35,56 +36,74 @@ const pdfDocuments = [
 ---
 
 <BaseLayout
-  title="Services - NosytLabs"
-  description="Explore our comprehensive range of services including AI solutions, web development, mobile apps, and 3D printing."
+  title="Professional Digital Services & Solutions | NosytLabs"
+  description="Comprehensive digital services including custom web development with React & Astro, AI integration solutions, content creation for YouTube & streaming, and 3D printing services. Get expert consultation."
+  pageKey="services"
+  keywords="web development services, AI integration, content creation, digital consulting, custom software development, React development, Astro framework, YouTube content"
 >
-  <!-- Hero Section -->
-  <div class="relative bg-indigo-700 text-white py-20">
-    <div class="container mx-auto px-4">
-      <div class="max-w-3xl">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
-        <p class="text-xl mb-4">
-          Comprehensive digital solutions tailored to your business needs.
+  <!-- Enhanced Hero Section -->
+  <HeroSection
+    variant="split"
+    layout="standard"
+    theme="gradient"
+    showParticles={true}
+    showFloatingElements={true}
+    animationStyle="slide"
+    title="Professional Digital Services"
+    subtitle="Expert Solutions"
+    description="Comprehensive technology solutions designed to accelerate your business growth and digital transformation. Notable Opportunities Shape Your Tomorrow - we're actively developing content on our YouTube channel (@TycenYT) and live streaming on Kick.com/Tycen while building our service portfolio."
+    primaryCTA={{
+      text: "Get Free Consultation",
+      href: "/contact",
+      variant: "primary",
+      icon: "arrow-right"
+    }}
+    secondaryCTA={{
+      text: "View Portfolio",
+      href: "/projects",
+      variant: "outline",
+      icon: "external-link"
+    }}
+  />
+
+  <!-- Enhanced Services Overview Section -->
+  <section class="py-24 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800">
+    <div class="container-xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Technology Solutions That Drive Results</h2>
+        <p class="text-lg text-neutral-600 dark:text-neutral-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+          We specialize in Web Development, AI Integration, Content Creation, 3D Printing services, and Passive Income education strategies that help businesses establish a strong digital presence.
+          Our approach combines technical expertise with creative innovation to deliver measurable results.
         </p>
 
-        <div class="bg-yellow-500/20 backdrop-blur-sm p-4 rounded-lg mt-4">
-          <p class="text-sm">
-            <strong>Startup Status:</strong> As a new startup, we're currently focused on our YouTube channel (@TycenYT) and Kick.com stream (Kick.com/Tycen).
-            Many of our services are in development and will be launching soon. The information below represents our planned offerings.
+        <div class="glass p-8 rounded-2xl max-w-4xl mx-auto mt-8">
+          <h3 class="text-2xl font-bold text-primary-600 mb-4">Our Development Philosophy</h3>
+          <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+            We believe in creating digital experiences that not only look great but perform exceptionally. Our development process emphasizes clean code,
+            responsive design, and user-centered functionality. Every project is built with scalability, performance, and maintainability in mind,
+            ensuring your investment continues to deliver value as your business grows.
           </p>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Services Overview Section -->
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">What We Offer</h2>
-        <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-4">
-          We provide cutting-edge solutions to help businesses thrive in the digital landscape.
-          Our team of experts is dedicated to delivering exceptional results that drive growth and innovation.
-        </p>
-
-        <div class="bg-indigo-50 p-4 rounded-lg max-w-3xl mx-auto mt-6">
-          <h3 class="text-xl font-bold text-indigo-700 mb-2">Coming Soon: Vibe Coding Services</h3>
-          <p class="text-gray-700">
-            We're excited to announce our upcoming "Vibe Coding" services, focusing on custom web development with an emphasis on aesthetics,
-            user experience, and unique visual identity. Our approach combines modern frameworks with creative design principles to build websites
-            that stand out from the crowd. Stay tuned for the official launch!
-          </p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {services.map(service => (
-          <ServiceCard
+      <div class="grid grid-auto-fit-sm gap-8">
+        {services.map((service, index) => (
+          <Card
+            variant="service"
             title={service.title}
             description={service.shortDescription}
-            iconType={service.iconType || "tools"}
-            link={`#${service.id}`}
-            style="modern"
+            icon={service.iconType || "tools"}
+            hoverable={true}
+            theme="glass"
+            size="md"
+            primaryAction={{
+              text: "Learn More",
+              href: `#${service.id}`,
+              variant: "primary",
+              icon: "arrow-right"
+            }}
+            className="animate-fade-in-up"
+            style={`animation-delay: ${index * 0.1}s`}
           />
         ))}
       </div>

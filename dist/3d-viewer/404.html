@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>3D Viewer - Model Not Found</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.5;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+      background: #f5f5f5;
+    }
+    h1 {
+      color: #2196F3;
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .model-icon {
+      font-size: 5rem;
+      margin: 2rem 0;
+      color: #90CAF9;
+    }
+    .error-message {
+      background: #E3F2FD;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    .actions {
+      margin-top: 2rem;
+    }
+    a {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: #2196F3;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin: 0 0.5rem;
+    }
+    a:hover {
+      background: #1976D2;
+    }
+  </style>
+</head>
+<body>
+  <div class="model-icon">🧊</div>
+  <h1>3D Model Not Found</h1>
+  <div class="error-message">
+    <p>The 3D model you're looking for could not be found.</p>
+    <p>This could be because:</p>
+    <ul style="text-align: left; display: inline-block;">
+      <li>The model file doesn't exist</li>
+      <li>The path is incorrect</li>
+      <li>The file format is not supported</li>
+    </ul>
+  </div>
+  <div class="actions">
+    <a href="/3d-viewer">View Gallery</a>
+    <a href="/">Return Home</a>
+  </div>
+</body>
+</html>

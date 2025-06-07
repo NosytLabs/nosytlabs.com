@@ -48,7 +48,7 @@ const earningsData = [
 ];
 
 // Calculate max earnings for scaling
-const maxEarning = Math.max(...earningsData.flatMap(category =>
+const maxEarning = Math.max(earningsData.flatMap(category =>
   category.apps.map(app => app.monthlyEarning)
 ));
 

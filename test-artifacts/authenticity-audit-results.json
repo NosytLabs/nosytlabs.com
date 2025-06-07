@@ -1,0 +1,723 @@
+{
+  "placeholderContent": [
+    {
+      "file": "src\\pages\\live.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 38,
+      "context": "onerror=\"this.src='/images/placeholder.svg'; this.onerror=null; this.classList.add('bg-gray-800');\""
+    },
+    {
+      "file": "src\\pages\\live.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 38,
+      "context": "onerror=\"this.src='/images/placeholder.svg'; this.onerror=null; this.classList.add('bg-gray-800');\""
+    },
+    {
+      "file": "src\\pages\\live.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 38,
+      "context": "onerror=\"this.src='/images/placeholder.svg'; this.onerror=null; this.classList.add('bg-gray-800');\""
+    },
+    {
+      "file": "src\\pages\\live.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 38,
+      "context": "onerror=\"this.src='/images/placeholder.svg'; this.onerror=null; this.classList.add('bg-gray-800');\""
+    },
+    {
+      "file": "src\\components\\admin\\AdminHeader.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 25,
+      "context": "<img src=\"/images/admin/avatar.png\" alt=\"Admin User\" class=\"user-avatar\" onerror=\"this.src='/images/admin/avatar-placeholder.png'\">"
+    },
+    {
+      "file": "src\\components\\CrealityEmbed.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 124,
+      "context": "onerror=\"this.src='/images/placeholder.svg'; this.onerror=null;\""
+    },
+    {
+      "file": "src\\components\\CrealityEmbed.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 124,
+      "context": "onerror=\"this.src='/images/placeholder.svg'; this.onerror=null;\""
+    },
+    {
+      "file": "src\\components\\CrealityModelViewer.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 64,
+      "context": "onerror=\"this.src='/images/3d-printing/model-placeholder.jpg'; this.onerror=null;\""
+    },
+    {
+      "file": "src\\components\\InteractiveROICalculator.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 124,
+      "context": "<div class=\"results-placeholder\">"
+    },
+    {
+      "file": "src\\components\\InteractiveROICalculator.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 124,
+      "context": "<div class=\"results-placeholder\">"
+    },
+    {
+      "file": "src\\components\\InteractiveROICalculator.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 124,
+      "context": "<div class=\"results-placeholder\">"
+    },
+    {
+      "file": "src\\components\\InteractiveROICalculator.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 124,
+      "context": "<div class=\"results-placeholder\">"
+    },
+    {
+      "file": "src\\components\\InteractiveROICalculator.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 124,
+      "context": "<div class=\"results-placeholder\">"
+    },
+    {
+      "file": "src\\components\\InteractiveROICalculator.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 124,
+      "context": "<div class=\"results-placeholder\">"
+    },
+    {
+      "file": "src\\components\\InteractiveROICalculator.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 124,
+      "context": "<div class=\"results-placeholder\">"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "Placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "Placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\OptimizedImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 17,
+      "context": "placeholder?: 'blur' | 'empty';"
+    },
+    {
+      "file": "src\\components\\ui\\ResponsiveImage.astro",
+      "pattern": "placeholder",
+      "match": "Placeholder",
+      "line": 7,
+      "context": "* - Lazy loading with LQIP (Low Quality Image Placeholders)"
+    },
+    {
+      "file": "src\\components\\ui\\ResponsiveImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 7,
+      "context": "* - Lazy loading with LQIP (Low Quality Image Placeholders)"
+    },
+    {
+      "file": "src\\components\\ui\\ResponsiveImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 7,
+      "context": "* - Lazy loading with LQIP (Low Quality Image Placeholders)"
+    },
+    {
+      "file": "src\\components\\ui\\ResponsiveImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 7,
+      "context": "* - Lazy loading with LQIP (Low Quality Image Placeholders)"
+    },
+    {
+      "file": "src\\components\\ui\\ResponsiveImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 7,
+      "context": "* - Lazy loading with LQIP (Low Quality Image Placeholders)"
+    },
+    {
+      "file": "src\\components\\ui\\ResponsiveImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 7,
+      "context": "* - Lazy loading with LQIP (Low Quality Image Placeholders)"
+    },
+    {
+      "file": "src\\components\\ui\\ResponsiveImage.astro",
+      "pattern": "placeholder",
+      "match": "Placeholder",
+      "line": 7,
+      "context": "* - Lazy loading with LQIP (Low Quality Image Placeholders)"
+    },
+    {
+      "file": "src\\components\\ui\\ResponsiveImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 7,
+      "context": "* - Lazy loading with LQIP (Low Quality Image Placeholders)"
+    },
+    {
+      "file": "src\\components\\ui\\ResponsiveImage.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 7,
+      "context": "* - Lazy loading with LQIP (Low Quality Image Placeholders)"
+    },
+    {
+      "file": "src\\components\\YouTubeEmbed.astro",
+      "pattern": "placeholder",
+      "match": "placeholder",
+      "line": 82,
+      "context": "onerror=\"this.src='/images/placeholder.svg'; this.onerror=null;\""
+    }
+  ],
+  "inauthenticContent": [],
+  "missingContent": [
+    {
+      "file": "src/pages/index.astro",
+      "missing": "AI Integration",
+      "severity": "high"
+    }
+  ],
+  "authenticContent": [
+    {
+      "file": "src\\pages\\3d-printing.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\about.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\blog\\ai-tools-comparison-2025.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\blog\\ai-trends-2025.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\blog\\crypto-mining-profitability-2025.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\blog\\cursor-ai-review.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\blog\\cursor-ai.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\blog\\future-of-3d-printing-2025.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\blog\\roo-code-windsurf-comparison.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\blog\\trae-ai-guide.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\blog.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\contact.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\content-creation.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\crypto-mining.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\index.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\nosytos95.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\passive-income\\brave.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\passive-income\\comparison.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\passive-income\\earnapp.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\passive-income\\guide.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\passive-income\\honeygain.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\passive-income\\swagbucks.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\passive-income.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\projects.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\pages\\services.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\3DPrintingCalculator.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\accessibility\\AccessibilityEnhancer.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\accessibility\\KeyboardNavigation.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\accessibility\\WCAGCompliance.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\admin\\AdminDashboard.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\admin\\AdminSidebar.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\AnimatedHeading.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\AnimatedProjectShowcase.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\animations\\AnimatedSection.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\animations\\AnimatedText.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\animations\\PageTransition.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\BlogCard.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\CodeDisplay.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\ContactForm.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\CustomImageSystem.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\EnhancedSEO.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\EnhancedWindows95Window.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\FeatureGrid.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\Floating3DElements.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\Footer.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\forms\\EnhancedFormValidation.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\GlitchText.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\Header.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\HeroSection.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\HeroShowcase.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\InfoCard.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\interactive\\MicroAnimations.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\InteractiveSkillMatrix.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\InteractiveTimeline.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\IntroAnimation.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\KnowledgeGraphDemo.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\layout\\Column.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\layout\\Container.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\layout\\Grid.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\layout\\Section.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\layout\\Spacer.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\LiveCodingTerminal.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\MobileNavigation.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\MobileServiceCards.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\ModernIconSystem.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\NosytLabsLogo.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\ParallaxSection.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\ParticleBackground.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\passive-income\\AppCard.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\passive-income\\DataSources.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\passive-income\\EarningsComparison.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\passive-income\\ExpandableAppCard.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\passive-income\\PassiveIncomeCalculator.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\passive-income\\PassiveIncomeCTA.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\passive-income\\PassiveIncomeStats.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\passive-income\\PassiveIncomeTips.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\PDFViewer.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\performance\\CriticalResourcePreloader.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\performance\\ResourceHints.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\ProjectGrid.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\ProjectSubmissionForm.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\ProjectTimeline.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\ServiceIcon.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\ServicePreviewCards.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\SkillsMatrix.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\SocialIcons.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\SocialLinks.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\StreamSchedule.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\unified\\Card-backup.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\unified\\Card.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\unified\\HeroSection.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\unified\\Navigation.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\VercelAnalytics.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "src\\components\\Windows95Window.astro",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "public\\data\\blog-posts.json",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "public\\data\\projects.json",
+      "status": "Authentic content verified"
+    },
+    {
+      "file": "public\\data\\services.json",
+      "status": "Authentic content verified"
+    }
+  ],
+  "summary": {
+    "totalFiles": 105,
+    "authenticFiles": 97,
+    "issuesFound": 8,
+    "authenticityScore": 56
+  }
+}

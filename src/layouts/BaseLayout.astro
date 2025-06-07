@@ -1,22 +1,51 @@
 ---
-// BaseLayout.astro - Modern layout for the website
+// BaseLayout.astro - Modern layout for the website with Enhanced Accessibility & Interactivity
+import Navigation from '../components/unified/Navigation.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import VercelAnalytics from '../components/VercelAnalytics.astro';
+import AccessibilityEnhancer from '../components/accessibility/AccessibilityEnhancer.astro';
+import KeyboardNavigation from '../components/accessibility/KeyboardNavigation.astro';
+import WCAGCompliance from '../components/accessibility/WCAGCompliance.astro';
+import MicroAnimations from '../components/interactive/MicroAnimations.astro';
+import EnhancedFormValidation from '../components/forms/EnhancedFormValidation.astro';
+import { generateMetaTags, generateStructuredData } from '../utils/seoUtils.js';
 
 export interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
   isNosytOS95?: boolean;
+  pageKey?: string;
+  keywords?: string;
+  ogType?: string;
+  structuredDataType?: string;
+  structuredData?: object;
 }
 
 const {
-  title = 'NosytLabs - Notable Opportunities Shape Your Tomorrow',
-  description = 'NosytLabs - Innovative digital solutions that help businesses thrive in the modern landscape.',
-  ogImage = '/images/nosytlabs-og.jpg',
-  isNosytOS95 = false
+  title,
+  description,
+  ogImage,
+  isNosytOS95 = false,
+  pageKey = 'home',
+  keywords,
+  ogType = 'website',
+  structuredDataType = 'Organization',
+  structuredData = {}
 } = Astro.props;
+
+// Generate enhanced SEO meta tags
+const seoData = generateMetaTags(pageKey, {
+  title,
+  description,
+  ogImage,
+  keywords,
+  ogType
+});
+
+// Generate structured data
+const structuredDataJson = generateStructuredData(structuredDataType, structuredData);
 
 // Generate a unique ID for this page
 const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
@@ -27,11 +56,25 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title}</title>
-  <meta name="description" content={description}>
+  <title>{seoData.title}</title>
+  <meta name="description" content={seoData.description}>
+  <meta name="author" content="NosytLabs">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot" content="index, follow">
 
-  <!-- Favicons - Updated with NosytLabs logo 2025 -->
-  <link rel="icon" type="image/svg+xml" href="/images/nosytlabs-logo-2025.svg">
+  <!-- Enhanced Keywords -->
+  <meta name="keywords" content={seoData.keywords}>
+
+  <!-- Additional SEO Meta Tags -->
+  <meta name="language" content="en">
+  <meta name="revisit-after" content="7 days">
+  <meta name="distribution" content="global">
+  <meta name="rating" content="general">
+  <meta name="referrer" content="origin-when-cross-origin">
+
+  <!-- Modern Favicons - Enhanced 2025 Design -->
+  <link rel="icon" type="image/svg+xml" href="/images/favicon-modern.svg">
   <link rel="shortcut icon" href="/favicon.ico">
   <!-- Standard Favicons -->
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -39,55 +82,102 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   <!-- Apple Touch Icon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <!-- Web Manifest -->
-  <link rel="manifest" href="/site.webmanifest">
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Preload critical modern assets -->
+  <link rel="preload" as="image" href="/images/nosytlabs-logo-modern.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="/images/hero-background-optimized.webp" type="image/webp">
   <!-- Theme Colors -->
   <meta name="theme-color" content="#4C1D95">
   <meta name="msapplication-TileColor" content="#4C1D95">
 
-  <!-- Open Graph / Social Media -->
-  <meta property="og:type" content="website">
+  <!-- Enhanced Open Graph / Social Media -->
+  <meta property="og:type" content={seoData.ogType}>
   <meta property="og:url" content={Astro.url}>
-  <meta property="og:title" content={title}>
-  <meta property="og:description" content={description}>
-  <meta property="og:image" content={ogImage}>
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content={title}>
-  <meta property="twitter:description" content={description}>
-  <meta property="twitter:image" content={ogImage}>
+  <meta property="og:title" content={seoData.ogTitle}>
+  <meta property="og:description" content={seoData.ogDescription}>
+  <meta property="og:image" content={seoData.ogImage}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:site_name" content="NosytLabs">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Enhanced Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={seoData.twitterTitle}>
+  <meta name="twitter:description" content={seoData.twitterDescription}>
+  <meta name="twitter:image" content={seoData.twitterImage}>
+  <meta name="twitter:image:alt" content="NosytLabs - Notable Opportunities Shape Your Tomorrow">
 
   <!-- Canonical URL -->
-  <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site || 'https://nosytlabs.com').href}>
+  <link rel="canonical" href={seoData.canonical}>
 
-  <!-- Keywords -->
-  <meta name="keywords" content="AI solutions, web development, mobile apps, 3D printing, technology">
+  <!-- Enhanced Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredDataJson)}></script>
 
-  <!-- Structured Data for Organization -->
+  <!-- Additional Structured Data for WebSite -->
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": "WebSite",
       "name": "NosytLabs",
       "url": "https://nosytlabs.com",
-      "logo": "https://nosytlabs.com/images/nosytlabs-logo-2025.svg",
-      "description": "Notable Opportunities Shape Your Tomorrow - Innovative digital solutions that help businesses thrive in the modern landscape.",
-      "sameAs": [
-        "https://github.com/NosytLabs",
-        "https://kick.com/Tycen",
-        "https://www.youtube.com/@TycenYT",
-        "https://crealitycloud.com/user/9519489699"
-      ]
+      "description": "Notable Opportunities Shape Your Tomorrow - Innovative digital solutions including web development, AI integration, content creation, and 3D printing services.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "NosytLabs",
+        "logo": "https://nosytlabs.com/images/nosytlabs-logo-2025.svg"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://nosytlabs.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
   </script>
+
+  <!-- Critical CSS - Inline for fastest rendering -->
+  <style>
+    /* Critical above-the-fold styles */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:1.6;scroll-behavior:smooth;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    body{background-color:#ffffff;color:#1f2937;font-weight:400;overflow-x:hidden}
+    .container{max-width:1280px;margin:0 auto;padding:0 1rem}
+    .nosyt-header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,0.1);transition:all 0.3s ease}
+    .nav-container{max-width:1280px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height:72px}
+    .hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 0;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);position:relative;overflow:hidden}
+    .hero-title{font-size:2.5rem;font-weight:800;color:white;margin-bottom:1.5rem;line-height:1.2;letter-spacing:-0.025em}
+    .loading{opacity:0;transition:opacity 0.3s ease}.loaded{opacity:1}
+    img{max-width:100%;height:auto;display:block}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .skip-nav{position:absolute;top:-40px;left:1rem;background:#4C1D95;color:white;padding:0.5rem 1rem;text-decoration:none;border-radius:0.25rem;font-weight:600;z-index:1001;transition:top 0.3s ease}
+    .skip-nav:focus{top:1rem}
+    @media (prefers-color-scheme:dark){body{background-color:#0f0f23;color:#e5e7eb}}
+    [data-theme="dark"] body{background-color:#0f0f23;color:#e5e7eb}
+    [data-theme="dark"] .nosyt-header{background:rgba(15,15,35,0.95);border-bottom-color:rgba(255,255,255,0.1)}
+  </style>
 
   <!-- Resource hints for critical resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="dns-prefetch" href="https://vercel.live">
+  <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com">
 
-  <!-- Preload critical resources -->
+  <!-- Preload critical resources with high priority -->
   <link rel="preload" href="/images/nosytlabs-logo-2025.svg" as="image" fetchpriority="high">
-  <link rel="preload" href="/styles/global.css" as="style">
-  <link rel="preload" href="/scripts/main.js" as="script">
+  <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/JetBrains-Mono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/styles/critical.css" as="style">
+  <link rel="preload" href="/styles/optimized/critical-optimized.css" as="style">
+  <link rel="preload" href="/scripts/core/main.js" as="script">
+
+  <!-- Resource hints for Core Web Vitals -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="dns-prefetch" href="https://vercel.live">
 
   <!-- DNS prefetch for external resources -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -108,6 +198,27 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   <!-- Global styles -->
   <link rel="stylesheet" href="/styles/global.css">
 
+  <!-- Enhanced Design System 2025 - Consolidated & Optimized -->
+  <link rel="stylesheet" href="/src/styles/design-system-2025.css">
+  <link rel="stylesheet" href="/src/styles/layout-system-2025.css">
+  <link rel="stylesheet" href="/src/styles/typography-2025.css">
+  <link rel="stylesheet" href="/src/styles/responsive-enhancements-2025.css">
+  <link rel="stylesheet" href="/src/styles/consolidated-styles.css">
+
+  <!-- Cross-Browser Compatibility Styles -->
+  <link rel="stylesheet" href="/src/styles/browser-compatibility.css">
+
+  <!-- Core Web Vitals Critical CSS -->
+  <link rel="stylesheet" href="/src/styles/critical-2025.css">
+
+  <!-- Enhanced Glassmorphism & UI/UX 2025 -->
+  <link rel="stylesheet" href="/src/styles/glassmorphism-2025-enhanced.css">
+  <link rel="stylesheet" href="/src/styles/color-system-2025.css">
+
+  <!-- Performance & Cache Management -->
+  <script defer type="module" src="/src/utils/cache-manager-2025.js"></script>
+  <script defer type="module" src="/src/utils/performance-monitor-2025.js"></script>
+
   <!-- NosytOS95 specific styles - only loaded on the NosytOS95 page -->
   {isNosytOS95 && (
     <>
@@ -121,7 +232,29 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   )}
 
   <!-- Core functionality - high priority -->
-  <script is:inline src="/scripts/main.js" defer fetchpriority="high"></script>
+  <script is:inline src="/scripts/core/main.js" defer fetchpriority="high"></script>
+
+  <!-- Enhanced lazy loading for performance -->
+  <script is:inline src="/scripts/performance/enhanced-lazy-loading.js" defer></script>
+
+  <!-- Enhanced accessibility features -->
+  <script is:inline src="/scripts/accessibility/enhanced-a11y.js" defer></script>
+
+  <!-- Cross-browser compatibility -->
+  <script is:inline src="/src/scripts/browser-compatibility.js" defer></script>
+
+  <!-- Core Web Vitals optimization -->
+  <script is:inline src="/src/scripts/core-web-vitals-reporter.js" defer></script>
+  <script is:inline src="/src/scripts/enhanced-lazy-loading-2025.js" defer></script>
+
+  <!-- Advanced micro-interactions 2025 -->
+  <script is:inline src="/src/scripts/micro-interactions-2025.js" defer></script>
+
+  <!-- Modern animations system -->
+  <script is:inline src="/src/scripts/modern-animations.js" defer></script>
+
+  <!-- Mobile interactions system -->
+  <script is:inline src="/src/scripts/mobile-interactions.js" defer></script>
 
   <!-- NosytOS95 specific scripts are now loaded directly in the nosytos95.astro page -->
   {isNosytOS95 && (
@@ -131,11 +264,32 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
     </script>
   )}
 
+  <!-- Performance Optimization Script -->
+  <script type="module">
+    // Initialize performance optimizer
+    import { performanceOptimizer } from '/src/utils/performance-optimizer.ts';
+
+    // Initialize all performance optimizations
+    performanceOptimizer.initialize();
+
+    // Monitor performance metrics
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const metrics = performanceOptimizer.getMetrics();
+        const targets = performanceOptimizer.checkPerformanceTargets();
+
+        if (!targets.passed) {
+          console.warn('Performance targets not met:', targets.issues);
+        }
+      }, 1000);
+    });
+  </script>
+
   <!-- Service Worker Registration -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('/sw.js')
           .then(registration => {
             console.log('ServiceWorker registered successfully');
           })
@@ -146,15 +300,64 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
     }
   </script>
 </head>
-<body id={pageId} class="overflow-x-hidden overflow-y-auto">
-  <!-- Skip to main content link for accessibility -->
+<body>
+  <!-- Enhanced Accessibility Features -->
+  <AccessibilityEnhancer
+    enableAccessibilityTools={true}
+    enableHighContrast={true}
+    enableFocusIndicators={true}
+  />
+
+  <!-- Advanced Keyboard Navigation -->
+  <KeyboardNavigation
+    enableFocusTrapping={true}
+    enableKeyboardShortcuts={true}
+    enableSpatialNavigation={true}
+    enableVirtualCursor={true}
+  />
+
+  <!-- Interactive Micro-Animations -->
+  <MicroAnimations
+    enableHoverEffects={true}
+    enableLoadingStates={true}
+    enableProgressIndicators={true}
+    enableInteractiveFeedback={true}
+  />
+
+  <!-- Enhanced Form Validation -->
+  <EnhancedFormValidation
+    enableRealTimeValidation={true}
+    enableAccessibilityFeatures={true}
+    enableProgressiveEnhancement={true}
+  />
+
+  <!-- WCAG 2.1 AA Compliance -->
+  <WCAGCompliance
+    enableHighContrast={true}
+    enableReducedMotion={true}
+    enableFocusIndicators={true}
+    enableScreenReaderAnnouncements={true}
+    enableKeyboardShortcuts={true}
+  />
+
+  <!-- Skip navigation links for accessibility -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
+  <a href="#navigation" class="skip-link">Skip to navigation</a>
+  <a href="#footer" class="skip-link">Skip to footer</a>
 
   <!-- Header - Only show modern header on non-NosytOS95 pages -->
-  {!isNosytOS95 && <Header />}
+  {!isNosytOS95 && (
+    <header id="navigation" role="banner">
+      <Navigation
+        currentPath={Astro.url.pathname}
+        variant={isNosytOS95 ? 'retro' : 'modern'}
+        isRetroMode={isNosytOS95}
+      />
+    </header>
+  )}
 
   <!-- Main Content -->
-  <main id="main-content" class="min-h-screen relative">
+  <main id="main-content" class="min-h-screen relative" role="main" aria-label="Main content">
     {!isNosytOS95 && (
       <div id="particle-background" class="particle-background absolute inset-0 pointer-events-none z-0"
         data-color="rgba(76, 29, 149, 0.2)"
@@ -175,7 +378,11 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   </main>
 
   <!-- Footer - Only show modern footer on non-NosytOS95 pages -->
-  {!isNosytOS95 && <Footer />}
+  {!isNosytOS95 && (
+    <footer id="footer" role="contentinfo">
+      <Footer />
+    </footer>
+  )}
 
   <!-- Back to top button -->
   {!isNosytOS95 && (

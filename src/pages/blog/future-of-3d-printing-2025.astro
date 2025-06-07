@@ -57,7 +57,7 @@ class ModelOptimizer {
   }
 
   _loadAIModel() {
-    console.log('Loading AI optimization model...');
+    console.log('Loading AI optimization model');
     // In a real implementation, this would load a trained model
     // for 3D model analysis and optimization
     return {
@@ -96,7 +96,7 @@ class ModelOptimizer {
   }
 
   optimizeForPrinting(model) {
-    console.log(\`Optimizing model for \${this.targetPrinter} using \${this.materialType}...\`);
+    console.log(\`Optimizing model for \${this.targetPrinter} using \${this.materialType}\`);
 
     // Step 1: Analyze the model using AI
     const analysis = this.aiModel.analyzeModel(model);

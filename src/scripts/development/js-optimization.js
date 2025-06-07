@@ -22,7 +22,6 @@ class JSOptimizer {
       core: {
         name: 'core.min.js',
         files: [
-          'dist/scripts/main.js',
           'dist/scripts/core/main.js',
           'dist/scripts/core/utils.js',
           'dist/scripts/theme.js',

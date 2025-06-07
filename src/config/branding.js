@@ -88,7 +88,7 @@ export const BRAND_CONFIG = {
       'programming'
     ],
     author: 'NosytLabs',
-    twitterHandle: '@NosytLabs',
+    twitterHandle: '',
     ogType: 'website',
     locale: 'en_US'
   },

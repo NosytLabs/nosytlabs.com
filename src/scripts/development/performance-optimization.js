@@ -1,13 +1,60 @@
 /**
  * NosytLabs Performance Optimization Script
  * Comprehensive performance analysis and optimization tool
+ *
+ * @fileoverview Advanced performance optimization system for analyzing and improving
+ * website performance metrics including CSS, JavaScript, and image optimization.
+ *
+ * @author NosytLabs Development Team
+ * @version 1.0.0
+ * @since 2024
+ *
+ * @example
+ * // Basic usage
+ * import PerformanceOptimizer from './performance-optimization.js';
+ * const optimizer = new PerformanceOptimizer();
+ * await optimizer.optimize();
+ *
+ * // Analysis only
+ * optimizer.analyzeBaseline();
  */
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+import fs from 'fs';
+import path from 'path';
+import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+/**
+ * Performance Optimizer class for comprehensive website performance analysis and optimization
+ *
+ * @class PerformanceOptimizer
+ * @description Provides tools for analyzing CSS, JavaScript, and image files to identify
+ * optimization opportunities and improve website performance metrics.
+ *
+ * @example
+ * // Create and run optimizer
+ * const optimizer = new PerformanceOptimizer();
+ * await optimizer.optimize();
+ *
+ * // Run specific analysis
+ * optimizer.analyzeBaseline();
+ * optimizer.generateReport();
+ */
 class PerformanceOptimizer {
+  /**
+   * Initialize the Performance Optimizer with default paths and metrics
+   *
+   * @constructor
+   * @description Sets up file paths for analysis and initializes performance metrics tracking.
+   * Automatically configures paths for dist, src, and public directories.
+   *
+   * @example
+   * const optimizer = new PerformanceOptimizer();
+   * console.log(optimizer.metrics); // { cssFiles: 0, jsFiles: 0, totalSize: 0, imageFiles: 0, duplicateFiles: [] }
+   */
   constructor() {
     this.distPath = path.join(__dirname, '..', 'dist');
     this.srcPath = path.join(__dirname, '..', 'src');
@@ -22,7 +69,22 @@ class PerformanceOptimizer {
   }
 
   /**
-   * Analyze current performance baseline
+   * Analyze current performance baseline across all asset types
+   *
+   * @method analyzeBaseline
+   * @description Performs comprehensive analysis of CSS, JavaScript, and image files
+   * to establish performance baseline metrics and identify optimization opportunities.
+   *
+   * @returns {void}
+   *
+   * @example
+   * const optimizer = new PerformanceOptimizer();
+   * optimizer.analyzeBaseline();
+   * // Console output:
+   * // 🔍 Analyzing performance baseline...
+   * // 📊 Found 15 CSS files
+   * // 📊 Found 23 JavaScript files
+   * // 📊 Found 45 image files
    */
   analyzeBaseline() {
     console.log('🔍 Analyzing performance baseline...');

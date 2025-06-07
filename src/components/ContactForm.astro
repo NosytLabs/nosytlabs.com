@@ -104,7 +104,7 @@ const {
             class="form-input"
             required
             placeholder="Your name"
-          />
+          / aria-label="Full Name" aria-describedby="name-help" required aria-required="true">
         </div>
 
         <div class="form-group">
@@ -116,7 +116,7 @@ const {
             class="form-input"
             required
             placeholder="your.email@example.com"
-          />
+          / aria-label="Email Address" aria-describedby="email-help" required aria-required="true">
         </div>
 
         {showServiceField && (
@@ -153,7 +153,7 @@ const {
             required
             placeholder="Your message"
             rows="5"
-          ></textarea>
+           aria-label="Message" aria-describedby="message-help" required aria-required="true"></textarea>
         </div>
 
         {showFileUpload && (
@@ -177,7 +177,7 @@ const {
       </div>
 
       <div class="form-footer">
-        <button type="submit" class="submit-button">
+        <button type="submit" class="submit-button" aria-describedby="submit-help">
           <span>Send Message</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -187,7 +187,90 @@ const {
       </div>
 
       <div class="form-message" aria-live="polite"></div>
-    </form>
+    
+<!-- Accessibility Helper Texts -->
+<div id="name-help" class="sr-only">Enter your full name for contact purposes</div>
+<div id="email-help" class="sr-only">Enter a valid email address where we can reach you</div>
+<div id="message-help" class="sr-only">Describe your project or inquiry in detail</div>
+<div id="submit-help" class="sr-only">Submit your contact form to send your message</div>
+
+<!-- Screen Reader Only Styles -->
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  /* Enhanced form accessibility styles */
+  .form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+  
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--color-border, #d1d5db);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary, #3b82f6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  .form-input:invalid,
+  .form-textarea:invalid {
+    border-color: var(--color-error, #ef4444);
+  }
+  
+  .form-error {
+    color: var(--color-error, #ef4444);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+  }
+  
+  .form-input:invalid + .form-error,
+  .form-textarea:invalid + .form-error {
+    display: block;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .form-input,
+    .form-textarea {
+      border-width: 3px;
+      border-color: #000000;
+    }
+    
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px #0066cc;
+    }
+  }
+</style>
+</form>
   </div>
 </section>
 
@@ -287,7 +370,7 @@ const {
         // Show loading state
         const submitButton = form.querySelector('.submit-button');
         const originalButtonText = submitButton.innerHTML;
-        submitButton.innerHTML = '<span>Sending...</span><svg class="spinner" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle></svg>';
+        submitButton.innerHTML = '<span>Sending</span><svg class="spinner" viewBox="0 0 50 50"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle></svg>';
         submitButton.disabled = true;
 
         try {

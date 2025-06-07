@@ -1,0 +1,845 @@
+---
+/**
+ * Unified Hero Section Component for NosytLabs - 2025 Refactored
+ * Consolidates all hero variants into a single, flexible component
+ * Supports multiple layouts, animations, and responsive designs
+ */
+
+import ModernIconSystem from '../ModernIconSystem.astro';
+import OptimizedImage from '../OptimizedImage.astro';
+
+interface CTAButton {
+  text: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  icon?: string;
+  external?: boolean;
+}
+
+interface Stat {
+  value: string;
+  label: string;
+  icon?: string;
+}
+
+interface Props {
+  // Content
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  
+  // Layout variants
+  variant?: 'default' | 'centered' | 'split' | 'minimal' | 'showcase';
+  layout?: 'standard' | 'full-height' | 'compact';
+  
+  // Visual elements
+  backgroundImage?: string;
+  backgroundVideo?: string;
+  showParticles?: boolean;
+  showFloatingElements?: boolean;
+  
+  // Interactive elements
+  primaryCTA?: CTAButton;
+  secondaryCTA?: CTAButton;
+  stats?: Stat[];
+  showStats?: boolean;
+  
+  // Customization
+  className?: string;
+  theme?: 'light' | 'dark' | 'gradient';
+  animationStyle?: 'fade' | 'slide' | 'scale' | 'none';
+}
+
+const {
+  title = "Notable Opportunities Shape Your Tomorrow",
+  subtitle = "NosytLabs",
+  description = "Innovative digital solutions including web development, AI integration, content creation, 3D printing services, and passive income strategies.",
+  
+  variant = 'default',
+  layout = 'standard',
+  
+  backgroundImage,
+  backgroundVideo,
+  showParticles = true,
+  showFloatingElements = true,
+  
+  primaryCTA = { text: "Explore Services", href: "/services", variant: "primary", icon: "arrow-right" },
+  secondaryCTA = { text: "View Projects", href: "/projects", variant: "outline", icon: "external-link" },
+  stats = [
+    { value: "50+", label: "Projects Completed", icon: "external-link" },
+    { value: "25+", label: "Happy Clients", icon: "star" },
+    { value: "5+", label: "Years Experience", icon: "check" },
+    { value: "24/7", label: "Support Available", icon: "star" }
+  ],
+  showStats = true,
+  
+  className = '',
+  theme = 'gradient',
+  animationStyle = 'fade'
+} = Astro.props;
+
+// Generate component classes
+const heroClasses = [
+  'hero-unified',
+  `hero-${variant}`,
+  `hero-${layout}`,
+  `hero-${theme}`,
+  `hero-${animationStyle}`,
+  className
+].filter(Boolean).join(' ');
+
+// Determine content structure based on variant
+const isContentCentered = variant === 'centered' || variant === 'minimal';
+const isSplitLayout = variant === 'split' || variant === 'showcase';
+const showBackground = backgroundImage || backgroundVideo || showParticles;
+---
+
+<section class={heroClasses} aria-labelledby="hero-heading">
+  <!-- Background Layer -->
+  {showBackground && (
+    <div class="hero-background" aria-hidden="true">
+      <!-- Video Background -->
+      {backgroundVideo && (
+        <video 
+          class="hero-video" 
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          poster={backgroundImage}
+        >
+          <source src={backgroundVideo} type="video/mp4" />
+        </video>
+      )}
+      
+      <!-- Image Background -->
+      {backgroundImage && !backgroundVideo && (
+        <OptimizedImage
+          src={backgroundImage}
+          alt="Hero background"
+          className="hero-image"
+          loading="eager"
+          priority={true}
+        />
+      )}
+      
+      <!-- Gradient Overlay -->
+      <div class="hero-gradient"></div>
+      
+      <!-- Particles -->
+      {showParticles && (
+        <div class="hero-particles">
+          {Array.from({ length: 30 }, (_, i) => (
+            <div 
+              class="particle" 
+              style={`--delay: ${i * 0.1}s; --duration: ${3 + (i % 4)}s; --size: ${2 + (i % 3)}px;`}
+            ></div>
+          ))}
+        </div>
+      )}
+      
+      <!-- Floating Elements -->
+      {showFloatingElements && (
+        <div class="floating-elements">
+          <div class="floating-shape shape-1"></div>
+          <div class="floating-shape shape-2"></div>
+          <div class="floating-shape shape-3"></div>
+          <div class="floating-shape shape-4"></div>
+          <div class="gradient-orb orb-1"></div>
+          <div class="gradient-orb orb-2"></div>
+        </div>
+      )}
+    </div>
+  )}
+
+  <!-- Content Container -->
+  <div class="hero-container">
+    <div class="hero-content">
+      {isSplitLayout ? (
+        <!-- Split Layout -->
+        <div class="hero-split">
+          <div class="hero-text">
+            <div class="hero-text-content">
+              {subtitle && (
+                <p class="hero-subtitle">{subtitle}</p>
+              )}
+              <h1 id="hero-heading" class="hero-title">
+                {title}
+              </h1>
+              {description && (
+                <p class="hero-description">{description}</p>
+              )}
+              
+              <!-- CTA Buttons -->
+              <div class="hero-actions">
+                {primaryCTA && (
+                  <a 
+                    href={primaryCTA.href}
+                    class={`hero-cta cta-${primaryCTA.variant || 'primary'}`}
+                    {...(primaryCTA.external && { target: "_blank", rel: "noopener noreferrer" })}
+                  >
+                    <span>{primaryCTA.text}</span>
+                    {primaryCTA.icon && (
+                      <ModernIconSystem name={primaryCTA.icon} size="sm" />
+                    )}
+                  </a>
+                )}
+                {secondaryCTA && (
+                  <a 
+                    href={secondaryCTA.href}
+                    class={`hero-cta cta-${secondaryCTA.variant || 'secondary'}`}
+                    {...(secondaryCTA.external && { target: "_blank", rel: "noopener noreferrer" })}
+                  >
+                    <span>{secondaryCTA.text}</span>
+                    {secondaryCTA.icon && (
+                      <ModernIconSystem name={secondaryCTA.icon} size="sm" />
+                    )}
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+          
+          <div class="hero-visual">
+            <div class="hero-showcase">
+              <!-- Visual content for split layout -->
+              <div class="showcase-element element-1"></div>
+              <div class="showcase-element element-2"></div>
+              <div class="showcase-element element-3"></div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <!-- Centered/Default Layout -->
+        <div class="hero-centered">
+          {subtitle && (
+            <p class="hero-subtitle">{subtitle}</p>
+          )}
+          <h1 id="hero-heading" class="hero-title">
+            {title}
+          </h1>
+          {description && (
+            <p class="hero-description">{description}</p>
+          )}
+          
+          <!-- CTA Buttons -->
+          <div class="hero-actions">
+            {primaryCTA && (
+              <a 
+                href={primaryCTA.href}
+                class={`hero-cta cta-${primaryCTA.variant || 'primary'}`}
+                {...(primaryCTA.external && { target: "_blank", rel: "noopener noreferrer" })}
+              >
+                <span>{primaryCTA.text}</span>
+                {primaryCTA.icon && (
+                  <ModernIconSystem name={primaryCTA.icon} size="sm" />
+                )}
+              </a>
+            )}
+            {secondaryCTA && (
+              <a 
+                href={secondaryCTA.href}
+                class={`hero-cta cta-${secondaryCTA.variant || 'secondary'}`}
+                {...(secondaryCTA.external && { target: "_blank", rel: "noopener noreferrer" })}
+              >
+                <span>{secondaryCTA.text}</span>
+                {secondaryCTA.icon && (
+                  <ModernIconSystem name={secondaryCTA.icon} size="sm" />
+                )}
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+
+    <!-- Stats Section -->
+    {showStats && stats && stats.length > 0 && (
+      <div class="hero-stats">
+        <div class="stats-container">
+          {stats.map((stat) => (
+            <div class="stat-item">
+              {stat.icon && (
+                <ModernIconSystem name={stat.icon} size="md" className="stat-icon" />
+              )}
+              <div class="stat-content">
+                <div class="stat-value">{stat.value}</div>
+                <div class="stat-label">{stat.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-arrow"></div>
+      <span class="scroll-text">Scroll to explore</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Base Hero Styles */
+  .hero-unified {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--gradient-primary);
+  }
+
+  /* Layout Variants */
+  .hero-standard {
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+
+  .hero-full-height {
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+  }
+
+  .hero-compact {
+    min-height: 60vh;
+    padding: var(--spacing-xl) 0;
+  }
+
+  /* Background Layer */
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .hero-video,
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.9) 0%,
+      rgba(236, 72, 153, 0.8) 50%,
+      rgba(249, 115, 22, 0.9) 100%
+    );
+    z-index: 2;
+  }
+
+  .hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+  }
+
+  .particle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: float var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+  }
+
+  .floating-shape {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    animation: float-shape 6s ease-in-out infinite;
+  }
+
+  .shape-1 {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .shape-2 {
+    width: 60px;
+    height: 60px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+
+  .shape-3 {
+    width: 80px;
+    height: 80px;
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 4s;
+  }
+
+  .shape-4 {
+    width: 120px;
+    height: 120px;
+    top: 40%;
+    right: 30%;
+    animation-delay: 1s;
+  }
+
+  .gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    filter: blur(20px);
+    animation: pulse-orb 4s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 150px;
+    height: 150px;
+    bottom: 20%;
+    left: 15%;
+    animation-delay: 2s;
+  }
+
+  /* Content Container */
+  .hero-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xl);
+  }
+
+  .hero-content {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Split Layout */
+  .hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+    text-align: left;
+  }
+
+  .hero-text-content {
+    max-width: 500px;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-showcase {
+    position: relative;
+    width: 400px;
+    height: 400px;
+  }
+
+  .showcase-element {
+    position: absolute;
+    background: var(--glass-white-strong);
+    border: var(--glass-border);
+    border-radius: var(--radius-xl);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+
+  .element-1 {
+    width: 200px;
+    height: 120px;
+    top: 0;
+    left: 0;
+    animation: float-element 3s ease-in-out infinite;
+  }
+
+  .element-2 {
+    width: 150px;
+    height: 150px;
+    top: 50px;
+    right: 0;
+    animation: float-element 3s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  .element-3 {
+    width: 180px;
+    height: 100px;
+    bottom: 0;
+    left: 50px;
+    animation: float-element 3s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  /* Typography */
+  .hero-subtitle {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 var(--spacing-sm) 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: white;
+    margin: 0 0 var(--spacing-md) 0;
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-description {
+    font-size: var(--font-size-lg);
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 var(--spacing-lg) 0;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* CTA Buttons */
+  .hero-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    transition: all 0.3s ease;
+    min-width: 160px;
+    justify-content: center;
+  }
+
+  .cta-primary {
+    background: var(--glass-white-strong);
+    color: var(--color-primary-600);
+    border: 2px solid transparent;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .cta-primary:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .cta-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+
+  .cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .cta-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .cta-outline:hover {
+    background: white;
+    color: var(--color-primary-600);
+  }
+
+  /* Stats Section */
+  .hero-stats {
+    width: 100%;
+    margin-top: var(--spacing-xl);
+  }
+
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: var(--glass-white-subtle);
+    border: var(--glass-border);
+    border-radius: var(--radius-xl);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+  }
+
+  .stat-icon {
+    color: var(--color-primary-400);
+  }
+
+  .stat-value {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1;
+  }
+
+  /* Scroll Indicator */
+  .scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-size-sm);
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  .scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border: 2px solid currentColor;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+  }
+
+  .scroll-text {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-split {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-showcase {
+      width: 300px;
+      height: 300px;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-cta {
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .stats-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-md);
+    }
+
+    .scroll-indicator {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Theme Variants */
+  .hero-light {
+    background: var(--color-background-primary);
+    color: var(--color-text-primary);
+  }
+
+  .hero-light .hero-gradient {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
+  }
+
+  .hero-dark {
+    background: var(--color-background-secondary);
+    color: var(--color-text-primary);
+  }
+
+  /* Animation Variants */
+  .hero-fade {
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .hero-slide {
+    animation: slideInFromLeft 1s ease-out;
+  }
+
+  .hero-scale {
+    animation: scaleIn 1s ease-out;
+  }
+
+  /* Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+  }
+
+  @keyframes float-shape {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+  }
+
+  @keyframes float-element {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulse-orb {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+  }
+
+  @keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-unified,
+    .particle,
+    .floating-shape,
+    .gradient-orb,
+    .showcase-element,
+    .scroll-indicator,
+    .hero-cta {
+      animation: none;
+      transition: none;
+    }
+
+    .hero-cta:hover {
+      transform: none;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .hero-cta {
+      border-width: 3px;
+    }
+
+    .stat-item {
+      border-width: 2px;
+    }
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.95) 0%,
+      rgba(236, 72, 153, 0.85) 50%,
+      rgba(249, 115, 22, 0.95) 100%
+    );
+  }
+
+  [data-theme="dark"] .cta-primary {
+    background: var(--glass-dark-strong);
+    color: var(--color-primary-400);
+  }
+
+  [data-theme="dark"] .cta-primary:hover {
+    background: var(--glass-dark);
+  }
+</style>

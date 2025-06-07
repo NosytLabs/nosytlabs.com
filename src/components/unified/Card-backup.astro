@@ -1,0 +1,262 @@
+---
+/**
+ * Minimal Card Component for Build Fix
+ */
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  variant?: string;
+  hoverable?: boolean;
+  clickable?: boolean;
+  primaryAction?: {
+    text: string;
+    href: string;
+    variant?: string;
+    icon?: string;
+    external?: boolean;
+  };
+  className?: string;
+  theme?: string;
+  size?: string;
+  tags?: string[];
+  category?: string;
+  date?: string;
+}
+
+const {
+  title,
+  description,
+  image,
+  imageAlt = title,
+  variant = 'default',
+  hoverable = true,
+  clickable = false,
+  primaryAction,
+  className = '',
+  theme = 'glass',
+  size = 'md',
+  tags = [],
+  category,
+  date
+} = Astro.props;
+
+const cardClasses = [
+  'card-unified',
+  `card-${variant}`,
+  `card-${size}`,
+  `card-${theme}`,
+  hoverable && 'card-hoverable',
+  clickable && 'card-clickable',
+  className
+].filter(Boolean).join(' ');
+
+const isLinkCard = clickable && primaryAction;
+const CardElement = isLinkCard ? 'a' : 'div';
+const cardProps = isLinkCard ? {
+  href: primaryAction.href,
+  ...(primaryAction.external && { target: "_blank", rel: "noopener noreferrer" })
+} : {};
+---
+
+<CardElement class={cardClasses} {...cardProps}>
+  {image && (
+    <div class="card-header">
+      <div class="card-image-container">
+        <img
+          src={image}
+          alt={imageAlt}
+          class="card-image"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  )}
+  
+  <div class="card-content">
+    <h3 class="card-title">{title}</h3>
+    
+    {description && (
+      <p class="card-description">{description}</p>
+    )}
+    
+    {tags.length > 0 && (
+      <div class="card-tags">
+        {tags.map((tag) => (
+          <span class="card-tag">{tag}</span>
+        ))}
+      </div>
+    )}
+    
+    {(category || date) && (
+      <div class="card-meta">
+        {category && <span class="meta-category">{category}</span>}
+        {date && <span class="meta-date">{date}</span>}
+      </div>
+    )}
+  </div>
+
+  {primaryAction && !isLinkCard && (
+    <div class="card-actions">
+      <a 
+        href={primaryAction.href}
+        class={`card-action action-${primaryAction.variant || 'primary'}`}
+        {...(primaryAction.external && { target: "_blank", rel: "noopener noreferrer" })}
+      >
+        <span>{primaryAction.text}</span>
+      </a>
+    </div>
+  )}
+</CardElement>
+
+<style>
+  .card-unified {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .card-hoverable:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-clickable {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-header {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .card-hoverable:hover .card-image {
+    transform: scale(1.05);
+  }
+
+  .card-content {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .card-description {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+
+  .card-tag {
+    padding: 0.25rem 0.75rem;
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366f1;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .card-actions {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .card-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .action-primary {
+    background: #6366f1;
+    color: white;
+  }
+
+  .action-primary:hover {
+    background: #5b21b6;
+    transform: translateY(-1px);
+  }
+
+  .action-secondary {
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366f1;
+  }
+
+  .action-secondary:hover {
+    background: #6366f1;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .card-content {
+      padding: 1rem;
+    }
+    
+    .card-actions {
+      padding: 1rem;
+      flex-direction: column;
+    }
+  }
+</style>

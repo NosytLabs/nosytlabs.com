@@ -1,0 +1,28 @@
+{
+  "timestamp": "2025-06-03T02:56:03.630Z",
+  "summary": {
+    "filesRemoved": 2,
+    "importsUpdated": 2,
+    "duplicatesFound": 0,
+    "errors": 0
+  },
+  "details": {
+    "filesRemoved": [
+      "public/scripts/bundles/core-bundle.js",
+      "public/scripts/bundles/utils-bundle.js"
+    ],
+    "duplicatesConsolidated": [],
+    "importsUpdated": [
+      "public/scripts/core/main.js",
+      "public/scripts/animations.js"
+    ],
+    "errors": []
+  },
+  "recommendations": [
+    "Update remaining files to use consolidated utilities from @/utils",
+    "Replace inline DOM manipulation with domUtils functions",
+    "Replace inline error handling with errorUtils functions",
+    "Replace browser detection code with browserUtils functions",
+    "Update imports to use barrel exports from @/utils"
+  ]
+}

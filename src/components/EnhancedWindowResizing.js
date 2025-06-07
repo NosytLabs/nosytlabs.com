@@ -382,3 +382,61 @@ function updateTaskbar() {
 window.bringToFront = bringToFront;
 window.updateTaskbar = updateTaskbar;
 window.updateWindowContent = updateWindowContent;
+
+/**
+ * EnhancedWindowResizing class for ES module compatibility
+ *
+ * @class EnhancedWindowResizing
+ * @example
+ * import { EnhancedWindowResizing } from './EnhancedWindowResizing.js';
+ * const windowManager = new EnhancedWindowResizing();
+ * windowManager.init();
+ */
+export class EnhancedWindowResizing {
+  constructor() {
+    this.initialized = false;
+  }
+
+  /**
+   * Initialize the window management system
+   * @returns {Promise<void>}
+   */
+  async init() {
+    if (this.initialized) return;
+
+    if (document.readyState === 'loading') {
+      await new Promise(resolve => {
+        document.addEventListener('DOMContentLoaded', resolve);
+      });
+    }
+
+    initializeWindowManagement();
+    this.initialized = true;
+  }
+
+  /**
+   * Bring a window to the front
+   * @param {HTMLElement} window - The window element
+   * @returns {void}
+   */
+  bringToFront(window) {
+    bringToFront(window);
+  }
+
+  /**
+   * Update the taskbar
+   * @returns {void}
+   */
+  updateTaskbar() {
+    updateTaskbar();
+  }
+
+  /**
+   * Update window content
+   * @param {HTMLElement} window - The window element
+   * @returns {void}
+   */
+  updateWindowContent(window) {
+    updateWindowContent(window);
+  }
+}

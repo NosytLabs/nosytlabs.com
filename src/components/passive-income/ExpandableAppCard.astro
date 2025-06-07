@@ -99,7 +99,7 @@ const cardId = `card-${id}-${Math.random().toString(36).substring(2, 9)}`;
           <span class="text-gray-500 dark:text-gray-400">Payment:</span>
           <span class="font-medium text-gray-900 dark:text-white truncate max-w-[60%] text-right">
             {paymentMethods.slice(0, 2).join(", ")}
-            {paymentMethods.length > 2 && "..."}
+            {paymentMethods.length > 2 && ""}
           </span>
         </div>
       )}

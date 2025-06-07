@@ -45,7 +45,7 @@ function DataFetcher({ endpoint, renderItem }) {
     fetchData();
   }, [endpoint]);
 
-  if (loading) return <div className="loading-spinner">Loading...</div>;
+  if (loading) return <div className="loading-spinner">Loading</div>;
   if (error) return <div className="error-message">Error: {error}</div>;
 
   return (

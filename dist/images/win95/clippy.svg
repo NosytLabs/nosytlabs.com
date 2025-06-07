@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="metal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f0f0" />
+      <stop offset="50%" stop-color="#d0d0d0" />
+      <stop offset="100%" stop-color="#a0a0a0" />
+    </linearGradient>
+    <linearGradient id="eye-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4C1D95" />
+      <stop offset="100%" stop-color="#2D0A4F" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0.5" dy="0.5" stdDeviation="0.5" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Clippy Body (Paper Clip Shape) -->
+  <path d="M12,5 C9,5 7,7 7,10 C7,13 9,15 12,15 L20,15 C23,15 25,17 25,20 C25,23 23,25 20,25 L12,25" 
+        fill="none" 
+        stroke="url(#metal-gradient)" 
+        stroke-width="3" 
+        stroke-linecap="round"
+        filter="url(#shadow)"/>
+  
+  <!-- Clippy Face -->
+  <circle cx="16" cy="12" r="5" fill="#fff" stroke="#d0d0d0" stroke-width="0.5"/>
+  
+  <!-- Clippy Eyes -->
+  <ellipse cx="14" cy="11" rx="1.5" ry="2" fill="url(#eye-gradient)"/>
+  <ellipse cx="18" cy="11" rx="1.5" ry="2" fill="url(#eye-gradient)"/>
+  
+  <!-- Eye Highlights -->
+  <circle cx="13.5" cy="10.5" r="0.5" fill="#fff"/>
+  <circle cx="17.5" cy="10.5" r="0.5" fill="#fff"/>
+  
+  <!-- Clippy Eyebrows -->
+  <path d="M12.5,9 C13,8.5 14,8.5 14.5,9" fill="none" stroke="#333" stroke-width="0.5"/>
+  <path d="M17.5,9 C18,8.5 19,8.5 19.5,9" fill="none" stroke="#333" stroke-width="0.5"/>
+  
+  <!-- Clippy Mouth -->
+  <path d="M14,14 C15,15 17,15 18,14" fill="none" stroke="#333" stroke-width="0.5"/>
+  
+  <!-- Nosyt AI Text -->
+  <g filter="url(#glow)">
+    <text x="16" y="20" font-family="Arial, sans-serif" font-size="3" text-anchor="middle" fill="#4C1D95" font-weight="bold">NOSYT AI</text>
+  </g>
+  
+  <!-- AI Circuitry Pattern -->
+  <g opacity="0.3">
+    <line x1="6" y1="28" x2="26" y2="28" stroke="#4C1D95" stroke-width="0.5"/>
+    <line x1="8" y1="26" x2="8" y2="30" stroke="#4C1D95" stroke-width="0.5"/>
+    <line x1="12" y1="26" x2="12" y2="30" stroke="#4C1D95" stroke-width="0.5"/>
+    <line x1="16" y1="26" x2="16" y2="30" stroke="#4C1D95" stroke-width="0.5"/>
+    <line x1="20" y1="26" x2="20" y2="30" stroke="#4C1D95" stroke-width="0.5"/>
+    <line x1="24" y1="26" x2="24" y2="30" stroke="#4C1D95" stroke-width="0.5"/>
+    
+    <circle cx="8" cy="28" r="0.7" fill="#FF6B00"/>
+    <circle cx="16" cy="28" r="0.7" fill="#FF6B00"/>
+    <circle cx="24" cy="28" r="0.7" fill="#FF6B00"/>
+  </g>
+  
+  <!-- Speech Bubble -->
+  <path d="M22,8 L27,5 L26,9 L29,9 C30.1,9 31,9.9 31,11 L31,17 C31,18.1 30.1,19 29,19 L24,19 L24,21 L21,19 L19,19" 
+        fill="#fff" 
+        stroke="#4C1D95" 
+        stroke-width="0.5"/>
+  
+  <!-- Question Mark in Bubble -->
+  <text x="25" y="15" font-family="Arial, sans-serif" font-size="6" text-anchor="middle" fill="#4C1D95" font-weight="bold">?</text>
+</svg>

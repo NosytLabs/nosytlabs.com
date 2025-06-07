@@ -1,5 +1,9 @@
 ---
-// Homepage for NosytLabs
+// Homepage for NosytLabs - Redesigned 2025
+import HeroSection from '../components/unified/HeroSection.astro';
+import Card from '../components/unified/Card.astro';
+import ServicePreviewCards from '../components/ServicePreviewCards.astro';
+import InteractiveROICalculator from '../components/InteractiveROICalculator.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { fetchChannelData, fetchChannelVideos } from '../utils/youtubeScraperUtil.js';
 
@@ -42,133 +46,93 @@ const services = [
 
 <BaseLayout
   title="NosytLabs - Notable Opportunities Shape Your Tomorrow"
-  description="NosytLabs provides innovative digital solutions including web development, content creation, 3D printing services, and passive income resources."
+  description="Transform your business with innovative digital solutions. Expert web development, AI integration, content creation, 3D printing services, and passive income education. Free consultations available."
+  pageKey="home"
+  keywords="web development, AI solutions, content creation, 3D printing, passive income, digital transformation, technology consulting, custom software"
 >
-  <!-- Hero Section -->
-  <section class="hero-section bg-gradient-to-br from-primary-dark to-primary-main text-white py-20">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col lg:flex-row items-center">
-        <div class="lg:w-1/2 mb-10 lg:mb-0">
-          <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
-            Notable Opportunities Shape Your Tomorrow
-          </h1>
-          <p class="text-xl mb-8 animate-fade-in" style="animation-delay: 0.2s;">
-            NosytLabs provides innovative digital solutions including web development,
-            content creation, 3D printing services, and passive income resources.
-          </p>
-          <div class="flex flex-wrap gap-4 animate-fade-in" style="animation-delay: 0.4s;">
-            <a href="/services" class="btn btn-accent hover:btn-accent-hover">
-              Our Services
-            </a>
-            <a href="/contact" class="btn btn-outline-light hover:btn-light">
-              Contact Us
-            </a>
-          </div>
-        </div>
-        <div class="lg:w-1/2 flex justify-center">
-          <div class="relative w-full max-w-md animate-fade-in" style="animation-delay: 0.6s;">
-            <img
-              src="/images/nosytlabs-hero.webp"
-              alt="NosytLabs Digital Solutions"
-              class="rounded-lg shadow-2xl"
-              width="600"
-              height="400"
-            />
-            <div class="absolute -bottom-4 -right-4 bg-accent text-white p-4 rounded-lg shadow-lg">
-              <p class="font-bold">Est. 2025</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Enhanced Hero Section with 2025 Design -->
+  <HeroSection
+    variant="default"
+    layout="standard"
+    theme="gradient"
+    showStats={true}
+    showParticles={true}
+    showFloatingElements={true}
+    animationStyle="fade"
+    title="Notable Opportunities Shape Your Tomorrow"
+    subtitle="NosytLabs"
+    description="Transform your business with innovative digital solutions. Expert web development, AI integration, content creation, 3D printing services, and passive income education."
+    primaryCTA={{
+      text: "Explore Services",
+      href: "/services",
+      variant: "primary",
+      icon: "arrow-right"
+    }}
+    secondaryCTA={{
+      text: "View Projects",
+      href: "/projects",
+      variant: "outline",
+      icon: "external-link"
+    }}
+    stats={[
+      { value: "10+", label: "Projects Completed", icon: "external-link" },
+      { value: "5+", label: "Happy Clients", icon: "star" },
+      { value: "1+", label: "Years Experience", icon: "check" },
+      { value: "24/7", label: "Support Available", icon: "star" }
+    ]}
+  />
 
-  <!-- Services Section -->
-  <section id="services" class="py-16 bg-gray-50 dark:bg-gray-900">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary dark:text-primary-light">
-          Our Services
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          We provide a range of services to help you achieve your goals, from web development to content creation and 3D printing.
-        </p>
-      </div>
+  <!-- Enhanced Services Section -->
+  <ServicePreviewCards />
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        {services.map((service) => (
-          <div class="service-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform hover:transform hover:scale-105">
-            <div class="p-6">
-              <div class="w-16 h-16 bg-primary-light dark:bg-primary rounded-full flex items-center justify-center mb-4 mx-auto">
-                <i class={`fas fa-${service.icon} text-white text-2xl`}></i>
-              </div>
-              <h3 class="text-xl font-bold mb-2 text-center text-primary dark:text-primary-light">{service.title}</h3>
-              <p class="text-gray-600 dark:text-gray-300 text-center mb-4">{service.description}</p>
-              <div class="text-center">
-                <a href={service.link} class="inline-block text-accent hover:text-accent-dark font-medium">
-                  Learn More <i class="fas fa-arrow-right ml-1"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- Interactive ROI Calculator Section -->
+  <InteractiveROICalculator />
 
-  <!-- Featured Projects Section -->
-  <section id="projects" class="py-16">
-    <div class="container mx-auto px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary dark:text-primary-light">
+  <!-- Enhanced Featured Projects Section -->
+  <section id="projects" class="py-20 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800">
+    <div class="container-xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">
           Featured Projects
         </h2>
-        <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Explore our latest projects showcasing our expertise in web development, AI integration, and innovative solutions.
+        <p class="text-lg text-neutral-600 dark:text-neutral-300 max-w-4xl mx-auto leading-relaxed">
+          Discover our portfolio of innovative projects built with modern technologies like React, Astro, and AI integration. Each project demonstrates our commitment to quality, performance, and user experience.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featuredProjects.map((project) => (
-          <div class="project-card bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-            <div class="relative overflow-hidden">
-              <img
-                src={project.image || "/images/projects/default-project.jpg"}
-                alt={project.title}
-                class="w-full h-48 object-cover transition-transform hover:scale-110"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end">
-                <div class="p-4 text-white">
-                  <h4 class="font-bold">{project.title}</h4>
-                </div>
-              </div>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold mb-2 text-primary dark:text-primary-light">{project.title}</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                {project.technologies && project.technologies.map((tech) => (
-                  <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-1 rounded">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={project.link || project.githubUrl || project.demoUrl || `https://github.com/NosytLabs/${project.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block text-accent hover:text-accent-dark font-medium"
-              >
-                View Project <i class="fas fa-external-link-alt ml-1"></i>
-              </a>
-            </div>
-          </div>
+      <div class="grid grid-auto-fit-md gap-8">
+        {featuredProjects.map((project, index) => (
+          <Card
+            variant="project"
+            title={project.title}
+            description={project.description}
+            image={project.image || "/images/projects/default-project.jpg"}
+            imageAlt={project.title}
+            hoverable={true}
+            clickable={true}
+            theme="glass"
+            size="md"
+            tags={project.technologies || []}
+            primaryAction={{
+              text: "View Project",
+              href: project.link || project.githubUrl || project.demoUrl || `https://github.com/NosytLabs/${project.id}`,
+              variant: "primary",
+              icon: "external-link",
+              external: true
+            }}
+            className="animate-fade-in-up"
+            style={`animation-delay: ${index * 0.1}s`}
+          />
         ))}
       </div>
 
-      <div class="text-center mt-12">
-        <a href="/projects" class="btn btn-primary">View All Projects</a>
+      <div class="text-center mt-16">
+        <a href="/projects" class="btn-modern btn-primary-modern">
+          View All Projects
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -181,7 +145,7 @@ const services = [
           Content Creation
         </h2>
         <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          Check out our latest content on YouTube and Kick.com, featuring tech reviews, coding tutorials, and live streams.
+          Stay updated with our latest technology content featuring in-depth coding tutorials, AI tool reviews, crypto mining insights, and live development sessions. Join our growing community of tech enthusiasts.
         </p>
       </div>
 
@@ -194,7 +158,7 @@ const services = [
             {recentVideos.map((video) => (
               <div class="flex flex-col sm:flex-row gap-4 hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors">
                 <div class="sm:w-1/3">
-                  <a href={`https://www.youtube.com/watch?v=${video.videoId}`} target="_blank" rel="noopener noreferrer" class="block relative">
+                  <a href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer" class="block relative">
                     <img
                       src={video.thumbnail}
                       alt={video.title}
@@ -208,7 +172,7 @@ const services = [
                 </div>
                 <div class="sm:w-2/3">
                   <a
-                    href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                    href={`https://www.youtube.com/watch?v=${video.id}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="block hover:text-accent"
@@ -216,7 +180,7 @@ const services = [
                     <h4 class="font-medium line-clamp-2">{video.title}</h4>
                   </a>
                   <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                    {video.views} views • {video.publishedAt}
+                    {video.views} • {video.publishedTime}
                   </p>
                 </div>
               </div>
@@ -263,7 +227,7 @@ const services = [
           3D Printing Services
         </h2>
         <p class="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-          We offer custom 3D printing services for prototypes, models, and functional parts using high-quality materials.
+          Professional 3D printing services using industry-leading Creality and Elegoo printers. From rapid prototyping to detailed miniatures, we deliver high-quality prints with precision and attention to detail.
         </p>
       </div>
 
@@ -347,11 +311,11 @@ const services = [
 
           <div class="space-y-4 text-gray-600 dark:text-gray-300">
             <p>
-              Founded in 2025, NosytLabs is the portfolio site for NOSYT LLC, showcasing our technology projects and services. Our name represents our mission: <span class="font-semibold text-accent">Notable Opportunities Shape Your Tomorrow</span>.
+              Founded in 2025, NosytLabs represents the innovative spirit of NOSYT LLC, where we believe that <span class="font-semibold text-accent">Notable Opportunities Shape Your Tomorrow</span>. We're passionate about leveraging cutting-edge technology to create meaningful solutions that drive real-world impact.
             </p>
 
             <p>
-              We develop web applications, create technology content on YouTube (@TycenYT) and Kick.com/Tycen, provide educational resources on passive income opportunities, and offer 3D printing services using our Creality and Elegoo printers.
+              Our expertise spans modern web development, AI-powered applications, engaging content creation, and precision 3D printing. Through our YouTube channel (@TycenYT) and live streams on Kick.com/Tycen, we share knowledge, build community, and demonstrate the latest in technology innovation.
             </p>
 
             <div class="mt-6">

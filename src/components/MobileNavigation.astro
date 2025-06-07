@@ -1,0 +1,704 @@
+---
+/**
+ * Enhanced Mobile Navigation Component for NosytLabs - 2025
+ * Touch-optimized navigation with smooth animations and accessibility
+ * Features: Gesture support, smooth transitions, and modern mobile UX
+ */
+
+interface Props {
+  currentPath?: string;
+  className?: string;
+  variant?: 'modern' | 'minimal';
+}
+
+const {
+  currentPath = '',
+  className = '',
+  variant = 'modern'
+} = Astro.props;
+
+// Navigation items
+const navItems = [
+  { name: 'Home', href: '/', icon: 'home' },
+  { name: 'Services', href: '/services', icon: 'tools' },
+  { name: 'Projects', href: '/projects', icon: 'folder' },
+  { name: 'Content Creation', href: '/content-creation', icon: 'video' },
+  { name: 'Blog', href: '/blog', icon: 'document-text' },
+  { name: 'Contact', href: '/contact', icon: 'mail' }
+];
+
+// Check if current path matches
+const isActive = (href: string) => {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(href);
+};
+---
+
+<nav class={`mobile-navigation ${variant} ${className}`} aria-label="Mobile navigation">
+  <!-- Mobile Header -->
+  <div class="mobile-nav-header">
+    <div class="mobile-nav-container">
+      <!-- Logo -->
+      <a href="/" class="mobile-logo" aria-label="NosytLabs Home">
+        <div class="logo-container">
+          <div class="logo-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="32" height="32" rx="8" fill="url(#logoGradient)"/>
+              <path d="M8 12L16 8L24 12V20L16 24L8 20V12Z" stroke="white" stroke-width="2" fill="none"/>
+              <circle cx="16" cy="16" r="3" fill="white"/>
+              <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:var(--color-primary-500)"/>
+                  <stop offset="50%" style="stop-color:var(--color-accent-500)"/>
+                  <stop offset="100%" style="stop-color:var(--color-secondary-500)"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="logo-text">NosytLabs</span>
+        </div>
+      </a>
+
+      <!-- Mobile Menu Toggle -->
+      <button 
+        class="mobile-menu-toggle touch-target-large"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <div class="hamburger">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" aria-hidden="true"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-labelledby="mobile-menu-title">
+    <div class="mobile-menu-header">
+      <h2 id="mobile-menu-title" class="sr-only">Navigation Menu</h2>
+      <button 
+        class="mobile-menu-close touch-target-large"
+        aria-label="Close mobile menu"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu-content">
+      <!-- Navigation Items -->
+      <ul class="mobile-nav-list" role="list">
+        {navItems.map((item, index) => (
+          <li class="mobile-nav-item" style={`animation-delay: ${index * 0.1}s`}>
+            <a 
+              href={item.href}
+              class={`mobile-nav-link ${isActive(item.href) ? 'active' : ''}`}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+            >
+              <div class="nav-link-content">
+                <div class="nav-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    {item.icon === 'home' && (
+                      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    )}
+                    {item.icon === 'tools' && (
+                      <>
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                      </>
+                    )}
+                    {item.icon === 'folder' && (
+                      <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/>
+                    )}
+                    {item.icon === 'video' && (
+                      <>
+                        <polygon points="23 7 16 12 23 17 23 7"/>
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                      </>
+                    )}
+                    {item.icon === 'document-text' && (
+                      <>
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10,9 9,9 8,9"/>
+                      </>
+                    )}
+                    {item.icon === 'mail' && (
+                      <>
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                      </>
+                    )}
+                  </svg>
+                </div>
+                <span class="nav-text">{item.name}</span>
+                <div class="nav-indicator"></div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Mobile CTA Section -->
+      <div class="mobile-cta-section">
+        <a href="/contact" class="mobile-cta-button btn-touch">
+          <span>Get Started</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7,7 17,7 17,17"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Social Links -->
+      <div class="mobile-social-section">
+        <div class="social-links">
+          <a href="https://github.com/NosytLabs" target="_blank" rel="noopener noreferrer" class="social-link touch-target" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/@TycenYT" target="_blank" rel="noopener noreferrer" class="social-link touch-target" aria-label="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+          <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" class="social-link touch-target" aria-label="Kick">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-3.5v-7l6 3.5-6 3.5z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Mobile Navigation Styles */
+  .mobile-navigation {
+    display: none;
+    position: relative;
+    z-index: var(--z-fixed);
+  }
+
+  @media (max-width: 1023px) {
+    .mobile-navigation {
+      display: block;
+    }
+  }
+
+  /* Mobile Nav Header */
+  .mobile-nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--glass-white-strong);
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border-bottom: var(--glass-border);
+    z-index: var(--z-fixed);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .mobile-nav-header.scrolled {
+    background: var(--glass-white-intense);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .mobile-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    max-width: 100%;
+  }
+
+  /* Mobile Logo */
+  .mobile-logo {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  /* Hamburger Menu */
+  .mobile-menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius-lg);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .mobile-menu-toggle:hover {
+    background: var(--glass-primary);
+  }
+
+  .hamburger {
+    width: 24px;
+    height: 18px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hamburger-line {
+    width: 100%;
+    height: 2px;
+    background: var(--color-neutral-900);
+    border-radius: 1px;
+    transition: all var(--duration-normal) var(--ease-out);
+    transform-origin: center;
+  }
+
+  /* Hamburger Animation */
+  .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* Mobile Menu Overlay */
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+    z-index: var(--z-modal-backdrop);
+  }
+
+  .mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    max-width: 85vw;
+    height: 100vh;
+    background: var(--glass-white-strong);
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border-left: var(--glass-border);
+    transition: right var(--duration-normal) var(--ease-out);
+    z-index: var(--z-modal);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-menu.active {
+    right: 0;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: var(--space-4);
+    border-bottom: var(--glass-border);
+  }
+
+  .mobile-menu-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-neutral-600);
+    border-radius: var(--radius-lg);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .mobile-menu-close:hover {
+    background: var(--glass-primary);
+    color: var(--color-primary-600);
+  }
+
+  .mobile-menu-content {
+    padding: var(--space-6) 0;
+  }
+
+  /* Navigation List */
+  .mobile-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-nav-item {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideInFromRight 0.3s ease-out forwards;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    text-decoration: none;
+    color: var(--color-neutral-900);
+    padding: var(--space-4) var(--space-6);
+    transition: all var(--duration-fast) var(--ease-out);
+    position: relative;
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link:focus {
+    background: var(--glass-primary);
+    color: var(--color-primary-600);
+  }
+
+  .mobile-nav-link.active {
+    background: var(--glass-primary);
+    color: var(--color-primary-600);
+  }
+
+  .mobile-nav-link.active .nav-indicator {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .nav-link-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    position: relative;
+  }
+
+  .nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav-text {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .nav-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--color-primary-500);
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  /* Mobile CTA Section */
+  .mobile-cta-section {
+    padding: var(--space-6);
+    border-top: var(--glass-border);
+    border-bottom: var(--glass-border);
+  }
+
+  .mobile-cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    background: var(--gradient-primary);
+    color: white;
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius-xl);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .mobile-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Social Links */
+  .mobile-social-section {
+    padding: var(--space-6);
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-neutral-600);
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .social-link:hover {
+    background: var(--glass-primary);
+    color: var(--color-primary-600);
+    transform: translateY(-2px);
+  }
+
+  /* Animations */
+  @keyframes slideInFromRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Dark Theme */
+  [data-theme="dark"] .mobile-nav-header {
+    background: var(--glass-dark-strong);
+  }
+
+  [data-theme="dark"] .logo-text {
+    color: var(--color-neutral-100);
+  }
+
+  [data-theme="dark"] .hamburger-line {
+    background: var(--color-neutral-100);
+  }
+
+  [data-theme="dark"] .mobile-menu {
+    background: var(--glass-dark-strong);
+  }
+
+  [data-theme="dark"] .mobile-nav-link {
+    color: var(--color-neutral-100);
+  }
+
+  [data-theme="dark"] .mobile-nav-link:hover,
+  [data-theme="dark"] .mobile-nav-link:focus,
+  [data-theme="dark"] .mobile-nav-link.active {
+    background: var(--glass-dark);
+    color: var(--color-primary-400);
+  }
+
+  [data-theme="dark"] .social-link {
+    color: var(--color-neutral-400);
+  }
+
+  [data-theme="dark"] .social-link:hover {
+    background: var(--glass-dark);
+    color: var(--color-primary-400);
+  }
+</style>
+
+<script>
+  // Enhanced Mobile Navigation Functionality
+  class MobileNavigation {
+    constructor() {
+      this.menuToggle = document.querySelector('.mobile-menu-toggle');
+      this.menuClose = document.querySelector('.mobile-menu-close');
+      this.menu = document.querySelector('.mobile-menu');
+      this.overlay = document.querySelector('.mobile-menu-overlay');
+      this.navHeader = document.querySelector('.mobile-nav-header');
+      this.body = document.body;
+      
+      this.isOpen = false;
+      this.scrollThreshold = 50;
+      
+      this.init();
+    }
+
+    init() {
+      this.setupEventListeners();
+      this.setupScrollHandler();
+      this.setupTouchGestures();
+      this.setupKeyboardNavigation();
+    }
+
+    setupEventListeners() {
+      // Menu toggle
+      this.menuToggle?.addEventListener('click', () => this.toggleMenu());
+      this.menuClose?.addEventListener('click', () => this.closeMenu());
+      this.overlay?.addEventListener('click', () => this.closeMenu());
+
+      // Menu links
+      const menuLinks = document.querySelectorAll('.mobile-nav-link');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', () => this.closeMenu());
+      });
+
+      // Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen) {
+          this.closeMenu();
+        }
+      });
+    }
+
+    setupScrollHandler() {
+      let ticking = false;
+      
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            
+            if (scrollY > this.scrollThreshold) {
+              this.navHeader?.classList.add('scrolled');
+            } else {
+              this.navHeader?.classList.remove('scrolled');
+            }
+            
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+
+    setupTouchGestures() {
+      let startX = 0;
+      let currentX = 0;
+      let isDragging = false;
+
+      // Swipe to close menu
+      this.menu?.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+      });
+
+      this.menu?.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        
+        currentX = e.touches[0].clientX;
+        const deltaX = currentX - startX;
+        
+        // Only allow swipe to the right (closing)
+        if (deltaX > 0) {
+          const progress = Math.min(deltaX / 200, 1);
+          this.menu.style.transform = `translateX(${deltaX}px)`;
+          this.overlay.style.opacity = 1 - progress;
+        }
+      });
+
+      this.menu?.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        
+        const deltaX = currentX - startX;
+        
+        if (deltaX > 100) {
+          this.closeMenu();
+        } else {
+          // Snap back
+          this.menu.style.transform = '';
+          this.overlay.style.opacity = '';
+        }
+        
+        isDragging = false;
+      });
+    }
+
+    setupKeyboardNavigation() {
+      const menuLinks = document.querySelectorAll('.mobile-nav-link');
+      
+      menuLinks.forEach((link, index) => {
+        link.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            const nextIndex = (index + 1) % menuLinks.length;
+            menuLinks[nextIndex].focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            const prevIndex = (index - 1 + menuLinks.length) % menuLinks.length;
+            menuLinks[prevIndex].focus();
+          }
+        });
+      });
+    }
+
+    toggleMenu() {
+      if (this.isOpen) {
+        this.closeMenu();
+      } else {
+        this.openMenu();
+      }
+    }
+
+    openMenu() {
+      this.isOpen = true;
+      this.menu?.classList.add('active');
+      this.overlay?.classList.add('active');
+      this.menuToggle?.classList.add('active');
+      this.body.style.overflow = 'hidden';
+      
+      // Focus first menu item
+      const firstLink = document.querySelector('.mobile-nav-link');
+      setTimeout(() => firstLink?.focus(), 300);
+    }
+
+    closeMenu() {
+      this.isOpen = false;
+      this.menu?.classList.remove('active');
+      this.overlay?.classList.remove('active');
+      this.menuToggle?.classList.remove('active');
+      this.body.style.overflow = '';
+      
+      // Reset transform
+      if (this.menu) {
+        this.menu.style.transform = '';
+      }
+      if (this.overlay) {
+        this.overlay.style.opacity = '';
+      }
+      
+      // Return focus to toggle button
+      this.menuToggle?.focus();
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new MobileNavigation();
+  });
+</script>

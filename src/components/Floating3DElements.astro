@@ -1,0 +1,453 @@
+---
+/**
+ * Floating 3D Elements Component
+ * Interactive 3D floating elements with mouse tracking
+ */
+
+interface Props {
+  className?: string;
+  elementCount?: number;
+}
+
+const { className = '', elementCount = 12 } = Astro.props;
+
+const techIcons = [
+  { icon: '⚛️', name: 'React', color: '#61DAFB' },
+  { icon: '🚀', name: 'Astro', color: '#FF5D01' },
+  { icon: '📘', name: 'TypeScript', color: '#3178C6' },
+  { icon: '🎨', name: 'CSS3', color: '#1572B6' },
+  { icon: '⚡', name: 'JavaScript', color: '#F7DF1E' },
+  { icon: '🐍', name: 'Python', color: '#3776AB' },
+  { icon: '🟢', name: 'Node.js', color: '#339933' },
+  { icon: '🖨️', name: '3D Printing', color: '#FF9500' },
+  { icon: '💰', name: 'Crypto', color: '#F7931A' },
+  { icon: '🎥', name: 'Content', color: '#FF0000' },
+  { icon: '🔧', name: 'Tools', color: '#6B7280' },
+  { icon: '🌐', name: 'Web', color: '#059669' }
+];
+---
+
+<section class={`floating-3d-elements ${className}`}>
+  <div class="floating-container" id="floatingContainer">
+    {Array.from({ length: elementCount }, (_, index) => {
+      const tech = techIcons[index % techIcons.length];
+      return (
+        <div 
+          class="floating-element"
+          data-tech={tech.name.toLowerCase()}
+          style={`
+            --element-color: ${tech.color};
+            --delay: ${index * 0.5}s;
+            --duration: ${8 + (index % 4) * 2}s;
+          `}
+        >
+          <div class="element-inner">
+            <div class="element-face front">
+              <span class="tech-icon">{tech.icon}</span>
+            </div>
+            <div class="element-face back">
+              <span class="tech-name">{tech.name}</span>
+            </div>
+            <div class="element-face left"></div>
+            <div class="element-face right"></div>
+            <div class="element-face top"></div>
+            <div class="element-face bottom"></div>
+          </div>
+          
+          <div class="element-glow"></div>
+          <div class="element-trail"></div>
+        </div>
+      );
+    })}
+  </div>
+  
+  <div class="interaction-hint">
+    <span class="hint-text">Move your mouse to interact with the elements</span>
+    <span class="hint-icon">🖱️</span>
+  </div>
+</section>
+
+<style>
+  .floating-3d-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .floating-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+  }
+  
+  .floating-element {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    animation: float var(--duration) infinite linear var(--delay);
+    transform-style: preserve-3d;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  
+  .element-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+  }
+  
+  .floating-element:hover .element-inner {
+    transform: rotateX(180deg) rotateY(180deg);
+  }
+  
+  .element-face {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--element-color), color-mix(in srgb, var(--element-color) 70%, black));
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .element-face.front {
+    transform: translateZ(30px);
+  }
+  
+  .element-face.back {
+    transform: translateZ(-30px) rotateY(180deg);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--element-color) 50%, white), var(--element-color));
+  }
+  
+  .element-face.left {
+    transform: rotateY(-90deg) translateZ(30px);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--element-color) 80%, black), var(--element-color));
+  }
+  
+  .element-face.right {
+    transform: rotateY(90deg) translateZ(30px);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--element-color) 80%, black), var(--element-color));
+  }
+  
+  .element-face.top {
+    transform: rotateX(90deg) translateZ(30px);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--element-color) 90%, white), var(--element-color));
+  }
+  
+  .element-face.bottom {
+    transform: rotateX(-90deg) translateZ(30px);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--element-color) 60%, black), var(--element-color));
+  }
+  
+  .tech-icon {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  }
+  
+  .tech-name {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+  
+  .element-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle, var(--element-color) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: pulse 2s infinite ease-in-out;
+    z-index: -1;
+  }
+  
+  .element-trail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 100px;
+    background: linear-gradient(to bottom, var(--element-color), transparent);
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0.6;
+    border-radius: 2px;
+    z-index: -2;
+  }
+  
+  .interaction-hint {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    color: white;
+    font-size: 0.875rem;
+    pointer-events: auto;
+    animation: fadeInOut 4s infinite;
+  }
+  
+  .hint-icon {
+    animation: wiggle 2s infinite;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) translateX(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100px) translateX(200px) rotateX(360deg) rotateY(360deg) rotateZ(180deg);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.1);
+    }
+  }
+  
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+  
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .floating-element {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .element-face {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .element-face.front,
+    .element-face.back {
+      transform: translateZ(20px);
+    }
+    
+    .element-face.back {
+      transform: translateZ(-20px) rotateY(180deg);
+    }
+    
+    .element-face.left,
+    .element-face.right {
+      transform: rotateY(-90deg) translateZ(20px);
+    }
+    
+    .element-face.right {
+      transform: rotateY(90deg) translateZ(20px);
+    }
+    
+    .element-face.top,
+    .element-face.bottom {
+      transform: rotateX(90deg) translateZ(20px);
+    }
+    
+    .element-face.bottom {
+      transform: rotateX(-90deg) translateZ(20px);
+    }
+    
+    .tech-icon {
+      font-size: 1rem;
+    }
+    
+    .tech-name {
+      font-size: 0.6rem;
+    }
+    
+    .interaction-hint {
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.75rem;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .floating-element {
+      animation: none;
+      position: static;
+      display: none;
+    }
+    
+    .element-glow {
+      animation: none;
+    }
+    
+    .interaction-hint {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  class Floating3DElements {
+    constructor() {
+      this.container = document.getElementById('floatingContainer');
+      this.elements = document.querySelectorAll('.floating-element');
+      this.mouseX = 0;
+      this.mouseY = 0;
+      
+      this.init();
+    }
+    
+    init() {
+      this.setupMouseTracking();
+      this.setupElementInteractions();
+      this.randomizeStartPositions();
+    }
+    
+    setupMouseTracking() {
+      document.addEventListener('mousemove', (e) => {
+        this.mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        this.mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+        
+        this.updateElementPositions();
+      });
+    }
+    
+    setupElementInteractions() {
+      this.elements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+          element.style.animationPlayState = 'paused';
+          element.style.transform += ' scale(1.2)';
+          element.style.zIndex = '10';
+        });
+        
+        element.addEventListener('mouseleave', () => {
+          element.style.animationPlayState = 'running';
+          element.style.transform = element.style.transform.replace(' scale(1.2)', '');
+          element.style.zIndex = '1';
+        });
+        
+        element.addEventListener('click', () => {
+          this.createClickEffect(element);
+        });
+      });
+    }
+    
+    randomizeStartPositions() {
+      this.elements.forEach((element, index) => {
+        const randomX = Math.random() * window.innerWidth;
+        const randomDelay = Math.random() * 5;
+        
+        element.style.left = randomX + 'px';
+        element.style.animationDelay = randomDelay + 's';
+      });
+    }
+    
+    updateElementPositions() {
+      this.elements.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const elementCenterX = rect.left + rect.width / 2;
+        const elementCenterY = rect.top + rect.height / 2;
+        
+        const distanceX = (this.mouseX * window.innerWidth) - elementCenterX;
+        const distanceY = (this.mouseY * window.innerHeight) - elementCenterY;
+        
+        const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+        const maxDistance = 200;
+        
+        if (distance < maxDistance) {
+          const force = (maxDistance - distance) / maxDistance;
+          const moveX = (distanceX / distance) * force * 20;
+          const moveY = (distanceY / distance) * force * 20;
+          
+          element.style.transform += ` translate(${moveX}px, ${moveY}px)`;
+        }
+      });
+    }
+    
+    createClickEffect(element) {
+      // Create ripple effect
+      const ripple = document.createElement('div');
+      ripple.style.cssText = `
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 100;
+      `;
+      
+      element.appendChild(ripple);
+      
+      // Animate ripple
+      ripple.animate([
+        { width: '0px', height: '0px', opacity: 1 },
+        { width: '120px', height: '120px', opacity: 0 }
+      ], {
+        duration: 600,
+        easing: 'ease-out'
+      }).onfinish = () => {
+        ripple.remove();
+      };
+      
+      // Bounce effect
+      element.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.3)' },
+        { transform: 'scale(1)' }
+      ], {
+        duration: 300,
+        easing: 'ease-out'
+      });
+    }
+  }
+  
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Only initialize if user hasn't disabled animations
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      new Floating3DElements();
+    }
+  });
+</script>

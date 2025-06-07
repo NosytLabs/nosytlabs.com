@@ -81,7 +81,7 @@ const {
 const displayedProjects = limit ? projects.slice(0, limit) : projects;
 
 // Extract unique tags for filters
-const allTags = [...new Set(projects.flatMap(project => project.tags || []))];
+const allTags = [new Set(projects.flatMap(project => project.tags || []))];
 ---
 
 <section class:list={['projects-section', className]}>

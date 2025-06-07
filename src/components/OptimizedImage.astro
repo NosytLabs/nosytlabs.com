@@ -1,0 +1,357 @@
+---
+/**
+ * Optimized Image Component for NosytLabs - 2025 Enhancement
+ * Modern image loading with WebP/AVIF support, lazy loading, and performance optimization
+ */
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  priority?: boolean;
+  className?: string;
+  objectFit?: 'cover' | 'contain' | 'fill' | 'scale-down' | 'none';
+  placeholder?: 'blur' | 'empty';
+  quality?: number;
+  format?: 'webp' | 'avif' | 'auto';
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  sizes = '100vw',
+  loading = 'lazy',
+  priority = false,
+  className = '',
+  objectFit = 'cover',
+  placeholder = 'blur',
+  quality = 80,
+  format = 'auto'
+} = Astro.props;
+
+// Generate optimized image sources
+const generateSources = (baseSrc: string) => {
+  const baseName = baseSrc.replace(/\.[^/.]+$/, '');
+  const extension = baseSrc.split('.').pop();
+  
+  // Common responsive breakpoints
+  const breakpoints = [320, 640, 768, 1024, 1280, 1536];
+  
+  const sources = {
+    avif: breakpoints.map(w => `${baseName}-${w}w.avif ${w}w`).join(', '),
+    webp: breakpoints.map(w => `${baseName}-${w}w.webp ${w}w`).join(', '),
+    fallback: breakpoints.map(w => `${baseName}-${w}w.${extension} ${w}w`).join(', ')
+  };
+  
+  return sources;
+};
+
+const sources = generateSources(src);
+
+// Generate placeholder for blur effect
+const generatePlaceholder = (imageSrc: string) => {
+  // Create a low-quality placeholder
+  const baseName = imageSrc.replace(/\.[^/.]+$/, '');
+  return `${baseName}-placeholder.jpg`;
+};
+
+const placeholderSrc = placeholder === 'blur' ? generatePlaceholder(src) : '';
+
+// Unique ID for this image instance
+const imageId = `opt-img-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div 
+  class={`optimized-image-container ${className}`}
+  style={`aspect-ratio: ${width && height ? `${width}/${height}` : 'auto'};`}
+>
+  {placeholder === 'blur' && (
+    <img
+      class="placeholder-image"
+      src={placeholderSrc}
+      alt=""
+      aria-hidden="true"
+      loading="eager"
+      style={`object-fit: ${objectFit};`}
+    />
+  )}
+  
+  <picture class="optimized-picture">
+    <!-- AVIF format for modern browsers -->
+    {format === 'auto' || format === 'avif' ? (
+      <source
+        type="image/avif"
+        srcset={sources.avif}
+        sizes={sizes}
+      />
+    ) : null}
+    
+    <!-- WebP format for broader support -->
+    {format === 'auto' || format === 'webp' ? (
+      <source
+        type="image/webp"
+        srcset={sources.webp}
+        sizes={sizes}
+      />
+    ) : null}
+    
+    <!-- Fallback format -->
+    <source
+      srcset={sources.fallback}
+      sizes={sizes}
+    />
+    
+    <!-- Main image element -->
+    <img
+      id={imageId}
+      class="main-image"
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={priority ? 'eager' : loading}
+      decoding="async"
+      style={`object-fit: ${objectFit};`}
+      data-optimized="true"
+    />
+  </picture>
+  
+  <!-- Loading indicator -->
+  <div class="loading-indicator" aria-hidden="true">
+    <div class="loading-spinner"></div>
+  </div>
+</div>
+
+<style>
+  .optimized-image-container {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: var(--glass-white-subtle);
+    border-radius: var(--radius-lg);
+  }
+
+  .optimized-picture {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .main-image,
+  .placeholder-image {
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+  }
+
+  .placeholder-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    filter: blur(10px) brightness(0.9);
+    transform: scale(1.1);
+  }
+
+  .main-image {
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    filter: blur(0px);
+  }
+
+  .main-image.loaded {
+    opacity: 1;
+  }
+
+  .main-image.loaded + .placeholder-image {
+    opacity: 0;
+  }
+
+  /* Loading indicator */
+  .loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .loading-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--glass-white-subtle);
+    border-top: 3px solid var(--color-primary-500);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Error state */
+  .main-image.error {
+    opacity: 1;
+    background: var(--glass-white-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-sm);
+  }
+
+  .main-image.error::before {
+    content: '🖼️ Image not available';
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .optimized-image-container {
+    background: var(--glass-dark-subtle);
+  }
+
+  [data-theme="dark"] .loading-spinner {
+    border-color: var(--glass-dark-subtle);
+    border-top-color: var(--color-primary-400);
+  }
+
+  /* Responsive behavior */
+  @media (max-width: 768px) {
+    .optimized-image-container {
+      border-radius: var(--radius-md);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .main-image,
+    .placeholder-image,
+    .loading-indicator {
+      transition: none;
+    }
+    
+    .loading-spinner {
+      animation: none;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .optimized-image-container {
+      border: 2px solid var(--color-text-primary);
+    }
+  }
+</style>
+
+<script>
+  // Enhanced image loading with intersection observer
+  class OptimizedImageLoader {
+    constructor() {
+      this.images = document.querySelectorAll('[data-optimized="true"]');
+      this.imageObserver = null;
+      this.init();
+    }
+
+    init() {
+      if ('IntersectionObserver' in window) {
+        this.setupIntersectionObserver();
+      } else {
+        // Fallback for older browsers
+        this.loadAllImages();
+      }
+    }
+
+    setupIntersectionObserver() {
+      this.imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            this.loadImage(entry.target);
+            this.imageObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+      });
+
+      this.images.forEach(img => {
+        if (img.loading === 'lazy') {
+          this.imageObserver.observe(img);
+        } else {
+          this.loadImage(img);
+        }
+      });
+    }
+
+    loadImage(img) {
+      const container = img.closest('.optimized-image-container');
+      const loadingIndicator = container?.querySelector('.loading-indicator');
+      const placeholder = container?.querySelector('.placeholder-image');
+
+      // Show loading indicator
+      if (loadingIndicator) {
+        loadingIndicator.classList.remove('hidden');
+      }
+
+      // Handle load event
+      img.addEventListener('load', () => {
+        img.classList.add('loaded');
+        if (loadingIndicator) {
+          loadingIndicator.classList.add('hidden');
+        }
+        if (placeholder) {
+          setTimeout(() => {
+            placeholder.style.opacity = '0';
+          }, 100);
+        }
+      });
+
+      // Handle error event
+      img.addEventListener('error', () => {
+        img.classList.add('error');
+        if (loadingIndicator) {
+          loadingIndicator.classList.add('hidden');
+        }
+        console.warn(`Failed to load image: ${img.src}`);
+      });
+
+      // Start loading if not already started
+      if (!img.src || img.src === window.location.href) {
+        const picture = img.closest('picture');
+        const sources = picture?.querySelectorAll('source');
+        
+        if (sources && sources.length > 0) {
+          // Let the browser choose the best format
+          img.src = img.getAttribute('src') || '';
+        }
+      }
+    }
+
+    loadAllImages() {
+      this.images.forEach(img => this.loadImage(img));
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new OptimizedImageLoader();
+    });
+  } else {
+    new OptimizedImageLoader();
+  }
+</script>

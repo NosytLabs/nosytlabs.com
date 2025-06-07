@@ -76,7 +76,7 @@ const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
   <div class="youtube-fallback">
     <div class="fallback-content">
       <img
-        src="/images/youtube-logo.png"
+        src="/images/win95/youtube.png"
         alt="YouTube"
         class="fallback-logo"
         onerror="this.src='/images/placeholder.svg'; this.onerror=null;"
@@ -291,7 +291,7 @@ const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
         refreshButton.style.transform = 'rotate(360deg)';
         
         // Show loading state
-        refreshButton.textContent = 'Loading...';
+        refreshButton.textContent = 'Loading';
         refreshButton.disabled = true;
         
         // Reset rotation after animation completes

@@ -1,0 +1,93 @@
+
+/* Enhanced ROI Calculator Animations */
+.calculator-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.calculator-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.calculator-card:hover::before {
+  animation: shimmer 1.5s ease-in-out;
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Enhanced Input Animations */
+.calculator-input {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.calculator-input:focus {
+  background: linear-gradient(145deg, #ffffff, #f0f9ff);
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Real-time calculation feedback */
+.calculation-feedback {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--color-success-500);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.calculator-input:valid + .calculation-feedback {
+  opacity: 1;
+}
+
+/* Enhanced Results Animation */
+.results-display {
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.results-display.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.result-item {
+  transform: translateX(-20px);
+  opacity: 0;
+  animation: slideInResult 0.4s ease-out forwards;
+}
+
+.result-item:nth-child(1) { animation-delay: 0.1s; }
+.result-item:nth-child(2) { animation-delay: 0.2s; }
+.result-item:nth-child(3) { animation-delay: 0.3s; }
+.result-item:nth-child(4) { animation-delay: 0.4s; }
+.result-item:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes slideInResult {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

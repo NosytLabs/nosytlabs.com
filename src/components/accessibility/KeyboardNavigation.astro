@@ -1,0 +1,1042 @@
+---
+/**
+ * Keyboard Navigation Enhancement for NosytLabs - 2025
+ * Advanced keyboard navigation with focus management, shortcuts, and accessibility features
+ * Features: Focus trapping, keyboard shortcuts, spatial navigation, and WCAG 2.1 AA compliance
+ */
+
+interface Props {
+  enableFocusTrapping?: boolean;
+  enableKeyboardShortcuts?: boolean;
+  enableSpatialNavigation?: boolean;
+  enableVirtualCursor?: boolean;
+  className?: string;
+}
+
+const {
+  enableFocusTrapping = true,
+  enableKeyboardShortcuts = true,
+  enableSpatialNavigation = true,
+  enableVirtualCursor = true,
+  className = ''
+} = Astro.props;
+---
+
+<!-- Keyboard Navigation Enhancement Container -->
+<div class={`keyboard-navigation ${className}`} data-keyboard-nav>
+  <!-- Focus Management -->
+  <div class="focus-manager" data-focus-manager>
+    <!-- Focus Indicator -->
+    <div class="focus-indicator" data-focus-indicator aria-hidden="true"></div>
+
+    <!-- Focus Trap Boundaries -->
+    <div class="focus-trap-start" tabindex="0" data-focus-trap-start aria-hidden="true"></div>
+    <div class="focus-trap-end" tabindex="0" data-focus-trap-end aria-hidden="true"></div>
+  </div>
+
+  <!-- Keyboard Shortcuts Help -->
+  {enableKeyboardShortcuts && (
+    <div class="keyboard-shortcuts-help" data-shortcuts-help role="dialog" aria-labelledby="shortcuts-title" aria-hidden="true">
+      <div class="shortcuts-overlay" data-shortcuts-overlay></div>
+      <div class="shortcuts-panel">
+        <div class="shortcuts-header">
+          <h2 id="shortcuts-title" class="shortcuts-title">Keyboard Shortcuts</h2>
+          <button class="shortcuts-close" data-shortcuts-close aria-label="Close keyboard shortcuts">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="shortcuts-content">
+          <div class="shortcuts-section">
+            <h3 class="shortcuts-section-title">Navigation</h3>
+            <div class="shortcuts-list">
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Tab</kbd>
+                <span class="shortcut-description">Navigate forward</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Shift + Tab</kbd>
+                <span class="shortcut-description">Navigate backward</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Arrow Keys</kbd>
+                <span class="shortcut-description">Spatial navigation</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Home</kbd>
+                <span class="shortcut-description">Go to top of page</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">End</kbd>
+                <span class="shortcut-description">Go to bottom of page</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="shortcuts-section">
+            <h3 class="shortcuts-section-title">Actions</h3>
+            <div class="shortcuts-list">
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Enter</kbd>
+                <span class="shortcut-description">Activate element</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Space</kbd>
+                <span class="shortcut-description">Toggle/Select</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Escape</kbd>
+                <span class="shortcut-description">Close modal/menu</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Ctrl + /</kbd>
+                <span class="shortcut-description">Show this help</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="shortcuts-section">
+            <h3 class="shortcuts-section-title">Accessibility</h3>
+            <div class="shortcuts-list">
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Alt + A</kbd>
+                <span class="shortcut-description">Open accessibility options</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Alt + H</kbd>
+                <span class="shortcut-description">Go to main heading</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Alt + M</kbd>
+                <span class="shortcut-description">Go to main content</span>
+              </div>
+              <div class="shortcut-item">
+                <kbd class="shortcut-key">Alt + N</kbd>
+                <span class="shortcut-description">Go to navigation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Virtual Cursor -->
+  {enableVirtualCursor && (
+    <div class="virtual-cursor" data-virtual-cursor aria-hidden="true">
+      <div class="cursor-highlight"></div>
+      <div class="cursor-info" data-cursor-info></div>
+    </div>
+  )}
+
+  <!-- Screen Reader Announcements -->
+  <div class="sr-announcements" aria-live="polite" aria-atomic="true" data-nav-announcements></div>
+</div>
+
+<style>
+  /* Keyboard Navigation Styles */
+  .keyboard-navigation {
+    position: relative;
+    z-index: var(--z-keyboard-nav, 9999);
+  }
+
+  /* ========== FOCUS MANAGEMENT ========== */
+
+  /* Enhanced Focus Indicator */
+  .focus-indicator {
+    position: absolute;
+    pointer-events: none;
+    border: 3px solid var(--color-primary-500);
+    border-radius: var(--radius-md);
+    background: rgba(124, 58, 237, 0.1);
+    opacity: 0;
+    transition: all var(--duration-fast) var(--ease-out);
+    z-index: var(--z-focus-indicator, 10000);
+    box-shadow:
+      0 0 0 1px white,
+      0 0 10px rgba(124, 58, 237, 0.3);
+  }
+
+  .focus-indicator.active {
+    opacity: 1;
+  }
+
+  /* Focus Trap Boundaries */
+  .focus-trap-start,
+  .focus-trap-end {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* ========== KEYBOARD SHORTCUTS HELP ========== */
+
+  .keyboard-shortcuts-help {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: var(--z-modal, 10000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .keyboard-shortcuts-help[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .shortcuts-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .shortcuts-panel {
+    position: relative;
+    background: var(--glass-white-strong);
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border: var(--glass-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin: var(--space-4);
+    transform: scale(0.9);
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .keyboard-shortcuts-help[aria-hidden="false"] .shortcuts-panel {
+    transform: scale(1);
+  }
+
+  .shortcuts-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-6);
+    border-bottom: var(--glass-border);
+  }
+
+  .shortcuts-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-900);
+    margin: 0;
+  }
+
+  .shortcuts-close {
+    background: none;
+    border: none;
+    color: var(--color-neutral-600);
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .shortcuts-close:hover {
+    background: var(--glass-primary);
+    color: var(--color-primary-600);
+  }
+
+  .shortcuts-close:focus {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  .shortcuts-content {
+    padding: var(--space-6);
+  }
+
+  .shortcuts-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .shortcuts-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .shortcuts-section-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-neutral-800);
+    margin: 0 0 var(--space-4) 0;
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-neutral-200);
+  }
+
+  .shortcuts-list {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .shortcut-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .shortcut-key {
+    background: var(--color-neutral-100);
+    border: 1px solid var(--color-neutral-300);
+    border-radius: var(--radius-sm);
+    padding: var(--space-1) var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-neutral-700);
+    min-width: 120px;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .shortcut-description {
+    font-size: var(--font-size-base);
+    color: var(--color-neutral-600);
+    flex: 1;
+  }
+
+  /* ========== VIRTUAL CURSOR ========== */
+
+  .virtual-cursor {
+    position: absolute;
+    pointer-events: none;
+    z-index: var(--z-virtual-cursor, 9998);
+    opacity: 0;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .virtual-cursor.active {
+    opacity: 1;
+  }
+
+  .cursor-highlight {
+    position: absolute;
+    border: 2px dashed var(--color-accent-500);
+    border-radius: var(--radius-md);
+    background: rgba(236, 72, 153, 0.1);
+    animation: cursor-pulse 2s infinite;
+  }
+
+  .cursor-info {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-neutral-900);
+    color: white;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .cursor-info::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: var(--space-3);
+    border: 6px solid transparent;
+    border-top-color: var(--color-neutral-900);
+  }
+
+  @keyframes cursor-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* ========== ENHANCED FOCUS STYLES ========== */
+
+  /* Global focus enhancement */
+  :focus {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Enhanced focus for interactive elements */
+  button:focus,
+  a:focus,
+  input:focus,
+  textarea:focus,
+  select:focus,
+  [tabindex]:focus {
+    outline: 3px solid var(--color-primary-500);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px rgba(124, 58, 237, 0.2);
+  }
+
+  /* Focus within containers */
+  .focus-within {
+    outline: 2px solid var(--color-primary-300);
+    outline-offset: 2px;
+  }
+
+  /* ========== ACCESSIBILITY ENHANCEMENTS ========== */
+
+  .sr-announcements {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* High Contrast Mode */
+  @media (prefers-contrast: high) {
+    .focus-indicator {
+      border-width: 4px;
+      box-shadow:
+        0 0 0 2px white,
+        0 0 0 6px var(--color-primary-500);
+    }
+
+    .shortcuts-panel {
+      border-width: 3px;
+    }
+
+    .shortcut-key {
+      border-width: 2px;
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .focus-indicator,
+    .keyboard-shortcuts-help,
+    .shortcuts-panel,
+    .virtual-cursor {
+      transition: none;
+      animation: none;
+    }
+
+    .cursor-highlight {
+      animation: none;
+    }
+  }
+
+  /* Dark Theme */
+  [data-theme="dark"] .shortcuts-panel {
+    background: var(--glass-dark-strong);
+  }
+
+  [data-theme="dark"] .shortcuts-title {
+    color: var(--color-neutral-100);
+  }
+
+  [data-theme="dark"] .shortcuts-section-title {
+    color: var(--color-neutral-200);
+    border-bottom-color: var(--color-neutral-700);
+  }
+
+  [data-theme="dark"] .shortcut-key {
+    background: var(--color-neutral-800);
+    border-color: var(--color-neutral-600);
+    color: var(--color-neutral-200);
+  }
+
+  [data-theme="dark"] .shortcut-description {
+    color: var(--color-neutral-400);
+  }
+
+  [data-theme="dark"] .shortcuts-close {
+    color: var(--color-neutral-400);
+  }
+
+  [data-theme="dark"] .shortcuts-close:hover {
+    background: var(--glass-dark);
+    color: var(--color-primary-400);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .shortcuts-panel {
+      margin: var(--space-2);
+      max-height: 90vh;
+    }
+
+    .shortcuts-header {
+      padding: var(--space-4);
+    }
+
+    .shortcuts-content {
+      padding: var(--space-4);
+    }
+
+    .shortcuts-section {
+      margin-bottom: var(--space-6);
+    }
+
+    .shortcut-key {
+      min-width: 100px;
+      font-size: var(--font-size-xs);
+    }
+
+    .shortcut-description {
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .keyboard-navigation {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced Keyboard Navigation Controller
+  class KeyboardNavigationController {
+    constructor() {
+      this.focusableElements = [
+        'a[href]',
+        'button:not([disabled])',
+        'input:not([disabled])',
+        'textarea:not([disabled])',
+        'select:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])',
+        '[contenteditable="true"]'
+      ].join(', ');
+
+      this.currentFocusIndex = -1;
+      this.focusHistory = [];
+      this.focusTraps = new Map();
+      this.isVirtualCursorActive = false;
+
+      this.init();
+    }
+
+    init() {
+      this.setupKeyboardShortcuts();
+      this.setupFocusManagement();
+      this.setupSpatialNavigation();
+      this.setupVirtualCursor();
+      this.setupFocusTrapping();
+      this.setupAccessibilityShortcuts();
+    }
+
+    setupKeyboardShortcuts() {
+      document.addEventListener('keydown', (e) => {
+        // Ctrl + / to show keyboard shortcuts
+        if (e.ctrlKey && e.key === '/') {
+          e.preventDefault();
+          this.toggleShortcutsHelp();
+        }
+
+        // Escape to close modals/menus
+        if (e.key === 'Escape') {
+          this.handleEscape();
+        }
+
+        // Home/End for page navigation
+        if (e.key === 'Home' && !this.isInInput(e.target)) {
+          e.preventDefault();
+          this.goToTop();
+        }
+
+        if (e.key === 'End' && !this.isInInput(e.target)) {
+          e.preventDefault();
+          this.goToBottom();
+        }
+
+        // Arrow keys for spatial navigation
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+          if (!this.isInInput(e.target) && !e.ctrlKey && !e.altKey) {
+            this.handleSpatialNavigation(e);
+          }
+        }
+      });
+    }
+
+    setupFocusManagement() {
+      const focusIndicator = document.querySelector('[data-focus-indicator]');
+
+      // Track focus changes
+      document.addEventListener('focusin', (e) => {
+        this.updateFocusIndicator(e.target);
+        this.addToFocusHistory(e.target);
+        this.announceElement(e.target);
+      });
+
+      document.addEventListener('focusout', (e) => {
+        // Hide focus indicator after a delay
+        setTimeout(() => {
+          if (!document.activeElement || document.activeElement === document.body) {
+            this.hideFocusIndicator();
+          }
+        }, 100);
+      });
+
+      // Enhanced tab navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          this.handleTabNavigation(e);
+        }
+      });
+    }
+
+    updateFocusIndicator(element) {
+      const indicator = document.querySelector('[data-focus-indicator]');
+      if (!indicator || !element) return;
+
+      const rect = element.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+      indicator.style.top = (rect.top + scrollTop - 4) + 'px';
+      indicator.style.left = (rect.left + scrollLeft - 4) + 'px';
+      indicator.style.width = (rect.width + 8) + 'px';
+      indicator.style.height = (rect.height + 8) + 'px';
+      indicator.classList.add('active');
+    }
+
+    hideFocusIndicator() {
+      const indicator = document.querySelector('[data-focus-indicator]');
+      if (indicator) {
+        indicator.classList.remove('active');
+      }
+    }
+
+    addToFocusHistory(element) {
+      this.focusHistory.push(element);
+      if (this.focusHistory.length > 10) {
+        this.focusHistory.shift();
+      }
+    }
+
+    setupSpatialNavigation() {
+      // Spatial navigation using arrow keys
+      this.spatialNavigation = {
+        up: (current) => this.findElementInDirection(current, 'up'),
+        down: (current) => this.findElementInDirection(current, 'down'),
+        left: (current) => this.findElementInDirection(current, 'left'),
+        right: (current) => this.findElementInDirection(current, 'right')
+      };
+    }
+
+    handleSpatialNavigation(e) {
+      const current = document.activeElement;
+      if (!current || !this.isFocusable(current)) return;
+
+      let target = null;
+
+      switch (e.key) {
+        case 'ArrowUp':
+          target = this.spatialNavigation.up(current);
+          break;
+        case 'ArrowDown':
+          target = this.spatialNavigation.down(current);
+          break;
+        case 'ArrowLeft':
+          target = this.spatialNavigation.left(current);
+          break;
+        case 'ArrowRight':
+          target = this.spatialNavigation.right(current);
+          break;
+      }
+
+      if (target && target !== current) {
+        e.preventDefault();
+        target.focus();
+        this.announce(`Moved ${e.key.replace('Arrow', '').toLowerCase()} to ${this.getElementDescription(target)}`);
+      }
+    }
+
+    findElementInDirection(current, direction) {
+      const focusableElements = Array.from(document.querySelectorAll(this.focusableElements))
+        .filter(el => this.isVisible(el) && el !== current);
+
+      if (focusableElements.length === 0) return null;
+
+      const currentRect = current.getBoundingClientRect();
+      const currentCenter = {
+        x: currentRect.left + currentRect.width / 2,
+        y: currentRect.top + currentRect.height / 2
+      };
+
+      let bestElement = null;
+      let bestDistance = Infinity;
+
+      focusableElements.forEach(element => {
+        const rect = element.getBoundingClientRect();
+        const center = {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        };
+
+        const isInDirection = this.isInDirection(currentCenter, center, direction);
+        if (!isInDirection) return;
+
+        const distance = this.calculateDistance(currentCenter, center, direction);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestElement = element;
+        }
+      });
+
+      return bestElement;
+    }
+
+    isInDirection(from, to, direction) {
+      const threshold = 10; // pixels
+
+      switch (direction) {
+        case 'up':
+          return to.y < from.y - threshold;
+        case 'down':
+          return to.y > from.y + threshold;
+        case 'left':
+          return to.x < from.x - threshold;
+        case 'right':
+          return to.x > from.x + threshold;
+        default:
+          return false;
+      }
+    }
+
+    calculateDistance(from, to, direction) {
+      const dx = to.x - from.x;
+      const dy = to.y - from.y;
+
+      // Weight the distance based on direction
+      switch (direction) {
+        case 'up':
+        case 'down':
+          return Math.abs(dy) + Math.abs(dx) * 0.5;
+        case 'left':
+        case 'right':
+          return Math.abs(dx) + Math.abs(dy) * 0.5;
+        default:
+          return Math.sqrt(dx * dx + dy * dy);
+      }
+    }
+
+    setupVirtualCursor() {
+      const virtualCursor = document.querySelector('[data-virtual-cursor]');
+      if (!virtualCursor) return;
+
+      // Toggle virtual cursor with Alt + V
+      document.addEventListener('keydown', (e) => {
+        if (e.altKey && e.key === 'v') {
+          e.preventDefault();
+          this.toggleVirtualCursor();
+        }
+      });
+    }
+
+    toggleVirtualCursor() {
+      this.isVirtualCursorActive = !this.isVirtualCursorActive;
+      const virtualCursor = document.querySelector('[data-virtual-cursor]');
+
+      if (this.isVirtualCursorActive) {
+        virtualCursor.classList.add('active');
+        this.updateVirtualCursor(document.activeElement);
+        this.announce('Virtual cursor activated');
+      } else {
+        virtualCursor.classList.remove('active');
+        this.announce('Virtual cursor deactivated');
+      }
+    }
+
+    updateVirtualCursor(element) {
+      if (!this.isVirtualCursorActive || !element) return;
+
+      const virtualCursor = document.querySelector('[data-virtual-cursor]');
+      const cursorInfo = document.querySelector('[data-cursor-info]');
+
+      if (!virtualCursor || !cursorInfo) return;
+
+      const rect = element.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+      virtualCursor.style.top = (rect.top + scrollTop) + 'px';
+      virtualCursor.style.left = (rect.left + scrollLeft) + 'px';
+      virtualCursor.style.width = rect.width + 'px';
+      virtualCursor.style.height = rect.height + 'px';
+
+      cursorInfo.textContent = this.getElementDescription(element);
+    }
+
+    setupFocusTrapping() {
+      // Focus trapping for modals and dialogs
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          const activeModal = document.querySelector('[role="dialog"][aria-hidden="false"]');
+          if (activeModal) {
+            this.trapFocus(e, activeModal);
+          }
+        }
+      });
+    }
+
+    trapFocus(e, container) {
+      const focusableElements = container.querySelectorAll(this.focusableElements);
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    }
+
+    setupAccessibilityShortcuts() {
+      document.addEventListener('keydown', (e) => {
+        if (e.altKey) {
+          switch (e.key) {
+            case 'a':
+              e.preventDefault();
+              this.openAccessibilityOptions();
+              break;
+            case 'h':
+              e.preventDefault();
+              this.goToMainHeading();
+              break;
+            case 'm':
+              e.preventDefault();
+              this.goToMainContent();
+              break;
+            case 'n':
+              e.preventDefault();
+              this.goToNavigation();
+              break;
+          }
+        }
+      });
+    }
+
+    // Utility Methods
+    toggleShortcutsHelp() {
+      const help = document.querySelector('[data-shortcuts-help]');
+      if (!help) return;
+
+      const isOpen = help.getAttribute('aria-hidden') === 'false';
+
+      if (isOpen) {
+        this.closeShortcutsHelp();
+      } else {
+        this.openShortcutsHelp();
+      }
+    }
+
+    openShortcutsHelp() {
+      const help = document.querySelector('[data-shortcuts-help]');
+      const closeButton = document.querySelector('[data-shortcuts-close]');
+
+      help.setAttribute('aria-hidden', 'false');
+      closeButton.focus();
+
+      this.announce('Keyboard shortcuts help opened');
+    }
+
+    closeShortcutsHelp() {
+      const help = document.querySelector('[data-shortcuts-help]');
+      help.setAttribute('aria-hidden', 'true');
+
+      // Return focus to previously focused element
+      if (this.focusHistory.length > 0) {
+        const lastFocused = this.focusHistory[this.focusHistory.length - 2];
+        if (lastFocused && this.isVisible(lastFocused)) {
+          lastFocused.focus();
+        }
+      }
+
+      this.announce('Keyboard shortcuts help closed');
+    }
+
+    handleEscape() {
+      // Close any open modals, menus, or dialogs
+      const openModal = document.querySelector('[role="dialog"][aria-hidden="false"]');
+      const openMenu = document.querySelector('[role="menu"][aria-hidden="false"]');
+      const shortcutsHelp = document.querySelector('[data-shortcuts-help][aria-hidden="false"]');
+
+      if (shortcutsHelp) {
+        this.closeShortcutsHelp();
+      } else if (openModal) {
+        const closeButton = openModal.querySelector('[data-close], .close, [aria-label*="close"]');
+        if (closeButton) {
+          closeButton.click();
+        }
+      } else if (openMenu) {
+        const menuButton = document.querySelector(`[aria-controls="${openMenu.id}"]`);
+        if (menuButton) {
+          menuButton.click();
+          menuButton.focus();
+        }
+      }
+    }
+
+    goToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const firstFocusable = document.querySelector(this.focusableElements);
+      if (firstFocusable) {
+        firstFocusable.focus();
+      }
+      this.announce('Moved to top of page');
+    }
+
+    goToBottom() {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      const focusableElements = document.querySelectorAll(this.focusableElements);
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+      if (lastFocusable) {
+        lastFocusable.focus();
+      }
+      this.announce('Moved to bottom of page');
+    }
+
+    openAccessibilityOptions() {
+      const accessibilityToggle = document.querySelector('[data-accessibility-toggle]');
+      if (accessibilityToggle) {
+        accessibilityToggle.click();
+      }
+    }
+
+    goToMainHeading() {
+      const mainHeading = document.querySelector('h1');
+      if (mainHeading) {
+        mainHeading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        mainHeading.focus();
+        this.announce('Moved to main heading');
+      }
+    }
+
+    goToMainContent() {
+      const mainContent = document.querySelector('#main-content, main, [role="main"]');
+      if (mainContent) {
+        mainContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const firstFocusable = mainContent.querySelector(this.focusableElements);
+        if (firstFocusable) {
+          firstFocusable.focus();
+        }
+        this.announce('Moved to main content');
+      }
+    }
+
+    goToNavigation() {
+      const navigation = document.querySelector('nav, [role="navigation"]');
+      if (navigation) {
+        navigation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const firstFocusable = navigation.querySelector(this.focusableElements);
+        if (firstFocusable) {
+          firstFocusable.focus();
+        }
+        this.announce('Moved to navigation');
+      }
+    }
+
+    handleTabNavigation(e) {
+      // Enhanced tab navigation with announcements
+      const focusableElements = Array.from(document.querySelectorAll(this.focusableElements))
+        .filter(el => this.isVisible(el));
+
+      const currentIndex = focusableElements.indexOf(document.activeElement);
+      const nextIndex = e.shiftKey ? currentIndex - 1 : currentIndex + 1;
+
+      if (nextIndex >= 0 && nextIndex < focusableElements.length) {
+        const nextElement = focusableElements[nextIndex];
+        this.announceElement(nextElement);
+      }
+    }
+
+    // Helper Methods
+    isFocusable(element) {
+      return element.matches(this.focusableElements) && this.isVisible(element);
+    }
+
+    isVisible(element) {
+      const style = window.getComputedStyle(element);
+      return style.display !== 'none' &&
+             style.visibility !== 'hidden' &&
+             style.opacity !== '0' &&
+             element.offsetWidth > 0 &&
+             element.offsetHeight > 0;
+    }
+
+    isInInput(element) {
+      return element.matches('input, textarea, select, [contenteditable="true"]');
+    }
+
+    getElementDescription(element) {
+      const tagName = element.tagName.toLowerCase();
+      const role = element.getAttribute('role');
+      const ariaLabel = element.getAttribute('aria-label');
+      const title = element.getAttribute('title');
+      const text = element.textContent?.trim().substring(0, 50);
+
+      if (ariaLabel) return `${role || tagName}: ${ariaLabel}`;
+      if (title) return `${role || tagName}: ${title}`;
+      if (text) return `${role || tagName}: ${text}`;
+
+      return role || tagName;
+    }
+
+    announceElement(element) {
+      const description = this.getElementDescription(element);
+      this.announce(description);
+    }
+
+    announce(message) {
+      const announcer = document.querySelector('[data-nav-announcements]');
+      if (announcer) {
+        announcer.textContent = message;
+        setTimeout(() => {
+          announcer.textContent = '';
+        }, 1000);
+      }
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    window.keyboardNavigation = new KeyboardNavigationController();
+
+    // Setup shortcuts help close button
+    const closeButton = document.querySelector('[data-shortcuts-close]');
+    if (closeButton) {
+      closeButton.addEventListener('click', () => {
+        window.keyboardNavigation.closeShortcutsHelp();
+      });
+    }
+
+    // Setup shortcuts overlay click to close
+    const overlay = document.querySelector('[data-shortcuts-overlay]');
+    if (overlay) {
+      overlay.addEventListener('click', () => {
+        window.keyboardNavigation.closeShortcutsHelp();
+      });
+    }
+  });
+</script>

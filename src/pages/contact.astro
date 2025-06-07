@@ -1,48 +1,51 @@
 ---
-// Contact page for NosytLabs
+// Contact page for NosytLabs - Redesigned 2025
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/unified/HeroSection.astro';
+import Card from '../components/unified/Card.astro';
 ---
 
 <BaseLayout
-  title="Contact Us - NosytLabs"
-  description="Get in touch with NosytLabs for innovative digital solutions including AI development, web applications, mobile apps, and 3D printing services."
+  title="Contact NosytLabs - Get Your Free Consultation Today"
+  description="Ready to transform your digital presence? Contact NosytLabs for expert web development, content creation, and technology consulting. Free consultations available. Email: contact@nosytlabs.com"
+  pageKey="contact"
+  keywords="contact NosytLabs, free consultation, web development quote, technology consulting, digital solutions, project inquiry"
 >
-  <!-- Enhanced Hero Section with 3D effect -->
-  <div class="relative bg-gradient-to-br from-primary-dark via-primary to-secondary text-white py-20 overflow-hidden">
-    <!-- Background particles with enhanced animation -->
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="particles-enhanced"></div>
+  <!-- Enhanced Hero Section -->
+  <HeroSection
+    variant="split"
+    layout="compact"
+    theme="gradient"
+    showParticles={true}
+    showFloatingElements={true}
+    animationStyle="fade"
+    title="Contact Us"
+    subtitle="Let's Work Together"
+    description="Have a project in mind? Let's discuss how NosytLabs can help you achieve your goals. We offer expert web development, content creation, and technology consulting with personalized service."
+    primaryCTA={{
+      text: "Send Message",
+      href: "#contact-form",
+      variant: "primary",
+      icon: "arrow-right"
+    }}
+    secondaryCTA={{
+      text: "View Services",
+      href: "/services",
+      variant: "outline",
+      icon: "external-link"
+    }}
+  />
 
-      <!-- Light beam effect -->
-      <div class="absolute inset-0 light-beam"></div>
-
-      <!-- Decorative elements -->
-      <div class="absolute top-10 right-10 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-10 left-10 w-60 h-60 bg-primary-light/10 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-3xl">
-        <!-- Decorative elements -->
-        <div class="inline-block relative mb-4">
-          <div class="absolute -top-6 -left-6 w-12 h-12 border-t-2 border-l-2 border-accent opacity-70"></div>
-          <div class="absolute -bottom-6 -right-6 w-12 h-12 border-b-2 border-r-2 border-accent opacity-70"></div>
-
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 relative">
-            Contact <span class="text-accent gradient-text shadow-text-3d">Us</span>
-            <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
-          </h1>
-        </div>
-
-        <p class="text-xl backdrop-blur-sm bg-black/10 p-4 rounded-lg">
-          Have a project in mind? Let's discuss how NosytLabs can help you achieve your goals.
+  <!-- Important Notice -->
+  <section class="py-8 bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900 dark:to-accent-900">
+    <div class="container-xl mx-auto px-6">
+      <div class="glass p-6 rounded-2xl text-center">
+        <p class="text-neutral-700 dark:text-neutral-300">
+          <strong>Note:</strong> NosytLabs is a portfolio site for NOSYT LLC. We offer limited services based on availability and project fit. Response times may vary.
         </p>
-        <div class="mt-4 backdrop-blur-sm bg-black/20 p-4 rounded-lg text-sm">
-          <p><strong>Note:</strong> NosytLabs is a portfolio site for NOSYT LLC. We offer limited services based on availability and project fit. Response times may vary.</p>
-        </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Contact Form Section -->
   <section class="py-20 bg-white dark:bg-gray-900">
@@ -70,7 +73,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                   </div>
                   <h3 class="text-lg font-semibold ml-3 text-gray-800 dark:text-white">Email</h3>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 pl-10">info@nosytlabs.com</p>
+                <p class="text-gray-600 dark:text-gray-300 pl-10">contact@nosytlabs.com</p>
               </div>
 
               <div class="contact-info-item">
@@ -500,7 +503,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          <span>Sending...</span>
+          <span>Sending</span>
         `;
 
         // Simulate form submission (in a real implementation, you would send the data to a server)

@@ -63,8 +63,8 @@ const orderClass = order ? `order-${order}` : '';
 
 // Combine all classes
 const columnClasses = [
-  ...spanClasses,
-  ...startClasses,
+  spanClasses,
+  startClasses,
   orderClass,
   className,
 ].filter(Boolean).join(' ');

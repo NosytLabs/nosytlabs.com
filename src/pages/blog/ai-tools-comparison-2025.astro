@@ -25,7 +25,7 @@ function processDataWithCursorAI(data) {
     // Cursor AI suggests optimized transformations based on data shape
     if (typeof item === 'object' && item !== null) {
       return {
-        ...item,
+        item,
         processed: true,
         timestamp: new Date().toISOString()
       };
@@ -51,11 +51,11 @@ function processDataWithTraeAI(data) {
   // Trae AI learns from your codebase to suggest consistent patterns
   return data.reduce((processed, item) => {
     const processedItem = typeof item === 'object' && item !== null
-      ? { ...item, processed: true }
+      ? { item, processed: true }
       : { value: item, processed: true };
 
     processed.push({
-      ...processedItem,
+      processedItem,
       timestamp: new Date().toISOString(),
       hash: generateHash(processedItem) // Trae AI identified this pattern in your codebase
     });

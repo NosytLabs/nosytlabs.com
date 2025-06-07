@@ -1,0 +1,213 @@
+{
+  "budget": [
+    {
+      "path": "/*",
+      "timings": [
+        {
+          "metric": "first-contentful-paint",
+          "budget": 1800
+        },
+        {
+          "metric": "largest-contentful-paint", 
+          "budget": 2500
+        },
+        {
+          "metric": "first-input-delay",
+          "budget": 100
+        },
+        {
+          "metric": "cumulative-layout-shift",
+          "budget": 0.1
+        },
+        {
+          "metric": "time-to-interactive",
+          "budget": 3500
+        },
+        {
+          "metric": "total-blocking-time",
+          "budget": 300
+        },
+        {
+          "metric": "speed-index",
+          "budget": 3400
+        }
+      ],
+      "resourceSizes": [
+        {
+          "resourceType": "script",
+          "budget": 150
+        },
+        {
+          "resourceType": "total",
+          "budget": 500
+        },
+        {
+          "resourceType": "stylesheet",
+          "budget": 50
+        },
+        {
+          "resourceType": "image",
+          "budget": 200
+        },
+        {
+          "resourceType": "font",
+          "budget": 100
+        },
+        {
+          "resourceType": "document",
+          "budget": 25
+        }
+      ],
+      "resourceCounts": [
+        {
+          "resourceType": "script",
+          "budget": 10
+        },
+        {
+          "resourceType": "stylesheet",
+          "budget": 5
+        },
+        {
+          "resourceType": "image",
+          "budget": 20
+        },
+        {
+          "resourceType": "font",
+          "budget": 4
+        },
+        {
+          "resourceType": "third-party",
+          "budget": 5
+        }
+      ]
+    },
+    {
+      "path": "/",
+      "timings": [
+        {
+          "metric": "first-contentful-paint",
+          "budget": 1500
+        },
+        {
+          "metric": "largest-contentful-paint",
+          "budget": 2200
+        },
+        {
+          "metric": "speed-index",
+          "budget": 3000
+        }
+      ],
+      "resourceSizes": [
+        {
+          "resourceType": "total",
+          "budget": 400
+        }
+      ]
+    },
+    {
+      "path": "/services",
+      "timings": [
+        {
+          "metric": "first-contentful-paint",
+          "budget": 1600
+        },
+        {
+          "metric": "largest-contentful-paint",
+          "budget": 2300
+        }
+      ]
+    },
+    {
+      "path": "/projects",
+      "timings": [
+        {
+          "metric": "first-contentful-paint",
+          "budget": 1700
+        },
+        {
+          "metric": "largest-contentful-paint",
+          "budget": 2400
+        }
+      ],
+      "resourceSizes": [
+        {
+          "resourceType": "image",
+          "budget": 300
+        }
+      ]
+    },
+    {
+      "path": "/blog/*",
+      "timings": [
+        {
+          "metric": "first-contentful-paint",
+          "budget": 1800
+        },
+        {
+          "metric": "largest-contentful-paint",
+          "budget": 2500
+        }
+      ]
+    }
+  ],
+  "assertions": {
+    "categories:performance": ["error", { "minScore": 0.95 }],
+    "categories:accessibility": ["error", { "minScore": 0.95 }],
+    "categories:best-practices": ["error", { "minScore": 0.95 }],
+    "categories:seo": ["error", { "minScore": 0.95 }],
+    "audits:first-contentful-paint": ["error", { "maxNumericValue": 1800 }],
+    "audits:largest-contentful-paint": ["error", { "maxNumericValue": 2500 }],
+    "audits:first-input-delay": ["error", { "maxNumericValue": 100 }],
+    "audits:cumulative-layout-shift": ["error", { "maxNumericValue": 0.1 }],
+    "audits:time-to-interactive": ["error", { "maxNumericValue": 3500 }],
+    "audits:total-blocking-time": ["error", { "maxNumericValue": 300 }],
+    "audits:speed-index": ["error", { "maxNumericValue": 3400 }],
+    "audits:uses-responsive-images": "error",
+    "audits:uses-optimized-images": "error",
+    "audits:modern-image-formats": "error",
+    "audits:unused-css-rules": ["warn", { "maxLength": 2000 }],
+    "audits:unused-javascript": ["warn", { "maxLength": 20000 }],
+    "audits:render-blocking-resources": "error",
+    "audits:unminified-css": "error",
+    "audits:unminified-javascript": "error",
+    "audits:efficient-animated-content": "error",
+    "audits:uses-text-compression": "error",
+    "audits:uses-rel-preconnect": "warn",
+    "audits:uses-rel-preload": "warn",
+    "audits:font-display": "error",
+    "audits:critical-request-chains": ["warn", { "maxLength": 3 }],
+    "audits:user-timings": "off",
+    "audits:bootup-time": ["warn", { "maxNumericValue": 3500 }],
+    "audits:mainthread-work-breakdown": ["warn", { "maxNumericValue": 4000 }],
+    "audits:dom-size": ["warn", { "maxNumericValue": 1500 }],
+    "audits:interactive": ["error", { "maxNumericValue": 3500 }],
+    "audits:network-requests": "off",
+    "audits:network-rtt": "off",
+    "audits:network-server-latency": "off",
+    "audits:main-thread-tasks": "off",
+    "audits:diagnostics": "off",
+    "audits:metrics": "off",
+    "audits:screenshot-thumbnails": "off",
+    "audits:final-screenshot": "off"
+  },
+  "settings": {
+    "budgetPath": "./performance-budget.json",
+    "preset": "desktop",
+    "onlyCategories": ["performance", "accessibility", "best-practices", "seo"],
+    "skipAudits": [
+      "screenshot-thumbnails",
+      "final-screenshot",
+      "metrics",
+      "diagnostics"
+    ],
+    "budgets": [
+      {
+        "path": "/*",
+        "options": {
+          "firstPartyHostnames": ["nosytlabs.com", "www.nosytlabs.com"],
+          "requiredBudgets": ["performance", "accessibility"]
+        }
+      }
+    ]
+  }
+}

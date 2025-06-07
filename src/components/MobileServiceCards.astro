@@ -1,0 +1,483 @@
+---
+/**
+ * Mobile Optimized Service Cards for NosytLabs - 2025
+ * Touch-friendly service cards with swipe interactions and mobile-first design
+ */
+
+import ModernIconSystem from './ModernIconSystem.astro';
+
+interface Service {
+  title: string;
+  description: string;
+  icon: string;
+  features: string[];
+  link: string;
+  badge?: string;
+  color?: string;
+}
+
+interface Props {
+  services?: Service[];
+  className?: string;
+}
+
+const defaultServices: Service[] = [
+  {
+    title: "Web Development",
+    description: "Modern, responsive websites built with cutting-edge technologies",
+    icon: "web-development",
+    features: ["React & Astro", "Mobile-First Design", "Performance Optimized", "SEO Ready"],
+    link: "/services#web-development",
+    color: "primary"
+  },
+  {
+    title: "AI Solutions",
+    description: "Intelligent automation and AI-powered applications",
+    icon: "ai-solutions",
+    features: ["Machine Learning", "Process Automation", "Data Analysis", "Custom AI Models"],
+    link: "/services#ai-solutions",
+    badge: "Hot",
+    color: "secondary"
+  },
+  {
+    title: "Content Creation",
+    description: "Engaging content for YouTube, social media, and digital platforms",
+    icon: "content-creation",
+    features: ["Video Production", "Social Media", "Educational Content", "Brand Storytelling"],
+    link: "/content-creation",
+    badge: "New",
+    color: "accent"
+  },
+  {
+    title: "3D Printing",
+    description: "Custom 3D printing services and design consultation",
+    icon: "3d-printing",
+    features: ["Rapid Prototyping", "Custom Designs", "Material Selection", "Quality Assurance"],
+    link: "/3d-printing",
+    color: "tertiary"
+  }
+];
+
+const {
+  services = defaultServices,
+  className = ""
+} = Astro.props;
+---
+
+<section class={`mobile-services ${className}`}>
+  <div class="mobile-services-container">
+    <!-- Section Header -->
+    <div class="mobile-services-header">
+      <h2 class="mobile-services-title">Our Services</h2>
+      <p class="mobile-services-subtitle">
+        Comprehensive digital solutions tailored for your success
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="mobile-services-grid">
+      {services.map((service, index) => (
+        <div 
+          class={`mobile-service-card swipeable touch-feedback ${service.color || 'primary'}`}
+          data-service={service.title.toLowerCase().replace(/\s+/g, '-')}
+          style={`--animation-delay: ${index * 0.1}s`}
+        >
+          <!-- Card Header -->
+          <div class="mobile-card-header">
+            <div class="mobile-card-icon">
+              <ModernIconSystem name={service.icon} size="lg" />
+            </div>
+            {service.badge && (
+              <span class="mobile-card-badge">{service.badge}</span>
+            )}
+          </div>
+
+          <!-- Card Content -->
+          <div class="mobile-card-content">
+            <h3 class="mobile-card-title">{service.title}</h3>
+            <p class="mobile-card-description">{service.description}</p>
+
+            <!-- Features List -->
+            <ul class="mobile-card-features">
+              {service.features.map((feature) => (
+                <li class="mobile-feature-item">
+                  <ModernIconSystem name="check" size="xs" className="feature-check" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Card Action -->
+          <div class="mobile-card-action">
+            <a 
+              href={service.link} 
+              class="mobile-card-link touch-target touch-feedback"
+              aria-label={`Learn more about ${service.title}`}
+            >
+              <span>Learn More</span>
+              <ModernIconSystem name="arrow-right" size="sm" className="link-arrow" />
+            </a>
+          </div>
+
+          <!-- Swipe indicators -->
+          <div class="swipe-indicator left" aria-hidden="true"></div>
+          <div class="swipe-indicator right" aria-hidden="true"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mobile scroll hint -->
+    <div class="mobile-scroll-hint mobile-only" aria-hidden="true">
+      <span>Swipe cards to explore</span>
+      <div class="scroll-hint-arrow"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mobile-services {
+    padding: var(--mobile-padding-xl) var(--mobile-padding-md);
+    background: var(--glass-white-subtle);
+    position: relative;
+  }
+
+  .mobile-services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .mobile-services-header {
+    text-align: center;
+    margin-bottom: var(--mobile-padding-xl);
+  }
+
+  .mobile-services-title {
+    font-size: var(--mobile-text-3xl);
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--mobile-padding-sm) 0;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .mobile-services-subtitle {
+    font-size: var(--mobile-text-base);
+    color: var(--color-text-secondary);
+    margin: 0;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .mobile-services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--mobile-padding-md);
+    margin-bottom: var(--mobile-padding-lg);
+  }
+
+  .mobile-service-card {
+    background: var(--glass-white-strong);
+    border: var(--glass-border);
+    border-radius: var(--radius-2xl);
+    padding: var(--mobile-padding-md);
+    box-shadow: var(--mobile-shadow-md);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    animation: slide-up 0.6s ease-out forwards;
+    animation-delay: var(--animation-delay);
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .mobile-service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--mobile-shadow-lg);
+  }
+
+  .mobile-service-card.primary {
+    border-left: 4px solid var(--color-primary-500);
+  }
+
+  .mobile-service-card.secondary {
+    border-left: 4px solid var(--color-secondary-500);
+  }
+
+  .mobile-service-card.accent {
+    border-left: 4px solid var(--color-accent-500);
+  }
+
+  .mobile-service-card.tertiary {
+    border-left: 4px solid var(--color-tertiary-500);
+  }
+
+  .mobile-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: var(--mobile-padding-sm);
+  }
+
+  .mobile-card-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--glass-primary);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary-600);
+    box-shadow: var(--mobile-shadow-sm);
+  }
+
+  .mobile-card-badge {
+    background: var(--gradient-accent);
+    color: white;
+    font-size: var(--mobile-text-xs);
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .mobile-card-content {
+    margin-bottom: var(--mobile-padding-md);
+  }
+
+  .mobile-card-title {
+    font-size: var(--mobile-text-xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 var(--mobile-padding-xs) 0;
+    line-height: 1.3;
+  }
+
+  .mobile-card-description {
+    font-size: var(--mobile-text-base);
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--mobile-padding-sm) 0;
+    line-height: 1.5;
+  }
+
+  .mobile-card-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--mobile-padding-xs);
+  }
+
+  .mobile-feature-item {
+    display: flex;
+    align-items: center;
+    gap: var(--mobile-padding-xs);
+    font-size: var(--mobile-text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .feature-check {
+    color: var(--color-success-500);
+    flex-shrink: 0;
+  }
+
+  .mobile-card-action {
+    padding-top: var(--mobile-padding-sm);
+    border-top: var(--glass-border);
+  }
+
+  .mobile-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--mobile-padding-sm);
+    background: var(--glass-primary);
+    border-radius: var(--radius-xl);
+    color: var(--color-primary-600);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: var(--mobile-text-base);
+    transition: all 0.2s ease;
+  }
+
+  .mobile-card-link:hover,
+  .mobile-card-link:focus {
+    background: var(--color-primary-500);
+    color: white;
+    transform: translateX(2px);
+  }
+
+  .link-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .mobile-card-link:hover .link-arrow {
+    transform: translateX(2px);
+  }
+
+  .mobile-scroll-hint {
+    text-align: center;
+    color: var(--color-text-tertiary);
+    font-size: var(--mobile-text-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--mobile-padding-xs);
+    margin-top: var(--mobile-padding-lg);
+  }
+
+  .scroll-hint-arrow {
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  /* Responsive Grid */
+  @media (min-width: 480px) {
+    .mobile-services-grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--mobile-padding-lg);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .mobile-services {
+      padding: var(--mobile-padding-xl) var(--mobile-padding-lg);
+    }
+    
+    .mobile-services-title {
+      font-size: 2.5rem;
+    }
+    
+    .mobile-services-subtitle {
+      font-size: var(--mobile-text-lg);
+    }
+    
+    .mobile-scroll-hint {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .mobile-services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .mobile-services-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Animations */
+  @keyframes slide-up {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce-gentle {
+    0%, 100% { transform: rotate(45deg) translateY(0px); }
+    50% { transform: rotate(45deg) translateY(-3px); }
+  }
+
+  /* Dark theme support */
+  [data-theme="dark"] .mobile-services {
+    background: var(--glass-dark-subtle);
+  }
+
+  [data-theme="dark"] .mobile-service-card {
+    background: var(--glass-dark-strong);
+    border-color: var(--glass-border);
+  }
+
+  [data-theme="dark"] .mobile-card-icon {
+    background: var(--glass-dark);
+    color: var(--color-primary-400);
+  }
+
+  [data-theme="dark"] .mobile-card-link {
+    background: var(--glass-dark);
+    color: var(--color-primary-400);
+  }
+
+  [data-theme="dark"] .mobile-card-link:hover {
+    background: var(--color-primary-600);
+    color: white;
+  }
+
+  /* Accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-service-card {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    
+    .mobile-service-card:hover {
+      transform: none;
+    }
+    
+    .scroll-hint-arrow {
+      animation: none;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .mobile-service-card {
+      border-width: 2px;
+    }
+    
+    .mobile-card-link {
+      border: 2px solid var(--color-primary-500);
+    }
+  }
+</style>
+
+<script>
+  // Enhanced mobile interactions for service cards
+  document.addEventListener('DOMContentLoaded', () => {
+    const serviceCards = document.querySelectorAll('.mobile-service-card');
+    
+    serviceCards.forEach(card => {
+      // Add swipe gesture support
+      card.addEventListener('swipeleft', () => {
+        const link = card.querySelector('.mobile-card-link');
+        if (link) {
+          link.click();
+        }
+      });
+      
+      // Add intersection observer for animations
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+        
+        observer.observe(card);
+      }
+    });
+  });
+</script>

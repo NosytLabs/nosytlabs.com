@@ -1,0 +1,901 @@
+---
+/**
+ * WCAG 2.1 AA Compliance Component for NosytLabs - 2025
+ * Comprehensive accessibility features and enhancements
+ * Implements: ARIA, keyboard navigation, screen reader support, focus management
+ */
+
+export interface Props {
+  enableHighContrast?: boolean;
+  enableReducedMotion?: boolean;
+  enableFocusIndicators?: boolean;
+  enableScreenReaderAnnouncements?: boolean;
+  enableKeyboardShortcuts?: boolean;
+}
+
+const {
+  enableHighContrast = true,
+  enableReducedMotion = true,
+  enableFocusIndicators = true,
+  enableScreenReaderAnnouncements = true,
+  enableKeyboardShortcuts = true
+} = Astro.props;
+---
+
+<!-- WCAG 2.1 AA Compliance Enhancements -->
+<div class="wcag-compliance-container" data-component="wcag-compliance">
+  
+  <!-- Screen Reader Announcements -->
+  {enableScreenReaderAnnouncements && (
+    <div 
+      id="sr-announcements" 
+      class="sr-only" 
+      aria-live="polite" 
+      aria-atomic="true"
+      role="status"
+    ></div>
+    
+    <div 
+      id="sr-alerts" 
+      class="sr-only" 
+      aria-live="assertive" 
+      aria-atomic="true"
+      role="alert"
+    ></div>
+  )}
+
+  <!-- Accessibility Controls Panel -->
+  <div class="accessibility-controls" id="accessibility-controls">
+    <button
+      id="accessibility-toggle"
+      class="accessibility-toggle"
+      aria-expanded="false"
+      aria-controls="accessibility-panel"
+      aria-label="Open accessibility options"
+      title="Accessibility Options"
+    >
+      <span class="sr-only">Accessibility Options</span>
+      <i class="fas fa-universal-access" aria-hidden="true"></i>
+    </button>
+
+    <div 
+      id="accessibility-panel"
+      class="accessibility-panel"
+      role="dialog"
+      aria-labelledby="accessibility-panel-title"
+      aria-hidden="true"
+    >
+      <div class="accessibility-panel-content">
+        <h2 id="accessibility-panel-title" class="accessibility-panel-title">
+          Accessibility Options
+        </h2>
+
+        <!-- High Contrast Toggle -->
+        {enableHighContrast && (
+          <div class="accessibility-option">
+            <label class="accessibility-label">
+              <input
+                type="checkbox"
+                id="high-contrast-toggle"
+                class="accessibility-checkbox"
+                aria-describedby="high-contrast-desc"
+              />
+              <span class="accessibility-label-text">High Contrast Mode</span>
+            </label>
+            <p id="high-contrast-desc" class="accessibility-description">
+              Increases color contrast for better visibility
+            </p>
+          </div>
+        )}
+
+        <!-- Reduced Motion Toggle -->
+        {enableReducedMotion && (
+          <div class="accessibility-option">
+            <label class="accessibility-label">
+              <input
+                type="checkbox"
+                id="reduced-motion-toggle"
+                class="accessibility-checkbox"
+                aria-describedby="reduced-motion-desc"
+              />
+              <span class="accessibility-label-text">Reduce Motion</span>
+            </label>
+            <p id="reduced-motion-desc" class="accessibility-description">
+              Reduces animations and transitions
+            </p>
+          </div>
+        )}
+
+        <!-- Font Size Controls -->
+        <div class="accessibility-option">
+          <fieldset class="font-size-controls">
+            <legend class="accessibility-legend">Font Size</legend>
+            <div class="font-size-buttons" role="group" aria-labelledby="font-size-legend">
+              <button
+                type="button"
+                id="font-size-decrease"
+                class="font-size-btn"
+                aria-label="Decrease font size"
+                title="Decrease font size"
+              >
+                A-
+              </button>
+              <button
+                type="button"
+                id="font-size-reset"
+                class="font-size-btn"
+                aria-label="Reset font size"
+                title="Reset font size to default"
+              >
+                A
+              </button>
+              <button
+                type="button"
+                id="font-size-increase"
+                class="font-size-btn"
+                aria-label="Increase font size"
+                title="Increase font size"
+              >
+                A+
+              </button>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- Focus Indicators Toggle -->
+        {enableFocusIndicators && (
+          <div class="accessibility-option">
+            <label class="accessibility-label">
+              <input
+                type="checkbox"
+                id="focus-indicators-toggle"
+                class="accessibility-checkbox"
+                aria-describedby="focus-indicators-desc"
+                checked
+              />
+              <span class="accessibility-label-text">Enhanced Focus Indicators</span>
+            </label>
+            <p id="focus-indicators-desc" class="accessibility-description">
+              Shows enhanced focus outlines for keyboard navigation
+            </p>
+          </div>
+        )}
+
+        <!-- Close Button -->
+        <button
+          type="button"
+          id="accessibility-panel-close"
+          class="accessibility-panel-close"
+          aria-label="Close accessibility options"
+        >
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Help -->
+  {enableKeyboardShortcuts && (
+    <div 
+      id="keyboard-shortcuts-help"
+      class="keyboard-shortcuts-help"
+      role="dialog"
+      aria-labelledby="shortcuts-title"
+      aria-hidden="true"
+    >
+      <div class="shortcuts-content">
+        <h2 id="shortcuts-title">Keyboard Shortcuts</h2>
+        <dl class="shortcuts-list">
+          <dt>Alt + 1</dt>
+          <dd>Skip to main content</dd>
+          <dt>Alt + 2</dt>
+          <dd>Skip to navigation</dd>
+          <dt>Alt + 3</dt>
+          <dd>Skip to footer</dd>
+          <dt>Alt + A</dt>
+          <dd>Open accessibility options</dd>
+          <dt>Alt + H</dt>
+          <dd>Show keyboard shortcuts</dd>
+          <dt>Esc</dt>
+          <dd>Close dialogs and menus</dd>
+        </dl>
+        <button
+          type="button"
+          id="shortcuts-close"
+          class="shortcuts-close"
+          aria-label="Close keyboard shortcuts help"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  )}
+</div>
+
+<style>
+  /* Screen Reader Only Content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Accessibility Controls */
+  .accessibility-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+  .accessibility-toggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #6366f1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .accessibility-toggle:hover {
+    background: #4f46e5;
+    transform: scale(1.05);
+  }
+
+  .accessibility-toggle:focus {
+    outline: 3px solid #fbbf24;
+    outline-offset: 2px;
+  }
+
+  .accessibility-panel {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    border: 2px solid #e5e7eb;
+  }
+
+  .accessibility-panel[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .accessibility-panel-content {
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .accessibility-panel-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .accessibility-option {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .accessibility-option:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .accessibility-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: #374151;
+  }
+
+  .accessibility-checkbox {
+    margin-right: 0.75rem;
+    width: 18px;
+    height: 18px;
+    accent-color: #6366f1;
+  }
+
+  .accessibility-description {
+    margin: 0.5rem 0 0 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+
+  .font-size-controls {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .accessibility-legend {
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+
+  .font-size-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .font-size-btn {
+    padding: 0.5rem 0.75rem;
+    border: 2px solid #d1d5db;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .font-size-btn:hover {
+    border-color: #6366f1;
+    background: #f8fafc;
+  }
+
+  .font-size-btn:focus {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+  }
+
+  .accessibility-panel-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f3f4f6;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    transition: all 0.2s ease;
+  }
+
+  .accessibility-panel-close:hover {
+    background: #e5e7eb;
+    color: #374151;
+  }
+
+  .accessibility-panel-close:focus {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+  }
+
+  /* High Contrast Mode */
+  .high-contrast {
+    filter: contrast(150%) brightness(110%);
+  }
+
+  .high-contrast * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Reduced Motion */
+  .reduced-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Enhanced Focus Indicators */
+  .enhanced-focus *:focus {
+    outline: 3px solid #fbbf24 !important;
+    outline-offset: 2px !important;
+    border-radius: 4px;
+  }
+
+  /* Font Size Adjustments */
+  .font-size-small {
+    font-size: 0.875em;
+  }
+
+  .font-size-large {
+    font-size: 1.125em;
+  }
+
+  .font-size-extra-large {
+    font-size: 1.25em;
+  }
+
+  /* Keyboard Shortcuts Help */
+  .keyboard-shortcuts-help {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90vw;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .keyboard-shortcuts-help[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .shortcuts-content {
+    padding: 2rem;
+  }
+
+  .shortcuts-list {
+    margin: 1rem 0;
+  }
+
+  .shortcuts-list dt {
+    font-weight: 600;
+    color: #374151;
+    margin-top: 0.75rem;
+  }
+
+  .shortcuts-list dd {
+    margin: 0.25rem 0 0 1rem;
+    color: #6b7280;
+  }
+
+  .shortcuts-close {
+    padding: 0.75rem 1.5rem;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+
+  .shortcuts-close:hover {
+    background: #4f46e5;
+  }
+
+  .shortcuts-close:focus {
+    outline: 2px solid #fbbf24;
+    outline-offset: 2px;
+  }
+
+  /* Dark Mode Support */
+  @media (prefers-color-scheme: dark) {
+    .accessibility-panel,
+    .keyboard-shortcuts-help {
+      background: #1f2937;
+      border-color: #374151;
+    }
+
+    .accessibility-panel-title,
+    .accessibility-legend,
+    .accessibility-label {
+      color: #f9fafb;
+    }
+
+    .accessibility-description,
+    .shortcuts-list dd {
+      color: #d1d5db;
+    }
+
+    .font-size-btn {
+      background: #374151;
+      border-color: #4b5563;
+      color: #f9fafb;
+    }
+
+    .font-size-btn:hover {
+      background: #4b5563;
+      border-color: #6366f1;
+    }
+
+    .accessibility-panel-close {
+      background: #374151;
+      color: #d1d5db;
+    }
+
+    .accessibility-panel-close:hover {
+      background: #4b5563;
+      color: #f9fafb;
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .accessibility-controls {
+      top: 10px;
+      right: 10px;
+    }
+
+    .accessibility-toggle {
+      width: 44px;
+      height: 44px;
+      font-size: 1.125rem;
+    }
+
+    .accessibility-panel {
+      width: 280px;
+      top: 54px;
+    }
+
+    .keyboard-shortcuts-help {
+      width: 320px;
+    }
+  }
+</style>
+
+<script>
+  // WCAG 2.1 AA Compliance JavaScript
+  class WCAGCompliance {
+    constructor() {
+      this.isHighContrast = false;
+      this.isReducedMotion = false;
+      this.isEnhancedFocus = true;
+      this.fontSize = 'normal';
+      this.init();
+    }
+
+    init() {
+      this.setupAccessibilityPanel();
+      this.setupKeyboardShortcuts();
+      this.setupFontSizeControls();
+      this.setupToggleControls();
+      this.loadUserPreferences();
+      this.setupScreenReaderAnnouncements();
+    }
+
+    setupAccessibilityPanel() {
+      const toggle = document.getElementById('accessibility-toggle');
+      const panel = document.getElementById('accessibility-panel');
+      const closeBtn = document.getElementById('accessibility-panel-close');
+
+      if (toggle && panel) {
+        toggle.addEventListener('click', () => {
+          const isOpen = panel.getAttribute('aria-hidden') === 'false';
+          this.togglePanel(!isOpen);
+        });
+
+        if (closeBtn) {
+          closeBtn.addEventListener('click', () => {
+            this.togglePanel(false);
+          });
+        }
+
+        // Close panel when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!toggle.contains(e.target) && !panel.contains(e.target)) {
+            this.togglePanel(false);
+          }
+        });
+
+        // Close panel on Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && panel.getAttribute('aria-hidden') === 'false') {
+            this.togglePanel(false);
+            toggle.focus();
+          }
+        });
+      }
+    }
+
+    togglePanel(open) {
+      const toggle = document.getElementById('accessibility-toggle');
+      const panel = document.getElementById('accessibility-panel');
+
+      if (toggle && panel) {
+        toggle.setAttribute('aria-expanded', open.toString());
+        panel.setAttribute('aria-hidden', (!open).toString());
+
+        if (open) {
+          // Focus first interactive element in panel
+          const firstInput = panel.querySelector('input, button');
+          if (firstInput) {
+            setTimeout(() => firstInput.focus(), 100);
+          }
+        }
+      }
+    }
+
+    setupKeyboardShortcuts() {
+      document.addEventListener('keydown', (e) => {
+        // Alt + A: Open accessibility panel
+        if (e.altKey && e.key === 'a') {
+          e.preventDefault();
+          const toggle = document.getElementById('accessibility-toggle');
+          if (toggle) {
+            toggle.click();
+          }
+        }
+
+        // Alt + H: Show keyboard shortcuts
+        if (e.altKey && e.key === 'h') {
+          e.preventDefault();
+          this.showKeyboardShortcuts();
+        }
+
+        // Alt + 1: Skip to main content
+        if (e.altKey && e.key === '1') {
+          e.preventDefault();
+          const mainContent = document.getElementById('main-content');
+          if (mainContent) {
+            mainContent.focus();
+            mainContent.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+
+        // Alt + 2: Skip to navigation
+        if (e.altKey && e.key === '2') {
+          e.preventDefault();
+          const navigation = document.getElementById('navigation');
+          if (navigation) {
+            navigation.focus();
+            navigation.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+
+        // Alt + 3: Skip to footer
+        if (e.altKey && e.key === '3') {
+          e.preventDefault();
+          const footer = document.getElementById('footer');
+          if (footer) {
+            footer.focus();
+            footer.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    }
+
+    setupFontSizeControls() {
+      const decreaseBtn = document.getElementById('font-size-decrease');
+      const resetBtn = document.getElementById('font-size-reset');
+      const increaseBtn = document.getElementById('font-size-increase');
+
+      if (decreaseBtn) {
+        decreaseBtn.addEventListener('click', () => {
+          this.adjustFontSize('decrease');
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          this.adjustFontSize('reset');
+        });
+      }
+
+      if (increaseBtn) {
+        increaseBtn.addEventListener('click', () => {
+          this.adjustFontSize('increase');
+        });
+      }
+    }
+
+    setupToggleControls() {
+      const highContrastToggle = document.getElementById('high-contrast-toggle');
+      const reducedMotionToggle = document.getElementById('reduced-motion-toggle');
+      const focusIndicatorsToggle = document.getElementById('focus-indicators-toggle');
+
+      if (highContrastToggle) {
+        highContrastToggle.addEventListener('change', (e) => {
+          this.toggleHighContrast(e.target.checked);
+        });
+      }
+
+      if (reducedMotionToggle) {
+        reducedMotionToggle.addEventListener('change', (e) => {
+          this.toggleReducedMotion(e.target.checked);
+        });
+      }
+
+      if (focusIndicatorsToggle) {
+        focusIndicatorsToggle.addEventListener('change', (e) => {
+          this.toggleEnhancedFocus(e.target.checked);
+        });
+      }
+    }
+
+    adjustFontSize(action) {
+      const body = document.body;
+
+      // Remove existing font size classes
+      body.classList.remove('font-size-small', 'font-size-large', 'font-size-extra-large');
+
+      switch (action) {
+        case 'decrease':
+          this.fontSize = 'small';
+          body.classList.add('font-size-small');
+          this.announceToScreenReader('Font size decreased');
+          break;
+        case 'increase':
+          if (this.fontSize === 'normal') {
+            this.fontSize = 'large';
+            body.classList.add('font-size-large');
+          } else if (this.fontSize === 'large') {
+            this.fontSize = 'extra-large';
+            body.classList.add('font-size-extra-large');
+          }
+          this.announceToScreenReader('Font size increased');
+          break;
+        case 'reset':
+          this.fontSize = 'normal';
+          this.announceToScreenReader('Font size reset to default');
+          break;
+      }
+
+      this.saveUserPreferences();
+    }
+
+    toggleHighContrast(enabled) {
+      this.isHighContrast = enabled;
+      document.body.classList.toggle('high-contrast', enabled);
+      this.announceToScreenReader(enabled ? 'High contrast mode enabled' : 'High contrast mode disabled');
+      this.saveUserPreferences();
+    }
+
+    toggleReducedMotion(enabled) {
+      this.isReducedMotion = enabled;
+      document.body.classList.toggle('reduced-motion', enabled);
+      this.announceToScreenReader(enabled ? 'Reduced motion enabled' : 'Reduced motion disabled');
+      this.saveUserPreferences();
+    }
+
+    toggleEnhancedFocus(enabled) {
+      this.isEnhancedFocus = enabled;
+      document.body.classList.toggle('enhanced-focus', enabled);
+      this.announceToScreenReader(enabled ? 'Enhanced focus indicators enabled' : 'Enhanced focus indicators disabled');
+      this.saveUserPreferences();
+    }
+
+    showKeyboardShortcuts() {
+      const shortcutsHelp = document.getElementById('keyboard-shortcuts-help');
+      if (shortcutsHelp) {
+        shortcutsHelp.setAttribute('aria-hidden', 'false');
+
+        const closeBtn = document.getElementById('shortcuts-close');
+        if (closeBtn) {
+          setTimeout(() => closeBtn.focus(), 100);
+
+          closeBtn.addEventListener('click', () => {
+            shortcutsHelp.setAttribute('aria-hidden', 'true');
+          });
+        }
+      }
+    }
+
+    setupScreenReaderAnnouncements() {
+      // Create announcement function
+      window.announceToScreenReader = (message) => {
+        this.announceToScreenReader(message);
+      };
+    }
+
+    announceToScreenReader(message) {
+      const announcements = document.getElementById('sr-announcements');
+      if (announcements) {
+        announcements.textContent = message;
+
+        // Clear after a delay to allow for re-announcements
+        setTimeout(() => {
+          announcements.textContent = '';
+        }, 1000);
+      }
+    }
+
+    alertScreenReader(message) {
+      const alerts = document.getElementById('sr-alerts');
+      if (alerts) {
+        alerts.textContent = message;
+
+        setTimeout(() => {
+          alerts.textContent = '';
+        }, 1000);
+      }
+    }
+
+    saveUserPreferences() {
+      const preferences = {
+        isHighContrast: this.isHighContrast,
+        isReducedMotion: this.isReducedMotion,
+        isEnhancedFocus: this.isEnhancedFocus,
+        fontSize: this.fontSize
+      };
+
+      localStorage.setItem('wcag-preferences', JSON.stringify(preferences));
+    }
+
+    loadUserPreferences() {
+      const saved = localStorage.getItem('wcag-preferences');
+      if (saved) {
+        try {
+          const preferences = JSON.parse(saved);
+
+          // Apply saved preferences
+          if (preferences.isHighContrast) {
+            const toggle = document.getElementById('high-contrast-toggle');
+            if (toggle) {
+              toggle.checked = true;
+              this.toggleHighContrast(true);
+            }
+          }
+
+          if (preferences.isReducedMotion) {
+            const toggle = document.getElementById('reduced-motion-toggle');
+            if (toggle) {
+              toggle.checked = true;
+              this.toggleReducedMotion(true);
+            }
+          }
+
+          if (preferences.isEnhancedFocus !== undefined) {
+            const toggle = document.getElementById('focus-indicators-toggle');
+            if (toggle) {
+              toggle.checked = preferences.isEnhancedFocus;
+              this.toggleEnhancedFocus(preferences.isEnhancedFocus);
+            }
+          }
+
+          if (preferences.fontSize && preferences.fontSize !== 'normal') {
+            this.fontSize = preferences.fontSize;
+            const body = document.body;
+            body.classList.add(`font-size-${preferences.fontSize}`);
+          }
+        } catch (error) {
+          console.warn('Failed to load accessibility preferences:', error);
+        }
+      }
+
+      // Check for system preferences
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const toggle = document.getElementById('reduced-motion-toggle');
+        if (toggle && !toggle.checked) {
+          toggle.checked = true;
+          this.toggleReducedMotion(true);
+        }
+      }
+
+      if (window.matchMedia('(prefers-contrast: high)').matches) {
+        const toggle = document.getElementById('high-contrast-toggle');
+        if (toggle && !toggle.checked) {
+          toggle.checked = true;
+          this.toggleHighContrast(true);
+        }
+      }
+    }
+  }
+
+  // Initialize WCAG compliance when DOM is loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new WCAGCompliance());
+  } else {
+    new WCAGCompliance();
+  }
+</script>

@@ -1,0 +1,1256 @@
+# Bundle Analysis Report - NosytLabs
+Generated: 2025-06-07T03:48:30.830Z
+
+## Summary
+- **Total Bundles**: 4880
+- **Total Size**: 62.67 MB
+- **JavaScript Files**: 518
+- **CSS Files**: 37
+- **Image Files**: 3222
+- **Compression Ratio**: 0%
+
+## Performance Thresholds
+- Bundle Size Limit: 250 KB
+- Total Size Limit: 2 MB
+- Image Size Limit: 500 KB
+- CSS Size Limit: 100 KB
+- JS Size Limit: 200 KB
+
+## Optimization Opportunities
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\about-nosytlabs.opt.webp (598.36 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\about-nosytlabs.opt.webp (598.36 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\about-nosytlabs.webp (599.58 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\about-nosytlabs.webp (599.58 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\ai-tools\trae-ai-logo.png (707.6 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\ai-tools\trae-ai-logo.png (707.6 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\authors\tycen.opt.webp (748.01 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\authors\tycen.opt.webp (748.01 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\authors\tycen.webp (740.45 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\authors\tycen.webp (740.45 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\3d-printing-manufacturing.opt.webp (889.24 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\3d-printing-manufacturing.opt.webp (889.24 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\3d-printing-manufacturing.webp (892.26 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\3d-printing-manufacturing.webp (892.26 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\blog\ai-trends-2025.webp (250.19 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\cursor-ai.opt.webp (682.17 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\cursor-ai.opt.webp (682.17 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\cursor-ai.webp (679.01 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\cursor-ai.webp (679.01 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\mobile-app-trends.opt.webp (644.37 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\mobile-app-trends.opt.webp (644.37 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\mobile-app-trends.webp (642.73 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\mobile-app-trends.webp (642.73 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\blog\roo-code-windsurf.opt.webp (395.26 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\blog\roo-code-windsurf.webp (396.65 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\blog\roo-code.opt.webp (486.65 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\blog\roo-code.webp (486.22 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\blog\trae-ai.opt.webp (486.11 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\blog\trae-ai.webp (486.22 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\web3-blockchain.opt.webp (909.31 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\web3-blockchain.opt.webp (909.31 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\web3-blockchain.webp (908.87 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\web3-blockchain.webp (908.87 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\windsurf-codebase.opt.webp (681.74 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\windsurf-codebase.opt.webp (681.74 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\blog\windsurf-codebase.webp (680.09 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\blog\windsurf-codebase.webp (680.09 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\equipment\jasminer-x16q.opt.webp (679.35 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\equipment\jasminer-x16q.opt.webp (679.35 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\equipment\jasminer-x16q.webp (679.75 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\equipment\jasminer-x16q.webp (679.75 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\equipment\jasminer-x4q.opt.webp (486.8 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\equipment\jasminer-x4q.webp (486.07 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\equipment\mining-rig-outline.opt.webp (282.93 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\equipment\mining-rig-outline.png (535.4 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\equipment\mining-rig-outline.png (535.4 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: dist\images\equipment\mining-rig-outline.webp (282.93 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\hero-poster.opt.webp (956.87 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\hero-poster.opt.webp (956.87 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\hero-poster.webp (965.01 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\hero-poster.webp (965.01 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\services\mobile-development.opt.webp (636.86 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\services\mobile-development.opt.webp (636.86 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\services\mobile-development.webp (627.01 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\services\mobile-development.webp (627.01 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\services\web-development.opt.webp (639.44 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\services\web-development.opt.webp (639.44 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\dist\images\services\web-development.webp (636.66 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: dist\images\services\web-development.webp (636.66 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\about-nosytlabs.opt.webp (598.36 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\about-nosytlabs.opt.webp (598.36 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\about-nosytlabs.webp (599.58 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\about-nosytlabs.webp (599.58 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\ai-tools\trae-ai-logo.png (707.6 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\ai-tools\trae-ai-logo.png (707.6 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\authors\tycen.opt.webp (748.01 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\authors\tycen.opt.webp (748.01 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\authors\tycen.webp (740.45 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\authors\tycen.webp (740.45 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\3d-printing-manufacturing.opt.webp (889.24 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\3d-printing-manufacturing.opt.webp (889.24 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\3d-printing-manufacturing.webp (892.26 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\3d-printing-manufacturing.webp (892.26 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\blog\ai-trends-2025.webp (250.19 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\cursor-ai.opt.webp (682.17 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\cursor-ai.opt.webp (682.17 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\cursor-ai.webp (679.01 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\cursor-ai.webp (679.01 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\mobile-app-trends.opt.webp (644.37 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\mobile-app-trends.opt.webp (644.37 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\mobile-app-trends.webp (642.73 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\mobile-app-trends.webp (642.73 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\blog\roo-code-windsurf.opt.webp (395.26 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\blog\roo-code-windsurf.webp (396.65 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\blog\roo-code.opt.webp (486.65 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\blog\roo-code.webp (486.22 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\blog\trae-ai.opt.webp (486.11 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\blog\trae-ai.webp (486.22 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\web3-blockchain.opt.webp (909.31 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\web3-blockchain.opt.webp (909.31 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\web3-blockchain.webp (908.87 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\web3-blockchain.webp (908.87 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\windsurf-codebase.opt.webp (681.74 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\windsurf-codebase.opt.webp (681.74 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\windsurf-codebase.webp (680.09 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\blog\windsurf-codebase.webp (680.09 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\equipment\jasminer-x16q.opt.webp (679.35 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\equipment\jasminer-x16q.opt.webp (679.35 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\equipment\jasminer-x16q.webp (679.75 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\equipment\jasminer-x16q.webp (679.75 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\equipment\jasminer-x4q.opt.webp (486.8 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\equipment\jasminer-x4q.webp (486.07 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\equipment\mining-rig-outline.opt.webp (282.93 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\equipment\mining-rig-outline.png (535.4 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\equipment\mining-rig-outline.png (535.4 KB) - Bundle exceeds recommended size limit
+- **Large Bundle**: public\images\equipment\mining-rig-outline.webp (282.93 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\hero-poster.opt.webp (956.87 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\hero-poster.opt.webp (956.87 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\hero-poster.webp (965.01 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\hero-poster.webp (965.01 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\services\mobile-development.opt.webp (636.86 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\services\mobile-development.opt.webp (636.86 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\services\mobile-development.webp (627.01 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\services\mobile-development.webp (627.01 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\services\web-development.opt.webp (639.44 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\services\web-development.opt.webp (639.44 KB) - Bundle exceeds recommended size limit
+- **Large Image**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\services\web-development.webp (636.66 KB) - Consider image compression or modern formats (WebP, AVIF)
+- **Large Bundle**: public\images\services\web-development.webp (636.66 KB) - Bundle exceeds recommended size limit
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\3d-printing\elegoo-saturn-2.jpg (1.4 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\3d-printing\elegoo-saturn-2.jpg (1.4 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\3d-printing\ender-3-s1-pro.jpg (1.4 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\3d-printing\ender-3-s1-pro.jpg (1.4 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\3d-printing\sample-prints.jpg (1.39 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\3d-printing\sample-prints.jpg (1.39 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\ai-tools\cursor-ai-logo.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\ai-tools\cursor-ai-logo.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\ai-tools\trae-ai-logo.png (707.6 KB) - Generate AVIF version for optimal compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\apple-touch-icon.png (14.93 KB) - Generate AVIF version for optimal compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\blog\trae-ai.opt.jpg (64.44 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\creality-logo.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\creality-logo.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\background.png (2.8 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\background.png (2.8 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\dog-laughing.png (2.8 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\dog-laughing.png (2.8 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\dog.png (2.8 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\dog.png (2.8 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\duck-left.png (2.8 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\duck-left.png (2.8 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\duck-right.png (2.8 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\duck-hunt\duck-right.png (2.8 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\favicon-128x128.png (9.36 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\favicon-128x128.png (9.36 KB) - Generate AVIF version for optimal compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\favicon-16x16.png (478 Bytes) - Generate AVIF version for optimal compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\favicon-32x32.png (1.11 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\favicon-96x96.png (6.15 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\favicon-96x96.png (6.15 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\android-chrome-128x128.png (3.99 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\android-chrome-128x128.png (3.99 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\android-chrome-96x96.png (3.87 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\android-chrome-96x96.png (3.87 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\android-chrome-maskable-128x128.png (3.99 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\android-chrome-maskable-128x128.png (3.99 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\android-chrome-maskable-96x96.png (3.99 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\android-chrome-maskable-96x96.png (3.99 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\mstile-144x144.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\icons\mstile-144x144.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\kick-logo.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\kick-logo.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\models\model-1.jpg (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\models\model-1.jpg (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\models\model-2.jpg (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\models\model-2.jpg (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\models\model-3.jpg (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\models\model-3.jpg (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\parallax-bg.jpg (113 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\parallax-bg.jpg (113 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\passive-income\earnapp-logo.png (468 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\passive-income\earnapp-logo.png (468 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\passive-income\honeygain-logo.png (468 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\passive-income\honeygain-logo.png (468 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\projects\default-project.jpg (1.39 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\projects\default-project.jpg (1.39 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\services\ai-solutions.jpg (276 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\services\ai-solutions.jpg (276 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\access.png (37 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\access.png (37 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\accessibility-directory.png (37 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\accessibility-directory.png (37 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\accessories-camera.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\accessories-camera.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\accessories-text-editor-symbolic.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\accessories-text-editor-symbolic.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\acroread.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\acroread.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\addressbook.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\addressbook.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\administration.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\administration.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\adobe-reader.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\adobe-reader.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\AdobeReader.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\AdobeReader.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\AdobeReader10.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\AdobeReader10.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\AdobeReader8.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\AdobeReader8.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\AdobeReader9.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\AdobeReader9.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\akonadiconsole.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\akonadiconsole.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\alacarte.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\alacarte.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\alltray.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\alltray.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\application-default-icon.png (210 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\application-default-icon.png (210 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\applications-multimedia.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\applications-multimedia.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\appointment.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\appointment.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\apport.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\apport.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ark.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ark.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\arts.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\arts.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\atril.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\atril.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\audio-player.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\audio-player.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\audio-tag-tool.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\audio-tag-tool.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ax-applet.png (37 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ax-applet.png (37 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\background.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\background.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\badge-small.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\badge-small.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\bash.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\bash.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\beryl-settings.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\beryl-settings.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\blueman.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\blueman.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\blueradio.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\blueradio.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\bluetoothradio.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\bluetoothradio.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\boot.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\boot.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\browser-help.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\browser-help.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\browser.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\browser.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\bt-logo.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\bt-logo.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\cairo-clock.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\cairo-clock.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\calc.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\calc.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\calendar.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\calendar.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\catfish.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\catfish.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\checkgmail.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\checkgmail.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\chrome-blpcfgokakmgnkcojhhkbfbldkacnbeo-Default.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\chrome-blpcfgokakmgnkcojhhkbfbldkacnbeo-Default.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\chrome-boeajhmfdjldchidhphikilcgdacljfm-Default.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\chrome-boeajhmfdjldchidhphikilcgdacljfm-Default.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\chrome-ejidjjhkpiempkbhmpbfngldlkglhimk-Default.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\chrome-ejidjjhkpiempkbhmpbfngldlkglhimk-Default.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\chromium.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\chromium.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\claws-mail.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\claws-mail.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\clippy-fallback.png (2.03 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\clippy-fallback.png (2.03 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\compiz.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\compiz.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\config-date.png (14 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\config-date.png (14 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\config-language.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\config-language.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\config-users.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\config-users.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\control-center2.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\control-center2.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\date.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\date.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\dconf-editor.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\dconf-editor.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\display-capplet.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\display-capplet.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\do.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\do.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\doom-shotgun.png (14 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\doom-shotgun.png (14 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\dragonplayer.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\dragonplayer.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\drakconf.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\drakconf.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\drakmenustyle.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\drakmenustyle.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\drakstats.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\drakstats.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\driver-manager.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\driver-manager.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck\black-hit.png (5 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck\black-hit.png (5 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck\blue-hit.png (5 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck\blue-hit.png (5 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck\ground.png (5 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck\ground.png (5 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck\red-hit.png (5 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck\red-hit.png (5 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck-hunt-fallback.png (2.03 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck-hunt-fallback.png (2.03 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck.png (297 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\duck.png (297 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\EasyTAG_icon.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\EasyTAG_icon.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\edit-urpm-sources.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\edit-urpm-sources.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\elisa.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\elisa.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\engrampa.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\engrampa.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany-browser.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany-browser.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany-gecko.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany-gecko.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany-icon.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany-icon.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany-webkit.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany-webkit.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\epiphany.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\Etermutilities-terminal.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\Etermutilities-terminal.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\evince.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\evince.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\evolution-calendar.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\evolution-calendar.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\evolution-mail.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\evolution-mail.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\exe-file.png (310 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\exe-file.png (310 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\falkon.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\falkon.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\file-manager.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\file-manager.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\file-roller.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\file-roller.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\filelight.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\filelight.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\find.png (299 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\find.png (299 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\fonts.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\fonts.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\force-exit.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\force-exit.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\fusion-icon.png (8 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\fusion-icon.png (8 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\galculator.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\galculator.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\galeon.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\galeon.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gconf-editor.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gconf-editor.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gconfeditor.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gconfeditor.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gdeb.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gdeb.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gdebi.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gdebi.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gdm-xnest.png (38 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gdm-xnest.png (38 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gdm.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gdm.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gedit-icon.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gedit-icon.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gedit-logo.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gedit-logo.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gedit.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gedit.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gkdebconf-icon.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gkdebconf-icon.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gkdebconf.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gkdebconf.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gksu-debian.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gksu-debian.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnochm.png (34 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnochm.png (34 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-app-install.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-app-install.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-apt.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-apt.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-audio.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-audio.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-bluetooth.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-bluetooth.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-calculator.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-calculator.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-calendar.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-calendar.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-character-map.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-character-map.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-control-centre.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-control-centre.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-eterm.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-eterm.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-fs-blockdev.png (35 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-fs-blockdev.png (35 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-gmenu.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-gmenu.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-gnumeric.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-gnumeric.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-help.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-help.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-info.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-info.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-log-out.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-log-out.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-logout.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-logout.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-mixer.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-mixer.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-monitor.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-monitor.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-mplayer.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-mplayer.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-package.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-package.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-panel-clock.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-panel-clock.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-panel.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-panel.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-pdf.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-pdf.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-power-manager.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-power-manager.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-remote-desktop.png (38 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-remote-desktop.png (38 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-screenshot.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-screenshot.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-searchtool.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-searchtool.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-halt.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-halt.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-hebirnate.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-hebirnate.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-logout.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-logout.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-properties.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-properties.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-sleep.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-sleep.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-switch.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session-switch.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-session.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-set-time.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-set-time.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-accessibility-technologies.png (37 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-accessibility-technologies.png (37 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-background.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-background.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-default-applications.png (44 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-default-applications.png (44 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-font.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-font.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-keybindings.png (42 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-keybindings.png (42 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-sound.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-sound.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-theme.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-settings-theme.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-sound-properties.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-sound-properties.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-status.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-status.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-system-monitor.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-system-monitor.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-term.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-term.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-terminal.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-terminal.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-translate.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-translate.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-unknown.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-unknown.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-volume-control.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-volume-control.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-web-browser.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-web-browser.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-window-manager.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-window-manager.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-word.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-word.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-workspace.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-workspace.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-xterm.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnome-xterm.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnumeric.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gnumeric.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\google-chrome.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\google-chrome.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gpk-prefs.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gpk-prefs.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gpk-repo.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gpk-repo.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gpm-hibernate.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gpm-hibernate.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\grandr.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\grandr.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\grip.png (42 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\grip.png (42 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gsd-xrandr.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gsd-xrandr.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gswitchit-applet.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gswitchit-applet.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gswitchit-properties-capplet.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gswitchit-properties-capplet.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gthumb.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gthumb.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gtk-help.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gtk-help.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gtk-info.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gtk-info.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\guake.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\guake.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gucharmap.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\gucharmap.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\handbrake.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\handbrake.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\hardinfo.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\hardinfo.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\help-browser-symbolic.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\help-browser-symbolic.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\help-contents.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\help-contents.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\hexchat.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\hexchat.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\hotwire.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\hotwire.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\htop.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\htop.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\hwinfo.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\hwinfo.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ibus-setup.png (42 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ibus-setup.png (42 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ibus.png (42 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ibus.png (42 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\icon-fallback.png (2.03 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\icon-fallback.png (2.03 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\icons\duck-hunt.png (2.27 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\icons\duck-hunt.png (2.27 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\im-facebook.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\im-facebook.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\im.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\im.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\image-viewer.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\image-viewer.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\indicator-applet.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\indicator-applet.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\internet-feed-reader.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\internet-feed-reader.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\internet-web-browser.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\internet-web-browser.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\io.github.celluloid_player.Celluloid.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\io.github.celluloid_player.Celluloid.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\jockey-kde.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\jockey-kde.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\juk.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\juk.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\k3b.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\k3b.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kazam.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kazam.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kcalc.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kcalc.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kcharselect.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kcharselect.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kclock.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kclock.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kcmkwm.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kcmkwm.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kcmsound.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kcmsound.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kedit.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kedit.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\keyring-manager.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\keyring-manager.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\key_bindings.png (42 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\key_bindings.png (42 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kfm.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kfm.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\khelpcenter.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\khelpcenter.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kmail.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kmail.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kmenuedit.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kmenuedit.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kmix.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kmix.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\konqueror.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\konqueror.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\konsole.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\konsole.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\krfb.png (38 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\krfb.png (38 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kscreensaver.png (35 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kscreensaver.png (35 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ksysguard.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ksysguard.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kuser.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kuser.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kwin.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kwin.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kwrite.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\kwrite.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\language-selector.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\language-selector.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\leafpad.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\leafpad.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\libreoffice-draw.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\libreoffice-draw.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\libreoffice-startcenter.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\libreoffice-startcenter.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\libreoffice-writer.png (14 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\libreoffice-writer.png (14 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\locale.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\locale.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\localedrake.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\localedrake.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lpi-translate.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lpi-translate.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lv_icon.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lv_icon.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lxkeymap.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lxkeymap.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lxqt-archiver.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lxqt-archiver.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lxterminal.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\lxterminal.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mail.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mail.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mandrivaupdate.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mandrivaupdate.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\master-pdf-editor.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\master-pdf-editor.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mate-calc.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mate-calc.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mate-disk-usage-analyzer.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mate-disk-usage-analyzer.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mate-preferences-desktop-display.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mate-preferences-desktop-display.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\media-player-48.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\media-player-48.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\media-player-banshee.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\media-player-banshee.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\menulibre.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\menulibre.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mintdrivers.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mintdrivers.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mintinstall.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mintinstall.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mousepad.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\mousepad.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\msdos.png (1.86 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\msdos.png (1.86 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\multimedia.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\multimedia.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\news-feed.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\news-feed.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\nm-vpn-standalone-lock.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\nm-vpn-standalone-lock.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\notepad-fallback.png (2.03 KB) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\notepad-fallback.png (2.03 KB) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\notifyconf.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\notifyconf.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\notifyosdconf.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\notifyosdconf.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\obconf-qt.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\obconf-qt.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\office-database.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\office-database.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\office-date.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\office-date.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\office-writer.png (14 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\office-writer.png (14 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ogmrip.png (42 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ogmrip.png (42 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\onboard.png (32 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\onboard.png (32 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ooo-base.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ooo-base.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ooo-base3.0.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ooo-base3.0.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ooo-calc.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ooo-calc.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ooo-impress.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ooo-impress.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\openofficeorg-base.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\openofficeorg-base.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\openofficeorg3-base.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\openofficeorg3-base.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\openofficeorg3.0-base.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\openofficeorg3.0-base.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\openterm.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\openterm.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\orage_globaltime.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\orage_globaltime.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.ArchiveManager.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.ArchiveManager.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.baobab.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.baobab.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Calculator.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Calculator.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Calendar.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Calendar.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Console.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Console.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.DiskUtility.png (35 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.DiskUtility.png (35 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Evince.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Evince.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.FileRoller.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.FileRoller.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Geary.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Geary.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.gedit.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.gedit.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Mines.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Mines.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Nautilus.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Nautilus.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Rhythmbox.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Rhythmbox.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Rhythmbox3.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Rhythmbox3.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Screenshot.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Screenshot.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.seahorse.Application.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.seahorse.Application.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Software.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Software.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.SystemMonitor.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.SystemMonitor.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Terminal.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Terminal.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.TextEditor.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.TextEditor.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Totem.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.gnome.Totem.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.inkscape.Inkscape.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.inkscape.Inkscape.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.index.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.index.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.kalk.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.kalk.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.kclock.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.kclock.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.qmlkonsole.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.qmlkonsole.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.skanlite.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.kde.skanlite.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.about.png (31 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.about.png (31 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.appfinder.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.appfinder.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.catfish.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.catfish.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.Dictionary.png (14 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.Dictionary.png (14 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.filemanager.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.filemanager.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.garcon.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.garcon.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.genmon.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.genmon.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.gigolo.png (31 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.gigolo.png (31 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.mailreader.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.mailreader.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.mousepad.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.mousepad.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.notification.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.notification.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.actions.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.actions.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.applicationsmenu.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.applicationsmenu.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.clock.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.clock.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.directorymenu.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.directorymenu.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.netload.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.netload.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.pager.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.pager.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.showdesktop.png (32 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.showdesktop.png (32 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.statustray.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.statustray.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.systemload.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.systemload.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.systray.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.systray.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.tasklist.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.tasklist.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.whiskermenu.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.whiskermenu.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.windowmenu.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.panel.windowmenu.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.PanelProfiles.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.PanelProfiles.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.parole.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.parole.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.powermanager.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.powermanager.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.ristretto.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.ristretto.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.ScreenSaver.png (35 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.ScreenSaver.png (35 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.screenshooter.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.screenshooter.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.session.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.session.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.accessibility.png (37 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.accessibility.png (37 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.appearance.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.appearance.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.color.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.color.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.default-applications.png (44 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.default-applications.png (44 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.display.png (36 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.display.png (36 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.editor.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.editor.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.keyboard.png (32 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.keyboard.png (32 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.manager.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.manager.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.mouse.png (35 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.mouse.png (35 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.preferred-applications.png (44 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.settings.preferred-applications.png (44 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.taskmanager.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.taskmanager.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.terminal-settings.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.terminal-settings.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.terminal.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.terminal.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.terminalemulator.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.terminalemulator.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.thunar.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.thunar.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.tumbler.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.tumbler.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.webbrowser.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.webbrowser.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.workspaces.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.workspaces.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfburn.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfburn.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfdashboard.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfdashboard.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfdesktop.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfdesktop.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfmpc.png (38 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfmpc.png (38 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfwm4-tweaks.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfwm4-tweaks.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfwm4.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\org.xfce.xfwm4.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\package-manager-icon.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\package-manager-icon.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\panel-searchtool.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\panel-searchtool.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\paprefs.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\paprefs.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pcmanfm.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pcmanfm.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pidgin-menu.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pidgin-menu.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pirut.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pirut.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pithos-tray-icon.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pithos-tray-icon.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pithos-tray-plugin.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pithos-tray-plugin.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pithos.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pithos.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pk-package-sources.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pk-package-sources.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plan.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plan.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plasmadiscover.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plasmadiscover.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plugin-notification.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plugin-notification.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plugin-screensaver.png (35 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plugin-screensaver.png (35 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plugin-screenshot.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plugin-screenshot.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plugin-wallpaper.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\plugin-wallpaper.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\porthole.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\porthole.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\postscript-viewer.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\postscript-viewer.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-display.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-display.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-effects.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-effects.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-keyboard.png (35 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-keyboard.png (35 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-multimedia.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-multimedia.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-peripherals.png (32 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-desktop-peripherals.png (32 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-devices-printer.png (32 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-devices-printer.png (32 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-sound.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-sound.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-system-bluetooth.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-system-bluetooth.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-system-session.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-system-session.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-system-time.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-system-time.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-system.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-system.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-theme.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-theme.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-wallpaper.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\preferences-wallpaper.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\product_logo_16.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\product_logo_16.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pup.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\pup.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\qlipper.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\qlipper.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\qps.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\qps.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\rclock.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\rclock.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\reboot-notifier.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\reboot-notifier.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\redhat-filemanager.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\redhat-filemanager.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\redhat-server_settings.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\redhat-server_settings.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\redhat-tools.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\redhat-tools.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\redhat-web-browser.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\redhat-web-browser.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\resapplet.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\resapplet.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\rip.png (42 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\rip.png (42 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\rpmdrake.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\rpmdrake.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\scanner.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\scanner.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\screengrab.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\screengrab.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\screensaver.png (35 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\screensaver.png (35 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\seahorse-preferences.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\seahorse-preferences.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\seahorse.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\seahorse.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\settings.png (296 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\settings.png (296 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\shotwell.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\shotwell.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\simple-ccsm.png (8 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\simple-ccsm.png (8 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\skanpage.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\skanpage.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\sleep.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\sleep.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\software-manager.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\software-manager.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\software.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\software.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\sound.png (293 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\sound.png (293 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\spacefm-find.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\spacefm-find.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\spacefm.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\spacefm.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\spectacle.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\spectacle.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\spotify-client.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\spotify-client.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\st.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\st.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_alarm.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_alarm.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_bluetooth.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_bluetooth.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_calendar.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_calendar.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_help-agent.png (34 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_help-agent.png (34 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_help.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_help.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_new-spreadsheet.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_new-spreadsheet.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_unknown.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_unknown.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_view-details.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_view-details.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_xfburn.png (11 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\stock_xfburn.png (11 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\style.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\style.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\susehelpcenter.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\susehelpcenter.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\sylpheed.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\sylpheed.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\synaptic.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\synaptic.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-config-language.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-config-language.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-config-users.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-config-users.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-hibernate.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-hibernate.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-installer.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-installer.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-restart.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-restart.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-shut-down.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-shut-down.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-software-installer.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-software-installer.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-suspend-hibernate.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-suspend-hibernate.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-suspend.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-suspend.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-switch-user.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\system-switch-user.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tap-create.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tap-create.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tap-extract-to.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tap-extract-to.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tap-extract.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tap-extract.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\text-editor.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\text-editor.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\Thunar.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\Thunar.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tilda.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tilda.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\time-admin.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\time-admin.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\time.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\time.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\totem.png (13 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\totem.png (13 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tsclient.png (38 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\tsclient.png (38 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\un-reboot.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\un-reboot.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\update-manager.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\update-manager.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\update-notifier.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\update-notifier.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\usb-creator-gtk.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\usb-creator-gtk.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\usb-creator.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\usb-creator.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\users.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\users.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\Vbox.png (14 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\Vbox.png (14 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\video-player.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\video-player.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\vinagre.png (38 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\vinagre.png (38 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\volume-knob.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\volume-knob.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\wallpaper.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\wallpaper.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\wine.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\wine.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\wmtweaks.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\wmtweaks.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\workspace-switcher.png (20 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\workspace-switcher.png (20 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\www-browser.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\www-browser.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\x-office-calendar.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\x-office-calendar.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\x-pdf.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\x-pdf.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\x-system-software-sources.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\x-system-software-sources.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xchat-mini.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xchat-mini.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xchat.png (15 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xchat.png (15 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfcalendar.png (19 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfcalendar.png (19 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-edit.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-edit.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-filemanager.png (23 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-filemanager.png (23 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-mail.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-mail.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-man.png (34 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-man.png (34 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-newmail.png (41 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-newmail.png (41 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-nomail.png (37 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-nomail.png (37 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-schedule.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-schedule.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-sensors.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-sensors.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-sound.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-sound.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-system-info.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-system-info.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-terminal.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-terminal.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-ui.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-ui.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-unknown.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce-unknown.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-backdrop.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-backdrop.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-battery-plugin.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-battery-plugin.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-clipman-plugin.png (31 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-clipman-plugin.png (31 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-clock.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-clock.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-cpugraph-plugin.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-cpugraph-plugin.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-dict.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-dict.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-logo.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-logo.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-menueditor.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-menueditor.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-mixer.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-mixer.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-netload-plugin.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-netload-plugin.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-panel-menu.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-panel-menu.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-power-manager-settings.png (28 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-power-manager-settings.png (28 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-pulseaudio-plugin.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-pulseaudio-plugin.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-sensors.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-sensors.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-session.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-session.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-settings.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-settings.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-statusnotifier-plugin.png (17 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-statusnotifier-plugin.png (17 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-systray.png (33 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-systray.png (33 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-xicon1.png (12 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4-xicon1.png (12 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4_xicon.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4_xicon.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4_xicon2.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4_xicon2.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4_xicon3.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4_xicon3.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4_xicon4.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce4_xicon4.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce_unknown.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfce_unknown.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-chooser-icon.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-chooser-icon.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-hibernate.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-hibernate.png (27 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-logout.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-logout.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-reboot.png (24 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-reboot.png (24 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-shutdown.png (18 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-shutdown.png (18 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-suspend.png (25 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-suspend.png (25 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-switch-user.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-switch-user.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-switch.png (16 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfsm-switch.png (16 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfwm4-default.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfwm4-default.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfwm4.png (30 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xfwm4.png (30 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ximian-evolution-calendar.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\ximian-evolution-calendar.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xine.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xine.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xmms.png (9 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xmms.png (9 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xpad.png (10 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xpad.png (10 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xpdf.png (21 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xpdf.png (21 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xscreensaver.png (35 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\xscreensaver.png (35 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\yakuake.png (22 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\yakuake.png (22 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\yumex.png (29 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\yumex.png (29 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\zen-icon.png (26 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\zen-icon.png (26 Bytes) - Generate AVIF version for optimal compression
+- **Missing WebP Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\zim.png (27 Bytes) - Generate WebP version for better compression
+- **Missing AVIF Format**: C:\Users\Tyson\Desktop\Development Tools\nosytlabs-github-ready\public\images\win95\zim.png (27 Bytes) - Generate AVIF version for optimal compression
+
+## Recommendations
+- Consider implementing more aggressive code splitting
+- Address identified optimization opportunities
+- Implement progressive loading for images
+- Use modern image formats (WebP, AVIF)
+- Enable gzip/brotli compression on server
+- Implement resource hints for critical resources
+
+## Code Splitting Strategy
+- Vendor chunks separated for better caching
+- Feature-based chunks for lazy loading
+- Dynamic imports for non-critical components
+- Service worker caching for static assets
+
+## Performance Monitoring
+- Core Web Vitals tracking implemented
+- Bundle load time monitoring
+- Cache hit ratio tracking
+- Resource hint optimization

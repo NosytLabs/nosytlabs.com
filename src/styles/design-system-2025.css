@@ -1,0 +1,550 @@
+/**
+ * NosytLabs Design System 2025 - Enhanced Glassmorphism & Modern Trends
+ * Comprehensive design system with cutting-edge 2025 design trends
+ * Features: Advanced glassmorphism, neural morphism, dynamic gradients, and accessibility
+ */
+
+/* ========== DESIGN TOKENS 2025 ========== */
+
+:root {
+  /* ===== COLOR SYSTEM 2025 ===== */
+  
+  /* Primary Brand Colors - Enhanced with 2025 vibrancy */
+  --color-primary-50: #f0f4ff;
+  --color-primary-100: #e0e9ff;
+  --color-primary-200: #c7d6fe;
+  --color-primary-300: #a5b8fc;
+  --color-primary-400: #8b93f8;
+  --color-primary-500: #7c3aed;
+  --color-primary-600: #6d28d9;
+  --color-primary-700: #5b21b6;
+  --color-primary-800: #4c1d95;
+  --color-primary-900: #3c1a78;
+  --color-primary-950: #2a0f5c;
+
+  /* Secondary Colors - Warm coral/orange gradient */
+  --color-secondary-50: #fff7ed;
+  --color-secondary-100: #ffedd5;
+  --color-secondary-200: #fed7aa;
+  --color-secondary-300: #fdba74;
+  --color-secondary-400: #fb923c;
+  --color-secondary-500: #f97316;
+  --color-secondary-600: #ea580c;
+  --color-secondary-700: #c2410c;
+  --color-secondary-800: #9a3412;
+  --color-secondary-900: #7c2d12;
+  --color-secondary-950: #431407;
+
+  /* Accent Colors - Electric pink for 2025 energy */
+  --color-accent-50: #fdf2f8;
+  --color-accent-100: #fce7f3;
+  --color-accent-200: #fbcfe8;
+  --color-accent-300: #f9a8d4;
+  --color-accent-400: #f472b6;
+  --color-accent-500: #ec4899;
+  --color-accent-600: #db2777;
+  --color-accent-700: #be185d;
+  --color-accent-800: #9d174d;
+  --color-accent-900: #831843;
+  --color-accent-950: #500724;
+
+  /* Neutral Colors - Enhanced with warm undertones */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+
+  /* Semantic Colors */
+  --color-success-500: #10b981;
+  --color-warning-500: #f59e0b;
+  --color-error-500: #ef4444;
+  --color-info-500: #3b82f6;
+
+  /* ===== ADVANCED GLASSMORPHISM 2025 ===== */
+  
+  /* Glass Backgrounds - Multi-layered with depth */
+  --glass-white-subtle: rgba(255, 255, 255, 0.05);
+  --glass-white-soft: rgba(255, 255, 255, 0.08);
+  --glass-white: rgba(255, 255, 255, 0.12);
+  --glass-white-medium: rgba(255, 255, 255, 0.16);
+  --glass-white-strong: rgba(255, 255, 255, 0.20);
+  --glass-white-intense: rgba(255, 255, 255, 0.25);
+
+  --glass-dark-subtle: rgba(0, 0, 0, 0.05);
+  --glass-dark-soft: rgba(0, 0, 0, 0.08);
+  --glass-dark: rgba(0, 0, 0, 0.12);
+  --glass-dark-medium: rgba(0, 0, 0, 0.16);
+  --glass-dark-strong: rgba(0, 0, 0, 0.20);
+  --glass-dark-intense: rgba(0, 0, 0, 0.25);
+
+  /* Glass Borders - Enhanced with gradient borders */
+  --glass-border-subtle: 1px solid rgba(255, 255, 255, 0.08);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.12);
+  --glass-border-medium: 1px solid rgba(255, 255, 255, 0.16);
+  --glass-border-strong: 1px solid rgba(255, 255, 255, 0.20);
+
+  /* Advanced Blur Effects */
+  --glass-blur-subtle: blur(8px);
+  --glass-blur: blur(12px);
+  --glass-blur-medium: blur(16px);
+  --glass-blur-strong: blur(20px);
+  --glass-blur-intense: blur(24px);
+
+  /* Neural Morphism - 2025 Trend */
+  --neural-shadow-light: 
+    8px 8px 16px rgba(163, 177, 198, 0.15),
+    -8px -8px 16px rgba(255, 255, 255, 0.7);
+  --neural-shadow-dark: 
+    8px 8px 16px rgba(0, 0, 0, 0.25),
+    -8px -8px 16px rgba(255, 255, 255, 0.05);
+  --neural-inset-light: 
+    inset 4px 4px 8px rgba(163, 177, 198, 0.2),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+  --neural-inset-dark: 
+    inset 4px 4px 8px rgba(0, 0, 0, 0.3),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.1);
+
+  /* ===== DYNAMIC GRADIENTS 2025 ===== */
+  
+  /* Primary Gradients */
+  --gradient-primary: linear-gradient(135deg, 
+    var(--color-primary-500) 0%, 
+    var(--color-accent-500) 50%, 
+    var(--color-secondary-500) 100%);
+  
+  --gradient-primary-soft: linear-gradient(135deg, 
+    var(--color-primary-400) 0%, 
+    var(--color-accent-400) 50%, 
+    var(--color-secondary-400) 100%);
+
+  /* Animated Gradients */
+  --gradient-animated: linear-gradient(270deg, 
+    var(--color-primary-500), 
+    var(--color-accent-500), 
+    var(--color-secondary-500), 
+    var(--color-primary-500));
+
+  /* Glass Gradients */
+  --gradient-glass: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.25) 0%, 
+    rgba(255, 255, 255, 0.05) 100%);
+
+  /* Text Gradients */
+  --gradient-text: linear-gradient(135deg, 
+    var(--color-primary-600) 0%, 
+    var(--color-accent-600) 50%, 
+    var(--color-secondary-600) 100%);
+
+  /* Mesh Gradients - 2025 Trend */
+  --gradient-mesh-1: radial-gradient(circle at 20% 80%, 
+    rgba(124, 58, 237, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, 
+    rgba(236, 72, 153, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, 
+    rgba(249, 115, 22, 0.2) 0%, transparent 50%);
+
+  /* ===== TYPOGRAPHY SYSTEM 2025 ===== */
+  
+  /* Font Families - Enhanced with variable fonts */
+  --font-primary: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* Font Sizes - Fluid typography */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
+  --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  --font-size-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem);
+  --font-size-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
+  --font-size-5xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.8;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* ===== SPACING SYSTEM 2025 ===== */
+  
+  /* Base spacing unit */
+  --space-unit: 0.25rem; /* 4px */
+  
+  /* Spacing scale */
+  --space-0: 0;
+  --space-px: 1px;
+  --space-0-5: calc(var(--space-unit) * 0.5); /* 2px */
+  --space-1: var(--space-unit); /* 4px */
+  --space-1-5: calc(var(--space-unit) * 1.5); /* 6px */
+  --space-2: calc(var(--space-unit) * 2); /* 8px */
+  --space-2-5: calc(var(--space-unit) * 2.5); /* 10px */
+  --space-3: calc(var(--space-unit) * 3); /* 12px */
+  --space-3-5: calc(var(--space-unit) * 3.5); /* 14px */
+  --space-4: calc(var(--space-unit) * 4); /* 16px */
+  --space-5: calc(var(--space-unit) * 5); /* 20px */
+  --space-6: calc(var(--space-unit) * 6); /* 24px */
+  --space-7: calc(var(--space-unit) * 7); /* 28px */
+  --space-8: calc(var(--space-unit) * 8); /* 32px */
+  --space-9: calc(var(--space-unit) * 9); /* 36px */
+  --space-10: calc(var(--space-unit) * 10); /* 40px */
+  --space-11: calc(var(--space-unit) * 11); /* 44px */
+  --space-12: calc(var(--space-unit) * 12); /* 48px */
+  --space-14: calc(var(--space-unit) * 14); /* 56px */
+  --space-16: calc(var(--space-unit) * 16); /* 64px */
+  --space-20: calc(var(--space-unit) * 20); /* 80px */
+  --space-24: calc(var(--space-unit) * 24); /* 96px */
+  --space-28: calc(var(--space-unit) * 28); /* 112px */
+  --space-32: calc(var(--space-unit) * 32); /* 128px */
+
+  /* ===== BORDER RADIUS SYSTEM ===== */
+  
+  --radius-none: 0;
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-base: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-3xl: 1.5rem; /* 24px */
+  --radius-full: 9999px;
+
+  /* ===== SHADOW SYSTEM 2025 ===== */
+  
+  /* Elevation shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
+
+  /* Colored shadows */
+  --shadow-primary: 0 10px 15px -3px rgba(124, 58, 237, 0.2), 0 4px 6px -4px rgba(124, 58, 237, 0.1);
+  --shadow-accent: 0 10px 15px -3px rgba(236, 72, 153, 0.2), 0 4px 6px -4px rgba(236, 72, 153, 0.1);
+  --shadow-secondary: 0 10px 15px -3px rgba(249, 115, 22, 0.2), 0 4px 6px -4px rgba(249, 115, 22, 0.1);
+
+  /* ===== ANIMATION SYSTEM 2025 ===== */
+  
+  /* Timing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Duration */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  --duration-slower: 500ms;
+
+  /* ===== Z-INDEX SYSTEM ===== */
+  
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* ===== BREAKPOINTS ===== */
+  
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ========== DARK THEME OVERRIDES ========== */
+
+[data-theme="dark"] {
+  /* Adjust colors for dark theme */
+  --color-primary-400: #a78bfa;
+  --color-primary-500: #8b5cf6;
+  --color-primary-600: #7c3aed;
+
+  --color-accent-400: #f472b6;
+  --color-accent-500: #ec4899;
+  --color-accent-600: #db2777;
+
+  /* Dark theme glass effects */
+  --glass-white-subtle: rgba(255, 255, 255, 0.03);
+  --glass-white-soft: rgba(255, 255, 255, 0.05);
+  --glass-white: rgba(255, 255, 255, 0.08);
+  --glass-white-medium: rgba(255, 255, 255, 0.12);
+  --glass-white-strong: rgba(255, 255, 255, 0.16);
+
+  /* Dark theme gradients */
+  --gradient-primary: linear-gradient(135deg, 
+    var(--color-primary-400) 0%, 
+    var(--color-accent-400) 50%, 
+    var(--color-secondary-400) 100%);
+}
+
+/* ========== COMPONENT FOUNDATIONS ========== */
+
+/* Glass morphism base class */
+.glass {
+  background: var(--glass-white);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius-xl);
+}
+
+.glass-subtle {
+  background: var(--glass-white-subtle);
+  backdrop-filter: var(--glass-blur-subtle);
+  -webkit-backdrop-filter: var(--glass-blur-subtle);
+  border: var(--glass-border-subtle);
+}
+
+.glass-strong {
+  background: var(--glass-white-strong);
+  backdrop-filter: var(--glass-blur-strong);
+  -webkit-backdrop-filter: var(--glass-blur-strong);
+  border: var(--glass-border-strong);
+}
+
+/* Neural morphism base class */
+.neural {
+  background: var(--color-neutral-100);
+  box-shadow: var(--neural-shadow-light);
+  border-radius: var(--radius-2xl);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.neural:hover {
+  box-shadow: var(--neural-inset-light);
+}
+
+[data-theme="dark"] .neural {
+  background: var(--color-neutral-800);
+  box-shadow: var(--neural-shadow-dark);
+}
+
+[data-theme="dark"] .neural:hover {
+  box-shadow: var(--neural-inset-dark);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient background */
+.gradient-animated {
+  background: var(--gradient-animated);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ========== ACCESSIBILITY ENHANCEMENTS ========== */
+
+/* Focus styles */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color var(--duration-fast) var(--ease-out);
+}
+
+.focus-ring:focus-visible {
+  outline-color: var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .gradient-animated {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .glass,
+  .glass-subtle,
+  .glass-strong {
+    border-width: 2px;
+    border-color: var(--color-neutral-900);
+  }
+
+  .neural {
+    border: 2px solid var(--color-neutral-900);
+  }
+}
+
+/* ========== ENHANCED COMPONENT STYLES ========== */
+
+/* Modern Button System */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-xl);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-tight);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--shadow-primary);
+}
+
+.btn-glass {
+  background: var(--glass-white-medium);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  color: var(--color-neutral-900);
+}
+
+.btn-neural {
+  background: var(--color-neutral-100);
+  box-shadow: var(--neural-shadow-light);
+  color: var(--color-neutral-900);
+}
+
+.btn-neural:hover {
+  box-shadow: var(--neural-inset-light);
+}
+
+/* Enhanced Card System */
+.card-2025 {
+  background: var(--glass-white-strong);
+  backdrop-filter: var(--glass-blur-strong);
+  -webkit-backdrop-filter: var(--glass-blur-strong);
+  border: var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-2025::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.card-2025:hover::before {
+  opacity: 1;
+}
+
+.card-2025:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Modern Input System */
+.input-2025 {
+  width: 100%;
+  padding: var(--space-4) var(--space-4);
+  background: var(--glass-white-soft);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-900);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.input-2025:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  background: var(--glass-white-medium);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* ========== RESPONSIVE UTILITIES ========== */
+
+/* Container queries support */
+@container (min-width: 768px) {
+  .container-md\:glass-strong {
+    background: var(--glass-white-strong);
+  }
+}
+
+/* Print styles */
+@media print {
+  .glass,
+  .glass-subtle,
+  .glass-strong,
+  .neural {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+
+  .gradient-text {
+    -webkit-text-fill-color: initial;
+    color: #000 !important;
+  }
+}

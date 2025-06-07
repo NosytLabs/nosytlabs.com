@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.enhanced.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "strict": false
+  },
+  "include": [
+    "src/**/*",
+    "scripts/**/*",
+    "**/*.config.ts"
+  ]
+}

@@ -1,0 +1,393 @@
+/**
+ * Enhanced Color System 2025 for NosytLabs
+ * Advanced color palette with 2025 design trends
+ * Features: Dynamic gradients, color harmonies, accessibility, and dark mode optimization
+ */
+
+/* ========== 2025 COLOR FOUNDATIONS ========== */
+
+:root {
+  /* ===== CORE BRAND COLORS ===== */
+  
+  /* NosytLabs Primary Purple - Enhanced with 2025 vibrancy */
+  --purple-50: #faf5ff;
+  --purple-100: #f3e8ff;
+  --purple-200: #e9d5ff;
+  --purple-300: #d8b4fe;
+  --purple-400: #c084fc;
+  --purple-500: #a855f7;
+  --purple-600: #9333ea;
+  --purple-700: #7c3aed;
+  --purple-800: #6b21a8;
+  --purple-900: #581c87;
+  --purple-950: #3b0764;
+
+  /* NosytLabs Secondary Orange - Enhanced warmth */
+  --orange-50: #fff7ed;
+  --orange-100: #ffedd5;
+  --orange-200: #fed7aa;
+  --orange-300: #fdba74;
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+  --orange-700: #c2410c;
+  --orange-800: #9a3412;
+  --orange-900: #7c2d12;
+  --orange-950: #431407;
+
+  /* ===== 2025 TREND COLORS ===== */
+  
+  /* Digital Lime - Tech-forward accent */
+  --lime-50: #f7ffe0;
+  --lime-100: #ecfccb;
+  --lime-200: #d9f99d;
+  --lime-300: #bef264;
+  --lime-400: #a3e635;
+  --lime-500: #84cc16;
+  --lime-600: #65a30d;
+  --lime-700: #4d7c0f;
+  --lime-800: #365314;
+  --lime-900: #1a2e05;
+
+  /* Cyber Pink - Modern accent */
+  --pink-50: #fdf2f8;
+  --pink-100: #fce7f3;
+  --pink-200: #fbcfe8;
+  --pink-300: #f9a8d4;
+  --pink-400: #f472b6;
+  --pink-500: #ec4899;
+  --pink-600: #db2777;
+  --pink-700: #be185d;
+  --pink-800: #9d174d;
+  --pink-900: #831843;
+
+  /* Electric Blue - Innovation color */
+  --blue-50: #eff6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-300: #93c5fd;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-800: #1e40af;
+  --blue-900: #1e3a8a;
+
+  /* ===== SEMANTIC COLOR SYSTEM ===== */
+  
+  /* Primary Brand Colors */
+  --color-primary: var(--purple-600);
+  --color-primary-hover: var(--purple-700);
+  --color-primary-light: var(--purple-100);
+  --color-primary-dark: var(--purple-800);
+
+  /* Secondary Brand Colors */
+  --color-secondary: var(--orange-500);
+  --color-secondary-hover: var(--orange-600);
+  --color-secondary-light: var(--orange-100);
+  --color-secondary-dark: var(--orange-700);
+
+  /* Accent Colors */
+  --color-accent: var(--pink-500);
+  --color-accent-hover: var(--pink-600);
+  --color-accent-light: var(--pink-100);
+
+  /* Success, Warning, Error */
+  --color-success: var(--lime-500);
+  --color-success-hover: var(--lime-600);
+  --color-success-light: var(--lime-100);
+
+  --color-warning: var(--orange-400);
+  --color-warning-hover: var(--orange-500);
+  --color-warning-light: var(--orange-100);
+
+  --color-error: #ef4444;
+  --color-error-hover: #dc2626;
+  --color-error-light: #fef2f2;
+
+  /* ===== DYNAMIC GRADIENT SYSTEM ===== */
+  
+  /* Brand Gradients */
+  --gradient-brand: linear-gradient(135deg, var(--purple-600) 0%, var(--orange-500) 100%);
+  --gradient-brand-reverse: linear-gradient(135deg, var(--orange-500) 0%, var(--purple-600) 100%);
+  --gradient-brand-radial: radial-gradient(circle at center, var(--purple-600) 0%, var(--orange-500) 100%);
+
+  /* 2025 Trend Gradients */
+  --gradient-aurora: linear-gradient(135deg, 
+    var(--purple-400) 0%, 
+    var(--pink-400) 25%, 
+    var(--blue-400) 50%, 
+    var(--lime-400) 75%, 
+    var(--orange-400) 100%);
+
+  --gradient-sunset: linear-gradient(135deg, 
+    var(--orange-300) 0%, 
+    var(--pink-400) 50%, 
+    var(--purple-500) 100%);
+
+  --gradient-ocean: linear-gradient(135deg, 
+    var(--blue-400) 0%, 
+    var(--blue-600) 50%, 
+    var(--purple-600) 100%);
+
+  --gradient-forest: linear-gradient(135deg, 
+    var(--lime-400) 0%, 
+    var(--lime-600) 50%, 
+    var(--lime-800) 100%);
+
+  --gradient-cyber: linear-gradient(135deg, 
+    var(--pink-400) 0%, 
+    var(--purple-500) 50%, 
+    var(--blue-600) 100%);
+
+  /* Animated Gradients */
+  --gradient-animated: linear-gradient(-45deg, 
+    var(--purple-400), 
+    var(--pink-400), 
+    var(--blue-400), 
+    var(--lime-400));
+
+  /* ===== GLASS TINTED COLORS ===== */
+  
+  /* Glass with color tints */
+  --glass-purple: rgba(124, 58, 237, 0.1);
+  --glass-orange: rgba(249, 115, 22, 0.1);
+  --glass-pink: rgba(236, 72, 153, 0.1);
+  --glass-blue: rgba(59, 130, 246, 0.1);
+  --glass-lime: rgba(132, 204, 22, 0.1);
+
+  /* Glass borders with color */
+  --glass-border-purple: 1px solid rgba(124, 58, 237, 0.2);
+  --glass-border-orange: 1px solid rgba(249, 115, 22, 0.2);
+  --glass-border-pink: 1px solid rgba(236, 72, 153, 0.2);
+  --glass-border-blue: 1px solid rgba(59, 130, 246, 0.2);
+  --glass-border-lime: 1px solid rgba(132, 204, 22, 0.2);
+
+  /* ===== NEUTRAL SYSTEM ===== */
+  
+  /* Enhanced neutrals with warmth */
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  --neutral-950: #0a0a0a;
+
+  /* Text Colors */
+  --text-primary: var(--neutral-900);
+  --text-secondary: var(--neutral-700);
+  --text-tertiary: var(--neutral-500);
+  --text-quaternary: var(--neutral-400);
+  --text-inverse: var(--neutral-50);
+  --text-brand: var(--color-primary);
+
+  /* Background Colors */
+  --bg-primary: var(--neutral-50);
+  --bg-secondary: var(--neutral-100);
+  --bg-tertiary: var(--neutral-200);
+  --bg-inverse: var(--neutral-900);
+  --bg-brand: var(--color-primary);
+
+  /* Border Colors */
+  --border-primary: var(--neutral-200);
+  --border-secondary: var(--neutral-300);
+  --border-tertiary: var(--neutral-400);
+  --border-brand: var(--color-primary);
+}
+
+/* ========== DARK THEME COLORS ========== */
+
+[data-theme="dark"] {
+  /* Adjusted brand colors for dark theme */
+  --color-primary: var(--purple-400);
+  --color-primary-hover: var(--purple-300);
+  --color-primary-light: var(--purple-900);
+  --color-primary-dark: var(--purple-200);
+
+  --color-secondary: var(--orange-400);
+  --color-secondary-hover: var(--orange-300);
+  --color-secondary-light: var(--orange-900);
+  --color-secondary-dark: var(--orange-200);
+
+  --color-accent: var(--pink-400);
+  --color-accent-hover: var(--pink-300);
+  --color-accent-light: var(--pink-900);
+
+  /* Dark theme gradients */
+  --gradient-brand: linear-gradient(135deg, var(--purple-400) 0%, var(--orange-400) 100%);
+  --gradient-brand-reverse: linear-gradient(135deg, var(--orange-400) 0%, var(--purple-400) 100%);
+
+  /* Dark theme text colors */
+  --text-primary: var(--neutral-100);
+  --text-secondary: var(--neutral-300);
+  --text-tertiary: var(--neutral-400);
+  --text-quaternary: var(--neutral-500);
+  --text-inverse: var(--neutral-900);
+
+  /* Dark theme backgrounds */
+  --bg-primary: var(--neutral-900);
+  --bg-secondary: var(--neutral-800);
+  --bg-tertiary: var(--neutral-700);
+  --bg-inverse: var(--neutral-100);
+
+  /* Dark theme borders */
+  --border-primary: var(--neutral-700);
+  --border-secondary: var(--neutral-600);
+  --border-tertiary: var(--neutral-500);
+
+  /* Dark theme glass colors */
+  --glass-purple: rgba(196, 132, 252, 0.08);
+  --glass-orange: rgba(251, 146, 60, 0.08);
+  --glass-pink: rgba(244, 114, 182, 0.08);
+  --glass-blue: rgba(96, 165, 250, 0.08);
+  --glass-lime: rgba(163, 230, 53, 0.08);
+}
+
+/* ========== COLOR UTILITY CLASSES ========== */
+
+/* Text Colors */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+.text-brand { color: var(--text-brand); }
+.text-accent { color: var(--color-accent); }
+.text-success { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-error { color: var(--color-error); }
+
+/* Background Colors */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-tertiary { background-color: var(--bg-tertiary); }
+.bg-brand { background-color: var(--bg-brand); }
+.bg-accent { background-color: var(--color-accent); }
+.bg-success { background-color: var(--color-success); }
+.bg-warning { background-color: var(--color-warning); }
+.bg-error { background-color: var(--color-error); }
+
+/* Gradient Backgrounds */
+.bg-gradient-brand { background: var(--gradient-brand); }
+.bg-gradient-aurora { background: var(--gradient-aurora); }
+.bg-gradient-sunset { background: var(--gradient-sunset); }
+.bg-gradient-ocean { background: var(--gradient-ocean); }
+.bg-gradient-forest { background: var(--gradient-forest); }
+.bg-gradient-cyber { background: var(--gradient-cyber); }
+
+/* Animated Gradient */
+.bg-gradient-animated {
+  background: var(--gradient-animated);
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glass Tinted Backgrounds */
+.bg-glass-purple { background: var(--glass-purple); }
+.bg-glass-orange { background: var(--glass-orange); }
+.bg-glass-pink { background: var(--glass-pink); }
+.bg-glass-blue { background: var(--glass-blue); }
+.bg-glass-lime { background: var(--glass-lime); }
+
+/* Border Colors */
+.border-primary { border-color: var(--border-primary); }
+.border-secondary { border-color: var(--border-secondary); }
+.border-brand { border-color: var(--border-brand); }
+.border-accent { border-color: var(--color-accent); }
+
+/* Glass Borders */
+.border-glass-purple { border: var(--glass-border-purple); }
+.border-glass-orange { border: var(--glass-border-orange); }
+.border-glass-pink { border: var(--glass-border-pink); }
+.border-glass-blue { border: var(--glass-border-blue); }
+.border-glass-lime { border: var(--glass-border-lime); }
+
+/* ========== HOVER STATES ========== */
+
+.hover-primary:hover { color: var(--color-primary-hover); }
+.hover-secondary:hover { color: var(--color-secondary-hover); }
+.hover-accent:hover { color: var(--color-accent-hover); }
+
+.hover-bg-primary:hover { background-color: var(--color-primary-hover); }
+.hover-bg-secondary:hover { background-color: var(--color-secondary-hover); }
+.hover-bg-accent:hover { background-color: var(--color-accent-hover); }
+
+/* ========== ACCESSIBILITY ENHANCEMENTS ========== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #4c1d95;
+    --color-secondary: #c2410c;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --border-primary: #000000;
+  }
+
+  [data-theme="dark"] {
+    --color-primary: #c084fc;
+    --color-secondary: #fb923c;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --border-primary: #ffffff;
+  }
+}
+
+/* Reduced motion for animated gradients */
+@media (prefers-reduced-motion: reduce) {
+  .bg-gradient-animated {
+    animation: none;
+    background: var(--gradient-brand);
+  }
+}
+
+/* ========== COLOR HARMONY UTILITIES ========== */
+
+/* Complementary color schemes */
+.color-scheme-complementary {
+  --scheme-primary: var(--purple-600);
+  --scheme-secondary: var(--orange-500);
+}
+
+/* Triadic color schemes */
+.color-scheme-triadic {
+  --scheme-primary: var(--purple-600);
+  --scheme-secondary: var(--lime-500);
+  --scheme-tertiary: var(--orange-500);
+}
+
+/* Analogous color schemes */
+.color-scheme-analogous {
+  --scheme-primary: var(--purple-600);
+  --scheme-secondary: var(--pink-500);
+  --scheme-tertiary: var(--blue-500);
+}
+
+/* ========== PRINT STYLES ========== */
+
+@media print {
+  .bg-gradient-brand,
+  .bg-gradient-aurora,
+  .bg-gradient-sunset,
+  .bg-gradient-ocean,
+  .bg-gradient-forest,
+  .bg-gradient-cyber,
+  .bg-gradient-animated {
+    background: white !important;
+    color: black !important;
+  }
+
+  .text-brand,
+  .text-accent {
+    color: black !important;
+  }
+}

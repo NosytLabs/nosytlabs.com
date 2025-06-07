@@ -1,0 +1,493 @@
+---
+/**
+ * Interactive Timeline Component
+ * Animated timeline showing NosytLabs journey and milestones
+ */
+
+interface Props {
+  className?: string;
+}
+
+const { className = '' } = Astro.props;
+
+const timelineEvents = [
+  {
+    year: '2025',
+    month: 'January',
+    title: 'NosytLabs Launch',
+    description: 'Official launch of NosytLabs portfolio with modern tech stack',
+    icon: '🚀',
+    type: 'milestone',
+    achievements: ['Modern Astro website', 'Interactive features', 'Responsive design']
+  },
+  {
+    year: '2024',
+    month: 'December',
+    title: 'Advanced Development',
+    description: 'Mastered modern web technologies and frameworks',
+    icon: '💻',
+    type: 'skill',
+    achievements: ['TypeScript expertise', 'React/Astro proficiency', 'Full-stack development']
+  },
+  {
+    year: '2024',
+    month: 'October',
+    title: '3D Printing Expansion',
+    description: 'Expanded into 3D printing services and custom solutions',
+    icon: '🖨️',
+    type: 'business',
+    achievements: ['Custom 3D models', 'Printing services', 'Design consultation']
+  },
+  {
+    year: '2024',
+    month: 'August',
+    title: 'Content Creation',
+    description: 'Started content creation and live streaming on Kick.com',
+    icon: '🎥',
+    type: 'content',
+    achievements: ['Live streaming', 'Educational content', 'Community building']
+  },
+  {
+    year: '2024',
+    month: 'June',
+    title: 'Passive Income Focus',
+    description: 'Developed expertise in passive income strategies and automation',
+    icon: '💰',
+    type: 'business',
+    achievements: ['Income automation', 'Investment strategies', 'ROI optimization']
+  },
+  {
+    year: '2024',
+    month: 'March',
+    title: 'Crypto Mining',
+    description: 'Entered cryptocurrency mining with optimized setups',
+    icon: '⛏️',
+    type: 'tech',
+    achievements: ['Mining optimization', 'Hardware expertise', 'Profitability analysis']
+  }
+];
+---
+
+<section class={`interactive-timeline ${className}`}>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Our Journey</h2>
+      <p class="section-description">Interactive timeline of growth, innovation, and achievements</p>
+    </div>
+    
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+      
+      {timelineEvents.map((event, index) => (
+        <div 
+          class={`timeline-event ${event.type}`}
+          data-event={index}
+          style={`--delay: ${index * 0.2}s;`}
+        >
+          <div class="event-marker">
+            <div class="marker-icon">{event.icon}</div>
+            <div class="marker-pulse"></div>
+          </div>
+          
+          <div class="event-content">
+            <div class="event-header">
+              <div class="event-date">
+                <span class="event-year">{event.year}</span>
+                <span class="event-month">{event.month}</span>
+              </div>
+              <div class="event-type-badge" data-type={event.type}>
+                {event.type}
+              </div>
+            </div>
+            
+            <h3 class="event-title">{event.title}</h3>
+            <p class="event-description">{event.description}</p>
+            
+            <div class="event-achievements">
+              <h4 class="achievements-title">Key Achievements:</h4>
+              <ul class="achievements-list">
+                {event.achievements.map(achievement => (
+                  <li class="achievement-item">
+                    <span class="achievement-icon">✓</span>
+                    <span class="achievement-text">{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div class="event-hover-effect"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .interactive-timeline {
+    padding: var(--spacing-20) 0;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #581c87 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .interactive-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-4);
+    background: linear-gradient(45deg, #ffffff, #e0e7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .section-description {
+    font-size: var(--font-size-lg);
+    opacity: 0.9;
+  }
+  
+  .timeline-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, 
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+  
+  .timeline-event {
+    position: relative;
+    margin-bottom: var(--spacing-16);
+    opacity: 0;
+    animation: fadeInTimeline 0.8s ease-out var(--delay) forwards;
+  }
+  
+  .timeline-event:nth-child(even) .event-content {
+    margin-left: calc(50% + 60px);
+    text-align: left;
+  }
+  
+  .timeline-event:nth-child(odd) .event-content {
+    margin-right: calc(50% + 60px);
+    text-align: right;
+  }
+  
+  .event-marker {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+  
+  .timeline-event:hover .event-marker {
+    transform: translateX(-50%) scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .marker-icon {
+    font-size: 1.5rem;
+    z-index: 1;
+  }
+  
+  .marker-pulse {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  
+  .event-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-8);
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .event-content:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .timeline-event:nth-child(odd) .event-header {
+    flex-direction: row-reverse;
+  }
+  
+  .event-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .event-year {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+  
+  .event-month {
+    font-size: var(--font-size-sm);
+    opacity: 0.8;
+  }
+  
+  .event-type-badge {
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .event-type-badge[data-type="milestone"] {
+    background: linear-gradient(45deg, #10b981, #059669);
+  }
+  
+  .event-type-badge[data-type="skill"] {
+    background: linear-gradient(45deg, #3b82f6, #2563eb);
+  }
+  
+  .event-type-badge[data-type="business"] {
+    background: linear-gradient(45deg, #f59e0b, #d97706);
+  }
+  
+  .event-type-badge[data-type="content"] {
+    background: linear-gradient(45deg, #ec4899, #db2777);
+  }
+  
+  .event-type-badge[data-type="tech"] {
+    background: linear-gradient(45deg, #8b5cf6, #7c3aed);
+  }
+  
+  .event-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-3);
+  }
+  
+  .event-description {
+    font-size: var(--font-size-base);
+    opacity: 0.9;
+    margin-bottom: var(--spacing-6);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  .achievements-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-3);
+    opacity: 0.8;
+  }
+  
+  .achievements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .achievement-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-2);
+    font-size: var(--font-size-sm);
+  }
+  
+  .achievement-icon {
+    width: 16px;
+    height: 16px;
+    background: var(--color-success-500);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  
+  .event-hover-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .event-content:hover .event-hover-effect {
+    opacity: 1;
+    animation: shimmer 1.5s ease-in-out;
+  }
+  
+  @keyframes fadeInTimeline {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.1);
+    }
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+  }
+  
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 30px;
+    }
+    
+    .timeline-event:nth-child(even) .event-content,
+    .timeline-event:nth-child(odd) .event-content {
+      margin-left: 80px;
+      margin-right: 0;
+      text-align: left;
+    }
+    
+    .timeline-event:nth-child(odd) .event-header {
+      flex-direction: row;
+    }
+    
+    .event-marker {
+      left: 30px;
+    }
+    
+    .timeline-event:hover .event-marker {
+      transform: translateX(-50%) scale(1.1);
+    }
+  }
+</style>
+
+<script>
+  // Interactive Timeline functionality
+  class InteractiveTimeline {
+    constructor() {
+      this.init();
+    }
+    
+    init() {
+      this.setupScrollAnimations();
+      this.setupEventInteractions();
+    }
+    
+    setupScrollAnimations() {
+      const events = document.querySelectorAll('.timeline-event');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, { threshold: 0.3 });
+      
+      events.forEach(event => {
+        observer.observe(event);
+      });
+    }
+    
+    setupEventInteractions() {
+      const eventContents = document.querySelectorAll('.event-content');
+      
+      eventContents.forEach(content => {
+        content.addEventListener('click', () => {
+          // Add click interaction (could expand event details)
+          content.style.transform = 'translateY(-4px) scale(1.02)';
+          
+          setTimeout(() => {
+            content.style.transform = 'translateY(-4px) scale(1)';
+          }, 200);
+        });
+      });
+    }
+  }
+  
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new InteractiveTimeline();
+  });
+</script>

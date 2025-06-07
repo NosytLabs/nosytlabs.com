@@ -1,6 +1,8 @@
 ---
-// Projects page for NosytLabs
+// Projects page for NosytLabs - Redesigned 2025
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/unified/HeroSection.astro';
+import Card from '../components/unified/Card.astro';
 import EnhancedProjectCard from '../components/EnhancedProjectCard.astro';
 
 // Import data
@@ -10,57 +12,52 @@ const allProjects = [...featured, ...recent];
 ---
 
 <BaseLayout
-  title="Projects - NosytLabs"
-  description="Explore our portfolio of innovative projects including AI solutions, web applications, mobile apps, and more."
+  title="Portfolio & Case Studies | NosytLabs Projects"
+  description="Explore our portfolio of innovative projects including NosytLabs website, crypto mining calculator, Kick.com MCP integration, and NosytOS95. Real-world solutions with modern technologies."
+  pageKey="projects"
+  keywords="portfolio, case studies, web development projects, crypto mining tools, streaming integration, retro computing, JavaScript projects"
 >
-  <!-- Enhanced Hero Section with 3D effect -->
-  <div class="relative bg-gradient-to-br from-primary-dark via-primary to-secondary text-white py-20 overflow-hidden">
-    <!-- Background particles with enhanced animation -->
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="particles-enhanced"></div>
-
-      <!-- Light beam effect -->
-      <div class="absolute inset-0 light-beam"></div>
-
-      <!-- Decorative elements -->
-      <div class="absolute top-10 right-10 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-10 left-10 w-60 h-60 bg-primary-light/10 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="max-w-3xl">
-        <!-- Decorative elements -->
-        <div class="inline-block relative mb-4">
-          <div class="absolute -top-6 -left-6 w-12 h-12 border-t-2 border-l-2 border-accent opacity-70"></div>
-          <div class="absolute -bottom-6 -right-6 w-12 h-12 border-b-2 border-r-2 border-accent opacity-70"></div>
-
-          <h1 class="text-4xl md:text-5xl font-bold mb-4 relative">
-            Our <span class="text-accent gradient-text shadow-text-3d">Projects</span>
-            <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-gradient-to-r from-accent to-transparent"></div>
-          </h1>
-        </div>
-
-        <p class="text-xl backdrop-blur-sm bg-black/10 p-4 rounded-lg">
-          Explore our portfolio of innovative solutions that have helped businesses transform and grow.
-        </p>
-      </div>
-    </div>
-  </div>
+  <!-- Enhanced Hero Section -->
+  <HeroSection
+    variant="centered"
+    layout="compact"
+    theme="gradient"
+    showParticles={true}
+    showFloatingElements={true}
+    animationStyle="scale"
+    title="Our Projects"
+    subtitle="Portfolio & Case Studies"
+    description="Explore our portfolio of innovative solutions that have helped businesses transform and grow. Notable Opportunities Shape Your Tomorrow - from web development to AI integration, each project showcases our commitment to excellence."
+    primaryCTA={{
+      text: "View All Projects",
+      href: "#projects-grid",
+      variant: "primary",
+      icon: "arrow-right"
+    }}
+    secondaryCTA={{
+      text: "Contact Us",
+      href: "/contact",
+      variant: "outline",
+      icon: "external-link"
+    }}
+  />
 
   <!-- Enhanced Projects Filter Section -->
-  <section class="py-12 bg-gray-50 dark:bg-gray-900">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+  <section class="py-16 bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800">
+    <div class="container-xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
         <div class="relative inline-block">
-          <h2 class="text-2xl font-bold relative inline-block text-gray-800 dark:text-white">
+          <h2 class="text-3xl font-bold gradient-text">
             Filter Projects
-            <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-transparent"></div>
           </h2>
+          <p class="text-neutral-600 dark:text-neutral-300 mt-2">
+            Browse by technology or category
+          </p>
         </div>
 
-        <div class="filter-container p-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 flex flex-wrap gap-2 max-w-full overflow-x-auto">
+        <div class="glass p-4 rounded-2xl flex flex-wrap gap-3 max-w-full overflow-x-auto">
           <button
-            class="filter-btn active px-4 py-2 bg-accent text-white rounded-lg shadow-md transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            class="filter-btn active btn-modern btn-primary-modern"
             data-category="all"
           >
             <span class="flex items-center">
@@ -73,7 +70,7 @@ const allProjects = [...featured, ...recent];
 
           {categories.map(category => (
             <button
-              class="filter-btn px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg transition-all duration-300 hover:shadow-md transform hover:scale-105"
+              class="filter-btn btn-modern btn-secondary-modern"
               data-category={category.id}
             >
               <span class="flex items-center">
@@ -122,21 +119,33 @@ const allProjects = [...featured, ...recent];
   </section>
 
   <!-- Enhanced Projects Grid Section -->
-  <section class="py-16 bg-white dark:bg-gray-900">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+  <section class="py-20 bg-white dark:bg-neutral-900">
+    <div class="container-xl mx-auto px-6">
+      <div class="grid grid-auto-fit-md gap-8" id="projects-grid">
         {allProjects.map((project, index) => (
-          <div data-category={project.category.toLowerCase().replace(/\s+/g, '-')}>
-            <EnhancedProjectCard
+          <div data-category={project.category ? project.category.toLowerCase().replace(/\s+/g, '-') : 'uncategorized'}>
+            <Card
+              variant="project"
               title={project.title}
               description={project.description}
-              image={project.imageUrl || "/images/placeholder.svg"}
+              image={project.imageUrl || "/images/projects/default-project.jpg"}
               imageAlt={project.title}
-              link={project.githubUrl || project.demoUrl || `https://github.com/NosytLabs/${project.id}`}
-              tags={project.technologies.slice(0, 4)}
+              hoverable={true}
+              clickable={true}
+              theme="glass"
+              size="md"
+              tags={project.technologies ? project.technologies.slice(0, 4) : []}
               category={project.category}
               date={project.completionDate}
-              animationDelay={index * 0.1}
+              primaryAction={{
+                text: "View Project",
+                href: project.githubUrl || project.demoUrl || `https://github.com/NosytLabs/${project.id}`,
+                variant: "primary",
+                icon: "external-link",
+                external: true
+              }}
+              className="animate-fade-in-up"
+              style={`animation-delay: ${index * 0.1}s`}
             />
           </div>
         ))}

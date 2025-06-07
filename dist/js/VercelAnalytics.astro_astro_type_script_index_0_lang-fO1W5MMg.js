@@ -1,0 +1,1 @@
+import{i as o,a as n}from"./vendor-EW5P1MaG.js";o({mode:"production",beforeSend:o=>"localhost"===window.location.hostname?null:o}),n({route:window.location.pathname});

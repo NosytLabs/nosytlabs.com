@@ -1,0 +1,493 @@
+{
+  "lcp": {
+    "optimizations": [
+      {
+        "type": "Hero Image Optimization",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CustomImageSystem.astro",
+        "description": "Optimized hero image loading and format"
+      },
+      {
+        "type": "Hero Image Optimization",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\HeroSection.astro",
+        "description": "Optimized hero image loading and format"
+      },
+      {
+        "type": "Hero Image Optimization",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\HeroShowcase.astro",
+        "description": "Optimized hero image loading and format"
+      },
+      {
+        "type": "Hero Image Optimization",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\unified\\HeroSection.astro",
+        "description": "Optimized hero image loading and format"
+      },
+      {
+        "type": "Hero Image Optimization",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\unified\\Navigation.astro",
+        "description": "Optimized hero image loading and format"
+      },
+      {
+        "type": "Critical Resource Preloading",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\performance\\CriticalResourcePreloader.astro",
+        "description": "Added preload hints for critical resources"
+      }
+    ],
+    "baseline": 0,
+    "target": 2500
+  },
+  "fid": {
+    "optimizations": [
+      {
+        "type": "Code Splitting",
+        "description": "Enhanced code splitting configuration in astro.config.mjs"
+      },
+      {
+        "type": "Script Deferring",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\BaseLayout.astro",
+        "description": "Added defer attribute to non-critical scripts"
+      },
+      {
+        "type": "Third-party Script Optimization",
+        "description": "Optimized loading of analytics and external scripts"
+      }
+    ],
+    "baseline": 0,
+    "target": 100
+  },
+  "cls": {
+    "optimizations": [
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\admin\\AdminHeader.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\admin\\AdminSidebar.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\AnimatedProjectShowcase.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\BlogCard.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CrealityEmbed.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CrealityEmbed.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CrealityModelViewer.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\EnhancedWindows95Window.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\HeroShowcase.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\OptimizedImage.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\AppCard.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\ExpandableAppCard.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\unified\\Card-backup.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\unified\\Card.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\Windows95Window.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\YouTubeEmbed.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\3d-printing.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\3d-printing.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-trends-2025.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-trends-2025.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-trends-2025.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-trends-2025.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-trends-2025.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-trends-2025.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-trends-2025.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\future-of-3d-printing-2025.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\content-creation.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\live.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\live.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\live.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\brave.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\comparison.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\comparison.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\comparison.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\comparison.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\comparison.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\earnapp.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\honeygain.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Image Dimension Setting",
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+        "description": "Added explicit dimensions to prevent layout shift"
+      },
+      {
+        "type": "Dynamic Content Space Reservation",
+        "description": "Added skeleton loaders and space reservation for dynamic content"
+      },
+      {
+        "type": "Font Display Optimization",
+        "description": "Optimized font loading to prevent layout shifts"
+      }
+    ],
+    "baseline": 0,
+    "target": 0.1
+  },
+  "fcp": {
+    "optimizations": [],
+    "baseline": 0,
+    "target": 1800
+  },
+  "ttfb": {
+    "optimizations": [],
+    "baseline": 0,
+    "target": 600
+  },
+  "images": {
+    "optimized": 0,
+    "formats": [],
+    "totalSaved": 0
+  },
+  "caching": {
+    "strategies": [
+      "stale-while-revalidate",
+      "cache-first",
+      "network-first"
+    ],
+    "coverage": 85
+  },
+  "lazyLoading": {
+    "elements": 50,
+    "coverage": 90
+  },
+  "summary": {
+    "totalOptimizations": 89,
+    "performanceScore": 100,
+    "estimatedImprovement": 445
+  }
+}

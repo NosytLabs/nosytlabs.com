@@ -1,0 +1,402 @@
+{
+  "designSystem": {
+    "glassmorphism": {
+      "tests": [
+        {
+          "name": "Glassmorphism Elements",
+          "passed": true,
+          "value": 18,
+          "details": "Found 18 glassmorphism elements"
+        },
+        {
+          "name": "Modern Glass 2025",
+          "passed": true,
+          "value": 5,
+          "details": "Found 5 modern glass elements"
+        },
+        {
+          "name": "Backdrop Filter Support",
+          "passed": true,
+          "value": 6,
+          "details": "Found backdrop-filter in 6 files"
+        }
+      ],
+      "score": 100
+    },
+    "colorHarmony": {
+      "tests": [
+        {
+          "name": "Color Variables",
+          "passed": true,
+          "value": 122,
+          "details": "Found 122 color variables"
+        },
+        {
+          "name": "Gradient Definitions",
+          "passed": true,
+          "value": 30,
+          "details": "Found 30 gradient definitions"
+        },
+        {
+          "name": "Dark Mode Support",
+          "passed": true,
+          "value": 2,
+          "details": "Dark mode support in 2 files"
+        }
+      ],
+      "score": 100
+    },
+    "typography": {
+      "tests": [
+        {
+          "name": "Font Definitions",
+          "passed": true,
+          "value": 3,
+          "details": "Found 3 font definitions"
+        },
+        {
+          "name": "Typography Scale",
+          "passed": true,
+          "value": 79,
+          "details": "Found 79 scaled typography elements"
+        },
+        {
+          "name": "Font Display Optimization",
+          "passed": true,
+          "value": 3,
+          "details": "Font display optimization in 3 files"
+        }
+      ],
+      "score": 100
+    },
+    "spacing": {
+      "tests": [
+        {
+          "name": "Spacing Variables",
+          "passed": true,
+          "value": 208,
+          "details": "Found 208 spacing variables"
+        },
+        {
+          "name": "Consistent Spacing Usage",
+          "passed": true,
+          "value": 203,
+          "details": "Found 203 consistent spacing usages"
+        }
+      ],
+      "score": 100
+    }
+  },
+  "layoutIssues": {
+    "overlapping": [
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\accessibility\\AccessibilityEnhancer.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\accessibility\\KeyboardNavigation.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\accessibility\\WCAGCompliance.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\AnimatedHeading.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\animations\\AnimatedText.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\BlogCard.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CodeDisplay.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ContactForm.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CrealityEmbed.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CustomImageSystem.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\EnhancedWindows95Window.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\Floating3DElements.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\Footer.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\forms\\EnhancedFormValidation.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\GlitchText.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\HeroSection.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\HeroShowcase.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\InteractiveROICalculator.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\InteractiveROICalculator.astro.backup-1748953149563",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\InteractiveSkillMatrix.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\InteractiveTimeline.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ParticleBackground.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\PDFViewer.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ProjectTimeline.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ServicePreviewCards.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ServicePreviewCards.astro.backup-1748953149566",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\SkillsMatrix.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\SocialIcons.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ui\\ResponsiveImage.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\unified\\Card.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\unified\\HeroSection.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\YouTubeEmbed.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\3d-printing.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\contact.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\content-creation.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\projects.astro",
+        "issue": "Absolute positioning without z-index",
+        "severity": "medium"
+      }
+    ],
+    "alignment": [
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\styles\\global.css",
+        "issue": "Inconsistent text alignment",
+        "severity": "low"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\styles\\nosytlabs.css",
+        "issue": "Inconsistent text alignment",
+        "severity": "low"
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\styles\\typography-2025.css",
+        "issue": "Inconsistent text alignment",
+        "severity": "low"
+      }
+    ],
+    "spacing": [],
+    "responsive": [
+      {
+        "name": "Responsive Breakpoints",
+        "value": 99,
+        "passed": true
+      },
+      {
+        "name": "Container Queries",
+        "value": 4,
+        "passed": true
+      }
+    ]
+  },
+  "accessibility": {
+    "contrast": [
+      {
+        "name": "High Contrast Support",
+        "value": 6,
+        "passed": true
+      }
+    ],
+    "focus": [
+      {
+        "name": "Focus Indicators",
+        "value": 6,
+        "passed": true
+      }
+    ],
+    "motion": [
+      {
+        "name": "Reduced Motion Support",
+        "value": 7,
+        "passed": true
+      }
+    ],
+    "keyboard": []
+  },
+  "microInteractions": {
+    "hover": [
+      {
+        "name": "Hover Effects",
+        "value": 62,
+        "passed": true
+      }
+    ],
+    "animations": [
+      {
+        "name": "CSS Animations",
+        "value": 21,
+        "passed": true
+      },
+      {
+        "name": "Keyframe Definitions",
+        "value": 16,
+        "passed": true
+      }
+    ],
+    "transitions": [
+      {
+        "name": "CSS Transitions",
+        "value": 66,
+        "passed": true
+      }
+    ],
+    "feedback": []
+  },
+  "enhancements": {
+    "applied": [
+      {
+        "type": "Glassmorphism Enhancement",
+        "description": "Enhanced glassmorphism design system with 2025 trends",
+        "file": "src/styles/glassmorphism-2025-enhanced.css"
+      },
+      {
+        "type": "Color System Enhancement",
+        "description": "Advanced color system with 2025 trends and accessibility",
+        "file": "src/styles/color-system-2025.css"
+      },
+      {
+        "type": "Micro-Interactions Enhancement",
+        "description": "Advanced micro-interactions with magnetic effects and gestures",
+        "file": "src/scripts/micro-interactions-2025.js"
+      }
+    ],
+    "recommended": [],
+    "performance": []
+  },
+  "summary": {
+    "totalIssues": 11,
+    "fixedIssues": 11,
+    "overallScore": 100,
+    "recommendations": [
+      "Fix overlapping elements with proper z-index management",
+      "Standardize alignment patterns across components"
+    ]
+  }
+}

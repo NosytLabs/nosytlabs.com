@@ -1,0 +1,516 @@
+---
+/**
+ * Live Coding Terminal Component
+ * Interactive terminal that simulates live coding sessions
+ */
+
+interface Props {
+  className?: string;
+  autoStart?: boolean;
+}
+
+const { className = '', autoStart = true } = Astro.props;
+---
+
+<section class={`live-coding-terminal ${className}`}>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Live Coding Experience</h2>
+      <p class="section-description">Watch real-time development in action</p>
+    </div>
+    
+    <div class="terminal-container">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-controls">
+            <span class="control-btn close"></span>
+            <span class="control-btn minimize"></span>
+            <span class="control-btn maximize"></span>
+          </div>
+          <div class="terminal-title">NosytLabs Terminal - Live Coding Session</div>
+          <div class="terminal-actions">
+            <button class="action-btn" id="playPause">⏸️</button>
+            <button class="action-btn" id="restart">🔄</button>
+            <button class="action-btn" id="speedControl">1x</button>
+          </div>
+        </div>
+        
+        <div class="terminal-body">
+          <div class="terminal-output" id="terminalOutput">
+            <div class="terminal-line">
+              <span class="prompt">nosytlabs@dev:~$</span>
+              <span class="cursor">|</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="coding-stats">
+        <div class="stat-item">
+          <span class="stat-label">Lines of Code</span>
+          <span class="stat-value" id="linesCount">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Commands Executed</span>
+          <span class="stat-value" id="commandsCount">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Session Time</span>
+          <span class="stat-value" id="sessionTime">00:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Enhanced Accessibility for Interactive Components
+  document.addEventListener('DOMContentLoaded', () => {
+    // Add keyboard navigation support
+    const interactiveElements = document.querySelectorAll('.interactive-element, .skill-item, .calculator-input, .terminal-window');
+    
+    interactiveElements.forEach((element, index) => {
+      // Make elements focusable
+      if (!element.hasAttribute('tabindex')) {
+        element.setAttribute('tabindex', '0');
+      }
+      
+      // Add ARIA roles if not present
+      if (!element.hasAttribute('role')) {
+        element.setAttribute('role', 'button');
+      }
+      
+      // Add keyboard event listeners
+      element.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          element.click();
+        }
+      });
+      
+      // Add focus indicators
+      element.addEventListener('focus', () => {
+        element.style.outline = '3px solid var(--color-accent, #0066cc)';
+        element.style.outlineOffset = '2px';
+      });
+      
+      element.addEventListener('blur', () => {
+        element.style.outline = '';
+        element.style.outlineOffset = '';
+      });
+    });
+    
+    // Announce dynamic content changes to screen readers
+    const announceToScreenReader = (message) => {
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.className = 'sr-only';
+      announcement.textContent = message;
+      document.body.appendChild(announcement);
+      
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
+    };
+    
+    // Export for use by components
+    window.announceToScreenReader = announceToScreenReader;
+  });
+</script>
+</section>
+
+<style>
+  .live-coding-terminal {
+    padding: var(--spacing-20) 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    position: relative;
+  }
+  
+  .container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-16);
+  }
+  
+  .section-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-4);
+    background: linear-gradient(45deg, #00ff88, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .section-description {
+    font-size: var(--font-size-lg);
+    opacity: 0.8;
+  }
+  
+  .terminal-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .terminal-window {
+    background: #1a1a1a;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+  }
+  
+  .terminal-header {
+    background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+    padding: var(--spacing-3) var(--spacing-4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+  }
+  
+  .terminal-controls {
+    display: flex;
+    gap: var(--spacing-2);
+  }
+  
+  .control-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .control-btn.close {
+    background: #ff5f57;
+  }
+  
+  .control-btn.minimize {
+    background: #ffbd2e;
+  }
+  
+  .control-btn.maximize {
+    background: #28ca42;
+  }
+  
+  .terminal-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: #ccc;
+  }
+  
+  .terminal-actions {
+    display: flex;
+    gap: var(--spacing-2);
+  }
+  
+  .action-btn {
+    background: transparent;
+    border: 1px solid #444;
+    color: #ccc;
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    transition: all 0.2s ease;
+  }
+  
+  .action-btn:hover {
+    background: #333;
+    border-color: #555;
+  }
+  
+  .terminal-body {
+    background: #000;
+    padding: var(--spacing-4);
+    min-height: 400px;
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-y: auto;
+  }
+  
+  .terminal-output {
+    color: #00ff88;
+  }
+  
+  .terminal-line {
+    margin-bottom: var(--spacing-1);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .prompt {
+    color: #00ccff;
+    margin-right: var(--spacing-2);
+    flex-shrink: 0;
+  }
+  
+  .command {
+    color: #ffffff;
+  }
+  
+  .output {
+    color: #00ff88;
+    margin-left: 0;
+  }
+  
+  .error {
+    color: #ff6b6b;
+  }
+  
+  .comment {
+    color: #888;
+  }
+  
+  .cursor {
+    background: #00ff88;
+    color: #000;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+  
+  .coding-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-8);
+  }
+  
+  .stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-6);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .stat-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .stat-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: #ccc;
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .stat-value {
+    display: block;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: #00ff88;
+    font-family: 'Fira Code', monospace;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  @media (max-width: 768px) {
+    .terminal-header {
+      flex-direction: column;
+      gap: var(--spacing-2);
+    }
+    
+    .terminal-body {
+      font-size: 12px;
+      padding: var(--spacing-3);
+    }
+    
+    .coding-stats {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-4);
+    }
+  }
+</style>
+
+<script>
+  class LiveCodingTerminal {
+    constructor() {
+      this.output = document.getElementById('terminalOutput');
+      this.linesCount = document.getElementById('linesCount');
+      this.commandsCount = document.getElementById('commandsCount');
+      this.sessionTime = document.getElementById('sessionTime');
+      
+      this.isPlaying = true;
+      this.speed = 1;
+      this.currentStep = 0;
+      this.startTime = Date.now();
+      
+      this.commands = [
+        { type: 'command', text: 'git clone https://github.com/NosytLabs/portfolio.git', delay: 1000 },
+        { type: 'output', text: 'Cloning into \'portfolio\'...', delay: 500 },
+        { type: 'output', text: 'remote: Enumerating objects: 247, done.', delay: 300 },
+        { type: 'output', text: 'Receiving objects: 100% (247/247), 2.1 MiB | 1.8 MiB/s, done.', delay: 800 },
+        { type: 'command', text: 'cd portfolio && npm install', delay: 1200 },
+        { type: 'output', text: 'Installing dependencies...', delay: 400 },
+        { type: 'output', text: '✓ astro@4.16.18', delay: 200 },
+        { type: 'output', text: '✓ typescript@5.3.3', delay: 200 },
+        { type: 'output', text: '✓ @astrojs/tailwind@5.1.0', delay: 200 },
+        { type: 'command', text: 'npm run dev', delay: 1000 },
+        { type: 'output', text: '🚀 astro dev', delay: 300 },
+        { type: 'output', text: '┃ Local    http://localhost:3001/', delay: 500 },
+        { type: 'output', text: '┃ Network  use --host to expose', delay: 300 },
+        { type: 'command', text: 'code src/components/NewFeature.astro', delay: 1500 },
+        { type: 'output', text: 'Opening in VS Code...', delay: 400 },
+        { type: 'code', text: '---\ninterface Props {\n  title: string;\n  description?: string;\n}\n---', delay: 2000 },
+        { type: 'code', text: '\n<section class="new-feature">\n  <h2>{title}</h2>\n  <p>{description}</p>\n</section>', delay: 1800 },
+        { type: 'command', text: 'git add . && git commit -m "Add new interactive feature"', delay: 1200 },
+        { type: 'output', text: '[main 7a8b9c2] Add new interactive feature', delay: 400 },
+        { type: 'output', text: ' 3 files changed, 47 insertions(+)', delay: 300 },
+        { type: 'command', text: 'npm run build', delay: 1000 },
+        { type: 'output', text: '🔥 Building for production...', delay: 500 },
+        { type: 'output', text: '✓ Completed in 2.3s', delay: 1200 },
+        { type: 'comment', text: '# Ready for deployment! 🚀', delay: 800 }
+      ];
+      
+      this.init();
+    }
+    
+    init() {
+      this.setupControls();
+      this.startSession();
+      this.updateTimer();
+    }
+    
+    setupControls() {
+      const playPause = document.getElementById('playPause');
+      const restart = document.getElementById('restart');
+      const speedControl = document.getElementById('speedControl');
+      
+      playPause?.addEventListener('click', () => this.togglePlayPause());
+      restart?.addEventListener('click', () => this.restart());
+      speedControl?.addEventListener('click', () => this.cycleSpeed());
+    }
+    
+    async startSession() {
+      if (!this.isPlaying) return;
+      
+      for (let i = this.currentStep; i < this.commands.length; i++) {
+        if (!this.isPlaying) {
+          this.currentStep = i;
+          return;
+        }
+        
+        const command = this.commands[i];
+        await this.executeCommand(command);
+        this.currentStep = i + 1;
+        this.updateStats();
+      }
+    }
+    
+    async executeCommand(command) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          this.addLine(command);
+          resolve();
+        }, command.delay / this.speed);
+      });
+    }
+    
+    addLine(command) {
+      const line = document.createElement('div');
+      line.className = 'terminal-line';
+      
+      if (command.type === 'command') {
+        line.innerHTML = `
+          <span class="prompt">nosytlabs@dev:~$</span>
+          <span class="command">${command.text}</span>
+        `;
+      } else if (command.type === 'code') {
+        line.innerHTML = `<span class="output">${command.text}</span>`;
+      } else if (command.type === 'comment') {
+        line.innerHTML = `<span class="comment">${command.text}</span>`;
+      } else {
+        line.innerHTML = `<span class="output">${command.text}</span>`;
+      }
+      
+      // Remove cursor from previous line
+      const cursor = this.output.querySelector('.cursor');
+      if (cursor) cursor.remove();
+      
+      this.output.appendChild(line);
+      
+      // Add new cursor
+      const newCursor = document.createElement('div');
+      newCursor.className = 'terminal-line';
+      newCursor.innerHTML = '<span class="prompt">nosytlabs@dev:~$</span><span class="cursor">|</span>';
+      this.output.appendChild(newCursor);
+      
+      // Scroll to bottom
+      this.output.scrollTop = this.output.scrollHeight;
+    }
+    
+    togglePlayPause() {
+      this.isPlaying = !this.isPlaying;
+      const btn = document.getElementById('playPause');
+      if (btn) {
+        btn.textContent = this.isPlaying ? '⏸️' : '▶️';
+      }
+      
+      if (this.isPlaying) {
+        this.startSession();
+      }
+    }
+    
+    restart() {
+      this.currentStep = 0;
+      this.output.innerHTML = '<div class="terminal-line"><span class="prompt">nosytlabs@dev:~$</span><span class="cursor">|</span></div>';
+      this.startTime = Date.now();
+      this.updateStats();
+      
+      if (this.isPlaying) {
+        this.startSession();
+      }
+    }
+    
+    cycleSpeed() {
+      const speeds = [0.5, 1, 2, 4];
+      const currentIndex = speeds.indexOf(this.speed);
+      this.speed = speeds[(currentIndex + 1) % speeds.length];
+      
+      const btn = document.getElementById('speedControl');
+      if (btn) {
+        btn.textContent = `${this.speed}x`;
+      }
+    }
+    
+    updateStats() {
+      const lines = this.output.querySelectorAll('.terminal-line').length - 1; // Exclude cursor line
+      const commands = this.output.querySelectorAll('.command').length;
+      
+      if (this.linesCount) this.linesCount.textContent = lines.toString();
+      if (this.commandsCount) this.commandsCount.textContent = commands.toString();
+    }
+    
+    updateTimer() {
+      setInterval(() => {
+        const elapsed = Math.floor((Date.now() - this.startTime) / 1000);
+        const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+        const seconds = (elapsed % 60).toString().padStart(2, '0');
+        
+        if (this.sessionTime) {
+          this.sessionTime.textContent = `${minutes}:${seconds}`;
+        }
+      }, 1000);
+    }
+  }
+  
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new LiveCodingTerminal();
+  });
+</script>

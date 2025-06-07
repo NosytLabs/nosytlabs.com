@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Purple gradient for the background and N shape -->
+    <linearGradient id="purple-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D0A4F" />
+      <stop offset="50%" stop-color="#4C1D95" />
+      <stop offset="100%" stop-color="#3B0764" />
+    </linearGradient>
+
+    <!-- Orange gradient for the wavy arrow -->
+    <linearGradient id="orange-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#FF8C3F" />
+    </linearGradient>
+
+    <!-- Subtle glow effect -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Clip path for rounded corners -->
+    <clipPath id="rounded-clip">
+      <rect x="0" y="0" width="100" height="100" rx="15" />
+    </clipPath>
+  </defs>
+
+  <!-- Background with gradient and rounded corners -->
+  <rect x="0" y="0" width="100" height="100" rx="15" fill="url(#purple-gradient)" />
+
+  <!-- Stylized N letter -->
+  <g filter="url(#glow)">
+    <!-- Main N shape -->
+    <path d="M25 25 L25 75 L35 75 L35 45 L65 75 L75 75 L75 25 L65 25 L65 55 L35 25 Z" fill="#fff" />
+  </g>
+
+  <!-- Wavy arrow element -->
+  <path d="M40 50 C45 40, 55 60, 60 50 L70 60 L60 70 L60 60 C55 70, 45 50, 40 60 Z"
+        fill="url(#orange-gradient)"
+        filter="url(#glow)" />
+</svg>

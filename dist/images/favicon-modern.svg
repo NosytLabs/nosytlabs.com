@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7C3AED" />
+      <stop offset="50%" style="stop-color:#EC4899" />
+      <stop offset="100%" style="stop-color:#F97316" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="64" height="64" rx="12" fill="url(#iconGradient)"/>
+  
+  <!-- Modern N letter with tech elements -->
+  <g transform="translate(8, 8)" filter="url(#glow)">
+    <!-- Main N structure -->
+    <path d="M8 8 L8 40 L14 40 L14 24 L34 40 L40 40 L40 8 L34 8 L34 24 L14 8 Z" fill="white" opacity="0.95"/>
+    
+    <!-- Tech accent dots -->
+    <circle cx="4" cy="12" r="2" fill="white" opacity="0.8"/>
+    <circle cx="44" cy="12" r="2" fill="white" opacity="0.8"/>
+    <circle cx="4" cy="36" r="2" fill="white" opacity="0.8"/>
+    <circle cx="44" cy="36" r="2" fill="white" opacity="0.8"/>
+    
+    <!-- Central connecting element -->
+    <circle cx="24" cy="24" r="3" fill="white" opacity="0.9"/>
+    <circle cx="24" cy="24" r="1.5" fill="url(#iconGradient)"/>
+  </g>
+</svg>

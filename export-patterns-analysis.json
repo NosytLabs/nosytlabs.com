@@ -1,0 +1,3665 @@
+{
+  "timestamp": "2025-06-03T02:45:45.705Z",
+  "summary": {
+    "filesAnalyzed": 171,
+    "patterns": {
+      "defaultExports": [
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\branding.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.ts",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\env.d.ts",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai-review.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\build\\image-optimization.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\build\\unified-css-optimizer.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\development\\js-optimization.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\types\\astro.d.ts",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\core-bundle.js",
+          "matches": 2
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\utils-bundle.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\core\\main.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\core\\utils.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\performance-monitor.js",
+          "matches": 1
+        }
+      ],
+      "namedExports": [
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\animations\\AnimatedSection.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\animations\\index.ts",
+          "matches": 3
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\animations\\PageTransition.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CodeDisplay.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CrealityEmbed.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\EnhancedProjectCard.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\EnhancedWindows95Window.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\index.ts",
+          "matches": 3
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\index.ts",
+          "matches": 40
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\InfoCard.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Column.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Container.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Grid.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\index.ts",
+          "matches": 5
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Section.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Spacer.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\index.ts",
+          "matches": 8
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\PDFViewer.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ProjectTimeline.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ServiceCard.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ServiceIcon.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ui\\ExpandableCard.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ui\\index.ts",
+          "matches": 3
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\YouTubeEmbed.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\branding.js",
+          "matches": 6
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.js",
+          "matches": 14
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.ts",
+          "matches": 16
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\index.js",
+          "matches": 3
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\index.ts",
+          "matches": 3
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\BaseLayout.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\ErrorLayout.astro",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\optimization\\consolidate-scripts.js",
+          "matches": 2
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\types\\astro.d.ts",
+          "matches": 8
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\types\\index.ts",
+          "matches": 15
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\utils\\dateUtils.js",
+          "matches": 3
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\utils\\index.js",
+          "matches": 3
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\utils\\knowledgeGraph.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\utils\\youtubeScraperUtil.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\bundle-loader.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\utils-bundle.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\sound-paths.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\unified-optimizer.js",
+          "matches": 1
+        }
+      ],
+      "barrelExports": [
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\animations\\index.ts",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\index.ts",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\index.ts",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\index.ts",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ui\\index.ts",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\index.js",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\index.ts",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\blog\\index.astro",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\index.astro",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\projects\\index.astro",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\index.astro",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\types\\index.ts",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\utils\\index.js"
+      ],
+      "dynamicImports": [
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\build\\generate-win95-icons.js",
+          "matches": 1
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\core-bundle.js",
+          "matches": 4
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\core\\main.js",
+          "matches": 4
+        }
+      ],
+      "relativeImports": [
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\FeatureGrid.astro",
+          "path": "./FeatureCard.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\HeroSection.astro",
+          "path": "./ParticleBackground.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\InfoCard.astro",
+          "path": "./YouTubeEmbed.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\KnowledgeGraphDemo.astro",
+          "path": "../utils/knowledgeGraph.js"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ProjectGrid.astro",
+          "path": "./ProjectCard.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ServiceCard.astro",
+          "path": "./ServiceIcon.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\BaseLayout.astro",
+          "path": "../components/Header.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\BaseLayout.astro",
+          "path": "../components/Footer.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\BaseLayout.astro",
+          "path": "../components/VercelAnalytics.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\BlogPostLayout.astro",
+          "path": "./BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\3d-printing.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\3d-printing.astro",
+          "path": "../components/CrealityEmbed.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\3d-printing.astro",
+          "path": "../components/CrealityModelViewer.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\3d-printing.astro",
+          "path": "../components/3DPrintingCalculator.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\3d-printing.astro",
+          "path": "../components/ProjectSubmissionForm.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\about.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\about.astro",
+          "path": "../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\about.astro",
+          "path": "../components/ui/ResponsiveImage.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\blog\\index.astro",
+          "path": "../../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\blog\\index.astro",
+          "path": "../../../components/admin/AdminSidebar.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\blog\\index.astro",
+          "path": "../../../components/admin/AdminHeader.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\index.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\index.astro",
+          "path": "../../components/admin/AdminSidebar.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\index.astro",
+          "path": "../../components/admin/AdminHeader.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\index.astro",
+          "path": "../../components/admin/AdminDashboard.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\projects\\index.astro",
+          "path": "../../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\projects\\index.astro",
+          "path": "../../../components/admin/AdminSidebar.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\projects\\index.astro",
+          "path": "../../../components/admin/AdminHeader.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-tools-comparison-2025.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-tools-comparison-2025.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-trends-2025.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai-review.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai-review.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai.astro",
+          "path": "../../components/GlitchText.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\future-of-3d-printing-2025.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\future-of-3d-printing-2025.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\index.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\index.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\index.astro",
+          "path": "../../components/GlitchText.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\roo-code-windsurf-comparison.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\roo-code-windsurf-comparison.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\trae-ai-guide.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\trae-ai-guide.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog.astro",
+          "path": "../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog.astro",
+          "path": "../components/GlitchText.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\contact.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\content-creation.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\content-creation.astro",
+          "path": "../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\content-creation.astro",
+          "path": "../components/YouTubeEmbed.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\content-creation.astro",
+          "path": "../utils/youtubeScraperUtil.js"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\crypto-mining.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+          "path": "../utils/youtubeScraperUtil.js"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+          "path": "../../public/data/projects.json"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\live.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\live.astro",
+          "path": "../components/StreamSchedule.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\live.astro",
+          "path": "../components/SocialLinks.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\live.astro",
+          "path": "../components/AnimatedHeading.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\brave.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\brave.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\brave.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\comparison.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\comparison.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\earnapp.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\earnapp.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\earnapp.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\guide.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\guide.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\honeygain.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\honeygain.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\honeygain.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\peer2profit.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\peer2profit.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\peer2profit.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\repocket.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\repocket.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\repocket.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\swagbucks.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\swagbucks.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\swagbucks.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\traffmonetizer.astro",
+          "path": "../../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\traffmonetizer.astro",
+          "path": "../../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\traffmonetizer.astro",
+          "path": "../../components/CodeDisplay.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\projects.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\projects.astro",
+          "path": "../components/EnhancedProjectCard.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\projects.astro",
+          "path": "../../public/data/projects.json"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+          "path": "../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+          "path": "../components/GlitchText.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+          "path": "../components/PDFViewer.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+          "path": "../components/ServiceIcon.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+          "path": "../components/ServiceCard.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+          "path": "../../public/data/services.json"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\skills.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\skills.astro",
+          "path": "../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\skills.astro",
+          "path": "../components/SkillsMatrix.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\timeline.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\timeline.astro",
+          "path": "../components/ProjectTimeline.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\timeline.astro",
+          "path": "../components/AnimatedHeading.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\timeline.astro",
+          "path": "../components/animations/AnimatedSection.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\vault-shelter.astro",
+          "path": "../layouts/BaseLayout.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\core-bundle.js",
+          "path": "./utils.js"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\core\\main.js",
+          "path": "./utils.js"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "../../components/Header.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "../../components/Footer.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "../ui/Card3D.astro"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "../utils/dateUtils.js"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "../utils/knowledgeGraph.js"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "../types/user.ts"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "../types/api.ts"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "../config/constants.js"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "../config/branding.js"
+        }
+      ],
+      "absoluteImports": [
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\PassiveIncomeCTA.astro",
+          "path": "@/config/constants"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-constants.js",
+          "path": "@/config/constants"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-constants.js",
+          "path": "@/config/constants"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "@/components"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "@/components/ui"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "@/utils"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "@/types"
+        },
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "path": "@/config"
+        }
+      ],
+      "typeOnlyImports": [
+        {
+          "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+          "matches": 2
+        }
+      ],
+      "mixedPatterns": [
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\branding.js",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.js",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.ts",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\types\\astro.d.ts",
+        "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\utils-bundle.js"
+      ]
+    },
+    "issues": [
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\branding.js",
+        "issues": [
+          "Mixed default and named exports"
+        ]
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.js",
+        "issues": [
+          "Mixed default and named exports"
+        ]
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.ts",
+        "issues": [
+          "Mixed default and named exports"
+        ]
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\types\\astro.d.ts",
+        "issues": [
+          "Mixed default and named exports"
+        ]
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\core-bundle.js",
+        "issues": [
+          "Multiple default exports detected"
+        ]
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\utils-bundle.js",
+        "issues": [
+          "Mixed default and named exports"
+        ]
+      },
+      {
+        "file": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+        "issues": [
+          "Mixed relative and absolute imports"
+        ]
+      }
+    ],
+    "recommendations": [
+      "📋 Export Pattern Standardization Recommendations:",
+      "   • Standardize 5 files with mixed export patterns",
+      "   • Consider standardizing on named exports for utilities",
+      "   • Review 14 barrel export files for consistency",
+      "   • Standardize on absolute imports (@/) for better maintainability",
+      "   • Review 3 dynamic imports for optimization opportunities"
+    ]
+  },
+  "files": [
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\3DPrintingCalculator.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\admin\\AdminDashboard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\admin\\AdminHeader.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\admin\\AdminSidebar.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\AnimatedHeading.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\animations\\AnimatedSection.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\animations\\AnimatedText.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\animations\\index.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { default as AnimatedSection }",
+          "export { default as AnimatedText }",
+          "export { default as PageTransition }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\animations\\PageTransition.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\BlogCard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CodeDisplay.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ContactForm.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CrealityEmbed.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\CrealityModelViewer.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\DuckHuntGame.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\EnhancedProjectCard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\EnhancedWindowResizing.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\EnhancedWindows95Window.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\FeatureCard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\FeatureGrid.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "./FeatureCard.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\Footer.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\GlitchText.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\Header.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\HeroSection.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "./ParticleBackground.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\HeroShowcase.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\index.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export const Layout",
+          "export const UI",
+          "export const Animations",
+          "export { default as Header }",
+          "export { default as Footer }",
+          "export { default as Navigation }",
+          "export { default as HeroSection }",
+          "export { default as HeroShowcase }",
+          "export { default as NewHero }",
+          "export { default as IntroAnimation }",
+          "export { default as FeatureCard }",
+          "export { default as FeatureGrid }",
+          "export { default as InfoCard }",
+          "export { default as ServiceCard }",
+          "export { default as ServiceIcon }",
+          "export { default as ProjectCard }",
+          "export { default as EnhancedProjectCard }",
+          "export { default as ProjectGrid }",
+          "export { default as ProjectTimeline }",
+          "export { default as BlogCard }",
+          "export { default as ContactForm }",
+          "export { default as ProjectSubmissionForm }",
+          "export { default as YouTubeEmbed }",
+          "export { default as PDFViewer }",
+          "export { default as CrealityEmbed }",
+          "export { default as CrealityModelViewer }",
+          "export { default as CodeDisplay }",
+          "export { default as ParticleBackground }",
+          "export { default as ParallaxSection }",
+          "export { default as SocialIcons }",
+          "export { default as SocialLinks }",
+          "export { default as NosytLabsLogo }",
+          "export { default as VercelAnalytics }",
+          "export { default as AnimatedHeading }",
+          "export { default as GlitchText }",
+          "export { default as SkillsMatrix }",
+          "export { default as StreamSchedule }",
+          "export { default as KnowledgeGraphDemo }",
+          "export { default as ThreeDPrintingCalculator }",
+          "export { default as Windows95Window }",
+          "export { default as EnhancedWindows95Window }",
+          "export { DuckHuntGame }",
+          "export { EnhancedWindowResizing }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\InfoCard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [
+          "./YouTubeEmbed.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\IntroAnimation.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\KnowledgeGraphDemo.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../utils/knowledgeGraph.js"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Column.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Container.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Grid.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\index.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { default as Section }",
+          "export { default as Container }",
+          "export { default as Grid }",
+          "export { default as Column }",
+          "export { default as Spacer }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Section.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\layout\\Spacer.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\Navigation.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\NewHero.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\NosytLabsLogo.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ParallaxSection.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ParticleBackground.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\AppCard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\DataSources.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\EarningsComparison.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\ExpandableAppCard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\index.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { default as AppCard }",
+          "export { default as DataSources }",
+          "export { default as EarningsComparison }",
+          "export { default as ExpandableAppCard }",
+          "export { default as PassiveIncomeCTA }",
+          "export { default as PassiveIncomeCalculator }",
+          "export { default as PassiveIncomeStats }",
+          "export { default as PassiveIncomeTips }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\PassiveIncomeCalculator.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\PassiveIncomeCTA.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [
+          "@/config/constants"
+        ],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\PassiveIncomeStats.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\passive-income\\PassiveIncomeTips.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\PDFViewer.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ProjectCard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ProjectGrid.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "./ProjectCard.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ProjectSubmissionForm.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ProjectTimeline.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ServiceCard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [
+          "./ServiceIcon.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ServiceIcon.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\SkillsMatrix.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\SocialIcons.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\SocialLinks.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\StreamSchedule.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ui\\Card3D.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ui\\ExpandableCard.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ui\\index.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { default as Card3D }",
+          "export { default as ExpandableCard }",
+          "export { default as ResponsiveImage }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\ui\\ResponsiveImage.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\VercelAnalytics.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\Windows95Window.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\components\\YouTubeEmbed.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\branding.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [
+          "export const BRAND_CONFIG",
+          "export const getBrandColor",
+          "export const getSocialLink",
+          "export const getServiceByID",
+          "export const getFeaturedServices",
+          "export const getNavigation"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": [
+        "Mixed default and named exports"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [
+          "export const COMPANY",
+          "export const CONTACT",
+          "export const COLORS",
+          "export const TIMING",
+          "export const DIMENSIONS",
+          "export const DEV_CONFIG",
+          "export const PATHS",
+          "export const CACHE_CONFIG",
+          "export const FEATURES",
+          "export const GAMES",
+          "export const ANIMATIONS",
+          "export const PATTERNS",
+          "export const MESSAGES",
+          "export const ENV"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": [
+        "Mixed default and named exports"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\constants.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [
+          "export interface CompanyInfo",
+          "export interface ContactInfo",
+          "export interface ColorPalette",
+          "export interface TimingConfig",
+          "export type AnimationType",
+          "export type CacheStrategy",
+          "export const COMPANY",
+          "export const CONTACT",
+          "export const COLORS",
+          "export const TIMING",
+          "export const DIMENSIONS",
+          "export const PATHS",
+          "export const ANIMATIONS",
+          "export const CACHE_CONFIG",
+          "export const FEATURES",
+          "export const ENV"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": [
+        "Mixed default and named exports"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\index.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { default as Constants }",
+          "export { BRAND_CONFIG }",
+          "export {\n  COMPANY,\n  CONTACT,\n  COLORS,\n  TIMING,\n  PATHS,\n  FEATURES\n}"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\config\\index.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { default as Constants }",
+          "export { BRAND_CONFIG }",
+          "export {\n  COMPANY,\n  CONTACT,\n  COLORS,\n  TIMING,\n  PATHS,\n  FEATURES,\n  type CompanyInfo,\n  type ContactInfo,\n  type ColorPalette,\n  type TimingConfig,\n  type AnimationType,\n  type CacheStrategy\n}"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\env.d.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\BaseLayout.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../components/Header.astro",
+          "../components/Footer.astro",
+          "../components/VercelAnalytics.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\BlogPostLayout.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "./BaseLayout.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\layouts\\ErrorLayout.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface Props"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\3d-printing.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../components/CrealityEmbed.astro",
+          "../components/CrealityModelViewer.astro",
+          "../components/3DPrintingCalculator.astro",
+          "../components/ProjectSubmissionForm.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\about.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../components/animations/AnimatedSection.astro",
+          "../components/ui/ResponsiveImage.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\blog\\index.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../../layouts/BaseLayout.astro",
+          "../../../components/admin/AdminSidebar.astro",
+          "../../../components/admin/AdminHeader.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\index.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/admin/AdminSidebar.astro",
+          "../../components/admin/AdminHeader.astro",
+          "../../components/admin/AdminDashboard.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\admin\\projects\\index.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../../layouts/BaseLayout.astro",
+          "../../../components/admin/AdminSidebar.astro",
+          "../../../components/admin/AdminHeader.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-tools-comparison-2025.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\ai-trends-2025.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai-review.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\cursor-ai.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro",
+          "../../components/GlitchText.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\future-of-3d-printing-2025.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\index.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro",
+          "../../components/GlitchText.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\roo-code-windsurf-comparison.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog\\trae-ai-guide.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\blog.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../components/animations/AnimatedSection.astro",
+          "../components/GlitchText.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\contact.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\content-creation.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../components/CodeDisplay.astro",
+          "../components/YouTubeEmbed.astro",
+          "../utils/youtubeScraperUtil.js"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\crypto-mining.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\index.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../utils/youtubeScraperUtil.js",
+          "../../public/data/projects.json"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\live.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../components/StreamSchedule.astro",
+          "../components/SocialLinks.astro",
+          "../components/AnimatedHeading.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\nosytos95.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\brave.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\comparison.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\earnapp.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\guide.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\honeygain.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\peer2profit.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\repocket.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\swagbucks.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income\\traffmonetizer.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../layouts/BaseLayout.astro",
+          "../../components/animations/AnimatedSection.astro",
+          "../../components/CodeDisplay.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\passive-income.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\projects.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../components/EnhancedProjectCard.astro",
+          "../../public/data/projects.json"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\services.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../components/animations/AnimatedSection.astro",
+          "../components/GlitchText.astro",
+          "../components/PDFViewer.astro",
+          "../components/ServiceIcon.astro",
+          "../components/ServiceCard.astro",
+          "../../public/data/services.json"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\skills.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../components/animations/AnimatedSection.astro",
+          "../components/SkillsMatrix.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\timeline.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro",
+          "../components/ProjectTimeline.astro",
+          "../components/AnimatedHeading.astro",
+          "../components/animations/AnimatedSection.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\pages\\vault-shelter.astro",
+      "type": ".astro",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../layouts/BaseLayout.astro"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\build\\generate-assets.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\build\\generate-favicons.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\build\\generate-win95-icons.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [
+          "import('sharp')"
+        ],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\build\\image-optimization.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\build\\optimize-images.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\build\\unified-css-optimizer.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\development\\check-links.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\development\\js-optimization.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\development\\performance-optimization.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\hero-animations.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\optimization\\consolidate-scripts.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { BundleLoader, BUNDLES }",
+          "export { consolidateScripts }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\scripts\\vault-shelter-game.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\types\\astro.d.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [
+          "export interface BaseComponentProps",
+          "export interface ResponsiveProps",
+          "export type AnimationType",
+          "export type TextAlign",
+          "export type Size",
+          "export interface Win95WindowProps",
+          "export interface GridProps",
+          "export interface SectionProps"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": [
+        "Mixed default and named exports"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\types\\index.ts",
+      "type": ".ts",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export interface ApiResponse",
+          "export interface BaseComponentProps",
+          "export interface AnimationConfig",
+          "export type Theme",
+          "export type Breakpoint",
+          "export type ColorVariant",
+          "export type SizeVariant",
+          "export type LoadingState",
+          "export interface NavigationItem",
+          "export interface Project",
+          "export interface BlogPost",
+          "export interface User",
+          "export interface UserPreferences",
+          "export interface FormField",
+          "export interface SEOMetadata"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\utils\\dateUtils.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export function formatDate",
+          "export function getRelativeTimeString",
+          "export function formatISODate"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\utils\\index.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export {\n  formatDate,\n  parseDate,\n  getRelativeTime,\n  isValidDate\n}",
+          "export {\n  createNode,\n  createEdge,\n  findShortestPath,\n  getConnectedNodes\n}",
+          "export {\n  scrapeYouTubeData,\n  parseVideoMetadata,\n  extractChannelInfo\n}"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": true
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\utils\\knowledgeGraph.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export function formatEntityContent"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\src\\utils\\youtubeScraperUtil.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export function createEmbedUrl"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\animations.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\bundle-loader.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { BundleLoader, BUNDLES }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\core-bundle.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default ",
+          "export default "
+        ],
+        "namedExports": [],
+        "dynamicImports": [
+          "import('/scripts/ui/animations.js')",
+          "import('/scripts/performance/lazy-loading.js')",
+          "import('/scripts/nosytos95/window-manager.js')",
+          "import('/scripts/nosytos95/start-menu.js')"
+        ],
+        "relativeImports": [
+          "./utils.js"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": [
+        "Multiple default exports detected"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\games-bundle.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\nosytos95-apps.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\nosytos95-core.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\bundles\\utils-bundle.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [
+          "export { SOUND_PATHS, DUCK_HUNT_SOUNDS }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": [
+        "Mixed default and named exports"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\contact-booking.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\core\\main.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [],
+        "dynamicImports": [
+          "import('/scripts/ui/animations.js')",
+          "import('/scripts/performance/lazy-loading.js')",
+          "import('/scripts/nosytos95/window-manager.js')",
+          "import('/scripts/nosytos95/start-menu.js')"
+        ],
+        "relativeImports": [
+          "./utils.js"
+        ],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\core\\utils.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\creality-embed.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\easter-eggs.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\ie95.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\minesweeper.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\desktop-icons.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\duck-hunt.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\file-explorer.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\file-system.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\nosyt-ai.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\notepad.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\start-menu.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\taskbar.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\terminal.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\nosytos95\\window-manager.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\particles-config.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\particles-init.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\passive-income-particles.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\performance-monitor.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [
+          "export default "
+        ],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\service-worker-registration.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\sound-manager.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\sound-paths.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { SOUND_PATHS, DUCK_HUNT_SOUNDS }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\streaming-hub.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\theme.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\public\\scripts\\vault-shelter-game.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\analyze-export-patterns.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\standardize-jsdoc.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\unified-optimizer.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [
+          "export { UnifiedOptimizer }"
+        ],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-constants.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [
+          "@/config/constants",
+          "@/config/constants"
+        ],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-export-improvements.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [
+          "../../components/Header.astro",
+          "../../components/Footer.astro",
+          "../ui/Card3D.astro",
+          "../utils/dateUtils.js",
+          "../utils/knowledgeGraph.js",
+          "../types/user.ts",
+          "../types/api.ts",
+          "../config/constants.js",
+          "../config/branding.js"
+        ],
+        "absoluteImports": [
+          "@/components",
+          "@/components/ui",
+          "@/utils",
+          "@/types",
+          "@/config"
+        ],
+        "typeOnlyImports": [
+          "import type ",
+          "import type "
+        ],
+        "barrelExport": false
+      },
+      "issues": [
+        "Mixed relative and absolute imports"
+      ]
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-formatting.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-jsdoc-improvements.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    },
+    {
+      "path": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\scripts\\validate-typescript.js",
+      "type": ".js",
+      "patterns": {
+        "defaultExports": [],
+        "namedExports": [],
+        "dynamicImports": [],
+        "relativeImports": [],
+        "absoluteImports": [],
+        "typeOnlyImports": [],
+        "barrelExport": false
+      },
+      "issues": []
+    }
+  ]
+}

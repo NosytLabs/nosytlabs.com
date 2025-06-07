@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NosytLabs - Windows 95 Experience</title>
+    <meta name="description" content="Experience NosytLabs in classic Windows 95 style - Innovative digital solutions that help businesses thrive">
+
+    <!-- PWA requirements -->
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#c0c0c0">
+    <meta name="background-color" content="#008080">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="NosytLabs95">
+    <link rel="apple-touch-icon" href="images/icons/apple-touch-icon.png">
+
+    <!-- Performance optimizations -->
+    <link rel="preload" href="images/nosytlabs-logo-2025.svg" as="image" type="image/svg+xml" fetchpriority="high">
+    <link rel="preload" href="images/hero-poster.webp" as="image" type="image/webp">
+    <link rel="preload" href="styles/main.css" as="style">
+    <link rel="preload" href="scripts/main.js" as="script">
+    <link rel="preload" href="scripts/resource-hints.js" as="script" crossorigin="anonymous">
+    <link rel="preload" href="scripts/performance-monitor.js" as="script" crossorigin="anonymous">
+
+    <!-- Resource hints -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://api.nosytlabs.com" crossorigin>
+
+    <!-- Cache control -->
+    <meta http-equiv="Cache-Control" content="max-age=86400, must-revalidate">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="images/nosytlabs-logo-2025.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/clippy.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=MS+Sans+Serif:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script type="module" src="scripts/resource-hints.js"></script>
+    <script type="module" src="scripts/performance-monitor.js"></script>
+    <script src="scripts/main.js" defer></script>
+    <script src="scripts/enhanced-clippy.js" defer></script>
+
+    <!-- Theme Management -->
+    <script>
+        // Theme toggle with localStorage persistence
+        const setTheme = (theme) => {
+            document.documentElement.classList.toggle('win95', theme === 'win95');
+            document.documentElement.classList.toggle('dark', theme === 'dark');
+            localStorage.setItem('theme', theme);
+        };
+
+        const savedTheme = localStorage.getItem('theme') || 'win95';
+        setTheme(savedTheme);
+
+        // Remove no-js class
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Install prompt -->
+    <script>
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Show install button
+            document.getElementById('install-btn').style.display = 'block';
+        });
+    </script>
+</head>
+<body>
+    <header role="banner">
+        <nav role="navigation" aria-label="Main navigation">
+            <div class="logo">
+                <img src="images/nosytlabs-logo-2025.svg"
+                     alt="NosytLabs Logo"
+                     width="120"
+                     height="40"
+                     fetchpriority="high"
+                     loading="eager">
+                <span>NosytLabs95</span>
+            </div>
+            <div class="nav-links" role="menubar">
+                <a href="/" role="menuitem" tabindex="0">Home</a>
+                <a href="/services" role="menuitem" tabindex="0">Services</a>
+                <a href="/projects" role="menuitem" tabindex="0">Projects</a>
+                <a href="/blog" role="menuitem" tabindex="0">Blog</a>
+                <button id="install-btn"
+                        style="display: none;"
+                        class="win95-button"
+                        onclick="installPWA()">
+                    Install App
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        <section class="hero" aria-labelledby="hero-heading">
+            <picture>
+                <source srcset="images/hero-poster.webp" type="image/webp">
+                <source srcset="images/hero-poster.jpg" type="image/jpeg">
+                <img src="images/hero-poster.jpg"
+                     alt="Technology background"
+                     fetchpriority="high"
+                     loading="eager"
+                     class="hero-image"
+                     aria-hidden="true">
+            </picture>
+            <div class="hero-content">
+                <h1 id="hero-heading">Windows 95 Meets Modern Web</h1>
+                <p>Experience NosytLabs in classic style with modern capabilities</p>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2025 NosytLabs. All rights reserved.</p>
+        <div id="connection-status" aria-live="polite"></div>
+    </footer>
+
+    <!-- Core functionality -->
+    <script>
+        // PWA installation
+        async function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const result = await deferredPrompt.userChoice;
+                if (result.outcome === 'accepted') {
+                    console.log('PWA installed');
+                }
+                deferredPrompt = null;
+                document.getElementById('install-btn').style.display = 'none';
+            }
+        }
+
+        // Error handling for missing resources
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = () => {
+                img.style.display = 'none';
+                console.error(`Failed to load image: ${img.src}`);
+            };
+        });
+
+        // Network status monitoring
+        function updateNetworkStatus() {
+            const status = navigator.onLine ? 'online' : 'offline';
+            document.getElementById('connection-status').textContent =
+                `Status: ${status.charAt(0).toUpperCase() + status.slice(1)}`;
+        }
+        window.addEventListener('online', updateNetworkStatus);
+        window.addEventListener('offline', updateNetworkStatus);
+        updateNetworkStatus();
+
+        // Service worker registration with performance optimization
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Defer service worker registration
+                setTimeout(() => {
+                    navigator.serviceWorker.register('service-worker.js', {
+                        scope: '/',
+                        updateViaCache: 'none'
+                    }).then(registration => {
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed') {
+                                    if (navigator.serviceWorker.controller) {
+                                        // New content is available
+                                        if (confirm('New content available! Reload?')) {
+                                            window.location.reload();
+                                        }
+                                    }
+                                }
+                            });
+                        });
+                    }).catch(error => {
+                        console.error('Service worker registration failed:', error);
+                    });
+                }, 1000);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -4,6 +4,8 @@
  * A call-to-action component for the passive income page
  */
 
+import { CONTACT } from '@/config/constants';
+
 interface Props {
   title?: string;
   description?: string;
@@ -20,7 +22,7 @@ const {
   primaryButtonText = "Explore Top Apps",
   primaryButtonLink = "#passive-income-apps",
   secondaryButtonText = "Get Personalized Advice",
-  secondaryButtonLink = "mailto:contact@nosytlabs.com?subject=Passive Income Advice",
+  secondaryButtonLink = `mailto:${CONTACT.EMAIL.MAIN}?subject=Passive Income Advice`,
   className = ""
 } = Astro.props;
 ---

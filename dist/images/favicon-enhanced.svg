@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Enhanced gradient with more vibrant colors -->
+    <linearGradient id="nosyt-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3A0CA3" />
+      <stop offset="50%" stop-color="#4C1D95" />
+      <stop offset="100%" stop-color="#5B21B6" />
+    </linearGradient>
+    
+    <!-- Improved glow effect -->
+    <filter id="enhanced-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <!-- Clip path for rounded corners -->
+    <clipPath id="rounded-clip">
+      <rect x="0" y="0" width="100" height="100" rx="15" />
+    </clipPath>
+    
+    <!-- Orange accent gradient -->
+    <linearGradient id="orange-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#FF9E00" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background with enhanced gradient and rounded corners -->
+  <rect x="0" y="0" width="100" height="100" rx="15" fill="url(#nosyt-gradient)" />
+  
+  <!-- Subtle outer glow -->
+  <rect x="2" y="2" width="96" height="96" rx="13" fill="none" stroke="url(#orange-accent)" stroke-width="1" opacity="0.6" />
+
+  <!-- Stylized 3D N letter with enhanced effects -->
+  <g filter="url(#enhanced-glow)">
+    <!-- Main N shape with subtle gradient -->
+    <path d="M25 20 L25 80 L35 80 L35 40 L65 80 L75 80 L75 20 L65 20 L65 60 L35 20 Z" fill="#fff" />
+
+    <!-- 3D effect for N with improved orange accent -->
+    <path d="M25 20 L25 80 L35 80 L35 40 L65 80 L75 80 L75 20 L65 20 L65 60 L35 20 Z"
+          fill="none"
+          stroke="url(#orange-accent)"
+          stroke-width="2.5"
+          stroke-linejoin="round" />
+  </g>
+
+  <!-- Enhanced accent elements -->
+  <path d="M75 60 L85 60 L85 80 L75 80 Z" fill="url(#orange-accent)" />
+
+  <!-- Tech dots with improved visibility -->
+  <circle cx="15" cy="15" r="2.5" fill="url(#orange-accent)" />
+  <circle cx="15" cy="85" r="2.5" fill="url(#orange-accent)" />
+  <circle cx="85" cy="15" r="2.5" fill="url(#orange-accent)" />
+  <circle cx="85" cy="85" r="2.5" fill="url(#orange-accent)" />
+</svg>

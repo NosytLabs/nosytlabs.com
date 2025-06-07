@@ -1,0 +1,819 @@
+---
+/**
+ * Accessibility Enhancer Component for NosytLabs - 2025
+ * Comprehensive accessibility features for WCAG 2.1 AA compliance
+ * Features: Skip links, focus management, screen reader support, keyboard navigation, and accessibility tools
+ */
+
+interface Props {
+  skipLinks?: Array<{
+    href: string;
+    text: string;
+  }>;
+  enableAccessibilityTools?: boolean;
+  enableHighContrast?: boolean;
+  enableFocusIndicators?: boolean;
+  className?: string;
+}
+
+const {
+  skipLinks = [
+    { href: '#main-content', text: 'Skip to main content' },
+    { href: '#navigation', text: 'Skip to navigation' },
+    { href: '#footer', text: 'Skip to footer' }
+  ],
+  enableAccessibilityTools = true,
+  enableHighContrast = true,
+  enableFocusIndicators = true,
+  className = ''
+} = Astro.props;
+---
+
+<!-- Accessibility Enhancement Container -->
+<div class={`accessibility-enhancer ${className}`} role="complementary" aria-label="Accessibility tools">
+  <!-- Skip Links -->
+  <div class="skip-links" role="navigation" aria-label="Skip links">
+    {skipLinks.map((link) => (
+      <a href={link.href} class="skip-link">
+        {link.text}
+      </a>
+    ))}
+  </div>
+
+  <!-- Accessibility Toolbar -->
+  {enableAccessibilityTools && (
+    <div class="accessibility-toolbar" role="toolbar" aria-label="Accessibility options">
+      <button 
+        class="accessibility-toggle"
+        aria-label="Open accessibility options"
+        aria-expanded="false"
+        aria-controls="accessibility-panel"
+        data-accessibility-toggle
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v6m0 6v6"/>
+          <path d="m21 12-6-3-6 3-6-3"/>
+        </svg>
+        <span class="sr-only">Accessibility Options</span>
+      </button>
+
+      <div 
+        class="accessibility-panel"
+        id="accessibility-panel"
+        role="dialog"
+        aria-labelledby="accessibility-panel-title"
+        aria-hidden="true"
+        data-accessibility-panel
+      >
+        <div class="accessibility-panel-header">
+          <h2 id="accessibility-panel-title" class="accessibility-panel-title">
+            Accessibility Options
+          </h2>
+          <button 
+            class="accessibility-panel-close"
+            aria-label="Close accessibility options"
+            data-accessibility-close
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="accessibility-panel-content">
+          <!-- Font Size Controls -->
+          <div class="accessibility-group">
+            <h3 class="accessibility-group-title">Text Size</h3>
+            <div class="accessibility-controls" role="group" aria-labelledby="font-size-controls">
+              <button 
+                class="accessibility-control"
+                aria-label="Decrease text size"
+                data-font-size="decrease"
+              >
+                A-
+              </button>
+              <button 
+                class="accessibility-control"
+                aria-label="Reset text size"
+                data-font-size="reset"
+              >
+                A
+              </button>
+              <button 
+                class="accessibility-control"
+                aria-label="Increase text size"
+                data-font-size="increase"
+              >
+                A+
+              </button>
+            </div>
+          </div>
+
+          <!-- Contrast Controls -->
+          {enableHighContrast && (
+            <div class="accessibility-group">
+              <h3 class="accessibility-group-title">Contrast</h3>
+              <div class="accessibility-controls">
+                <button 
+                  class="accessibility-control accessibility-toggle-btn"
+                  aria-label="Toggle high contrast mode"
+                  aria-pressed="false"
+                  data-high-contrast
+                >
+                  High Contrast
+                </button>
+              </div>
+            </div>
+          )}
+
+          <!-- Focus Indicators -->
+          {enableFocusIndicators && (
+            <div class="accessibility-group">
+              <h3 class="accessibility-group-title">Navigation</h3>
+              <div class="accessibility-controls">
+                <button 
+                  class="accessibility-control accessibility-toggle-btn"
+                  aria-label="Toggle enhanced focus indicators"
+                  aria-pressed="false"
+                  data-focus-indicators
+                >
+                  Enhanced Focus
+                </button>
+              </div>
+            </div>
+          )}
+
+          <!-- Motion Controls -->
+          <div class="accessibility-group">
+            <h3 class="accessibility-group-title">Motion</h3>
+            <div class="accessibility-controls">
+              <button 
+                class="accessibility-control accessibility-toggle-btn"
+                aria-label="Toggle reduced motion"
+                aria-pressed="false"
+                data-reduced-motion
+              >
+                Reduce Motion
+              </button>
+            </div>
+          </div>
+
+          <!-- Reading Mode -->
+          <div class="accessibility-group">
+            <h3 class="accessibility-group-title">Reading</h3>
+            <div class="accessibility-controls">
+              <button 
+                class="accessibility-control accessibility-toggle-btn"
+                aria-label="Toggle reading mode"
+                aria-pressed="false"
+                data-reading-mode
+              >
+                Reading Mode
+              </button>
+            </div>
+          </div>
+
+          <!-- Reset All -->
+          <div class="accessibility-group">
+            <button 
+              class="accessibility-control accessibility-reset"
+              aria-label="Reset all accessibility settings"
+              data-reset-accessibility
+            >
+              Reset All Settings
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Screen Reader Announcements -->
+  <div 
+    class="sr-announcements" 
+    aria-live="polite" 
+    aria-atomic="true"
+    id="sr-announcements"
+  ></div>
+
+  <!-- Focus Trap for Modals -->
+  <div class="focus-trap-boundary" data-focus-trap></div>
+</div>
+
+<style>
+  /* Accessibility Enhancer Styles */
+  .accessibility-enhancer {
+    position: relative;
+    z-index: var(--z-tooltip);
+  }
+
+  /* Skip Links */
+  .skip-links {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    z-index: var(--z-tooltip);
+  }
+
+  .skip-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--color-primary-600);
+    color: white;
+    padding: var(--space-3) var(--space-4);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    border-radius: 0 0 var(--radius-md) 0;
+    transform: translateY(-100%);
+    transition: transform var(--duration-fast) var(--ease-out);
+    z-index: var(--z-tooltip);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
+  /* Accessibility Toolbar */
+  .accessibility-toolbar {
+    position: fixed;
+    top: 50%;
+    right: var(--space-4);
+    transform: translateY(-50%);
+    z-index: var(--z-tooltip);
+  }
+
+  .accessibility-toggle {
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary-600);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .accessibility-toggle:hover {
+    background: var(--color-primary-700);
+    transform: scale(1.05);
+  }
+
+  .accessibility-toggle:focus {
+    outline: 3px solid var(--color-accent-400);
+    outline-offset: 2px;
+  }
+
+  /* Accessibility Panel */
+  .accessibility-panel {
+    position: absolute;
+    top: 0;
+    right: 60px;
+    width: 280px;
+    background: var(--glass-white-strong);
+    backdrop-filter: var(--glass-blur-strong);
+    -webkit-backdrop-filter: var(--glass-blur-strong);
+    border: var(--glass-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    transform: translateX(100%) scale(0.9);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .accessibility-panel[aria-hidden="false"] {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .accessibility-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    border-bottom: var(--glass-border);
+  }
+
+  .accessibility-panel-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-900);
+    margin: 0;
+  }
+
+  .accessibility-panel-close {
+    background: none;
+    border: none;
+    color: var(--color-neutral-600);
+    cursor: pointer;
+    padding: var(--space-1);
+    border-radius: var(--radius-md);
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .accessibility-panel-close:hover {
+    background: var(--glass-primary);
+    color: var(--color-primary-600);
+  }
+
+  .accessibility-panel-content {
+    padding: var(--space-4);
+  }
+
+  /* Accessibility Groups */
+  .accessibility-group {
+    margin-bottom: var(--space-6);
+  }
+
+  .accessibility-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .accessibility-group-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-neutral-800);
+    margin: 0 0 var(--space-3) 0;
+  }
+
+  .accessibility-controls {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .accessibility-control {
+    padding: var(--space-2) var(--space-3);
+    background: var(--glass-primary);
+    color: var(--color-primary-600);
+    border: 1px solid var(--color-primary-300);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    transition: all var(--duration-fast) var(--ease-out);
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .accessibility-control:hover {
+    background: var(--color-primary-500);
+    color: white;
+  }
+
+  .accessibility-control:focus {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  .accessibility-toggle-btn[aria-pressed="true"] {
+    background: var(--color-primary-500);
+    color: white;
+  }
+
+  .accessibility-reset {
+    width: 100%;
+    background: var(--color-neutral-200);
+    color: var(--color-neutral-700);
+    border: 1px solid var(--color-neutral-300);
+  }
+
+  .accessibility-reset:hover {
+    background: var(--color-neutral-300);
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .sr-announcements {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* High Contrast Mode */
+  [data-high-contrast="true"] {
+    filter: contrast(150%) brightness(110%);
+  }
+
+  [data-high-contrast="true"] .accessibility-panel {
+    background: white;
+    border: 2px solid black;
+  }
+
+  [data-high-contrast="true"] .accessibility-control {
+    border-width: 2px;
+  }
+
+  /* Enhanced Focus Indicators */
+  [data-focus-indicators="true"] *:focus {
+    outline: 3px solid var(--color-accent-500) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 5px rgba(236, 72, 153, 0.3) !important;
+  }
+
+  /* Reduced Motion */
+  [data-reduced-motion="true"] * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reading Mode */
+  [data-reading-mode="true"] {
+    background: #f9f9f9 !important;
+    color: #333 !important;
+  }
+
+  [data-reading-mode="true"] * {
+    background: transparent !important;
+    color: inherit !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  [data-reading-mode="true"] img,
+  [data-reading-mode="true"] video {
+    opacity: 0.8;
+    filter: grayscale(50%);
+  }
+
+  /* Font Size Adjustments */
+  [data-font-size="small"] {
+    font-size: 0.875em;
+  }
+
+  [data-font-size="large"] {
+    font-size: 1.125em;
+  }
+
+  [data-font-size="extra-large"] {
+    font-size: 1.25em;
+  }
+
+  /* Dark Theme Support */
+  [data-theme="dark"] .accessibility-panel {
+    background: var(--glass-dark-strong);
+    color: var(--color-neutral-100);
+  }
+
+  [data-theme="dark"] .accessibility-panel-title {
+    color: var(--color-neutral-100);
+  }
+
+  [data-theme="dark"] .accessibility-group-title {
+    color: var(--color-neutral-200);
+  }
+
+  [data-theme="dark"] .accessibility-control {
+    background: var(--glass-dark);
+    color: var(--color-primary-400);
+    border-color: var(--color-primary-600);
+  }
+
+  [data-theme="dark"] .accessibility-control:hover {
+    background: var(--color-primary-600);
+    color: white;
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .accessibility-toolbar {
+      right: var(--space-3);
+    }
+
+    .accessibility-panel {
+      width: calc(100vw - var(--space-6));
+      right: calc(-100vw + 60px + var(--space-3));
+      max-width: 320px;
+    }
+
+    .accessibility-toggle {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .accessibility-enhancer {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Accessibility Enhancer Functionality
+  class AccessibilityEnhancer {
+    constructor() {
+      this.settings = {
+        fontSize: 'normal',
+        highContrast: false,
+        focusIndicators: false,
+        reducedMotion: false,
+        readingMode: false
+      };
+      
+      this.init();
+    }
+
+    init() {
+      this.loadSettings();
+      this.setupEventListeners();
+      this.setupKeyboardNavigation();
+      this.applySettings();
+    }
+
+    setupEventListeners() {
+      // Toggle panel
+      const toggle = document.querySelector('[data-accessibility-toggle]');
+      const panel = document.querySelector('[data-accessibility-panel]');
+      const close = document.querySelector('[data-accessibility-close]');
+
+      toggle?.addEventListener('click', () => this.togglePanel());
+      close?.addEventListener('click', () => this.closePanel());
+
+      // Font size controls
+      document.querySelectorAll('[data-font-size]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const action = e.target.dataset.fontSize;
+          this.adjustFontSize(action);
+        });
+      });
+
+      // Feature toggles
+      document.querySelector('[data-high-contrast]')?.addEventListener('click', () => {
+        this.toggleHighContrast();
+      });
+
+      document.querySelector('[data-focus-indicators]')?.addEventListener('click', () => {
+        this.toggleFocusIndicators();
+      });
+
+      document.querySelector('[data-reduced-motion]')?.addEventListener('click', () => {
+        this.toggleReducedMotion();
+      });
+
+      document.querySelector('[data-reading-mode]')?.addEventListener('click', () => {
+        this.toggleReadingMode();
+      });
+
+      // Reset all
+      document.querySelector('[data-reset-accessibility]')?.addEventListener('click', () => {
+        this.resetAll();
+      });
+
+      // Close panel on outside click
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.accessibility-toolbar')) {
+          this.closePanel();
+        }
+      });
+
+      // Close panel on escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.closePanel();
+        }
+      });
+    }
+
+    setupKeyboardNavigation() {
+      // Alt + A to open accessibility panel
+      document.addEventListener('keydown', (e) => {
+        if (e.altKey && e.key === 'a') {
+          e.preventDefault();
+          this.togglePanel();
+        }
+      });
+    }
+
+    togglePanel() {
+      const toggle = document.querySelector('[data-accessibility-toggle]');
+      const panel = document.querySelector('[data-accessibility-panel]');
+      
+      const isOpen = panel.getAttribute('aria-hidden') === 'false';
+      
+      if (isOpen) {
+        this.closePanel();
+      } else {
+        this.openPanel();
+      }
+    }
+
+    openPanel() {
+      const toggle = document.querySelector('[data-accessibility-toggle]');
+      const panel = document.querySelector('[data-accessibility-panel]');
+      
+      panel.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      
+      // Focus first control
+      const firstControl = panel.querySelector('.accessibility-control');
+      firstControl?.focus();
+      
+      this.announce('Accessibility options opened');
+    }
+
+    closePanel() {
+      const toggle = document.querySelector('[data-accessibility-toggle]');
+      const panel = document.querySelector('[data-accessibility-panel]');
+      
+      panel.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      
+      this.announce('Accessibility options closed');
+    }
+
+    adjustFontSize(action) {
+      const root = document.documentElement;
+      
+      switch (action) {
+        case 'increase':
+          if (this.settings.fontSize === 'normal') {
+            this.settings.fontSize = 'large';
+            root.setAttribute('data-font-size', 'large');
+          } else if (this.settings.fontSize === 'large') {
+            this.settings.fontSize = 'extra-large';
+            root.setAttribute('data-font-size', 'extra-large');
+          }
+          break;
+        case 'decrease':
+          if (this.settings.fontSize === 'large') {
+            this.settings.fontSize = 'normal';
+            root.removeAttribute('data-font-size');
+          } else if (this.settings.fontSize === 'extra-large') {
+            this.settings.fontSize = 'large';
+            root.setAttribute('data-font-size', 'large');
+          } else if (this.settings.fontSize === 'normal') {
+            this.settings.fontSize = 'small';
+            root.setAttribute('data-font-size', 'small');
+          }
+          break;
+        case 'reset':
+          this.settings.fontSize = 'normal';
+          root.removeAttribute('data-font-size');
+          break;
+      }
+      
+      this.saveSettings();
+      this.announce(`Text size ${action === 'reset' ? 'reset' : action + 'd'}`);
+    }
+
+    toggleHighContrast() {
+      this.settings.highContrast = !this.settings.highContrast;
+      const root = document.documentElement;
+      const button = document.querySelector('[data-high-contrast]');
+      
+      if (this.settings.highContrast) {
+        root.setAttribute('data-high-contrast', 'true');
+        button.setAttribute('aria-pressed', 'true');
+      } else {
+        root.removeAttribute('data-high-contrast');
+        button.setAttribute('aria-pressed', 'false');
+      }
+      
+      this.saveSettings();
+      this.announce(`High contrast ${this.settings.highContrast ? 'enabled' : 'disabled'}`);
+    }
+
+    toggleFocusIndicators() {
+      this.settings.focusIndicators = !this.settings.focusIndicators;
+      const root = document.documentElement;
+      const button = document.querySelector('[data-focus-indicators]');
+      
+      if (this.settings.focusIndicators) {
+        root.setAttribute('data-focus-indicators', 'true');
+        button.setAttribute('aria-pressed', 'true');
+      } else {
+        root.removeAttribute('data-focus-indicators');
+        button.setAttribute('aria-pressed', 'false');
+      }
+      
+      this.saveSettings();
+      this.announce(`Enhanced focus indicators ${this.settings.focusIndicators ? 'enabled' : 'disabled'}`);
+    }
+
+    toggleReducedMotion() {
+      this.settings.reducedMotion = !this.settings.reducedMotion;
+      const root = document.documentElement;
+      const button = document.querySelector('[data-reduced-motion]');
+      
+      if (this.settings.reducedMotion) {
+        root.setAttribute('data-reduced-motion', 'true');
+        button.setAttribute('aria-pressed', 'true');
+      } else {
+        root.removeAttribute('data-reduced-motion');
+        button.setAttribute('aria-pressed', 'false');
+      }
+      
+      this.saveSettings();
+      this.announce(`Reduced motion ${this.settings.reducedMotion ? 'enabled' : 'disabled'}`);
+    }
+
+    toggleReadingMode() {
+      this.settings.readingMode = !this.settings.readingMode;
+      const root = document.documentElement;
+      const button = document.querySelector('[data-reading-mode]');
+      
+      if (this.settings.readingMode) {
+        root.setAttribute('data-reading-mode', 'true');
+        button.setAttribute('aria-pressed', 'true');
+      } else {
+        root.removeAttribute('data-reading-mode');
+        button.setAttribute('aria-pressed', 'false');
+      }
+      
+      this.saveSettings();
+      this.announce(`Reading mode ${this.settings.readingMode ? 'enabled' : 'disabled'}`);
+    }
+
+    resetAll() {
+      this.settings = {
+        fontSize: 'normal',
+        highContrast: false,
+        focusIndicators: false,
+        reducedMotion: false,
+        readingMode: false
+      };
+      
+      this.applySettings();
+      this.saveSettings();
+      this.announce('All accessibility settings reset');
+    }
+
+    applySettings() {
+      const root = document.documentElement;
+      
+      // Apply font size
+      if (this.settings.fontSize !== 'normal') {
+        root.setAttribute('data-font-size', this.settings.fontSize);
+      } else {
+        root.removeAttribute('data-font-size');
+      }
+      
+      // Apply other settings
+      root.toggleAttribute('data-high-contrast', this.settings.highContrast);
+      root.toggleAttribute('data-focus-indicators', this.settings.focusIndicators);
+      root.toggleAttribute('data-reduced-motion', this.settings.reducedMotion);
+      root.toggleAttribute('data-reading-mode', this.settings.readingMode);
+      
+      // Update button states
+      document.querySelector('[data-high-contrast]')?.setAttribute('aria-pressed', this.settings.highContrast);
+      document.querySelector('[data-focus-indicators]')?.setAttribute('aria-pressed', this.settings.focusIndicators);
+      document.querySelector('[data-reduced-motion]')?.setAttribute('aria-pressed', this.settings.reducedMotion);
+      document.querySelector('[data-reading-mode]')?.setAttribute('aria-pressed', this.settings.readingMode);
+    }
+
+    saveSettings() {
+      localStorage.setItem('nosytlabs-accessibility', JSON.stringify(this.settings));
+    }
+
+    loadSettings() {
+      const saved = localStorage.getItem('nosytlabs-accessibility');
+      if (saved) {
+        this.settings = { ...this.settings, ...JSON.parse(saved) };
+      }
+    }
+
+    announce(message) {
+      const announcer = document.getElementById('sr-announcements');
+      if (announcer) {
+        announcer.textContent = message;
+        setTimeout(() => {
+          announcer.textContent = '';
+        }, 1000);
+      }
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new AccessibilityEnhancer();
+  });
+</script>

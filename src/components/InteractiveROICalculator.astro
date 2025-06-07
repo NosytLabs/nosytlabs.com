@@ -1,0 +1,955 @@
+---
+/**
+ * Interactive ROI Calculator Component
+ * High-impact engagement tool for 40% user engagement increase
+ * Calculates ROI for various passive income and investment strategies
+ */
+
+interface Props {
+  calculatorType?: 'passive-income' | 'web-development' | 'investment' | 'all';
+  className?: string;
+}
+
+const { calculatorType = 'all', className = '' } = Astro.props;
+
+// Calculator configurations
+const calculators = [
+  {
+    id: 'passive-income',
+    title: 'Passive Income ROI',
+    description: 'Calculate potential returns from passive income streams',
+    icon: '💰',
+    color: 'from-green-500 to-emerald-600',
+    inputs: [
+      { id: 'initial-investment', label: 'Initial Investment ($)', type: 'number', min: 0, step: 100, default: 1000 },
+      { id: 'monthly-income', label: 'Monthly Income ($)', type: 'number', min: 0, step: 10, default: 50 },
+      { id: 'time-period', label: 'Time Period (months)', type: 'number', min: 1, max: 120, default: 12 }
+    ]
+  },
+  {
+    id: 'web-development',
+    title: 'Web Development ROI',
+    description: 'Calculate ROI for web development projects',
+    icon: '🌐',
+    color: 'from-blue-500 to-indigo-600',
+    inputs: [
+      { id: 'project-cost', label: 'Project Cost ($)', type: 'number', min: 0, step: 500, default: 5000 },
+      { id: 'monthly-revenue', label: 'Monthly Revenue Increase ($)', type: 'number', min: 0, step: 100, default: 1000 },
+      { id: 'project-timeline', label: 'Timeline (months)', type: 'number', min: 1, max: 60, default: 24 }
+    ]
+  },
+  {
+    id: 'investment',
+    title: 'Investment ROI',
+    description: 'Calculate returns on various investment strategies',
+    icon: '📈',
+    color: 'from-purple-500 to-pink-600',
+    inputs: [
+      { id: 'investment-amount', label: 'Investment Amount ($)', type: 'number', min: 0, step: 1000, default: 10000 },
+      { id: 'annual-return', label: 'Annual Return (%)', type: 'number', min: 0, max: 100, step: 0.5, default: 7 },
+      { id: 'investment-years', label: 'Investment Period (years)', type: 'number', min: 1, max: 50, default: 10 }
+    ]
+  }
+];
+
+// Filter calculators based on type
+const displayCalculators = calculatorType === 'all' ? calculators : calculators.filter(calc => calc.id === calculatorType);
+---
+
+<section class={`roi-calculator-section ${className}`} aria-labelledby="calculator-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 id="calculator-heading" class="section-title">
+        <span class="title-highlight">ROI Calculators</span>
+        <span class="title-main">Calculate Your Potential Returns</span>
+      </h2>
+      <p class="section-description">
+        Use our interactive calculators to estimate potential returns on various investments and projects
+      </p>
+    </div>
+
+    <div class="calculators-grid">
+      {displayCalculators.map((calculator, index) => (
+        <div 
+          class="calculator-card"
+          data-calculator={calculator.id}
+          style={`--delay: ${index * 0.1}s; --gradient: ${calculator.color}`}
+        >
+          <div class="calculator-header">
+            <div class="calculator-icon" aria-hidden="true">{calculator.icon}</div>
+            <div class="calculator-info">
+              <h3 class="calculator-title">{calculator.title}</h3>
+              <p class="calculator-description">{calculator.description}</p>
+            </div>
+          </div>
+
+          <form class="calculator-form" data-form={calculator.id}>
+            <div class="inputs-grid">
+              {calculator.inputs.map(input => (
+                <div class="input-group">
+                  <label for={`${calculator.id}-${input.id}`} class="input-label">
+                    {input.label}
+                  </label>
+                  <input
+                    type={input.type}
+                    id={`${calculator.id}-${input.id}`}
+                    name={input.id}
+                    class="calculator-input"
+                    min={input.min}
+                    max={input.max}
+                    step={input.step}
+                    value={input.default}
+                    data-input={input.id}
+                    aria-describedby={`${calculator.id}-${input.id}-help`}
+                  />
+                  <div id={`${calculator.id}-${input.id}-help`} class="input-help sr-only">
+                    Enter {input.label.toLowerCase()}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <button 
+              type="button" 
+              class="calculate-btn"
+              data-calculate={calculator.id}
+              aria-label={`Calculate ${calculator.title}`}
+            >
+              <span class="btn-text">Calculate ROI</span>
+              <span class="btn-icon" aria-hidden="true">🧮</span>
+            </button>
+          </form>
+
+          <div class="results-section" data-results={calculator.id} aria-live="polite">
+            <div class="results-placeholder">
+              <span class="placeholder-icon" aria-hidden="true">📊</span>
+              <span class="placeholder-text">Enter values and click Calculate to see results</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="calculator-footer">
+      <div class="disclaimer">
+        <p class="disclaimer-text">
+          <strong>Disclaimer:</strong> These calculators provide estimates based on the inputs provided. 
+          Actual results may vary and past performance does not guarantee future results. 
+          Please consult with financial professionals for investment advice.
+        </p>
+      </div>
+      
+      <div class="cta-section">
+        <h3 class="cta-title">Need Help With Your Calculations?</h3>
+        <p class="cta-description">
+          Our team can help you create custom ROI models and financial projections for your specific needs.
+        </p>
+        <a href="/contact?service=consulting" class="cta-button">
+          <span class="cta-text">Get Expert Help</span>
+          <span class="cta-icon" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Enhanced Accessibility for Interactive Components
+  document.addEventListener('DOMContentLoaded', () => {
+    // Add keyboard navigation support
+    const interactiveElements = document.querySelectorAll('.interactive-element, .skill-item, .calculator-input, .terminal-window');
+    
+    interactiveElements.forEach((element, index) => {
+      // Make elements focusable
+      if (!element.hasAttribute('tabindex')) {
+        element.setAttribute('tabindex', '0');
+      }
+      
+      // Add ARIA roles if not present
+      if (!element.hasAttribute('role')) {
+        element.setAttribute('role', 'button');
+      }
+      
+      // Add keyboard event listeners
+      element.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          element.click();
+        }
+      });
+      
+      // Add focus indicators
+      element.addEventListener('focus', () => {
+        element.style.outline = '3px solid var(--color-accent, #0066cc)';
+        element.style.outlineOffset = '2px';
+      });
+      
+      element.addEventListener('blur', () => {
+        element.style.outline = '';
+        element.style.outlineOffset = '';
+      });
+    });
+    
+    // Announce dynamic content changes to screen readers
+    const announceToScreenReader = (message) => {
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.className = 'sr-only';
+      announcement.textContent = message;
+      document.body.appendChild(announcement);
+      
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
+    };
+    
+    // Export for use by components
+    window.announceToScreenReader = announceToScreenReader;
+  });
+</script>
+</section>
+
+<style>
+  /* ========== ROI CALCULATOR STYLES ========== */
+  
+  .roi-calculator-section {
+    padding: var(--spacing-20) 0;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    position: relative;
+  }
+
+  [data-theme="dark"] .roi-calculator-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+
+  .container {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+  }
+
+  /* Section Header */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-16);
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .section-title {
+    margin-bottom: var(--spacing-4);
+  }
+
+  .title-highlight {
+    display: block;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary-500);
+    margin-bottom: var(--spacing-2);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .title-main {
+    display: block;
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-900);
+    line-height: var(--line-height-tight);
+  }
+
+  [data-theme="dark"] .title-main {
+    color: var(--color-gray-100);
+  }
+
+  .section-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-gray-600);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: var(--line-height-relaxed);
+  }
+
+  [data-theme="dark"] .section-description {
+    color: var(--color-gray-300);
+  }
+
+  /* Calculators Grid */
+  .calculators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-16);
+  }
+
+  /* Calculator Card */
+  .calculator-card {
+    background: white;
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-8);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--color-gray-200);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.6s ease-out var(--delay, 0s) both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  [data-theme="dark"] .calculator-card {
+    background: var(--color-gray-800);
+    border-color: var(--color-gray-700);
+  }
+
+  .calculator-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-2xl);
+  }
+
+  /* Calculator Header */
+  .calculator-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-8);
+  }
+
+  .calculator-icon {
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--gradient));
+    border-radius: var(--radius-xl);
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .calculator-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: inherit;
+  }
+
+  .calculator-info {
+    flex: 1;
+  }
+
+  .calculator-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--spacing-2);
+  }
+
+  [data-theme="dark"] .calculator-title {
+    color: var(--color-gray-100);
+  }
+
+  .calculator-description {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+    line-height: var(--line-height-relaxed);
+  }
+
+  [data-theme="dark"] .calculator-description {
+    color: var(--color-gray-300);
+  }
+
+  /* Calculator Form */
+  .calculator-form {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .inputs-grid {
+    display: grid;
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .input-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-gray-700);
+  }
+
+  [data-theme="dark"] .input-label {
+    color: var(--color-gray-200);
+  }
+
+  .calculator-input {
+    padding: var(--spacing-3) var(--spacing-4);
+    border: 2px solid var(--color-gray-300);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-base);
+    background: white;
+    transition: all 0.2s ease;
+  }
+
+  [data-theme="dark"] .calculator-input {
+    background: var(--color-gray-700);
+    border-color: var(--color-gray-600);
+    color: var(--color-gray-100);
+  }
+
+  .calculator-input:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(76, 29, 149, 0.1);
+  }
+
+  .calculate-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-4) var(--spacing-6);
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .calculate-btn:active {
+    transform: translateY(0);
+  }
+
+  /* Results Section */
+  .results-section {
+    min-height: 120px;
+    padding: var(--spacing-6);
+    background: var(--color-gray-50);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--color-gray-300);
+    transition: all 0.3s ease;
+  }
+
+  [data-theme="dark"] .results-section {
+    background: var(--color-gray-700);
+    border-color: var(--color-gray-600);
+  }
+
+  .results-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-3);
+    height: 100%;
+    text-align: center;
+  }
+
+  .placeholder-icon {
+    font-size: 2rem;
+    opacity: 0.5;
+  }
+
+  .placeholder-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-500);
+    font-style: italic;
+  }
+
+  [data-theme="dark"] .placeholder-text {
+    color: var(--color-gray-400);
+  }
+
+  /* Results Display */
+  .results-display {
+    display: none;
+  }
+
+  .results-display.active {
+    display: block;
+    animation: fadeInUp 0.4s ease-out;
+  }
+
+  .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-3) 0;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  [data-theme="dark"] .result-item {
+    border-bottom-color: var(--color-gray-600);
+  }
+
+  .result-item:last-child {
+    border-bottom: none;
+  }
+
+  .result-label {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-gray-700);
+  }
+
+  [data-theme="dark"] .result-label {
+    color: var(--color-gray-200);
+  }
+
+  .result-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-600);
+    font-size: var(--font-size-lg);
+  }
+
+  .result-value.positive {
+    color: var(--color-success-600);
+  }
+
+  .result-value.negative {
+    color: var(--color-error-600);
+  }
+
+  /* Calculator Footer */
+  .calculator-footer {
+    display: grid;
+    gap: var(--spacing-12);
+    margin-top: var(--spacing-16);
+  }
+
+  .disclaimer {
+    padding: var(--spacing-6);
+    background: var(--color-warning-50);
+    border: 1px solid var(--color-warning-200);
+    border-radius: var(--radius-lg);
+  }
+
+  [data-theme="dark"] .disclaimer {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  .disclaimer-text {
+    font-size: var(--font-size-sm);
+    color: var(--color-warning-800);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  [data-theme="dark"] .disclaimer-text {
+    color: var(--color-warning-200);
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: var(--spacing-8);
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  [data-theme="dark"] .cta-section {
+    background: var(--color-gray-800);
+  }
+
+  .cta-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-gray-900);
+    margin-bottom: var(--spacing-3);
+  }
+
+  [data-theme="dark"] .cta-title {
+    color: var(--color-gray-100);
+  }
+
+  .cta-description {
+    font-size: var(--font-size-base);
+    color: var(--color-gray-600);
+    margin-bottom: var(--spacing-6);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  [data-theme="dark"] .cta-description {
+    color: var(--color-gray-300);
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: var(--spacing-4) var(--spacing-8);
+    background: linear-gradient(135deg, var(--color-secondary-500), var(--color-secondary-600));
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-lg);
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .cta-button:hover .cta-icon {
+    transform: translateX(4px);
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .calculators-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-6);
+    }
+
+    .calculator-card {
+      padding: var(--spacing-6);
+    }
+
+    .calculator-header {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--spacing-3);
+    }
+
+    .calculator-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 2rem;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .calculator-card {
+      animation: none;
+    }
+
+    .calculator-card:hover {
+      transform: none;
+    }
+
+    .calculate-btn:hover {
+      transform: none;
+    }
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script>
+  // Interactive ROI Calculator JavaScript - Fixed
+  class ROICalculator {
+    constructor() {
+      this.calculators = document.querySelectorAll('.calculator-card');
+      this.calculateButtons = document.querySelectorAll('[data-calculate]');
+
+      this.init();
+    }
+
+    init() {
+      this.setupCalculators();
+      this.setupInputValidation();
+      this.setupAnalytics();
+    }
+
+    setupCalculators() {
+      this.calculateButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          const calculatorId = button.getAttribute('data-calculate');
+          this.calculateROI(calculatorId);
+        });
+      });
+
+      // Auto-calculate on input change
+      this.calculators.forEach(calculator => {
+        const inputs = calculator.querySelectorAll('.calculator-input');
+        inputs.forEach(input => {
+          input.addEventListener('input', () => {
+            const calculatorId = calculator.getAttribute('data-calculator');
+            this.debounce(() => this.calculateROI(calculatorId), 500)();
+          });
+        });
+      });
+    }
+
+    calculateROI(calculatorId) {
+      const calculator = document.querySelector(`[data-calculator="${calculatorId}"]`);
+      const form = calculator.querySelector(`[data-form="${calculatorId}"]`);
+      const resultsSection = calculator.querySelector(`[data-results="${calculatorId}"]`);
+
+      // Get form data
+      const formData = new FormData(form);
+      const inputs = {};
+      for (let [key, value] of formData.entries()) {
+        inputs[key] = parseFloat(value) || 0;
+      }
+
+      // Calculate based on calculator type
+      let results = {};
+      switch (calculatorId) {
+        case 'passive-income':
+          results = this.calculatePassiveIncomeROI(inputs);
+          break;
+        case 'web-development':
+          results = this.calculateWebDevROI(inputs);
+          break;
+        case 'investment':
+          results = this.calculateInvestmentROI(inputs);
+          break;
+      }
+
+      // Display results
+      this.displayResults(resultsSection, results);
+
+      // Track analytics
+      this.trackCalculation(calculatorId, inputs, results);
+    }
+
+    calculatePassiveIncomeROI(inputs) {
+      const { 'initial-investment': initial, 'monthly-income': monthly, 'time-period': months } = inputs;
+
+      const totalIncome = monthly * months;
+      const netProfit = totalIncome - initial;
+      const roi = initial > 0 ? (netProfit / initial) * 100 : 0;
+      const monthlyROI = roi / months;
+      const breakEvenMonths = initial > 0 && monthly > 0 ? Math.ceil(initial / monthly) : 0;
+
+      return {
+        'Total Income': this.formatCurrency(totalIncome),
+        'Net Profit': this.formatCurrency(netProfit),
+        'ROI Percentage': this.formatPercentage(roi),
+        'Monthly ROI': this.formatPercentage(monthlyROI),
+        'Break-even Time': `${breakEvenMonths} months`
+      };
+    }
+
+    calculateWebDevROI(inputs) {
+      const { 'project-cost': cost, 'monthly-revenue': revenue, 'project-timeline': months } = inputs;
+
+      const totalRevenue = revenue * months;
+      const netProfit = totalRevenue - cost;
+      const roi = cost > 0 ? (netProfit / cost) * 100 : 0;
+      const breakEvenMonths = cost > 0 && revenue > 0 ? Math.ceil(cost / revenue) : 0;
+
+      return {
+        'Total Revenue': this.formatCurrency(totalRevenue),
+        'Net Profit': this.formatCurrency(netProfit),
+        'ROI Percentage': this.formatPercentage(roi),
+        'Break-even Time': `${breakEvenMonths} months`,
+        'Monthly Profit': this.formatCurrency(revenue - (cost / months))
+      };
+    }
+
+    calculateInvestmentROI(inputs) {
+      const { 'investment-amount': principal, 'annual-return': rate, 'investment-years': years } = inputs;
+
+      const annualRate = rate / 100;
+      const futureValue = principal * Math.pow(1 + annualRate, years);
+      const totalReturn = futureValue - principal;
+      const totalROI = principal > 0 ? (totalReturn / principal) * 100 : 0;
+      const annualizedReturn = rate;
+
+      return {
+        'Future Value': this.formatCurrency(futureValue),
+        'Total Return': this.formatCurrency(totalReturn),
+        'Total ROI': this.formatPercentage(totalROI),
+        'Annualized Return': this.formatPercentage(annualizedReturn),
+        'Monthly Growth': this.formatCurrency((futureValue - principal) / (years * 12))
+      };
+    }
+
+    displayResults(resultsSection, results) {
+      // Clear existing content
+      resultsSection.innerHTML = '';
+
+      // Create results display
+      const resultsDisplay = document.createElement('div');
+      resultsDisplay.className = 'results-display active';
+
+      Object.entries(results).forEach(([label, value]) => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'result-item';
+
+        const resultLabel = document.createElement('span');
+        resultLabel.className = 'result-label';
+        resultLabel.textContent = label;
+
+        const resultValue = document.createElement('span');
+        resultValue.className = 'result-value';
+
+        // Add positive/negative classes for styling
+        if (typeof value === 'string' && value.includes('$')) {
+          const numValue = parseFloat(value.replace(/[$,]/g, ''));
+          if (numValue > 0) resultValue.classList.add('positive');
+          else if (numValue < 0) resultValue.classList.add('negative');
+        }
+
+        resultValue.textContent = value;
+
+        resultItem.appendChild(resultLabel);
+        resultItem.appendChild(resultValue);
+        resultsDisplay.appendChild(resultItem);
+      });
+
+      resultsSection.appendChild(resultsDisplay);
+
+      // Announce to screen readers
+      this.announceResults(results);
+    }
+
+    formatCurrency(amount) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).format(amount);
+    }
+
+    formatPercentage(percentage) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'percent',
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      }).format(percentage / 100);
+    }
+
+    setupInputValidation() {
+      const inputs = document.querySelectorAll('.calculator-input');
+      inputs.forEach(input => {
+        input.addEventListener('blur', (e) => {
+          this.validateInput(e.target);
+        });
+      });
+    }
+
+    validateInput(input) {
+      const value = parseFloat(input.value);
+      const min = parseFloat(input.min);
+      const max = parseFloat(input.max);
+
+      if (isNaN(value) || value < min || (max && value > max)) {
+        input.style.borderColor = 'var(--color-error-500)';
+        input.setAttribute('aria-invalid', 'true');
+      } else {
+        input.style.borderColor = 'var(--color-gray-300)';
+        input.setAttribute('aria-invalid', 'false');
+      }
+    }
+
+    announceResults(results) {
+      const announcement = `ROI calculation complete. ${Object.keys(results).length} results calculated.`;
+      this.announceToScreenReader(announcement);
+    }
+
+    announceToScreenReader(message) {
+      const announcement = document.createElement('div');
+      announcement.setAttribute('aria-live', 'polite');
+      announcement.setAttribute('aria-atomic', 'true');
+      announcement.style.position = 'absolute';
+      announcement.style.left = '-10000px';
+      announcement.style.width = '1px';
+      announcement.style.height = '1px';
+      announcement.style.overflow = 'hidden';
+
+      document.body.appendChild(announcement);
+      announcement.textContent = message;
+
+      setTimeout(() => {
+        document.body.removeChild(announcement);
+      }, 1000);
+    }
+
+    setupAnalytics() {
+      // Track calculator usage
+      this.calculators.forEach(calculator => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const calculatorId = entry.target.getAttribute('data-calculator');
+              this.trackEvent('calculator_view', { calculator: calculatorId });
+            }
+          });
+        }, { threshold: 0.5 });
+
+        observer.observe(calculator);
+      });
+    }
+
+    trackCalculation(calculatorId, inputs, results) {
+      this.trackEvent('roi_calculation', {
+        calculator: calculatorId,
+        inputs: inputs,
+        results: Object.keys(results).length
+      });
+    }
+
+    trackEvent(eventName, properties = {}) {
+      // Analytics tracking (integrate with your analytics service)
+      if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, properties);
+      }
+
+      console.log('Analytics Event:', eventName, properties);
+    }
+
+    debounce(func, wait) {
+      let timeout;
+      return function executedFunction(args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new ROICalculator();
+  });
+</script>

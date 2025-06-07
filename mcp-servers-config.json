@@ -1,0 +1,110 @@
+{
+  "mcp": {
+    "servers": {
+      "@smithery-ai/server-sequential-thinking": {
+        "command": "npx",
+        "args": [
+          "-y",
+          "@smithery/cli@latest",
+          "run",
+          "@smithery-ai/server-sequential-thinking",
+          "--key",
+          "a6f8d215-b80d-4521-8d8d-bdeaa6384b02"
+        ],
+        "description": "Sequential thinking server for advanced reasoning"
+      },
+      "Toolbox": {
+        "url": "https://server.smithery.ai/@smithery/toolbox/mcp?profile=handicapped-reindeer-TMBDYI&api_key=a6f8d215-b80d-4521-8d8d-bdeaa6384b02",
+        "description": "Smithery AI toolbox with various utilities"
+      },
+      "console-ninja": {
+        "command": "powershell.exe",
+        "args": [
+          "node",
+          "$Env:USERPROFILE/.console-ninja/mcp/"
+        ],
+        "description": "Console debugging and monitoring tools"
+      },
+      "brave-search": {
+        "command": "npx",
+        "env": {},
+        "args": [
+          "-y",
+          "@smithery/cli@latest",
+          "run",
+          "@smithery-ai/brave-search",
+          "--key",
+          "a6f8d215-b80d-4521-8d8d-bdeaa6384b02"
+        ],
+        "description": "Brave Search API integration for web searches"
+      },
+      "playwright-mcp-server": {
+        "command": "npx",
+        "env": {},
+        "args": [
+          "-y",
+          "@smithery/cli@latest",
+          "run",
+          "@showfive/playwright-mcp-server",
+          "--key",
+          "a6f8d215-b80d-4521-8d8d-bdeaa6384b02"
+        ],
+        "description": "Playwright automation server for browser testing"
+      },
+      "context7-mcp": {
+        "command": "npx",
+        "env": {},
+        "args": [
+          "-y",
+          "@smithery/cli@latest",
+          "run",
+          "@upstash/context7-mcp",
+          "--key",
+          "a6f8d215-b80d-4521-8d8d-bdeaa6384b02"
+        ],
+        "description": "Context management and retrieval system"
+      },
+      "@21st-dev/magic": {
+        "command": "npx",
+        "env": {},
+        "args": [
+          "-y",
+          "@smithery/cli@latest",
+          "run",
+          "@21st-dev/magic-mcp",
+          "--key",
+          "a6f8d215-b80d-4521-8d8d-bdeaa6384b02"
+        ],
+        "description": "21st century development magic tools"
+      },
+      "desktopcommandermcp-1": {
+        "command": "npx",
+        "env": {},
+        "args": [
+          "-y",
+          "@smithery/cli@latest",
+          "run",
+          "@zhanyiwp/desktopcommandermcp-1",
+          "--key",
+          "a6f8d215-b80d-4521-8d8d-bdeaa6384b02"
+        ],
+        "description": "Desktop command execution and management"
+      }
+    }
+  },
+  "configuration": {
+    "standardization": {
+      "command_preference": "npx",
+      "shell_fallback": "powershell.exe",
+      "environment": "windows",
+      "api_key": "a6f8d215-b80d-4521-8d8d-bdeaa6384b02"
+    },
+    "best_practices": [
+      "All servers use consistent npx command structure",
+      "Environment variables are properly scoped",
+      "API keys are centralized for easier management",
+      "Each server has a clear description for documentation",
+      "Commands use latest versions with -y flag for automation"
+    ]
+  }
+}
