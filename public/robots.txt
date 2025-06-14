@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Performance
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://nosytlabs.com/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_astro/
+
+# Allow important resources
+Allow: /images/
+Allow: /styles/
+Allow: /scripts/

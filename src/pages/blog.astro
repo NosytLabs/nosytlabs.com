@@ -1,0 +1,268 @@
+---
+// Blog page for NosytLabs
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AnimatedSection from '../components/animations/AnimatedSection.astro';
+import GlitchText from '../components/GlitchText.astro';
+
+const pageTitle = "Blog - NosytLabs";
+const pageDescription = "Explore our blog for insights on AI tools, web development, and modern technology solutions.";
+
+// Get all blog posts from astro files
+let blogPosts = [];
+
+try {
+  const astroGlob = import.meta.glob('./blog/*.astro');
+  const astroPostsRaw = await Promise.all(
+    Object.entries(astroGlob).map(async ([path, fn]) => {
+      const post = await fn();
+      const slug = path.split('/').pop()?.replace('.astro', '') || '';
+      return {
+        ...post,
+        slug,
+        url: `/blog/${slug}`
+      };
+    })
+  );
+
+  // Create blog post data from astro files
+  blogPosts = astroPostsRaw.map(post => {
+    return {
+      id: post.slug,
+      title: post.frontmatter?.title || 'Untitled Post',
+      slug: post.slug,
+      excerpt: post.frontmatter?.excerpt || 'No excerpt available',
+      date: post.frontmatter?.date ? new Date(post.frontmatter.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }) : new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }),
+      author: post.frontmatter?.author || 'Tycen',
+      category: post.frontmatter?.category || post.frontmatter?.tags?.[0] || 'AI Tools',
+      tags: post.frontmatter?.tags || [],
+      image: post.frontmatter?.image || '/images/blog/default.jpg',
+      readTime: post.frontmatter?.readTime || '5 min read'
+    };
+  });
+} catch (error) {
+  console.warn('Error loading blog posts:', error);
+}
+
+// If no posts found, add real blog posts
+if (blogPosts.length === 0) {
+  blogPosts = [
+    {
+      id: 'cursor-ai-comprehensive-review',
+      title: 'Cursor AI: The Future of AI-Powered Coding',
+      slug: 'cursor-ai-comprehensive-review',
+      excerpt: 'An in-depth review of Cursor AI, the revolutionary code editor that integrates Claude and GPT-4 for intelligent coding assistance.',
+      date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+      author: 'Tycen',
+      category: 'AI Tools',
+      tags: ['Cursor AI', 'Code Editor', 'AI Development', 'Productivity'],
+      image: '/images/blog/cursor-ai.jpg',
+      readTime: '8 min read'
+    },
+    {
+      id: 'ai-tools-guide',
+      title: 'Essential AI Tools for Modern Development',
+      slug: 'ai-tools-guide',
+      excerpt: 'A comprehensive guide to the best AI tools that can enhance your development workflow.',
+      date: new Date(Date.now() - 86400000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+      author: 'Tycen',
+      category: 'AI Tools',
+      tags: ['AI', 'Tools', 'Development'],
+      image: '/images/blog/ai-tools.jpg',
+      readTime: '7 min read'
+    },
+    {
+      id: 'nosytlabs-tech-stack-2025',
+      title: 'Building NosytLabs: Our Modern Tech Stack',
+      slug: 'nosytlabs-tech-stack-2025',
+      excerpt: 'Discover the technologies powering NosytLabs - from Astro and React to our modern development workflow and AI integration tools.',
+      date: new Date(Date.now() - 86400000).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+      author: 'Tycen',
+      category: 'Web Development',
+      tags: ['Astro', 'React', 'TailwindCSS', 'Tech Stack'],
+      image: '/images/blog/tech-stack.jpg',
+      readTime: '6 min read'
+    }
+  ];
+}
+
+// Sort posts by date (newest first)
+blogPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+// Categories for filtering
+const categories = [new Set(blogPosts.map(post => post.category))];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  pageKey="blog"
+  keywords="technology blog, web development tutorials, AI tools, crypto mining guides, 3D printing tips, programming insights"
+>
+  <!-- Hero Section -->
+  <div class="relative bg-gradient-to-br from-primary-dark to-primary-main text-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center animate-fade-in">
+        <GlitchText
+          text="NosytLabs Blog"
+          tag="h1"
+          color="text-white"
+          size="text-4xl md:text-5xl"
+          weight="font-bold"
+          className="mb-4"
+          glitchOnHover={true}
+        />
+        <p class="text-xl animate-slide-up" style="animation-delay: 0.2s;">
+          Insights on AI tools, web development, and modern technology solutions
+        </p>
+      </div>
+    </div>
+
+    <!-- Background particles with enhanced animation -->
+    <div class="absolute inset-0 overflow-hidden -z-10">
+      <div class="particles-enhanced"></div>
+    </div>
+  </div>
+
+  <!-- Blog Posts Section -->
+  <AnimatedSection animation="fade-in" class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <!-- Category Filter -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <button class="category-filter active px-4 py-2 rounded-full bg-primary text-white hover:bg-primary-dark transition-colors" data-category="all">
+          All Posts
+        </button>
+        {categories.map(category => (
+          <button class="category-filter px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-accent hover:text-white transition-colors" data-category={category}>
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <!-- Blog Posts Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {blogPosts.map(post => (
+          <article class="blog-post-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2" data-category={post.category}>
+            <a href={`/blog/${post.slug}`} class="block">
+              <div class="relative">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  class="w-full h-48 object-cover"
+                  onerror="this.src='/images/fallback-image.svg'; this.onerror=null;"
+                />
+                <div class="absolute top-4 right-4 bg-accent text-white text-xs px-2 py-1 rounded-full">
+                  {post.category}
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+                  <span>{post.date}</span>
+                  <span class="mx-2">•</span>
+                  <span>{post.readTime}</span>
+                </div>
+                <h2 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">{post.title}</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">{post.excerpt}</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {post.tags.map(tag => (
+                    <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-2">
+                      <span class="text-sm font-bold">{post.author.charAt(0)}</span>
+                    </div>
+                    <span class="text-sm text-gray-700 dark:text-gray-300">{post.author}</span>
+                  </div>
+                  <span class="text-accent hover:text-accent-dark font-medium text-sm">Read More →</span>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="mt-16 bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg max-w-3xl mx-auto">
+        <div class="text-center mb-6">
+          <h2 class="text-2xl font-bold mb-2 text-gray-800 dark:text-white">Subscribe to Our Newsletter</h2>
+          <p class="text-gray-600 dark:text-gray-300">Get the latest articles, tutorials, and updates delivered to your inbox.</p>
+        </div>
+        <form class="flex flex-col sm:flex-row gap-4">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="flex-grow px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-accent focus:border-accent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            required
+          />
+          <button
+            type="submit"
+            class="bg-accent hover:bg-accent-dark text-white font-medium py-2 px-6 rounded-lg transition-colors"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </AnimatedSection>
+</BaseLayout>
+
+<script>
+  // Category filtering functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.category-filter');
+    const blogPosts = document.querySelectorAll('.blog-post-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
+        filterButtons.forEach(btn => btn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white'));
+        button.classList.add('active', 'bg-primary', 'text-white');
+        button.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+
+        const category = button.getAttribute('data-category');
+
+        // Filter posts
+        blogPosts.forEach(post => {
+          if (category === 'all' || post.getAttribute('data-category') === category) {
+            post.style.display = 'block';
+            // Add animation
+            post.style.opacity = '0';
+            post.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              post.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+              post.style.opacity = '1';
+              post.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            post.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            post.style.opacity = '0';
+            post.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              post.style.display = 'none';
+            }, 500);
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Category filter active state */
+  .category-filter.active {
+    background-color: var(--nosyt-purple);
+    color: white;
+  }
+</style>

@@ -1,0 +1,397 @@
+---
+// PageTransition.astro
+// A component that provides smooth transitions between pages
+
+export interface Props {
+  transition?: 'fade' | 'slide' | 'zoom' | 'flip' | 'blur' | 'none';
+  duration?: number;
+  easing?: string;
+  direction?: 'left' | 'right' | 'up' | 'down';
+  color?: string;
+  respectReducedMotion?: boolean;
+}
+
+const {
+  transition = 'fade',
+  duration = 0.5,
+  easing = 'cubic-bezier(0.16, 1, 0.3, 1)',
+  direction = 'up',
+  color = 'var(--nosyt-purple-dark, #2D0A4F)',
+  respectReducedMotion = true
+} = Astro.props;
+
+// Generate a unique ID for this transition
+const transitionId = `page-transition-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div
+  id={transitionId}
+  class={`page-transition transition-${transition} direction-${direction}`}
+  data-transition={transition}
+  data-duration={duration}
+  data-easing={easing}
+  data-direction={direction}
+  data-respect-reduced-motion={respectReducedMotion.toString()}
+>
+  <div class="transition-overlay"></div>
+</div>
+
+<style define:vars={{ duration: `${duration}s`, easing, color }}>
+  .page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    will-change: opacity, transform;
+  }
+
+  .transition-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color);
+    transform: translateY(100%);
+    transition: transform var(--duration) var(--easing),
+                opacity var(--duration) var(--easing),
+                filter var(--duration) var(--easing);
+    will-change: transform, opacity, filter;
+  }
+
+  /* Transition states */
+  .page-transition.transitioning .transition-overlay {
+    transform: translateY(0);
+  }
+
+  .page-transition.transitioning-out .transition-overlay {
+    transform: translateY(-100%);
+  }
+
+  /* Fade transition */
+  .transition-fade .transition-overlay {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  .transition-fade.transitioning .transition-overlay {
+    opacity: 1;
+  }
+
+  .transition-fade.transitioning-out .transition-overlay {
+    opacity: 0;
+  }
+
+  /* Slide transition with directions */
+  .transition-slide.direction-up .transition-overlay {
+    transform: translateY(100%);
+  }
+
+  .transition-slide.direction-up.transitioning .transition-overlay {
+    transform: translateY(0);
+  }
+
+  .transition-slide.direction-up.transitioning-out .transition-overlay {
+    transform: translateY(-100%);
+  }
+
+  .transition-slide.direction-down .transition-overlay {
+    transform: translateY(-100%);
+  }
+
+  .transition-slide.direction-down.transitioning .transition-overlay {
+    transform: translateY(0);
+  }
+
+  .transition-slide.direction-down.transitioning-out .transition-overlay {
+    transform: translateY(100%);
+  }
+
+  .transition-slide.direction-left .transition-overlay {
+    transform: translateX(100%);
+  }
+
+  .transition-slide.direction-left.transitioning .transition-overlay {
+    transform: translateX(0);
+  }
+
+  .transition-slide.direction-left.transitioning-out .transition-overlay {
+    transform: translateX(-100%);
+  }
+
+  .transition-slide.direction-right .transition-overlay {
+    transform: translateX(-100%);
+  }
+
+  .transition-slide.direction-right.transitioning .transition-overlay {
+    transform: translateX(0);
+  }
+
+  .transition-slide.direction-right.transitioning-out .transition-overlay {
+    transform: translateX(100%);
+  }
+
+  /* Zoom transition */
+  .transition-zoom .transition-overlay {
+    transform: scale(0);
+    opacity: 0;
+    transform-origin: center center;
+  }
+
+  .transition-zoom.transitioning .transition-overlay {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .transition-zoom.transitioning-out .transition-overlay {
+    transform: scale(2);
+    opacity: 0;
+  }
+
+  /* Flip transition */
+  .transition-flip .transition-overlay {
+    transform: rotateY(90deg);
+    transform-origin: center center;
+    perspective: 1000px;
+    backface-visibility: hidden;
+  }
+
+  .transition-flip.transitioning .transition-overlay {
+    transform: rotateY(0deg);
+  }
+
+  .transition-flip.transitioning-out .transition-overlay {
+    transform: rotateY(-90deg);
+  }
+
+  /* Blur transition */
+  .transition-blur .transition-overlay {
+    opacity: 0;
+    filter: blur(0);
+    backdrop-filter: blur(0);
+  }
+
+  .transition-blur.transitioning .transition-overlay {
+    opacity: 1;
+    filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+
+  .transition-blur.transitioning-out .transition-overlay {
+    opacity: 0;
+    filter: blur(0);
+    backdrop-filter: blur(0);
+  }
+
+  /* Accessibility: Respect user preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .page-transition[data-respect-reduced-motion="true"] {
+      display: none;
+    }
+  }
+</style>
+
+<script define:vars={{ transitionId }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const transitionElement = document.getElementById(transitionId);
+    if (!transitionElement) return;
+
+    // Get transition options from data attributes
+    const transition = transitionElement.dataset.transition || 'fade';
+    const duration = parseFloat(transitionElement.dataset.duration || '0.5') * 1000;
+    const easing = transitionElement.dataset.easing || 'cubic-bezier(0.16, 1, 0.3, 1)';
+    const direction = transitionElement.dataset.direction || 'up';
+    const respectReducedMotion = transitionElement.dataset.respectReducedMotion === 'true';
+
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Skip transition for "none" type or if user prefers reduced motion
+    if (transition === 'none' || (prefersReducedMotion && respectReducedMotion)) {
+      transitionElement.style.display = 'none';
+      return;
+    }
+
+    // Add transition class based on direction
+    if (transition === 'slide') {
+      transitionElement.classList.add(`direction-${direction}`);
+    }
+
+    // Handle link clicks for page transitions with enhanced effects
+    document.addEventListener('click', (e) => {
+      // Only handle internal links
+      const target = e.target.closest('a');
+      if (!target) return;
+
+      const href = target.getAttribute('href');
+      if (!href ||
+          href.startsWith('#') ||
+          href.startsWith('http') ||
+          href.startsWith('mailto:') ||
+          href.startsWith('tel:') ||
+          target.getAttribute('target') === '_blank' ||
+          target.getAttribute('download') ||
+          target.hasAttribute('data-no-transition')) {
+        return;
+      }
+
+      // Prevent default navigation
+      e.preventDefault();
+
+      // Get custom transition from link if specified
+      const linkTransition = target.getAttribute('data-transition');
+      const linkDirection = target.getAttribute('data-direction');
+
+      if (linkTransition) {
+        transitionElement.dataset.transition = linkTransition;
+        transitionElement.className = `page-transition transition-${linkTransition}`;
+      }
+
+      if (linkDirection) {
+        transitionElement.dataset.direction = linkDirection;
+        transitionElement.classList.add(`direction-${linkDirection}`);
+      }
+
+      // Start transition with animation
+      transitionElement.classList.add('transitioning');
+
+      // Add subtle page scale effect during transition
+      document.documentElement.style.transition = `transform ${duration/1000}s ${easing}`;
+      document.documentElement.style.transform = 'scale(0.98)';
+
+      // Navigate after transition completes
+      setTimeout(() => {
+        // Store current scroll position
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+
+        // Store transition info for the next page
+        sessionStorage.setItem('lastTransition', linkTransition || transition);
+        sessionStorage.setItem('lastDirection', linkDirection || direction);
+
+        // Navigate to the new page
+        window.location.href = href;
+      }, duration);
+    });
+
+    // Handle page load transition with enhanced effects
+    window.addEventListener('pageshow', (e) => {
+      // Get last transition info if available
+      const lastTransition = sessionStorage.getItem('lastTransition');
+      const lastDirection = sessionStorage.getItem('lastDirection');
+
+      if (lastTransition) {
+        transitionElement.dataset.transition = lastTransition;
+        transitionElement.className = `page-transition transition-${lastTransition}`;
+      }
+
+      if (lastDirection) {
+        transitionElement.dataset.direction = lastDirection;
+        transitionElement.classList.add(`direction-${lastDirection}`);
+      }
+
+      if (e.persisted) {
+        // Page is loaded from back/forward cache
+        transitionElement.classList.add('transitioning-out');
+
+        // Reset page scale
+        document.documentElement.style.transform = 'scale(1)';
+
+        setTimeout(() => {
+          transitionElement.classList.remove('transitioning', 'transitioning-out');
+        }, duration);
+      } else {
+        // Normal page load
+        transitionElement.classList.add('transitioning');
+
+        // Add subtle page scale effect
+        document.documentElement.style.transition = 'none';
+        document.documentElement.style.transform = 'scale(0.98)';
+
+        // Force reflow
+        void document.documentElement.offsetWidth;
+
+        // Animate back to normal
+        document.documentElement.style.transition = `transform ${duration/1000}s ${easing}`;
+        document.documentElement.style.transform = 'scale(1)';
+
+        setTimeout(() => {
+          transitionElement.classList.add('transitioning-out');
+
+          setTimeout(() => {
+            transitionElement.classList.remove('transitioning', 'transitioning-out');
+
+            // Clean up transition info
+            sessionStorage.removeItem('lastTransition');
+            sessionStorage.removeItem('lastDirection');
+          }, duration);
+        }, 100);
+      }
+    });
+
+    // Restore scroll position with smooth scrolling
+    const savedScrollPosition = sessionStorage.getItem('scrollPosition');
+    if (savedScrollPosition) {
+      // Use smooth scroll if available
+      if (window.NosytScroll && typeof window.NosytScroll.scrollToPosition === 'function') {
+        setTimeout(() => {
+          window.NosytScroll.scrollToPosition(parseInt(savedScrollPosition), 'smooth');
+        }, duration + 100);
+      } else {
+        setTimeout(() => {
+          window.scrollTo({
+            top: parseInt(savedScrollPosition),
+            behavior: 'smooth'
+          });
+        }, duration + 100);
+      }
+
+      sessionStorage.removeItem('scrollPosition');
+    }
+
+    // Expose transition API
+    window.NosytTransition = {
+      // Start a transition
+      start: (options = {}) => {
+        const opts = {
+          transition: options.transition || transition,
+          direction: options.direction || direction,
+          duration: options.duration || duration,
+          callback: options.callback || null
+        };
+
+        // Update transition element
+        if (opts.transition !== transition) {
+          transitionElement.dataset.transition = opts.transition;
+          transitionElement.className = `page-transition transition-${opts.transition}`;
+        }
+
+        if (opts.direction !== direction) {
+          transitionElement.dataset.direction = opts.direction;
+          transitionElement.classList.add(`direction-${opts.direction}`);
+        }
+
+        // Start transition
+        transitionElement.classList.add('transitioning');
+
+        // Execute callback after transition
+        if (typeof opts.callback === 'function') {
+          setTimeout(opts.callback, opts.duration);
+        }
+
+        return {
+          // End the transition
+          end: () => {
+            transitionElement.classList.add('transitioning-out');
+
+            setTimeout(() => {
+              transitionElement.classList.remove('transitioning', 'transitioning-out');
+            }, opts.duration);
+          }
+        };
+      }
+    };
+  });
+</script>

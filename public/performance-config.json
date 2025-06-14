@@ -1,0 +1,18 @@
+{
+  "monitoring": {
+    "enabled": true,
+    "interval": 5000,
+    "metrics": ["LCP", "FID", "CLS", "FCP", "TTFB"]
+  },
+  "thresholds": {
+    "LCP": 2500,
+    "FID": 100,
+    "CLS": 0.1,
+    "FCP": 1800,
+    "TTFB": 600
+  },
+  "reporting": {
+    "console": true,
+    "analytics": false
+  }
+}

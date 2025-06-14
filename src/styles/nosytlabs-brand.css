@@ -1,0 +1,391 @@
+/**
+ * NosytLabs Brand Identity System - 2025
+ * Official brand colors, patterns, and brand-specific components
+ * Focused only on brand identity, not general utilities
+ */
+
+/* ========== CONSOLIDATED BRAND UTILITIES ========== */
+
+/* Brand Gradient Utilities - Consolidating 38+ repeated instances */
+.nosyt-gradient-primary {
+  background: linear-gradient(to right, var(--nosyt-purple-main), var(--nosyt-orange-main));
+}
+
+.nosyt-gradient-primary:hover {
+  background: linear-gradient(to right, var(--nosyt-purple-dark), var(--nosyt-orange-dark));
+}
+
+.nosyt-gradient-hero {
+  background: linear-gradient(to bottom right, var(--nosyt-purple-dark), var(--nosyt-purple-main), var(--nosyt-orange-main));
+}
+
+.nosyt-gradient-section {
+  background: linear-gradient(to bottom right, #f8fafc, #faf5ff);
+}
+
+.dark .nosyt-gradient-section {
+  background: linear-gradient(to bottom right, #111827, #581c87);
+}
+
+/* Brand Icon Circle - Used across all service pages */
+.nosyt-icon-circle {
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(to right, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nosyt-icon-circle-sm {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(to right, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nosyt-icon-circle-lg {
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(to right, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Brand Button Patterns - Consolidating repeated button styles */
+.nosyt-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(to right, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.nosyt-btn-primary:hover {
+  background: linear-gradient(to right, var(--nosyt-purple-dark), var(--nosyt-orange-dark));
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.nosyt-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(to right, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.nosyt-btn-secondary:hover {
+  background: linear-gradient(to right, var(--nosyt-purple-dark), var(--nosyt-orange-dark));
+  transform: scale(1.05);
+}
+
+.nosyt-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--nosyt-purple-main);
+  background: white;
+  border: 2px solid var(--nosyt-purple-main);
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.nosyt-btn-outline:hover {
+  background: var(--nosyt-purple-main);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Brand Badge/Chip Patterns */
+.nosyt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(to right, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.nosyt-badge-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(to right, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Common Transition Patterns */
+.nosyt-hover-lift {
+  transition: all 0.3s ease;
+}
+
+.nosyt-hover-lift:hover {
+  transform: scale(1.05);
+}
+
+.nosyt-smooth-transition {
+  transition: all 0.3s ease;
+}
+
+/* ========== BRAND-SPECIFIC PATTERNS ========== */
+
+/* Brand Background Patterns */
+.nosyt-brand-bg {
+  background: linear-gradient(135deg, var(--nosyt-purple-main) 0%, var(--nosyt-purple-dark) 100%);
+}
+
+.nosyt-hero-bg {
+  background: linear-gradient(135deg, var(--nosyt-purple-dark) 0%, var(--nosyt-purple-main) 100%);
+}
+
+.nosyt-wave-bg {
+  background: linear-gradient(135deg, var(--nosyt-purple-light) 0%, var(--nosyt-purple-main) 50%, var(--nosyt-purple-dark) 100%);
+}
+
+.nosyt-orange-bg {
+  background: linear-gradient(135deg, var(--nosyt-orange-main) 0%, var(--nosyt-orange-light) 100%);
+}
+
+/* Brand Text Colors */
+.nosyt-text-primary {
+  color: var(--nosyt-purple-main);
+}
+
+.nosyt-text-orange {
+  color: var(--nosyt-orange-main);
+}
+
+.nosyt-text-white {
+  color: var(--neutral-50);
+}
+
+/* Brand Cards */
+.nosyt-card {
+  background: var(--background-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(45, 27, 105, 0.08);
+  transition: all 0.3s ease;
+}
+
+.nosyt-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(45, 27, 105, 0.15);
+  border-color: var(--nosyt-purple-light);
+}
+
+[data-theme="dark"] .nosyt-card {
+  background: var(--neutral-800);
+  border-color: var(--neutral-700);
+}
+
+/* Brand Navigation */
+.nosyt-nav {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: var(--glass-border);
+}
+
+[data-theme="dark"] .nosyt-nav {
+  background: rgba(45, 27, 105, 0.95);
+}
+
+/* Brand Hero Sections */
+.nosyt-hero {
+  background: linear-gradient(135deg, var(--nosyt-purple-dark) 0%, var(--nosyt-purple-main) 100%);
+  color: var(--neutral-50);
+  position: relative;
+  overflow: hidden;
+}
+
+.nosyt-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Brand Accent Elements */
+.nosyt-accent-orange {
+  position: relative;
+}
+
+.nosyt-accent-orange::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, var(--nosyt-orange-main) 0%, var(--nosyt-orange-light) 100%);
+  border-radius: 2px;
+}
+
+/* Brand Animations */
+@keyframes nosyt-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes nosyt-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.nosyt-float {
+  animation: nosyt-float 3s ease-in-out infinite;
+}
+
+.nosyt-pulse {
+  animation: nosyt-pulse 2s ease-in-out infinite;
+}
+
+/* Focus states with brand colors */
+.nosyt-focus:focus-visible {
+  outline: 2px solid var(--nosyt-orange-main);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.2);
+}
+
+/* Brand-specific invoice and pricing components */
+.invoice-card {
+  background: var(--glass-white);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  box-shadow: var(--glass-shadow);
+}
+
+.service-pricing {
+  display: grid;
+  gap: var(--spacing-4);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.pricing-card {
+  background: var(--glass-white);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--glass-shadow-strong);
+}
+
+.pricing-card.featured {
+  border: 2px solid var(--nosyt-purple-main);
+  background: linear-gradient(135deg, rgba(107, 70, 193, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+}
+
+.price-amount {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--nosyt-purple-main);
+  margin: var(--spacing-4) 0;
+}
+
+.price-period {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Brand-specific stats pattern */
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-12);
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--nosyt-purple-main);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-2);
+  font-weight: 500;
+}
+
+/* Brand responsive utilities */
+@media (max-width: 768px) {
+  .nosyt-hero {
+    padding: 3rem 1rem;
+  }
+  
+  .nosyt-card {
+    margin: 1rem 0;
+  }
+}
+
+/* Dark mode adjustments for brand components */
+[data-theme="dark"] .stat-label {
+  color: var(--text-tertiary);
+}
+
+[data-theme="dark"] .invoice-card,
+[data-theme="dark"] .pricing-card {
+  background: var(--glass-dark);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

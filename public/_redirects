@@ -1,0 +1,5 @@
+# Netlify redirects
+/*    /index.html   200
+
+# Prevent www redirects
+https://www.nosytlabs.com/*  https://nosytlabs.com/:splat  301!

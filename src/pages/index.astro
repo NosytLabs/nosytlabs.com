@@ -1,0 +1,224 @@
+---
+// NosytLabs Homepage - Modern Professional Design with Organized Components
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { NosytLabsBentoServices } from '../components/ui/nosytlabs-bento-services.tsx';
+import ProjectGrid from '../components/content/ProjectGrid.astro';
+import Hero from '../components/Hero.astro';
+import TestimonialsSection from '../components/content/TestimonialsSection.tsx';
+// Featured projects data - Real NosytLabs projects
+const featuredProjects = [
+  {
+    title: "NosytLabs Corporate Website",
+    description: "Our own modern, responsive corporate website built with Astro, React, and TypeScript. Achieved Grade A+ optimization with industry-leading performance.",
+    image: "/images/projects/nosytlabs-website-screenshot.svg",
+    technologies: ["Astro", "React", "TypeScript", "Tailwind CSS"],
+    link: "/projects",
+    category: "Web Development"
+  },
+  {
+    title: "Small Business Website",
+    description: "Professional website for a local New Mexico business featuring modern design, mobile responsiveness, and SEO optimization.",
+    image: "/images/projects/small-business.webp",
+    technologies: ["HTML", "CSS", "JavaScript", "WordPress"],
+    link: "/projects",
+    category: "Web Development"
+  },
+  {
+    title: "Rapid MVP Development",
+    description: "Quick prototype development for startup clients using AI-assisted coding tools, delivering functional MVPs in under a week.",
+    image: "/images/projects/rapid-mvp.webp",
+    technologies: ["React", "Node.js", "MongoDB", "Vercel"],
+    link: "/projects",
+    category: "MVP Development"
+  }
+] || [];
+const pageTitle = "NosytLabs - Professional Web Development & AI Solutions";
+const pageDescription = "Transform your business with custom web development and AI integration services. Professional, scalable solutions built with modern technologies.";
+---
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <!-- Modern Hero Section -->
+  <Hero />
+  <!-- Modern Services Section -->
+  <NosytLabsBentoServices client:load />
+
+  <!-- Featured Projects Section -->
+  <section class="modern-projects">
+    <div class="container">
+      <div class="projects-header">
+        <div class="header-badge">
+          <span class="badge-icon">🚀</span>
+          <span class="badge-text">Our Work</span>
+        </div>
+
+        <h2 class="projects-title">Featured Projects</h2>
+
+        <p class="projects-description">
+          Discover our portfolio of innovative projects built with modern technologies and best practices.
+        </p>
+      </div>
+
+      <ProjectGrid projects={featuredProjects} />
+
+      <div class="projects-footer">
+        <a href="/projects" class="btn btn-primary">
+          View All Projects
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- Client Testimonials Section -->
+  <TestimonialsSection client:load />
+
+  <!-- Contact CTA Section -->
+  <section class="contact-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to Start Your Project?</h2>
+        <p class="cta-description">
+          Let's discuss your requirements and create something amazing together.
+        </p>
+        <div class="cta-actions flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-nosyt-purple to-nosyt-purple-light rounded-full hover:from-nosyt-purple-dark hover:to-nosyt-purple transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <span class="relative z-10 flex items-center">
+              Get Started Today
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <div class="absolute inset-0 bg-gradient-to-r from-nosyt-purple-light to-nosyt-purple rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+          <a href="/services" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-nosyt-orange to-nosyt-orange-light rounded-full hover:from-nosyt-orange-dark hover:to-nosyt-orange transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <span class="relative z-10">View Our Services</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-nosyt-orange-light to-nosyt-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .modern-projects {
+    padding: var(--space-20) 0;
+    background: var(--neutral-50);
+  }
+
+  [data-theme="dark"] .modern-projects {
+    background: var(--neutral-800);
+  }
+
+  .projects-header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--nosyt-gradient-primary, linear-gradient(135deg, #6B46C1 0%, #2D1B69 100%));
+    color: white;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .projects-title {
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    color: var(--neutral-900);
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+  }
+
+  [data-theme="dark"] .projects-title {
+    color: var(--neutral-100);
+  }
+
+  .projects-description {
+    font-size: var(--text-lg);
+    color: var(--neutral-600);
+    line-height: 1.7;
+  }
+
+  [data-theme="dark"] .projects-description {
+    color: var(--neutral-400);
+  }
+
+  .projects-footer {
+    text-align: center;
+    margin-top: var(--space-12);
+  }
+
+  .contact-cta {
+    padding: var(--space-20) 0;
+    background: var(--nosyt-gradient-hero, linear-gradient(135deg, #2D1B69 0%, #6B46C1 100%));
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-size: var(--text-4xl);
+    font-weight: 800;
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+  }
+
+  .cta-description {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-8);
+    opacity: 0.9;
+    line-height: 1.7;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-lg {
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--text-lg);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .projects-title,
+    .cta-title {
+      font-size: var(--text-3xl);
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

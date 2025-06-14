@@ -1,0 +1,380 @@
+---
+// Services page for NosytLabs - Complete Redesign 2025
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../config/constants.ts';
+
+// Define our AI-enhanced services with competitive pricing
+const services = [
+  {
+    id: "web-development",
+    title: "Professional Web Development",
+    shortDescription: "Modern, responsive websites built with the latest technologies",
+    fullDescription: "Professional web development services using modern frameworks like Astro, React, and TypeScript. We create fast, responsive websites that look great on all devices and help your business succeed online.",
+    iconSvg: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M14,12L10,8V11H2V13H10V16M20,18V6C20,4.89 19.1,4 18,4H6A2,2 0 0,0 4,6V18A2,2 0 0,0 6,20H18C19.1,20 20,19.1 20,18M18,18H6V6H18V18Z"/>
+    </svg>`,
+    features: [
+      "Mobile-First Responsive Design",
+      "Fast Performance & SEO Optimization",
+      "Modern Frameworks (Astro, React, Next.js)",
+      "Content Management Systems",
+      "Basic E-commerce Integration",
+      "Analytics Setup & Tracking"
+    ],
+    pricing: "Starting at $800",
+    timeline: "1-3 weeks",
+    highlight: "Most Popular"
+  },
+  {
+    id: "rapid-prototyping",
+    title: "Rapid Prototype Development",
+    shortDescription: "Quick prototypes and MVPs for testing your ideas",
+    fullDescription: "Get your idea validated quickly with functional prototypes. Perfect for startups and businesses needing to test concepts before full development. We use modern tools to deliver working prototypes fast.",
+    iconSvg: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z"/>
+    </svg>`,
+    features: [
+      "Functional Prototypes in 1 week",
+      "User Testing Ready",
+      "Basic Database Integration",
+      "Simple API Development",
+      "Deployment & Hosting Setup",
+      "Documentation Included"
+    ],
+    pricing: "Starting at $500",
+    timeline: "5-7 days",
+    highlight: "Fast Delivery"
+  },
+  {
+    id: "ai-integration",
+    title: "AI Integration & Automation",
+    shortDescription: "Simple AI solutions to automate your business processes",
+    fullDescription: "Add AI capabilities to your business with practical solutions like chatbots, content generation, and workflow automation. We focus on implementations that provide real value and are easy to maintain.",
+    iconSvg: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+    </svg>`,
+    features: [
+      "Simple AI Chatbots for Websites",
+      "Content Generation Tools",
+      "Basic Workflow Automation",
+      "Data Processing & Analysis",
+      "API Integration Services",
+      "Training & Documentation"
+    ],
+    pricing: "Starting at $1,200",
+    timeline: "2-3 weeks",
+    highlight: "Growing Field"
+  },
+  {
+    id: "consulting",
+    title: "Tech Consulting & SEO Audits",
+    shortDescription: "Professional audits and strategic guidance at freelancer rates",
+    fullDescription: "Get expert technology consulting and comprehensive SEO audits to boost your digital presence. We provide detailed analysis and actionable recommendations that deliver real results.",
+    iconSvg: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z"/>
+    </svg>`,
+    features: [
+      "Comprehensive SEO Audits & Reports",
+      "Website Performance Analysis",
+      "Technology Stack Recommendations",
+      "Digital Strategy & Growth Planning",
+      "Competitor Analysis & Insights",
+      "Detailed Implementation Roadmaps"
+    ],
+    pricing: "Starting at $300",
+    timeline: "3-5 days",
+    highlight: "Quick Results"
+  },
+  {
+    id: "mobile-apps",
+    title: "Mobile App Development",
+    shortDescription: "Cross-platform mobile apps with AI-accelerated development",
+    fullDescription: "Build native-quality mobile apps for iOS and Android using React Native and Flutter. AI-assisted development means faster delivery and lower costs than traditional agencies.",
+    iconSvg: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21C5,22.1 5.9,23 7,23H17C18.1,23 19,22.1 19,21V3C19,1.89 18.1,1 17,1Z"/>
+    </svg>`,
+    features: [
+      "Cross-Platform (iOS & Android)",
+      "AI-Accelerated Development",
+      "Native Performance & Feel",
+      "App Store Deployment",
+      "Push Notifications & Analytics",
+      "Backend Integration"
+    ],
+    pricing: "Starting at $2,800",
+    timeline: "3-6 weeks",
+    highlight: "Cross-Platform"
+  },
+  {
+    id: "3d-printing",
+    title: "3D Printing Services",
+    shortDescription: "Professional prototyping and custom parts at competitive rates",
+    fullDescription: "High-quality FDM 3D printing for rapid prototyping, replacement parts, and custom components. Professional equipment with fast turnaround and competitive pricing.",
+    iconSvg: `<svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+    </svg>`,
+    features: [
+      "24-48 Hour Turnaround",
+      "Multiple Materials (PLA, PETG, ABS, TPU)",
+      "Design Consultation Included",
+      "Quality Finishing Options",
+      "Competitive Freelancer Rates",
+      "Local Pickup Available"
+    ],
+    pricing: "Starting at $15",
+    timeline: "1-3 days",
+    highlight: "Fast & Affordable"
+  }
+];
+
+---
+<BaseLayout
+  title="Professional Services - Web Development, AI Integration & 3D Printing | NosytLabs"
+  description="Expert web development, AI integration, and 3D printing services. Modern websites, intelligent automation, and professional prototyping solutions."
+  pageKey="services"
+  keywords="web development, AI integration, 3D printing, custom websites, automation, prototyping, React, Astro, machine learning"
+>
+  <!-- Hero Section -->
+  <section class="nosyt-hero min-h-[70vh] flex items-center justify-center relative overflow-hidden">
+    <!-- Subtle Meteors Background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div id="meteors-container"></div>
+    </div>
+    <div class="container mx-auto px-4 text-center relative z-10">
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 nosyt-float">
+        Professional Services
+      </h1>
+      <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-4xl mx-auto">
+        Transform your business with our expert web development, AI integration, and 3D printing services.
+        From concept to completion, we deliver solutions that drive results.
+      </p>
+      <div class="btn-group justify-center">
+        <a href="#services" class="btn-modern btn-nosyt-secondary btn-lg">
+          <span class="btn-content">
+            <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+            Explore Services
+          </span>
+        </a>
+        <a href="/contact" class="btn-modern btn-nosyt-outline btn-lg">
+          <span class="btn-content">
+            <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            Get Quote
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section id="services" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Services</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          We specialize in three key areas that help businesses thrive in the digital age.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {services.map((service, index) => (
+          <div class="nosyt-card p-6 text-center hover:scale-105 transition-all duration-300 relative">
+            {service.highlight && (
+              <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                {service.highlight}
+              </div>
+            )}
+            <div class="w-16 h-16 bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full flex items-center justify-center mx-auto mb-4">
+              <div set:html={service.iconSvg}></div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+            <p class="text-gray-600 mb-4 text-sm">{service.shortDescription}</p>
+            <div class="space-y-1 mb-4">
+              <div class="text-lg font-bold text-nosyt-purple">{service.pricing}</div>
+              <div class="text-xs text-gray-500">{service.timeline}</div>
+            </div>
+            <a href={`#${service.id}`} class="btn-modern btn-nosyt-primary btn-sm">
+              <span class="btn-content">
+                Learn More
+                <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <!-- Detailed Services Sections -->
+  {services.map((service, index) => (
+    <section id={service.id} class={`py-20 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
+      <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class={index % 2 === 1 ? 'order-2' : ''}>
+            <div class="w-full h-96 bg-gradient-to-br from-purple-100 to-orange-100 rounded-lg flex items-center justify-center">
+              <div class="w-32 h-32 text-purple-600" set:html={service.iconSvg.replace('w-8 h-8', 'w-32 h-32')}></div>
+            </div>
+          </div>
+          <div class={index % 2 === 1 ? 'order-1' : ''}>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{service.title}</h2>
+            <p class="text-lg text-gray-600 mb-8">
+              {service.fullDescription}
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+              <div class="nosyt-card p-4">
+                <h4 class="font-bold text-gray-900 mb-2">Pricing</h4>
+                <p class="text-nosyt-purple font-semibold">{service.pricing}</p>
+              </div>
+              <div class="nosyt-card p-4">
+                <h4 class="font-bold text-gray-900 mb-2">Timeline</h4>
+                <p class="text-nosyt-orange font-semibold">{service.timeline}</p>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-semibold mb-4 text-gray-900">What's Included</h3>
+            <ul class="space-y-3 mb-8">
+              {service.features.map(feature => (
+                <li class="flex items-start">
+                  <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 mt-0.5">
+                    <i class="fas fa-check text-white text-sm"></i>
+                  </div>
+                  <span class="text-gray-700">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href={`/services/${service.id}`}
+                class="flex-1 group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full hover:from-nosyt-purple-dark hover:to-nosyt-orange-dark transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <span class="relative z-10 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
+                  View Details & Order
+                </span>
+                <div class="absolute inset-0 bg-gradient-to-r from-nosyt-orange to-nosyt-purple rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </a>
+
+              <a
+                href={`/contact?service=${encodeURIComponent(service.title)}&amount=${service.pricing.replace(/[^0-9]/g, '')}`}
+                class="flex-1 group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-nosyt-purple bg-white border-2 border-nosyt-purple rounded-full hover:bg-nosyt-purple hover:text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <span class="relative z-10 flex items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  Get Quote
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+  <!-- Call to Action Section -->
+  <section class="py-20 nosyt-hero">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Transform Your Business?</h2>
+      <p class="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+        Let's discuss how NosytLabs can help you achieve your goals with our professional services.
+        Get a free consultation and personalized quote today.
+      </p>
+      <div class="btn-group justify-center">
+        <a href="/contact" class="btn-modern btn-nosyt-secondary btn-lg">
+          <span class="btn-content">
+            <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            Get Free Consultation
+          </span>
+        </a>
+        <a href="/projects" class="btn-modern btn-nosyt-outline btn-lg">
+          <span class="btn-content">
+            <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            View Our Work
+          </span>
+        </a>
+        <a href={`mailto:${CONTACT.EMAIL.MAIN}`} class="btn-modern btn-nosyt-outline btn-lg">
+          <span class="btn-content">
+            <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+            </svg>
+            Email Us
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+          <p class="text-xl text-gray-600">
+            Ready to start your project? Contact us for a free consultation.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="nosyt-card p-6 text-center">
+            <div class="w-12 h-12 bg-nosyt-purple rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-envelope text-white"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Email</h3>
+            <p class="text-gray-600">{CONTACT.EMAIL.MAIN}</p>
+          </div>
+
+          <div class="nosyt-card p-6 text-center">
+            <div class="w-12 h-12 bg-nosyt-orange rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-clock text-white"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Response Time</h3>
+            <p class="text-gray-600">Within 24 hours</p>
+          </div>
+
+          <div class="nosyt-card p-6 text-center">
+            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-globe text-white"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Service Area</h3>
+            <p class="text-gray-600">Worldwide Remote</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  // Add subtle meteors effect to hero section
+  document.addEventListener('DOMContentLoaded', function() {
+    const meteorsContainer = document.getElementById('meteors-container');
+    if (meteorsContainer) {
+      // Create 8 subtle meteors
+      for (let i = 0; i < 8; i++) {
+        const meteor = document.createElement('span');
+        meteor.className = 'pointer-events-none absolute h-0.5 w-0.5 rotate-[215deg] animate-meteor-effect rounded-[9999px] bg-nosyt-purple shadow-[0_0_0_1px_#7c3aed] before:absolute before:top-1/2 before:h-[1px] before:w-[50px] before:-translate-y-[50%] before:transform before:bg-gradient-to-r before:from-[#7c3aed] before:to-transparent before:content-[\'\']';
+
+        // Random positioning and timing
+        meteor.style.top = '0';
+        meteor.style.left = Math.floor(Math.random() * 400 - 200) + 'px';
+        meteor.style.animationDelay = Math.random() * 2 + 's';
+        meteor.style.animationDuration = Math.floor(Math.random() * 6 + 4) + 's';
+
+        meteorsContainer.appendChild(meteor);
+      }
+    }
+  });
+</script>

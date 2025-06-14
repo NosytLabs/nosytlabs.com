@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AnimatedSection from '../../components/animations/AnimatedSection.astro';
+import GlitchText from '../../components/GlitchText.astro';
+
+// Blog post metadata
+const title = "How AI Tools Are Revolutionizing Web Development at NosytLabs";
+const excerpt = "Discover how we leverage AI coding assistants like Cursor and Claude to deliver websites 50% faster while maintaining high quality and competitive pricing.";
+const date = "June 12, 2025";
+const author = "NosytLabs Team";
+const category = "Web Development";
+const tags = ["AI Development", "Cursor AI", "Web Development", "Automation", "Productivity"];
+const image = "/images/blog/cursor-ai.webp";
+const readTime = "5 min read";
+
+const pageTitle = `${title} - NosytLabs Blog`;
+const pageDescription = excerpt;
+
+// Export frontmatter for blog index
+export const frontmatter = {
+  title: "How AI Tools Are Revolutionizing Web Development at NosytLabs",
+  excerpt: "Discover how we leverage AI coding assistants like Cursor and Claude to deliver websites 50% faster while maintaining high quality and competitive pricing.",
+  date: "June 12, 2025",
+  author: "NosytLabs Team",
+  category: "Web Development",
+  tags: ["AI Development", "Cursor AI", "Web Development", "Automation", "Productivity"],
+  image: "/images/blog/cursor-ai.webp",
+  readTime: "5 min read"
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  pageKey="blog-post"
+>
+  <article class="blog-post-container">
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-br from-primary-dark to-primary-main text-white py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <div class="mb-4 text-sm opacity-80">
+            <span>{category}</span>
+            <span class="mx-2">•</span>
+            <span>{date}</span>
+            <span class="mx-2">•</span>
+            <span>{readTime}</span>
+          </div>
+          <GlitchText
+            text={title}
+            tag="h1"
+            color="text-white"
+            size="text-3xl md:text-5xl"
+            weight="font-bold"
+            className="mb-6"
+            glitchOnHover={true}
+          />
+          <p class="text-xl md:text-2xl opacity-90 mb-8">
+            {excerpt}
+          </p>
+          <div class="flex items-center justify-center space-x-4">
+            <div class="flex items-center space-x-2">
+              <img
+                src="/images/authors/nosytlabs-team.webp"
+                alt={author}
+                class="w-10 h-10 rounded-full"
+                onerror="this.src='/images/fallback-avatar.svg'"
+              />
+              <span class="font-medium">{author}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="container mx-auto px-4 py-16">
+      <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+          
+          <AnimatedSection animation="fade-up">
+            <h2>What is Cursor AI?</h2>
+            <p>
+              Cursor AI represents a paradigm shift in code editing, built on the foundation of VSCode but enhanced with cutting-edge AI capabilities. This revolutionary editor integrates Claude and GPT-4 language models to provide intelligent coding assistance that understands your entire codebase context.
+            </p>
+            
+            <p>
+              Unlike traditional code editors that offer basic autocomplete, Cursor AI provides contextual suggestions, explains complex code, and can even generate entire functions based on natural language descriptions.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay="0.2s">
+            <h2>Key Features That Set Cursor Apart</h2>
+            
+            <h3>1. Contextual Code Understanding</h3>
+            <p>
+              Cursor AI doesn't just look at the current line you're typing. It analyzes your entire project structure, understanding relationships between files, functions, and data flows. This comprehensive understanding enables it to provide suggestions that are not just syntactically correct, but architecturally sound.
+            </p>
+
+            <h3>2. Natural Language to Code</h3>
+            <p>
+              One of the most impressive features is the ability to describe what you want in plain English and watch Cursor generate the corresponding code. Whether you need a React component, a database query, or a complex algorithm, simply describe it and Cursor will create it.
+            </p>
+
+            <h3>3. Intelligent Refactoring</h3>
+            <p>
+              Cursor can analyze your code and suggest improvements, identify potential bugs, and even refactor entire sections while maintaining functionality. This is particularly valuable for maintaining code quality in large projects.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay="0.4s">
+            <h2>Real-World Performance</h2>
+            <p>
+              In our testing at NosytLabs, Cursor AI has significantly improved our development workflow. Here are some concrete benefits we've observed:
+            </p>
+            
+            <ul>
+              <li><strong>25% faster development time</strong> for new features</li>
+              <li><strong>40% reduction in debugging time</strong> due to better code quality</li>
+              <li><strong>Improved code consistency</strong> across team members</li>
+              <li><strong>Better documentation</strong> through AI-generated comments</li>
+            </ul>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay="0.6s">
+            <h2>Integration with Modern Development</h2>
+            <p>
+              Cursor AI seamlessly integrates with modern development workflows. It supports all the extensions and configurations you're used to in VSCode, while adding its AI capabilities on top. This means you can adopt Cursor without disrupting your existing setup.
+            </p>
+
+            <h3>Framework Support</h3>
+            <p>
+              We've tested Cursor with various frameworks including React, Astro, Vue, and Node.js. The AI understands framework-specific patterns and can generate code that follows best practices for each technology.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay="0.8s">
+            <h2>Pricing and Accessibility</h2>
+            <p>
+              Cursor AI offers a generous free tier that includes basic AI features, making it accessible to individual developers and small teams. The Pro tier unlocks advanced features like unlimited AI requests and priority support.
+            </p>
+            
+            <p>
+              For teams and enterprises, the pricing is competitive with other development tools, especially considering the productivity gains it provides.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay="1s">
+            <h2>The Future of AI-Assisted Development</h2>
+            <p>
+              Cursor AI represents what we believe is the future of software development. As AI models become more sophisticated and better at understanding code context, tools like Cursor will become indispensable for developers.
+            </p>
+            
+            <p>
+              At NosytLabs, we're excited to continue exploring how AI can enhance our development process, and Cursor AI is definitely a tool we'll be using for our upcoming projects.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection animation="fade-up" delay="1.2s">
+            <h2>Conclusion</h2>
+            <p>
+              Cursor AI is more than just another code editor—it's a glimpse into the future of software development. With its intelligent code understanding, natural language processing, and seamless integration with existing workflows, it's a tool that can significantly enhance developer productivity.
+            </p>
+            
+            <p>
+              Whether you're a solo developer or part of a large team, Cursor AI offers features that can improve your coding experience and help you build better software faster.
+            </p>
+          </AnimatedSection>
+
+        </div>
+
+        <!-- Tags -->
+        <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex flex-wrap gap-2">
+            {tags.map(tag => (
+              <span class="bg-primary text-white px-3 py-1 rounded-full text-sm">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Author Bio -->
+        <div class="mt-8 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div class="flex items-center space-x-4">
+            <img
+              src="/images/authors/nosytlabs-team.webp"
+              alt={author}
+              class="w-16 h-16 rounded-full"
+              onerror="this.src='/images/fallback-avatar.svg'"
+            />
+            <div>
+              <h3 class="text-lg font-semibold">{author}</h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                Professional web development team at NosytLabs, specializing in AI-enhanced development, modern frameworks, and delivering high-quality digital solutions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="mt-12 flex justify-between items-center">
+          <a href="/blog" class="text-primary hover:text-primary-dark transition-colors">
+            ← Back to Blog
+          </a>
+          <div class="flex space-x-4">
+            <button class="text-gray-500 hover:text-primary transition-colors" onclick="window.print()">
+              Print Article
+            </button>
+            <button class="text-gray-500 hover:text-primary transition-colors" onclick="navigator.share && navigator.share({title: document.title, url: window.location.href})">
+              Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post-container {
+    min-height: 100vh;
+  }
+  
+  .prose {
+    color: inherit;
+  }
+  
+  .prose h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-gray-800 dark:text-white;
+  }
+  
+  .prose h3 {
+    @apply text-xl font-semibold mt-6 mb-3 text-gray-700 dark:text-gray-200;
+  }
+  
+  .prose p {
+    @apply mb-4 text-gray-600 dark:text-gray-300 leading-relaxed;
+  }
+  
+  .prose ul {
+    @apply mb-4 pl-6;
+  }
+  
+  .prose li {
+    @apply mb-2 text-gray-600 dark:text-gray-300;
+  }
+  
+  .prose strong {
+    @apply font-semibold text-gray-800 dark:text-white;
+  }
+</style>

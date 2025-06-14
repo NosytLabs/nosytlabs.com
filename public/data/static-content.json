@@ -1,0 +1,37 @@
+{
+  "youtube": {
+    "channelName": "TycenYT",
+    "subscribers": "1.2K+",
+    "totalViews": "50K+",
+    "videos": [
+      {
+        "id": "Buty-cxMTfM",
+        "title": "Cursor AI: The FREE AI Coding Assistant",
+        "description": "Comprehensive review of Cursor AI vs GitHub Copilot",
+        "thumbnail": "/images/blog/cursor-ai.jpg"
+      },
+      {
+        "id": "Ka8P5VS01Eo",
+        "title": "Crypto Mining Box Unboxing",
+        "description": "Testing a $6/day crypto mining device",
+        "thumbnail": "/images/blog/crypto-mining-2025.jpg"
+      }
+    ]
+  },
+  "creality": {
+    "models": [
+      {
+        "id": "1234567",
+        "title": "Articulated Dragon",
+        "description": "Flexible dragon model with moving parts",
+        "thumbnail": "/images/models/articulated-dragon.jpg"
+      },
+      {
+        "id": "2345678",
+        "title": "Mining Rig Case",
+        "description": "Custom case for crypto mining equipment",
+        "thumbnail": "/images/models/mining-rig-case.jpg"
+      }
+    ]
+  }
+}

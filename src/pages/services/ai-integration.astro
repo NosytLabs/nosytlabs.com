@@ -1,0 +1,371 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CONTACT } from '../../config/constants.ts';
+
+// DodoPayments Product ID for AI Integration
+const PRODUCT_ID = "pdt_27YPLIEEvX1v1XsawujVP";
+const SERVICE_NAME = "AI Integration & Automation";
+const BASE_PRICE = 2200;
+const SUGGESTED_PRICE = 3500;
+---
+
+<BaseLayout
+  title="AI Integration & Automation Services | NosytLabs"
+  description="Transform your business with AI chatbots, workflow automation, and intelligent data analysis. 24/7 automated customer support starting at $2,200."
+  pageKey="ai-integration-service"
+  keywords="AI integration, chatbots, workflow automation, business automation, AI consulting, machine learning"
+>
+  <!-- Hero Section -->
+  <section class="min-h-[80vh] bg-gradient-to-br from-nosyt-purple-dark via-nosyt-purple to-nosyt-orange flex items-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto text-center text-white">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+          AI Integration & Automation
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 opacity-90">
+          Smart automation and AI chatbots that work 24/7 to transform your business operations
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#pricing" class="btn-modern btn-nosyt-secondary btn-lg">
+            <span class="btn-content">
+              <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+              Get Started - $2,200
+            </span>
+          </a>
+          <a href="#features" class="btn-modern btn-modern--ghost btn-lg">
+            <span class="btn-content">
+              Learn More
+              <svg xmlns="http://www.w3.org/2000/svg" class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI Statistics -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Proven ROI from AI Automation</h2>
+        <p class="text-xl text-gray-600">Based on McKinsey 2025 AI Business Report and industry data</p>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-4xl font-bold text-nosyt-orange mb-2">40%</div>
+          <div class="text-gray-600">Cost Reduction</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-nosyt-purple mb-2">24/7</div>
+          <div class="text-gray-600">Availability</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-nosyt-orange mb-2">3x</div>
+          <div class="text-gray-600">Faster Response</div>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl font-bold text-nosyt-purple mb-2">85%</div>
+          <div class="text-gray-600">Customer Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">AI Solutions That Drive Results</h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          We implement practical AI solutions that deliver measurable ROI and efficiency gains for your business.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">AI Chatbots & Virtual Assistants</h3>
+          <p class="text-gray-600">Intelligent conversational AI that handles customer inquiries, bookings, and support 24/7.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Workflow Automation</h3>
+          <p class="text-gray-600">Automate repetitive tasks, data entry, and business processes to save time and reduce errors.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Intelligent Data Analysis</h3>
+          <p class="text-gray-600">AI-powered insights from your business data to identify trends and optimization opportunities.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-1l-4 4z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">Natural Language Processing</h3>
+          <p class="text-gray-600">Advanced text analysis, sentiment monitoring, and automated content generation.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">System Integration</h3>
+          <p class="text-gray-600">Seamlessly connect AI solutions with your existing CRM, ERP, and business systems.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+          <div class="w-16 h-16 bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-4">24/7 Customer Support</h3>
+          <p class="text-gray-600">Automated customer service that never sleeps, handling inquiries and escalating when needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Real-World Applications</h2>
+        <p class="text-xl text-gray-600">See how AI automation transforms different industries</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
+          <h3 class="text-xl font-bold text-gray-900 mb-3">E-commerce</h3>
+          <p class="text-gray-600 mb-4">Automated customer support, inventory management, and personalized product recommendations.</p>
+          <div class="text-sm text-blue-600 font-semibold">ROI: 300% increase in conversions</div>
+        </div>
+
+        <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Healthcare</h3>
+          <p class="text-gray-600 mb-4">Patient scheduling, symptom assessment, and automated appointment reminders.</p>
+          <div class="text-sm text-green-600 font-semibold">ROI: 50% reduction in admin costs</div>
+        </div>
+
+        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Real Estate</h3>
+          <p class="text-gray-600 mb-4">Lead qualification, property matching, and automated follow-up sequences.</p>
+          <div class="text-sm text-purple-600 font-semibold">ROI: 200% more qualified leads</div>
+        </div>
+
+        <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl">
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Professional Services</h3>
+          <p class="text-gray-600 mb-4">Client onboarding, document processing, and automated billing systems.</p>
+          <div class="text-sm text-orange-600 font-semibold">ROI: 40% time savings</div>
+        </div>
+
+        <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl">
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Manufacturing</h3>
+          <p class="text-gray-600 mb-4">Quality control, predictive maintenance, and supply chain optimization.</p>
+          <div class="text-sm text-red-600 font-semibold">ROI: 25% cost reduction</div>
+        </div>
+
+        <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-xl">
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Education</h3>
+          <p class="text-gray-600 mb-4">Student support, automated grading, and personalized learning paths.</p>
+          <div class="text-sm text-indigo-600 font-semibold">ROI: 60% efficiency gain</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-20 bg-gradient-to-br from-gray-50 to-purple-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">AI Integration Pricing</h2>
+          <p class="text-xl text-gray-600">
+            Flexible pricing based on complexity and ROI potential
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+          <div class="text-center mb-8">
+            <h3 class="text-3xl font-bold text-gray-900 mb-4">AI Integration & Automation</h3>
+            <div class="flex items-center justify-center gap-4 mb-6">
+              <div class="text-center">
+                <div class="text-sm text-gray-500">Starting at</div>
+                <div class="text-4xl font-bold text-nosyt-purple">${BASE_PRICE}</div>
+              </div>
+              <div class="text-center">
+                <div class="text-sm text-gray-500">Suggested</div>
+                <div class="text-3xl font-bold text-nosyt-orange">${SUGGESTED_PRICE}</div>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-8">Pay what you want - minimum ${BASE_PRICE}, suggested ${SUGGESTED_PRICE}</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h4 class="font-bold text-gray-900 mb-4">Core Features:</h4>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Custom AI Chatbots & Virtual Assistants</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Workflow & Process Automation</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Intelligent Data Analysis & Insights</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Natural Language Processing</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-gray-900 mb-4">Additional Benefits:</h4>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Integration with Existing Systems</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>24/7 Automated Customer Support</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>2-4 Week Implementation</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>ROI Tracking & Optimization</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="max-w-md mx-auto">
+            <div id="ai-payment-container"></div>
+            <script>
+              // Payment creation function for AI Integration
+              window.createAIPayment = async function() {
+                const button = event.target;
+                button.disabled = true;
+                button.innerHTML = '<svg class="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Creating Payment...';
+
+                try {
+                  const response = await fetch('/api/create-payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      productId: 'pdt_27YPLIEEvX1v1XsawujVP',
+                      productName: 'AI Integration & Automation',
+                      amount: 350000,
+                      customer: { email: 'hi@nosytlabs.com', name: 'NosytLabs Customer' },
+                      billing: { street: '123 Main St', city: 'Albuquerque', state: 'New Mexico', zipcode: '87101', country: 'US' },
+                      returnUrl: window.location.origin + '/thank-you?service=ai-integration'
+                    })
+                  });
+
+                  const result = await response.json();
+
+                  if (result.checkoutUrl) {
+                    window.location.href = result.checkoutUrl;
+                  } else {
+                    throw new Error(result.error || 'Payment creation failed');
+                  }
+                } catch (error) {
+                  console.error('Payment error:', error);
+                  window.location.href = '/contact?service=AI Integration & Automation&amount=3500&error=payment_failed';
+                } finally {
+                  button.disabled = false;
+                  button.innerHTML = 'Pay $3,500 - Start AI Integration';
+                }
+              };
+
+              // Render payment button
+              document.addEventListener('DOMContentLoaded', function() {
+                const container = document.getElementById('ai-payment-container');
+                if (container) {
+                  container.innerHTML = `
+                    <div class="space-y-4">
+                      <div class="flex items-center justify-between mb-4">
+                        <div>
+                          <div class="text-sm text-gray-500">Starting at</div>
+                          <div class="text-2xl font-bold text-nosyt-purple">$2,200</div>
+                        </div>
+                        <div class="text-right">
+                          <div class="text-sm text-gray-500">Suggested</div>
+                          <div class="text-xl font-semibold text-nosyt-orange">$3,500</div>
+                        </div>
+                      </div>
+                      <button
+                        onclick="createAIPayment()"
+                        class="w-full relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full hover:from-nosyt-purple-dark hover:to-nosyt-orange-dark transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                        Pay $3,500 - Start AI Integration
+                      </button>
+                      <div class="text-center">
+                        <div class="flex items-center justify-center text-xs text-gray-500 space-x-4">
+                          <span>🔒 Secure payment by DodoPayments</span>
+                          <span>📊 ROI tracking included</span>
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                }
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

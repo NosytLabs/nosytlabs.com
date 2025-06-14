@@ -1,0 +1,27 @@
+/* JetBrains Mono Font */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/JetBrains-Mono-Regular.woff2') format('woff2'),
+       url('/fonts/JetBrains-Mono-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/JetBrains-Mono-Medium.woff2') format('woff2'),
+       url('/fonts/JetBrains-Mono-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/JetBrains-Mono-Bold.woff2') format('woff2'),
+       url('/fonts/JetBrains-Mono-Bold.woff') format('woff');
+}

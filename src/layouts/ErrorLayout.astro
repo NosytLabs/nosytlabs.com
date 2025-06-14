@@ -1,0 +1,210 @@
+---
+// ErrorLayout.astro - Layout for error pages
+export interface Props {
+  title?: string;
+  errorCode?: string;
+  errorMessage?: string;
+  showRetry?: boolean;
+}
+
+const {
+  title = 'Error - NosytLabs',
+  errorCode = '404',
+  errorMessage = 'Page not found',
+  showRetry = true
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/images/NosytLabs.svg">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+
+  <!-- Global styles -->
+  <link rel="stylesheet" href="/styles/nosytlabs.css">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0a0a0a;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .error-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-grow: 1;
+      padding: 2rem;
+    }
+
+    .error-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 2rem;
+    }
+
+    .error-code {
+      font-family: 'VT323', monospace;
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      color: #ff5e5b;
+    }
+
+    .error-message {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+
+    .error-details {
+      font-family: 'VT323', monospace;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      color: #a0a0a0;
+    }
+
+    .retry-button {
+      background-color: #ff5e5b;
+      color: #0a0a0a;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .retry-button:hover {
+      background-color: #ff7a77;
+      transform: translateY(-2px);
+    }
+
+    .home-link {
+      margin-top: 2rem;
+      color: #a0a0a0;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+
+    .home-link:hover {
+      color: #ff5e5b;
+    }
+
+    .home-link svg {
+      margin-right: 0.5rem;
+    }
+
+    .terminal-text {
+      font-family: 'VT323', monospace;
+      color: #a0a0a0;
+      margin-top: 2rem;
+      text-align: left;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .terminal-text p {
+      margin: 0.25rem 0;
+    }
+
+    .blink {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 49% {
+        opacity: 1;
+      }
+      50%, 100% {
+        opacity: 0;
+      }
+    }
+
+    .scanning {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .scanning::before {
+      content: "";
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid #a0a0a0;
+      border-top-color: #ff5e5b;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <img src="/images/logo-new.svg" alt="NosytLabs Logo" class="error-logo">
+    <h1 class="error-code">CONNECTION LOST</h1>
+    <h2 class="error-message">Timeline Under Maintenance</h2>
+    <p class="error-details">NOSYT LABS TERMLINK PROTOCOL</p>
+    <p class="error-details">You appear to be offline. Please check your network connection and try again.</p>
+
+    {showRetry && (
+      <button id="retry-button" class="retry-button">RETRY CONNECTION</button>
+    )}
+
+    <div class="terminal-text">
+      <div class="scanning">Scanning for network</div>
+    </div>
+
+    <a href="/" class="home-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path fill-rule="evenodd" d="M11.354 4.646a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708z"/>
+      </svg>
+      Return to Home
+    </a>
+
+    <slot />
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const retryButton = document.getElementById('retry-button');
+
+      if (retryButton) {
+        retryButton.addEventListener('click', () => {
+          window.location.reload();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+---
+// Professional Projects Portfolio - NosytLabs
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectGrid from '../components/content/ProjectGrid.astro';
+
+// Authentic project portfolio - Real business projects
+const projects = [
+  {
+    title: "NosytLabs Corporate Website",
+    description: "Our own modern, responsive corporate website built with Astro, React, and TypeScript. Features dark mode, accessibility compliance, and optimized performance with Grade A+ optimization.",
+    image: "/images/projects/nosytlabs-website.jpg",
+    technologies: ["Astro", "React", "TypeScript", "Tailwind CSS"],
+    category: "Web Development",
+    link: "https://nosytlabs.com",
+    featured: true
+  },
+  {
+    title: "Small Business Website",
+    description: "Professional website for a local New Mexico business featuring modern design, mobile responsiveness, and SEO optimization to improve online presence.",
+    image: "/images/projects/small-business-website.jpg",
+    technologies: ["HTML", "CSS", "JavaScript", "WordPress"],
+    category: "Web Development",
+    link: "/contact",
+    featured: true
+  },
+  {
+    title: "Rapid Prototype Development",
+    description: "Quick MVP development for a startup client using AI-assisted coding tools, delivering a functional prototype in under a week.",
+    image: "/images/projects/rapid-prototype.jpg",
+    technologies: ["React", "Node.js", "MongoDB", "Vercel"],
+    category: "MVP Development",
+    link: "/contact",
+    featured: false
+  }
+];
+
+const pageTitle = "Our Projects - NosytLabs Portfolio";
+const pageDescription = "Explore our portfolio of successful web development and AI integration projects. See how we've helped businesses transform their operations with modern technology solutions.";
+---
+<BaseLayout title={pageTitle} description={pageDescription}>  <!-- Hero Section -->
+  <section class="hero-section hero-gradient-light">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>🚀</span>
+          <span>Our Portfolio</span>
+        </div>
+
+        <h1 class="hero-title">
+          Projects That Drive Results
+        </h1>
+
+        <p class="hero-description">
+          Explore our portfolio of successful web development and AI integration projects.
+          Each project represents our commitment to delivering innovative solutions that
+          transform businesses and drive measurable results.
+        </p>
+
+        <div class="stats-container">
+          <div class="stat-item">
+            <div class="stat-number">5+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">2+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24hr</div>
+            <div class="stat-label">Response Time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="projects-section">
+    <div class="container">
+      <ProjectGrid
+        projects={projects}
+        showFilters={true}
+        showLoadMore={false}
+        itemsPerPage={6}
+      />
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="projects-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to Start Your Project?</h2>
+        <p class="cta-description">
+          Let's discuss your requirements and create a solution that exceeds your expectations.
+        </p>
+        <div class="cta-actions">
+          <a href="/contact" class="btn btn-primary btn-lg">
+            Start Your Project
+            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="/services" class="btn btn-outline btn-lg">
+            View Our Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-section {
+    padding: var(--spacing-20) 0;
+    background: white;
+  }
+
+  [data-theme="dark"] .projects-section {
+    background: var(--gray-900);
+  }
+
+  .projects-cta {
+    padding: var(--spacing-20) 0;
+    background: linear-gradient(135deg, var(--nosyt-purple) 0%, var(--nosyt-purple-dark) 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .cta-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: var(--spacing-4);
+    line-height: 1.2;
+  }
+
+  .cta-description {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin-bottom: var(--spacing-8);
+    opacity: 0.9;
+    line-height: 1.7;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--spacing-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-lg {
+    padding: var(--spacing-4) var(--spacing-8);
+    font-size: 1.125rem;
+  }
+
+  .btn-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .btn:hover .btn-icon {
+    transform: translateX(4px);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .cta-actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+

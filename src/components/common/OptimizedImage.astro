@@ -1,0 +1,425 @@
+---
+/**
+ * Optimized Image Component for NosytLabs
+ * Implements modern image loading strategies for Core Web Vitals compliance
+ */
+
+import type { ImageProps } from '../types/component-props';
+
+interface Props extends ImageProps {
+  /** Priority loading for above-the-fold images */
+  priority?: boolean;
+  /** Responsive image sizes */
+  sizes?: string;
+  /** Image quality (1-100) */
+  quality?: number;
+  /** Image format preference */
+  format?: 'webp' | 'avif' | 'auto';
+  /** Blur placeholder while loading */
+  blurDataURL?: string;
+  /** Aspect ratio to prevent layout shift */
+  aspectRatio?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  priority = false,
+  loading = priority ? 'eager' : 'lazy',
+  sizes = '100vw',
+  quality = 85,
+  format = 'auto',
+  blurDataURL,
+  aspectRatio,
+  objectFit = 'cover',
+  class: className = '',
+  style = '',
+  placeholder,
+  fallback,
+  ...rest
+} = Astro.props;
+
+// Generate responsive image sources
+const generateSrcSet = (baseSrc: string, widths: number[]) => {
+  return widths
+    .map(width => {
+      const params = new URLSearchParams({
+        w: width.toString(),
+        q: quality.toString(),
+        ...(format !== 'auto' && { f: format })
+      });
+      return `${baseSrc}?${params} ${width}w`;
+    })
+    .join(', ');
+};
+
+// Standard responsive widths
+const responsiveWidths = [320, 640, 768, 1024, 1280, 1536, 1920];
+const srcSet = generateSrcSet(src, responsiveWidths);
+
+// Generate optimized src with quality and format
+const optimizedSrc = (() => {
+  const params = new URLSearchParams({
+    q: quality.toString(),
+    ...(format !== 'auto' && { f: format }),
+    ...(width && { w: width.toString() }),
+    ...(height && { h: height.toString() })
+  });
+  return `${src}?${params}`;
+})();
+
+// Calculate aspect ratio for layout shift prevention
+const calculatedAspectRatio = aspectRatio || (width && height ? `${width} / ${height}` : undefined);
+
+// Generate unique ID for this image
+const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div 
+  class={`optimized-image-container ${className}`}
+  style={`
+    ${calculatedAspectRatio ? `aspect-ratio: ${calculatedAspectRatio};` : ''}
+    ${style}
+  `}
+  data-image-container
+>
+  <!-- Blur placeholder -->
+  {blurDataURL && (
+    <img
+      src={blurDataURL}
+      alt=""
+      class="image-placeholder"
+      aria-hidden="true"
+      style={`
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: ${objectFit};
+        filter: blur(10px);
+        transition: opacity 0.3s ease;
+        z-index: 1;
+      `}
+    />
+  )}
+
+  <!-- Main optimized image -->
+  <img
+    id={imageId}
+    src={priority ? optimizedSrc : placeholder || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNGM0Y0RjYiLz48L3N2Zz4='}
+    data-src={priority ? undefined : optimizedSrc}
+    srcset={priority ? srcSet : undefined}
+    data-srcset={priority ? undefined : srcSet}
+    sizes={sizes}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding="async"
+    class={`optimized-image ${priority ? 'priority' : 'lazy'}`}
+    style={`
+      width: 100%;
+      height: 100%;
+      object-fit: ${objectFit};
+      transition: opacity 0.3s ease;
+      z-index: 2;
+      position: relative;
+    `}
+    data-quality={quality}
+    data-format={format}
+    {...rest}
+  />
+
+  <!-- Fallback for failed loads -->
+  {fallback && (
+    <img
+      src={fallback}
+      alt={alt}
+      class="image-fallback"
+      style="display: none;"
+      aria-hidden="true"
+    />
+  )}
+
+  <!-- Loading indicator -->
+  <div 
+    class="image-loading-indicator"
+    style={`
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f3f4f6;
+      z-index: 0;
+      transition: opacity 0.3s ease;
+    `}
+  >
+    <div class="loading-spinner" style={`
+      width: 24px;
+      height: 24px;
+      border: 2px solid #e5e7eb;
+      border-top: 2px solid #6366f1;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    `}></div>
+  </div>
+</div>
+
+<!-- Preload link for priority images -->
+{priority && (
+  <link
+    rel="preload"
+    as="image"
+    href={optimizedSrc}
+    imagesrcset={srcSet}
+    imagesizes={sizes}
+  />
+)}
+
+<style>
+  .optimized-image-container {
+    position: relative;
+    overflow: hidden;
+    background: #f3f4f6;
+    display: block;
+  }
+
+  .optimized-image {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .optimized-image.loaded {
+    opacity: 1;
+  }
+
+  .optimized-image.priority {
+    opacity: 1;
+  }
+
+  .image-placeholder {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-placeholder.hidden {
+    opacity: 0;
+  }
+
+  .image-loading-indicator {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-loading-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Responsive image optimizations */
+  @media (max-width: 640px) {
+    .optimized-image-container {
+      border-radius: 8px;
+    }
+  }
+
+  @media (min-width: 641px) {
+    .optimized-image-container {
+      border-radius: 12px;
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .optimized-image,
+    .image-placeholder,
+    .image-loading-indicator {
+      transition: none;
+    }
+    
+    .loading-spinner {
+      animation: none;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .image-loading-indicator {
+      background: #000;
+      color: #fff;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .image-loading-indicator,
+    .loading-spinner {
+      display: none;
+    }
+    
+    .optimized-image {
+      opacity: 1 !important;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced image loading with performance monitoring
+  class OptimizedImageLoader {
+    constructor() {
+      this.observer = null;
+      this.loadedImages = new Set();
+      this.init();
+    }
+
+    init() {
+      // Set up intersection observer for lazy loading
+      if ('IntersectionObserver' in window) {
+        this.observer = new IntersectionObserver(
+          this.handleIntersection.bind(this),
+          {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+          }
+        );
+
+        // Observe all lazy images
+        document.querySelectorAll('.optimized-image.lazy').forEach(img => {
+          this.observer.observe(img);
+        });
+      } else {
+        // Fallback for older browsers
+        this.loadAllImages();
+      }
+
+      // Handle image load events
+      this.setupImageEventHandlers();
+    }
+
+    handleIntersection(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          this.loadImage(img);
+          this.observer.unobserve(img);
+        }
+      });
+    }
+
+    loadImage(img) {
+      const src = img.dataset.src;
+      const srcset = img.dataset.srcset;
+
+      if (src) {
+        // Performance measurement
+        const startTime = performance.now();
+        
+        img.addEventListener('load', () => {
+          const loadTime = performance.now() - startTime;
+          this.onImageLoad(img, loadTime);
+        }, { once: true });
+
+        img.addEventListener('error', () => {
+          this.onImageError(img);
+        }, { once: true });
+
+        // Set sources
+        if (srcset) img.srcset = srcset;
+        img.src = src;
+
+        // Clean up data attributes
+        delete img.dataset.src;
+        delete img.dataset.srcset;
+      }
+    }
+
+    onImageLoad(img, loadTime) {
+      // Mark as loaded
+      img.classList.add('loaded');
+      this.loadedImages.add(img);
+
+      // Hide placeholder and loading indicator
+      const container = img.closest('.optimized-image-container');
+      if (container) {
+        const placeholder = container.querySelector('.image-placeholder');
+        const loadingIndicator = container.querySelector('.image-loading-indicator');
+        
+        if (placeholder) placeholder.classList.add('hidden');
+        if (loadingIndicator) loadingIndicator.classList.add('hidden');
+      }
+
+      // Report performance
+      if (loadTime > 1000) {
+        console.warn(`Slow image load: ${img.src} took ${loadTime.toFixed(2)}ms`);
+      }
+
+      // Send to analytics
+      if (window.NosytLabsPerformance) {
+        window.NosytLabsPerformance.metrics.imageLoadTime = loadTime;
+      }
+    }
+
+    onImageError(img) {
+      console.error(`Failed to load image: ${img.src}`);
+      
+      // Try fallback
+      const container = img.closest('.optimized-image-container');
+      const fallback = container?.querySelector('.image-fallback');
+      
+      if (fallback) {
+        fallback.style.display = 'block';
+        img.style.display = 'none';
+      }
+
+      // Hide loading indicator
+      const loadingIndicator = container?.querySelector('.image-loading-indicator');
+      if (loadingIndicator) {
+        loadingIndicator.classList.add('hidden');
+      }
+    }
+
+    loadAllImages() {
+      document.querySelectorAll('.optimized-image.lazy').forEach(img => {
+        this.loadImage(img);
+      });
+    }
+
+    setupImageEventHandlers() {
+      // Handle priority images
+      document.querySelectorAll('.optimized-image.priority').forEach(img => {
+        if (img.complete) {
+          this.onImageLoad(img, 0);
+        } else {
+          img.addEventListener('load', () => {
+            this.onImageLoad(img, 0);
+          }, { once: true });
+        }
+      });
+    }
+
+    getStats() {
+      return {
+        totalImages: document.querySelectorAll('.optimized-image').length,
+        loadedImages: this.loadedImages.size,
+        pendingImages: document.querySelectorAll('.optimized-image:not(.loaded)').length
+      };
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      window.OptimizedImageLoader = new OptimizedImageLoader();
+    });
+  } else {
+    window.OptimizedImageLoader = new OptimizedImageLoader();
+  }
+</script>

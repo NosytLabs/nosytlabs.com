@@ -1,0 +1,88 @@
+{
+  "services": [
+    {
+      "id": "web-development",
+      "title": "Web Development",
+      "shortDescription": "Professional web development services using modern frameworks and best practices.",
+      "fullDescription": "We specialize in creating high-performance, responsive websites using cutting-edge technologies like React, Astro, and Vue.js. Our development process emphasizes clean code, optimal performance, and exceptional user experiences. Every project is built with scalability, maintainability, and SEO optimization in mind.",
+      "icon": "💻",
+      "iconType": "web",
+      "image": "/images/services/web-development.jpg",
+      "features": [
+        "Responsive design for all devices",
+        "Modern frameworks (React, Astro, Vue.js)",
+        "Full-stack development capabilities",
+        "Content management systems",
+        "Performance optimization",
+        "SEO best practices implementation",
+        "E-commerce solutions"
+      ],
+      "caseStudies": [
+        {
+          "title": "E-commerce Platform Development",
+          "client": "Growing Retail Business",
+          "date": "January 2025",
+          "outcome": "Built a complete e-commerce platform with React and Node.js, resulting in 150% increase in online sales and improved customer experience"
+        },
+        {
+          "title": "Corporate Website Redesign",
+          "client": "Professional Services Firm",
+          "date": "February 2025",
+          "outcome": "Redesigned corporate website using Astro and TailwindCSS, achieving 60% faster load times and 40% increase in lead generation"
+        }
+      ]
+    },
+    {
+      "id": "ai-integration",
+      "title": "AI Integration",
+      "shortDescription": "Integrate AI tools and automation into your existing workflows and business processes.",
+      "fullDescription": "We help businesses leverage artificial intelligence to automate workflows, enhance productivity, and gain competitive advantages. Our AI integration services focus on practical implementations using proven tools and technologies that deliver measurable results.",
+      "icon": "🤖",
+      "iconType": "ai",
+      "image": "/images/services/ai-integration.jpg",
+      "features": [
+        "Custom AI solution development",
+        "Workflow automation implementation",
+        "AI tool integration and training",
+        "Data analysis and insights",
+        "Process optimization",
+        "Performance monitoring and optimization",
+        "Ongoing support and maintenance"
+      ],
+      "caseStudies": [
+        {
+          "title": "Business Process Automation",
+          "client": "Local Service Company",
+          "date": "January 2025",
+          "outcome": "Implemented AI-powered workflow automation reducing manual processing time by 60% and improving accuracy"
+        }
+      ]
+    },
+    {
+      "id": "tech-consulting",
+      "title": "Technology Consulting",
+      "shortDescription": "Strategic technology consulting to help you make informed decisions about your digital infrastructure.",
+      "fullDescription": "Our technology consulting services help businesses navigate the complex landscape of modern technology solutions. We provide strategic guidance on technology stack selection, digital transformation planning, and implementation roadmaps tailored to your specific needs and budget.",
+      "icon": "💡",
+      "iconType": "consulting",
+      "image": "/images/services/tech-consulting.jpg",
+      "features": [
+        "Technology stack assessment and recommendations",
+        "Digital transformation planning",
+        "Architecture design and review",
+        "Performance optimization strategies",
+        "Security assessment and recommendations",
+        "Scalability planning",
+        "Implementation roadmap development"
+      ],
+      "caseStudies": [
+        {
+          "title": "Technology Stack Modernization",
+          "client": "Growing Startup",
+          "date": "February 2025",
+          "outcome": "Provided comprehensive technology assessment and modernization plan, resulting in 40% improved performance and reduced infrastructure costs"
+        }
+      ]
+    }
+  ]
+}

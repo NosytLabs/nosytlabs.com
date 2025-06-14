@@ -1,0 +1,311 @@
+/**
+ * Critical CSS - Above-the-fold styles for NosytLabs
+ * Optimized for Core Web Vitals and fast initial render
+ * Based on build-optimization.js configuration
+ */
+
+/* ========== CSS VARIABLES - CRITICAL SUBSET ========== */
+:root {
+  /* Brand Colors - Critical */
+  --nosyt-purple-main: #4C1D95;
+  --nosyt-purple-light: #7C3AED;
+  --nosyt-orange-main: #FF6B00;
+  --nosyt-orange-light: #FF8C3F;
+
+  /* Layout - Critical */
+  --container-xl: 1200px;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Glassmorphism - Critical */
+  --glass-white: rgba(255, 255, 255, 0.95);
+  --glass-blur: blur(20px);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  /* Z-Index - Critical */
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+
+  /* Text Colors - Critical */
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --background-primary: #ffffff;
+}
+
+/* Dark Mode - Critical */
+.dark {
+  --text-primary: #F9FAFB;
+  --text-secondary: #D1D5DB;
+  --background-primary: #111827;
+  --glass-white: rgba(0, 0, 0, 0.95);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========== CRITICAL LAYOUT STYLES ========== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--background-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== CRITICAL NAVIGATION STYLES ========== */
+.unified-navigation {
+  position: relative;
+  z-index: var(--z-fixed);
+}
+
+.nav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--glass-white);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: var(--glass-border);
+  z-index: var(--z-fixed);
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--nosyt-purple-main);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.logo-image {
+  width: 32px;
+  height: 32px;
+  margin-right: 0.5rem;
+}
+
+/* ========== CRITICAL HERO STYLES ========== */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 10;
+  position: relative;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-secondary);
+  margin: 0 0 2rem 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========== CRITICAL BUTTON STYLES ========== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px -3px rgba(76, 29, 149, 0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 2px solid var(--nosyt-purple-main);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--nosyt-purple-main);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* ========== CRITICAL UTILITY CLASSES ========== */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+/* ========== CRITICAL RESPONSIVE STYLES ========== */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 1rem;
+  }
+  
+  .hero-title {
+    font-size: clamp(1.5rem, 8vw, 2.5rem);
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* ========== CRITICAL ACCESSIBILITY ========== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--nosyt-purple-main);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* ========== CRITICAL PERFORMANCE OPTIMIZATIONS ========== */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  loading: lazy;
+}
+
+.loading {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.loaded {
+  opacity: 1;
+}
+
+/* Optimize for Core Web Vitals */
+.layout-shift-prevention {
+  contain: layout style paint;
+}
+
+/* Reduce layout shifts */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}

@@ -1,0 +1,121 @@
+---
+/**
+ * SEO Enhancement Component
+ * Provides comprehensive SEO meta tags and structured data
+ */
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  url?: string;
+  type?: string;
+  author?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+}
+
+const {
+  title = "NosytLabs - Notable Opportunities Shape Your Tomorrow",
+  description = "Transform your business with innovative digital solutions, expert development, and cutting-edge technology from NosytLabs.",
+  keywords = "web development, mobile apps, AI solutions, digital transformation, NosytLabs",
+  image = "/images/og-image.jpg",
+  url = Astro.url.href,
+  type = "website",
+  author = "NosytLabs Team",
+  publishedTime,
+  modifiedTime
+} = Astro.props;
+
+const siteName = "NosytLabs";
+const twitterHandle = "@nosytlabs";
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content={author} />
+<meta name="robots" content="index, follow" />
+<meta name="language" content="English" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={url} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="en_US" />
+{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={image} />
+<meta property="twitter:site" content={twitterHandle} />
+<meta property="twitter:creator" content={twitterHandle} />
+
+<!-- Additional Meta Tags -->
+<meta name="theme-color" content="#4C1D95" />
+<meta name="msapplication-TileColor" content="#4C1D95" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NosytLabs",
+  "url": "https://nosytlabs.com",
+  "logo": "https://nosytlabs.com/images/logo.svg",
+  "description": "Transform your business with innovative digital solutions, expert development, and cutting-edge technology.",
+  "foundingDate": "2024",
+  "founder": {
+    "@type": "Person",
+    "name": "NosytLabs Team"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1-555-NOSYT-LABS",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://github.com/NosytLabs",
+    "https://twitter.com/nosytlabs",
+    "https://linkedin.com/company/nosytlabs"
+  ],
+  "services": [
+    {
+      "@type": "Service",
+      "name": "Web Development",
+      "description": "Custom web applications and websites"
+    },
+    {
+      "@type": "Service", 
+      "name": "Mobile Development",
+      "description": "iOS and Android mobile applications"
+    },
+    {
+      "@type": "Service",
+      "name": "AI Solutions",
+      "description": "Artificial intelligence and machine learning solutions"
+    }
+  ]
+}
+</script>

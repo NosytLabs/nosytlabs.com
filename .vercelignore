@@ -1,0 +1,20 @@
+# Development files
+.git/
+node_modules/
+.env*
+
+# Build artifacts
+.astro/
+
+# Development files
+src/scripts/build/
+src/scripts/development/
+*.test.*
+*.spec.*
+
+# Documentation
+*.md
+
+# IDE files
+.vscode/
+.idea/

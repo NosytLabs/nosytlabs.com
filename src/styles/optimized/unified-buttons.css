@@ -1,0 +1,287 @@
+/* ========== NOSYTLABS UNIFIED BUTTON SYSTEM ========== */
+/* Consolidated from nosytlabs-brand.css, unified-design-system.css, and consolidated-styles.css */
+
+/* Base Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-6);
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.5;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Button Sizes */
+.btn-sm {
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: 0.875rem;
+}
+
+.btn-lg {
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: 1.125rem;
+}
+
+.btn-xl {
+  padding: var(--spacing-5) var(--spacing-10);
+  font-size: 1.25rem;
+  border-radius: var(--radius-xl);
+}
+
+/* Primary Button - NosytLabs Purple */
+.btn-primary {
+  background: linear-gradient(135deg, var(--nosyt-purple) 0%, var(--nosyt-purple-light) 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--nosyt-purple-dark) 0%, var(--nosyt-purple) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.3);
+}
+
+/* Secondary Button - NosytLabs Orange */
+.btn-secondary {
+  background: linear-gradient(135deg, var(--nosyt-orange) 0%, var(--nosyt-orange-light) 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(255, 107, 53, 0.3);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, var(--nosyt-orange-dark) 0%, var(--nosyt-orange) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px 0 rgba(255, 107, 53, 0.3);
+}
+
+/* Outline Button */
+.btn-outline {
+  background: transparent;
+  color: var(--nosyt-purple);
+  border: 2px solid var(--nosyt-purple);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: var(--nosyt-purple);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background: transparent;
+  color: var(--nosyt-purple);
+  border: none;
+  box-shadow: none;
+}
+
+.btn-ghost:hover {
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--nosyt-purple-dark);
+}
+
+/* Modern Button with Shimmer Effect */
+.btn-modern {
+  background: linear-gradient(135deg, var(--nosyt-purple) 0%, var(--nosyt-purple-light) 100%);
+  color: white;
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-modern:hover::before {
+  left: 100%;
+}
+
+.btn-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+}
+
+/* Button with Icon */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.btn-icon svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+/* Loading Button */
+.btn-loading {
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Button Groups */
+.btn-group {
+  display: inline-flex;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-group .btn {
+  border-radius: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-group .btn:first-child {
+  border-top-left-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--radius-lg);
+}
+
+.btn-group .btn:last-child {
+  border-top-right-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  border-right: none;
+}
+
+/* Responsive Button Adjustments */
+@media (max-width: 768px) {
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+  }
+  
+  .btn-group .btn {
+    border-radius: 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .btn-group .btn:first-child {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  
+  .btn-group .btn:last-child {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    border-bottom: none;
+  }
+}
+
+/* Focus Styles for Accessibility */
+.btn:focus-visible {
+  outline: 2px solid var(--nosyt-purple);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
+}
+
+/* Dark Mode Adjustments */
+[data-theme="dark"] .btn-outline {
+  color: var(--nosyt-purple-light);
+  border-color: var(--nosyt-purple-light);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+  background: var(--nosyt-purple-light);
+  color: var(--nosyt-purple-darkest);
+}
+
+[data-theme="dark"] .btn-ghost {
+  color: var(--nosyt-purple-light);
+}
+
+[data-theme="dark"] .btn-ghost:hover {
+  background: rgba(168, 85, 247, 0.2);
+  color: var(--nosyt-purple-lightest);
+}
+
+/* Special Payment Button Styles */
+.btn-payment {
+  background: linear-gradient(135deg, var(--nosyt-purple) 0%, var(--nosyt-purple-light) 100%);
+  color: white;
+  border-radius: var(--radius-full);
+  padding: var(--spacing-4) var(--spacing-8);
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.btn-payment:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+}
+
+.btn-payment.secondary {
+  background: linear-gradient(135deg, var(--nosyt-orange) 0%, var(--nosyt-orange-light) 100%);
+}
+
+.btn-payment.secondary:hover {
+  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}

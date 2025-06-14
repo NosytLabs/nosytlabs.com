@@ -1,0 +1,228 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT } from '../config/constants.ts';
+
+// Get service from URL params
+const url = new URL(Astro.request.url);
+const service = url.searchParams.get('service') || 'service';
+const amount = url.searchParams.get('amount') || '';
+const paymentId = url.searchParams.get('payment_id') || '';
+---
+
+<BaseLayout
+  title="Thank You for Your Order | NosytLabs"
+  description="Thank you for choosing NosytLabs! Your payment has been processed successfully. We'll be in touch within 24 hours to start your project."
+  pageKey="thank-you"
+  keywords="payment confirmation, order confirmation, NosytLabs services"
+>
+  <!-- Thank You Hero Section -->
+  <section class="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 flex items-center justify-center px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Success Icon -->
+      <div class="mb-8">
+        <div class="w-24 h-24 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
+          Payment Successful! 🎉
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 mb-8">
+          Thank you for choosing NosytLabs for your {service} project
+        </p>
+      </div>
+
+      <!-- Order Details -->
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8 max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Order Confirmation</h2>
+        
+        <div class="space-y-4 text-left">
+          <div class="flex justify-between items-center py-3 border-b border-gray-200">
+            <span class="font-medium text-gray-700">Service:</span>
+            <span class="text-gray-900 capitalize">{service}</span>
+          </div>
+          
+          {amount && (
+            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+              <span class="font-medium text-gray-700">Amount:</span>
+              <span class="text-gray-900 font-semibold">${amount}</span>
+            </div>
+          )}
+          
+          {paymentId && (
+            <div class="flex justify-between items-center py-3 border-b border-gray-200">
+              <span class="font-medium text-gray-700">Payment ID:</span>
+              <span class="text-gray-900 font-mono text-sm">{paymentId}</span>
+            </div>
+          )}
+          
+          <div class="flex justify-between items-center py-3 border-b border-gray-200">
+            <span class="font-medium text-gray-700">Status:</span>
+            <span class="text-green-600 font-semibold">✅ Confirmed</span>
+          </div>
+          
+          <div class="flex justify-between items-center py-3">
+            <span class="font-medium text-gray-700">Order Date:</span>
+            <span class="text-gray-900" id="order-date"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-2xl p-8 md:p-12 text-white mb-8">
+        <h2 class="text-3xl font-bold mb-6">What Happens Next?</h2>
+        
+        <div class="grid md:grid-cols-3 gap-6 text-left">
+          <div class="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
+              <span class="text-2xl font-bold">1</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Confirmation Email</h3>
+            <p class="text-white/90">You'll receive a detailed confirmation email within 5 minutes with your order details and next steps.</p>
+          </div>
+          
+          <div class="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
+              <span class="text-2xl font-bold">2</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Project Kickoff</h3>
+            <p class="text-white/90">Our team will contact you within 24 hours to schedule a project kickoff call and gather requirements.</p>
+          </div>
+          
+          <div class="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-4">
+              <span class="text-2xl font-bold">3</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">Development Starts</h3>
+            <p class="text-white/90">We'll begin development immediately and provide regular updates throughout the process.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Information -->
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Need Help or Have Questions?</h2>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-nosyt-purple to-nosyt-orange rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Email Support</h3>
+            <p class="text-gray-600 mb-4">Get help via email</p>
+            <a 
+              href={`mailto:${CONTACT.EMAIL.MAIN}?subject=Order Support - ${service}`}
+              class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-nosyt-purple to-nosyt-orange text-white rounded-full hover:from-nosyt-purple-dark hover:to-nosyt-orange-dark transition-all duration-300"
+            >
+              Email Us
+            </a>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-r from-nosyt-orange to-nosyt-orange-light rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Live Chat</h3>
+            <p class="text-gray-600 mb-4">Chat with our team</p>
+            <a 
+              href="/contact"
+              class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-nosyt-orange to-nosyt-orange-light text-white rounded-full hover:from-nosyt-orange-dark hover:to-nosyt-orange transition-all duration-300"
+            >
+              Start Chat
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Actions -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a 
+          href="/services"
+          class="inline-flex items-center px-8 py-4 bg-white border-2 border-nosyt-purple text-nosyt-purple rounded-full hover:bg-nosyt-purple hover:text-white transition-all duration-300 font-semibold"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+          View All Services
+        </a>
+        
+        <a 
+          href="/projects"
+          class="inline-flex items-center px-8 py-4 bg-white border-2 border-nosyt-orange text-nosyt-orange rounded-full hover:bg-nosyt-orange hover:text-white transition-all duration-300 font-semibold"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+          </svg>
+          View Our Work
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Animation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set current date
+      const orderDateElement = document.getElementById('order-date');
+      if (orderDateElement) {
+        const now = new Date();
+        orderDateElement.textContent = now.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+      }
+
+      // Add success animation
+      const successIcon = document.querySelector('.w-24.h-24');
+      if (successIcon) {
+        successIcon.style.transform = 'scale(0)';
+        successIcon.style.transition = 'transform 0.5s ease-out';
+        
+        setTimeout(() => {
+          successIcon.style.transform = 'scale(1)';
+        }, 300);
+      }
+
+      // Confetti effect (simple)
+      function createConfetti() {
+        const colors = ['#7c3aed', '#ff6b35', '#10b981', '#f59e0b'];
+        
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement('div');
+          confetti.style.position = 'fixed';
+          confetti.style.width = '10px';
+          confetti.style.height = '10px';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.top = '-10px';
+          confetti.style.zIndex = '9999';
+          confetti.style.pointerEvents = 'none';
+          confetti.style.borderRadius = '50%';
+          
+          document.body.appendChild(confetti);
+          
+          const animation = confetti.animate([
+            { transform: 'translateY(-10px) rotate(0deg)', opacity: 1 },
+            { transform: `translateY(100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+          ], {
+            duration: Math.random() * 3000 + 2000,
+            easing: 'cubic-bezier(0.5, 0, 0.5, 1)'
+          });
+          
+          animation.onfinish = () => confetti.remove();
+        }
+      }
+      
+      // Trigger confetti after a short delay
+      setTimeout(createConfetti, 500);
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,180 @@
+---
+/**
+ * Modern Footer Component for NosytLabs
+ * A clean, professional footer with navigation and social links
+ */
+
+// Get current year for copyright
+const currentYear = new Date().getFullYear();
+
+// Footer navigation items - Professional AI-powered development focus
+const footerNavItems = [
+  { name: "Home", path: "/" },
+  { name: "Services", path: "/services" },
+  { name: "Projects", path: "/projects" },
+  { name: "Blog", path: "/blog" },
+  { name: "Contact", path: "/contact" },
+  { name: "Privacy Policy", path: "/privacy-policy" },
+  { name: "Terms of Service", path: "/terms-of-service" }
+];
+
+// Social media links - Authentic NosytLabs links
+const socialLinks = [
+  { name: "GitHub", icon: "github", url: "https://github.com/NosytLabs" },
+  { name: "LinkedIn", icon: "linkedin", url: "https://linkedin.com/company/nosytlabs" },
+  { name: "Twitter", icon: "twitter", url: "https://twitter.com/nosytlabs" }
+];
+---
+
+<footer class="nosyt-footer pt-16 pb-8">
+  <div class="container mx-auto px-4">
+    <!-- Footer Top Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+      <!-- Company Info -->
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <img
+            src="/images/NosytLabs.svg"
+            alt="NosytLabs Logo"
+            width="40"
+            height="40"
+            class="w-10 h-10"
+          />
+          <span class="text-xl font-bold text-white">NosytLabs</span>
+        </div>
+        <p class="text-gray-400 mb-4">
+          Notable Opportunities Shape Your Tomorrow
+        </p>
+        <div class="flex space-x-4">
+          {socialLinks.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-400 hover:text-accent transition-colors duration-300"
+              aria-label={`Follow us on ${link.name}`}
+            >
+              <i class={`fab fa-${link.icon} text-xl`}></i>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-lg font-bold mb-4 text-white">Quick Links</h3>
+        <ul class="space-y-2">
+          {footerNavItems.slice(0, 5).map((item) => (
+            <li>
+              <a
+                href={item.path}
+                class="text-gray-400 hover:text-accent transition-colors duration-300"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="text-lg font-bold mb-4 text-white">Services</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="/services#web-development" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              Web Development
+            </a>
+          </li>
+          <li>
+            <a href="/services#ai-integration" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              AI Integration
+            </a>
+          </li>
+          <li>
+            <a href="/services#consulting" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              Tech Consulting
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h3 class="text-lg font-bold mb-4 text-white">Contact Us</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start space-x-2">
+            <i class="fas fa-envelope text-accent mt-1"></i>
+            <a href="mailto:hi@nosytlabs.com" class="text-gray-400 hover:text-accent transition-colors duration-300">
+              hi@nosytlabs.com
+            </a>
+          </li>
+          <li class="flex items-start space-x-2">
+            <i class="fas fa-map-marker-alt text-accent mt-1"></i>
+            <span class="text-gray-400">
+              801 White Sands Blvd #1018<br>
+              Alamogordo, NM 88310
+            </span>
+          </li>
+          <li class="mt-4">
+            <a href="/contact" class="inline-block bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded-md transition-colors duration-300">
+              Contact Us
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="border-t border-gray-800 my-8"></div>
+
+    <!-- Footer Bottom Section -->
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="text-gray-500 text-sm mb-4 md:mb-0">
+        &copy; {currentYear} NosytLabs. All rights reserved.
+      </div>
+      <div class="flex flex-wrap justify-center gap-4">
+        {footerNavItems.slice(6).map((item) => (
+          <a
+            href={item.path}
+            class="text-gray-500 hover:text-accent text-sm transition-colors duration-300"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* NosytLabs Footer styling with brand colors */
+  .nosyt-footer {
+    background: var(--nosyt-gradient-primary, linear-gradient(135deg, #6B46C1 0%, #2D1B69 100%));
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nosyt-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .nosyt-footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+</style>
