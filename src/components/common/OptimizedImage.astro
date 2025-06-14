@@ -272,7 +272,7 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
 </style>
 
 <script>
-  // Enhanced image loading with performance monitoring
+  // Simplified image loading without complex DOM queries
   class OptimizedImageLoader {
     constructor() {
       this.observer = null;
@@ -281,7 +281,7 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
     }
 
     init() {
-      // Set up intersection observer for lazy loading
+      // Simple intersection observer setup
       if ('IntersectionObserver' in window) {
         this.observer = new IntersectionObserver(
           this.handleIntersection.bind(this),
@@ -291,10 +291,18 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
           }
         );
 
-        // Observe all lazy images
-        document.querySelectorAll('.optimized-image.lazy').forEach(img => {
-          this.observer.observe(img);
-        });
+        // Safely observe lazy images
+        try {
+          const lazyImages = document.querySelectorAll('.optimized-image.lazy');
+          lazyImages.forEach(img => {
+            if (img && this.observer) {
+              this.observer.observe(img);
+            }
+          });
+        } catch (error) {
+          console.warn('Image observer setup failed:', error);
+          this.loadAllImages();
+        }
       } else {
         // Fallback for older browsers
         this.loadAllImages();
@@ -306,38 +314,43 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
 
     handleIntersection(entries) {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.target) {
           const img = entry.target;
           this.loadImage(img);
-          this.observer.unobserve(img);
+          if (this.observer) {
+            this.observer.unobserve(img);
+          }
         }
       });
     }
 
     loadImage(img) {
+      if (!img || !img.dataset) return;
+
       const src = img.dataset.src;
       const srcset = img.dataset.srcset;
 
       if (src) {
-        // Performance measurement
-        const startTime = performance.now();
-        
+        // Simple load handling without complex performance tracking
         img.addEventListener('load', () => {
-          const loadTime = performance.now() - startTime;
-          this.onImageLoad(img, loadTime);
+          this.onImageLoad(img, 0);
         }, { once: true });
 
         img.addEventListener('error', () => {
           this.onImageError(img);
         }, { once: true });
 
-        // Set sources
-        if (srcset) img.srcset = srcset;
-        img.src = src;
+        // Set sources safely
+        try {
+          if (srcset) img.srcset = srcset;
+          img.src = src;
 
-        // Clean up data attributes
-        delete img.dataset.src;
-        delete img.dataset.srcset;
+          // Clean up data attributes
+          delete img.dataset.src;
+          delete img.dataset.srcset;
+        } catch (error) {
+          console.warn('Image loading failed:', error);
+        }
       }
     }
 
@@ -368,28 +381,37 @@ const imageId = `img-${Math.random().toString(36).substr(2, 9)}`;
     }
 
     onImageError(img) {
-      console.error(`Failed to load image: ${img.src}`);
-      
-      // Try fallback
-      const container = img.closest('.optimized-image-container');
-      const fallback = container?.querySelector('.image-fallback');
-      
-      if (fallback) {
-        fallback.style.display = 'block';
-        img.style.display = 'none';
-      }
+      console.warn(`Failed to load image: ${img?.src || 'unknown'}`);
 
-      // Hide loading indicator
-      const loadingIndicator = container?.querySelector('.image-loading-indicator');
-      if (loadingIndicator) {
-        loadingIndicator.classList.add('hidden');
+      // Simple fallback handling
+      try {
+        const container = img?.closest?.('.optimized-image-container');
+        const fallback = container?.querySelector?.('.image-fallback');
+
+        if (fallback) {
+          fallback.style.display = 'block';
+          img.style.display = 'none';
+        }
+
+        // Hide loading indicator
+        const loadingIndicator = container?.querySelector?.('.image-loading-indicator');
+        if (loadingIndicator) {
+          loadingIndicator.classList.add('hidden');
+        }
+      } catch (error) {
+        console.warn('Error handling image fallback:', error);
       }
     }
 
     loadAllImages() {
-      document.querySelectorAll('.optimized-image.lazy').forEach(img => {
-        this.loadImage(img);
-      });
+      try {
+        const lazyImages = document.querySelectorAll('.optimized-image.lazy');
+        lazyImages.forEach(img => {
+          if (img) this.loadImage(img);
+        });
+      } catch (error) {
+        console.warn('Failed to load all images:', error);
+      }
     }
 
     setupImageEventHandlers() {

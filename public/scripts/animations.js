@@ -30,10 +30,17 @@
       rootMargin: '0px 0px -50px 0px' // Trigger slightly before the element is fully in view
     });
 
-    // Observe all elements with reveal-on-scroll class
-    NosytUtils.dom.queryAll('.reveal-on-scroll').forEach(el => {
-      observer.observe(el);
-    });
+    // Safely observe all elements with reveal-on-scroll class
+    try {
+      const revealElements = NosytUtils.dom.queryAll('.reveal-on-scroll');
+      revealElements.forEach(el => {
+        if (el && observer) {
+          observer.observe(el);
+        }
+      });
+    } catch (error) {
+      console.warn('Failed to initialize reveal animations:', error);
+    }
   }
 
   // Initialize modern background effects
@@ -395,8 +402,7 @@
     NosytUtils.dom.queryAll('.btn-primary, .cta-button').forEach(button => {
       button.classList.add('magnetic-button');
     });
-
-    });
+  });
 
   // Enhance accessibility
   function enhanceAccessibility() {
