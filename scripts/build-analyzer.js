@@ -8,7 +8,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { buildConfig, performanceConfig } from '../src/config/build-optimization.js';
+import { buildConfig } from '../src/config/build-optimization.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -41,8 +41,8 @@ class BuildAnalyzer {
       // Generate performance recommendations
       await this.generateRecommendations();
       
-      // Create performance monitoring setup
-      await this.setupPerformanceMonitoring();
+      // Create build summary
+      await this.setupBuildSummary();
       
       // Generate comprehensive report
       await this.generateReport();
@@ -294,24 +294,19 @@ class BuildAnalyzer {
     }
   }
 
-  async setupPerformanceMonitoring() {
-    console.log('📈 Setting up performance monitoring...');
-    
-    // Create performance monitoring configuration
-    const monitoringConfig = {
-      ...performanceConfig,
-      buildAnalysis: {
-        bundleSize: this.results.bundles.totalSize,
-        thresholdsPassed: Object.values(this.results.thresholds).every(t => t.passed),
-        recommendations: this.results.recommendations.length
-      }
+  async setupBuildSummary() {
+    console.log('📈 Creating build summary...');
+
+    // Create build analysis summary
+    const buildSummary = {
+      bundleSize: this.results.bundles.totalSize,
+      thresholdsPassed: Object.values(this.results.thresholds).every(t => t.passed),
+      recommendations: this.results.recommendations.length,
+      timestamp: new Date().toISOString()
     };
-    
-    // Save monitoring configuration
-    const configPath = path.join(projectRoot, 'public/performance-config.json');
-    await fs.writeFile(configPath, JSON.stringify(monitoringConfig, null, 2));
-    
-    console.log(`📄 Performance monitoring config saved to: ${configPath}`);
+
+    console.log('✅ Build analysis complete');
+    return buildSummary;
   }
 
   async generateReport() {

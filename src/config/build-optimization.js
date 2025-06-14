@@ -201,17 +201,7 @@ export function getAstroBuildConfig() {
   };
 }
 
-/**
- * Performance monitoring configuration
- */
-export const performanceConfig = {
-  metrics: ['LCP', 'FID', 'CLS', 'FCP', 'TTFB'],
-  thresholds: buildConfig.thresholds.coreWebVitals,
-  reporting: {
-    endpoint: '/api/performance',
-    sampleRate: 0.1
-  }
-};
+
 
 /**
  * Service Worker configuration

@@ -4,7 +4,7 @@ import UnifiedNavigation from '../components/navigation/UnifiedNavigation.astro'
 import Footer from '../components/common/Footer.astro';
 import VercelAnalytics from '../components/common/VercelAnalytics.astro';
 import SEOHead from '../components/common/SEOHead.astro';
-import PerformanceDashboard from '../components/sections/PerformanceDashboard.astro';
+
 import { generateMetaTags, generateStructuredData } from '../utils/seoUtils.js';
 
 export interface Props {
@@ -303,8 +303,7 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
     window.NosytLabs = NosytLabs;
   </script>
 
-  <!-- Performance Manifest -->
-  <link rel="manifest" href="/performance-manifest.json">
+
 
   <!-- Enhanced Dark Mode Toggle Script -->
   <script is:inline>
@@ -454,8 +453,7 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
     });
   </script>
 
-  <!-- Performance Dashboard (Development Only) -->
-  <PerformanceDashboard devOnly={true} position="bottom-right" compact={false} />
+
 
   <!-- Vercel Analytics & Speed Insights -->
   <VercelAnalytics />
@@ -609,34 +607,7 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   });
 </script>
 
-<!-- Enhanced Performance Monitoring -->
-<script src="/scripts/performance-monitor.js" defer></script>
-<script type="module">
-  import { initializePerformanceOptimizations } from '/src/utils/enhanced-performance.ts';
-  import { initializeEnhancedErrorHandling } from '/src/utils/enhanced-error-handling.ts';
 
-  // Initialize enhanced systems
-  document.addEventListener('DOMContentLoaded', () => {
-    // Initialize error handling first
-    initializeEnhancedErrorHandling();
-
-    // Initialize performance optimizations
-    const optimizer = initializePerformanceOptimizations();
-    window.NosytLabsPerformanceOptimizer = optimizer;
-
-    // Dispatch performance update events
-    const originalSendMetrics = window.NosytLabsPerformance?.sendMetrics;
-    if (window.NosytLabsPerformance && originalSendMetrics) {
-      window.NosytLabsPerformance.sendMetrics = function() {
-        const metrics = this.getMetrics();
-        window.dispatchEvent(new CustomEvent('performance-update', { detail: metrics }));
-        return originalSendMetrics.call(this);
-      };
-    }
-
-    console.log('✅ NosytLabs enhanced systems initialized');
-  });
-</script>
 
 <!-- Service Worker Registration -->
 <script>
@@ -666,45 +637,6 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   }
 </script>
 
-<!-- Build Performance Integration -->
-<script>
-  // Load performance configuration and start monitoring
-  fetch('/performance-config.json')
-    .then(response => response.json())
-    .then(config => {
-      if (window.PerformanceMonitor) {
-        const monitor = new window.PerformanceMonitor();
-        monitor.config = config;
 
-        // Send build analysis data with performance metrics
-        const originalSendMetrics = monitor.sendMetrics;
-        monitor.sendMetrics = function() {
-          const metricsData = {
-            ...this.metrics,
-            buildInfo: config.buildAnalysis,
-            url: window.location.href,
-            userAgent: navigator.userAgent,
-            timestamp: Date.now(),
-            sessionId: this.getSessionId()
-          };
-
-          // Send to performance API
-          if (navigator.sendBeacon) {
-            navigator.sendBeacon('/api/performance', JSON.stringify(metricsData));
-          } else {
-            fetch('/api/performance', {
-              method: 'POST',
-              body: JSON.stringify(metricsData),
-              headers: { 'Content-Type': 'application/json' },
-              keepalive: true
-            }).catch(console.error);
-          }
-        };
-      }
-    })
-    .catch(error => {
-      console.warn('Could not load performance config:', error);
-    });
-</script>
 </body>
 </html>

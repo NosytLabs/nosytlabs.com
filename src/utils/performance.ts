@@ -141,17 +141,7 @@ export function registerServiceWorker() {
   }
 }
 
-// Performance monitoring
-export function monitorPerformance() {
-  if ('performance' in window) {
-    window.addEventListener('load', () => {      setTimeout(() => {
-        // Performance metrics could be collected here if needed
-        // const perfData = performance.getEntriesByType('navigation')[0];
-        // Send to analytics if needed
-      }, 0);
-    });
-  }
-}
+
 
 // Initialize all performance optimizations
 export function initPerformanceOptimizations() {
@@ -161,5 +151,4 @@ export function initPerformanceOptimizations() {
   inlineCriticalCSS();
   addResourceHints();
   registerServiceWorker();
-  monitorPerformance();
 }
