@@ -4,6 +4,8 @@
  * Animated hero section with gradient background and interactive elements
  */
 import AnimatedText from './animations/AnimatedText.astro';
+import ParticleBackground from './effects/ParticleBackground.astro';
+import FloatingElements from './effects/FloatingElements.astro';
 import type { HeroProps } from '../types/component-props.d.ts';
 
 interface Props extends HeroProps {
@@ -38,15 +40,19 @@ const {
   <!-- Background Elements -->
   <div class="hero-background">
     {backgroundImage && (
-      <img 
-        src={backgroundImage} 
-        alt="" 
+      <img
+        src={backgroundImage}
+        alt=""
         class="hero-bg-image"
         loading="lazy"
       />
     )}
     <div class="hero-gradient-overlay"></div>
     <div class="hero-particles" aria-hidden="true"></div>
+
+    <!-- Modern Particle Effects -->
+    <ParticleBackground particleCount={30} color="#ffffff" size="small" speed="slow" />
+    <FloatingElements elementCount={8} theme="mixed" intensity="subtle" />
   </div>
 
   <!-- Main Content -->
