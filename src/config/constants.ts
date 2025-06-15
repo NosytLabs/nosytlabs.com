@@ -121,17 +121,17 @@ export const CONTACT: ContactInfo = {
 
 export const COLORS: ColorPalette = {
   PRIMARY: {
-    PURPLE_DARKEST: '#2D0A4F',
-    PURPLE_DARK: '#3B0764',
-    PURPLE_MAIN: '#4C1D95',
-    PURPLE_LIGHT: '#7C3AED',
-    PURPLE_LIGHTEST: '#A78BFA'
+    PURPLE_DARKEST: '#2D1B69',
+    PURPLE_DARK: '#5b21b6',
+    PURPLE_MAIN: '#7c3aed',
+    PURPLE_LIGHT: '#a855f7',
+    PURPLE_LIGHTEST: '#c084fc'
   },
   SECONDARY: {
-    ORANGE_DARK: '#E05A00',
-    ORANGE_MAIN: '#FF6B00',
-    ORANGE_LIGHT: '#FF8C3F',
-    ORANGE_LIGHTEST: '#FFB366'
+    ORANGE_DARK: '#e55a2b',
+    ORANGE_MAIN: '#ff6b35',
+    ORANGE_LIGHT: '#ff8c42',
+    ORANGE_LIGHTEST: '#ffb894'
   },
   NEUTRAL: {
     WHITE: '#FFFFFF',

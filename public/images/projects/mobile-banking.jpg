@@ -1,0 +1,75 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#1a1a2e"/>
+  
+  <!-- Mobile phone mockup -->
+  <g transform="translate(150, 30)">
+    <!-- Phone frame -->
+    <rect x="0" y="0" width="100" height="180" fill="#2d3748" stroke="#4a5568" stroke-width="2" rx="12"/>
+    <rect x="5" y="15" width="90" height="150" fill="#000000" rx="8"/>
+    
+    <!-- Screen content -->
+    <!-- Header -->
+    <rect x="5" y="15" width="90" height="25" fill="#7c3aed"/>
+    <text x="50" y="30" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="8" font-weight="600">
+      Kick.com MCP
+    </text>
+    
+    <!-- Chat interface -->
+    <rect x="10" y="45" width="80" height="15" fill="#2d3748" rx="4"/>
+    <text x="15" y="55" fill="#cbd5e1" font-family="Inter, sans-serif" font-size="6">
+      Chat connected...
+    </text>
+    
+    <rect x="10" y="65" width="80" height="15" fill="#2d3748" rx="4"/>
+    <text x="15" y="75" fill="#10b981" font-family="Inter, sans-serif" font-size="6">
+      Bot: Welcome to stream!
+    </text>
+    
+    <rect x="10" y="85" width="80" height="15" fill="#2d3748" rx="4"/>
+    <text x="15" y="95" fill="#cbd5e1" font-family="Inter, sans-serif" font-size="6">
+      User: !commands
+    </text>
+    
+    <!-- API status -->
+    <rect x="10" y="110" width="80" height="40" fill="#0f3460" stroke="#ff6b35" stroke-width="1" rx="4"/>
+    <text x="50" y="125" text-anchor="middle" fill="#ff6b35" font-family="Inter, sans-serif" font-size="7" font-weight="600">
+      API Status
+    </text>
+    <text x="50" y="135" text-anchor="middle" fill="#10b981" font-family="Inter, sans-serif" font-size="6">
+      Connected
+    </text>
+    <text x="50" y="145" text-anchor="middle" fill="#cbd5e1" font-family="Inter, sans-serif" font-size="6">
+      MCP Server Active
+    </text>
+  </g>
+  
+  <!-- Code snippets around phone -->
+  <g transform="translate(20, 50)">
+    <rect x="0" y="0" width="100" height="60" fill="#1a202c" stroke="#2d3748" stroke-width="1" rx="4"/>
+    <text x="5" y="15" fill="#7c3aed" font-family="Courier New, monospace" font-size="8">const kickMCP = {</text>
+    <text x="5" y="25" fill="#cbd5e1" font-family="Courier New, monospace" font-size="8">  connect: () =&gt; {</text>
+    <text x="5" y="35" fill="#10b981" font-family="Courier New, monospace" font-size="8">    return api.init();</text>
+    <text x="5" y="45" fill="#cbd5e1" font-family="Courier New, monospace" font-size="8">  }</text>
+    <text x="5" y="55" fill="#7c3aed" font-family="Courier New, monospace" font-size="8">};</text>
+  </g>
+  
+  <g transform="translate(280, 120)">
+    <rect x="0" y="0" width="100" height="60" fill="#1a202c" stroke="#2d3748" stroke-width="1" rx="4"/>
+    <text x="5" y="15" fill="#ff6b35" font-family="Courier New, monospace" font-size="8">// Chat handler</text>
+    <text x="5" y="25" fill="#cbd5e1" font-family="Courier New, monospace" font-size="8">onMessage(msg) {</text>
+    <text x="5" y="35" fill="#10b981" font-family="Courier New, monospace" font-size="8">  processCommand(</text>
+    <text x="5" y="45" fill="#10b981" font-family="Courier New, monospace" font-size="8">    msg.content</text>
+    <text x="5" y="55" fill="#cbd5e1" font-family="Courier New, monospace" font-size="8">  );</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="200" y="250" text-anchor="middle" fill="#7c3aed" font-family="Inter, sans-serif" font-size="16" font-weight="600">
+    Kick.com MCP Integration
+  </text>
+  
+  <!-- NosytLabs watermark -->
+  <text x="350" y="290" fill="#7c3aed" font-family="Inter, sans-serif" font-size="10" opacity="0.6">
+    NosytLabs
+  </text>
+</svg>

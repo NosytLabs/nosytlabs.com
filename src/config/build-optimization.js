@@ -117,78 +117,168 @@ export const buildConfig = {
     }
   },
 
-  // Build targets
+  // Enhanced Build targets for 2025
   targets: {
-    browsers: ['es2020', 'chrome80', 'firefox78', 'safari14'],
-    node: '18.0.0'
+    browsers: ['es2022', 'chrome91', 'firefox90', 'safari15'],
+    node: '18.0.0',
+    modern: ['es2022', 'chrome100', 'firefox100', 'safari16'],
+    legacy: ['es2020', 'chrome80', 'firefox78', 'safari14']
   },
 
-  // Cache configuration
+  // Advanced Cache configuration
   cache: {
     strategy: 'stale-while-revalidate',
     maxAge: 31536000, // 1 year
-    staleWhileRevalidate: 86400 // 1 day
+    staleWhileRevalidate: 86400, // 1 day
+    networkFirst: ['api/**', 'auth/**'],
+    cacheFirst: ['images/**', 'fonts/**', 'static/**'],
+    staleWhileRevalidatePatterns: ['*.js', '*.css', '*.html']
+  },
+
+  // Performance budgets
+  budgets: {
+    maximumWarning: 500 * 1024, // 500KB warning threshold
+    maximumError: 1024 * 1024,  // 1MB error threshold
+    minimumWarning: 10 * 1024,  // 10KB minimum warning
+    baseline: {
+      firstContentfulPaint: 1800,
+      largestContentfulPaint: 2500,
+      firstInputDelay: 100,
+      cumulativeLayoutShift: 0.1
+    }
   }
 };
 
 /**
- * Get Vite configuration for production builds
+ * Get enhanced Vite configuration for production builds
  */
 export function getProductionViteConfig() {
   return {
     build: {
       minify: buildConfig.optimization.js.minify,
-      cssMinify: 'esbuild',  // Changed from lightningcss to esbuild
+      cssMinify: 'lightningcss', // Upgraded to Lightning CSS for better performance
       cssCodeSplit: true,
       assetsInlineLimit: buildConfig.optimization.assets.inlineLimit,
-      sourcemap: false,
-      target: buildConfig.targets.browsers,
-      
+      sourcemap: process.env.NODE_ENV === 'development' ? 'inline' : false,
+      target: buildConfig.targets.modern,
+      reportCompressedSize: false, // Disable for faster builds
+
       terserOptions: {
         compress: {
           drop_console: buildConfig.optimization.js.dropConsole,
           drop_debugger: buildConfig.optimization.js.dropDebugger,
-          pure_funcs: ['console.log', 'console.debug', 'console.info'],
+          pure_funcs: ['console.log', 'console.debug', 'console.info', 'console.warn'],
+          passes: 3,
+          unsafe_arrows: true,
+          unsafe_methods: true,
           ...buildConfig.optimization.js.compress
         },
         mangle: {
           toplevel: buildConfig.optimization.js.mangle,
-          safari10: true
+          safari10: true,
+          properties: {
+            regex: /^_/
+          }
         },
         format: {
           comments: false,
-          ecma: 2020
+          ecma: 2022
         }
       },
-      
+
       rollupOptions: {
         output: {
-          manualChunks: {
-            // Vendor chunks
-            [buildConfig.bundles.js.vendor.name]: buildConfig.bundles.js.vendor.chunks,
-            [buildConfig.bundles.js.analytics.name]: buildConfig.bundles.js.analytics.chunks,
-            
-            // Feature chunks
-            ...Object.fromEntries(
-              Object.entries(buildConfig.bundles.js.features).map(([key, value]) => [key, value])
-            )
+          manualChunks: (id) => {
+            // Advanced chunking strategy
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'react-vendor';
+              }
+              if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
+                return 'analytics';
+              }
+              if (id.includes('framer-motion')) {
+                return 'animations';
+              }
+              if (id.includes('lucide-react')) {
+                return 'icons';
+              }
+              return 'vendor';
+            }
+
+            // Feature-based chunking
+            if (id.includes('/components/Windows95') || id.includes('nosytos')) {
+              return 'nosytos95';
+            }
+            if (id.includes('/components/animations/')) {
+              return 'animations';
+            }
+            if (id.includes('/components/unified/')) {
+              return 'unified';
+            }
           },
-          assetFileNames: 'assets/[name]-[hash][extname]',
-          chunkFileNames: 'chunks/[name]-[hash].js',
-          entryFileNames: 'entries/[name]-[hash].js'
+          assetFileNames: (assetInfo) => {
+            const info = assetInfo.name.split('.');
+            const ext = info[info.length - 1];
+            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+              return `images/[name]-[hash][extname]`;
+            }
+            if (/woff2?|eot|ttf|otf/i.test(ext)) {
+              return `fonts/[name]-[hash][extname]`;
+            }
+            return `assets/[name]-[hash][extname]`;
+          },
+          chunkFileNames: 'js/[name]-[hash].js',
+          entryFileNames: 'js/[name]-[hash].js'
+        },
+
+        // Enhanced external dependencies
+        external: (id) => {
+          // Don't bundle large libraries in SSR
+          return process.env.BUILD_SSR && (
+            id.includes('framer-motion') ||
+            id.includes('three') ||
+            id.includes('canvas')
+          );
         }
       }
     },
-    
+
     optimizeDeps: {
-      include: buildConfig.bundles.js.vendor.chunks,
-      exclude: buildConfig.bundles.js.analytics.chunks
+      include: [
+        'react',
+        'react-dom',
+        'framer-motion',
+        'lucide-react',
+        'clsx',
+        'tailwind-merge'
+      ],
+      exclude: [
+        '@vercel/analytics',
+        '@vercel/speed-insights'
+      ],
+      esbuildOptions: {
+        target: 'es2022',
+        supported: {
+          'top-level-await': true
+        }
+      }
+    },
+
+    // Enhanced CSS configuration - temporarily disabled lightningcss
+    css: {
+      // lightningcss: {
+      //   targets: buildConfig.targets.modern,
+      //   drafts: {
+      //     customMedia: true
+      //   }
+      // }
     }
   };
 }
 
 /**
- * Get Astro build configuration
+ * Get enhanced Astro build configuration
  */
 export function getAstroBuildConfig() {
   return {
@@ -196,15 +286,25 @@ export function getAstroBuildConfig() {
     inlineStylesheets: 'auto',
     assets: 'assets',
     splitting: true,
-    inlineCriticalCss: true,
-    assetsInlineLimit: buildConfig.optimization.assets.inlineLimit
+    assetsInlineLimit: buildConfig.optimization.assets.inlineLimit,
+
+    // Enhanced build options
+    experimentalCSSInlineThreshold: 4096,
+    compressHTML: true,
+
+    // Advanced asset handling
+    assetFileNames: {
+      css: 'styles/[name]-[hash].css',
+      js: 'scripts/[name]-[hash].js',
+      assets: 'assets/[name]-[hash][ext]'
+    }
   };
 }
 
 
 
 /**
- * Service Worker configuration
+ * Enhanced Service Worker configuration
  */
 export const serviceWorkerConfig = {
   cacheStrategy: buildConfig.cache.strategy,
@@ -212,14 +312,19 @@ export const serviceWorkerConfig = {
     '/',
     '/styles/optimized/critical-optimized.css',
     '/styles/optimized/main-optimized.css',
-    '/js/core.min.js'
+    '/js/core.min.js',
+    '/manifest.json',
+    '/favicon.ico'
   ],
   runtimeCaching: [
     {
       urlPattern: /^https:\/\/fonts\.googleapis\.com/,
       handler: 'StaleWhileRevalidate',
       options: {
-        cacheName: 'google-fonts-stylesheets'
+        cacheName: 'google-fonts-stylesheets',
+        cacheKeyWillBeUsed: async ({ request }) => {
+          return `${request.url}?version=1`;
+        }
       }
     },
     {
@@ -230,10 +335,155 @@ export const serviceWorkerConfig = {
         expiration: {
           maxEntries: 30,
           maxAgeSeconds: buildConfig.cache.maxAge
+        },
+        cacheableResponse: {
+          statuses: [0, 200]
+        }
+      }
+    },
+    {
+      urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif)$/,
+      handler: 'CacheFirst',
+      options: {
+        cacheName: 'images',
+        expiration: {
+          maxEntries: 100,
+          maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
+        }
+      }
+    },
+    {
+      urlPattern: /\.(?:js|css)$/,
+      handler: 'StaleWhileRevalidate',
+      options: {
+        cacheName: 'static-resources'
+      }
+    }
+  ],
+
+  // Advanced SW features
+  skipWaiting: true,
+  clientsClaim: true,
+  cleanupOutdatedCaches: true,
+
+  // Workbox configuration
+  workbox: {
+    globDirectory: 'dist/',
+    globPatterns: [
+      '**/*.{html,js,css,png,jpg,jpeg,svg,gif,webp,avif,woff,woff2}'
+    ],
+    swDest: 'dist/sw.js',
+    maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5MB
+    mode: 'production'
+  }
+};
+
+/**
+ * Get development-optimized Vite configuration
+ */
+export function getDevelopmentViteConfig() {
+  return {
+    optimizeDeps: {
+      include: [
+        'react',
+        'react-dom',
+        'framer-motion',
+        'lucide-react'
+      ],
+      force: false,
+      holdUntilCrawlEnd: false // Improve cold start times
+    },
+
+    build: {
+      sourcemap: true,
+      minify: false,
+      target: 'esnext'
+    },
+
+    server: {
+      fs: {
+        strict: false
+      },
+      hmr: {
+        overlay: true
+      }
+    }
+  };
+}
+
+/**
+ * Get performance monitoring configuration
+ */
+export function getPerformanceConfig() {
+  return {
+    budgets: buildConfig.budgets,
+
+    // Core Web Vitals thresholds
+    vitals: {
+      lcp: { good: 2500, poor: 4000 },
+      fid: { good: 100, poor: 300 },
+      cls: { good: 0.1, poor: 0.25 },
+      fcp: { good: 1800, poor: 3000 },
+      ttfb: { good: 800, poor: 1800 }
+    },
+
+    // Bundle analysis
+    analysis: {
+      enabled: true,
+      outputPath: 'dist/analysis',
+      formats: ['json', 'html'],
+      gzipSize: true,
+      brotliSize: true
+    },
+
+    // Performance hints
+    hints: {
+      maxAssetSize: 250000,
+      maxEntrypointSize: 250000,
+      assetFilter: (assetFilename) => {
+        return !/\.map$/.test(assetFilename);
+      }
+    }
+  };
+}
+
+/**
+ * Get modern build configuration with experimental features
+ */
+export function getModernBuildConfig() {
+  return {
+    target: buildConfig.targets.modern,
+
+    // Removed experimental features that are no longer valid in Astro 5.8+
+
+    build: {
+      modulePreload: {
+        polyfill: true,
+        resolveDependencies: (filename, deps, { hostId, hostType }) => {
+          // Only preload critical dependencies
+          return deps.filter(dep =>
+            dep.includes('react') ||
+            dep.includes('core') ||
+            dep.includes('critical')
+          );
+        }
+      },
+
+      cssCodeSplit: true,
+      cssMinify: true, // Changed from 'lightningcss' to default
+
+      rollupOptions: {
+        output: {
+          experimentalMinChunkSize: 20000,
+          generatedCode: {
+            arrowFunctions: true,
+            constBindings: true,
+            objectShorthand: true
+          }
         }
       }
     }
-  ]
-};
+  };
+}
 
 export default buildConfig;

@@ -8,10 +8,10 @@
 :root {
   /* Brand Colors - Official NosytLabs Palette */
   --nosyt-purple-darkest: #2D1B69;
-  --nosyt-purple-dark: #4C1D95;
-  --nosyt-purple-main: #6B46C1;
-  --nosyt-purple-light: #8B5CF6;
-  --nosyt-purple-lightest: #C084FC;
+  --nosyt-purple-dark: #5b21b6;
+  --nosyt-purple-main: #7c3aed;
+  --nosyt-purple-light: #a855f7;
+  --nosyt-purple-lightest: #c084fc;
   
   --nosyt-orange-dark: #E55A2B;
   --nosyt-orange-main: #FF6B35;

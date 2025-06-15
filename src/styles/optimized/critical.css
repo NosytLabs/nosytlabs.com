@@ -7,10 +7,10 @@
 /* ========== CSS VARIABLES - CRITICAL SUBSET ========== */
 :root {
   /* Brand Colors - Critical */
-  --nosyt-purple-main: #4C1D95;
-  --nosyt-purple-light: #7C3AED;
-  --nosyt-orange-main: #FF6B00;
-  --nosyt-orange-light: #FF8C3F;
+  --nosyt-purple-main: #7c3aed;
+  --nosyt-purple-light: #a855f7;
+  --nosyt-orange-main: #ff6b35;
+  --nosyt-orange-light: #ff8c42;
 
   /* Layout - Critical */
   --container-xl: 1200px;
@@ -284,7 +284,6 @@ body {
 img, video, iframe {
   max-width: 100%;
   height: auto;
-  loading: lazy;
 }
 
 .loading {

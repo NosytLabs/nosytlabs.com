@@ -36,13 +36,7 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- About -->
-  <url>
-    <loc>https://nosytlabs.com/about</loc>
-    <lastmod>2025-01-27T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
 
   <!-- Contact -->
   <url>

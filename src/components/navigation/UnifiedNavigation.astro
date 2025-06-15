@@ -22,11 +22,9 @@ const {
 // Professional navigation items - consistent across all components
 const navItems = [
   { name: 'Home', href: '/', icon: 'home' },
-  { name: 'About', href: '/about', icon: 'user' },
   { name: 'Services', href: '/services', icon: 'briefcase' },
   { name: 'Projects', href: '/projects', icon: 'folder' },
-  { name: 'Contact', href: '/contact', icon: 'mail' },
-  { name: 'NosytOS', href: '/nosytos', icon: 'monitor' }
+  { name: 'Contact', href: '/contact', icon: 'mail' }
 ];
 
 // Check if current path matches
@@ -46,7 +44,7 @@ const isActive = (href: string) => {
       <div class="nav-logo">
         <a href="/" class="logo-link" aria-label="NosytLabs Home">
           <div class="logo-container">
-            <img src="/images/logo.svg" alt="NosytLabs" class="logo-image" />
+            <img src="/images/logo-icon.svg" alt="NosytLabs Official Logo" class="logo-image" />
             <span class="logo-text">NosytLabs</span>
           </div>
         </a>

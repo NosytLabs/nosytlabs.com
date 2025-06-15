@@ -37,8 +37,8 @@ const textSizeClasses = {
   {(variant === 'full' || variant === 'icon') && (
     <div class={`logo-icon ${sizeClasses[size]} flex-shrink-0`}>
       <img
-        src="/images/NosytLabs.svg"
-        alt="NosytLabs Logo"
+        src={variant === 'full' ? "/logo.svg" : "/images/logo-icon.svg"}
+        alt="NosytLabs Official Logo"
         class="w-full h-full object-contain"
         width="100"
         height="100"
@@ -76,9 +76,9 @@ const textSizeClasses = {
 
   /* Brand colors */
   :root {
-    --nosyt-purple: #4C1D95;
-    --nosyt-purple-light: #7C3AED;
-    --nosyt-orange: #FF6B00;
-    --nosyt-orange-light: #FF9E44;
+    --nosyt-purple: #7c3aed;
+    --nosyt-purple-light: #a855f7;
+    --nosyt-orange: #ff6b35;
+    --nosyt-orange-light: #ff8c42;
   }
 </style>

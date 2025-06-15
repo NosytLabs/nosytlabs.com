@@ -18,11 +18,7 @@ const pageData = {
     description: 'Transform your digital presence with our comprehensive technology solutions. Web development, AI integration, 3D printing, and more.',
     keywords: 'digital innovation, technology solutions, web development, AI integration, 3D printing, content creation'
   },
-  about: {
-    title: 'About NosytLabs - Our Story & Mission',
-    description: 'Learn about NosytLabs\' journey in digital innovation and our commitment to delivering cutting-edge technology solutions.',
-    keywords: 'about nosytlabs, company story, mission, digital innovation team, technology experts'
-  },
+
   services: {
     title: 'Professional Digital Services - NosytLabs',
     description: 'Comprehensive digital services including web development, AI integration, 3D printing solutions, and content creation.',
