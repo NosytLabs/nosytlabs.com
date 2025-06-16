@@ -136,20 +136,5 @@
       "source": "/styles/(.*)",
       "destination": "/styles/$1"
     }
-  ],
-
-  "functions": {
-    "src/pages/api/contact.ts": {
-      "maxDuration": 10
-    },
-    "src/pages/api/create-payment.ts": {
-      "maxDuration": 10
-    },
-    "src/pages/api/create-payment-dodo.ts": {
-      "maxDuration": 10
-    },
-    "src/pages/api/newsletter.ts": {
-      "maxDuration": 10
-    }
-  }
+  ]
 }
