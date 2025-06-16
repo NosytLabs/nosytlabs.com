@@ -48,14 +48,49 @@
   --border-light: oklch(0.928 0.006 264.531);
 }
 
-/* ========== GLOBAL FIXES ========== */
+/* ========== CRITICAL LAYOUT FIXES ========== */
 
-/* Fix negative margins and overlapping sections */
+/* URGENT: Fix overlapping sections and text issues */
 * {
   box-sizing: border-box;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+
+/* Prevent all section overlapping */
+section, .section {
+  position: relative !important;
+  z-index: auto !important;
+  margin: 0 !important;
+  padding: 3rem 0 !important;
+  clear: both !important;
+  isolation: isolate !important;
+}
+
+/* Fix hero section specifically */
+.hero-section {
+  margin-bottom: 0 !important;
+  padding-bottom: 4rem !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Ensure proper text spacing and prevent overlaps */
+h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: 1rem !important;
+  line-height: 1.6 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Fix any negative margins causing overlaps */
+.hero-section + section,
+section + section {
+  margin-top: 0 !important;
+  padding-top: 3rem !important;
+}
+
+/* ========== GLOBAL FIXES ========== */
 
 body {
   margin: 0;
