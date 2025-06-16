@@ -228,6 +228,95 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   <!-- Visual Polish & Brand Consistency -->
   <link rel="stylesheet" href="/styles/visual-polish.css" media="all">
 
+  <!-- EMERGENCY INLINE STYLES - Critical fixes for immediate visual improvement -->
+  <style>
+    /* CRITICAL SECTION OVERLAP FIX - Immediate resolution */
+    section, .section {
+      position: relative !important;
+      z-index: auto !important;
+      margin: 0 !important;
+      padding: 4rem 0 !important;
+      clear: both !important;
+      isolation: isolate !important;
+      display: block !important;
+    }
+
+    /* FORCE PROPER SECTION SPACING */
+    .hero-section {
+      margin-bottom: 0 !important;
+      padding-bottom: 4rem !important;
+      z-index: 10 !important;
+    }
+
+    .services-section {
+      margin-top: 0 !important;
+      padding-top: 4rem !important;
+      z-index: 9 !important;
+    }
+
+    .projects-section {
+      margin-top: 0 !important;
+      padding-top: 4rem !important;
+      z-index: 8 !important;
+    }
+
+    .testimonials-section {
+      margin-top: 0 !important;
+      padding-top: 4rem !important;
+      z-index: 7 !important;
+    }
+
+    /* EMERGENCY BUTTON STYLING */
+    .btn, button, [role="button"] {
+      background: linear-gradient(135deg, #7c3aed 0%, #ff6b35 100%) !important;
+      color: white !important;
+      border: none !important;
+      padding: 0.75rem 2rem !important;
+      border-radius: 0.5rem !important;
+      font-weight: 600 !important;
+      min-height: 48px !important;
+      min-width: 160px !important;
+      cursor: pointer !important;
+      transition: all 0.3s ease !important;
+    }
+
+    .btn:hover, button:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3) !important;
+    }
+
+    /* EMERGENCY TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 {
+      color: #1f2937 !important;
+      font-weight: 700 !important;
+      line-height: 1.3 !important;
+      margin-bottom: 1rem !important;
+    }
+
+    p {
+      color: #6b7280 !important;
+      line-height: 1.6 !important;
+      margin-bottom: 1rem !important;
+    }
+
+    /* EMERGENCY CONTAINER FIXES */
+    .container {
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 0 2rem !important;
+    }
+
+    /* EMERGENCY CARD STYLING */
+    .card, .service-card, .project-card {
+      background: white !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 1rem !important;
+      padding: 2rem !important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+      margin-bottom: 1rem !important;
+    }
+  </style>
+
   <!-- NosytOS95 specific styles -->
   {isNosytOS95 && (
     <style>

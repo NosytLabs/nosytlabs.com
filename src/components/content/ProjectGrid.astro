@@ -86,7 +86,10 @@ const displayedProjects = limit ? safeProjects.slice(0, limit) : safeProjects;
 const allCategories = [...new Set(safeProjects.map(project => project?.category).filter(Boolean))];
 ---
 
-<section class:list={['projects-section', className]}>
+<section
+  class:list={['projects-section', className]}
+  style="padding: 4rem 0; margin: 0; position: relative; z-index: 8; isolation: isolate; clear: both;"
+>
   <div class="projects-section__header">
     <h2 class="projects-section__title">{title}</h2>
     {subtitle && <p class="projects-section__subtitle">{subtitle}</p>}

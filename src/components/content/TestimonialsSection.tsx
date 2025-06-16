@@ -75,11 +75,35 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 dark:from-gray-900 dark:to-purple-900">
+    <section
+      className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 dark:from-gray-900 dark:to-purple-900"
+      style={{
+        padding: '5rem 0',
+        background: '#f9fafb',
+        position: 'relative',
+        zIndex: 7,
+        margin: 0,
+        isolation: 'isolate'
+      }}
+    >
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-nosyt-purple to-nosyt-orange text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-nosyt-purple to-nosyt-orange text-white px-4 py-2 rounded-full text-sm font-semibold mb-4"
+            style={{
+              background: 'linear-gradient(135deg, #7c3aed 0%, #ff6b35 100%)',
+              color: 'white',
+              padding: '0.5rem 1rem',
+              borderRadius: '9999px',
+              fontSize: '0.875rem',
+              fontWeight: '600',
+              marginBottom: '1rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}
+          >
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
