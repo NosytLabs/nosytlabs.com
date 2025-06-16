@@ -1,6 +1,6 @@
 import React from "react";
-import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
-import { ShimmerButton } from "@/components/ui/consolidated-button";
+import { BentoCard, BentoGrid } from "./bento-grid.tsx";
+import { ShimmerButton } from "./consolidated-button.tsx";
 import { 
   Globe, 
   Zap, 
