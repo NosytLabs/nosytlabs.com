@@ -64,32 +64,94 @@ export function getContainerClasses(options: ContainerOptions = {}): string {
   return classes.filter(Boolean).join(' ');
 }
 
+// Type definitions for layout utilities
+type GapSize = 'sm' | 'md' | 'lg' | 'xl';
+type PlaceAlignment = 'start' | 'center' | 'end' | 'stretch';
+type FlexAlignment = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
+type FlexJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
+
 /**
- * Get responsive grid classes
+ * Get responsive grid classes with modern CSS Grid features
  */
 export function getGridClasses(options: {
   cols?: number | string;
-  gap?: 'sm' | 'md' | 'lg';
+  gap?: GapSize;
   responsive?: boolean;
+  placeItems?: PlaceAlignment;
+  placeContent?: PlaceAlignment;
 } = {}): string {
-  const { cols = 'auto-fit', gap = 'md' } = options;
-  
+  const { cols = 'auto-fit', gap = 'md', placeItems, placeContent } = options;
+
   const classes = ['grid'];
-  
+
   if (typeof cols === 'number') {
     classes.push(`grid-cols-${cols}`);
   } else if (cols === 'auto-fit') {
     classes.push('grid-cols-1 md:grid-cols-2 lg:grid-cols-3');
   } else if (cols === 'auto-fill') {
     classes.push('grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4');
+  } else if (cols === 'auto-fit-responsive') {
+    // Modern auto-fit with better responsive behavior
+    classes.push('grid-auto-fit-md');
   }
 
   const gapMap = {
     sm: 'gap-4',
     md: 'gap-6',
-    lg: 'gap-8'
+    lg: 'gap-8',
+    xl: 'gap-12'
   };
   classes.push(gapMap[gap]);
+
+  // Add modern place properties
+  if (placeItems) {
+    classes.push(`place-items-${placeItems}`);
+  }
+
+  if (placeContent) {
+    classes.push(`place-content-${placeContent}`);
+  }
+
+  return classes.join(' ');
+}
+
+/**
+ * Get modern flexbox classes with gap utilities
+ */
+export function getFlexClasses(options: {
+  direction?: 'row' | 'col';
+  wrap?: boolean;
+  gap?: GapSize;
+  align?: FlexAlignment;
+  justify?: FlexJustify;
+} = {}): string {
+  const { direction = 'row', wrap = false, gap = 'md', align, justify } = options;
+
+  const classes = ['flex'];
+
+  if (direction === 'col') {
+    classes.push('flex-col');
+  }
+
+  if (wrap) {
+    classes.push('flex-wrap');
+  }
+
+  const gapMap = {
+    sm: 'gap-2',
+    md: 'gap-4',
+    lg: 'gap-6',
+    xl: 'gap-8'
+  };
+  classes.push(gapMap[gap]);
+
+  if (align) {
+    classes.push(`items-${align}`);
+  }
+
+  if (justify) {
+    classes.push(`justify-${justify}`);
+  }
 
   return classes.join(' ');
 }

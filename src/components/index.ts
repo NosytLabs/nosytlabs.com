@@ -22,9 +22,7 @@ export { default as NosytLabsLogo } from './common/NosytLabsLogo.astro';
 export { default as OptimizedImage } from './common/OptimizedImage.astro';
 
 // ========== SECTIONS ==========
-export { default as FeatureGrid } from './sections/FeatureGrid.astro';
-export { default as ModernServices } from './sections/ModernServices.astro';
-export { default as PerformanceDashboard } from './sections/PerformanceDashboard.astro';
+// Note: Section components removed - functionality integrated into page components
 
 // ========== CARDS SYSTEM ==========
 export { default as Card } from './unified/Card.astro';
@@ -53,6 +51,5 @@ export { default as DarkModeToggle } from './interactive/DarkModeToggle.astro';
 export { default as SocialLinks } from './interactive/SocialLinks.astro';
 
 // ========== SPECIALIZED COMPONENTS ==========
-export { default as CodeDisplay } from './CodeDisplay.astro';
 export { default as ModernIconSystem } from './ModernIconSystem.astro';
-export { default as GlitchText } from './GlitchText.astro';
+// GlitchText functionality moved to AnimatedText.astro

@@ -86,11 +86,11 @@ const {
 } = Astro.props;
 ---
 
-<section class:list={['contact-form-section', className]}>
-  <div class="contact-form-container">
+<section class:list={['contact-form-section', 'section-spacing', className]}>
+  <div class="contact-form-container container-enhanced">
     <div class="contact-form-header">
-      <h2 class="contact-form-title">{title}</h2>
-      {subtitle && <p class="contact-form-subtitle">{subtitle}</p>}
+      <h2 class="contact-form-title text-balance">{title}</h2>
+      {subtitle && <p class="contact-form-subtitle text-pretty">{subtitle}</p>}
     </div>
 
     <form id="contact-form" class="contact-form" action={endpoint} method="POST">
@@ -101,7 +101,7 @@ const {
             type="text"
             id="name"
             name="name"
-            class="form-input"
+            class="form-input form-input-enhanced"
             required
             placeholder="Your name"
           / aria-label="Full Name" aria-describedby="name-help" required aria-required="true">
@@ -113,7 +113,7 @@ const {
             type="email"
             id="email"
             name="email"
-            class="form-input"
+            class="form-input form-input-enhanced"
             required
             placeholder="your.email@example.com"
           / aria-label="Email Address" aria-describedby="email-help" required aria-required="true">
@@ -150,7 +150,7 @@ const {
           <textarea
             id="message"
             name="message"
-            class="form-textarea"
+            class="form-textarea form-textarea-enhanced"
             required
             placeholder="Your message"
             rows="5"

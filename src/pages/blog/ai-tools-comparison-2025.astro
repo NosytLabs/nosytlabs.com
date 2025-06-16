@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
-import CodeDisplay from '../../components/CodeDisplay.astro';
+// CodeDisplay component removed - using inline code blocks instead
 
 const pageTitle = "The Ultimate AI Tools Comparison Guide for 2025 - NosytLabs";
 const pageDescription = "A comprehensive comparison of the leading AI development tools in 2025, including Cursor AI, Trae AI, Roo Code, Windsurf, and more.";
@@ -180,14 +180,12 @@ function processDataWithWindsurf(data) {
       </p>
 
       <div class="my-12">
-        <CodeDisplay
-          title="ai-tools-comparison.js"
-          language="javascript"
-          code={sampleCode}
-          dark={true}
-          showLineNumbers={true}
-          theme="tech"
-        />
+        <div class="bg-gray-900 rounded-lg p-6 overflow-x-auto">
+          <div class="text-gray-400 text-sm mb-4 border-b border-gray-700 pb-2">
+            ai-tools-comparison.js
+          </div>
+          <pre class="text-green-400"><code>{sampleCode}</code></pre>
+        </div>
         <p class="text-sm text-center mt-2 text-gray-600 dark:text-gray-400">Example of how different AI tools approach the same coding task</p>
       </div>
 

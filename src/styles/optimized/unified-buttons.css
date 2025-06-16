@@ -45,53 +45,53 @@
 
 /* Primary Button - NosytLabs Purple */
 .btn-primary {
-  background: linear-gradient(135deg, var(--nosyt-purple) 0%, var(--nosyt-purple-light) 100%);
+  background: linear-gradient(135deg, var(--nosyt-purple-600) 0%, var(--nosyt-purple-500) 100%);
   color: white;
-  box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 14px 0 var(--nosyt-purple-500);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--nosyt-purple-dark) 0%, var(--nosyt-purple) 100%);
+  background: linear-gradient(135deg, var(--nosyt-purple-700) 0%, var(--nosyt-purple-600) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 8px 25px var(--nosyt-purple-600);
 }
 
 .btn-primary:active {
   transform: translateY(0);
-  box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 14px 0 var(--nosyt-purple-500);
 }
 
 /* Secondary Button - NosytLabs Orange */
 .btn-secondary {
-  background: linear-gradient(135deg, var(--nosyt-orange) 0%, var(--nosyt-orange-light) 100%);
+  background: linear-gradient(135deg, var(--nosyt-orange-500) 0%, var(--nosyt-orange-400) 100%);
   color: white;
-  box-shadow: 0 4px 14px 0 rgba(255, 107, 53, 0.3);
+  box-shadow: 0 4px 14px 0 var(--nosyt-orange-500);
 }
 
 .btn-secondary:hover {
-  background: linear-gradient(135deg, var(--nosyt-orange-dark) 0%, var(--nosyt-orange) 100%);
+  background: linear-gradient(135deg, var(--nosyt-orange-600) 0%, var(--nosyt-orange-500) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+  box-shadow: 0 8px 25px var(--nosyt-orange-600);
 }
 
 .btn-secondary:active {
   transform: translateY(0);
-  box-shadow: 0 4px 14px 0 rgba(255, 107, 53, 0.3);
+  box-shadow: 0 4px 14px 0 var(--nosyt-orange-500);
 }
 
 /* Outline Button */
 .btn-outline {
   background: transparent;
-  color: var(--nosyt-purple);
-  border: 2px solid var(--nosyt-purple);
+  color: var(--nosyt-purple-600);
+  border: 2px solid var(--nosyt-purple-600);
   box-shadow: none;
 }
 
 .btn-outline:hover {
-  background: var(--nosyt-purple);
+  background: var(--nosyt-purple-600);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 8px 25px var(--nosyt-purple-500);
 }
 
 .btn-outline:active {

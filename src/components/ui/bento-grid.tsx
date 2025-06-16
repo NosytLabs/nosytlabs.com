@@ -11,7 +11,7 @@ const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid w-full auto-rows-[22rem] grid-cols-3 gap-4",
+        "grid w-full auto-rows-[22rem] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-content-start",
         className,
       )}
     >
@@ -33,7 +33,6 @@ const BentoCard = ({
   background: ReactNode;
   Icon: any;
   description: string;
-  href?: string;
   cta: string;
 }) => (
   <div
@@ -61,7 +60,7 @@ const BentoCard = ({
         "pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100",
       )}
     >
-      <button className="pointer-events-auto rounded-full bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-neutral-800 dark:bg-neutral-100 dark:text-black dark:hover:bg-neutral-200">
+      <button className="pointer-events-auto rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition-all hover:bg-neutral-800 dark:bg-neutral-100 dark:text-black dark:hover:bg-neutral-200 min-h-[44px] min-w-[44px]">
         {cta}
       </button>
     </div>

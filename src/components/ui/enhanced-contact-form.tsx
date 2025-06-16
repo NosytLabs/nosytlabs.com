@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ShinyButton } from "@/components/ui/shiny-button";
+import { NosytButton } from "@/components/ui/consolidated-button";
 import { AnimatedSubscribeButton } from "@/components/ui/animated-subscribe-button";
 import { ErrorBoundary } from "@/components/common/ErrorBoundary";
 import { ValidationError, NetworkError } from "@/utils/error-handling";
@@ -219,8 +219,9 @@ function EnhancedContactForm() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <ShinyButton 
-            type="submit" 
+          <NosytButton
+            variant="shiny"
+            type="submit"
             className="flex-1"
             disabled={isSubmitting}
           >
@@ -238,7 +239,7 @@ function EnhancedContactForm() {
                 Send Message
               </>
             )}
-          </ShinyButton>
+          </NosytButton>
           
           <AnimatedSubscribeButton
             subscribeStatus={isSubscribed}

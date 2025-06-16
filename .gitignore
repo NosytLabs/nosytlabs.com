@@ -1,27 +1,155 @@
-# Dependencies
+# ========================================
+# NOSYTLABS .GITIGNORE - SECURITY FOCUSED
+# ========================================
+
+# ========================================
+# DEPENDENCIES
+# ========================================
 node_modules/
 .pnpm-store/
+.npm/
+.yarn/
+yarn-error.log
+package-lock.json
+pnpm-lock.yaml
 
-# Build outputs
+# ========================================
+# BUILD OUTPUTS
+# ========================================
 dist/
+build/
 .astro/
 .vercel/
+.netlify/
+.output/
+.nuxt/
+.next/
 
-# Environment files
-.env*
+# ========================================
+# ENVIRONMENT & SECRETS (CRITICAL SECURITY)
+# ========================================
+# Environment files - NEVER COMMIT THESE
+.env
+.env.*
+!.env.example
+!.env.template
+
+# API Keys and secrets
 *.key
 *.pem
+*.p12
+*.pfx
+secrets.json
+config.json
+credentials.json
 
-# Logs
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# SSL certificates
+*.crt
+*.cert
+*.ca-bundle
+
+# ========================================
+# LOGS & DEBUG FILES
+# ========================================
 *.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
 
-# OS files
+# ========================================
+# OPERATING SYSTEM FILES
+# ========================================
+# macOS
 .DS_Store
-Thumbs.db
+.AppleDouble
+.LSOverride
+Icon?
+._*
 
-# IDE files
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ========================================
+# IDE & EDITOR FILES
+# ========================================
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
 
-# Cache
+# ========================================
+# CACHE & TEMPORARY FILES
+# ========================================
 .cache/
+.temp/
+.tmp/
+*.tmp
+*.temp
+.sass-cache/
+.parcel-cache/
+
+# ========================================
+# TESTING & COVERAGE
+# ========================================
+coverage/
+.nyc_output/
+.coverage
+*.lcov
+test-results/
+playwright-report/
+test-results.xml
+
+# ========================================
+# DEPLOYMENT & CI/CD
+# ========================================
+.vercel
+.netlify
+.firebase/
+.github/workflows/secrets.yml
+
+# ========================================
+# BACKUP & VERSION CONTROL
+# ========================================
+# YoYo AI version control directory
+.yoyo/
+*.backup
+*.bak
+*.orig
+
+# ========================================
+# SECURITY SCAN RESULTS
+# ========================================
+security-scan-results/
+vulnerability-reports/
+audit-results.json
+
+# ========================================
+# CUSTOM NOSYTLABS EXCLUSIONS
+# ========================================
+# Add any project-specific files to ignore
+private/
+internal/
+confidential/

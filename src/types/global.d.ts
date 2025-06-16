@@ -100,13 +100,8 @@ export interface BundleMetrics {
   dependencyGraph: Map<string, string[]>;
 }
 
-// API Types
-export interface ApiResponse<T = any> {
-  success: boolean;
-  data?: T;
-  error?: string;
-  message?: string;
-}
+// API Types - Import from index.ts to avoid duplication
+// export interface ApiResponse<T = any> - moved to src/types/index.ts
 
 export interface ContactFormData {
   name: string;

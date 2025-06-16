@@ -62,14 +62,7 @@ export type UserId = Brand<string, 'UserId'>;
 export type SessionId = Brand<string, 'SessionId'>;
 
 // ========== RESULT TYPES ==========
-
-/** Result type for operations that can fail */
-export type Result<T, E = Error> = 
-  | { success: true; data: T; error?: never }
-  | { success: false; data?: never; error: E };
-
-/** Async result type */
-export type AsyncResult<T, E = Error> = Promise<Result<T, E>>;
+// Note: Result types moved to enhanced-safety.ts to avoid duplication
 
 /** Option type for values that may not exist */
 export type Option<T> = T | null | undefined;

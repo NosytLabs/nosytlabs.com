@@ -1,6 +1,16 @@
 /**
  * Advanced Accessibility Manager
  * Comprehensive accessibility features and keyboard navigation support
+ *
+ * @fileoverview Enterprise-level accessibility management system
+ * @module scripts/accessibility-manager
+ * @version 2.0.0
+ * @author NosytLabs Team
+ * @since 2025-06-16
+ *
+ * @description Provides comprehensive accessibility features including
+ * keyboard navigation, focus management, ARIA live regions, and motion
+ * preference handling. Ensures WCAG AA compliance.
  */
 
 export class AccessibilityManager {
@@ -15,7 +25,7 @@ export class AccessibilityManager {
     this.setupFocusManagement();
     this.setupAriaLiveRegions();
     this.setupMotionPreferences();
-    this.setupBackToTop();
+    // setupBackToTop removed per user request
   }
 
   private setupKeyboardNavigation(): void {
@@ -101,47 +111,7 @@ export class AccessibilityManager {
     });
   }
 
-  private setupBackToTop(): void {
-    const backToTopButton = document.getElementById('back-to-top');
-
-    if (backToTopButton) {
-      // Show/hide button based on scroll position
-      const handleScroll = () => {
-        if (window.scrollY > 300) {
-          backToTopButton.classList.remove('opacity-0', 'invisible');
-          backToTopButton.classList.add('opacity-100', 'visible');
-        } else {
-          backToTopButton.classList.remove('opacity-100', 'visible');
-          backToTopButton.classList.add('opacity-0', 'invisible');
-        }
-      };
-
-      // Throttle scroll events for better performance
-      let ticking = false;
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            handleScroll();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
-
-      // Scroll to top when clicked
-      backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-
-        // Announce to screen readers
-        if ((window as any).announceToScreenReader) {
-          (window as any).announceToScreenReader('Scrolled to top of page');
-        }
-      });
-    }
-  }
+  // Back to top functionality removed per user request
 
   private closeModals(): void {
     const openModals = document.querySelectorAll('[role="dialog"][aria-hidden="false"]');

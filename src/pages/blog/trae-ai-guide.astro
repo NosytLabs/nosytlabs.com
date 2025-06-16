@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
-import CodeDisplay from '../../components/CodeDisplay.astro';
+// CodeDisplay component removed - using inline code blocks instead
 
 const pageTitle = "Trae AI: The Ultimate Developer's Companion - NosytLabs";
 const pageDescription = "A comprehensive guide to Trae AI, the lightweight and powerful coding assistant that's revolutionizing development workflows.";
@@ -169,13 +169,12 @@ export const frontmatter = {
       </p>
 
       <div class="my-12">
-        <CodeDisplay
-          title="optimized-sort.js"
-          language="javascript"
-          code={sampleCode}
-          dark={true}
-          showLineNumbers={true}
-        />
+        <div class="bg-gray-900 rounded-lg p-6 overflow-x-auto">
+          <div class="text-gray-400 text-sm mb-4 border-b border-gray-700 pb-2">
+            optimized-sort.js
+          </div>
+          <pre class="text-green-400"><code>{sampleCode}</code></pre>
+        </div>
         <p class="text-sm text-center mt-2 text-gray-600 dark:text-gray-400">Example of algorithm optimization with Trae AI assistance</p>
       </div>
 

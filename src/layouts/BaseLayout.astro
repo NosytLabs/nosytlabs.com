@@ -4,8 +4,13 @@ import UnifiedNavigation from '../components/navigation/UnifiedNavigation.astro'
 import Footer from '../components/common/Footer.astro';
 import VercelAnalytics from '../components/common/VercelAnalytics.astro';
 import SEOHead from '../components/common/SEOHead.astro';
+import PreloadLinks from '../components/common/PreloadLinks.astro';
 
 import { generateMetaTags, generateStructuredData } from '../utils/seoUtils.js';
+import { initializeSecurity, securityHeaders } from '../config/security';
+
+// Initialize security configuration
+initializeSecurity();
 
 export interface Props {
   title?: string;
@@ -80,16 +85,8 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   <!-- NosytLabs Brand Favicons -->
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="shortcut icon" href="/favicon.ico">
-  <!-- Standard Favicons -->
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <!-- Apple Touch Icon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
   <!-- Web Manifest -->
   <link rel="manifest" href="/site.webmanifest">
-
-  <!-- Preload critical NosytLabs brand assets -->
-  <link rel="preload" as="image" href="/images/NosytLabs.svg" type="image/svg+xml">
   <!-- NosytLabs Brand Theme Colors -->
   <meta name="theme-color" content="#2D1B69">
   <meta name="msapplication-TileColor" content="#2D1B69">
@@ -182,6 +179,9 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
     [data-theme="dark"] .nosyt-header{background:rgba(15,15,35,0.95);border-bottom-color:rgba(255,255,255,0.1)}
   </style>
 
+  <!-- Strategic Resource Preloading -->
+  <PreloadLinks />
+
   <!-- Resource hints for critical resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -189,8 +189,7 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   <link rel="dns-prefetch" href="https://vercel.live">
   <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com">
 
-  <!-- Preload critical resources with high priority -->
-  <link rel="preload" href="/images/NosytLabs.svg" as="image" fetchpriority="high">
+  <!-- Critical resources preloaded in head -->
 
   <!-- Fonts with optimized loading -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
@@ -204,17 +203,24 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Optimized CSS Architecture 2025 -->
-  <!-- Critical CSS - Inlined for performance -->
-  <link rel="stylesheet" href="/src/styles/optimized/critical.css" media="all">
+  <!-- Note: Using Astro's built-in CSS processing -->
+  <!-- UNIFIED COLOR SYSTEM - Master color definitions -->
+  <link rel="stylesheet" href="/styles/optimized/unified-colors.css" media="all">
 
-  <!-- Unified Styles - Main design system -->
-  <link rel="stylesheet" href="/src/styles/optimized/unified-styles.css" media="all">
-  
-  <!-- Brand-specific styles -->
-  <link rel="stylesheet" href="/src/styles/nosytlabs-brand.css" media="all">
+  <!-- SPACING & VISUAL HIERARCHY - Typography and spacing system -->
+  <link rel="stylesheet" href="/styles/optimized/spacing-hierarchy.css" media="all">
 
-  <!-- Animation CSS Bundle - Loaded with lower priority -->
-  <link rel="stylesheet" href="/src/styles/optimized/animations.css" media="all" loading="lazy">
+  <!-- CONSOLIDATED CSS ARCHITECTURE - Single optimized stylesheet -->
+  <link rel="stylesheet" href="/styles/optimized/consolidated-main.css" media="all">
+
+  <!-- Comprehensive visual fixes for colors, spacing, alignment -->
+  <link rel="stylesheet" href="/styles/optimized/comprehensive-fixes.css" media="all">
+
+  <!-- Brand-specific enhancements -->
+  <link rel="stylesheet" href="/styles/nosytlabs-brand.css" media="all">
+
+  <!-- Modern Container Queries -->
+  <link rel="stylesheet" href="/styles/optimized/modern-container-queries.css" media="all">
 
   <!-- NosytOS95 specific styles -->
   {isNosytOS95 && (
@@ -257,21 +263,8 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
 
   <!-- Main Content -->
   <main id="main-content" class="layout-main no-overlap" role="main" aria-label="Main content">
-    {!isNosytOS95 && (
-      <div id="particle-background" class="particle-background absolute inset-0 pointer-events-none z-0"
-        data-color="rgba(124, 58, 237, 0.1)"
-        data-secondary-color="rgba(255, 107, 53, 0.1)"
-        data-particle-count="50"
-        data-particle-size="2"
-        data-particle-speed="0.5"
-        data-interactive="false"
-        data-connect-particles="false"
-        data-gradient="true">
-      </div>
-    )}
-
     <!-- Main Content -->
-    <div class="relative z-10">
+    <div class="relative">
       <slot />
     </div>
   </main>
@@ -283,16 +276,7 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
     </footer>
   )}
 
-  <!-- Back to top button -->
-  {!isNosytOS95 && (
-    <button
-      id="back-to-top"
-      class="fixed bottom-6 right-6 bg-primary hover:bg-primary-dark text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 invisible z-50"
-      aria-label="Back to top"
-    >
-      <i class="fas fa-arrow-up"></i>
-    </button>
-  )}
+  <!-- Back to top button removed per user request -->
 
 
 
@@ -312,6 +296,8 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   <!-- Service Worker Management -->
   <script src="../scripts/service-worker-manager.ts"></script>
 
+  <!-- Enhanced Interactive Effects -->
+  <script src="/scripts/enhanced-effects.js" is:inline></script>
 
 </body>
 </html>

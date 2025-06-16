@@ -4,8 +4,6 @@
  * Animated hero section with gradient background and interactive elements
  */
 import AnimatedText from './animations/AnimatedText.astro';
-import ParticleBackground from './effects/ParticleBackground.astro';
-import FloatingElements from './effects/FloatingElements.astro';
 import type { HeroProps } from '../types/component-props.d.ts';
 
 interface Props extends HeroProps {
@@ -50,9 +48,17 @@ const {
     <div class="hero-gradient-overlay"></div>
     <div class="hero-particles" aria-hidden="true"></div>
 
-    <!-- Modern Particle Effects -->
-    <ParticleBackground particleCount={30} color="#ffffff" size="small" speed="slow" />
-    <FloatingElements elementCount={8} theme="mixed" intensity="subtle" />
+    <!-- Modern CSS-based particle effects -->
+    <div class="hero-particles-css" aria-hidden="true"></div>
+
+    <!-- Floating elements -->
+    <div class="floating-elements" aria-hidden="true">
+      <div class="float-element float-1"></div>
+      <div class="float-element float-2"></div>
+      <div class="float-element float-3"></div>
+      <div class="float-element float-4"></div>
+      <div class="float-element float-5"></div>
+    </div>
   </div>
 
   <!-- Main Content -->
@@ -91,14 +97,14 @@ const {
 
         <!-- CTA Buttons -->
         <div class="hero-actions" data-animate="fade-up" data-delay="0.4s">
-          <a href={ctaLink} class="btn-hero-primary">
+          <a href={ctaLink} class="btn-hero-primary btn-enhanced magnetic-hover liquid-button">
             <span class="btn-text">{ctaText}</span>
             <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
             </svg>
           </a>
-          
-          <a href="/services" class="btn-hero-secondary">
+
+          <a href="/services" class="btn-hero-secondary btn-enhanced magnetic-hover">
             <span class="btn-text">Explore Services</span>
           </a>
         </div>
@@ -185,6 +191,85 @@ const {
     33% { transform: translateY(-10px) translateX(10px); }
     66% { transform: translateY(5px) translateX(-5px); }
     100% { transform: translateY(0) translateX(0); }
+  }
+
+  /* Enhanced particle effects */
+  .hero-particles-css {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.15) 3px, transparent 3px),
+      radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 45% 15%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      radial-gradient(circle at 75% 45%, rgba(255, 255, 255, 0.12) 2px, transparent 2px),
+      radial-gradient(circle at 25% 85%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 150px 150px, 200px 200px, 100px 100px, 180px 180px, 120px 120px;
+    animation: particlesFloat 25s linear infinite;
+  }
+
+  /* Floating elements */
+  .floating-elements {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .float-element {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: floatUp 8s linear infinite;
+  }
+
+  .float-1 {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 8s;
+  }
+
+  .float-2 {
+    left: 25%;
+    animation-delay: -2s;
+    animation-duration: 10s;
+  }
+
+  .float-3 {
+    left: 50%;
+    animation-delay: -4s;
+    animation-duration: 12s;
+  }
+
+  .float-4 {
+    left: 75%;
+    animation-delay: -6s;
+    animation-duration: 9s;
+  }
+
+  .float-5 {
+    left: 90%;
+    animation-delay: -1s;
+    animation-duration: 11s;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(90vh) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(-10vh) scale(1);
+    }
+    100% {
+      transform: translateY(-20vh) scale(0);
+      opacity: 0;
+    }
   }
 
   /* Content */

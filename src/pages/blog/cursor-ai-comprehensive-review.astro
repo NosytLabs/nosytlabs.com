@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AnimatedSection from '../../components/animations/AnimatedSection.astro';
-import GlitchText from '../../components/GlitchText.astro';
+import AnimatedText from '../../components/animations/AnimatedText.astro';
 
 // Blog post metadata
 const title = "How AI Tools Are Revolutionizing Web Development at NosytLabs";
@@ -46,14 +46,14 @@ export const frontmatter = {
             <span class="mx-2">•</span>
             <span>{readTime}</span>
           </div>
-          <GlitchText
-            text={title}
+          <AnimatedText
+            texts={[title]}
             tag="h1"
             color="text-white"
             size="text-3xl md:text-5xl"
             weight="font-bold"
             className="mb-6"
-            glitchOnHover={true}
+            animation="glitch"
           />
           <p class="text-xl md:text-2xl opacity-90 mb-8">
             {excerpt}

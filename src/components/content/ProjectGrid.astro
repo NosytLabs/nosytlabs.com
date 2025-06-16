@@ -182,46 +182,40 @@ const allCategories = [...new Set(safeProjects.map(project => project?.category)
 </script>
 
 <style>
-  /* Variables for consistent styling */
-  :root {
-    --section-spacing: 4rem;
-    --grid-gap: 2rem;
-    --nosyt-purple: #4C1D95;
-    --nosyt-purple-light: #7C3AED;
-    --nosyt-orange: #FF6B00;
-    --nosyt-orange-light: #FF9E44;
-  }
+  /* Use global brand colors - no local overrides */
 
   .projects-section {
-    padding: var(--section-spacing) 0;
+    padding: 4rem 0;
   }
 
   .projects-section__header {
-    text-align: center;
-    margin-bottom: 3rem;
+    text-align: left;
+    margin-bottom: 2rem;
+    min-height: auto;
+    height: auto;
   }
 
   .projects-section__title {
     font-size: 2.25rem;
     font-weight: 700;
     margin: 0 0 1rem 0;
-    color: var(--nosyt-purple);
+    color: var(--primary);
   }
 
   :global(.dark) .projects-section__title {
-    color: var(--nosyt-purple-light);
+    color: var(--primary-light);
   }
 
   .projects-section__subtitle {
     font-size: 1.125rem;
-    color: #4B5563;
+    color: var(--text-light);
     max-width: 700px;
     margin: 0 auto 2rem auto;
     line-height: 1.6;
   }
 
   :global(.dark) .projects-section__subtitle {
-    color: #D1D5DB;
+    color: var(--text-light);
   }
 
   .projects-section__filters {
@@ -234,29 +228,29 @@ const allCategories = [...new Set(safeProjects.map(project => project?.category)
 
   .projects-section__filter-btn {
     background: none;
-    border: 1px solid #E5E7EB;
+    border: 1px solid var(--border-light);
     border-radius: 9999px;
     padding: 0.5rem 1.25rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #4B5563;
+    color: var(--text-light);
     cursor: pointer;
     transition: all 0.2s ease;
   }
 
   :global(.dark) .projects-section__filter-btn {
-    border-color: #374151;
-    color: #D1D5DB;
+    border-color: var(--border);
+    color: var(--text-light);
   }
 
   .projects-section__filter-btn:hover {
-    border-color: var(--nosyt-purple);
-    color: var(--nosyt-purple);
+    border-color: var(--primary);
+    color: var(--primary);
   }
 
   .projects-section__filter-btn.active {
-    background-color: var(--nosyt-purple);
-    border-color: var(--nosyt-purple);
+    background-color: var(--primary);
+    border-color: var(--primary);
     color: white;
   }
 
@@ -288,7 +282,7 @@ const allCategories = [...new Set(safeProjects.map(project => project?.category)
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background-color: var(--nosyt-purple);
+    background-color: var(--primary);
     color: white;
     border-radius: 0.5rem;
     font-weight: 500;
@@ -297,7 +291,7 @@ const allCategories = [...new Set(safeProjects.map(project => project?.category)
   }
 
   .projects-section__view-all-btn:hover {
-    background-color: var(--nosyt-purple-light);
+    background-color: var(--primary-light);
     transform: translateY(-2px);
   }
 

@@ -1,0 +1,10 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f1f5f9"/>
+  <rect x="20" y="20" width="360" height="60" rx="8" fill="#7c3aed"/>
+  <text x="200" y="55" text-anchor="middle" font-family="Arial" font-size="18" fill="white">Small Business Website</text>
+  <rect x="20" y="100" width="360" height="160" rx="8" fill="white" stroke="#e2e8f0"/>
+  <text x="200" y="140" text-anchor="middle" font-family="Arial" font-size="16" fill="#1e293b">Professional Website</text>
+  <text x="200" y="160" text-anchor="middle" font-family="Arial" font-size="12" fill="#64748b">Modern Design • Mobile Responsive • SEO Optimized</text>
+  <rect x="150" y="180" width="100" height="30" rx="4" fill="#7c3aed"/>
+  <text x="200" y="200" text-anchor="middle" font-family="Arial" font-size="12" fill="white">View Project</text>
+</svg>

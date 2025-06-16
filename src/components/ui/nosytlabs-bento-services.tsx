@@ -1,7 +1,6 @@
 import React from "react";
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
-import BlurFade from "@/components/ui/blur-fade";
+import { ShimmerButton } from "@/components/ui/consolidated-button";
 import { 
   Globe, 
   Zap, 
@@ -108,8 +107,7 @@ export function NosytLabsBentoServices() {
     <section className="py-24 bg-gradient-to-br from-slate-50 to-gray-100 dark:from-slate-900 dark:to-gray-900">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <BlurFade delay={0.1}>
-          <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-16 max-w-3xl mx-auto animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
               <Zap className="w-4 h-4" />
               Our Services
@@ -122,11 +120,10 @@ export function NosytLabsBentoServices() {
             <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
               From AI-enhanced web development to mobile apps, consulting, and 3D printing - we offer comprehensive digital solutions to help your business thrive.
             </p>
-          </div>
-        </BlurFade>
+        </div>
 
         {/* Bento Grid */}
-        <BlurFade delay={0.2}>
+        <div className="animate-fade-in-delay-1">
           <BentoGrid className="auto-rows-[20rem] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {services.map((service) => (
               <BentoCard
@@ -160,8 +157,8 @@ export function NosytLabsBentoServices() {
                       </div>
                       
                       <div className="space-y-2">
-                        {service.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                        {service.features.map((feature) => (
+                          <div key={feature} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                             <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
                             {feature}
                           </div>
@@ -177,11 +174,10 @@ export function NosytLabsBentoServices() {
               />
             ))}
           </BentoGrid>
-        </BlurFade>
+        </div>
 
         {/* Footer CTA */}
-        <BlurFade delay={0.3}>
-          <div className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+        <div className="text-center bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg animate-fade-in-delay-2">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Need something custom?
             </h3>
@@ -197,8 +193,7 @@ export function NosytLabsBentoServices() {
                 <ArrowRight className="w-4 h-4" />
               </span>
             </ShimmerButton>
-          </div>
-        </BlurFade>
+        </div>
       </div>
     </section>
   );

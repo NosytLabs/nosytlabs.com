@@ -5,6 +5,7 @@
 
 import type { APIRoute } from 'astro';
 import { DatabaseOperations } from '../../lib/database';
+import { EmailService } from '../../lib/email.js';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -41,39 +42,53 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Save to database
-    const result = await DatabaseOperations.saveContactSubmission({
+    // Prepare contact data
+    const contactData = {
       name: name.trim(),
       email: email.trim().toLowerCase(),
-      subject: body.subject?.trim() || '',
+      subject: body.subject?.trim() ?? '',
       message: message.trim(),
-      serviceType: body.serviceType?.trim() || '',
-      budgetRange: body.budgetRange?.trim() || '',
-      timeline: body.timeline?.trim() || ''
-    });
+      serviceType: body.serviceType?.trim() ?? '',
+      budgetRange: body.budgetRange?.trim() ?? '',
+      timeline: body.timeline?.trim() ?? ''
+    };
+
+    // Save to database
+    const result = await DatabaseOperations.saveContactSubmission(contactData);
 
     if (!result.success) {
       console.error('Database error:', result.error);
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Failed to save contact submission. Please try again.' 
+        JSON.stringify({
+          success: false,
+          error: 'Failed to save contact submission. Please try again.'
         }),
-        { 
+        {
           status: 500,
           headers: { 'Content-Type': 'application/json' }
         }
       );
     }
 
+    // Send email notification
+    const emailResult = await EmailService.sendContactFormNotification(contactData);
+
+    if (!emailResult.success) {
+      console.warn('Email notification failed:', emailResult.error);
+      // Don't fail the entire request if email fails, just log it
+    } else {
+      console.log('✅ Email notification sent successfully');
+    }
+
     // Success response
     return new Response(
-      JSON.stringify({ 
-        success: true, 
+      JSON.stringify({
+        success: true,
         message: 'Thank you for your message! We\'ll get back to you soon.',
-        id: result.data?.id
+        id: result.data?.id,
+        emailSent: emailResult.success
       }),
-      { 
+      {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
       }

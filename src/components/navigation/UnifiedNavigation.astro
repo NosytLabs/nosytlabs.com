@@ -226,13 +226,18 @@ const isActive = (href: string) => {
 
   .nav-item {
     position: relative;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
     text-decoration: none;
     color: var(--text-secondary, #6B7280);
     font-weight: 500;
     border-radius: 0.5rem;
     transition: all 0.3s ease;
     overflow: hidden;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .nav-item:hover {
@@ -269,9 +274,13 @@ const isActive = (href: string) => {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.75rem;
     border-radius: 0.375rem;
     transition: all 0.3s ease;
+    min-height: 44px;
+    min-width: 44px;
+    align-items: center;
+    justify-content: center;
   }
 
   .mobile-menu-toggle:hover {
@@ -376,10 +385,15 @@ const isActive = (href: string) => {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: 0.75rem;
     border-radius: 0.375rem;
     color: var(--text-secondary, #6B7280);
     transition: all 0.3s ease;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mobile-menu-close:hover {

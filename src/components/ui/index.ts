@@ -10,31 +10,28 @@
  * @since 1.0.0
  */
 
-// React Components - Available components
+// React Components - Core components used in the site
 export { BackgroundGradientAnimation } from './background-gradient-animation';
-export { BackgroundGradientAnimationDemo } from './background-gradient-animation-demo';
 export { NosytLabsAnimatedHero } from './nosytlabs-animated-hero';
 export { BentoGrid, BentoCard } from './bento-grid';
 export { MagicCard } from './magic-card';
 
 // Consolidated Button System - Replaces multiple duplicate button components
-export { 
-  NosytButton, 
-  ShinyButton, 
-  ShimmerButton, 
-  PrimaryButton, 
-  SecondaryButton, 
-  OutlineButton 
+export {
+  NosytButton,
+  ShinyButton,
+  ShimmerButton,
+  PrimaryButton,
+  SecondaryButton,
+  OutlineButton
 } from './consolidated-button';
 
+// Animation and Text Components - Actually used in the site
 export { Meteors } from './meteors';
-export { default as OrbitingCircles } from './orbiting-circles';
-export { RetroGrid } from './retro-grid';
-export { default as Marquee } from './marquee';
-export { default as BlurFade } from './blur-fade';
-export { AnimatedBeam } from './animated-beam';
 export { AnimatedShinyText } from './animated-shiny-text';
 export { AnimatedSubscribeButton } from './animated-subscribe-button';
 export { AuroraText } from './aurora-text';
-export { VideoText } from './video-text';
 export { TweetCard } from './tweet-card';
+
+// Contact and Form Components
+export { default as EnhancedContactForm } from './enhanced-contact-form';

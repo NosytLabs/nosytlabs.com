@@ -2,7 +2,7 @@
 // Blog page for NosytLabs
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AnimatedSection from '../components/animations/AnimatedSection.astro';
-import GlitchText from '../components/GlitchText.astro';
+import AnimatedText from '../components/animations/AnimatedText.astro';
 
 const pageTitle = "Blog - NosytLabs";
 const pageDescription = "Explore our blog for insights on AI tools, web development, and modern technology solutions.";
@@ -110,14 +110,14 @@ const categories = [new Set(blogPosts.map(post => post.category))];
   <div class="relative bg-gradient-to-br from-primary-dark to-primary-main text-white py-20">
     <div class="container mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center animate-fade-in">
-        <GlitchText
-          text="NosytLabs Blog"
+        <AnimatedText
+          texts={["NosytLabs Blog"]}
           tag="h1"
           color="text-white"
           size="text-4xl md:text-5xl"
           weight="font-bold"
           className="mb-4"
-          glitchOnHover={true}
+          animation="glitch"
         />
         <p class="text-xl animate-slide-up" style="animation-delay: 0.2s;">
           Insights on AI tools, web development, and modern technology solutions

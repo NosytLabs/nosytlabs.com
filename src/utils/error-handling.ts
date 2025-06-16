@@ -224,6 +224,20 @@ export function setupGlobalErrorHandlers(): void {
 }
 
 // Utility functions
+
+/**
+ * Higher-order function that wraps any function with error handling
+ * @param fn - Function to wrap with error handling
+ * @param errorHandler - Optional custom error handler
+ * @returns Wrapped function with error handling
+ *
+ * @example
+ * ```typescript
+ * const safeFunction = withErrorHandling(riskyFunction, (error) => {
+ *   console.error('Custom error handling:', error);
+ * });
+ * ```
+ */
 export function withErrorHandling<T extends (...args: any[]) => any>(
   fn: T,
   errorHandler?: (error: Error) => void

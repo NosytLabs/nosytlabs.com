@@ -99,10 +99,10 @@
 
 @keyframes pulseGlow {
   from {
-    box-shadow: 0 0 20px rgba(107, 70, 193, 0.5);
+    box-shadow: 0 0 20px var(--nosyt-purple-500);
   }
   to {
-    box-shadow: 0 0 30px rgba(107, 70, 193, 0.8);
+    box-shadow: 0 0 30px var(--nosyt-purple-600);
   }
 }
 
@@ -227,7 +227,7 @@
   content: '';
   position: absolute;
   inset: -2px;
-  background: linear-gradient(45deg, var(--nosyt-purple-main), var(--nosyt-purple-light), var(--nosyt-orange-main));
+  background: linear-gradient(45deg, var(--nosyt-purple-600), var(--nosyt-purple-500), var(--nosyt-orange-500));
   border-radius: inherit;
   opacity: 0;
   z-index: -1;
@@ -270,7 +270,7 @@
 
 .btn-modern:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(107, 70, 193, 0.4);
+  box-shadow: 0 10px 25px var(--nosyt-purple-500);
 }
 
 /* ========== LOADING ANIMATIONS ========== */
@@ -294,14 +294,14 @@
   width: 20px;
   height: 20px;
   border: 2px solid var(--border-light);
-  border-top: 2px solid var(--nosyt-purple-main);
+  border-top: 2px solid var(--nosyt-purple-600);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
 /* ========== GRADIENT ANIMATIONS ========== */
 .gradient-shift {
-  background: linear-gradient(-45deg, var(--nosyt-purple-main), var(--nosyt-purple-light), var(--nosyt-orange-main), var(--nosyt-orange-light));
+  background: linear-gradient(-45deg, var(--nosyt-purple-600), var(--nosyt-purple-500), var(--nosyt-orange-500), var(--nosyt-orange-400));
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
 }
@@ -416,8 +416,210 @@
   .animate-float {
     animation-duration: 4s;
   }
-  
+
   .hover-lift:hover {
     transform: translateY(-6px);
   }
+}
+
+/* ========== ENHANCED MODERN EFFECTS ========== */
+
+/* Magnetic hover effect */
+@keyframes magneticPull {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(var(--mouse-x, 0), var(--mouse-y, 0)) scale(1.05); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.magnetic-hover {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.magnetic-hover:hover {
+  animation: magneticPull 0.6s ease-out;
+}
+
+/* Morphing shapes */
+@keyframes morphShape {
+  0% { border-radius: 50%; }
+  25% { border-radius: 25% 75% 75% 25%; }
+  50% { border-radius: 75% 25% 25% 75%; }
+  75% { border-radius: 25% 75% 25% 75%; }
+  100% { border-radius: 50%; }
+}
+
+.morph-shape {
+  animation: morphShape 8s ease-in-out infinite;
+}
+
+/* Liquid button effect */
+.liquid-button {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, var(--nosyt-purple-main), var(--nosyt-orange-main));
+  transition: all 0.3s ease;
+}
+
+.liquid-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.liquid-button:hover::before {
+  left: 100%;
+}
+
+/* Glitch text effect */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.glitch-text {
+  position: relative;
+  animation: glitch 0.3s ease-in-out infinite alternate;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: #ff6b35;
+  animation: glitch 0.3s ease-in-out infinite alternate-reverse;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch-text::after {
+  color: #7c3aed;
+  animation: glitch 0.3s ease-in-out infinite alternate;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+/* Neon glow effect */
+@keyframes neonGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 5px currentColor,
+      0 0 10px currentColor,
+      0 0 15px currentColor,
+      0 0 20px var(--nosyt-purple-main);
+  }
+  50% {
+    text-shadow:
+      0 0 2px currentColor,
+      0 0 5px currentColor,
+      0 0 8px currentColor,
+      0 0 12px var(--nosyt-purple-main);
+  }
+}
+
+.neon-text {
+  color: var(--nosyt-purple-light);
+  animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+/* Parallax scroll effect */
+.parallax-element {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Staggered reveal animation */
+.stagger-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: staggerReveal 0.8s ease-out forwards;
+}
+
+@keyframes staggerReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-reveal:nth-child(1) { animation-delay: 0.1s; }
+.stagger-reveal:nth-child(2) { animation-delay: 0.2s; }
+.stagger-reveal:nth-child(3) { animation-delay: 0.3s; }
+.stagger-reveal:nth-child(4) { animation-delay: 0.4s; }
+.stagger-reveal:nth-child(5) { animation-delay: 0.5s; }
+.stagger-reveal:nth-child(6) { animation-delay: 0.6s; }
+
+/* Enhanced button interactions */
+.btn-enhanced {
+  position: relative;
+  overflow: hidden;
+  transform: perspective(1px) translateZ(0);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-enhanced:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Breathing animation for important elements */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Text reveal on scroll */
+.text-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.text-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced card hover effects */
+.card-enhanced {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+}
+
+.card-enhanced:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateY(-10px);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(124, 58, 237, 0.1);
 }

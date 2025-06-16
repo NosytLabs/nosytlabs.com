@@ -1,18 +1,19 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
-import {
-  getProductionViteConfig,
-  getDevelopmentViteConfig,
-  getAstroBuildConfig,
-  getModernBuildConfig
-} from './src/config/build-optimization.js';
+// Temporarily disabled build optimization import due to syntax issues
+// import {
+//   getProductionViteConfig,
+//   getDevelopmentViteConfig,
+//   getAstroBuildConfig,
+//   getModernBuildConfig
+// } from './src/config/build-optimization.js';
 
 // Get environment-specific configurations
 const isDev = process.env.NODE_ENV === 'development';
-const viteConfig = isDev ? getDevelopmentViteConfig() : getProductionViteConfig();
-const buildConfig = getAstroBuildConfig();
-const modernConfig = getModernBuildConfig();
+// const viteConfig = isDev ? getDevelopmentViteConfig() : getProductionViteConfig();
+// const buildConfig = getAstroBuildConfig();
+// const modernConfig = getModernBuildConfig();
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,16 +39,14 @@ export default defineConfig({
 
   // Enhanced build configuration
   build: {
-    format: buildConfig.format,
-    inlineStylesheets: buildConfig.inlineStylesheets,
-    assets: buildConfig.assets,
-    splitting: buildConfig.splitting,
-    assetsInlineLimit: buildConfig.assetsInlineLimit,
+    format: 'file',
+    inlineStylesheets: 'auto',
+    assets: 'assets',
+    splitting: true,
 
     // Modern build features
     ...(!isDev && {
-      compressHTML: true,
-      inlineCriticalCss: true
+      compressHTML: true
     })
   },
 
@@ -66,13 +65,13 @@ export default defineConfig({
 
   // Enhanced Vite configuration with environment-specific optimization
   vite: {
-    ...viteConfig,
-
     // Merge optimizeDeps configurations
     optimizeDeps: {
-      ...viteConfig.optimizeDeps,
       include: [
-        ...(viteConfig.optimizeDeps?.include || []),
+        'react',
+        'react-dom',
+        'framer-motion',
+        'lucide-react',
         'react/jsx-runtime',
         'react/jsx-dev-runtime'
       ]
@@ -81,19 +80,16 @@ export default defineConfig({
     // Enhanced build configuration for production
     ...(!isDev && {
       build: {
-        ...viteConfig.build,
-        ...modernConfig.build,
-
         // Performance optimizations
         chunkSizeWarningLimit: 1000,
-        reportCompressedSize: false
+        reportCompressedSize: false,
+        minify: 'terser'
       }
     }),
 
     // Development-specific optimizations
     ...(isDev && {
       server: {
-        ...viteConfig.server,
         watch: {
           usePolling: false,
           interval: 100
@@ -101,15 +97,10 @@ export default defineConfig({
       }
     }),
 
-    // Enhanced CSS processing - temporarily disable lightningcss
+    // Enhanced CSS processing
     css: {
-      ...viteConfig.css,
       devSourcemap: isDev
-      // transformer: 'lightningcss' // Disabled due to build issues
     },
-
-    // Plugin configuration
-    plugins: [],
 
     // Define global constants
     define: {

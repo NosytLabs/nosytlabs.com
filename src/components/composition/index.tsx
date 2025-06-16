@@ -10,11 +10,10 @@
 import React, { forwardRef } from 'react';
 import type { ElementType, ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
-import type { 
-  ComposableProps, 
-  ComponentVariant, 
-  ComponentSize,
-  AnimationConfig 
+import type {
+  ComposableProps,
+  ComponentVariant,
+  ComponentSize
 } from '@/types/enhanced-component-types';
 
 // ========== POLYMORPHIC COMPONENT SYSTEM ==========
@@ -310,39 +309,7 @@ export const Section: React.FC<SectionProps> = ({
 };
 
 // ========== ANIMATION COMPOSITION ==========
-
-interface AnimatedProps extends ComposableProps {
-  animation?: AnimationConfig;
-  trigger?: 'hover' | 'focus' | 'inView' | 'always';
-}
-
-/**
- * Animation wrapper component
- */
-export const Animated: React.FC<AnimatedProps> = ({
-  children,
-  animation,
-  trigger = 'inView',
-  className,
-  as: Component = 'div',
-  ...props
-}) => {
-  // Animation implementation would go here
-  // For now, returning basic structure
-  
-  return (
-    <Component
-      className={cn(
-        'transition-all duration-300',
-        animation && 'animate-in',
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </Component>
-  );
-};
+// Note: Animation functionality moved to AnimatedSection.astro for better performance
 
 // ========== UTILITY EXPORTS ==========
 

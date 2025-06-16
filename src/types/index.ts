@@ -19,12 +19,14 @@ export type * from './astro.d.ts';
 
 /**
  * Standard API response structure
+ * Note: This is the canonical definition - other files should import from here
  */
 export interface ApiResponse<T = any> {
-  data: T;
-  status: number;
-  message?: string;
+  success: boolean;
+  data?: T;
   error?: string;
+  message?: string;
+  status?: number;
 }
 
 /**
