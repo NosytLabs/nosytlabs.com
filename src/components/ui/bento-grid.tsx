@@ -1,5 +1,9 @@
 import { type ReactNode } from "react";
-import { cn } from "@/lib/utils";
+
+// Fallback cn function if utils import fails
+const cn = (...classes: (string | undefined | null | false)[]) => {
+  return classes.filter(Boolean).join(' ');
+};
 
 const BentoGrid = ({
   children,

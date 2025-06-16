@@ -189,12 +189,36 @@ img {
   line-height: 1.5;
 }
 
-.btn-primary {
+.btn-primary, .nosyt-btn-primary {
   background: linear-gradient(135deg, #7c3aed 0%, #ff6b35 100%);
   color: white;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .nosyt-btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+}
+
+.nosyt-btn-secondary {
+  background: white;
+  color: #7c3aed;
+  border: 2px solid #7c3aed;
+}
+
+.nosyt-btn-outline {
+  background: transparent;
+  color: #7c3aed;
+  border: 2px solid #7c3aed;
+}
+
+/* CSS custom properties for React components */
+:root {
+  --nosyt-purple: #7c3aed;
+  --nosyt-orange: #ff6b35;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

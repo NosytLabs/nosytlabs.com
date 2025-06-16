@@ -1,5 +1,9 @@
 import React from "react";
-import { cn } from "@/lib/utils";
+
+// Fallback cn function if utils import fails
+const cn = (...classes: (string | undefined | null | false)[]) => {
+  return classes.filter(Boolean).join(' ');
+};
 
 interface NosytButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;

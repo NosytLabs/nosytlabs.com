@@ -44,12 +44,34 @@ export default function TestimonialsSection() {
 
   // Safety checks
   if (!testimonials || testimonials.length === 0) {
-    return null;
+    return (
+      <section className="py-24 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Client Testimonials
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300">
+            Loading testimonials...
+          </p>
+        </div>
+      </section>
+    );
   }
 
   const currentTestimonial = testimonials[activeTestimonial] || testimonials[0];
   if (!currentTestimonial) {
-    return null;
+    return (
+      <section className="py-24 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Client Testimonials
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300">
+            No testimonials available.
+          </p>
+        </div>
+      </section>
+    );
   }
 
   return (
