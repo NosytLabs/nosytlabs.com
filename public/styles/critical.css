@@ -173,6 +173,41 @@ img {
   contain: layout style paint;
 }
 
+/* ========== CRITICAL SECTION OVERLAP FIXES ========== */
+
+/* Prevent all section overlapping issues */
+section, .section {
+  position: relative !important;
+  z-index: auto !important;
+  margin: 0 !important;
+  padding: 3rem 0 !important;
+  clear: both !important;
+  isolation: isolate !important;
+}
+
+/* Hero section specific spacing */
+.hero-section {
+  margin-bottom: 0 !important;
+  padding-bottom: 4rem !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Ensure proper text spacing and prevent overlaps */
+h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: 1rem !important;
+  line-height: 1.6 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Fix any negative margins causing overlaps */
+.hero-section + section,
+section + section {
+  margin-top: 0 !important;
+  padding-top: 3rem !important;
+}
+
 /* Critical button styles */
 .btn {
   display: inline-flex;
