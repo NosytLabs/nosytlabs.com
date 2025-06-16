@@ -5,6 +5,7 @@ import Footer from '../components/common/Footer.astro';
 import VercelAnalytics from '../components/common/VercelAnalytics.astro';
 import SEOHead from '../components/common/SEOHead.astro';
 import PreloadLinks from '../components/common/PreloadLinks.astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 import { generateMetaTags, generateStructuredData } from '../utils/seoUtils.js';
 import { initializeSecurity, securityHeaders } from '../config/security';
@@ -382,6 +383,7 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
 
   <!-- Vercel Analytics & Speed Insights -->
   <VercelAnalytics />
+  <SpeedInsights />
   <!-- Service Worker Registration Removed for Performance -->
 
 
