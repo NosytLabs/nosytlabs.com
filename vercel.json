@@ -6,6 +6,7 @@
   "installCommand": "npm install",
   "cleanUrls": true,
   "trailingSlash": false,
+  "public": true,
 
   "headers": [
     {
