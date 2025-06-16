@@ -98,6 +98,30 @@ const pageDescription = "Transform your business with custom web development and
       </div>
     </div>
   </section>
+
+  <!-- Sentry Test Error Button (Development Only) -->
+  {import.meta.env.DEV && (
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+      <button
+        id="sentry-test-error"
+        style="background: #ff4444; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;"
+      >
+        Test Sentry Error
+      </button>
+    </div>
+  )}
+
+  <script>
+    // Sentry test error functionality
+    function handleSentryTestError() {
+      throw new Error('Sentry Test Error - This is a test error to verify Sentry integration is working correctly');
+    }
+
+    const testButton = document.querySelector("#sentry-test-error");
+    if (testButton) {
+      testButton.addEventListener("click", handleSentryTestError);
+    }
+  </script>
 </BaseLayout>
 
 <style>

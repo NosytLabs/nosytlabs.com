@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import sentry from '@sentry/astro';
 // Temporarily disabled build optimization import due to syntax issues
 // import {
 //   getProductionViteConfig,
@@ -18,19 +19,25 @@ export default defineConfig({
   base: '/',
   trailingSlash: 'ignore',
 
-  integrations: [
-    react({
-      experimentalReactChildren: true
-    }),
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-        corePlugins: {
-          preflight: false
-        }
+  integrations: [react({
+    experimentalReactChildren: true
+  }), tailwind({
+    config: {
+      applyBaseStyles: false,
+      corePlugins: {
+        preflight: false
       }
-    })
-  ],
+    }
+  }), sentry({
+    dsn: "https://c132847d853499737873e2baeb344f66@o4509057271988224.ingest.us.sentry.io/4509483976753152",
+    // Setting this option to true will send default PII data to Sentry.
+    // For example, automatic IP address collection on events
+    sendDefaultPii: true,
+    sourceMapsUploadOptions: {
+      project: "nosytlabscom",
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+    },
+  })],
 
   output: 'static',
 
