@@ -78,10 +78,10 @@ describe('NosytLabs Integration Tests', () => {
         return {
           skipLinks: document.querySelectorAll('.skip-nav'),
           navigation: nav,
-          main: main,
-          footer: footer,
-          darkModeToggle: darkModeToggle,
-          backToTop: backToTop
+          main,
+          footer,
+          darkModeToggle,
+          backToTop,
         };
       };
 
@@ -98,8 +98,8 @@ describe('NosytLabs Integration Tests', () => {
       // Verify navigation links
       const navLinks = page.navigation.querySelectorAll('.nav-link');
       expect(navLinks).toHaveLength(4);
-      expect(navLinks[0].textContent).toBe('Home');
-      expect(navLinks[1].textContent).toBe('Services');
+      expect(navLinks[0]?.textContent).toBe('Home');
+      expect(navLinks[1]?.textContent).toBe('Services');
     });
 
     it('should handle complete dark mode functionality', () => {
@@ -469,7 +469,7 @@ describe('NosytLabs Integration Tests', () => {
     it('should handle global errors gracefully', () => {
       const errorHandler = {
         errors: [] as any[],
-        handleError: function(error: Error) {
+        handleError(error: Error) {
           this.errors.push({
             message: error.message,
             stack: error.stack,
@@ -479,7 +479,7 @@ describe('NosytLabs Integration Tests', () => {
           // Show user-friendly message
           this.showErrorMessage('Something went wrong. Please try again.');
         },
-        showErrorMessage: function(message: string) {
+        showErrorMessage(message: string) {
           const errorDiv = document.createElement('div');
           errorDiv.className = 'error-message';
           errorDiv.textContent = message;
@@ -515,13 +515,13 @@ describe('NosytLabs Integration Tests', () => {
         hasError: false,
         error: null as Error | null,
         
-        componentDidCatch: function(error: Error) {
+        componentDidCatch(error: Error) {
           this.hasError = true;
           this.error = error;
           this.renderErrorUI();
         },
         
-        renderErrorUI: function() {
+        renderErrorUI() {
           const container = document.createElement('div');
           container.className = 'error-boundary';
           container.innerHTML = `
@@ -538,7 +538,7 @@ describe('NosytLabs Integration Tests', () => {
           document.body.appendChild(container);
         },
         
-        retry: function() {
+        retry() {
           this.hasError = false;
           this.error = null;
           

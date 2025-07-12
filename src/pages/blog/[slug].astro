@@ -1,0 +1,35 @@
+---
+import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+import { getBlogPostBySlug, blogPosts } from '../../config/blog';
+
+export async function getStaticPaths() {
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { slug } = Astro.params;
+const post = getBlogPostBySlug(slug);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+// Create frontmatter object for BlogPostLayout
+const frontmatter = {
+  title: post.title,
+  description: post.excerpt,
+  date: post.publishDate.toLocaleDateString(),
+  author: post.author,
+  authorImage: '/images/team/tyson-avatar.jpg', // Default author image
+  image: post.featuredImage || '/images/blog/default-hero.jpg',
+  category: post.category,
+  tags: post.tags,
+  slug: post.slug
+};
+---
+
+<BlogPostLayout frontmatter={frontmatter}>
+  <div set:html={post.content} />
+</BlogPostLayout>

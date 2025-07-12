@@ -1,7 +1,13 @@
+import dotenv from 'dotenv';
+import path from 'path';
+
 /**
  * Security Configuration for NosytLabs
  * Handles environment variable validation, security headers, and access control
  */
+
+// Load environment variables from .env.local
+dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
 
 // Security validation for environment variables
 export function validateEnvironmentVariables() {
@@ -64,7 +70,7 @@ export const rateLimitConfig = {
 
 // CORS configuration
 export const corsConfig = {
-  origin: function (origin: string | undefined, callback: Function) {
+  origin (origin: string | undefined, callback: Function) {
     const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:4329').split(',');
     
     // Allow requests with no origin (like mobile apps or curl requests)

@@ -1,3 +1,6 @@
+const astroEslintParser = require('astro-eslint-parser').default || require('astro-eslint-parser');
+const typescriptEslintParser = require('@typescript-eslint/parser').default || require('@typescript-eslint/parser');
+
 module.exports = [
   {
     languageOptions: {
@@ -59,9 +62,9 @@ module.exports = [
   {
     files: ['**/*.astro'],
     languageOptions: {
-      parser: require('astro-eslint-parser'),
+      parser: astroEslintParser,
       parserOptions: {
-        parser: '@typescript-eslint/parser',
+        parser: typescriptEslintParser,
         extraFileExtensions: ['.astro'],
       },
     },
@@ -89,6 +92,19 @@ module.exports = [
       'no-console': 'off', // Allow console in build scripts
     },
   },
+  // TypeScript files configuration
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: typescriptEslintParser,
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+    },
+    rules: {
+      // Add TypeScript specific rules here if needed
+    },
+  },
   // Ignore patterns
   {
     ignores: [
@@ -96,9 +112,11 @@ module.exports = [
       'node_modules/**',
       '.astro/**',
       'public/**/*.js',
+      'src/scripts/optimized/**', // Exclude optimized JavaScript files
       '**/*.min.js',
       '**/vendor/**',
       '**/doom/**',
+      'dist/',
     ],
   },
 ];

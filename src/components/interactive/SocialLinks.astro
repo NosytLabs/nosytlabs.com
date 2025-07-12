@@ -2,47 +2,25 @@
 // SocialLinks.astro
 // A component to display social media links
 
+import { Icon } from '@/components/ui/icon';
+
 interface Props {
   className?: string;
   showLabels?: boolean;
   size?: 'sm' | 'md' | 'lg';
 }
 
-const { 
-  className = "", 
+const {
+  className = "",
   showLabels = false,
   size = 'md'
 } = Astro.props;
 
 const socialLinks = [
-  {
-    name: "GitHub",
-    url: "https://github.com/NosytLabs",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
-            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-          </svg>`
-  },
-  {
-    name: "Kick",
-    url: "https://kick.com/Tycen",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-          </svg>`
-  },
-  {
-    name: "YouTube",
-    url: "https://www.youtube.com/@TycenYT",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
-            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
-          </svg>`
-  },
-  {
-    name: "3D Printing Portfolio",
-    url: "/3d-printing",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-full h-full">
-            <path d="M12 2L2 7v10c0 5.55 3.84 9.739 9 11 5.16-1.261 9-5.45 9-11V7l-10-5z" />
-          </svg>`
-  }
+  { name: "GitHub", url: "https://github.com/NosytLabs", icon: "github" },
+  { name: "Kick", url: "https://kick.com/Tycen", icon: "zap" }, // Using 'zap' as a placeholder for Kick icon
+  { name: "YouTube", url: "https://www.youtube.com/@TycenYT", icon: "youtube" },
+  { name: "3D Printing Portfolio", url: "/3d-printing", icon: "box" } // Using 'box' as a placeholder for 3D Printing icon
 ];
 
 // Determine icon size based on prop
@@ -56,27 +34,29 @@ if (size === 'sm') containerSize = 'w-8 h-8';
 if (size === 'lg') containerSize = 'w-12 h-12';
 ---
 
-<div class={`social-links flex items-center space-x-4 ${className}`}>
-  {socialLinks.map(link => (
-    <a 
-      href={link.url} 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="social-link flex items-center hover:-translate-y-1 transition-transform duration-300"
-      aria-label={link.name}
-    >
-      <div class={`${containerSize} p-2 bg-primary-main hover:bg-accent rounded-full transition-colors duration-300 flex items-center justify-center`}>
-        <div class={`${iconSize} text-white`} set:html={link.icon} />
-      </div>
-      {showLabels && (
-        <span class="ml-2 text-sm font-medium">{link.name}</span>
-      )}
-    </a>
+<ul class={`flex items-center space-x-4 ${className}`} role="list">
+  {socialLinks.map((link, index) => (
+    <li>
+      <a
+        href={link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center nosyt-social-pulse group transition-all duration-300"
+        aria-label={link.name}
+        style={`animation-delay: ${index * 100}ms`}
+      >
+        <div class={`${containerSize} p-2 bg-gradient-to-br from-brand-blue-500 to-brand-ethereal-500 hover:from-brand-orange-500 hover:to-brand-red-500 rounded-full transition-all duration-300 flex items-center justify-center nosyt-glow-blue hover:shadow-[0_0_20px_rgba(0,123,255,0.6)] hover:scale-110 group-hover:rotate-6`}>
+          <Icon
+            name={link.icon}
+            size={iconSize === 'w-5 h-5' ? 20 : iconSize === 'w-8 h-8' ? 32 : 24}
+            className="text-white transition-transform duration-300 group-hover:scale-110 nosyt-icon-bounce"
+          />
+        </div>
+        {showLabels && (
+          <span class="ml-2 text-sm font-medium transition-all duration-300 group-hover:text-brand-blue-500 group-hover:font-semibold">{link.name}</span>
+        )}
+      </a>
+    </li>
   ))}
-</div>
+</ul>
 
-<style>
-  .social-link:hover {
-    filter: drop-shadow(0 0 8px rgba(var(--accent-rgb), 0.5));
-  }
-</style>

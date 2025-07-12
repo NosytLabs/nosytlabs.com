@@ -1,0 +1,1112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Colors - Vibrant Palette */
+    
+    /* Electric Blue - Primary Accent */
+    --brand-blue-50: #e6f3ff;
+    --brand-blue-100: #cce7ff;
+    --brand-blue-200: #99cfff;
+    --brand-blue-300: #66b7ff;
+    --brand-blue-400: #339fff;
+    --brand-blue-500: #007bff;
+    --brand-blue-600: #0056b3;
+    --brand-blue-700: #004085;
+    --brand-blue-800: #002b57;
+    --brand-blue-900: #001529;
+
+    /* Fiery Red - Secondary Accent */
+    --brand-red-50: #fff5f5;
+    --brand-red-100: #fed7d7;
+    --brand-red-200: #feb2b2;
+    --brand-red-300: #fc8181;
+    --brand-red-400: #f56565;
+    --brand-red-500: #dc3545;
+    --brand-red-600: #c53030;
+    --brand-red-700: #9b2c2c;
+    --brand-red-800: #742a2a;
+    --brand-red-900: #4a1818;
+
+    /* Vivid Orange - Tertiary Accent */
+    --brand-orange-50: #fff9f0;
+    --brand-orange-100: #fef2e1;
+    --brand-orange-200: #fde4c3;
+    --brand-orange-300: #fcd5a5;
+    --brand-orange-400: #fbc687;
+    --brand-orange-500: #fd7e14;
+    --brand-orange-600: #e8670e;
+    --brand-orange-700: #c7550c;
+    --brand-orange-800: #a6440a;
+    --brand-orange-900: #853308;
+
+    /* Brat Green - Quaternary Accent */
+    --brand-green-50: #f7f8f3;
+    --brand-green-100: #eef1e7;
+    --brand-green-200: #dde3cf;
+    --brand-green-300: #ccd5b7;
+    --brand-green-400: #bbc79f;
+    --brand-green-500: #6B8E23;
+    --brand-green-600: #5a7a1e;
+    --brand-green-700: #496619;
+    --brand-green-800: #385214;
+    --brand-green-900: #273e0f;
+
+    /* Ethereal Blues - Complementary */
+    --brand-ethereal-50: #f0f8ff;
+    --brand-ethereal-100: #e1f1ff;
+    --brand-ethereal-200: #c3e3ff;
+    --brand-ethereal-300: #a5d5ff;
+    --brand-ethereal-400: #87ceeb;
+    --brand-ethereal-500: #add8e6;
+    --brand-ethereal-600: #8cc9dd;
+    --brand-ethereal-700: #6bbad4;
+    --brand-ethereal-800: #4aabcb;
+    --brand-ethereal-900: #299cc2;
+    --brand-ethereal-light: #ADD8E6;
+    --brand-ethereal-sky: #87CEEB;
+
+    /* Legacy Brand Colors - Maintained for compatibility */
+    --brand-purple-50: #faf5ff;
+    --brand-purple-100: #f3e8ff;
+    --brand-purple-200: #e9d5ff;
+    --brand-purple-300: #d8b4fe;
+    --brand-purple-400: #c084fc;
+    --brand-purple-500: #a855f7;
+    --brand-purple-600: #9333ea;
+    --brand-purple-700: #7c3aed;
+    --brand-purple-800: #6d28d9;
+    --brand-purple-900: #581c87;
+
+    /* Semantic Colors - Updated with vibrant palette */
+    --semantic-primary-50: #e6f3ff;
+    --semantic-primary-100: #cce7ff;
+    --semantic-primary-200: #99cfff;
+    --semantic-primary-300: #66b7ff;
+    --semantic-primary-400: #339fff;
+    --semantic-primary-500: #007bff;
+    --semantic-primary-600: #0056b3;
+    --semantic-primary-700: #004085;
+    --semantic-primary-800: #002b57;
+    --semantic-primary-900: #001529;
+
+    --semantic-secondary-50: #fff9f0;
+    --semantic-secondary-100: #fef2e1;
+    --semantic-secondary-200: #fde4c3;
+    --semantic-secondary-300: #fcd5a5;
+    --semantic-secondary-400: #fbc687;
+    --semantic-secondary-500: #fd7e14;
+    --semantic-secondary-600: #e8670e;
+    --semantic-secondary-700: #c7550c;
+    --semantic-secondary-800: #a6440a;
+    --semantic-secondary-900: #853308;
+
+    --semantic-accent-50: #f0f8ff;
+    --semantic-accent-100: #e1f1ff;
+    --semantic-accent-200: #c3e3ff;
+    --semantic-accent-300: #a5d5ff;
+    --semantic-accent-400: #87ceeb;
+    --semantic-accent-500: #add8e6;
+    --semantic-accent-600: #8cc9dd;
+    --semantic-accent-700: #6bbad4;
+    --semantic-accent-800: #4aabcb;
+    --semantic-accent-900: #299cc2;
+
+    --semantic-success-50: #f7f8f3;
+    --semantic-success-100: #eef1e7;
+    --semantic-success-200: #dde3cf;
+    --semantic-success-300: #ccd5b7;
+    --semantic-success-400: #bbc79f;
+    --semantic-success-500: #6B8E23;
+    --semantic-success-600: #5a7a1e;
+    --semantic-success-700: #496619;
+    --semantic-success-800: #385214;
+    --semantic-success-900: #273e0f;
+
+    --semantic-warning-50: #fff9f0;
+    --semantic-warning-100: #fef2e1;
+    --semantic-warning-200: #fde4c3;
+    --semantic-warning-300: #fcd5a5;
+    --semantic-warning-400: #fbc687;
+    --semantic-warning-500: #fd7e14;
+    --semantic-warning-600: #e8670e;
+    --semantic-warning-700: #c7550c;
+    --semantic-warning-800: #a6440a;
+    --semantic-warning-900: #853308;
+
+    --semantic-danger-50: #fff5f5;
+    --semantic-danger-100: #fed7d7;
+    --semantic-danger-200: #feb2b2;
+    --semantic-danger-300: #fc8181;
+    --semantic-danger-400: #f56565;
+    --semantic-danger-500: #dc3545;
+    --semantic-danger-600: #c53030;
+    --semantic-danger-700: #9b2c2c;
+    --semantic-danger-800: #742a2a;
+    --semantic-danger-900: #4a1818;
+
+    --semantic-info-50: #e6f3ff;
+    --semantic-info-100: #cce7ff;
+    --semantic-info-200: #99cfff;
+    --semantic-info-300: #66b7ff;
+    --semantic-info-400: #339fff;
+    --semantic-info-500: #007bff;
+    --semantic-info-600: #0056b3;
+    --semantic-info-700: #004085;
+    --semantic-info-800: #002b57;
+    --semantic-info-900: #001529;
+
+    /* Neutral Colors */
+    --neutral-0: #ffffff;
+    --neutral-50: #fafafa;
+    --neutral-100: #f5f5f5;
+    --neutral-200: #e5e5e5;
+    --neutral-300: #d4d4d4;
+    --neutral-400: #a3a3a3;
+    --neutral-500: #737373;
+    --neutral-600: #525252;
+    --neutral-700: #404040;
+    --neutral-800: #262626;
+    --neutral-900: #171717;
+    --neutral-950: #0a0a0a;
+    --neutral-1000: #000000;
+
+    /* Typography */
+    --font-family-sans: 'Inter', system-ui, sans-serif;
+    --font-family-mono: 'JetBrains Mono', Menlo, Monaco, monospace;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 3.75rem;
+
+    /* Spacing */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-8: 2rem;
+    --spacing-12: 3rem;
+    --spacing-16: 4rem;
+    --spacing-24: 6rem;
+
+    /* Layout */
+    --container-max-width: 1280px;
+    --container-padding: 1rem;
+
+    /* Light Theme */
+    --bg-primary: var(--neutral-0);
+    --bg-secondary: var(--neutral-100);
+    --text-primary: var(--neutral-900);
+    --text-secondary: var(--neutral-600);
+    --border-color: var(--neutral-200);
+
+    /* Primary/Secondary aliases - Updated to use vibrant palette */
+    --primary: var(--brand-blue-500);
+    --primary-darker: var(--brand-blue-600);
+    --primary-lighter: var(--brand-blue-400);
+    --secondary: var(--brand-orange-500);
+    --secondary-darker: var(--brand-orange-600);
+    --secondary-lighter: var(--brand-orange-400);
+    
+    /* Additional vibrant accent shortcuts */
+    --accent: var(--brand-ethereal-500);
+    --accent-darker: var(--brand-ethereal-600);
+    --accent-lighter: var(--brand-ethereal-400);
+    --tertiary: var(--brand-red-500);
+    --quaternary: var(--brand-green-500);
+  }
+
+  .dark {
+    /* Dark Theme */
+    --bg-primary: var(--neutral-900);
+    --bg-secondary: var(--neutral-800);
+    --text-primary: var(--neutral-100);
+    --text-secondary: var(--neutral-400);
+    --border-color: var(--neutral-700);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Grid Responsive - Responsive grid layout */
+  .grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* Container Query Section - Container queries support */
+  .container-query-section {
+    container-type: inline-size;
+    container-name: section;
+  }
+
+  /* Text Clamping Classes - Responsive text sizing */
+  .text-clamp-hero {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+  }
+  
+  .text-clamp-subtitle {
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
+    line-height: 1.3;
+  }
+  
+  .text-clamp-description {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.6;
+  }
+  
+  .text-clamp-stat-number {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.2;
+  }
+
+  /* Gradient Hero Background - Vibrant Neon Gradient */
+  .gradient-hero {
+    background: linear-gradient(135deg,
+      var(--brand-blue-600) 0%,
+      var(--brand-blue-700) 20%,
+      var(--brand-ethereal-600) 40%,
+      var(--brand-red-600) 60%,
+      var(--brand-orange-600) 80%,
+      var(--brand-green-600) 100%);
+  }
+  
+  /* Additional vibrant gradient variants */
+  .gradient-electric {
+    background: linear-gradient(135deg,
+      var(--brand-blue-500) 0%,
+      var(--brand-ethereal-500) 50%,
+      var(--brand-blue-600) 100%);
+  }
+  
+  .gradient-fire {
+    background: linear-gradient(135deg,
+      var(--brand-red-500) 0%,
+      var(--brand-orange-500) 100%);
+  }
+  
+  .gradient-nature {
+    background: linear-gradient(135deg,
+      var(--brand-green-500) 0%,
+      var(--brand-ethereal-500) 100%);
+  }
+
+  /* Prose Styling for Content */
+  .prose {
+    max-width: 65ch;
+    color: var(--text-primary);
+  }
+  
+  .prose p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  
+  .prose strong {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  
+  .prose-sm {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  
+  .prose-sm p {
+    margin-bottom: 0.75rem;
+  }
+  
+  .dark .prose-invert {
+    color: var(--text-primary);
+  }
+
+  /* Badge Components */
+  .badge-icon {
+    display: inline-block;
+    font-size: 1rem;
+  }
+  
+  .badge-text {
+    font-weight: 600;
+  }
+}
+
+@layer utilities {
+  /* Enhanced Animation Variables */
+  :root {
+    --animation-duration-fast: 150ms;
+    --animation-duration-normal: 250ms;
+    --animation-duration-slow: 350ms;
+    --animation-easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --animation-easing-entrance: cubic-bezier(0, 0, 0.2, 1);
+    --animation-easing-exit: cubic-bezier(0.4, 0, 1, 1);
+  }
+
+  /* Nosyt Focus State - Enhanced focus visibility */
+  .nosyt-focus {
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    --tw-ring-color: var(--brand-blue-500);
+    --tw-ring-offset-color: var(--bg-primary);
+    transition: box-shadow var(--animation-duration-fast) var(--animation-easing-smooth);
+  }
+  
+  /* Focus variants for different contexts */
+  .nosyt-focus-secondary {
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    --tw-ring-color: var(--brand-red-500);
+    --tw-ring-offset-color: var(--bg-primary);
+    transition: box-shadow var(--animation-duration-fast) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-focus-success {
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    --tw-ring-color: var(--brand-green-500);
+    --tw-ring-offset-color: var(--bg-primary);
+    transition: box-shadow var(--animation-duration-fast) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-focus-warning {
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    --tw-ring-color: var(--brand-orange-500);
+    --tw-ring-offset-color: var(--bg-primary);
+    transition: box-shadow var(--animation-duration-fast) var(--animation-easing-smooth);
+  }
+
+  /* Enhanced Card Hover Effects with Vibrant Colors */
+  .nosyt-card-hover {
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .nosyt-card-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 123, 255, 0.1),
+      transparent
+    );
+    transition: left var(--animation-duration-slow) var(--animation-easing-smooth);
+    z-index: 1;
+  }
+  
+  .nosyt-card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px -5px rgba(0, 123, 255, 0.2),
+                0 10px 15px -5px rgba(0, 123, 255, 0.1);
+  }
+  
+  .nosyt-card-hover:hover::before {
+    left: 100%;
+  }
+  
+  .dark .nosyt-card-hover:hover {
+    box-shadow: 0 20px 40px -5px rgba(0, 123, 255, 0.3),
+                0 10px 15px -5px rgba(0, 123, 255, 0.2);
+  }
+
+  /* Vibrant Button Hover Effects */
+  .nosyt-button-vibrant {
+    position: relative;
+    overflow: hidden;
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-button-vibrant::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+  
+  .nosyt-button-vibrant:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nosyt-button-vibrant:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .nosyt-button-vibrant:active {
+    transform: translateY(-1px) scale(1.02);
+  }
+  
+  .nosyt-button-vibrant > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Navigation Link Hover Effects */
+  .nosyt-nav-link {
+    position: relative;
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--brand-blue-500), var(--brand-ethereal-500));
+    transition: width var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-nav-link:hover {
+    color: var(--brand-blue-400);
+    transform: translateY(-1px);
+  }
+  
+  .nosyt-nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Social Link Pulse Effect */
+  .nosyt-social-pulse {
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+    position: relative;
+  }
+  
+  .nosyt-social-pulse::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: inherit;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+    z-index: 0;
+  }
+  
+  .nosyt-social-pulse:hover {
+    transform: translateY(-3px) scale(1.1);
+  }
+  
+  .nosyt-social-pulse:hover::before {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0.3;
+  }
+
+  /* Micro-interaction for Icons */
+  .nosyt-icon-bounce {
+    transition: transform var(--animation-duration-fast) var(--animation-easing-bounce);
+  }
+  
+  .nosyt-icon-bounce:hover {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  /* Color Transition Classes for Vibrant Palette */
+  .nosyt-color-transition-blue {
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-color-transition-blue:hover {
+    background-color: var(--brand-blue-500);
+    color: white;
+    box-shadow: 0 8px 25px -5px rgba(0, 123, 255, 0.4);
+  }
+  
+  .nosyt-color-transition-orange {
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-color-transition-orange:hover {
+    background-color: var(--brand-orange-500);
+    color: white;
+    box-shadow: 0 8px 25px -5px rgba(253, 126, 20, 0.4);
+  }
+  
+  .nosyt-color-transition-red {
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-color-transition-red:hover {
+    background-color: var(--brand-red-500);
+    color: white;
+    box-shadow: 0 8px 25px -5px rgba(220, 53, 69, 0.4);
+  }
+  
+  .nosyt-color-transition-green {
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-color-transition-green:hover {
+    background-color: var(--brand-green-500);
+    color: white;
+    box-shadow: 0 8px 25px -5px rgba(107, 142, 35, 0.4);
+  }
+
+  /* Enhanced Hover Lift with Different Intensities */
+  .nosyt-hover-lift {
+    transition: transform var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-hover-lift:hover {
+    transform: translateY(-2px);
+  }
+  
+  .nosyt-hover-lift-strong {
+    transition: transform var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-hover-lift-strong:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+  
+  .nosyt-hover-lift:active,
+  .nosyt-hover-lift-strong:active {
+    transform: translateY(0);
+  }
+
+  /* Form Input Focus Effects */
+  .nosyt-input-focus {
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+    border: 2px solid transparent;
+  }
+  
+  .nosyt-input-focus:focus {
+    border-color: var(--brand-blue-500);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    transform: scale(1.02);
+  }
+
+  /* Glow Effects for Interactive Elements */
+  .nosyt-glow-blue {
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-glow-blue:hover {
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+  }
+  
+  .nosyt-glow-orange {
+    transition: all var(--animation-duration-normal) var(--animation-easing-smooth);
+  }
+  
+  .nosyt-glow-orange:hover {
+    box-shadow: 0 0 20px rgba(253, 126, 20, 0.5);
+  }
+
+  /* Loading/Loading State Animations */
+  .nosyt-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* ===============================================
+     SCROLL-TRIGGERED ANIMATION SYSTEM
+     =============================================== */
+
+  /* Animation Base Classes */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+  }
+
+  .scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Core Animation Keyframes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes rotateIn {
+    from {
+      opacity: 0;
+      transform: rotate(-180deg) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  @keyframes flipInX {
+    from {
+      opacity: 0;
+      transform: perspective(400px) rotateX(-90deg);
+    }
+    to {
+      opacity: 1;
+      transform: perspective(400px) rotateX(0deg);
+    }
+  }
+
+  @keyframes flipInY {
+    from {
+      opacity: 0;
+      transform: perspective(400px) rotateY(-90deg);
+    }
+    to {
+      opacity: 1;
+      transform: perspective(400px) rotateY(0deg);
+    }
+  }
+
+  /* Animation Classes */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-fade-in-down {
+    animation: fadeInDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-fade-in-left {
+    animation: fadeInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-fade-in-right {
+    animation: fadeInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-slide-down {
+    animation: slideInDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-slide-left {
+    animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-slide-right {
+    animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-zoom-in {
+    animation: zoomIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-rotate-in {
+    animation: rotateIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-flip-x {
+    animation: flipInX 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-flip-y {
+    animation: flipInY 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Stagger Animation Classes */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .stagger-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Color Reveal Animations using Vibrant Palette */
+  @keyframes colorRevealBlue {
+    from {
+      background-color: transparent;
+      color: var(--text-primary);
+    }
+    to {
+      background-color: var(--brand-blue-500);
+      color: white;
+    }
+  }
+
+  @keyframes colorRevealOrange {
+    from {
+      background-color: transparent;
+      color: var(--text-primary);
+    }
+    to {
+      background-color: var(--brand-orange-500);
+      color: white;
+    }
+  }
+
+  @keyframes colorRevealRed {
+    from {
+      background-color: transparent;
+      color: var(--text-primary);
+    }
+    to {
+      background-color: var(--brand-red-500);
+      color: white;
+    }
+  }
+
+  @keyframes colorRevealGreen {
+    from {
+      background-color: transparent;
+      color: var(--text-primary);
+    }
+    to {
+      background-color: var(--brand-green-500);
+      color: white;
+    }
+  }
+
+  .animate-color-reveal-blue {
+    animation: colorRevealBlue 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-color-reveal-orange {
+    animation: colorRevealOrange 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-color-reveal-red {
+    animation: colorRevealRed 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .animate-color-reveal-green {
+    animation: colorRevealGreen 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Enhanced Parallax Effect Classes */
+  .parallax-slow {
+    will-change: transform;
+    transition: transform 0.3s ease-out;
+  }
+
+  .parallax-medium {
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+  }
+
+  .parallax-fast {
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+  }
+
+  /* Progress Bar Animations */
+  @keyframes progressFill {
+    from {
+      width: 0%;
+    }
+    to {
+      width: var(--progress-width, 100%);
+    }
+  }
+
+  .animate-progress {
+    animation: progressFill 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Typewriter Effect for Key Messaging */
+  @keyframes typewriter {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blinkCursor {
+    from, to {
+      border-right-color: transparent;
+    }
+    50% {
+      border-right-color: var(--brand-blue-500);
+    }
+  }
+
+  .animate-typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--brand-blue-500);
+    animation:
+      typewriter 3s steps(var(--typewriter-steps, 40), end),
+      blinkCursor 1s step-end infinite;
+    max-width: fit-content;
+  }
+
+  /* Vibrant Glow Animations */
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow: 0 0 5px var(--glow-color, var(--brand-blue-500));
+    }
+    50% {
+      box-shadow: 0 0 20px var(--glow-color, var(--brand-blue-500)),
+                  0 0 30px var(--glow-color, var(--brand-blue-500));
+    }
+  }
+
+  .animate-glow-pulse {
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+
+  /* Enhanced Counter Animation */
+  @keyframes countUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-count-up {
+    animation: countUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Accessibility: Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .nosyt-card-hover,
+    .nosyt-button-vibrant,
+    .nosyt-nav-link,
+    .nosyt-social-pulse,
+    .nosyt-icon-bounce,
+    .nosyt-hover-lift,
+    .nosyt-hover-lift-strong,
+    .nosyt-input-focus,
+    .nosyt-glow-blue,
+    .nosyt-glow-orange,
+    .nosyt-color-transition-blue,
+    .nosyt-color-transition-orange,
+    .nosyt-color-transition-red,
+    .nosyt-color-transition-green,
+    .scroll-animate,
+    .stagger-item {
+      transition: none;
+      animation: none;
+    }
+    
+    .nosyt-card-hover:hover,
+    .nosyt-button-vibrant:hover,
+    .nosyt-nav-link:hover,
+    .nosyt-social-pulse:hover,
+    .nosyt-icon-bounce:hover,
+    .nosyt-hover-lift:hover,
+    .nosyt-hover-lift-strong:hover {
+      transform: none;
+    }
+
+    /* For reduced motion, show all elements immediately */
+    .scroll-animate,
+    .stagger-item {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* Disable all scroll animations */
+    .animate-fade-in-up,
+    .animate-fade-in-down,
+    .animate-fade-in-left,
+    .animate-fade-in-right,
+    .animate-fade-in,
+    .animate-scale-in,
+    .animate-slide-up,
+    .animate-slide-down,
+    .animate-slide-left,
+    .animate-slide-right,
+    .animate-zoom-in,
+    .animate-rotate-in,
+    .animate-flip-x,
+    .animate-flip-y,
+    .animate-color-reveal-blue,
+    .animate-color-reveal-orange,
+    .animate-color-reveal-red,
+    .animate-color-reveal-green,
+    .animate-glow-pulse,
+    .animate-count-up,
+    .animate-progress,
+    .animate-typewriter {
+      animation: none !important;
+    }
+  }
+}

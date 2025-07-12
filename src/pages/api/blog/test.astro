@@ -1,0 +1,13 @@
+---
+console.log('[TEST] Simple test file loaded');
+
+export async function GET() {
+  console.log('[TEST] GET function called');
+  return new Response('TEST SUCCESS', {
+    status: 200,
+    headers: { 'Content-Type': 'text/plain' },
+  });
+}
+
+console.log('[TEST] File processing complete');
+---

@@ -1,65 +1,63 @@
 /** @type {import('tailwindcss').Config} */
+import { tokens, convertToTailwindConfig } from './src/tokens/design-tokens.js';
+
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  darkMode: 'class',
+  content: [
+    './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+    './src/components/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+    './src/layouts/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+    './src/pages/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
+  ],
+  darkMode: 'class', // Will be unified with CSS data-theme approach
   theme: {
     extend: {
+      // Colors from centralized design tokens
       colors: {
-        // Official NosytLabs Brand Colors
-        'nosyt-purple': {
-          lightest: '#c084fc', // Very light purple
-          light: '#a855f7',    // Official light purple
-          DEFAULT: '#7c3aed',  // Official main purple
-          dark: '#5b21b6',     // Dark purple
-          darkest: '#2D1B69'   // Logo background purple
-        },
-        'nosyt-orange': {
-          lightest: '#ffb894', // Light orange tint
-          light: '#ff8c42',    // Official light orange
-          DEFAULT: '#ff6b35',  // Official main orange
-          dark: '#e55a2b',     // Dark orange
-          darkest: '#cc4e24'   // Darkest orange
-        },
-        primary: {
-          lightest: '#c084fc', // Very light purple
-          light: '#a855f7',    // Official light purple
-          DEFAULT: '#7c3aed',  // Official main purple
-          dark: '#5b21b6',     // Dark purple
-          darkest: '#2D1B69'   // Logo background purple
-        },
-        secondary: {
-          lightest: '#ffb894', // Light orange tint
-          light: '#ff8c42',    // Official light orange
-          DEFAULT: '#ff6b35',  // Official main orange
-          dark: '#e55a2b',     // Dark orange
-          darkest: '#cc4e24'   // Darkest orange
-        },
-        accent: {
-          light: '#ff8c42',    // Official light orange as accent
-          DEFAULT: '#ff6b35',  // Official main orange as default accent
-          dark: '#e55a2b'      // Dark orange for accent hover states
-        },
-        // Additional semantic colors
-        success: '#10B981',    // Green for success messages
-        warning: '#F59E0B',    // Amber for warnings
-        danger: '#EF4444',     // Red for errors
-        info: '#3B82F6',       // Blue for information
-        win95: {
-          bg: '#C0C0C0',       // Windows 95 background color
-          text: '#000000',     // Windows 95 text color
-          highlight: '#000080', // Windows 95 highlight color
-          shadow: '#808080',   // Windows 95 shadow color
-          button: '#C0C0C0'    // Windows 95 button color
-        }
+        // NosytLabs brand colors (direct access)
+        'nosyt-purple': tokens.brand.purple[500],
+        'nosyt-orange': tokens.brand.orange[500],
+        'nosyt-blue': tokens.brand.blue[500],
+        'nosyt-red': tokens.brand.red[500],
+        'nosyt-green': tokens.brand.green[500],
+        
+        // Full color scales from design tokens - properly mapped
+        brand: convertToTailwindConfig(tokens.brand),
+        primary: convertToTailwindConfig(tokens.semantic.primary),
+        secondary: convertToTailwindConfig(tokens.semantic.secondary),
+        accent: convertToTailwindConfig(tokens.semantic.accent),
+        success: convertToTailwindConfig(tokens.semantic.success),
+        warning: convertToTailwindConfig(tokens.semantic.warning),
+        danger: convertToTailwindConfig(tokens.semantic.danger),
+        info: convertToTailwindConfig(tokens.semantic.info),
+        neutral: convertToTailwindConfig(tokens.neutral),
+        win95: convertToTailwindConfig(tokens.win95),
       },
-      fontFamily: {
-        sans: ['Inter var', 'Inter', 'sans-serif'],
-        win95: ['"MS Sans Serif"', '"Pixelated MS Sans Serif"', 'Arial', 'sans-serif'],
-      },
+      // Typography from design tokens
+      fontFamily: convertToTailwindConfig(tokens.typography.fontFamily),
+      fontSize: convertToTailwindConfig(tokens.typography.fontSize),
+      fontWeight: convertToTailwindConfig(tokens.typography.fontWeight),
+      lineHeight: convertToTailwindConfig(tokens.typography.lineHeight),
+
+      // Spacing from design tokens
+      spacing: convertToTailwindConfig(tokens.spacing),
+
+      // Border radius from design tokens
+      borderRadius: convertToTailwindConfig(tokens.borderRadius),
+
+      // Box shadow from design tokens
+      boxShadow: convertToTailwindConfig(tokens.boxShadow),
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.5s ease-in-out',
-        'slide-down': 'slideDown 0.5s ease-in-out',
+        'fade-in': 'fadeIn 0.8s ease-in-out forwards',
+        'fade-in-up': 'fadeInUp 0.3s ease-in-out',
+        'slide-up': 'slideUp 0.8s ease-in-out forwards',
+        'slide-down': 'slideDown 0.8s ease-in-out forwards',
+        'slide-left': 'slideLeft 0.8s ease-in-out forwards',
+        'slide-right': 'slideRight 0.8s ease-in-out forwards',
+        'zoom-in': 'zoomIn 0.8s ease-in-out forwards',
+        'zoom-out': 'zoomOut 0.8s ease-in-out forwards',
+        'flip': 'flip 0.8s ease-in-out forwards',
+        'rotate': 'rotate 0.8s ease-in-out forwards',
+        'bounce': 'bounceIn 0.8s ease-in-out forwards',
         first: "moveVertical 30s ease infinite",
         second: "moveInCircle 20s reverse infinite",
         third: "moveInCircle 40s linear infinite",
@@ -74,19 +72,118 @@ export default {
         shimmer: "shimmer 2s linear infinite",
         "meteor-effect": "meteor 5s linear infinite",
         "aurora-shift": "aurora-shift 4s ease-in-out infinite",
+        fadeUp: 'fadeUp 0.8s ease-out forwards',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        fadeInUp: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-5px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)'
+          },
+        },
         slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(50px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)'
+          },
         },
         slideDown: {
-          '0%': { transform: 'translateY(-20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-50px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)'
+          },
+        },
+        slideLeft: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(50px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0)'
+          },
+        },
+        slideRight: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(-50px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0)'
+          },
+        },
+        zoomIn: {
+          '0%': {
+            opacity: '0',
+            transform: 'scale(0.8)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'scale(1)'
+          },
+        },
+        zoomOut: {
+          '0%': {
+            opacity: '0',
+            transform: 'scale(1.2)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'scale(1)'
+          },
+        },
+        flip: {
+          '0%': {
+            opacity: '0',
+            transform: 'rotateY(90deg)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'rotateY(0)'
+          },
+        },
+        rotate: {
+          '0%': {
+            opacity: '0',
+            transform: 'rotate(-15deg)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'rotate(0)'
+          },
+        },
+        bounceIn: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(50px)'
+          },
+          '60%': {
+            opacity: '1',
+            transform: 'translateY(-20px)'
+          },
+          '80%': {
+            transform: 'translateY(10px)'
+          },
+          '100%': {
+            transform: 'translateY(0)'
+          },
         },
         moveHorizontal: {
           "0%": {
@@ -184,6 +281,23 @@ export default {
           },
           "50%": {
             "background-position": "100% 50%",
+          },
+        },
+        bounce: {
+          '0%, 20%, 50%, 80%, 100%': {
+            transform: 'translateX(-50%) translateY(0)',
+          },
+          '40%': {
+            transform: 'translateX(-50%) translateY(-5px)',
+          },
+          '60%': {
+            transform: 'translateX(-50%) translateY(-3px)',
+          },
+        },
+        fadeUp: {
+          to: {
+            opacity: '1',
+            transform: 'translateY(0)',
           },
         },
       },

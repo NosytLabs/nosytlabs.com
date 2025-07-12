@@ -4,9 +4,10 @@
  */
 
 export class ServiceWorkerManager {
-  private registration: ServiceWorkerRegistration | null = null;
+  private registration: ServiceWorkerRegistration | null;
 
   constructor() {
+    this.registration = null;
     this.init();
   }
 
@@ -193,4 +194,4 @@ if (shouldEnableServiceWorker) {
   serviceWorkerManager = new ServiceWorkerManager();
 }
 
-export default serviceWorkerManager;
+export { serviceWorkerManager };

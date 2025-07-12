@@ -1,11 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import React from 'react';
+import { fireEvent } from '@testing-library/react';
 
-// Mock Astro component rendering for React testing
-const createMockAstroComponent = (children: React.ReactNode) => {
-  return () => React.createElement('div', { 'data-testid': 'astro-component' }, children);
-};
+// Mock Astro component rendering for React testing - removed as unused
 
 describe('NosytLabs Navigation System', () => {
   beforeEach(() => {
@@ -129,7 +125,7 @@ describe('NosytLabs Navigation System', () => {
       expect(navLinks).toHaveLength(4);
       
       // Test tab order
-      navLinks.forEach((link, index) => {
+      navLinks.forEach((link) => {
         expect(link.getAttribute('role')).toBe('menuitem');
       });
     });

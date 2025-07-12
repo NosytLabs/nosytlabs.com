@@ -1,17 +1,13 @@
 ---
 // BaseLayout.astro - Modern layout for the website with Enhanced Accessibility & Interactivity
 import UnifiedNavigation from '../components/navigation/UnifiedNavigation.astro';
-import Footer from '../components/common/Footer.astro';
-import VercelAnalytics from '../components/common/VercelAnalytics.astro';
-import SEOHead from '../components/common/SEOHead.astro';
-import PreloadLinks from '../components/common/PreloadLinks.astro';
+import Footer from '../components/layout/Footer.astro';
+import VercelAnalytics from '../components/utils/VercelAnalytics.astro';
+import SEOHead from '../components/utils/SEOHead.astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import '../styles/global.css';
 
-import { generateMetaTags, generateStructuredData } from '../utils/seoUtils.js';
-import { initializeSecurity, securityHeaders } from '../config/security';
-
-// Initialize security configuration
-initializeSecurity();
+// Security configuration is handled by Astro's build process
 
 export interface Props {
   title?: string;
@@ -23,6 +19,7 @@ export interface Props {
   ogType?: string;
   structuredDataType?: string;
   structuredData?: object;
+  canonicalUrl?: string;
 }
 
 const {
@@ -34,20 +31,10 @@ const {
   keywords,
   ogType = 'website',
   structuredDataType = 'Organization',
-  structuredData = {}
+  structuredData = {},
+  canonicalUrl
 } = Astro.props;
-
-// Generate enhanced SEO meta tags
-const seoData = generateMetaTags(pageKey, {
-  title,
-  description,
-  ogImage,
-  keywords,
-  ogType
-});
-
-// Generate structured data
-const structuredDataJson = generateStructuredData(structuredDataType, structuredData);
+console.log('BaseLayout.astro: Rendering BaseLayout with title:', title);
 
 // Generate a unique ID for this page
 const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
@@ -59,22 +46,22 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <SEOHead
-    title={seoData.title}
-    description={seoData.description}
-    keywords={seoData.keywords}
-    image={seoData.ogImage}
+    title={title}
+    description={description}
+    keywords={keywords}
+    image={ogImage}
     url={Astro.url.href}
     type={ogType}
   />
-  <title>{seoData.title}</title>
-  <meta name="description" content={seoData.description}>
+  <title>{title}</title>
+  <meta name="description" content={description}>
   <meta name="author" content="NosytLabs">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow">
   <meta name="bingbot" content="index, follow">
 
   <!-- Enhanced Keywords -->
-  <meta name="keywords" content={seoData.keywords}>
+  <meta name="keywords" content={keywords}>
 
   <!-- Additional SEO Meta Tags -->
   <meta name="language" content="en">
@@ -88,16 +75,17 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   <link rel="shortcut icon" href="/favicon.ico">
   <!-- Web Manifest -->
   <link rel="manifest" href="/site.webmanifest">
+  
   <!-- NosytLabs Brand Theme Colors -->
   <meta name="theme-color" content="#2D1B69">
   <meta name="msapplication-TileColor" content="#2D1B69">
 
   <!-- Enhanced Open Graph / Social Media -->
-  <meta property="og:type" content={seoData.ogType}>
+  <meta property="og:type" content={ogType}>
   <meta property="og:url" content={Astro.url}>
-  <meta property="og:title" content={seoData.ogTitle}>
-  <meta property="og:description" content={seoData.ogDescription}>
-  <meta property="og:image" content={seoData.ogImage}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogImage}>
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/svg+xml">
@@ -106,16 +94,16 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
 
   <!-- Enhanced Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content={seoData.twitterTitle}>
-  <meta name="twitter:description" content={seoData.twitterDescription}>
-  <meta name="twitter:image" content={seoData.twitterImage}>
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
   <meta name="twitter:image:alt" content="NosytLabs - Web Development & AI Solutions">
 
   <!-- Canonical URL -->
-  <link rel="canonical" href={seoData.canonical}>
+  <link rel="canonical" href={canonicalUrl || Astro.url.href}>
 
   <!-- Enhanced Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify(structuredDataJson)}></script>
+  <!-- Structured data generation removed as seoUtils.js is removed -->
 
   <!-- Additional Structured Data for WebSite -->
   <script type="application/ld+json">
@@ -128,195 +116,6 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
     }
   </script>
 
-  <!-- Critical CSS - Inline for fastest rendering -->
-  <style>
-/* Z-Index Hierarchy Fix */
-.hero-background { z-index: 1000; position: relative; }
-.hero-image { z-index: 1400; position: relative; }
-.hero-video { z-index: 1500; position: relative; }
-.hero-gradient { z-index: 1600; position: absolute; }
-.hero-floating-elements { z-index: 1700; position: absolute; pointer-events: none; }
-.hero-particles { z-index: 1800; position: absolute; pointer-events: none; }
-.hero-content { z-index: 1900; position: relative; isolation: isolate; }
-
-/* Navigation Z-Index */
-.navigation-unified { z-index: 8000; position: sticky; isolation: isolate; }
-.nav-dropdown { z-index: 9997; position: absolute; }
-.mobile-menu { z-index: 7999; position: fixed; }
-
-/* Content Z-Index */
-.section-content { z-index: 900; position: relative; }
-.card-overlay { z-index: 800; position: absolute; }
-.text-overlay { z-index: 600; position: absolute; }
-
-/* Stacking Contexts */
-.hero-unified { isolation: isolate; }
-.navigation-unified { isolation: isolate; }
-.main-content { isolation: isolate; }
-.footer-unified { isolation: isolate; }
-
-/* Modern CSS Grid Utilities */
-.grid-auto-fit { display: grid; grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr)); gap: 1.5rem; }
-.grid-auto-fill { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; }
-.flex-responsive { display: flex; flex-wrap: wrap; gap: 1rem; }
-.flex-responsive > * { flex: 1 1 18.75rem; }
-
-    /* Critical above-the-fold styles */
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;font-size: 1.000rem;line-height:1.6;scroll-behavior:smooth;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-    body{background-color:#ffffff;color:#1f2937;font-weight:400;overflow-x:hidden}
-    .container{max-width: 100.0%;margin:0 auto;padding:0 1rem}
-    .nosyt-header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(0.625rem);border-bottom:1px solid rgba(0,0,0,0.1);transition:all 0.3s ease}
-    .nav-container{max-width: 100.0%;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;height: 4.500rem}
-    .hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem 0;background:linear-gradient(135deg,#2D1B69 0%,#6B46C1 100%);position:relative;overflow:hidden}
-    .hero-title{font-size:2.5rem;font-weight:800;color:white;margin-bottom:1.5rem;line-height:1.2;letter-spacing:-0.025em}
-    .loading{opacity:0;transition:opacity 0.3s ease}.loaded{opacity:1}
-    img{max-width:100%;height:auto;display:block}
-    .sr-only{position:absolute;width: 0.063rem;height: 0.063rem;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .skip-nav{position:absolute;top:-2.50rem;left:1rem;background:#2D1B69;color:white;padding:0.5rem 1rem;text-decoration:none;border-radius:0.25rem;font-weight:600;z-index:1001;transition:top 0.3s ease}
-    .skip-nav:focus{top:1rem}
-    @media (prefers-color-scheme:dark){body{background-color:#0f0f23;color:#e5e7eb}}
-    [data-theme="dark"] body{background-color:#0f0f23;color:#e5e7eb}
-    [data-theme="dark"] .nosyt-header{background:rgba(15,15,35,0.95);border-bottom-color:rgba(255,255,255,0.1)}
-  </style>
-
-  <!-- Strategic Resource Preloading -->
-  <PreloadLinks />
-
-  <!-- Resource hints for critical resources -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="dns-prefetch" href="https://vercel.live">
-  <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com">
-
-  <!-- Critical resources preloaded in head -->
-
-  <!-- Fonts with optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-        media="print"
-        onload="this.media='all'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </noscript>
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Optimized CSS Architecture 2025 -->
-  <!-- Note: Using Astro's built-in CSS processing -->
-  <!-- UNIFIED COLOR SYSTEM - Master color definitions -->
-  <link rel="stylesheet" href="/styles/optimized/unified-colors.css" media="all">
-
-  <!-- SPACING & VISUAL HIERARCHY - Typography and spacing system -->
-  <link rel="stylesheet" href="/styles/optimized/spacing-hierarchy.css" media="all">
-
-  <!-- CONSOLIDATED CSS ARCHITECTURE - Single optimized stylesheet -->
-  <link rel="stylesheet" href="/styles/optimized/consolidated-main.css" media="all">
-
-  <!-- Comprehensive visual fixes for colors, spacing, alignment -->
-  <link rel="stylesheet" href="/styles/optimized/comprehensive-fixes.css" media="all">
-
-  <!-- Brand-specific enhancements -->
-  <link rel="stylesheet" href="/styles/nosytlabs-brand.css" media="all">
-
-  <!-- Modern Container Queries -->
-  <link rel="stylesheet" href="/styles/optimized/modern-container-queries.css" media="all">
-
-  <!-- Responsive Design Fixes -->
-  <link rel="stylesheet" href="/styles/responsive-fixes.css" media="all">
-
-  <!-- Visual Polish & Brand Consistency -->
-  <link rel="stylesheet" href="/styles/visual-polish.css" media="all">
-
-  <!-- EMERGENCY INLINE STYLES - Critical fixes for immediate visual improvement -->
-  <style>
-    /* CRITICAL SECTION OVERLAP FIX - Immediate resolution */
-    section, .section {
-      position: relative !important;
-      z-index: auto !important;
-      margin: 0 !important;
-      padding: 4rem 0 !important;
-      clear: both !important;
-      isolation: isolate !important;
-      display: block !important;
-    }
-
-    /* FORCE PROPER SECTION SPACING */
-    .hero-section {
-      margin-bottom: 0 !important;
-      padding-bottom: 4rem !important;
-      z-index: 10 !important;
-    }
-
-    .services-section {
-      margin-top: 0 !important;
-      padding-top: 4rem !important;
-      z-index: 9 !important;
-    }
-
-    .projects-section {
-      margin-top: 0 !important;
-      padding-top: 4rem !important;
-      z-index: 8 !important;
-    }
-
-    .testimonials-section {
-      margin-top: 0 !important;
-      padding-top: 4rem !important;
-      z-index: 7 !important;
-    }
-
-    /* EMERGENCY BUTTON STYLING */
-    .btn, button, [role="button"] {
-      background: linear-gradient(135deg, #7c3aed 0%, #ff6b35 100%) !important;
-      color: white !important;
-      border: none !important;
-      padding: 0.75rem 2rem !important;
-      border-radius: 0.5rem !important;
-      font-weight: 600 !important;
-      min-height: 48px !important;
-      min-width: 160px !important;
-      cursor: pointer !important;
-      transition: all 0.3s ease !important;
-    }
-
-    .btn:hover, button:hover {
-      transform: translateY(-2px) !important;
-      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3) !important;
-    }
-
-    /* EMERGENCY TYPOGRAPHY */
-    h1, h2, h3, h4, h5, h6 {
-      color: #1f2937 !important;
-      font-weight: 700 !important;
-      line-height: 1.3 !important;
-      margin-bottom: 1rem !important;
-    }
-
-    p {
-      color: #6b7280 !important;
-      line-height: 1.6 !important;
-      margin-bottom: 1rem !important;
-    }
-
-    /* EMERGENCY CONTAINER FIXES */
-    .container {
-      max-width: 1200px !important;
-      margin: 0 auto !important;
-      padding: 0 2rem !important;
-    }
-
-    /* EMERGENCY CARD STYLING */
-    .card, .service-card, .project-card {
-      background: white !important;
-      border: 1px solid #e5e7eb !important;
-      border-radius: 1rem !important;
-      padding: 2rem !important;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
-      margin-bottom: 1rem !important;
-    }
-  </style>
 
   <!-- NosytOS95 specific styles -->
   {isNosytOS95 && (
@@ -336,19 +135,21 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
     </style>
   )}
 
-  <!-- Optimized Core Scripts - External modules for better performance -->
-  <script src="../scripts/core-init.ts"></script>
+  <script src="../scripts/scroll-animations.ts" is:inline></script>
+  <script src="../scripts/core-init.ts" is:inline></script>
+  <!-- <script src="../scripts/accessibility-manager.ts" is:inline></script> -->
+  <!-- <script src="../utils/browser-compatibility.ts" is:inline></script> -->
 </head>
 
-<body class="layout-container">
+<body class="min-h-screen flex flex-col bg-white text-gray-900">
   <!-- Enhanced Skip Links for Grade A Accessibility -->
-  <a href="#main-content" class="skip-nav">Skip to main content</a>
-  <a href="#navigation" class="skip-nav">Skip to navigation</a>
-  <a href="#footer" class="skip-nav">Skip to footer</a>
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-nosyt-purple focus:text-white focus:rounded focus:outline-none focus:ring-2 focus:ring-white">Skip to main content</a>
+  <a href="#navigation" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-32 focus:z-50 focus:px-4 focus:py-2 focus:bg-nosyt-purple focus:text-white focus:rounded focus:outline-none focus:ring-2 focus:ring-white">Skip to navigation</a>
+  <a href="#footer" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-60 focus:z-50 focus:px-4 focus:py-2 focus:bg-nosyt-purple focus:text-white focus:rounded focus:outline-none focus:ring-2 focus:ring-white">Skip to footer</a>
 
   <!-- Header - Only show modern header on non-NosytOS pages -->
   {!isNosytOS95 && (
-    <header id="navigation" class="layout-header" role="banner">
+    <header id="navigation" class="w-full bg-white shadow-sm" role="banner">
       <UnifiedNavigation
         currentPath={Astro.url.pathname}
         variant={isNosytOS95 ? 'retro' : 'modern'}
@@ -358,7 +159,7 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
   )}
 
   <!-- Main Content -->
-  <main id="main-content" class="layout-main no-overlap" role="main" aria-label="Main content">
+  <main id="main-content" class="flex-1" role="main" aria-label="Main content">
     <!-- Main Content -->
     <div class="relative">
       <slot />
@@ -367,7 +168,7 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
 
   <!-- Footer - Only show modern footer on non-NosytOS95 pages -->
   {!isNosytOS95 && (
-    <footer id="footer" class="layout-footer" role="contentinfo">
+    <footer id="footer" class="w-full bg-gray-50 border-t border-gray-200" role="contentinfo">
       <Footer />
     </footer>
   )}
@@ -376,28 +177,11 @@ const pageId = `page-${Math.random().toString(36).substring(2, 9)}`;
 
 
 
-  <!-- Accessibility and UI Enhancement Scripts -->
-  <script src="../scripts/accessibility-manager.ts"></script>
-
-
-
   <!-- Vercel Analytics & Speed Insights -->
   <VercelAnalytics />
   <SpeedInsights />
   <!-- Service Worker Registration Removed for Performance -->
 
-
-
-
-
-  <!-- Service Worker Management -->
-  <script src="../scripts/service-worker-manager.ts"></script>
-
-  <!-- Enhanced Interactive Effects -->
-  <script src="/scripts/enhanced-effects.js" is:inline></script>
-
-  <!-- Sentry Error Monitoring -->
-  <script src="/scripts/sentry-init.js" is:inline></script>
 
 </body>
 </html>

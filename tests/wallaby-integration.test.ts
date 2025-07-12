@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
 
 describe('Wallaby MCP Integration Tests', () => {
   let testResults: any = {};
@@ -24,11 +24,11 @@ describe('Wallaby MCP Integration Tests', () => {
 
   describe('Test Environment Validation', () => {
     it('should validate Vitest configuration', () => {
-      expect(typeof globalThis.describe).toBe('function');
-      expect(typeof globalThis.it).toBe('function');
-      expect(typeof globalThis.expect).toBe('function');
-      expect(process.env.NODE_ENV).toBe('test');
-      expect(process.env.VITEST).toBe('true');
+        expect(typeof describe).toBe('function');
+        expect(typeof it).toBe('function');
+        expect(typeof expect).toBe('function');
+        expect(process.env.NODE_ENV).toBe('test');
+        expect(process.env.VITEST).toBe('true');
     });
 
     it('should validate JSDOM environment', () => {
@@ -64,7 +64,7 @@ describe('Wallaby MCP Integration Tests', () => {
       const astroComponent = {
         props: { title: 'Test Title', description: 'Test Description' },
         slots: { default: '<p>Test content</p>' },
-        render: function() {
+        render() {
           return `
             <div class="astro-component">
               <h1>${this.props.title}</h1>
@@ -195,8 +195,8 @@ describe('Wallaby MCP Integration Tests', () => {
       // Create focusable elements
       const elements = ['button', 'a', 'input'].map(tag => {
         const element = document.createElement(tag);
-        if (tag === 'a') element.href = '#';
-        if (tag === 'input') element.type = 'text';
+        if (tag === 'a') (element as HTMLAnchorElement).href = '#';
+        if (tag === 'input') (element as HTMLInputElement).type = 'text';
         element.textContent = `Test ${tag}`;
         document.body.appendChild(element);
         return element;
@@ -209,7 +209,7 @@ describe('Wallaby MCP Integration Tests', () => {
       });
 
       // Test focus management
-      elements[0].focus();
+      elements[0]?.focus();
       expect(document.activeElement).toBe(elements[0]);
     });
 
@@ -235,7 +235,7 @@ describe('Wallaby MCP Integration Tests', () => {
     it('should handle component errors gracefully', () => {
       const errorHandler = {
         errors: [] as Error[],
-        handleError: function(error: Error) {
+        handleError(error: Error) {
           this.errors.push(error);
           return {
             hasError: true,
@@ -266,13 +266,13 @@ describe('Wallaby MCP Integration Tests', () => {
         hasError: false,
         error: null as Error | null,
         
-        componentDidCatch: function(error: Error) {
+        componentDidCatch(error: Error) {
           this.hasError = true;
           this.error = error;
           return this.renderFallback();
         },
         
-        renderFallback: function() {
+        renderFallback() {
           return {
             type: 'div',
             props: {
@@ -285,7 +285,7 @@ describe('Wallaby MCP Integration Tests', () => {
           };
         },
         
-        reset: function() {
+        reset() {
           this.hasError = false;
           this.error = null;
         }
@@ -308,12 +308,12 @@ describe('Wallaby MCP Integration Tests', () => {
         steps: [] as string[],
         currentStep: 0,
         
-        addStep: function(step: string) {
+        addStep(step: string) {
           this.steps.push(step);
           this.currentStep++;
         },
         
-        simulatePageLoad: function() {
+        simulatePageLoad() {
           this.addStep('Page loaded');
           // Simulate page load metrics
           return {
@@ -323,12 +323,12 @@ describe('Wallaby MCP Integration Tests', () => {
           };
         },
         
-        simulateNavigation: function(to: string) {
+        simulateNavigation(to: string) {
           this.addStep(`Navigated to ${to}`);
           return { success: true, url: to };
         },
         
-        simulateFormInteraction: function() {
+        simulateFormInteraction() {
           this.addStep('Form interaction started');
           this.addStep('Form submitted');
           return { success: true, data: { name: 'Test User' } };
@@ -354,7 +354,7 @@ describe('Wallaby MCP Integration Tests', () => {
         '/api/analytics': { tracked: true, sessionId: 'session-456' }
       };
 
-      global.fetch = vi.fn().mockImplementation((url: string) => {
+      (global as any).fetch = vi.fn().mockImplementation((url: string) => {
         const response = mockApiResponses[url as keyof typeof mockApiResponses];
         return Promise.resolve({
           ok: true,

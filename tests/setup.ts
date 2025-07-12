@@ -9,7 +9,7 @@ beforeAll(() => {
   vi.stubEnv('VITEST', 'true');
   
   // Mock Astro globals
-  global.Astro = {
+  (global as any).Astro = {
     url: new URL('http://localhost:3000'),
     site: new URL('http://localhost:3000'),
     generator: 'Astro',

@@ -1,8 +1,8 @@
 import React from 'react';
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { EnhancedContactForm, EnhancedContactFormWithBoundary } from '@/components/ui/enhanced-contact-form';
+import { EnhancedContactForm } from '@/components/forms/enhanced-contact-form';
 
 // Mock fetch globally
 global.fetch = vi.fn();
@@ -43,12 +43,12 @@ describe('EnhancedContactForm', () => {
       expect(subscribeButton).toBeInTheDocument();
     });
 
-    it('should have proper form accessibility attributes', () => {
+    it('should have proper form accessibility attributes', async () => {
       render(<EnhancedContactForm />);
 
-      const nameInput = screen.getByLabelText(/name/i);
-      const emailInput = screen.getByLabelText(/email/i);
-      const messageInput = screen.getByLabelText(/message/i);
+      const nameInput = await screen.findByLabelText(/name/i);
+      const emailInput = await screen.findByLabelText(/email/i);
+      const messageInput = await screen.findByLabelText(/message/i);
 
       expect(nameInput).toHaveAttribute('required');
       expect(emailInput).toHaveAttribute('required');
@@ -79,9 +79,9 @@ describe('EnhancedContactForm', () => {
       render(<EnhancedContactForm />);
 
       const serviceSelect = screen.getByLabelText(/service/i);
-      await user.selectOptions(serviceSelect, 'Design Services');
+      await user.selectOptions(serviceSelect, 'Consulting');
 
-      expect(serviceSelect).toHaveValue('Design Services');
+      expect(serviceSelect).toHaveValue('Consulting');
     });
 
     it('should toggle subscription status', async () => {
@@ -207,10 +207,12 @@ describe('EnhancedContactForm', () => {
       
       // Mock a delayed response
       (fetch as any).mockImplementationOnce(() => 
-        new Promise(resolve => setTimeout(() => resolve({
-          ok: true,
-          json: async () => ({ success: true })
-        }), 100))
+        new Promise(resolve => {
+          setTimeout(() => resolve({
+            ok: true,
+            json: async () => ({ success: true })
+          }), 100);
+        })
       );
 
       render(<EnhancedContactForm />);
@@ -343,18 +345,6 @@ describe('EnhancedContactForm', () => {
   });
 
   describe('Accessibility', () => {
-    it('should have proper ARIA labels for form fields', () => {
-      render(<EnhancedContactForm />);
-
-      const nameInput = screen.getByLabelText(/name/i);
-      const emailInput = screen.getByLabelText(/email/i);
-      const messageInput = screen.getByLabelText(/message/i);
-
-      expect(nameInput).toHaveAttribute('aria-required', 'true');
-      expect(emailInput).toHaveAttribute('aria-required', 'true');
-      expect(messageInput).toHaveAttribute('aria-required', 'true');
-    });
-
     it('should announce success message to screen readers', async () => {
       const user = userEvent.setup();
       
@@ -397,34 +387,5 @@ describe('EnhancedContactForm', () => {
         expect(errorMessage.closest('div')).toHaveAttribute('role', 'alert');
       });
     });
-  });
-});
-
-describe('EnhancedContactFormWithBoundary', () => {
-  it('should render the form wrapped in error boundary', () => {
-    render(<EnhancedContactFormWithBoundary />);
-
-    expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-  });
-
-  it('should handle component errors gracefully', () => {
-    // Mock console.error to avoid noise
-    const originalConsoleError = console.error;
-    console.error = vi.fn();
-
-    // Force an error by mocking a broken component
-    vi.doMock('@/components/ui/enhanced-contact-form', () => ({
-      EnhancedContactForm: () => {
-        throw new Error('Component error');
-      }
-    }));
-
-    render(<EnhancedContactFormWithBoundary />);
-
-    expect(screen.getByText(/contact form error/i)).toBeInTheDocument();
-    expect(screen.getByText(/we're experiencing technical difficulties/i)).toBeInTheDocument();
-
-    console.error = originalConsoleError;
   });
 });

@@ -1,320 +1,65 @@
 ---
 // AnimatedSection.astro
-// A component that animates its content when scrolled into view
+// Enhanced scroll-triggered animation component using the new animation system
 
 export interface Props {
-  animation?: 'fade-in' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom-in' | 'zoom-out' | 'flip' | 'rotate' | 'bounce';
+  animation?: 'fade-in-up' | 'fade-in-down' | 'fade-in-left' | 'fade-in-right' | 'fade-in' | 'scale-in' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom-in' | 'rotate-in' | 'flip-x' | 'flip-y' | 'typewriter' | 'count-up' | 'progress' | 'color-reveal';
   delay?: number;
-  duration?: number;
   threshold?: number;
   once?: boolean;
   stagger?: boolean;
   staggerDelay?: number;
   class?: string;
   id?: string;
+  // Special animation options
+  countTarget?: number;
+  countDuration?: number;
+  progressWidth?: string;
+  revealColor?: 'blue' | 'orange' | 'red' | 'green';
+  typewriterSpeed?: number;
 }
 
 const {
-  animation = 'fade-in',
+  animation = 'fade-in-up',
   delay = 0,
-  duration = 0.8,
-  threshold = 0.1,
+  threshold = 0.2,
   once = true,
   stagger = false,
-  staggerDelay = 0.1,
+  staggerDelay = 100,
   class: className = '',
-  id
+  id,
+  countTarget,
+  countDuration,
+  progressWidth,
+  revealColor = 'blue',
+  typewriterSpeed = 50
 } = Astro.props;
 
 // Generate a unique ID for this section
 const sectionId = id || `animated-section-${Math.random().toString(36).substring(2, 9)}`;
 
-// Determine animation class
-let animationClass = '';
-switch (animation) {
-  case 'fade-in':
-    animationClass = 'animate-fade-in';
-    break;
-  case 'slide-up':
-    animationClass = 'animate-slide-up';
-    break;
-  case 'slide-down':
-    animationClass = 'animate-slide-down';
-    break;
-  case 'slide-left':
-    animationClass = 'animate-slide-left';
-    break;
-  case 'slide-right':
-    animationClass = 'animate-slide-right';
-    break;
-  case 'zoom-in':
-    animationClass = 'animate-zoom-in';
-    break;
-  case 'zoom-out':
-    animationClass = 'animate-zoom-out';
-    break;
-  case 'flip':
-    animationClass = 'animate-flip';
-    break;
-  case 'rotate':
-    animationClass = 'animate-rotate';
-    break;
-  case 'bounce':
-    animationClass = 'animate-bounce';
-    break;
-  default:
-    animationClass = 'animate-fade-in';
-}
+// DEBUG: Log AnimatedSection rendering
+console.log('DEBUG: AnimatedSection rendering with ID:', sectionId, 'animation:', animation);
+console.log('🚨 CRITICAL DEBUG: AnimatedSection adds data-scroll-animate which CSS hides with opacity:0');
+console.log('🚨 CRITICAL DEBUG: Animation scripts are DISABLED in BaseLayout.astro lines 138-141');
 ---
 
-<section 
+<section
   id={sectionId}
-  class={`animated-section ${className}`}
-  data-animation={animation}
+  class={`${className}`}
+  data-scroll-animate
+  data-animation-type={animation}
   data-delay={delay}
-  data-duration={duration}
   data-threshold={threshold}
   data-once={once}
   data-stagger={stagger}
   data-stagger-delay={staggerDelay}
+  data-count-target={countTarget}
+  data-count-duration={countDuration}
+  data-progress-width={progressWidth}
+  data-reveal-color={revealColor}
+  data-typewriter-speed={typewriterSpeed}
 >
   <slot />
 </section>
 
-<style>
-  .animated-section {
-    opacity: 0;
-    will-change: transform, opacity;
-  }
-  
-  /* Base animation classes */
-  .animate-fade-in {
-    animation-name: fadeIn;
-  }
-  
-  .animate-slide-up {
-    animation-name: slideUp;
-  }
-  
-  .animate-slide-down {
-    animation-name: slideDown;
-  }
-  
-  .animate-slide-left {
-    animation-name: slideLeft;
-  }
-  
-  .animate-slide-right {
-    animation-name: slideRight;
-  }
-  
-  .animate-zoom-in {
-    animation-name: zoomIn;
-  }
-  
-  .animate-zoom-out {
-    animation-name: zoomOut;
-  }
-  
-  .animate-flip {
-    animation-name: flip;
-    perspective: 1000px;
-  }
-  
-  .animate-rotate {
-    animation-name: rotate;
-  }
-  
-  .animate-bounce {
-    animation-name: bounce;
-  }
-  
-  /* Animation keyframes */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes slideUp {
-    from { 
-      opacity: 0;
-      transform: translateY(50px);
-    }
-    to { 
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideDown {
-    from { 
-      opacity: 0;
-      transform: translateY(-50px);
-    }
-    to { 
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideLeft {
-    from { 
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to { 
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideRight {
-    from { 
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    to { 
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes zoomIn {
-    from { 
-      opacity: 0;
-      transform: scale(0.8);
-    }
-    to { 
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  @keyframes zoomOut {
-    from { 
-      opacity: 0;
-      transform: scale(1.2);
-    }
-    to { 
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  @keyframes flip {
-    from { 
-      opacity: 0;
-      transform: rotateY(90deg);
-    }
-    to { 
-      opacity: 1;
-      transform: rotateY(0);
-    }
-  }
-  
-  @keyframes rotate {
-    from { 
-      opacity: 0;
-      transform: rotate(-15deg);
-    }
-    to { 
-      opacity: 1;
-      transform: rotate(0);
-    }
-  }
-  
-  @keyframes bounce {
-    0% {
-      opacity: 0;
-      transform: translateY(50px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateY(-20px);
-    }
-    80% {
-      transform: translateY(10px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  
-  /* Staggered children animation */
-  .staggered-child {
-    opacity: 0;
-  }
-</style>
-
-<script define:vars={{ sectionId }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    const section = document.getElementById(sectionId);
-    if (!section) return;
-    
-    const animation = section.dataset.animation || 'fade-in';
-    const delay = parseFloat(section.dataset.delay || '0');
-    const duration = parseFloat(section.dataset.duration || '0.8');
-    const threshold = parseFloat(section.dataset.threshold || '0.1');
-    const once = section.dataset.once === 'true';
-    const stagger = section.dataset.stagger === 'true';
-    const staggerDelay = parseFloat(section.dataset.staggerDelay || '0.1');
-    
-    // Apply animation class
-    section.classList.add(`animate-${animation}`);
-    
-    // Set animation duration and delay
-    section.style.animationDuration = `${duration}s`;
-    section.style.animationDelay = `${delay}s`;
-    section.style.animationFillMode = 'forwards';
-    
-    // If staggered, prepare child elements
-    if (stagger) {
-      const children = Array.from(section.children);
-      children.forEach((child, index) => {
-        child.classList.add('staggered-child');
-        child.style.animationName = animation;
-        child.style.animationDuration = `${duration}s`;
-        child.style.animationDelay = `${delay + (index * staggerDelay)}s`;
-        child.style.animationFillMode = 'forwards';
-      });
-    }
-    
-    // Create Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Animate the section
-          section.style.opacity = '1';
-          
-          // If staggered, animate children
-          if (stagger) {
-            const children = Array.from(section.children);
-            children.forEach((child, index) => {
-              setTimeout(() => {
-                child.style.opacity = '1';
-              }, index * (staggerDelay * 1000));
-            });
-          }
-          
-          // Unobserve if only animating once
-          if (once) {
-            observer.unobserve(section);
-          }
-        } else if (!once) {
-          // Reset animation if not once
-          section.style.opacity = '0';
-          
-          if (stagger) {
-            const children = Array.from(section.children);
-            children.forEach(child => {
-              child.style.opacity = '0';
-            });
-          }
-        }
-      });
-    }, { threshold });
-    
-    // Start observing
-    observer.observe(section);
-  });
-</script>

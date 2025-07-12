@@ -14,6 +14,14 @@ export interface CompanyInfo {
   readonly CDN_URL: string;
 }
 
+export interface BrandMessaging {
+  readonly SLOGAN: string;
+  readonly HERO_HEADLINE: string;
+  readonly VALUE_PROPOSITION: string;
+  readonly CTA_PRIMARY: string;
+  readonly CTA_SECONDARY: string;
+}
+
 export interface ContactInfo {
   readonly EMAIL: {
     readonly MAIN: string;
@@ -105,6 +113,22 @@ export const COMPANY: CompanyInfo = {
   CDN_URL: 'https://cdn.nosytlabs.com'
 } as const;
 
+// Brand Messaging Constants
+export const BRAND_MESSAGING = {
+  SLOGAN: 'Code Beyond Limits',
+  HERO_HEADLINE: 'Transform Your Vision Into Digital Reality',
+  VALUE_PROPOSITION: 'Professional web development and AI solutions that drive real business growth. From concept to deployment, we build scalable, modern applications that exceed expectations.',
+  CTA_PRIMARY: 'Start Your Project',
+  CTA_SECONDARY: 'Explore Solutions'
+} as const;
+
+export const SITE = {
+  title: 'NosytLabs',
+  description: 'Notable Opportunities Shape Your Tomorrow',
+  defaultLang: 'en',
+  siteUrl: 'https://nosytlabs.com'
+} as const;
+
 export const CONTACT: ContactInfo = {
   EMAIL: {
     MAIN: 'hi@nosytlabs.com',
@@ -121,17 +145,17 @@ export const CONTACT: ContactInfo = {
 
 export const COLORS: ColorPalette = {
   PRIMARY: {
-    PURPLE_DARKEST: '#2D1B69',
-    PURPLE_DARK: '#5b21b6',
-    PURPLE_MAIN: '#7c3aed',
-    PURPLE_LIGHT: '#a855f7',
-    PURPLE_LIGHTEST: '#c084fc'
+    PURPLE_DARKEST: '#001529',
+    PURPLE_DARK: '#004085',
+    PURPLE_MAIN: '#007bff',
+    PURPLE_LIGHT: '#339fff',
+    PURPLE_LIGHTEST: '#66b7ff'
   },
   SECONDARY: {
-    ORANGE_DARK: '#e55a2b',
-    ORANGE_MAIN: '#ff6b35',
-    ORANGE_LIGHT: '#ff8c42',
-    ORANGE_LIGHTEST: '#ffb894'
+    ORANGE_DARK: '#e8670e',
+    ORANGE_MAIN: '#fd7e14',
+    ORANGE_LIGHT: '#fbc687',
+    ORANGE_LIGHTEST: '#fde4c3'
   },
   NEUTRAL: {
     WHITE: '#FFFFFF',
@@ -199,12 +223,10 @@ export const PATHS = {
   DIST: 'dist',
   PUBLIC: 'public',
   SRC: 'src',
-  LOGO: '/images/NosytLabs.svg',
-  FAVICON: '/images/NosytLabs.svg',
+  LOGO: '/images/logo.svg',
+  FAVICON: '/images/favicon.svg',
   APPLE_TOUCH_ICON: '/images/apple-touch-icon.png',
   OG_IMAGE: '/images/nosytlabs-og.jpg',
-  CRITICAL_CSS: '/assets/optimized/critical.css',
-  MAIN_CSS: '/assets/optimized/main.css',
   CORE_JS: '/assets/js/core.min.js'
 } as const;
 
@@ -264,7 +286,9 @@ export const ENV = {
 // ========== DEFAULT EXPORT ==========
 export default {
   COMPANY,
+  BRAND_MESSAGING,
   CONTACT,
+  SITE,
   COLORS,
   TIMING,
   DIMENSIONS,

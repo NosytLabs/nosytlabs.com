@@ -4,7 +4,9 @@
  * Animated hero section with gradient background and interactive elements
  */
 import AnimatedText from './animations/AnimatedText.astro';
-import type { HeroProps } from '../types/component-props.d.ts';
+import type { HeroProps } from '../types/index.ts';
+import { Icon } from '@/components/ui/icon';
+import { BRAND_MESSAGING } from '../config/constants.ts';
 
 interface Props extends HeroProps {
   title?: string;
@@ -17,10 +19,10 @@ interface Props extends HeroProps {
 }
 
 const {
-  title = "NosytLabs - Modern Web Development Solutions",
-  subtitle = "Notable Opportunities Shape Your Tomorrow",
-  description = "Professional web development and technology solutions for businesses in New Mexico and beyond. We create modern, responsive websites and help you leverage AI tools to grow your business.",
-  ctaText = "Get Started Today",
+  title = BRAND_MESSAGING.HERO_HEADLINE,
+  subtitle = BRAND_MESSAGING.SLOGAN,
+  description = BRAND_MESSAGING.VALUE_PROPOSITION,
+  ctaText = BRAND_MESSAGING.CTA_PRIMARY,
   ctaLink = "/contact",
   backgroundImage,
   animated = true,
@@ -29,99 +31,104 @@ const {
 } = Astro.props;
 ---
 
-<section 
-  class={`hero-section ${className || ''}`}
+<section
+  class={`relative min-h-screen flex items-center justify-center overflow-hidden gradient-hero ${className || ''}`}
   data-hero="main"
   data-testid="hero-section"
   {...rest}
 >
   <!-- Background Elements -->
-  <div class="hero-background">
+  <div class="absolute inset-0 z-10">
     {backgroundImage && (
       <img
         src={backgroundImage}
         alt=""
-        class="hero-bg-image"
+        class="absolute inset-0 w-full h-full object-cover opacity-30"
         loading="lazy"
       />
     )}
-    <div class="hero-gradient-overlay"></div>
-    <div class="hero-particles" aria-hidden="true"></div>
+    <div class="absolute inset-0 gradient-hero opacity-90"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_2px,transparent_2px),radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.1)_1px,transparent_1px),radial-gradient(circle_at_40%_40%,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:100px_100px,80px_80px,120px_120px] animate-fade-in" aria-hidden="true"></div>
 
     <!-- Modern CSS-based particle effects -->
-    <div class="hero-particles-css" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(255,255,255,0.15)_3px,transparent_3px),radial-gradient(circle_at_85%_75%,rgba(255,255,255,0.1)_2px,transparent_2px),radial-gradient(circle_at_45%_15%,rgba(255,255,255,0.08)_1px,transparent_1px),radial-gradient(circle_at_75%_45%,rgba(255,255,255,0.12)_2px,transparent_2px),radial-gradient(circle_at_25%_85%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:150px_150px,200px_200px,100px_100px,180px_180px,120px_120px] animate-float" aria-hidden="true"></div>
 
     <!-- Floating elements -->
-    <div class="floating-elements" aria-hidden="true">
-      <div class="float-element float-1"></div>
-      <div class="float-element float-2"></div>
-      <div class="float-element float-3"></div>
-      <div class="float-element float-4"></div>
-      <div class="float-element float-5"></div>
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[10%] animation-delay-0 animation-duration-8s"></div>
+      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[25%] animation-delay-[-2s] animation-duration-10s"></div>
+      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[50%] animation-delay-[-4s] animation-duration-12s"></div>
+      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[75%] animation-delay-[-6s] animation-duration-9s"></div>
+      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[90%] animation-delay-[-1s] animation-duration-11s"></div>
     </div>
   </div>
 
   <!-- Main Content -->
-  <div class="hero-content">
-    <div class="container">
+  <div class="relative z-20 w-full text-center text-white px-4 sm:px-6 lg:px-8">
+    <div class="container max-w-screen-md mx-auto">
       <div class="hero-inner">
         
         <!-- Badge -->
-        <div class="hero-badge" data-animate="fade-up">
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-2 px-4 text-sm font-semibold mb-8 transition-all duration-300 hover:bg-white/15 hover:-translate-y-px" data-scroll-animate data-animation-type="fade-in-up">
           <span class="badge-icon">🚀</span>
           <span class="badge-text">Welcome to NosytLabs</span>
         </div>
 
-        <!-- Title -->
+        <!-- Main Headline -->
         {animated ? (
           <AnimatedText
             texts={[title]}
             variant="hero"
-            class="hero-title"
-            data-animate="fade-up"
-            delay="0.1s"
+            class="text-clamp-hero font-extrabold leading-tight mb-4 bg-gradient-to-r from-white to-slate-100 bg-clip-text text-transparent"
+            data-scroll-animate
+            data-animation-type="fade-in-up"
+            data-delay="100"
           />
         ) : (
-          <h1 class="hero-title" data-animate="fade-up">{title}</h1>
+          <h1 class="text-clamp-hero font-extrabold leading-tight mb-4 bg-gradient-to-r from-white to-slate-100 bg-clip-text text-transparent" data-scroll-animate data-animation-type="fade-in-up" data-delay="100">{title}</h1>
         )}
 
-        <!-- Subtitle -->
-        <h2 class="hero-subtitle" data-animate="fade-up" data-delay="0.2s">
-          {subtitle}
-        </h2>
+        <!-- Brand Slogan -->
+        <div class="mb-6" data-scroll-animate data-animation-type="fade-in-up" data-delay="200">
+          <p class="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 bg-clip-text leading-tight">
+            {subtitle}
+          </p>
+        </div>
 
-        <!-- Description -->
-        <p class="hero-description" data-animate="fade-up" data-delay="0.3s">
+        <!-- Value Proposition -->
+        <p class="text-lg sm:text-xl leading-relaxed mb-8 text-white/90 max-w-2xl mx-auto font-medium" data-scroll-animate data-animation-type="fade-in-up" data-delay="300">
           {description}
         </p>
 
         <!-- CTA Buttons -->
-        <div class="hero-actions" data-animate="fade-up" data-delay="0.4s">
-          <a href={ctaLink} class="btn-hero-primary btn-enhanced magnetic-hover liquid-button">
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12" data-stagger data-stagger-delay="150">
+          <a href={ctaLink} class="inline-flex items-center justify-center gap-2 py-3 px-6 sm:py-4 sm:px-8 rounded-full font-semibold text-white bg-white/15 border-2 border-white/30 relative overflow-hidden transition-all duration-300 hover:bg-white/25 hover:border-white/50 hover:-translate-y-px shadow-lg min-h-[48px] stagger-item">
             <span class="btn-text">{ctaText}</span>
-            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
+            <Icon name="arrowRight" size={20} className="transition-transform duration-300 group-hover:translate-x-0.5" />
           </a>
-
-          <a href="/services" class="btn-hero-secondary btn-enhanced magnetic-hover">
-            <span class="btn-text">Explore Services</span>
+        
+          <a href="/services" class="inline-flex items-center justify-center gap-2 py-3 px-6 sm:py-4 sm:px-8 rounded-full font-semibold text-white bg-transparent border-2 border-white/30 relative overflow-hidden transition-all duration-300 hover:bg-white/10 hover:border-white/50 hover:-translate-y-px min-h-[48px] stagger-item">
+            <span class="btn-text">{BRAND_MESSAGING.CTA_SECONDARY}</span>
           </a>
         </div>
 
         <!-- Stats -->
-        <div class="hero-stats" data-animate="fade-up" data-delay="0.5s">
-          <div class="stat-item">
-            <span class="stat-number">5+</span>
-            <span class="stat-label">Projects Completed</span>
+        <div class="grid grid-cols-2 sm:flex sm:justify-center gap-4 sm:gap-8" data-stagger data-stagger-delay="120">
+          <div class="text-center stagger-item">
+            <span class="block text-clamp-stat-number font-extrabold text-white leading-none" data-scroll-animate data-animation-type="count-up" data-count-target="25" data-delay="500">0</span>
+            <span class="block text-xs sm:text-sm text-white/70 mt-1">Projects Delivered</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-number">2+</span>
-            <span class="stat-label">Years Experience</span>
+          <div class="text-center stagger-item">
+            <span class="block text-clamp-stat-number font-extrabold text-white leading-none" data-scroll-animate data-animation-type="count-up" data-count-target="3" data-delay="600">0</span>
+            <span class="block text-xs sm:text-sm text-white/70 mt-1">Years Experience</span>
           </div>
-          <div class="stat-item">
-            <span class="stat-number">24hr</span>
-            <span class="stat-label">Response Time</span>
+          <div class="text-center stagger-item">
+            <span class="block text-clamp-stat-number font-extrabold text-white leading-none" data-scroll-animate data-animation-type="fade-in-up" data-delay="700">&lt;12hr</span>
+            <span class="block text-xs sm:text-sm text-white/70 mt-1">Response Time</span>
+          </div>
+          <div class="text-center stagger-item">
+            <span class="block text-clamp-stat-number font-extrabold text-white leading-none" data-scroll-animate data-animation-type="count-up" data-count-target="98" data-delay="800">0</span>
+            <span class="block text-xs sm:text-sm text-white/70 mt-1">Client Satisfaction</span>
           </div>
         </div>
       </div>
@@ -129,423 +136,9 @@ const {
   </div>
 
   <!-- Scroll Indicator -->
-  <div class="scroll-indicator" aria-label="Scroll down to see more">
-    <div class="scroll-arrow">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M7 13l3 3 7-7M7 6l3 3 7-7"/>
-      </svg>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 animate-bounce" aria-label="Scroll down to see more">
+    <div class="text-white/70 transition-colors duration-300 hover:text-white">
+      <Icon name="arrowDown" size={24} />
     </div>
   </div>
 </section>
-
-<style>
-  .hero-section {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: linear-gradient(135deg, var(--nosyt-purple-darkest) 0%, var(--nosyt-purple) 50%, var(--nosyt-orange) 100%);
-  }
-
-  /* Background */
-  .hero-background {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-  }
-
-  .hero-bg-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.3;
-  }
-
-  .hero-gradient-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, 
-      rgba(45, 27, 105, 0.9) 0%, 
-      rgba(124, 58, 237, 0.8) 50%, 
-      rgba(255, 107, 53, 0.9) 100%
-    );
-  }
-
-  .hero-particles {
-    position: absolute;
-    inset: 0;
-    background-image: 
-      radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
-      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-      radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 100px 100px, 80px 80px, 120px 120px;
-    animation: particlesFloat 20s linear infinite;
-  }
-
-  @keyframes particlesFloat {
-    0% { transform: translateY(0) translateX(0); }
-    33% { transform: translateY(-10px) translateX(10px); }
-    66% { transform: translateY(5px) translateX(-5px); }
-    100% { transform: translateY(0) translateX(0); }
-  }
-
-  /* Enhanced particle effects */
-  .hero-particles-css {
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.15) 3px, transparent 3px),
-      radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
-      radial-gradient(circle at 45% 15%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-      radial-gradient(circle at 75% 45%, rgba(255, 255, 255, 0.12) 2px, transparent 2px),
-      radial-gradient(circle at 25% 85%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 150px 150px, 200px 200px, 100px 100px, 180px 180px, 120px 120px;
-    animation: particlesFloat 25s linear infinite;
-  }
-
-  /* Floating elements */
-  .floating-elements {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  .float-element {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    animation: floatUp 8s linear infinite;
-  }
-
-  .float-1 {
-    left: 10%;
-    animation-delay: 0s;
-    animation-duration: 8s;
-  }
-
-  .float-2 {
-    left: 25%;
-    animation-delay: -2s;
-    animation-duration: 10s;
-  }
-
-  .float-3 {
-    left: 50%;
-    animation-delay: -4s;
-    animation-duration: 12s;
-  }
-
-  .float-4 {
-    left: 75%;
-    animation-delay: -6s;
-    animation-duration: 9s;
-  }
-
-  .float-5 {
-    left: 90%;
-    animation-delay: -1s;
-    animation-duration: 11s;
-  }
-
-  @keyframes floatUp {
-    0% {
-      transform: translateY(100vh) scale(0);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-      transform: translateY(90vh) scale(1);
-    }
-    90% {
-      opacity: 1;
-      transform: translateY(-10vh) scale(1);
-    }
-    100% {
-      transform: translateY(-20vh) scale(0);
-      opacity: 0;
-    }
-  }
-
-  /* Content */
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    text-align: center;
-    color: white;
-  }
-
-  .hero-inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  /* Badge */
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--radius-full);
-    padding: var(--spacing-2) var(--spacing-4);
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: var(--spacing-6);
-    transition: all 0.3s ease;
-  }
-
-  .hero-badge:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-1px);
-  }
-
-  /* Typography */
-  .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: var(--spacing-4);
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .hero-subtitle {
-    font-size: clamp(1.25rem, 3vw, 2rem);
-    font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: var(--spacing-6);
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .hero-description {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    line-height: 1.7;
-    margin-bottom: var(--spacing-8);
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Actions */
-  .hero-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-12);
-  }
-
-  @media (min-width: 640px) {
-    .hero-actions {
-      flex-direction: row;
-      justify-content: center;
-    }
-  }
-
-  .btn-hero-primary,
-  .btn-hero-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2);
-    padding: var(--spacing-4) var(--spacing-8);
-    border-radius: var(--radius-full);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-hero-primary {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .btn-hero-primary:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  }
-
-  .btn-hero-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-  }
-
-  .btn-hero-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-  }
-
-  .btn-icon {
-    transition: transform 0.3s ease;
-  }
-
-  .btn-hero-primary:hover .btn-icon,
-  .btn-hero-secondary:hover .btn-icon {
-    transform: translateX(2px);
-  }
-
-  /* Stats */
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-8);
-    flex-wrap: wrap;
-  }
-
-  .stat-item {
-    text-align: center;
-  }
-
-  .stat-number {
-    display: block;
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    font-weight: 800;
-    color: white;
-    line-height: 1;
-  }
-
-  .stat-label {
-    display: block;
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: var(--spacing-1);
-  }
-
-  /* Scroll Indicator */
-  .scroll-indicator {
-    position: absolute;
-    bottom: var(--spacing-8);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    animation: bounce 2s infinite;
-  }
-
-  .scroll-arrow {
-    color: rgba(255, 255, 255, 0.7);
-    transition: color 0.3s ease;
-  }
-
-  .scroll-indicator:hover .scroll-arrow {
-    color: white;
-  }
-
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateX(-50%) translateY(0);
-    }
-    40% {
-      transform: translateX(-50%) translateY(-5px);
-    }
-    60% {
-      transform: translateX(-50%) translateY(-3px);
-    }
-  }
-
-  /* Animations */
-  [data-animate="fade-up"] {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 0.8s ease-out forwards;
-  }
-
-  [data-delay="0.1s"] { animation-delay: 0.1s; }
-  [data-delay="0.2s"] { animation-delay: 0.2s; }
-  [data-delay="0.3s"] { animation-delay: 0.3s; }
-  [data-delay="0.4s"] { animation-delay: 0.4s; }
-  [data-delay="0.5s"] { animation-delay: 0.5s; }
-
-  @keyframes fadeUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero-section {
-      min-height: 90vh;
-    }
-
-    .hero-stats {
-      gap: var(--spacing-6);
-    }
-
-    .stat-item {
-      flex: 1;
-      min-width: 80px;
-    }
-  }
-
-  /* Dark mode adjustments */
-  [data-theme="dark"] .hero-badge {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  /* Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .hero-particles,
-    .scroll-indicator,
-    [data-animate] {
-      animation: none;
-    }
-    
-    [data-animate] {
-      opacity: 1;
-      transform: none;
-    }
-  }
-</style>
-
-<script>
-  // Initialize hero animations on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    const hero = document.querySelector('[data-hero="main"]');
-    if (!hero) return;
-
-    // Add loaded class for any additional animations
-    hero.classList.add('hero-loaded');
-
-    // Smooth scroll for scroll indicator
-    const scrollIndicator = hero.querySelector('.scroll-indicator');
-    if (scrollIndicator) {
-      scrollIndicator.addEventListener('click', () => {
-        const nextSection = hero.nextElementSibling;
-        if (nextSection) {
-          nextSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    }
-
-    // Parallax effect for particles (optional)
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const particles = hero.querySelector('.hero-particles');
-      if (particles) {
-        window.addEventListener('scroll', () => {
-          const scrolled = window.pageYOffset;
-          const rate = scrolled * -0.5;
-          particles.style.transform = `translateY(${rate}px)`;
-        });
-      }
-    }
-  });
-</script>

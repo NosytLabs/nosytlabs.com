@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "lib": [
       "ES2022",
       "DOM",
@@ -22,16 +22,12 @@
     "noEmit": true,
     "declaration": true,
     "sourceMap": true,
-
-    // Enhanced type checking
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     "exactOptionalPropertyTypes": true,
     "noPropertyAccessFromIndexSignature": false,
-
-    // Additional strict checks
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowUnreachableCode": false,
@@ -39,28 +35,31 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./src/*"
+        "src/*"
       ],
-      "@/components/*": [
-        "./src/components/*"
+      "@/lib/*": [
+        "src/lib/*"
       ],
-      "@/layouts/*": [
-        "./src/layouts/*"
+      "@components/*": [
+        "src/components/*"
       ],
-      "@/pages/*": [
-        "./src/pages/*"
+      "@layouts/*": [
+        "src/layouts/*"
       ],
-      "@/styles/*": [
-        "./src/styles/*"
+      "@pages/*": [
+        "src/pages/*"
       ],
-      "@/utils/*": [
-        "./src/utils/*"
+      "@styles/*": [
+        "src/styles/*"
       ],
-      "@/types/*": [
-        "./src/types/*"
+      "@utils/*": [
+        "src/utils/*"
       ],
-      "@/config/*": [
-        "./src/config/*"
+      "@types/*": [
+        "src/types/*"
+      ],
+      "@config/*": [
+        "src/config/*"
       ]
     },
     "typeRoots": [
@@ -72,12 +71,14 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.astro",
-    "astro.config.mjs"
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "astro.config.mjs",
+    "vitest.config.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "scripts/**/*.js",
     "**/*.min.js",
     "public/**/*"
   ]

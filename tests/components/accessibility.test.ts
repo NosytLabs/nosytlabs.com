@@ -352,7 +352,7 @@ describe('NosytLabs Accessibility Features', () => {
       const menuItems = Array.from(document.querySelectorAll('[role="menuitem"]')) as HTMLElement[];
       
       // Focus first item
-      menuItems[0].focus();
+      menuItems[0]?.focus();
       expect(document.activeElement).toBe(menuItems[0]);
 
       // Test arrow down navigation
@@ -367,7 +367,7 @@ describe('NosytLabs Accessibility Features', () => {
           nextIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
         }
 
-        menuItems[nextIndex].focus();
+        menuItems[nextIndex]?.focus();
       };
 
       // Simulate arrow down
@@ -432,9 +432,9 @@ describe('NosytLabs Accessibility Features', () => {
 
       const skipNavLinks = document.querySelectorAll('.skip-nav');
       expect(skipNavLinks).toHaveLength(3);
-      expect(skipNavLinks[0].textContent).toBe('Skip to main content');
-      expect(skipNavLinks[1].textContent).toBe('Skip to navigation');
-      expect(skipNavLinks[2].textContent).toBe('Skip to footer');
+      expect(skipNavLinks[0]?.textContent).toBe('Skip to main content');
+      expect(skipNavLinks[1]?.textContent).toBe('Skip to navigation');
+      expect(skipNavLinks[2]?.textContent).toBe('Skip to footer');
     });
   });
 });

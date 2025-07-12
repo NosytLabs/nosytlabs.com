@@ -1,37 +1,43 @@
-/**
- * @fileoverview UI Components Barrel Export
- * 
- * Central export point for all UI components to enable clean imports
- * and better organization of reusable UI elements.
- * 
- * @module ui-components
- * @version 2.0.0
- * @author NosytLabs Team
- * @since 1.0.0
- */
+// Export all UI components from a centralized location
+// This provides a clean API for importing standardized components
 
-// React Components - Core components used in the site
-export { BackgroundGradientAnimation } from './background-gradient-animation';
-export { NosytLabsAnimatedHero } from './nosytlabs-animated-hero';
-export { BentoGrid, BentoCard } from './bento-grid';
-export { MagicCard } from './magic-card';
-
-// Consolidated Button System - Replaces multiple duplicate button components
+// Button components
 export {
+  Button,
+  buttonVariants,
+  type ButtonProps,
+  // NosytLabs specific variants
   NosytButton,
+  NosytSecondaryButton,
+  NosytOutlineButton,
   ShinyButton,
   ShimmerButton,
+  // Legacy compatibility exports
   PrimaryButton,
   SecondaryButton,
-  OutlineButton
-} from './consolidated-button';
+  OutlineButton,
+} from "./button";
 
-// Animation and Text Components - Actually used in the site
-export { Meteors } from './meteors';
-export { AnimatedShinyText } from './animated-shiny-text';
-export { AnimatedSubscribeButton } from './animated-subscribe-button';
-export { AuroraText } from './aurora-text';
-export { TweetCard } from './tweet-card';
+// Form components
+export {
+  Input,
+  inputVariants,
+  type InputProps,
+} from "./input";
 
-// Contact and Form Components
-export { default as EnhancedContactForm } from './enhanced-contact-form';
+export {
+  Textarea,
+  textareaVariants,
+  type TextareaProps,
+} from "./textarea";
+
+// Layout components
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  type CardProps,
+} from "./card";

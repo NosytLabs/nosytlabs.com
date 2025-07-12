@@ -1,0 +1,355 @@
+---
+import { cva, type VariantProps } from "class-variance-authority";
+import type { CardProps } from '../../types/index.ts';
+import { Icon } from '@/components/ui/icon';
+import { cn } from "@/lib/utils";
+
+const cardVariants = cva(
+  "rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-out border backdrop-blur-sm relative",
+  {
+    variants: {
+      variant: {
+        default: "bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100",
+        project: "bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100",
+        blog: "bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 hover:-translate-y-2",
+        info: "bg-neutral-800 border-neutral-700 text-neutral-100",
+        service: "bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100 group",
+        feature: "bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 text-neutral-900 dark:text-neutral-100",
+      },
+      theme: {
+        default: "",
+        purple: "bg-gradient-to-br from-brand-purple-500 to-brand-purple-600 text-white border-brand-purple-500/30",
+        orange: "bg-gradient-to-br from-brand-orange-500 to-brand-orange-600 text-white border-brand-orange-500/30",
+      },
+      featured: {
+        true: "bg-white dark:bg-neutral-800 border-2 border-primary-500 shadow-lg",
+      },
+      hoverable: {
+        true: "nosyt-card-hover",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      hoverable: true,
+    },
+  }
+);
+
+interface Props extends CardProps, VariantProps<typeof cardVariants> {
+  contentType?: 'default' | 'service' | 'project' | 'blog' | 'feature' | 'info';
+  icon?: string;
+  primaryAction?: {
+    text: string;
+    href?: string;
+    onClick?: () => void;
+    variant?: 'primary' | 'secondary' | 'outline';
+    icon?: string;
+  };
+  technologies?: string[];
+  tags?: string[];
+  author?: string;
+  date?: string;
+  readTime?: string;
+  excerpt?: string;
+  category?: string;
+  pricing?: string;
+  timeline?: string;
+  highlight?: string;
+  metrics?: string[];
+  videoSrc?: string;
+  videoFallbackUrl?: string;
+}
+
+const {
+  contentType = 'default',
+  title,
+  description,
+  excerpt,
+  icon,
+  image,
+  actions = [],
+  hoverable = true,
+  theme,
+  size = 'md',
+  variant,
+  primaryAction,
+  technologies = [],
+  tags = [],
+  author,
+  date,
+  readTime,
+  category,
+  featured = false,
+  pricing,
+  timeline,
+  highlight,
+  metrics = [],
+  videoSrc,
+  videoFallbackUrl,
+  class: className,
+  style,
+  disabled = false,
+  loading = false,
+  'aria-label': ariaLabel,
+  'data-testid': testId
+} = Astro.props;
+
+const formattedDate = date ? new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}) : '';
+---
+
+<div class={cn(cardVariants({ variant: contentType, theme, featured, hoverable, className }))} style={style} aria-label={ariaLabel} data-testid={testId}>
+  {/* Featured Badge for Project Cards */}
+  {featured && contentType === 'project' && (
+    <div class="absolute top-3 right-3 bg-brand-orange-500 text-white px-3 py-1 rounded-full text-xs font-semibold z-10 flex items-center gap-1">
+      <span>⭐</span>
+      <span>Featured</span>
+    </div>
+  )}
+
+  {/* Highlight Badge for Service Cards */}
+  {highlight && (
+    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-brand-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+      {highlight}
+    </div>
+  )}
+
+  {/* Image Section */}
+  {image && (
+    <div class="relative">
+      {contentType === 'project' ? (
+        <div class="aspect-[16/10] overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            loading="lazy"
+            onerror="this.src='/images/fallback-image.svg'; this.onerror=null;"
+          />
+          {/* Project Overlay */}
+          <div class="absolute inset-0 bg-black/70 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <a href={primaryAction?.href || '#'} class="bg-white text-neutral-900 px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:bg-brand-purple-500 hover:text-white transition-colors">
+              <span>View Project</span>
+              <Icon name="externalLink" size={16} />
+            </a>
+          </div>
+        </div>
+      ) : contentType === 'blog' ? (
+        <div class="relative h-48">
+          <img
+            src={image}
+            alt={title}
+            class="w-full h-full object-cover"
+            loading="lazy"
+            onerror="this.src='/images/fallback-image.svg'; this.onerror=null;"
+          />
+          {tags.length > 0 && (
+            <div class="absolute top-4 right-4 bg-brand-orange-500 text-white text-xs px-2 py-1 rounded-full">
+              {tags[0]}
+            </div>
+          )}
+        </div>
+      ) : (
+        <div class="aspect-video overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            class="w-full h-full object-cover"
+            loading="lazy"
+            onerror="this.src='/images/fallback-image.svg'; this.onerror=null;"
+          />
+        </div>
+      )}
+    </div>
+  )}
+
+  {/* Video Section for Info Cards */}
+  {videoSrc && contentType === 'info' && (
+    <div class="relative pt-[56.25%] mb-4">
+      {videoSrc.includes('youtube.com/embed/') ? (
+        <iframe
+          src={videoSrc}
+          title={title}
+          class="absolute top-0 left-0 w-full h-full rounded"
+          frameborder="0"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      ) : (
+        <div class="absolute top-0 left-0 w-full h-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center rounded">
+          <p class="text-gray-600 dark:text-gray-400">
+            Video could not be loaded.
+            {videoFallbackUrl && (
+              <a href={videoFallbackUrl} target="_blank" rel="noopener noreferrer" class="text-brand-purple-500 underline ml-1">
+                Watch on YouTube
+              </a>
+            )}
+          </p>
+        </div>
+      )}
+    </div>
+  )}
+
+  {/* Card Content */}
+  <div class={`p-6 ${contentType === 'info' && !image ? 'pt-4' : ''}`}>
+    {/* Category Badge for Project Cards */}
+    {category && contentType === 'project' && (
+      <div class="inline-block bg-brand-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold mb-3">
+        {category}
+      </div>
+    )}
+
+    {/* Blog Meta */}
+    {contentType === 'blog' && (date || readTime) && (
+      <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
+        {formattedDate && <span>{formattedDate}</span>}
+        {formattedDate && readTime && <span class="mx-2">•</span>}
+        {readTime && <span>{readTime}</span>}
+      </div>
+    )}
+
+    {/* Icon for Service/Feature Cards */}
+    {icon && (contentType === 'service' || contentType === 'feature') && (
+      <div class="mb-4">
+        <span class="text-2xl">{icon}</span>
+      </div>
+    )}
+    
+    {/* Title */}
+    <h3 class={`font-bold mb-3 text-gray-900 dark:text-white ${
+      contentType === 'project' ? 'text-xl' : 
+      contentType === 'blog' ? 'text-xl' : 
+      'text-xl'
+    }`}>
+      {title}
+    </h3>
+    
+    {/* Description/Excerpt */}
+    {(description || excerpt) && (
+      <p class={`text-gray-600 dark:text-gray-300 mb-4 ${
+        contentType === 'blog' ? 'line-clamp-3' : ''
+      }`}>
+        {excerpt || description}
+      </p>
+    )}
+
+    {/* Pricing and Timeline for Service Cards */}
+    {(pricing || timeline) && (
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        {pricing && (
+          <div>
+            <div class="text-lg font-bold text-brand-purple-500">{pricing}</div>
+          </div>
+        )}
+        {timeline && (
+          <div>
+            <div class="text-sm text-gray-500">{timeline}</div>
+          </div>
+        )}
+      </div>
+    )}
+
+    {/* Technologies for Project Cards */}
+    {technologies.length > 0 && contentType === 'project' && (
+      <ul class="flex flex-wrap gap-2 mb-4" role="list">
+        {technologies.map((tech) => (
+          <li>
+            <span class="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs font-medium">
+              {tech}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {/* Performance Metrics for Project Cards */}
+    {metrics.length > 0 && contentType === 'project' && (
+      <div class="border-t border-gray-200 dark:border-gray-600 pt-4 mb-4">
+        <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Key Results</h4>
+        <ul class="grid grid-cols-1 gap-2" role="list">
+          {metrics.map((metric) => (
+            <li>
+              <div class="flex items-center text-sm">
+                <span class="w-2 h-2 bg-brand-orange-500 rounded-full mr-2 flex-shrink-0"></span>
+                <span class="text-neutral-600 dark:text-neutral-400">{metric}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {/* Tags for Blog Cards */}
+    {tags.length > 0 && contentType === 'blog' && (
+      <ul class="flex flex-wrap gap-2 mb-4" role="list">
+        {tags.map((tag) => (
+          <li>
+            <span class="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded">
+              {tag}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {/* Slot for custom content */}
+    <slot />
+
+    {/* Author for Blog Cards */}
+    {author && contentType === 'blog' && (
+      <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-r from-brand-purple-500 to-brand-orange-500 flex items-center justify-center mr-2">
+            <span class="text-sm font-bold text-white">{author.charAt(0)}</span>
+          </div>
+          <span class="text-sm text-neutral-700 dark:text-neutral-300">{author}</span>
+        </div>
+        <span class="text-brand-orange-500 hover:text-brand-orange-600 font-medium text-sm">Read More →</span>
+      </div>
+    )}
+    
+    {/* Primary Action */}
+    {primaryAction && (
+      <div class="mt-4">
+        <a
+          href={primaryAction.href}
+          class={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            primaryAction.variant === 'secondary'
+              ? 'bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-600'
+              : primaryAction.variant === 'outline'
+              ? 'border-2 border-brand-purple-500 text-brand-purple-500 hover:bg-brand-purple-500 hover:text-white'
+              : 'bg-gradient-to-r from-brand-purple-500 to-brand-orange-500 text-white hover:from-brand-purple-600 hover:to-brand-orange-600'
+          }`}
+        >
+          {primaryAction.text}
+          {primaryAction.icon === 'arrow-right' && (
+            <Icon name="arrowRight" size={16} className="ml-2" />
+          )}
+        </a>
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  /* Line clamp for blog excerpts */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Smooth transitions */
+  .transition-all {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Hover effects */
+  [data-theme="dark"] {
+    color-scheme: dark;
+  }
+</style>

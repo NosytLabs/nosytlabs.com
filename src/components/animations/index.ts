@@ -10,7 +10,8 @@
  * @since 1.0.0
  */
 
-// Animation Components - Default exports for Astro components
-export { default as AnimatedSection } from './AnimatedSection.astro';
-export { default as AnimatedText } from './AnimatedText.astro';
-export { default as PageTransition } from './PageTransition.astro';
+// Animation Components - Astro components can't be exported via TypeScript
+// Import these components directly in your Astro files:
+// import AnimatedSection from './animations/AnimatedSection.astro';
+// import AnimatedText from './animations/AnimatedText.astro';
+// import PageTransition from './animations/PageTransition.astro';

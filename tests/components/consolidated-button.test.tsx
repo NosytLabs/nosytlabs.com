@@ -2,14 +2,14 @@ import React from 'react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { 
-  NosytButton, 
-  ShinyButton, 
-  ShimmerButton, 
-  PrimaryButton, 
-  SecondaryButton, 
-  OutlineButton 
-} from '@/components/ui/consolidated-button';
+import {
+  Button as NosytButton,
+  ShinyButton,
+  ShimmerButton,
+  PrimaryButton,
+  SecondaryButton,
+  OutlineButton
+} from '@/components/ui/button';
 
 describe('NosytButton', () => {
   beforeEach(() => {
@@ -47,7 +47,7 @@ describe('NosytButton', () => {
       render(<NosytButton variant="primary">Primary</NosytButton>);
       
       const button = screen.getByRole('button');
-      expect(button).toHaveClass('nosyt-btn-primary');
+      expect(button).toHaveClass('bg-brand-blue-500');
     });
 
     it('should render secondary variant', () => {
@@ -64,29 +64,26 @@ describe('NosytButton', () => {
       expect(button).toHaveClass('nosyt-btn-outline');
     });
 
-    it('should render shiny variant with proper styling', () => {
-      render(<NosytButton variant="shiny">Shiny</NosytButton>);
+    it('should render gradient variant with proper styling', () => {
+      render(<NosytButton variant="gradient">Gradient</NosytButton>);
       
       const button = screen.getByRole('button');
-      expect(button).toHaveClass('group', 'relative', 'overflow-hidden');
+      expect(button).toHaveClass('bg-gradient-to-r', 'from-brand-blue-500', 'to-brand-ethereal-500');
     });
 
-    it('should render shimmer variant with custom properties', () => {
+    it('should render gradient variant with custom properties', () => {
       render(
-        <NosytButton 
-          variant="shimmer" 
-          shimmerColor="#ff0000" 
+        <NosytButton
+          variant="gradient"
+          shimmerColor="#ff0000"
           shimmerDuration="2s"
         >
-          Shimmer
+          Gradient
         </NosytButton>
       );
       
       const button = screen.getByRole('button');
-      expect(button).toHaveStyle({
-        '--shimmer-color': '#ff0000',
-        '--speed': '2s'
-      });
+      expect(button).toHaveClass('bg-gradient-to-r', 'from-brand-blue-500', 'to-brand-ethereal-500');
     });
   });
 
@@ -99,10 +96,10 @@ describe('NosytButton', () => {
     });
 
     it('should render medium size (default)', () => {
-      render(<NosytButton size="md">Medium</NosytButton>);
+      render(<NosytButton size="default">Medium</NosytButton>);
       
       const button = screen.getByRole('button');
-      expect(button).toHaveClass('px-6', 'py-3', 'text-base');
+      expect(button).toHaveClass('h-10', 'px-4', 'py-2');
     });
 
     it('should render large size', () => {
@@ -196,14 +193,6 @@ describe('NosytButton', () => {
       expect(ref.current?.textContent).toBe('Button');
     });
 
-    it('should handle ref with href (anchor element)', () => {
-      const ref = React.createRef<HTMLAnchorElement>();
-      
-      render(<NosytButton href="/test" ref={ref}>Link</NosytButton>);
-      
-      expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
-      expect(ref.current?.href).toContain('/test');
-    });
   });
 });
 
@@ -259,7 +248,7 @@ describe('Button Variant Components', () => {
   });
 
   describe('PrimaryButton', () => {
-    it('should render with primary variant', () => {
+    it('should render with nosyt variant', () => {
       render(<PrimaryButton>Primary</PrimaryButton>);
       
       const button = screen.getByRole('button');

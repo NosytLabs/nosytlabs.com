@@ -132,7 +132,7 @@ describe('NosytLabs Performance Utilities', () => {
         img.loading = 'lazy';
         
         // Create srcset
-        const srcset = sizes.map((size, index) => {
+        const srcset = sizes.map((_, index) => {
           const width = [320, 640, 1024, 1920][index] || 1920;
           return `${src.replace('.jpg', `-${width}w.jpg`)} ${width}w`;
         }).join(', ');
@@ -162,26 +162,26 @@ describe('NosytLabs Performance Utilities', () => {
       };
 
       // Mock IntersectionObserver
-      global.IntersectionObserver = vi.fn().mockImplementation((callback) => {
+      global.IntersectionObserver = vi.fn().mockImplementation(() => {
         return mockObserver;
       });
 
       // Simulate lazy loading setup
       const setupLazyLoading = () => {
         const images = document.querySelectorAll('img[data-src]');
-        const observer = new IntersectionObserver((entries) => {
+        const newObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               const img = entry.target as HTMLImageElement;
               img.src = img.dataset.src || '';
               img.removeAttribute('data-src');
-              observer.unobserve(img);
+              newObserver.unobserve(img);
             }
           });
         });
 
-        images.forEach(img => observer.observe(img));
-        return observer;
+        images.forEach(img => newObserver.observe(img));
+        return newObserver;
       };
 
       // Create test image
@@ -189,7 +189,7 @@ describe('NosytLabs Performance Utilities', () => {
       img.setAttribute('data-src', '/images/test.jpg');
       document.body.appendChild(img);
 
-      const observer = setupLazyLoading();
+      setupLazyLoading();
       
       expect(global.IntersectionObserver).toHaveBeenCalled();
       expect(mockObserver.observe).toHaveBeenCalledWith(img);
@@ -216,15 +216,15 @@ describe('NosytLabs Performance Utilities', () => {
         { href: '/styles/critical.css', as: 'style' }
       ];
 
-      const preloadedLinks = criticalResources.map(resource => 
+      const preloadedLinks = criticalResources.map(resource =>
         preloadResource(resource.href, resource.as, resource.type)
       );
 
       expect(preloadedLinks).toHaveLength(3);
-      expect(preloadedLinks[0].rel).toBe('preload');
-      expect(preloadedLinks[0].as).toBe('image');
-      expect(preloadedLinks[1].as).toBe('font');
-      expect(preloadedLinks[2].as).toBe('style');
+      expect(preloadedLinks[0]!.rel).toBe('preload');
+      expect(preloadedLinks[0]!.as).toBe('image');
+      expect(preloadedLinks[1]!.as).toBe('font');
+      expect(preloadedLinks[2]!.as).toBe('style');
     });
 
     it('should handle preload errors gracefully', () => {
@@ -256,7 +256,7 @@ describe('NosytLabs Performance Utilities', () => {
         unregister: vi.fn()
       };
 
-      global.navigator.serviceWorker = {
+      (global.navigator as any).serviceWorker = {
         register: vi.fn().mockResolvedValue(mockRegistration),
         ready: Promise.resolve(mockRegistration),
         controller: null,
@@ -264,7 +264,7 @@ describe('NosytLabs Performance Utilities', () => {
         removeEventListener: vi.fn(),
         getRegistration: vi.fn(),
         getRegistrations: vi.fn()
-      } as any;
+      };
 
       const registerServiceWorker = async () => {
         if ('serviceWorker' in navigator) {

@@ -10,12 +10,8 @@ const DYNAMIC_CACHE = 'nosytlabs-dynamic-v1';
 // Static assets to cache immediately
 const STATIC_ASSETS = [
   '/',
-  '/services',
   '/projects',
   '/contact',
-  '/src/styles/optimized/critical.css',
-  '/src/styles/optimized/main.css',
-  '/src/styles/optimized/animations.css',
   '/images/logo.svg',
   '/favicon.ico'
 ];

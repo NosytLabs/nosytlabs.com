@@ -6,7 +6,8 @@
  * with filtering and animation capabilities.
  */
 
-import Card from '../unified/Card.astro';
+import Card from '../core/Card.astro';
+import { Icon } from '@/components/ui/icon';
 
 interface Project {
   title: string;
@@ -16,6 +17,7 @@ interface Project {
   link?: string;
   category?: string;
   featured?: boolean;
+  metrics?: string[];
 }
 
 interface Props {
@@ -79,31 +81,36 @@ const {
 // Safety check for projects array
 const safeProjects = Array.isArray(projects) ? projects : [];
 
+// DEBUG: Log ProjectGrid rendering
+console.log('DEBUG: ProjectGrid received projects:', projects?.length || 0);
+console.log('DEBUG: Safe projects:', safeProjects?.length || 0);
+
 // Limit projects if specified
 const displayedProjects = limit ? safeProjects.slice(0, limit) : safeProjects;
+
+console.log('DEBUG: Displayed projects:', displayedProjects?.length || 0);
 
 // Extract unique categories for filters
 const allCategories = [...new Set(safeProjects.map(project => project?.category).filter(Boolean))];
 ---
 
 <section
-  class:list={['projects-section', className]}
-  style="padding: 4rem 0; margin: 0; position: relative; z-index: 8; isolation: isolate; clear: both;"
+  class:list={['projects-section section-standard relative z-10', className]}
 >
   <div class="projects-section__header">
     <h2 class="projects-section__title">{title}</h2>
     {subtitle && <p class="projects-section__subtitle">{subtitle}</p>}
     
     {showFilters && allCategories.length > 0 && (
-      <div class="projects-section__filters">
-        <button class="projects-section__filter-btn active" data-filter="all">All</button>
+      <ul class="projects-section__filters" role="list">
+        <li><button class="projects-section__filter-btn active" data-filter="all">All</button></li>
         {allCategories.map(category => (
-          <button class="projects-section__filter-btn" data-filter={category}>{category}</button>
+          <li><button class="projects-section__filter-btn" data-filter={category}>{category}</button></li>
         ))}
-      </div>
+      </ul>
     )}
   </div>
-    <div class="projects-section__grid">
+    <div class="projects-section__grid grid-responsive" data-stagger data-stagger-delay="150">
     {displayedProjects && displayedProjects.length > 0 ? displayedProjects.map((project) => (
       project && (
         <Card
@@ -114,6 +121,9 @@ const allCategories = [...new Set(safeProjects.map(project => project?.category)
           link={project.link}
           category={project.category}
           featured={project.featured}
+          metrics={project.metrics || []}
+          contentType="project"
+          class="stagger-item"
         />
       )
     )) : (
@@ -127,10 +137,7 @@ const allCategories = [...new Set(safeProjects.map(project => project?.category)
     <div class="projects-section__view-all">
       <a href={viewAllUrl} class="projects-section__view-all-btn">
         View All Projects
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14"></path>
-          <path d="M12 5l7 7-7 7"></path>
-        </svg>
+        <Icon name="arrowRight" size={20} />
       </a>
     </div>
   )}
@@ -188,21 +195,45 @@ const allCategories = [...new Set(safeProjects.map(project => project?.category)
   /* Use global brand colors - no local overrides */
 
   .projects-section {
-    padding: 4rem 0;
+    padding: 2rem 0;
+  }
+
+  @media (min-width: 640px) {
+    .projects-section {
+      padding: 3rem 0;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-section {
+      padding: 4rem 0;
+    }
   }
 
   .projects-section__header {
     text-align: left;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     min-height: auto;
     height: auto;
   }
 
+  @media (min-width: 640px) {
+    .projects-section__header {
+      margin-bottom: 2rem;
+    }
+  }
+
   .projects-section__title {
-    font-size: 2.25rem;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
     font-weight: 700;
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.75rem 0;
     color: var(--primary);
+  }
+
+  @media (min-width: 640px) {
+    .projects-section__title {
+      margin: 0 0 1rem 0;
+    }
   }
 
   :global(.dark) .projects-section__title {
@@ -225,20 +256,37 @@ const allCategories = [...new Set(safeProjects.map(project => project?.category)
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.75rem;
-    margin-bottom: 2rem;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .projects-section__filters {
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
   }
 
   .projects-section__filter-btn {
     background: none;
     border: 1px solid var(--border-light);
     border-radius: 9999px;
-    padding: 0.5rem 1.25rem;
+    padding: 0.5rem 1rem;
+    min-height: 44px;
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--text-light);
     cursor: pointer;
     transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 640px) {
+    .projects-section__filter-btn {
+      padding: 0.5rem 1.25rem;
+    }
   }
 
   :global(.dark) .projects-section__filter-btn {
@@ -259,38 +307,68 @@ const allCategories = [...new Set(safeProjects.map(project => project?.category)
 
   .projects-section__grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: var(--grid-gap);
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   @media (min-width: 640px) {
     .projects-section__grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
     }
   }
 
   @media (min-width: 1024px) {
     .projects-section__grid {
       grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .projects-section__grid {
+      gap: 2rem;
     }
   }
 
   .projects-section__view-all {
-    margin-top: 3rem;
+    margin-top: 2rem;
     text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .projects-section__view-all {
+      margin-top: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .projects-section__view-all {
+      margin-top: 3rem;
+    }
   }
 
   .projects-section__view-all-btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.25rem;
+    min-height: 48px;
     background-color: var(--primary);
     color: white;
     border-radius: 0.5rem;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.2s ease;
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 640px) {
+    .projects-section__view-all-btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+    }
   }
 
   .projects-section__view-all-btn:hover {

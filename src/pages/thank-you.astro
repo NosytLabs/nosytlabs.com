@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import UnifiedLayout from '@/layouts/UnifiedLayout.astro';
 import { CONTACT } from '../config/constants.ts';
 
 // Get service from URL params
@@ -9,10 +9,9 @@ const amount = url.searchParams.get('amount') || '';
 const paymentId = url.searchParams.get('payment_id') || '';
 ---
 
-<BaseLayout
+<UnifiedLayout
   title="Thank You for Your Order | NosytLabs"
   description="Thank you for choosing NosytLabs! Your payment has been processed successfully. We'll be in touch within 24 hours to start your project."
-  pageKey="thank-you"
   keywords="payment confirmation, order confirmation, NosytLabs services"
 >
   <!-- Thank You Hero Section -->
@@ -222,7 +221,7 @@ const paymentId = url.searchParams.get('payment_id') || '';
       }
       
       // Trigger confetti after a short delay
-      setTimeout(createConfetti, 500);
+      setTimeout(createConf, 500);
     });
   </script>
-</BaseLayout>
+</UnifiedLayout>

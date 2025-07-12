@@ -1,23 +1,79 @@
 ---
-/**
- * Unified Layout Component
- * Consolidated container, section, grid, and spacer functionality
- */
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
-export interface Props {
-  // Type of layout component
-  type?: 'container' | 'section' | 'grid' | 'spacer';
-  
-  // Container props
-  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
-  
-  // Section props
+const layoutVariants = cva("relative", {
+  variants: {
+    type: {
+      container: "container mx-auto px-4 sm:px-6 lg:px-8",
+      section: "w-full py-16 md:py-20",
+      grid: "grid",
+      spacer: "block",
+    },
+    background: {
+      primary: "bg-gradient-to-br from-brand-blue-700 to-brand-blue-900 text-white",
+      secondary: "bg-gradient-to-br from-brand-orange-500 to-brand-orange-600 text-white",
+      tertiary: "bg-neutral-100 dark:bg-neutral-800",
+      accent: "bg-brand-blue-500 text-white",
+      electric: "bg-gradient-to-br from-brand-ethereal-500 to-brand-blue-600 text-white",
+      fire: "bg-gradient-to-br from-brand-red-500 to-brand-orange-500 text-white",
+      nature: "bg-gradient-to-br from-brand-green-500 to-brand-ethereal-500 text-white",
+      white: "bg-white dark:bg-neutral-900",
+      gray: "bg-neutral-100 dark:bg-neutral-800",
+      none: "",
+    },
+    size: {
+      sm: "max-w-screen-sm",
+      md: "max-w-screen-md",
+      lg: "max-w-screen-lg",
+      xl: "max-w-screen-xl",
+      "2xl": "max-w-screen-2xl",
+      full: "max-w-full",
+    },
+    gap: {
+      none: "gap-0",
+      sm: "gap-2",
+      md: "gap-4",
+      lg: "gap-8",
+      xl: "gap-12",
+    },
+    padding: {
+      none: "p-0",
+      sm: "p-2",
+      md: "p-4",
+      lg: "p-8",
+      xl: "p-12",
+    },
+    align: {
+      start: "items-start",
+      center: "items-center",
+      end: "items-end",
+      stretch: "items-stretch",
+    },
+    justify: {
+      start: "justify-start",
+      center: "justify-center",
+      end: "justify-end",
+      between: "justify-between",
+      around: "justify-around",
+    },
+    spacer: {
+      xs: "h-2",
+      sm: "h-4",
+      md: "h-8",
+      lg: "h-12",
+      xl: "h-16",
+      "2xl": "h-24",
+      "3xl": "h-32",
+      "4xl": "h-40",
+    },
+  },
+});
+
+export interface Props extends VariantProps<typeof layoutVariants> {
   id?: string;
-  background?: 'primary' | 'secondary' | 'tertiary' | 'accent' | 'white' | 'gray' | 'none';
-  paddingTop?: boolean;
-  paddingBottom?: boolean;
-  
-  // Grid props
+  fullWidth?: boolean;
+  class?: string;
   columns?: {
     default?: number;
     sm?: number;
@@ -25,114 +81,37 @@ export interface Props {
     lg?: number;
     xl?: number;
   };
-  
-  // Spacer props
-  spacer?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
-  
-  // Common props
-  gap?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
-  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
-  align?: 'start' | 'center' | 'end' | 'stretch';
-  justify?: 'start' | 'center' | 'end' | 'between' | 'around';
-  fullWidth?: boolean;
-  class?: string;
 }
 
 const {
   type = 'container',
-  size = 'lg',
+  size,
   id,
-  background = 'none',
-  paddingTop = true,
-  paddingBottom = true,
-  columns = { default: 1, sm: 1, md: 2, lg: 3, xl: 4 },
-  spacer = 'md',
-  gap = 'md',
-  padding = 'md',
-  align = 'stretch',
-  justify = 'start',
+  background,
+  spacer,
+  gap,
+  padding,
+  align,
+  justify,
   fullWidth = false,
-  class: className = '',
+  class: className,
+  columns,
 } = Astro.props;
 
-// Get utility classes based on type
-function getClasses() {
-  const baseClasses = ['unified-layout'];
-  
-  switch (type) {
-    case 'container':
-      return [
-        ...baseClasses,
-        'container',
-        `container-${size}`,
-        padding !== 'none' ? `p-${padding}` : '',
-        className
-      ].filter(Boolean).join(' ');
-      
-    case 'section':
-      const bgClasses = {
-        primary: 'gradient-primary text-inverse',
-        secondary: 'gradient-orange text-inverse',
-        tertiary: 'bg-neutral-100',
-        accent: 'gradient-purple text-inverse',
-        white: 'bg-white',
-        gray: 'bg-neutral-100',
-        none: '',
-      };
-      
-      return [
-        ...baseClasses,
-        'section-standard',
-        bgClasses[background],
-        paddingTop ? 'pt-20' : '',
-        paddingBottom ? 'pb-20' : '',
-        className
-      ].filter(Boolean).join(' ');
-      
-    case 'grid':
-      const gridClasses = [
-        ...baseClasses,
-        'grid-responsive',
-        gap !== 'none' ? `gap-${gap}` : '',
-        align !== 'stretch' ? `items-${align}` : '',
-        justify !== 'start' ? `justify-${justify}` : '',
-        className
-      ].filter(Boolean);
-      
-      // Add responsive columns
-      if (columns.default) gridClasses.push(`grid-cols-${columns.default}`);
-      if (columns.sm) gridClasses.push(`sm:grid-cols-${columns.sm}`);
-      if (columns.md) gridClasses.push(`md:grid-cols-${columns.md}`);
-      if (columns.lg) gridClasses.push(`lg:grid-cols-${columns.lg}`);
-      if (columns.xl) gridClasses.push(`xl:grid-cols-${columns.xl}`);
-      
-      return gridClasses.join(' ');
-      
-    case 'spacer':
-      const spacerSizes = {
-        xs: 'h-2',
-        sm: 'h-4',
-        md: 'h-8',
-        lg: 'h-12',
-        xl: 'h-16',
-        '2xl': 'h-24',
-        '3xl': 'h-32',
-        '4xl': 'h-40',
-      };
-      
-      return [
-        ...baseClasses,
-        spacerSizes[spacer],
-        className
-      ].filter(Boolean).join(' ');
-      
-    default:
-      return baseClasses.join(' ');
-  }
-}
-
 const ElementTag = type === 'section' ? 'section' : 'div';
-const classes = getClasses();
+
+const gridCols = columns
+  ? Object.entries(columns)
+      .map(([bp, cols]) => (bp === 'default' ? `grid-cols-${cols}` : `${bp}:grid-cols-${cols}`))
+      .join(" ")
+  : "";
+
+const classes = cn(
+  layoutVariants({ type, background, size: type === 'container' ? size : null, gap, padding, align, justify, spacer }),
+  gridCols,
+  className
+);
+
 const shouldUseContainer = type === 'section' && !fullWidth;
 ---
 
@@ -141,7 +120,7 @@ const shouldUseContainer = type === 'section' && !fullWidth;
 ) : (
   <ElementTag id={id} class={classes}>
     {shouldUseContainer ? (
-      <div class="container">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <slot />
       </div>
     ) : (
@@ -149,19 +128,3 @@ const shouldUseContainer = type === 'section' && !fullWidth;
     )}
   </ElementTag>
 )}
-
-<style>
-  .unified-layout {
-    position: relative;
-  }
-  
-  /* Height utilities for spacer */
-  .h-2 { height: 0.5rem; }
-  .h-4 { height: 1rem; }
-  .h-8 { height: 2rem; }
-  .h-12 { height: 3rem; }
-  .h-16 { height: 4rem; }
-  .h-24 { height: 6rem; }
-  .h-32 { height: 8rem; }
-  .h-40 { height: 10rem; }
-</style>

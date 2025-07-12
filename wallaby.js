@@ -27,7 +27,7 @@ module.exports = function (wallaby) {
     testFramework: 'vitest',
 
     // Setup files
-    setup: function (wallaby) {
+    setup (wallaby) {
       const path = require('path');
       
       // Set environment variables

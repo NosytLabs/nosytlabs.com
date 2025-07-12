@@ -1,101 +1,78 @@
 {
-  "name": "NosytLabs - Web Development & AI Solutions",
+  "name": "NosytLabs - Notable Opportunities Shape Your Tomorrow",
   "short_name": "NosytLabs",
-  "description": "Professional web development and AI integration services",
+  "description": "Transform your business with innovative digital solutions, expert development, and cutting-edge technology.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#4C1D95",
+  "theme_color": "#4C1D95",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": [
+    "business",
+    "technology",
+    "productivity"
+  ],
   "icons": [
     {
-      "src": "/images/NosytLabs.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    },
-    {
-      "src": "/images/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/favicon-96x96.png",
+      "src": "/icons/android-chrome-96x96.png",
       "sizes": "96x96",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/images/favicon-128x128.png",
+      "src": "/icons/android-chrome-128x128.png",
       "sizes": "128x128",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/images/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icons/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icons/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icons/android-chrome-maskable-192x192.png",
+      "src": "/icons/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
     {
-      "src": "/images/icons/android-chrome-maskable-512x512.png",
+      "src": "/icons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ],
-  "start_url": "/",
-  "theme_color": "#2D1B69",
-  "background_color": "#6B46C1",
-  "msapplication_TileColor": "#2D1B69",
-  "msapplication_TileImage": "/images/icons/android-chrome-192x192.png",
-  "display": "standalone",
-  "orientation": "any",
-  "scope": "/",
-  "prefer_related_applications": false,
-  "categories": ["business", "productivity", "utilities"],
   "shortcuts": [
     {
       "name": "Services",
-      "url": "/services",
+      "short_name": "Services",
       "description": "View our services",
+      "url": "/services",
       "icons": [
         {
-          "src": "/images/icons/android-chrome-96x96.png",
-          "sizes": "96x96"
-        }
-      ]
-    },
-    {
-      "name": "Projects",
-      "url": "/projects",
-      "description": "Browse our projects",
-      "icons": [
-        {
-          "src": "/images/icons/android-chrome-96x96.png",
+          "src": "/icons/android-chrome-96x96.png",
           "sizes": "96x96"
         }
       ]
     },
     {
       "name": "Contact",
-      "url": "/contact",
+      "short_name": "Contact",
       "description": "Get in touch",
+      "url": "/contact",
       "icons": [
         {
-          "src": "/images/icons/android-chrome-96x96.png",
+          "src": "/icons/android-chrome-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "NosytOS",
+      "short_name": "NosytOS",
+      "description": "Windows 95 Simulator",
+      "url": "/nosytos",
+      "icons": [
+        {
+          "src": "/icons/android-chrome-96x96.png",
           "sizes": "96x96"
         }
       ]
@@ -104,34 +81,17 @@
   "screenshots": [
     {
       "src": "/images/screenshot-desktop.png",
-      "sizes": "1280x800",
+      "sizes": "1920x1080",
       "type": "image/png",
-      "platform": "wide",
-      "label": "Desktop view of NosytLabs"
+      "form_factor": "wide",
+      "label": "NosytLabs Desktop View"
     },
     {
       "src": "/images/screenshot-mobile.png",
-      "sizes": "750x1334",
+      "sizes": "375x667",
       "type": "image/png",
-      "platform": "narrow",
-      "label": "Mobile view of NosytLabs"
+      "form_factor": "narrow",
+      "label": "NosytLabs Mobile View"
     }
-  ],
-  "related_applications": [],
-  "share_target": {
-    "action": "/share-target",
-    "method": "POST",
-    "enctype": "multipart/form-data",
-    "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url",
-      "files": [
-        {
-          "name": "file",
-          "accept": ["image/*", "application/pdf"]
-        }
-      ]
-    }
-  }
+  ]
 }

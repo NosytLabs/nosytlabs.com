@@ -1,0 +1,37 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- NosytLabs branding colors -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#ff6b35;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background gradient -->
+  <rect width="400" height="300" fill="url(#gradient)"/>
+  
+  <!-- Image icon -->
+  <g transform="translate(150, 100)">
+    <!-- Image frame -->
+    <rect x="0" y="0" width="100" height="80" fill="none" stroke="#94a3b8" stroke-width="2" rx="4"/>
+    
+    <!-- Mountain/landscape icon -->
+    <path d="M10 60 L30 40 L50 50 L70 30 L90 45 L90 70 L10 70 Z" fill="#cbd5e1"/>
+    
+    <!-- Sun -->
+    <circle cx="75" cy="20" r="8" fill="#fbbf24"/>
+    
+    <!-- Image placeholder text -->
+    <text x="50" y="90" text-anchor="middle" fill="#64748b" font-family="Inter, sans-serif" font-size="12">
+      Project Image
+    </text>
+  </g>
+  
+  <!-- NosytLabs watermark -->
+  <text x="200" y="280" text-anchor="middle" fill="#7c3aed" font-family="Inter, sans-serif" font-size="10" opacity="0.6">
+    NosytLabs
+  </text>
+</svg>

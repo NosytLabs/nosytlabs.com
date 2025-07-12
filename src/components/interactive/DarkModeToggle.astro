@@ -12,12 +12,12 @@ const { className = '' } = Astro.props;
 
 <button
   id="dark-mode-toggle"
-  class={`dark-mode-toggle ${className}`}
+  class={`relative w-12 h-6 bg-glass backdrop-blur-glass border border-white/20 rounded-full cursor-pointer nosyt-button-hover flex items-center justify-between p-0.5 overflow-hidden shadow-lg nosyt-focus dark:bg-gray-800/80 dark:border-gray-600/30 ${className}`}
   aria-label="Toggle dark mode"
   type="button"
 >
-  <span class="toggle-icon sun-icon" aria-hidden="true">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <span class="sun-icon relative z-10 flex items-center justify-center w-5 h-5 text-gray-600 transition-all duration-300 ease-out opacity-100 rotate-0 scale-100 dark:opacity-0 dark:-rotate-180 dark:scale-75" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-full h-full">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -29,12 +29,12 @@ const { className = '' } = Astro.props;
       <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
     </svg>
   </span>
-  <span class="toggle-icon moon-icon" aria-hidden="true">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <span class="moon-icon relative z-10 flex items-center justify-center w-5 h-5 text-gray-400 transition-all duration-300 ease-out opacity-0 rotate-180 scale-75 dark:opacity-100 dark:rotate-0 dark:scale-100 dark:text-white" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-full h-full">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
     </svg>
   </span>
-  <span class="toggle-background"></span>
+  <span class="toggle-background absolute top-0.5 left-0.5 w-5 h-5 bg-gradient-to-r from-nosyt-purple to-nosyt-purple-light rounded-full transition-all duration-300 ease-out shadow-md z-0 dark:translate-x-6 dark:from-nosyt-orange dark:to-orange-400"></span>
 </button>
 
 <script>
@@ -86,9 +86,15 @@ const { className = '' } = Astro.props;
       this.setStoredTheme(theme);
       this.updateButtonState();
       
+      // Announce theme change to screen readers
+      if (typeof window.announceToScreenReader === 'function') {
+        const themeName = theme === 'dark' ? 'Dark' : 'Light';
+        window.announceToScreenReader(`${themeName} mode activated`, 'polite');
+      }
+      
       // Dispatch custom event for other components
-      window.dispatchEvent(new CustomEvent('themechange', { 
-        detail: { theme } 
+      window.dispatchEvent(new CustomEvent('themechange', {
+        detail: { theme }
       }));
     }
 
@@ -121,124 +127,3 @@ const { className = '' } = Astro.props;
   }
 </script>
 
-<style>
-  .dark-mode-toggle {
-    position: relative;
-    width: 3rem;
-    height: 1.5rem;
-    background: var(--glass-white-strong);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: var(--glass-border);
-    border-radius: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.125rem;
-    overflow: hidden;
-    box-shadow: var(--glass-shadow);
-  }
-
-  .dark-mode-toggle:hover {
-    background: var(--glass-white);
-    box-shadow: var(--glass-shadow-strong);
-    transform: scale(1.05);
-  }
-
-  .dark-mode-toggle:focus {
-    outline: 2px solid var(--color-focus);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 4px var(--color-focus-ring), var(--glass-shadow-strong);
-  }
-
-  .toggle-background {
-    position: absolute;
-    top: 0.125rem;
-    left: 0.125rem;
-    width: 1.25rem;
-    height: 1.25rem;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-
-  .dark-mode-toggle.dark .toggle-background {
-    transform: translateX(1.5rem);
-    background: var(--gradient-accent);
-  }
-
-  .toggle-icon {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--color-text-secondary);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .sun-icon {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-  }
-
-  .moon-icon {
-    opacity: 0;
-    transform: rotate(180deg) scale(0.8);
-  }
-
-  .dark-mode-toggle.dark .sun-icon {
-    opacity: 0;
-    transform: rotate(-180deg) scale(0.8);
-  }
-
-  .dark-mode-toggle.dark .moon-icon {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
-    color: var(--color-text-inverse);
-  }
-
-  .toggle-icon svg {
-    width: 100%;
-    height: 100%;
-    transition: inherit;
-  }
-
-  /* Dark mode styles */
-  [data-theme="dark"] .dark-mode-toggle {
-    background: var(--glass-dark-strong);
-    border: var(--glass-border);
-  }
-
-  [data-theme="dark"] .dark-mode-toggle:hover {
-    background: var(--glass-dark);
-  }
-
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    .dark-mode-toggle,
-    .toggle-background,
-    .toggle-icon,
-    .toggle-icon svg {
-      transition: none;
-    }
-  }
-
-  /* High contrast mode */
-  @media (prefers-contrast: high) {
-    .dark-mode-toggle {
-      border: 2px solid var(--color-border-strong);
-      background: var(--color-surface);
-    }
-
-    .toggle-background {
-      background: var(--color-primary-500);
-    }
-  }
-</style>

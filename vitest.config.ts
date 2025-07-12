@@ -42,7 +42,7 @@ export default defineConfig({
     hookTimeout: 10000,
     teardownTimeout: 10000,
     // Enhanced reporter for better Wallaby integration
-    reporter: ['verbose', 'json'],
+    reporters: ['verbose', 'json'],
     outputFile: {
       json: './coverage/test-results.json'
     }
