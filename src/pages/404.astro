@@ -1,79 +1,194 @@
 ---
-import UnifiedLayout from '@/layouts/UnifiedLayout.astro';
+/**
+ * 404 Error Page
+ *
+ * Custom 404 page with helpful navigation and modern design
+ */
+
+import BaseLayout from '../layouts/base-layout.astro';
+import { generateCanonicalUrl } from '../utils/path-resolvers';
+import Input from '../components/ui/Input.astro';
+
+const canonicalUrl = generateCanonicalUrl('/404');
+
+// SEO configuration
+const seoConfig = {
+  title: 'Page Not Found | NosytLabs',
+  description: 'The page you are looking for could not be found. Explore our services and get back on track.',
+  keywords: ['404', 'page not found', 'error', 'nosytlabs'],
+};
 ---
 
-<UnifiedLayout
-  title="404 - Page Not Found"
-  description="The page you're looking for doesn't exist."
+<BaseLayout
+  title={seoConfig.title}
+  description={seoConfig.description}
+  keywords={seoConfig.keywords}
+  {canonicalUrl}
+  type="website"
 >
-  <div class="error-container">
-    <div class="logo">NL</div>
-    <h1 class="error-code">404</h1>
-    <p class="error-message">Oops! Page not found.</p>
-    <p class="description">
-        The page you're looking for doesn't exist or has been moved.
-        Don't worry, you can find what you're looking for from our homepage.
-    </p>
-    <a href="/" class="back-link">← Back to Home</a>
-  </div>
-</UnifiedLayout>
+  <!-- 404 Error Section -->
+  <main>
+    <section class="section-lg min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-secondary/5" role="main" aria-label="404 error page">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Error Code -->
+        <div class="mb-8">
+          <h1 class="text-9xl md:text-[12rem] font-bold text-primary/20 leading-none select-none">
+            404
+          </h1>
+        </div>
 
-<style>
-  .error-container {
-    text-align: center;
-    max-width: 600px;
-    padding: 40px 20px;
-    margin: auto;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .error-code {
-    font-size: 8rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, var(--brand-purple-500), var(--brand-orange-500));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: 0;
-    line-height: 1;
-  }
-  .error-message {
-    font-size: 1.5rem;
-    margin: 20px 0;
-    opacity: 0.9;
-  }
-  .description {
-    font-size: 1rem;
-    margin: 20px 0;
-    opacity: 0.7;
-    line-height: 1.6;
-  }
-  .back-link {
-    display: inline-block;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, var(--brand-purple-500), var(--brand-orange-500));
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    margin-top: 30px;
-    transition: transform 0.2s ease;
-  }
-  .back-link:hover {
-    transform: translateY(-2px);
-  }
-  .logo {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 30px;
-    background: linear-gradient(135deg, var(--brand-purple-500), var(--brand-orange-500));
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: white;
-  }
-</style>
+        <!-- Error Message -->
+        <div class="mb-12">
+          <h2 class="heading-2 mb-6">Oops! Page Not Found</h2>
+          <p class="text-xl text-muted-foreground mb-4">
+            The page you're looking for seems to have wandered off into the digital void.
+          </p>
+          <p class="text-muted-foreground">
+            Don't worry though – let's get you back on track with some helpful options below.
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a 
+            href="/" 
+            class="btn btn-primary inline-flex items-center gap-2"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Go Home
+          </a>
+          <button 
+            onclick="history.back()" 
+            class="btn btn-outline inline-flex items-center gap-2"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Go Back
+          </button>
+        </div>
+
+        <!-- Quick Navigation -->
+        <nav aria-label="Quick navigation options">
+          <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <!-- Services Card -->
+          <div class="card p-6 text-center hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+            <h3 class="font-semibold mb-2">Our Services</h3>
+            <p class="text-sm text-muted-foreground mb-4">
+              Explore our web development and AI integration services
+            </p>
+            <a href="/services" class="text-primary hover:underline text-sm font-medium">
+              View Services →
+            </a>
+          </div>
+
+          <!-- Projects Card -->
+          <div class="card p-6 text-center hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <h3 class="font-semibold mb-2">Our Work</h3>
+            <p class="text-sm text-muted-foreground mb-4">
+              Check out our portfolio of successful projects
+            </p>
+            <a href="/projects" class="text-primary hover:underline text-sm font-medium">
+              View Projects →
+            </a>
+          </div>
+
+          <!-- Contact Card -->
+          <div class="card p-6 text-center hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </div>
+            <h3 class="font-semibold mb-2">Get in Touch</h3>
+            <p class="text-sm text-muted-foreground mb-4">
+              Have a project in mind? Let's discuss your ideas
+            </p>
+            <a href="/contact" class="text-primary hover:underline text-sm font-medium">
+              Contact Us →
+            </a>
+          </div>
+          </div>
+        </nav>
+
+        <!-- Search Box -->
+        <section class="mt-12 max-w-md mx-auto" aria-label="Site search">
+          <div class="relative">
+            <Input 
+              type="text" 
+              placeholder="Search our site..." 
+              id="search-input"
+              class="pl-12"
+            />
+            <svg class="w-5 h-5 text-muted-foreground absolute left-4 top-1/2 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <p class="text-xs text-muted-foreground mt-2">
+            Try searching for services, projects, or contact information
+          </p>
+        </section>
+
+        <!-- Fun Element -->
+        <div class="mt-16 text-center">
+          <div class="inline-block p-4 bg-muted/50 rounded-full mb-4">
+            <svg class="w-8 h-8 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29.82-5.877 2.172M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <p class="text-sm text-muted-foreground">
+            "The best error pages are the ones you never see." - Anonymous Developer
+          </p>
+        </div>
+      </div>
+    </div>
+    </section>
+  </main>
+
+  <!-- Simple Search Functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('search-input');
+      
+      if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            const query = this.value.trim();
+            if (query) {
+              // Simple search logic - redirect to relevant pages based on keywords
+              const lowerQuery = query.toLowerCase();
+              
+              if (lowerQuery.includes('service') || lowerQuery.includes('web') || lowerQuery.includes('ai')) {
+                window.location.href = '/services';
+              } else if (lowerQuery.includes('project') || lowerQuery.includes('portfolio') || lowerQuery.includes('work')) {
+                window.location.href = '/projects';
+              } else if (lowerQuery.includes('contact') || lowerQuery.includes('email') || lowerQuery.includes('phone')) {
+                window.location.href = '/contact';
+              } else if (lowerQuery.includes('about') || lowerQuery.includes('team') || lowerQuery.includes('company')) {
+                window.location.href = '/about';
+              } else if (lowerQuery.includes('blog') || lowerQuery.includes('article') || lowerQuery.includes('news')) {
+                window.location.href = '/blog';
+              } else {
+                // Default to home page with search query
+                window.location.href = '/?search=' + encodeURIComponent(query);
+              }
+            }
+          }
+        });
+      }
+    });
+  </script>
+</BaseLayout>

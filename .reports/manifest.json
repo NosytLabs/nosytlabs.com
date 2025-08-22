@@ -1,0 +1,47 @@
+[
+  {
+    "url": "http://localhost:53482/404.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_404_html-2025_08_19_00_54_02.report.html",
+    "jsonPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_404_html-2025_08_19_00_54_02.report.json",
+    "summary": {
+      "performance": 0.99
+    }
+  },
+  {
+    "url": "http://localhost:53482/500.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_500_html-2025_08_19_00_54_52.report.html",
+    "jsonPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_500_html-2025_08_19_00_54_52.report.json",
+    "summary": {
+      "performance": 1
+    }
+  },
+  {
+    "url": "http://localhost:53482/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_index_html-2025_08_19_00_55_34.report.html",
+    "jsonPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_index_html-2025_08_19_00_55_34.report.json",
+    "summary": {
+      "performance": 0.96
+    }
+  },
+  {
+    "url": "http://localhost:53482/admin/blog/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_admin_blog_index_html-2025_08_19_00_56_20.report.html",
+    "jsonPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_admin_blog_index_html-2025_08_19_00_56_20.report.json",
+    "summary": {
+      "performance": 0.99
+    }
+  },
+  {
+    "url": "http://localhost:53482/blog/index.html",
+    "isRepresentativeRun": true,
+    "htmlPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_blog_index_html-2025_08_19_00_57_04.report.html",
+    "jsonPath": "C:\\Users\\Tyson\\Desktop\\Development Tools\\nosytlabs-github-ready\\.reports\\localhost-_blog_index_html-2025_08_19_00_57_04.report.json",
+    "summary": {
+      "performance": 0.97
+    }
+  }
+]

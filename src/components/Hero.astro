@@ -1,144 +1,68 @@
 ---
-/**
- * Modern Hero Component - NosytLabs
- * Animated hero section with gradient background and interactive elements
- */
-import AnimatedText from './animations/AnimatedText.astro';
-import type { HeroProps } from '../types/index.ts';
-import { Icon } from '@/components/ui/icon';
-import { BRAND_MESSAGING } from '../config/constants.ts';
+import HeroBackground from './hero/HeroBackground.astro';
+import HeroQuantumParticles from './hero/HeroQuantumParticles.astro';
+import HeroNeuralNetwork from './hero/HeroNeuralNetwork.astro';
+import HeroContent from './hero/HeroContent.astro';
 
-interface Props extends HeroProps {
-  title?: string;
+export interface Props {
+  title: string;
   subtitle?: string;
-  description?: string;
   ctaText?: string;
   ctaLink?: string;
-  backgroundImage?: string;
-  animated?: boolean;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  background?: 'gradient' | 'image' | 'simple';
+  size?: 'small' | 'medium' | 'large';
 }
 
 const {
-  title = BRAND_MESSAGING.HERO_HEADLINE,
-  subtitle = BRAND_MESSAGING.SLOGAN,
-  description = BRAND_MESSAGING.VALUE_PROPOSITION,
-  ctaText = BRAND_MESSAGING.CTA_PRIMARY,
-  ctaLink = "/contact",
-  backgroundImage,
-  animated = true,
-  class: className,
-  ...rest
+  title,
+  subtitle,
+  ctaText,
+  ctaLink,
+  secondaryCtaText,
+  secondaryCtaLink,
+  background = 'gradient',
+  size = 'medium',
 } = Astro.props;
+
+const sizeClasses = {
+  small: 'py-16 md:py-20',
+  medium: 'py-20 md:py-28',
+  large: 'py-24 md:py-32',
+};
 ---
 
 <section
-  class={`relative min-h-screen flex items-center justify-center overflow-hidden gradient-hero ${className || ''}`}
-  data-hero="main"
-  data-testid="hero-section"
-  {...rest}
+  class={`relative grid grid-cols-1 lg:grid-cols-2 gap-8 ${sizeClasses[size]} px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16`}
+  role="banner"
+  aria-label="Hero section"
 >
-  <!-- Background Elements -->
-  <div class="absolute inset-0 z-10">
-    {backgroundImage && (
-      <img
-        src={backgroundImage}
-        alt=""
-        class="absolute inset-0 w-full h-full object-cover opacity-30"
-        loading="lazy"
-      />
-    )}
-    <div class="absolute inset-0 gradient-hero opacity-90"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,255,255,0.1)_2px,transparent_2px),radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.1)_1px,transparent_1px),radial-gradient(circle_at_40%_40%,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:100px_100px,80px_80px,120px_120px] animate-fade-in" aria-hidden="true"></div>
+  <!-- Background -->
+  <HeroBackground {background} />
 
-    <!-- Modern CSS-based particle effects -->
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(255,255,255,0.15)_3px,transparent_3px),radial-gradient(circle_at_85%_75%,rgba(255,255,255,0.1)_2px,transparent_2px),radial-gradient(circle_at_45%_15%,rgba(255,255,255,0.08)_1px,transparent_1px),radial-gradient(circle_at_75%_45%,rgba(255,255,255,0.12)_2px,transparent_2px),radial-gradient(circle_at_25%_85%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:150px_150px,200px_200px,100px_100px,180px_180px,120px_120px] animate-float" aria-hidden="true"></div>
+  <!-- Enhanced AI Neural Network Background -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <!-- Quantum AI Particles -->
+    <HeroQuantumParticles />
 
-    <!-- Floating elements -->
-    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[10%] animation-delay-0 animation-duration-8s"></div>
-      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[25%] animation-delay-[-2s] animation-duration-10s"></div>
-      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[50%] animation-delay-[-4s] animation-duration-12s"></div>
-      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[75%] animation-delay-[-6s] animation-duration-9s"></div>
-      <div class="absolute w-1 h-1 bg-white/30 rounded-full animate-[floatUp_8s_linear_infinite] left-[90%] animation-delay-[-1s] animation-duration-11s"></div>
-    </div>
+    <!-- Advanced AI Connection Network -->
+    <HeroNeuralNetwork />
   </div>
 
-  <!-- Main Content -->
-  <div class="relative z-20 w-full text-center text-white px-4 sm:px-6 lg:px-8">
-    <div class="container max-w-screen-md mx-auto">
-      <div class="hero-inner">
-        
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-2 px-4 text-sm font-semibold mb-8 transition-all duration-300 hover:bg-white/15 hover:-translate-y-px" data-scroll-animate data-animation-type="fade-in-up">
-          <span class="badge-icon">🚀</span>
-          <span class="badge-text">Welcome to NosytLabs</span>
-        </div>
-
-        <!-- Main Headline -->
-        {animated ? (
-          <AnimatedText
-            texts={[title]}
-            variant="hero"
-            class="text-clamp-hero font-extrabold leading-tight mb-4 bg-gradient-to-r from-white to-slate-100 bg-clip-text text-transparent"
-            data-scroll-animate
-            data-animation-type="fade-in-up"
-            data-delay="100"
-          />
-        ) : (
-          <h1 class="text-clamp-hero font-extrabold leading-tight mb-4 bg-gradient-to-r from-white to-slate-100 bg-clip-text text-transparent" data-scroll-animate data-animation-type="fade-in-up" data-delay="100">{title}</h1>
-        )}
-
-        <!-- Brand Slogan -->
-        <div class="mb-6" data-scroll-animate data-animation-type="fade-in-up" data-delay="200">
-          <p class="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 bg-clip-text leading-tight">
-            {subtitle}
-          </p>
-        </div>
-
-        <!-- Value Proposition -->
-        <p class="text-lg sm:text-xl leading-relaxed mb-8 text-white/90 max-w-2xl mx-auto font-medium" data-scroll-animate data-animation-type="fade-in-up" data-delay="300">
-          {description}
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12" data-stagger data-stagger-delay="150">
-          <a href={ctaLink} class="inline-flex items-center justify-center gap-2 py-3 px-6 sm:py-4 sm:px-8 rounded-full font-semibold text-white bg-white/15 border-2 border-white/30 relative overflow-hidden transition-all duration-300 hover:bg-white/25 hover:border-white/50 hover:-translate-y-px shadow-lg min-h-[48px] stagger-item">
-            <span class="btn-text">{ctaText}</span>
-            <Icon name="arrowRight" size={20} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-          </a>
-        
-          <a href="/services" class="inline-flex items-center justify-center gap-2 py-3 px-6 sm:py-4 sm:px-8 rounded-full font-semibold text-white bg-transparent border-2 border-white/30 relative overflow-hidden transition-all duration-300 hover:bg-white/10 hover:border-white/50 hover:-translate-y-px min-h-[48px] stagger-item">
-            <span class="btn-text">{BRAND_MESSAGING.CTA_SECONDARY}</span>
-          </a>
-        </div>
-
-        <!-- Stats -->
-        <div class="grid grid-cols-2 sm:flex sm:justify-center gap-4 sm:gap-8" data-stagger data-stagger-delay="120">
-          <div class="text-center stagger-item">
-            <span class="block text-clamp-stat-number font-extrabold text-white leading-none" data-scroll-animate data-animation-type="count-up" data-count-target="25" data-delay="500">0</span>
-            <span class="block text-xs sm:text-sm text-white/70 mt-1">Projects Delivered</span>
-          </div>
-          <div class="text-center stagger-item">
-            <span class="block text-clamp-stat-number font-extrabold text-white leading-none" data-scroll-animate data-animation-type="count-up" data-count-target="3" data-delay="600">0</span>
-            <span class="block text-xs sm:text-sm text-white/70 mt-1">Years Experience</span>
-          </div>
-          <div class="text-center stagger-item">
-            <span class="block text-clamp-stat-number font-extrabold text-white leading-none" data-scroll-animate data-animation-type="fade-in-up" data-delay="700">&lt;12hr</span>
-            <span class="block text-xs sm:text-sm text-white/70 mt-1">Response Time</span>
-          </div>
-          <div class="text-center stagger-item">
-            <span class="block text-clamp-stat-number font-extrabold text-white leading-none" data-scroll-animate data-animation-type="count-up" data-count-target="98" data-delay="800">0</span>
-            <span class="block text-xs sm:text-sm text-white/70 mt-1">Client Satisfaction</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Content -->
+  <div class="order-2 lg:order-1 flex items-center justify-center">
+    <HeroContent
+      {title}
+      {subtitle}
+      {ctaText}
+      {ctaLink}
+      {secondaryCtaText}
+      {secondaryCtaLink}
+      {size}
+    />
   </div>
-
-  <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 animate-bounce" aria-label="Scroll down to see more">
-    <div class="text-white/70 transition-colors duration-300 hover:text-white">
-      <Icon name="arrowDown" size={24} />
-    </div>
+  <div class="order-1 lg:order-2">
+    <!-- Add visual element or image here for better alignment -->
   </div>
 </section>

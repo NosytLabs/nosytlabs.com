@@ -1,260 +1,248 @@
 ---
-import type { GetStaticPaths } from 'astro';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { blogPosts, getAllBlogTagsWithMetadata, getBlogPostsByTag } from '../../../config/blog';
-import { generateCanonicalUrl, generateBreadcrumbs, generateBlogPath } from '../../../utils/pathResolvers';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/base-layout.astro';
+import Button from '../../../components/ui/Button.astro';
+import AstroIcon from '../../../components/ui/AstroIcon.astro';
+import { generateCanonicalUrl } from '../../../utils/path-resolvers';
+import { generateTagSEO } from '../../../utils/seo';
 
-export const getStaticPaths: GetStaticPaths = () => {
-  const tags = getAllBlogTagsWithMetadata();
-  return tags.map(tag => {
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
+
+  // Get all unique tags
+  const allTags = blogPosts.flatMap(post => post.data.tags || []);
+  const uniqueTags = [...new Set(allTags)];
+
+  return uniqueTags.map((tag) => {
+    const tagPosts = blogPosts.filter(post => 
+      post.data.tags && post.data.tags.includes(tag)
+    );
     return {
-      params: { tag: tag.slug },
-      props: {
-        tag: tag.name,
-        tagSlug: tag.slug,
-        posts: getBlogPostsByTag(tag.name)
-      }
+      params: { tag: tag.toLowerCase().replace(/\s+/g, '-') },
+      props: { 
+        tag,
+        posts: tagPosts.sort((a, b) => 
+          new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+        )
+      },
     };
   });
-};
-
-interface Props {
-  tag: string;
-  tagSlug: string;
-  posts: typeof blogPosts;
 }
 
-const { tag, tagSlug, posts } = Astro.props;
-const breadcrumbs = generateBreadcrumbs(`/blog/tag/${tagSlug}`);
-const canonicalUrl = generateCanonicalUrl(`/blog/tag/${tagSlug}`);
+type Props = {
+  tag: string;
+  posts: CollectionEntry<'blog'>[];
+};
+
+const { tag, posts } = Astro.props;
+const canonicalUrl = generateCanonicalUrl(`/blog/tag/${tag.toLowerCase().replace(/\s+/g, '-')}`);
+const seoData = generateTagSEO(tag, posts.length);
+
+// Get related tags from the posts
+const relatedTags = [...new Set(
+  posts.flatMap(post => post.data.tags || [])
+    .filter(t => t !== tag)
+)].slice(0, 8);
 ---
 
 <BaseLayout
-  title={`${tag} Articles | NosytLabs Blog`}
-  description={`Discover articles tagged with ${tag.toLowerCase()}. Expert insights and in-depth content from NosytLabs covering ${tag.toLowerCase()} topics.`}
+  title={seoData.title}
+  description={seoData.description}
+  keywords={seoData.keywords}
+  canonicalUrl={canonicalUrl}
+  type="website"
 >
-  <!-- Breadcrumbs -->
-  <nav class="container mx-auto px-4 py-4" aria-label="Breadcrumb">
-    <ol class="flex items-center space-x-2 text-sm text-gray-600">
-      {breadcrumbs.map((crumb, index) => (
-        <li class="flex items-center">
-          {index > 0 && <span class="mx-2 text-gray-400">/</span>}
-          {index === breadcrumbs.length - 1 ? (
-            <span class="text-gray-900 font-medium">{crumb.label}</span>
-          ) : (
-            <a href={crumb.href} class="hover:text-blue-600 transition-colors">
-              {crumb.label}
-            </a>
-          )}
-        </li>
-      ))}
-    </ol>
-  </nav>
-
   <!-- Hero Section -->
-  <section class="relative bg-gradient-to-br from-orange-600 via-orange-700 to-orange-800 text-white py-20">
-    <div class="absolute inset-0 bg-gradient-to-r from-orange-900/90 to-blue-900/20"></div>
-    <div class="container mx-auto px-4 text-center relative z-10">
-      <div class="flex items-center justify-center mb-6">
-        <svg class="h-10 w-10 text-blue-300 mr-4" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
-        </svg>
-        <h1 class="text-4xl lg:text-6xl font-bold">
+  <section class="section-lg bg-gradient-to-br from-secondary/5 via-background to-primary/5">
+    <div class="container">
+      <div class="text-center max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-secondary/10 rounded-full text-secondary font-medium mb-6">
+          <AstroIcon name="tabler:hash" class="w-5 h-5" />
+          <span>Tag</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-text via-secondary to-primary bg-clip-text text-transparent">
           #{tag}
         </h1>
-      </div>
-      <p class="text-xl text-orange-100 max-w-3xl mx-auto mb-8">
-        Exploring topics related to {tag.toLowerCase()}. 
-        {posts.length} article{posts.length !== 1 ? 's' : ''} tagged with this topic.
-      </p>
-      <div class="flex items-center justify-center">
-        <span class="bg-blue-500 text-white px-4 py-2 rounded-full font-semibold">
-          {posts.length} Posts
-        </span>
+        
+        <p class="text-xl text-text-muted mb-8 leading-relaxed">
+          Explore {posts.length} article{posts.length !== 1 ? 's' : ''} tagged with <strong>{tag}</strong>. 
+          Deep dive into specific topics and expand your knowledge.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-4">
+<Button variant="primary" href="/blog" class="btn-lg flex items-center gap-2">
+            <AstroIcon name="tabler:arrow-left" class="w-4 h-4" />
+            All Articles
+          </Button>
+<Button variant="secondary" href="/contact" class="btn-lg">
+            Request Tutorial
+          </Button>
+        </div>
       </div>
     </div>
-    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
   </section>
 
-  <!-- Blog Posts Grid -->
-  <section class="py-16">
-    <div class="container mx-auto px-4">
-      {posts.length > 0 ? (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post) => {
-            const estimatedReadTime = Math.ceil(post.content.replace(/<[^>]*>/g, '').split(' ').length / 200);
-            const postPath = generateBlogPath(post.slug);
-            
-            return (
-              <article class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 group">
-                <div class="p-6">
-                  <!-- Post Meta -->
-                  <div class="flex items-center text-sm text-gray-500 mb-3">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    <time datetime={post.publishDate.toISOString()}>
-                      {post.publishDate.toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
-                    </time>
-                    <span class="mx-2">•</span>
-                    <Clock className="h-4 w-4 mr-1" />
-                    <span>{estimatedReadTime} min read</span>
-                  </div>
+  <!-- Related Tags -->
+  {relatedTags.length > 0 && (
+    <section class="py-8 bg-surface">
+      <div class="container">
+        <div class="text-center mb-6">
+          <h2 class="text-lg font-semibold text-text mb-4">Related Tags</h2>
+          <div class="flex flex-wrap justify-center gap-3">
+            {relatedTags.map((relatedTag) => (
+              <a
+                href={`/blog/tag/${relatedTag.toLowerCase().replace(/\s+/g, '-')}`}
+                class="px-4 py-2 bg-background border border-border rounded-full text-text hover:border-secondary hover:text-secondary transition-all duration-200 hover:scale-105"
+              >
+                #{relatedTag}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
 
-                  <!-- Post Title -->
-                  <h2 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
-                    <a href={postPath} class="hover:underline">
-                      {post.title}
-                    </a>
-                  </h2>
-
-                  <!-- Post Excerpt -->
-                  <p class="text-gray-600 mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-
-                  <!-- Post Category -->
-                  <div class="mb-4">
-                    <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-md text-xs font-medium">
-                      {post.category}
+  <!-- Articles Grid -->
+  <section class="section-lg">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post) => {
+          const publishDate = new Date(post.data.publishDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+          
+          return (
+            <article class="bg-background rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105">
+              <div class="relative">
+                {post.data.featuredImage && (
+                  <img
+                    src={post.data.featuredImage}
+                    alt={post.data.title}
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                )}
+                <div class="absolute top-4 right-4">
+                  <a
+                    href={`/blog/category/${post.data.category.toLowerCase().replace(/\s+/g, '-')}`}
+                    class="px-3 py-1 bg-primary text-on-primary text-sm font-medium rounded-full hover:bg-primary-dark transition-colors"
+                  >
+                    {post.data.category}
+                  </a>
+                </div>
+                {post.data.featured && (
+                  <div class="absolute top-4 left-4">
+                    <span class="px-2 py-1 bg-secondary text-on-secondary text-xs font-medium rounded-full flex items-center gap-1">
+                      <AstroIcon name="tabler:star-filled" class="w-3 h-3" />
+                      Featured
                     </span>
                   </div>
-
-                  <!-- Post Tags -->
-                  {post.tags.length > 0 && (
-                    <div class="flex flex-wrap gap-2 mb-4">
-                      {post.tags.slice(0, 3).map((postTag) => (
-                        <span class={`px-2 py-1 rounded-md text-xs ${
-                          postTag === tag 
-                            ? 'bg-green-100 text-green-800 font-medium ring-2 ring-green-200' 
-                            : 'bg-gray-100 text-gray-700'
-                        }`}>
-                          #{postTag}
-                        </span>
-                      ))}
-                      {post.tags.length > 3 && (
-                        <span class="text-gray-500 text-xs">
-                          +{post.tags.length - 3} more
-                        </span>
-                      )}
-                    </div>
-                  )}
-
-                  <!-- Author & Read More -->
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center text-sm text-gray-500">
-                      <User className="h-4 w-4 mr-1" />
-                      <span>{post.author}</span>
-                    </div>
-                    <a 
-                      href={postPath}
-                      class="inline-flex items-center text-green-600 hover:text-green-700 text-sm font-medium transition-colors"
-                    >
-                      Read More
-                      <ArrowRight className="h-4 w-4 ml-1" />
-                    </a>
-                  </div>
+                )}
+              </div>
+              
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <p class="text-sm text-text-muted">{publishDate}</p>
+                  <p class="text-sm text-text-muted">{post.data.readingTime}</p>
                 </div>
-              </article>
-            );
-          })}
-        </div>
-      ) : (
+                
+                <h3 class="text-xl font-bold text-text mb-3 group-hover:text-secondary transition-colors line-clamp-2">
+                  {post.data.title}
+                </h3>
+                
+                <p class="text-text-muted mb-4 leading-relaxed line-clamp-3">
+                  {post.data.excerpt}
+                </p>
+                
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center">
+                      <AstroIcon name="tabler:user-circle" class="w-4 h-4 text-on-secondary" />
+                    </div>
+                    <p class="text-sm font-medium text-text">{post.data.author}</p>
+                  </div>
+                  
+                  <a 
+                    href={`/blog/${post.slug}`}
+                    class="inline-flex items-center gap-2 text-secondary hover:text-secondary-dark font-medium transition-colors"
+                  >
+                    Read More
+                    <AstroIcon name="tabler:arrow-right" class="w-4 h-4" />
+                  </a>
+                </div>
+                
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-border">
+                    {post.data.tags.slice(0, 4).map((postTag) => (
+                      <a
+                        href={`/blog/tag/${postTag.toLowerCase().replace(/\s+/g, '-')}`}
+                        class={`px-2 py-1 text-xs rounded-full transition-colors ${
+                          postTag === tag 
+                            ? 'bg-secondary text-on-secondary font-medium' 
+                            : 'bg-secondary/10 text-secondary hover:bg-secondary/20'
+                        }`}
+                      >
+                        #{postTag}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </div>
+      
+      {posts.length === 0 && (
         <div class="text-center py-16">
-          <TagIcon className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">No Articles Found</h3>
-          <p class="text-gray-600 mb-6">
-            We haven't published any articles with the "{tag}" tag yet.
-          </p>
-          <a 
-            href="/blog" 
-            class="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
-          >
-            Explore All Articles
-            <ArrowRight className="h-4 w-4 ml-2" />
-          </a>
+          <AstroIcon name="tabler:tag-off" class="w-16 h-16 text-text-muted mx-auto mb-4" />
+          <h3 class="text-2xl font-bold text-text mb-2">No Articles Found</h3>
+          <p class="text-text-muted mb-6">There are no articles with this tag yet.</p>
+          <Button variant="primary" href="/blog">Browse All Articles</Button>
         </div>
       )}
     </div>
   </section>
 
-  <!-- Related Tags -->
-  <section class="bg-gray-50 py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">
-        Explore Related Tags
-      </h2>
-      <div class="flex flex-wrap justify-center gap-3">
-        {getAllBlogTagsWithMetadata()
-          .filter(t => t.name !== tag)
-          .slice(0, 12)
-          .map((t) => (
-            <a 
-              href={`/blog/tag/${t.slug}`}
-              class="bg-white px-3 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-green-300 group"
-            >
-              <span class="text-gray-700 group-hover:text-green-600 text-sm">
-                #{t.name}
-              </span>
-              <span class="text-gray-400 ml-2 text-xs">
-                ({t.count})
-              </span>
-            </a>
-          ))
-        }
-      </div>
-      <div class="text-center mt-8">
-        <a 
-          href="/blog"
-          class="inline-flex items-center text-green-600 hover:text-green-700 font-medium"
-        >
-          View All Articles
-          <ArrowRight className="h-4 w-4 ml-2" />
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- Tag Cloud Section -->
-  <section class="py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">
-        Popular Tags
-      </h2>
-      <div class="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto">
-        {getAllBlogTagsWithMetadata()
-          .sort((a, b) => b.count - a.count)
-          .slice(0, 20)
-          .map((t) => {
-            const isCurrentTag = t.name === tag;
-            const fontSize = Math.min(Math.max(t.count / 2 + 0.75, 0.75), 1.5);
-            
-            return (
-              <a 
-                href={`/blog/tag/${t.slug}`}
-                class={`inline-block px-3 py-1 rounded-md transition-all duration-300 hover:scale-105 ${
-                  isCurrentTag 
-                    ? 'bg-green-600 text-white shadow-lg' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-green-100 hover:text-green-700'
-                }`}
-                style={`font-size: ${fontSize}rem;`}
-              >
-                #{t.name}
-                <span class="ml-1 text-xs opacity-75">
-                  ({t.count})
-                </span>
-              </a>
-            );
-          })
-        }
+  <section class="section-lg bg-gradient-to-r from-secondary/5 to-primary/5">
+    <div class="container">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Explore More Topics</h2>
+        <p class="text-xl text-text-muted mb-8">
+          Discover articles on various topics and expand your knowledge base.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          {relatedTags.map((relatedTag) => (
+            <a
+              href={`/blog/tag/${relatedTag.toLowerCase().replace(/\s+/g, '-')}`}
+              class="px-6 py-3 bg-background border border-border rounded-full text-text hover:border-secondary hover:text-secondary hover:shadow-md transition-all duration-200 hover:scale-105 font-medium"
+            >
+              #{relatedTag}
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;

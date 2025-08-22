@@ -1,0 +1,74 @@
+# Dependabot configuration for automated dependency updates
+# This file configures Dependabot to automatically create pull requests
+# for dependency updates to keep the project secure and up-to-date
+
+version: 2
+updates:
+  # Enable version updates for npm dependencies
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'UTC'
+    # Limit the number of open pull requests for npm updates
+    open-pull-requests-limit: 5
+    # Group minor and patch updates together
+    groups:
+      minor-and-patch:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
+    # Automatically merge patch updates for trusted packages
+    auto-merge:
+      - dependency-type: 'direct:production'
+        update-type: 'security'
+      - dependency-type: 'direct:development'
+        update-type: 'security'
+    # Add reviewers for dependency updates
+    reviewers:
+      - 'nosytlabs'
+    # Add labels to dependency update PRs
+    labels:
+      - 'dependencies'
+      - 'automated'
+    # Commit message preferences
+    commit-message:
+      prefix: 'deps'
+      prefix-development: 'deps-dev'
+      include: 'scope'
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 3
+    labels:
+      - 'github-actions'
+      - 'dependencies'
+    commit-message:
+      prefix: 'ci'
+      include: 'scope'
+
+  # Enable version updates for Docker (if applicable)
+  - package-ecosystem: 'docker'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+      time: '09:00'
+      timezone: 'UTC'
+    open-pull-requests-limit: 2
+    labels:
+      - 'docker'
+      - 'dependencies'
+    commit-message:
+      prefix: 'docker'
+      include: 'scope'

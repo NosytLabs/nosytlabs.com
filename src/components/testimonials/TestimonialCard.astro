@@ -1,0 +1,101 @@
+---
+/**
+ * Testimonial Card Component
+ * 
+ * A reusable testimonial card component with rating stars, content, and author information.
+ * Now using unified Card component for consistency.
+ */
+
+import AstroIcon from '../ui/AstroIcon.astro';
+import Card from '../core/Card.astro';
+
+interface Props {
+  testimonial: {
+    name: string;
+    role: string;
+    company?: string;
+    content: string;
+    rating: number;
+    avatar?: string;
+    image?: string;
+  };
+  variant?: 'default' | 'featured' | 'compact' | 'card';
+  showImage?: boolean;
+  class?: string;
+}
+
+const { 
+  testimonial, 
+  variant = 'default', 
+  showImage = true,
+  class: className = '' 
+} = Astro.props;
+
+// Map testimonial variants to Card variants
+const cardVariantMap = {
+  default: 'default',
+  featured: 'elevated',
+  compact: 'outlined',
+  card: 'default'
+} as const;
+
+const cardSizeMap = {
+  default: 'lg',
+  featured: 'xl',
+  compact: 'default',
+  card: 'lg'
+} as const;
+---
+
+<Card 
+  variant={cardVariantMap[variant]}
+  size={cardSizeMap[variant]}
+  interactive={true}
+  class={`testimonial-card testimonial-${variant} ${className}`}
+>
+  <!-- Rating Stars -->
+  <div class="flex items-center gap-1 mb-4">
+    {Array.from({ length: testimonial.rating }, (_, i) => (
+      <AstroIcon name="tabler:star-filled" class="w-5 h-5 text-yellow-400" />
+    ))}
+    {Array.from({ length: 5 - testimonial.rating }, (_, i) => (
+      <AstroIcon name="tabler:star" class="w-5 h-5 text-gray-300" />
+    ))}
+  </div>
+  
+  <!-- Quote Icon for Featured Variant -->
+  {variant === 'featured' && (
+    <div class="mb-6">
+      <AstroIcon name="tabler:quote" class="w-8 h-8 text-primary/60" />
+    </div>
+  )}
+  
+  <!-- Testimonial Content -->
+  <blockquote class="text-text-muted mb-6 leading-relaxed text-lg">
+    "{testimonial.content}"
+  </blockquote>
+  
+  <!-- Author Info -->
+  <div class="flex items-center gap-4">
+    {showImage && testimonial.avatar ? (
+      <img 
+        src={testimonial.avatar} 
+        alt={`${testimonial.name} avatar`}
+        class="w-12 h-12 rounded-full object-cover"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="low"
+      />
+    ) : (
+      <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+        <AstroIcon name="tabler:user" class="w-6 h-6 text-primary" />
+      </div>
+    )}
+    <div>
+      <div class="font-semibold text-text">{testimonial.name}</div>
+      <div class="text-sm text-text-muted">
+        {testimonial.role}{testimonial.company && `, ${testimonial.company}`}
+      </div>
+    </div>
+  </div>
+</Card>

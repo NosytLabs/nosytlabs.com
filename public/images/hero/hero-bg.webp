@@ -1,0 +1,78 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#334155;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#1e40af;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Tech pattern overlay -->
+    <pattern id="techPattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <circle cx="50" cy="50" r="1" fill="#3b82f6" opacity="0.3"/>
+      <circle cx="25" cy="25" r="0.5" fill="#60a5fa" opacity="0.2"/>
+      <circle cx="75" cy="75" r="0.5" fill="#60a5fa" opacity="0.2"/>
+      <line x1="0" y1="50" x2="100" y2="50" stroke="#1e40af" stroke-width="0.5" opacity="0.1"/>
+      <line x1="50" y1="0" x2="50" y2="100" stroke="#1e40af" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Animated particles -->
+    <circle id="particle" r="2" fill="#3b82f6" opacity="0.6">
+      <animateMotion dur="20s" repeatCount="indefinite">
+        <path d="M0,540 Q480,200 960,540 T1920,540"/>
+      </animateMotion>
+      <animate attributeName="opacity" values="0;0.6;0" dur="20s" repeatCount="indefinite"/>
+    </circle>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="1920" height="1080" fill="url(#heroGradient)"/>
+  
+  <!-- Tech pattern overlay -->
+  <rect width="1920" height="1080" fill="url(#techPattern)" opacity="0.4"/>
+  
+  <!-- Geometric shapes for tech aesthetic -->
+  <g opacity="0.1">
+    <!-- Large hexagon -->
+    <polygon points="960,200 1060,250 1060,350 960,400 860,350 860,250" fill="none" stroke="#3b82f6" stroke-width="2"/>
+    
+    <!-- Circuit-like lines -->
+    <path d="M100,300 L300,300 L350,250 L500,250 L550,300 L800,300" fill="none" stroke="#1e40af" stroke-width="1" opacity="0.5"/>
+    <path d="M1120,400 L1320,400 L1370,450 L1520,450 L1570,400 L1820,400" fill="none" stroke="#1e40af" stroke-width="1" opacity="0.5"/>
+    
+    <!-- Tech nodes -->
+    <circle cx="300" cy="300" r="4" fill="#3b82f6"/>
+    <circle cx="550" cy="300" r="4" fill="#3b82f6"/>
+    <circle cx="1320" cy="400" r="4" fill="#3b82f6"/>
+    <circle cx="1570" cy="400" r="4" fill="#3b82f6"/>
+  </g>
+  
+  <!-- Floating particles -->
+  <g opacity="0.3">
+    <use href="#particle" transform="translate(100,300)">
+      <animateTransform attributeName="transform" type="translate" values="100,300; 1820,300; 100,300" dur="25s" repeatCount="indefinite"/>
+    </use>
+    <use href="#particle" transform="translate(200,500)">
+      <animateTransform attributeName="transform" type="translate" values="200,500; 1720,200; 200,500" dur="30s" repeatCount="indefinite"/>
+    </use>
+    <use href="#particle" transform="translate(1600,250)">
+      <animateTransform attributeName="transform" type="translate" values="1600,250; 300,750; 1600,250" dur="35s" repeatCount="indefinite"/>
+    </use>
+  </g>
+  
+  <!-- Subtle glow effects -->
+  <g opacity="0.2">
+    <ellipse cx="480" cy="540" rx="200" ry="100" fill="#3b82f6" filter="blur(50px)"/>
+    <ellipse cx="1440" cy="540" rx="200" ry="100" fill="#1e40af" filter="blur(50px)"/>
+  </g>
+  
+  <!-- Code-like elements -->
+  <g opacity="0.1" font-family="monospace" font-size="12" fill="#60a5fa">
+    <text x="100" y="100">&lt;/&gt; NosytLabs</text>
+    <text x="1600" y="980">{ innovation: true }</text>
+    <text x="100" y="980">const future = await build();</text>
+    <text x="1400" y="100">// Building tomorrow</text>
+  </g>
+</svg>

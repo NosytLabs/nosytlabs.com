@@ -1,0 +1,313 @@
+---
+/**
+ * Client Showcase Component
+ * 
+ * Displays client logos, case studies, and success metrics in an attractive layout.
+ * Supports different display modes and interactive features.
+ */
+
+import AstroIcon from '../ui/AstroIcon.astro';
+import Button from '../ui/Button.astro';
+
+interface Client {
+  id: string;
+  name: string;
+  logo: string;
+  logoAlt?: string;
+  industry: string;
+  website?: string;
+  description?: string;
+  caseStudyUrl?: string;
+  featured?: boolean;
+  metrics?: {
+    label: string;
+    value: string;
+    improvement?: string;
+  }[];
+  testimonial?: {
+    quote: string;
+    author: string;
+    role: string;
+  };
+}
+
+interface Props {
+  clients: Client[];
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  layout?: 'logos' | 'cards' | 'featured' | 'grid';
+  showMetrics?: boolean;
+  showTestimonials?: boolean;
+  showCaseStudies?: boolean;
+  maxItems?: number;
+  background?: 'default' | 'muted' | 'gradient';
+  class?: string;
+}
+
+const {
+  clients,
+  title = "Trusted by Industry Leaders",
+  subtitle = "Our Clients",
+  description = "We're proud to work with innovative companies across various industries, helping them achieve their digital transformation goals.",
+  layout = 'logos',
+  showMetrics = false,
+  showTestimonials = false,
+  showCaseStudies = false,
+  maxItems = 12,
+  background = 'default',
+  class: className = ''
+} = Astro.props;
+
+// Filter and limit clients
+const displayClients = clients.slice(0, maxItems);
+const featuredClients = clients.filter(c => c.featured);
+
+// Background classes
+const backgroundClasses = {
+  default: 'bg-background',
+  muted: 'bg-background-muted/30',
+  gradient: 'bg-gradient-to-br from-background via-primary/5 to-secondary/5'
+};
+
+const sectionClass = `section-xl ${backgroundClasses[background]} ${className}`;
+---
+
+<section class={sectionClass}>
+  <div class="container">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
+        <AstroIcon name="tabler:building" class="w-4 h-4 text-primary" />
+        <span class="text-primary font-semibold text-sm">{subtitle}</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-text mb-6">
+        {title}
+      </h2>
+      <p class="text-xl text-text-muted max-w-3xl mx-auto">
+        {description}
+      </p>
+    </div>
+
+    <!-- Client Display -->
+    {
+      layout === 'logos' ? (
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+        {displayClients.map(client => (
+          <div class="group relative">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-gray-700 group-hover:border-primary/30">
+              <img 
+                src={client.logo} 
+                alt={client.logoAlt || `${client.name} logo`}
+                class="w-full h-12 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
+            </div>
+            <!-- Tooltip -->
+            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap z-10">
+              {client.name}
+              <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : layout === 'cards' ? (
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {displayClients.map(client => (
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+            <!-- Client Logo -->
+            <div class="mb-6">
+              <img 
+                src={client.logo} 
+                alt={client.logoAlt || `${client.name} logo`}
+                class="h-12 object-contain"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
+            </div>
+            
+            <!-- Client Info -->
+            <div class="mb-4">
+              <h3 class="text-xl font-semibold text-text mb-2">{client.name}</h3>
+              <p class="text-sm text-primary font-medium mb-3">{client.industry}</p>
+              {client.description && (
+                <p class="text-text-muted text-sm leading-relaxed">{client.description}</p>
+              )}
+            </div>
+            
+            <!-- Metrics -->
+            {showMetrics && client.metrics && (
+              <div class="grid grid-cols-2 gap-4 mb-6">
+                {client.metrics.map(metric => (
+                  <div class="text-center">
+                    <div class="text-2xl font-bold text-primary">{metric.value}</div>
+                    <div class="text-xs text-text-muted">{metric.label}</div>
+                    {metric.improvement && (
+                      <div class="text-xs text-green-600 font-medium">{metric.improvement}</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+            
+            <!-- Testimonial -->
+            {showTestimonials && client.testimonial && (
+              <div class="mb-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <blockquote class="text-sm text-text-muted italic mb-2">
+                  "{client.testimonial.quote}"
+                </blockquote>
+                <cite class="text-xs text-text font-medium not-italic">
+                  — {client.testimonial.author}, {client.testimonial.role}
+                </cite>
+              </div>
+            )}
+            
+            <!-- Actions -->
+            <div class="flex gap-3">
+              {client.website && (
+                <Button 
+                  href={client.website} 
+                  variant="outline" 
+                  size="sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Site
+                  <AstroIcon name="tabler:external-link" class="w-3 h-3 ml-1" />
+                </Button>
+              )}
+              {showCaseStudies && client.caseStudyUrl && (
+                <Button 
+                  href={client.caseStudyUrl} 
+                  variant="primary" 
+                  size="sm"
+                >
+                  Case Study
+                </Button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : layout === 'featured' ? (
+      <div class="space-y-16">
+        <!-- Featured Clients -->
+        {featuredClients.length > 0 && (
+          <div class="grid md:grid-cols-2 gap-12">
+            {featuredClients.slice(0, 2).map(client => (
+              <div class="bg-gradient-to-br from-primary/5 to-secondary/5 p-10 rounded-3xl border border-primary/20">
+                <!-- Client Logo -->
+                <div class="mb-8">
+                  <img 
+                    src={client.logo} 
+                    alt={client.logoAlt || `${client.name} logo`}
+                    class="h-16 object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                  />
+                </div>
+                
+                <!-- Client Info -->
+                <div class="mb-8">
+                  <h3 class="text-2xl font-bold text-text mb-3">{client.name}</h3>
+                  <p class="text-primary font-semibold mb-4">{client.industry}</p>
+                  {client.description && (
+                    <p class="text-text-muted leading-relaxed">{client.description}</p>
+                  )}
+                </div>
+                
+                <!-- Large Metrics -->
+                {client.metrics && (
+                  <div class="grid grid-cols-2 gap-6 mb-8">
+                    {client.metrics.slice(0, 4).map(metric => (
+                      <div class="text-center">
+                        <div class="text-3xl font-bold text-primary mb-1">{metric.value}</div>
+                        <div class="text-sm text-text-muted">{metric.label}</div>
+                        {metric.improvement && (
+                          <div class="text-sm text-green-600 font-medium mt-1">{metric.improvement}</div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                <!-- Featured Testimonial -->
+                {client.testimonial && (
+                  <div class="bg-white/50 dark:bg-gray-800/50 p-6 rounded-2xl">
+                    <AstroIcon name="tabler:quote" class="w-8 h-8 text-primary/60 mb-4" />
+                    <blockquote class="text-lg text-text mb-4 leading-relaxed">
+                      "{client.testimonial.quote}"
+                    </blockquote>
+                    <cite class="text-text font-semibold not-italic">
+                      — {client.testimonial.author}, {client.testimonial.role}
+                    </cite>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+        
+        <!-- Regular Client Logos -->
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-8 items-center opacity-60">
+          {clients.filter(c => !c.featured).slice(0, 12).map(client => (
+            <div class="group">
+              <img 
+                src={client.logo} 
+                alt={client.logoAlt || `${client.name} logo`}
+                class="w-full h-8 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        {displayClients.map(client => (
+          <div class="group text-center">
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 group-hover:border-primary/30 mb-4">
+              <img 
+                src={client.logo} 
+                alt={client.logoAlt || `${client.name} logo`}
+                class="w-full h-16 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 mb-4"
+                loading="lazy"
+                decoding="async"
+                fetchpriority="low"
+              />
+              <h3 class="text-lg font-semibold text-text mb-2">{client.name}</h3>
+              <p class="text-sm text-primary">{client.industry}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+    }
+
+    <!-- Industry Statistics -->
+    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center border-t border-border pt-16">
+      <div>
+        <div class="text-3xl font-bold text-primary mb-2">50+</div>
+        <div class="text-sm text-text-muted uppercase tracking-wide">Industries Served</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-primary mb-2">500+</div>
+        <div class="text-sm text-text-muted uppercase tracking-wide">Projects Completed</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-primary mb-2">95%</div>
+        <div class="text-sm text-text-muted uppercase tracking-wide">Client Retention</div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold text-primary mb-2">24/7</div>
+        <div class="text-sm text-text-muted uppercase tracking-wide">Global Support</div>
+      </div>
+    </div>
+  </div>
+</section>

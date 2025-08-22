@@ -1,0 +1,174 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BlogPostLayout from '../../layouts/blog-post-layout.astro';
+import { generateCanonicalUrl } from '../../utils/path-resolvers';
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog', ({ data }) => {
+    return data.draft !== true;
+  });
+
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = {
+  post: CollectionEntry<'blog'>;
+};
+
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+
+const canonicalUrl = generateCanonicalUrl(`/blog/${post.slug}`);
+
+// Calculate reading time if not provided
+const calculateReadingTime = (content: string): string => {
+  const wordsPerMinute = 200;
+  const words = content.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+};
+
+const readingTime = post.data.readingTime || calculateReadingTime(post.body);
+
+// Enhanced frontmatter for the layout
+const enhancedFrontmatter = {
+  ...post.data,
+  readingTime,
+  headings,
+  canonicalUrl,
+};
+---
+
+<BlogPostLayout frontmatter={enhancedFrontmatter}>
+  <Content />
+</BlogPostLayout>
+
+<script>
+  // Add reading progress indicator
+  document.addEventListener('DOMContentLoaded', function() {
+    const progressBar = document.createElement('div');
+    progressBar.className = 'reading-progress';
+    progressBar.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      z-index: 1000;
+      transition: width 0.3s ease;
+    `;
+    document.body.appendChild(progressBar);
+
+    function updateProgress() {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + '%';
+    }
+
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+  });
+
+  // Add table of contents functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const headings = document.querySelectorAll('h2, h3, h4');
+    if (headings.length > 2) {
+      const toc = document.createElement('div');
+      toc.className = 'table-of-contents';
+      toc.innerHTML = '<h3>Table of Contents</h3>';
+      
+      const tocList = document.createElement('ul');
+      headings.forEach((heading, index) => {
+        const id = heading.id || `heading-${index}`;
+        heading.id = id;
+        
+        const li = document.createElement('li');
+        li.className = `toc-${heading.tagName.toLowerCase()}`;
+        li.innerHTML = `<a href="#${id}">${heading.textContent}</a>`;
+        tocList.appendChild(li);
+      });
+      
+      toc.appendChild(tocList);
+      
+      // Insert TOC after the first paragraph
+      const firstParagraph = document.querySelector('.content-section p');
+      if (firstParagraph) {
+        firstParagraph.parentNode.insertBefore(toc, firstParagraph.nextSibling);
+      }
+    }
+  });
+</script>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    z-index: 1000;
+    transition: width 0.3s ease;
+  }
+
+  .table-of-contents {
+    background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+    border: 1px solid var(--color-primary-200);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+  }
+
+  .table-of-contents h3 {
+    margin: 0 0 1rem 0;
+    color: var(--color-primary-700);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .table-of-contents ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .table-of-contents li {
+    margin: 0.5rem 0;
+  }
+
+  .table-of-contents a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    display: block;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .table-of-contents a:hover {
+    color: var(--color-primary-600);
+    background: var(--color-primary-50);
+    padding-left: 0.5rem;
+  }
+
+  .toc-h2 {
+    font-weight: 600;
+  }
+
+  .toc-h3 {
+    padding-left: 1rem;
+    font-weight: 500;
+  }
+
+  .toc-h4 {
+    padding-left: 2rem;
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
+</style>

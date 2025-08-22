@@ -1,395 +1,56 @@
 ---
-// Contact page for NosytLabs - Redesigned 2025
-import UnifiedLayout from '@/layouts/UnifiedLayout.astro';
-import Card from '@/components/core/Card.astro';
-import Hero from '@/components/Hero.astro';
-import ContactForm from '@/components/forms/ContactForm.astro';
-import { Button } from "@/components/ui/button.tsx"; // Import Button
-import { Icon } from "@/components/ui/icon.tsx"; // Import Icon
+/**
+ * Contact Page
+ *
+ * Modular contact page using extracted components for better maintainability
+ */
+
+import BaseLayout from '../layouts/base-layout.astro';
+import { generateCanonicalUrl } from '../utils/path-resolvers';
+import ContactHero from '../components/contact/ContactHero.astro';
+import ContactForm from '../components/contact/ContactForm.astro';
+import ContactInfo from '../components/contact/ContactInfo.astro';
+import ContactFAQ from '../components/contact/ContactFAQ.astro';
+import ContactCTA from '../components/contact/ContactCTA.astro';
+
+const canonicalUrl = generateCanonicalUrl('/contact');
+
+// SEO configuration
+const seoConfig = {
+  title: 'Contact NosytLabs | Get In Touch Today',
+  description:
+    'Ready to transform your operations with cutting-edge technology? Contact NosytLabs for expert web development, AI integration, and technical consulting services.',
+  keywords: [
+    'contact nosytlabs',
+    'web development consultation',
+    'AI integration services',
+    'technical consulting',
+    'business technology solutions',
+    'get in touch',
+  ],
+};
 ---
-<UnifiedLayout
-  title="Connect With Our Team - NosytLabs Contact"
-  description="Get in touch with NosytLabs for your next digital project. Free consultations available for web development, AI integration, and technology solutions."
-  keywords="contact NosytLabs, free consultation, web development quote, technology consulting, digital solutions, project inquiry"
+
+<BaseLayout
+  title={seoConfig.title}
+  description={seoConfig.description}
+  keywords={seoConfig.keywords}
+  {canonicalUrl}
+  type="website"
 >
-  <Hero
-    title="Connect With Our Team"
-    subtitle="Get in touch with NosytLabs for your next digital project. Free consultations available for web development, AI integration, and technology solutions."
-    ctaText="Send a Message"
-    ctaLink="#contact-form"
-  />
-  <!-- Important Notice -->
-  <section className="py-8 bg-gradient-to-r from-primary-50 to-accent-50 dark:from-primary-900 dark:to-accent-900">
-    <div className="container-xl mx-auto px-6">
-      <div className="glass p-6 rounded-2xl text-center" data-scroll-animate data-animation-type="fade-in-up">
-        <p className="text-neutral-700 dark:text-neutral-300">
-          <strong>Note:</strong> NosytLabs is a portfolio site for NOSYT LLC. We offer limited services based on availability and project fit. Response times may vary.
-        </p>
+  <ContactHero />
+
+  <!-- Enhanced Contact Form & Info Section -->
+  <section class="section-xl">
+    <div class="container">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <ContactForm />
+        <ContactInfo />
       </div>
     </div>
   </section>
-  <!-- Contact Form Section -->
-  <section className="responsive-spacing bg-white dark:bg-gray-900">
-    <div className="container-xl mx-auto px-6">
-      <div className="flex flex-col lg:flex-row gap-12" data-stagger data-stagger-delay="200">
-        <!-- Contact Information Card -->
-        <Card
-          contentType="info"
-          title="Get in Touch"
-          description="Reach out to us through various channels. We're here to help with your inquiries."
-          className="stagger-item"
-        >
-          <div className="space-y-8">
-            <div className="flex items-start">
-              <Icon name="mail" size={24} className="text-brand-purple-500 mr-3 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
-                <p className="text-gray-600 dark:text-gray-300">hi@nosytlabs.com</p>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <Icon name="share2" size={24} className="text-brand-purple-500 mr-3 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Social Media</h3>
-                <div className="flex space-x-4 mt-2">
-                  <a href="https://github.com/NosytLabs" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-600 hover:text-brand-purple-500 dark:text-gray-300 dark:hover:text-brand-purple-400 transition-colors">
-                    <Icon name="github" size={24} />
-                  </a>
-                  <a href="https://kick.com/Tycen" target="_blank" rel="noopener noreferrer" aria-label="Kick" className="text-gray-600 hover:text-brand-purple-500 dark:text-gray-300 dark:hover:text-brand-purple-400 transition-colors">
-                    <Icon name="kick" size={24} />
-                  </a>
-                  <a href="https://www.youtube.com/@TycenYT" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-gray-600 hover:text-brand-purple-500 dark:text-gray-300 dark:hover:text-brand-purple-400 transition-colors">
-                    <Icon name="youtube" size={24} />
-                  </a>
-                  <a href="/3d-printing" aria-label="3D Printing Portfolio" className="text-gray-600 hover:text-brand-purple-500 dark:text-gray-300 dark:hover:text-brand-purple-400 transition-colors">
-                    <Icon name="printer" size={24} />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-start">
-              <Icon name="clock" size={24} className="text-brand-purple-500 mr-3 mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Response Time</h3>
-                <p className="text-gray-600 dark:text-gray-300">We aim to respond within 2-3 business days, depending on availability.</p>
-              </div>
-            </div>
-          </div>
-        </Card>
-        <!-- Enhanced Contact Form -->
-        <div className="stagger-item">
-          <!-- FAQ Section -->
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6" data-scroll-animate data-animation-type="fade-in-up">Frequently Asked Questions</h2>
-            <div className="space-y-6" data-stagger data-stagger-delay="150">
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-700 stagger-item">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What services does NosytLabs offer?</h3>
-                <p className="text-gray-600 dark:text-gray-300">We specialize in web development, AI integration, technology consulting, and 3D printing solutions. Our services range from custom web applications to AI-powered automation tools.</p>
-              </div>
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-700 stagger-item">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How long does a typical project take?</h3>
-                <p className="text-gray-600 dark:text-gray-300">Project timelines vary based on complexity and scope. Simple websites can be completed in 1-2 weeks, while complex applications may take 2-3 months. We provide detailed timelines during consultation.</p>
-              </div>
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-700 stagger-item">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Do you offer ongoing support?</h3>
-                <p className="text-gray-600 dark:text-gray-300">Yes, we provide ongoing maintenance and support packages for all our projects. This includes updates, bug fixes, and performance optimizations based on your needs.</p>
-              </div>
-              <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-100 dark:border-gray-700 stagger-item">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What is your pricing structure?</h3>
-                <p className="text-gray-600 dark:text-gray-300">We offer competitive pricing based on project requirements. Contact us for a free consultation and custom quote tailored to your specific needs and budget.</p>
-              </div>
-            </div>
-          </section>
-          <ContactForm />
-        </div>
-      </div>
-    </div>
-  </section>
-</UnifiedLayout>
-<script>
-  // Enhanced contact form functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const serviceSelect = document.getElementById('service');
-    const printingFields = document.getElementById('3d-printing-fields');
-    const fileUpload = document.getElementById('file-upload');
-    const fileName = document.getElementById('file-name');
-    const fileNameText = document.getElementById('file-name-text');
-    // Show/hide 3D printing specific fields based on service selection with animation
-    if (serviceSelect && printingFields) {
-      serviceSelect.addEventListener('change', function() {
-        if (this.value === '3d-printing') {
-          // Show with animation
-          printingFields.classList.remove('hidden');
-          printingFields.style.opacity = '0';
-          printingFields.style.transform = 'translateY(1.250rem)';
-          // Trigger animation after a small delay to ensure the element is visible
-          setTimeout(() => {
-            printingFields.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            printingFields.style.opacity = '1';
-            printingFields.style.transform = 'translateY(0)';
-          }, 10);
-        } else {
-          // Hide with animation
-          printingFields.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-          printingFields.style.opacity = '0';
-          printingFields.style.transform = 'translateY(1.250rem)';
-          // After animation completes, hide the element
-          setTimeout(() => {
-            printingFields.classList.add('hidden');
-          }, 500);
-        }
-      });
-    }
-    // File upload handling for 3D printing
-    if (fileUpload && fileName && fileNameText) {
-      fileUpload.addEventListener('change', function() {
-        if (this.files && this.files.length > 0) {
-          // Show file name
-          fileNameText.textContent = this.files[0].name;
-          fileName.classList.remove('hidden');
-          // Add visual feedback to the upload container
-          const uploadContainer = document.querySelector('.file-upload-container');
-          if (uploadContainer) {
-            uploadContainer.classList.add('border-accent');
-            uploadContainer.classList.add('bg-accent/5');
-          }
-        } else {
-          // Hide file name
-          fileName.classList.add('hidden');
-          // Remove visual feedback
-          const uploadContainer = document.querySelector('.file-upload-container');
-          if (uploadContainer) {
-            uploadContainer.classList.remove('border-accent');
-            uploadContainer.classList.remove('bg-accent/5');
-          }
-        }
-      });
-    }
-    // General file upload handling
-    const generalFileUpload = document.getElementById('general-file-upload');
-    const generalFileList = document.getElementById('general-file-list');
-    if (generalFileUpload && generalFileList) {
-      generalFileUpload.addEventListener('change', function() {
-        if (this.files && this.files.length > 0) {
-          // Clear previous file list
-          generalFileList.innerHTML = '';
-          // Create file list with file names
-          const fileListHeader = document.createElement('div');
-          fileListHeader.className = 'font-medium text-accent mb-1';
-          fileListHeader.textContent = `Selected files (${this.files.length}):`;
-          generalFileList.appendChild(fileListHeader);
-          // Add each file to the list
-          Array.from(this.files).forEach(file => {
-            const fileItem = document.createElement('div');
-            fileItem.className = 'flex items-center';
-            fileItem.innerHTML = `
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span>${file.name} (${(file.size / 1024).toFixed(1)} KB)</span>
-            `;
-            generalFileList.appendChild(fileItem);
-          });
-          // Add visual feedback to the upload container
-          const uploadContainer = generalFileUpload.closest('div').parentElement;
-          if (uploadContainer) {
-            uploadContainer.classList.add('border-accent');
-            uploadContainer.classList.add('bg-accent/5');
-          }
-        } else {
-          // Clear file list
-          generalFileList.innerHTML = '';
-          // Remove visual feedback
-          const uploadContainer = generalFileUpload.closest('div').parentElement;
-          if (uploadContainer) {
-            uploadContainer.classList.remove('border-accent');
-            uploadContainer.classList.remove('bg-accent/5');
-          }
-        }
-      });
-    }
-    // Form input animations
-    const formInputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
-    formInputs.forEach(input => {
-      input.addEventListener('focus', function() {
-        this.parentElement.classList.add('input-focused');
-        this.classList.add('border-accent');
-      });
-      input.addEventListener('blur', function() {
-        this.parentElement.classList.remove('input-focused');
-        if (!this.value) {
-          this.classList.remove('border-accent');
-        }
-      });
-    });
-    // Form submission handling with enhanced feedback
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // Disable submit button and show loading state
-        const submitButton = contactForm.querySelector('button[type="submit"]');
-        const originalButtonContent = submitButton.innerHTML;
-        submitButton.disabled = true;
-        submitButton.innerHTML = `
-          <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-          <span>Sending</span>
-        `;
-        // Simulate form submission (in a real implementation, you would send the data to a server)
-        setTimeout(() => {
-          // Create success message
-          const successMessage = document.createElement('div');
-          successMessage.className = 'bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded';
-          successMessage.innerHTML = `
-            <div class="flex items-center">
-              <svg class="h-6 w-6 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <p class="font-medium">Thank you for your message! We will get back to you soon.</p>
-            </div>
-          `;
-          // Insert success message at the top of the form
-          contactForm.prepend(successMessage);
-          // Reset form
-          contactForm.reset();
-          // Hide 3D printing fields if they were shown
-          if (printingFields) {
-            printingFields.classList.add('hidden');
-          }
-          // Reset file upload visual feedback
-          const uploadContainer = document.querySelector('.file-upload-container');
-          if (uploadContainer) {
-            uploadContainer.classList.remove('border-accent');
-            uploadContainer.classList.remove('bg-accent/5');
-          }
-          // Hide file name
-          if (fileName) {
-            fileName.classList.add('hidden');
-          }
-          // Reset submit button
-          submitButton.disabled = false;
-          submitButton.innerHTML = originalButtonContent;
-          // Scroll to success message
-          successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // Remove success message after 5 seconds
-          setTimeout(() => {
-            successMessage.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            successMessage.style.opacity = '0';
-            successMessage.style.transform = 'translateY(-1.250rem)';
-            setTimeout(() => {
-              successMessage.remove();
-            }, 500);
-          }, 5000);
-        }, 1500);
-      });
-    }
-  });
-</script>
-<style>
-/* Modern Responsive System */
-.responsive-container {
-  container-type: inline-size;
-  max-width: min(90vw, 80rem);
-  margin-inline: auto;
-  padding-inline: clamp(1rem, 4vw, 2rem);
-}
-.responsive-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-  gap: clamp(1rem, 3vw, 2rem);
-}
-.responsive-flex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(0.5rem, 2vw, 1.5rem);
-}
-.responsive-text {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  line-height: 1.6;
-}
-.responsive-spacing {
-  padding-block: clamp(2rem, 8vw, 6rem);
-  padding-inline: clamp(1rem, 4vw, 2rem);
-}
-/* Container Queries */
-@container (min-width: 30rem) {
-  .responsive-card {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-  }
-}
-@container (min-width: 50rem) {
-  .responsive-card {
-    grid-template-columns: 1fr 2fr;
-    gap: 2rem;
-  }
-}
-/* Ultimate Z-Index System 2025 */
-.z-modal { z-index: 10000; }
-.z-dropdown { z-index: 9000; }
-.z-navigation { z-index: 8000; }
-.z-sticky { z-index: 7000; }
-.z-floating { z-index: 6000; }
-.z-hero-content { z-index: 2000; }
-.z-hero-particles { z-index: 1900; }
-.z-hero-floating { z-index: 1800; }
-.z-hero-gradient { z-index: 1700; }
-.z-hero-background { z-index: 1000; }
-.z-content { z-index: 100; }
-.z-background { z-index: 10; }
-.z-base { z-index: 1; }
-/* Stacking Contexts */
-.stacking-context {
-  isolation: isolate;
-  position: relative;
-}
-/* Fix common overlapping patterns */
-.hero-unified { isolation: isolate; position: relative; z-index: 1000; }
-.navigation-unified { isolation: isolate; position: sticky; z-index: 8000; }
-.main-content { isolation: isolate; position: relative; z-index: 100; }
-.footer-unified { isolation: isolate; position: relative; z-index: 50; }
-/* Particle and floating element fixes */
-.hero-particles { position: absolute; z-index: 1900; pointer-events: none; }
-.floating-elements { position: absolute; z-index: 1800; pointer-events: none; }
-.hero-gradient { position: absolute; z-index: 1700; pointer-events: none; }
-.hero-content { position: relative; z-index: 2000; }
-  /* Contact page specific styles */
-  /* Form styles */
-  .form-group {
-    position: relative;
-  }
-  .form-input:focus,
-  .form-select:focus,
-  .form-textarea:focus {
-    box-shadow: 0 0 0 0.188rem rgba(255, 107, 0, 0.2);
-  }
-  .input-focused::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0.188rem;
-    height: 100%;
-    background-color: var(--nosyt-orange-main);
-    border-radius: 0.250rem 0 0 0.250rem;
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 0.3s ease;
-    z-index: 10;
-  }
-  .input-focused::before {
-    transform: scaleY(1);
-  }
-  /* File upload container */
-  .file-upload-container {
-    transition: all 0.3s ease;
-  }
-  .file-upload-container:hover {
-    border-color: var(--nosyt-orange-main);
-    background-color: rgba(255, 107, 0, 0.05);
-  }
-</style>
+
+  <ContactFAQ />
+
+  <ContactCTA />
+</BaseLayout>

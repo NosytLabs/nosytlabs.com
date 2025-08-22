@@ -1,0 +1,31 @@
+---
+/**
+ * NavigationDesktop Component
+ *
+ * Desktop-specific navigation container that renders navigation links
+ * in a horizontal layout.
+ */
+
+import NavigationLinks from './NavigationLinks.astro';
+
+export interface Props {
+  /**
+   * The current path to determine active links
+   */
+  currentPath: string;
+
+  /**
+   * Optional additional CSS classes
+   */
+  className?: string;
+}
+
+const { currentPath, className = '' } = Astro.props;
+
+// Combine classes with improved spacing
+const navClasses = `hidden lg:flex items-center space-x-6 ${className}`;
+---
+
+<nav class={navClasses} aria-label="Main navigation">
+  <NavigationLinks {currentPath} layout="horizontal" />
+</nav>

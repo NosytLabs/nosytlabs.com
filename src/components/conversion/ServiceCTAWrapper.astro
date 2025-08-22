@@ -1,0 +1,345 @@
+---
+/**
+ * ServiceCTAWrapper - Pure Astro CTA form component
+ *
+ * Replaces the React component with a native Astro implementation
+ * to avoid renderer issues while maintaining functionality.
+ */
+
+import Button from '../ui/Button.astro';
+import Input from '../ui/Input.astro';
+import Textarea from '../ui/Textarea.astro';
+
+interface Props {
+  serviceSlug?: string;
+  serviceName?: string;
+  client?: 'load' | 'idle' | 'visible';
+}
+
+const { serviceSlug = '', serviceName = '' } = Astro.props;
+---
+
+<!-- CTA Section -->
+<section
+  class="py-24 bg-gradient-to-br from-accent via-background-dark to-accent dark:from-background-dark dark:via-background-darker dark:to-background-dark"
+>
+  <div class="container max-w-4xl">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-text-inverted mb-4">Ready to Get Started?</h2>
+      <p class="text-xl text-text-inverted/80 max-w-2xl mx-auto">
+        {
+          serviceName
+            ? `Let's discuss your ${serviceName.toLowerCase()} project`
+            : "Let's discuss your project requirements"
+        } and create something amazing together.
+      </p>
+    </div>
+
+    <div class="bg-background-light/10 backdrop-blur-sm rounded-2xl p-8 dark:bg-background-dark/20">
+      <form
+        id="service-cta-form"
+        class="space-y-6"
+        novalidate
+        aria-label="Contact form"
+      >
+        <input type="hidden" name="service" value={serviceSlug} />
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="name" class="block text-sm font-medium text-text-inverted mb-2">
+              Full Name *
+            </label>
+            <Input
+              type="text"
+              id="name"
+              name="name"
+              required
+              aria-required="true"
+              aria-describedby="name-error"
+              class="w-full"
+              placeholder="Enter your full name"
+            />
+            <div
+              id="name-error"
+              class="text-error-300 text-sm mt-1 hidden"
+              role="alert"
+              aria-live="polite"
+            >
+            </div>
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-text-inverted mb-2">
+              Email Address *
+            </label>
+            <Input
+              type="email"
+              id="email"
+              name="email"
+              required
+              aria-required="true"
+              aria-describedby="email-error"
+              class="w-full"
+              placeholder="Enter your email address"
+            />
+            <div
+              id="email-error"
+              class="text-error-300 text-sm mt-1 hidden"
+              role="alert"
+              aria-live="polite"
+            >
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label for="company" class="block text-sm font-medium text-text-inverted mb-2">
+            Organization
+          </label>
+          <Input
+            type="text"
+            id="company"
+            name="company"
+            aria-describedby="company-help"
+            class="w-full"
+            placeholder="Enter your organization name (optional)"
+          />
+          <div id="company-help" class="text-text-inverted/70 text-sm mt-1">
+            Optional field to help us understand your context
+          </div>
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium text-text-inverted mb-2">
+            Project Details *
+          </label>
+          <Textarea
+            id="message"
+            name="message"
+            rows={4}
+            required
+            aria-required="true"
+            aria-describedby="message-error message-help"
+            class="w-full"
+            placeholder="Tell us about your project and requirements"
+          />
+          <div id="message-help" class="text-text-inverted/70 text-sm mt-1">
+            Please provide details about your project scope, timeline, and specific requirements
+          </div>
+          <div
+            id="message-error"
+            class="text-error-300 text-sm mt-1 hidden"
+            role="alert"
+            aria-live="polite"
+          >
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button
+            variant="primary"
+            type="submit"
+            class="flex items-center justify-center gap-2 px-8 py-3 min-h-[44px] min-w-[120px]"
+            aria-describedby="submit-help"
+          >
+            <span>Send Message</span>
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </Button>
+          <div id="submit-help" class="text-text-inverted/70 text-sm mt-1">
+            We'll respond within 24 hours
+          </div>
+          <Button
+            variant="secondary"
+            href="/contact"
+            class="px-8 py-3 text-center min-h-[44px] min-w-[120px]"
+            aria-label="View additional contact methods and information"
+          >
+            More Contact Options
+          </Button>
+        </div>
+      </form>
+    </div>
+
+    <div class="text-center mt-8">
+      <p class="text-text-inverted/70 text-sm">
+        We typically respond within 24 hours. For urgent inquiries, please call us directly.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Service CTA form submission
+  document.addEventListener('DOMContentLoaded', function() {
+    const serviceCTAForm = document.getElementById('service-cta-form');
+    if (serviceCTAForm) {
+      const requiredFields = serviceCTAForm.querySelectorAll('[required]');
+      const submitButton = serviceCTAForm.querySelector('button[type="submit"]');
+      
+      // Enhanced form validation
+      function validateField(field) {
+        const value = field.value.trim();
+        const fieldName = field.name;
+        const errorElement = document.getElementById(`${fieldName}-error`);
+        
+        let isValid = true;
+        let errorMessage = '';
+        
+        if (field.hasAttribute('required') && !value) {
+          isValid = false;
+          errorMessage = `${field.labels[0]?.textContent?.replace(' *', '') || fieldName} is required.`;
+        } else if (fieldName === 'email' && value) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) {
+            isValid = false;
+            errorMessage = 'Please enter a valid email address.';
+          }
+        }
+        
+        if (errorElement) {
+          if (isValid) {
+            errorElement.textContent = '';
+            errorElement.classList.add('hidden');
+            field.setAttribute('aria-invalid', 'false');
+            field.classList.remove('border-error-400');
+            field.classList.add('border-border-light/20');
+          } else {
+            errorElement.textContent = errorMessage;
+            errorElement.classList.remove('hidden');
+            field.setAttribute('aria-invalid', 'true');
+            field.classList.remove('border-border-light/20');
+            field.classList.add('border-error-400');
+          }
+        }
+        
+        return isValid;
+      }
+      
+      // Add real-time validation
+      requiredFields.forEach(field => {
+        field.addEventListener('blur', () => validateField(field));
+        field.addEventListener('input', () => {
+          if (field.getAttribute('aria-invalid') === 'true') {
+            validateField(field);
+          }
+        });
+      });
+      
+      serviceCTAForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const originalHTML = submitButton.innerHTML;
+        
+        // Validate all fields
+        let isFormValid = true;
+        requiredFields.forEach(field => {
+          if (!validateField(field)) {
+            isFormValid = false;
+          }
+        });
+        
+        if (!isFormValid) {
+          // Screen reader announcement for errors
+          const announcement = document.createElement('div');
+          announcement.setAttribute('aria-live', 'assertive');
+          announcement.setAttribute('aria-atomic', 'true');
+          announcement.className = 'sr-only';
+          announcement.textContent = 'Form contains errors. Please check the highlighted fields.';
+          document.body.appendChild(announcement);
+          setTimeout(() => document.body.removeChild(announcement), 1000);
+          return;
+        }
+        
+        // Disable submit button and show loading state
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>Sending...';
+        
+        try {
+          const formData = new FormData(this);
+          const data = Object.fromEntries(formData.entries());
+          
+          // Submit to backend API
+          const response = await fetch('/api/contact/form', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          });
+          
+          const result = await response.json();
+          
+          if (response.ok) {
+            // Success feedback
+            submitButton.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Message Sent!';
+            submitButton.classList.add('bg-success-500', 'hover:bg-success-600');
+            
+            // Reset form
+            this.reset();
+            
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'text-success-200 text-center mt-4 p-4 bg-success-500/20 rounded-lg border border-success-400/30';
+            successMessage.textContent = 'Thank you for your message! We\'ll get back to you within 24 hours.';
+            this.appendChild(successMessage);
+            
+            // Screen reader announcement
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.className = 'sr-only';
+            announcement.textContent = 'Message sent successfully. We will respond within 24 hours.';
+            document.body.appendChild(announcement);
+            setTimeout(() => document.body.removeChild(announcement), 1000);
+            
+            // Remove success message after 8 seconds
+            setTimeout(() => {
+              if (successMessage.parentNode) {
+                successMessage.parentNode.removeChild(successMessage);
+              }
+            }, 8000);
+            
+          } else {
+            throw new Error(result.error || 'Message sending failed');
+          }
+        } catch (error) {
+          console.error('Service CTA form submission error:', error);
+          
+          // Show error message
+          const errorMessage = document.createElement('div');
+          errorMessage.className = 'text-error-200 text-center mt-4 p-4 bg-error-500/20 rounded-lg border border-error-400/30';
+          errorMessage.textContent = 'Sorry, there was an error sending your message. Please try again or contact us directly.';
+          this.appendChild(errorMessage);
+          
+          // Screen reader announcement
+          const announcement = document.createElement('div');
+          announcement.setAttribute('aria-live', 'assertive');
+          announcement.setAttribute('aria-atomic', 'true');
+          announcement.className = 'sr-only';
+          announcement.textContent = 'Error sending message. Please try again.';
+          document.body.appendChild(announcement);
+          setTimeout(() => document.body.removeChild(announcement), 1000);
+          
+          // Remove error message after 8 seconds
+          setTimeout(() => {
+            if (errorMessage.parentNode) {
+              errorMessage.parentNode.removeChild(errorMessage);
+            }
+          }, 8000);
+        } finally {
+          // Re-enable submit button after 3 seconds
+          setTimeout(() => {
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalHTML;
+            submitButton.classList.remove('bg-success-500', 'hover:bg-success-600');
+          }, 3000);
+        }
+      });
+    }
+  });
+</script>

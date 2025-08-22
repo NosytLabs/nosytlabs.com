@@ -1,9 +1,9 @@
 /**
  * @fileoverview Animation Components Barrel Export
- * 
+ *
  * Central export point for all animation components to enable clean imports
  * and better organization of animation-related components.
- * 
+ *
  * @module animation-components
  * @version 1.0.0
  * @author NosytLabs Team
@@ -11,7 +11,4 @@
  */
 
 // Animation Components - Astro components can't be exported via TypeScript
-// Import these components directly in your Astro files:
-// import AnimatedSection from './animations/AnimatedSection.astro';
-// import AnimatedText from './animations/AnimatedText.astro';
-// import PageTransition from './animations/PageTransition.astro';
+// Import these components directly in your Astro files when needed

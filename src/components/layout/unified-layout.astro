@@ -1,0 +1,317 @@
+---
+import AstroIcon from '../ui/AstroIcon.astro';
+import { cn } from '../../lib/utils';
+
+// Simplified layout variants aligned with unified design system
+const layoutVariants = cva('relative transition-all duration-300 ease-out', {
+  variants: {
+    type: {
+      container: 'container',
+      section: 'section',
+      grid: 'grid',
+      hero: 'w-full min-h-screen flex items-center justify-center',
+      card: 'card',
+      glass: 'glass rounded-xl',
+      spacer: 'block',
+    },
+    background: {
+      // Unified gradient backgrounds using design system colors
+      primary: 'bg-gradient text-text-on-primary',
+      secondary: 'bg-gradient-to-br from-secondary to-secondary-darker text-text-on-secondary',
+      accent: 'bg-gradient-to-r from-primary to-secondary text-text-on-primary',
+      // Clean backgrounds
+      white: 'bg-background text-text',
+      gray: 'bg-background-muted text-text',
+      muted: 'bg-background-subtle text-text',
+      transparent: 'bg-transparent',
+      none: '',
+    },
+    size: {
+      xs: 'max-w-xs',
+      sm: 'max-w-sm',
+      md: 'max-w-md',
+      lg: 'max-w-lg',
+      xl: 'max-w-xl',
+      '2xl': 'max-w-2xl',
+      '3xl': 'max-w-3xl',
+      '4xl': 'max-w-4xl',
+      '5xl': 'max-w-5xl',
+      '6xl': 'max-w-6xl',
+      '7xl': 'max-w-7xl',
+      full: 'max-w-full',
+    },
+    gap: {
+      none: 'gap-0',
+      sm: 'gap-2',
+      md: 'gap-4',
+      lg: 'gap-6',
+      xl: 'gap-8',
+      '2xl': 'gap-12',
+    },
+    padding: {
+      none: 'p-0',
+      sm: 'p-4',
+      md: 'p-6',
+      lg: 'p-8',
+      xl: 'p-12',
+      '2xl': 'p-16',
+      responsive: 'p-4 sm:p-6 lg:p-8',
+    },
+    margin: {
+      none: 'm-0',
+      sm: 'm-4',
+      md: 'm-6',
+      lg: 'm-8',
+      xl: 'm-12',
+      auto: 'mx-auto',
+    },
+    align: {
+      start: 'items-start',
+      center: 'items-center',
+      end: 'items-end',
+      stretch: 'items-stretch',
+    },
+    justify: {
+      start: 'justify-start',
+      center: 'justify-center',
+      end: 'justify-end',
+      between: 'justify-between',
+      around: 'justify-around',
+    },
+    spacer: {
+      sm: 'h-4',
+      md: 'h-8',
+      lg: 'h-12',
+      xl: 'h-16',
+      '2xl': 'h-24',
+      '3xl': 'h-32',
+    },
+    rounded: {
+      none: 'rounded-none',
+      sm: 'rounded-sm',
+      md: 'rounded-md',
+      lg: 'rounded-lg',
+      xl: 'rounded-xl',
+      '2xl': 'rounded-2xl',
+      full: 'rounded-full',
+    },
+    shadow: {
+      none: 'shadow-none',
+      sm: 'shadow-sm',
+      md: 'shadow-md',
+      lg: 'shadow-lg',
+      xl: 'shadow-xl',
+    },
+    border: {
+      none: 'border-0',
+      default: 'border border-border',
+      primary: 'border border-primary',
+      muted: 'border border-border-muted',
+    },
+    animation: {
+      none: '',
+      'fade-in': 'animate-fade-in',
+      'slide-up': 'animate-slide-up',
+      'slide-down': 'animate-slide-down',
+      'slide-left': 'animate-slide-left',
+      'slide-right': 'animate-slide-right',
+      'zoom-in': 'animate-zoom-in',
+      'zoom-out': 'animate-zoom-out',
+      'bounce-in': 'animate-bounce-in',
+      float: 'animate-float',
+      'pulse-glow': 'animate-pulse-glow',
+      'neural-pulse': 'animate-neural-pulse',
+      'quantum-drift': 'animate-quantum-drift',
+      'ai-shimmer': 'animate-ai-shimmer',
+      holographic: 'animate-holographic',
+    },
+    aiEffects: {
+      none: '',
+      particles: 'ai-particles-bg',
+      neural: 'neural-network-bg',
+      quantum: 'quantum-field-bg',
+      hologram: 'holographic-overlay',
+      matrix: 'matrix-rain-bg',
+    },
+  },
+});
+
+export interface Props extends VariantProps<typeof layoutVariants> {
+  id?: string;
+  fullWidth?: boolean;
+  class?: string;
+  as?: keyof HTMLElementTagNameMap;
+  columns?: {
+    default?: number;
+    sm?: number;
+    md?: number;
+    lg?: number;
+    xl?: number;
+    '2xl'?: number;
+  };
+  // AI Effects
+  aiEffects?: 'none' | 'particles' | 'neural' | 'quantum' | 'hologram' | 'matrix';
+  interactiveHover?: boolean;
+  glowEffect?: boolean;
+  // Accessibility
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-describedby'?: string;
+  role?:
+    | 'main'
+    | 'section'
+    | 'article'
+    | 'aside'
+    | 'nav'
+    | 'header'
+    | 'footer'
+    | 'banner'
+    | 'contentinfo'
+    | 'complementary'
+    | 'navigation'
+    | 'region';
+}
+
+const {
+  type = 'container',
+  size,
+  id,
+  background,
+  spacer,
+  gap,
+  padding,
+  margin,
+  align,
+  justify,
+  rounded,
+  shadow,
+  border,
+  animation,
+  aiEffects = 'none',
+  interactiveHover = false,
+  glowEffect = false,
+  fullWidth = false,
+  class: className,
+  columns,
+  as,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  'aria-describedby': ariaDescribedby,
+  role,
+} = Astro.props;
+
+// Determine the appropriate HTML element
+const ElementTag = as || (type === 'section' ? 'section' : 'div');
+
+// Generate responsive grid columns
+const gridCols = columns
+  ? Object.entries(columns)
+      .map(([bp, cols]) => (bp === 'default' ? `grid-cols-${cols}` : `${bp}:grid-cols-${cols}`))
+      .join(' ')
+  : '';
+
+// Enhanced class composition with AI effects
+const classes = cn(
+  layoutVariants({
+    type,
+    background,
+    size: type === 'container' ? size : null,
+    gap,
+    padding,
+    margin,
+    align,
+    justify,
+    spacer,
+    rounded,
+    shadow,
+    border,
+    animation,
+    aiEffects,
+  }),
+  gridCols,
+  {
+    'interactive-hover': interactiveHover,
+    'glow-effect': glowEffect,
+    'ai-enhanced': aiEffects !== 'none',
+  },
+  className
+);
+
+const shouldUseContainer = type === 'section' && !fullWidth;
+
+// Note: Accessibility attributes are applied directly to the element
+---
+
+{
+  type === 'spacer' ? (
+    <div class={classes} aria-hidden="true" />
+  ) : (
+    <ElementTag
+      id={id}
+      class={classes}
+      role={role as any}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
+      aria-describedby={ariaDescribedby}
+    >
+      {/* AI Background Effects */}
+      {aiEffects === 'particles' && (
+        <div class="ai-particles-container" aria-hidden="true">
+          <div class="ai-particle ai-particle-1" />
+          <div class="ai-particle ai-particle-2" />
+          <div class="ai-particle ai-particle-3" />
+          <div class="ai-particle ai-particle-4" />
+          <div class="ai-particle ai-particle-5" />
+        </div>
+      )}
+
+      {aiEffects === 'neural' && (
+        <div class="neural-network-container" aria-hidden="true">
+          <AstroIcon name="tabler:brain" class="w-80 h-60 md:w-96 md:h-72 opacity-30" />
+        </div>
+      )}
+
+      {aiEffects === 'quantum' && (
+        <div class="quantum-field-container" aria-hidden="true">
+          <div class="quantum-particle quantum-particle-1" />
+          <div class="quantum-particle quantum-particle-2" />
+          <div class="quantum-particle quantum-particle-3" />
+          <div class="quantum-wave quantum-wave-1" />
+          <div class="quantum-wave quantum-wave-2" />
+        </div>
+      )}
+
+      {aiEffects === 'hologram' && (
+        <div class="holographic-overlay" aria-hidden="true">
+          <div class="hologram-line hologram-line-1" />
+          <div class="hologram-line hologram-line-2" />
+          <div class="hologram-line hologram-line-3" />
+          <div class="hologram-glitch" />
+        </div>
+      )}
+
+      {aiEffects === 'matrix' && (
+        <div class="matrix-rain-container" aria-hidden="true">
+          <div class="matrix-column matrix-column-1">01010101</div>
+          <div class="matrix-column matrix-column-2">11001100</div>
+          <div class="matrix-column matrix-column-3">10101010</div>
+          <div class="matrix-column matrix-column-4">01100110</div>
+        </div>
+      )}
+
+      {/* Glow Effect Overlay */}
+      {glowEffect && <div class="glow-overlay" aria-hidden="true" />}
+
+      {/* Content */}
+      {shouldUseContainer ? (
+        <div class="container relative z-10">
+          <slot />
+        </div>
+      ) : (
+        <div class="relative z-10">
+          <slot />
+        </div>
+      )}
+    </ElementTag>
+  )
+}

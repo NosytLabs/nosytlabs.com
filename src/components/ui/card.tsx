@@ -1,30 +1,61 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '../../lib/utils';
 
 const cardVariants = cva(
-  "rounded-xl border shadow-sm transition-all duration-300 ease-out",
+  'rounded-lg border bg-card text-card-foreground shadow-sm transition-all duration-200',
   {
     variants: {
       variant: {
-        default: "bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700",
-        featured: "bg-white dark:bg-neutral-800 border-2 border-primary-500 shadow-lg",
+        default: 'border-border bg-card hover:shadow-md',
+        elevated: 'shadow-lg border-border/50 bg-card hover:shadow-xl',
+        outline: 'border-2 border-border bg-transparent hover:bg-card/50',
+        ghost: 'border-transparent bg-transparent shadow-none hover:bg-card/30',
+        gradient: 'bg-gradient-to-br from-card to-card/80 border-border/50 hover:shadow-lg',
+        glass: 'bg-card/80 backdrop-blur-sm border-border/30 hover:bg-card/90',
+        neural: 'bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 border-purple-200 dark:from-purple-950/50 dark:via-pink-950/50 dark:to-red-950/50 dark:border-purple-800 hover:shadow-lg hover:shadow-purple-500/25',
+        quantum: 'bg-gradient-to-br from-blue-50 via-cyan-50 to-teal-50 border-blue-200 dark:from-blue-950/50 dark:via-cyan-950/50 dark:to-teal-950/50 dark:border-blue-800 hover:shadow-lg hover:shadow-blue-500/25',
+        ai: 'bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-50 border-cyan-200 dark:from-cyan-950/50 dark:via-blue-950/50 dark:to-indigo-950/50 dark:border-cyan-800 hover:shadow-lg hover:shadow-cyan-500/25',
+        neon: 'bg-black border border-cyan-400 shadow-lg shadow-cyan-400/25 hover:shadow-cyan-400/50',
+        frosted: 'bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:bg-white/20',
+        premium: 'bg-gradient-to-br from-amber-50 to-yellow-50 border-amber-200 dark:from-amber-950/50 dark:to-yellow-950/50 dark:border-amber-800 hover:shadow-lg hover:shadow-amber-500/25',
       },
       size: {
-        default: "p-6",
-        sm: "p-4",
-        lg: "p-8",
-        xl: "p-10",
+        xs: 'p-3',
+        sm: 'p-4',
+        default: 'p-6',
+        lg: 'p-8',
+        xl: 'p-10',
+        xxl: 'p-12',
       },
-      hoverable: {
-        true: "nosyt-card-hover cursor-pointer",
-        false: "",
+      interactive: {
+        true: 'cursor-pointer hover:-translate-y-1 active:scale-[0.98]',
+        false: '',
+      },
+      glow: {
+        true: 'shadow-lg hover:shadow-2xl',
+        false: '',
+      },
+      pulse: {
+        true: 'animate-pulse',
+        false: '',
+      },
+      rounded: {
+        none: 'rounded-none',
+        sm: 'rounded-sm',
+        default: 'rounded-lg',
+        lg: 'rounded-xl',
+        xl: 'rounded-2xl',
+        full: 'rounded-full',
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
-      hoverable: false,
+      variant: 'default',
+      size: 'default',
+      interactive: false,
+      glow: false,
+      pulse: false,
+      rounded: 'default',
     },
   }
 );
@@ -32,51 +63,173 @@ const cardVariants = cva(
 export interface CardProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof cardVariants> {
-  asChild?: boolean;
+  // Structured content props
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  actions?: React.ReactNode;
+  metadata?: React.ReactNode;
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+  // Enhanced AI-powered features
+  aiPowered?: boolean;
+  neuralNetwork?: boolean;
+  quantumComputing?: boolean;
+  // Animation controls
+  disableAnimations?: boolean;
+  // Accessibility enhancements
+  ariaLabel?: string;
+  role?: string;
 }
 
-const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, size, hoverable, asChild = false, ...props }, ref) => {
+export const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      interactive,
+      glow,
+      pulse,
+      rounded,
+      title,
+      description,
+      image,
+      imageAlt,
+      actions,
+      metadata,
+      header,
+      footer,
+      aiPowered,
+      neuralNetwork,
+      quantumComputing,
+      disableAnimations,
+      ariaLabel,
+      role,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    // Auto-select AI variants based on props
+    const finalVariant = aiPowered
+      ? "ai"
+      : neuralNetwork
+      ? "neural"
+      : quantumComputing
+      ? "quantum"
+      : variant;
+
+    // Build dynamic classes for animations
+    const animationClasses = [
+      disableAnimations && "transition-none",
+    ].filter(Boolean).join(" ");
+
+    // If structured content is provided, render it
+    if (title || description || image || actions || metadata || header || footer) {
+      return (
+        <div
+          ref={ref}
+          className={`${cardVariants({
+            variant: finalVariant,
+            size,
+            interactive,
+            glow,
+            pulse: pulse && !disableAnimations,
+            rounded,
+          })} ${animationClasses} ${className || ""}`}
+          aria-label={ariaLabel}
+          role={role || (interactive ? "button" : undefined)}
+          {...props}
+        >
+          {header && (
+            <div className="mb-4 border-b border-border/50 pb-4">
+              {header}
+            </div>
+          )}
+          {image && (
+            <div className="mb-4 -mx-6 -mt-6">
+              <img
+                src={image}
+                alt={imageAlt || title || "Card image"}
+                className={`w-full h-48 object-cover ${rounded === 'full' ? 'rounded-full' : rounded === 'xl' ? 'rounded-t-2xl' : rounded === 'lg' ? 'rounded-t-xl' : 'rounded-t-lg'}`}
+              />
+            </div>
+          )}
+          {metadata && (
+            <div className="mb-2 text-sm text-muted-foreground flex items-center gap-2">
+              {metadata}
+            </div>
+          )}
+          {title && (
+            <h3 className="text-lg font-semibold mb-2 text-card-foreground leading-tight">
+              {title}
+            </h3>
+          )}
+          {description && (
+            <p className="text-muted-foreground mb-4 leading-relaxed">{description}</p>
+          )}
+          {children && (
+            <div className="flex-1">{children}</div>
+          )}
+          {actions && (
+            <div className="mt-4 pt-4 border-t border-border/50 flex items-center justify-between gap-2">
+              {actions}
+            </div>
+          )}
+          {footer && (
+            <div className="mt-4 pt-4 border-t border-border/50">
+              {footer}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    // Otherwise, render as a simple container
     return (
       <div
         ref={ref}
-        className={cn(cardVariants({ variant, size, hoverable, className }))}
+        className={`${cardVariants({
+          variant: finalVariant,
+          size,
+          interactive,
+          glow,
+          pulse: pulse && !disableAnimations,
+          rounded,
+        })} ${animationClasses} ${className || ""}`}
+        aria-label={ariaLabel}
+        role={role || (interactive ? "button" : undefined)}
         {...props}
-      />
+      >
+        {children}
+      </div>
     );
   }
 );
+Card.displayName = 'Card';
 
-Card.displayName = "Card";
+const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('flex flex-col space-y-1.5 pb-4', className)} {...props} />
+  )
+);
+CardHeader.displayName = 'CardHeader';
 
-const CardHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
-    {...props}
-  />
-));
-
-CardHeader.displayName = "CardHeader";
-
-const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h3
-    ref={ref}
-    className={cn(
-      "text-2xl font-semibold leading-none tracking-tight text-neutral-900 dark:text-neutral-100",
-      className
-    )}
-    {...props}
-  />
-));
-
-CardTitle.displayName = "CardTitle";
+const CardTitle = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) => (
+    <h3
+      ref={ref}
+      className={cn(
+        'text-xl font-semibold leading-none tracking-tight text-text',
+        className
+      )}
+      {...props}
+    />
+  )
+);
+CardTitle.displayName = 'CardTitle';
 
 const CardDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -84,107 +237,22 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-neutral-600 dark:text-neutral-300", className)}
+    className={cn('text-sm text-text-muted leading-relaxed', className)}
     {...props}
   />
 ));
+CardDescription.displayName = 'CardDescription';
 
-CardDescription.displayName = "CardDescription";
+const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => <div ref={ref} className={cn('pt-0', className)} {...props} />
+);
+CardContent.displayName = 'CardContent';
 
-const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
-));
+const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('flex items-center pt-4', className)} {...props} />
+  )
+);
+CardFooter.displayName = 'CardFooter';
 
-CardContent.displayName = "CardContent";
-
-const CardFooter = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex items-center p-6 pt-0", className)}
-    {...props}
-  />
-));
-
-CardFooter.displayName = "CardFooter";
-
-// Enhanced card components for specific use cases
-const CardImage = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
-    src: string;
-    alt: string;
-    aspectRatio?: "square" | "video" | "portrait" | "auto";
-  }
->(({ className, src, alt, aspectRatio = "auto", ...props }, ref) => {
-  const aspectClasses = {
-    square: "aspect-square",
-    video: "aspect-video",
-    portrait: "aspect-[3/4]",
-    auto: ""
-  };
-
-  return (
-    <div
-      ref={ref}
-      className={cn("overflow-hidden", aspectClasses[aspectRatio], className)}
-      {...props}
-    >
-      <img
-        src={src}
-        alt={alt}
-        className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-        loading="lazy"
-      />
-    </div>
-  );
-});
-
-CardImage.displayName = "CardImage";
-
-const CardBadge = React.forwardRef<
-  HTMLSpanElement,
-  React.HTMLAttributes<HTMLSpanElement> & {
-    variant?: "default" | "primary" | "secondary" | "success" | "warning" | "danger" | "info";
-  }
->(({ className, variant = "default", ...props }, ref) => {
-  const badgeVariants = {
-    default: "bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200",
-    primary: "bg-primary-100 text-primary-800 dark:bg-primary-800 dark:text-primary-200",
-    secondary: "bg-secondary-100 text-secondary-800 dark:bg-secondary-800 dark:text-secondary-200",
-    success: "bg-success-100 text-success-800 dark:bg-success-800 dark:text-success-200",
-    warning: "bg-warning-100 text-warning-800 dark:bg-warning-800 dark:text-warning-200",
-    danger: "bg-danger-100 text-danger-800 dark:bg-danger-800 dark:text-danger-200",
-    info: "bg-info-100 text-info-800 dark:bg-info-800 dark:text-info-200"
-  };
-
-  return (
-    <span
-      ref={ref}
-      className={cn(
-        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors",
-        badgeVariants[variant],
-        className
-      )}
-      {...props}
-    />
-  );
-});
-
-CardBadge.displayName = "CardBadge";
-
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardImage,
-  CardBadge
-};
+export { CardHeader, CardFooter, CardTitle, CardDescription, CardContent, cardVariants };

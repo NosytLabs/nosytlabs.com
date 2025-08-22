@@ -1,0 +1,31 @@
+---
+export interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'full' | 'icon';
+  className?: string;
+}
+
+const { size = 'md', variant = 'full', className = '' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'h-8',
+  md: 'h-10',
+  lg: 'h-12',
+};
+
+const logoClasses = [
+  'flex items-center font-bold text-primary',
+  sizeClasses[size],
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<div class={logoClasses}>
+  {variant === 'full' ? (
+    <span class="text-2xl">NosytLabs</span>
+  ) : (
+    <span class="text-2xl">N</span>
+  )}
+</div>

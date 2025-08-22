@@ -1,0 +1,23 @@
+.text-shadow-subtle {
+  text-shadow: 0 1px 2px var(--shadow-color, rgb(0 0 0 / 10%));
+}
+
+.text-shadow-default {
+  text-shadow: 0 2px 4px var(--shadow-color, rgb(0 0 0 / 20%));
+}
+
+.text-shadow-medium {
+  text-shadow: 0 2px 8px var(--shadow-color, rgb(0 0 0 / 30%));
+}
+
+.text-shadow-strong {
+  text-shadow: 0 4px 12px var(--shadow-color, rgb(0 0 0 / 40%));
+}
+
+.text-shadow-hero-primary {
+  text-shadow: 0 2px 8px var(--shadow-color, rgb(0 0 0 / 90%)), 0 4px 16px var(--shadow-color, rgb(0 0 0 / 60%)), 0 1px 2px var(--shadow-color, rgb(0 0 0 / 100%));
+}
+
+.text-shadow-hero-secondary {
+  text-shadow: 0 2px 6px var(--shadow-color, rgb(0 0 0 / 80%)), 0 1px 2px var(--shadow-color, rgb(0 0 0 / 100%));
+}

@@ -1,43 +1,16 @@
-// Export all UI components from a centralized location
-// This provides a clean API for importing standardized components
+// UI Components
+export { Button, buttonVariants, type ButtonProps } from './button';
+export { Card, cardVariants, type CardProps } from './card';
+export { Typography, typographyVariants, type TypographyProps } from './typography';
+export { Input, inputVariants, type InputProps } from './input';
+export { Textarea, textareaVariants, type TextareaProps } from './textarea';
+export { Badge, badgeVariants, type BadgeProps } from './badge';
+export { LoadingFallback, loadingVariants, type LoadingFallbackProps } from './loading-fallback';
 
-// Button components
-export {
-  Button,
-  buttonVariants,
-  type ButtonProps,
-  // NosytLabs specific variants
-  NosytButton,
-  NosytSecondaryButton,
-  NosytOutlineButton,
-  ShinyButton,
-  ShimmerButton,
-  // Legacy compatibility exports
-  PrimaryButton,
-  SecondaryButton,
-  OutlineButton,
-} from "./button";
+// Section Components
+export * from '../sections';
 
-// Form components
-export {
-  Input,
-  inputVariants,
-  type InputProps,
-} from "./input";
-
-export {
-  Textarea,
-  textareaVariants,
-  type TextareaProps,
-} from "./textarea";
-
-// Layout components
-export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  type CardProps,
-} from "./card";
+// Re-export common types for convenience
+export type {
+  VariantProps
+} from 'class-variance-authority';

@@ -1,6 +1,8 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -33,53 +35,30 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@/lib/*": [
-        "src/lib/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@layouts/*": [
-        "src/layouts/*"
-      ],
-      "@pages/*": [
-        "src/pages/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ],
-      "@types/*": [
-        "src/types/*"
-      ],
-      "@config/*": [
-        "src/config/*"
-      ]
-    },
+    "types": [
+      "node",
+      "express"
+    ],
     "typeRoots": [
-      "./node_modules/@types",
-      "./src/types"
-    ]
+      "./node_modules/@types"
+    ],
+    "maxNodeModuleJsDepth": 0
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.astro",
-    "tests/**/*.ts",
-    "tests/**/*.tsx",
-    "astro.config.mjs",
-    "vitest.config.ts"
+    "api/**/*.ts",
+    "__tests__/**/*.ts",
+    "astro.config.mjs"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "**/*.min.js",
-    "public/**/*"
+    "public/**/*",
+    "types/**",
+    "**/node_modules/@types/react-native/**",
+    "**/node_modules/react-native/**"
   ]
 }

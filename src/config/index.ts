@@ -17,10 +17,11 @@ export {
   TIMING,
   PATHS,
   FEATURES,
+  TWITTER_USER_NAME,
   type CompanyInfo,
   type ContactInfo,
   type ColorPalette,
   type TimingConfig,
   type AnimationType,
-  type CacheStrategy
+  type CacheStrategy,
 } from './constants';

@@ -1,0 +1,363 @@
+---
+/**
+ * Enhanced Hero Background with Modern Visual Effects
+ * Features: Dynamic gradients, mesh patterns, and interactive elements
+ */
+
+export interface Props {
+  variant?: 'gradient' | 'mesh' | 'particles' | 'neural' | 'quantum';
+  intensity?: 'subtle' | 'medium' | 'intense';
+  animated?: boolean;
+  interactive?: boolean;
+}
+
+const {
+  variant = 'gradient',
+  intensity = 'medium',
+  animated = true,
+  interactive = true,
+} = Astro.props;
+
+const intensityClasses = {
+  subtle: 'opacity-30',
+  medium: 'opacity-50',
+  intense: 'opacity-70',
+};
+---
+
+<div class="absolute inset-0 overflow-hidden">
+  <!-- Base Gradient Background -->
+  <div class={`absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90 ${intensityClasses[intensity]}`}></div>
+
+  <!-- Dynamic Gradient Overlays -->
+  {variant === 'gradient' && (
+    <>
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-secondary/20 animate-gradient-shift"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-accent/10 via-transparent to-primary/10 animate-gradient-shift-reverse"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-transparent via-primary/5 to-secondary/15 animate-pulse-slow"></div>
+    </>
+  )}
+
+  <!-- Mesh Pattern Background -->
+  {variant === 'mesh' && (
+    <>
+      <div class="absolute inset-0 opacity-20">
+        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <pattern id="mesh-pattern" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+              <circle cx="5" cy="5" r="1" fill="currentColor" class="text-primary animate-pulse" />
+            </pattern>
+            <linearGradient id="mesh-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0.1" />
+              <stop offset="50%" stop-color="var(--color-secondary)" stop-opacity="0.05" />
+              <stop offset="100%" stop-color="var(--color-accent-500)" stop-opacity="0.1" />
+            </linearGradient>
+          </defs>
+          <rect width="100" height="100" fill="url(#mesh-pattern)" />
+          <rect width="100" height="100" fill="url(#mesh-gradient)" />
+        </svg>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 animate-gradient-shift"></div>
+    </>
+  )}
+
+  <!-- Particle Field Background -->
+  {variant === 'particles' && (
+    <>
+      <div class="absolute inset-0 overflow-hidden">
+        <!-- Floating Particles -->
+        <div class="particle-field">
+          {Array.from({ length: 50 }, (_, i) => (
+            <div
+              key={i}
+              class="absolute w-1 h-1 bg-primary rounded-full animate-float-particle"
+              style={`
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+                animation-delay: ${Math.random() * 10}s;
+                animation-duration: ${8 + Math.random() * 4}s;
+              `}
+            ></div>
+          ))}
+        </div>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+    </>
+  )}
+
+  <!-- Neural Network Background -->
+  {variant === 'neural' && (
+    <>
+      <div class="absolute inset-0 overflow-hidden">
+        <svg class="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="neural-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0.3" />
+              <stop offset="50%" stop-color="var(--color-secondary)" stop-opacity="0.1" />
+              <stop offset="100%" stop-color="var(--color-accent-500)" stop-opacity="0.3" />
+            </linearGradient>
+          </defs>
+          
+          <!-- Neural Network Connections -->
+          <g class="neural-connections" stroke="url(#neural-gradient)" stroke-width="1" fill="none">
+            <path d="M100,200 Q300,100 500,200 T900,200" class="animate-draw-line" />
+            <path d="M150,400 Q350,300 550,400 T850,400" class="animate-draw-line" style="animation-delay: 1s;" />
+            <path d="M200,600 Q400,500 600,600 T800,600" class="animate-draw-line" style="animation-delay: 2s;" />
+            <path d="M100,200 L150,400 L200,600" class="animate-draw-line" style="animation-delay: 0.5s;" />
+            <path d="M500,200 L550,400 L600,600" class="animate-draw-line" style="animation-delay: 1.5s;" />
+            <path d="M900,200 L850,400 L800,600" class="animate-draw-line" style="animation-delay: 2.5s;" />
+          </g>
+          
+          <!-- Neural Nodes -->
+          <g class="neural-nodes">
+            <circle cx="100" cy="200" r="4" fill="var(--color-primary)" class="animate-pulse-node" />
+            <circle cx="500" cy="200" r="4" fill="var(--color-secondary)" class="animate-pulse-node" style="animation-delay: 1s;" />
+            <circle cx="900" cy="200" r="4" fill="var(--color-accent-500)" class="animate-pulse-node" style="animation-delay: 2s;" />
+            <circle cx="150" cy="400" r="4" fill="var(--color-primary)" class="animate-pulse-node" style="animation-delay: 0.5s;" />
+            <circle cx="550" cy="400" r="4" fill="var(--color-secondary)" class="animate-pulse-node" style="animation-delay: 1.5s;" />
+            <circle cx="850" cy="400" r="4" fill="var(--color-accent-500)" class="animate-pulse-node" style="animation-delay: 2.5s;" />
+            <circle cx="200" cy="600" r="4" fill="var(--color-primary)" class="animate-pulse-node" style="animation-delay: 3s;" />
+            <circle cx="600" cy="600" r="4" fill="var(--color-secondary)" class="animate-pulse-node" style="animation-delay: 3.5s;" />
+            <circle cx="800" cy="600" r="4" fill="var(--color-accent-500)" class="animate-pulse-node" style="animation-delay: 4s;" />
+          </g>
+        </svg>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
+    </>
+  )}
+
+  <!-- Quantum Field Background -->
+  {variant === 'quantum' && (
+    <>
+      <div class="absolute inset-0 overflow-hidden">
+        <!-- Quantum Waves -->
+        <div class="quantum-field">
+          <div class="quantum-wave quantum-wave-1"></div>
+          <div class="quantum-wave quantum-wave-2"></div>
+          <div class="quantum-wave quantum-wave-3"></div>
+        </div>
+        
+        <!-- Quantum Particles -->
+        <div class="quantum-particles">
+          {Array.from({ length: 30 }, (_, i) => (
+            <div
+              key={i}
+              class="absolute w-2 h-2 bg-primary/50 rounded-full animate-quantum-float"
+              style={`
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+                animation-delay: ${Math.random() * 8}s;
+                animation-duration: ${6 + Math.random() * 4}s;
+              `}
+            ></div>
+          ))}
+        </div>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-br from-primary/8 via-secondary/4 to-accent/8"></div>
+    </>
+  )}
+
+  <!-- Interactive Mouse Tracking Effect -->
+  {interactive && (
+    <div id="mouse-tracker" class="absolute inset-0 pointer-events-none">
+      <div class="absolute w-96 h-96 bg-primary/5 rounded-full blur-3xl transition-all duration-1000 ease-out" id="mouse-glow"></div>
+    </div>
+  )}
+
+  <!-- Noise Texture Overlay -->
+  <div class="absolute inset-0 opacity-[0.02] mix-blend-overlay">
+    <svg class="w-full h-full" viewBox="0 0 200 200">
+      <filter id="noise">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
+      </filter>
+      <rect width="100%" height="100%" filter="url(#noise)" />
+    </svg>
+  </div>
+</div>
+
+<!-- Enhanced Styles -->
+<style>
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes gradient-shift-reverse {
+    0%, 100% {
+      background-position: 100% 50%;
+    }
+    50% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes float-particle {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px) scale(1);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px) scale(1.2);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(-40px) translateX(-5px) scale(0.8);
+      opacity: 0.5;
+    }
+    75% {
+      transform: translateY(-20px) translateX(-10px) scale(1.1);
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes draw-line {
+    0% {
+      stroke-dasharray: 0 1000;
+    }
+    100% {
+      stroke-dasharray: 1000 0;
+    }
+  }
+
+  @keyframes pulse-node {
+    0%, 100% {
+      r: 4;
+      opacity: 0.6;
+    }
+    50% {
+      r: 6;
+      opacity: 1;
+    }
+  }
+
+  @keyframes quantum-float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px) rotate(0deg);
+      opacity: 0.4;
+    }
+    33% {
+      transform: translateY(-30px) translateX(20px) rotate(120deg);
+      opacity: 0.8;
+    }
+    66% {
+      transform: translateY(-15px) translateX(-15px) rotate(240deg);
+      opacity: 0.6;
+    }
+  }
+
+  @keyframes quantum-wave {
+    0%, 100% {
+      transform: translateX(-100%) scaleY(1);
+    }
+    50% {
+      transform: translateX(100%) scaleY(1.5);
+    }
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .animate-gradient-shift-reverse {
+    background-size: 200% 200%;
+    animation: gradient-shift-reverse 10s ease infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  .animate-float-particle {
+    animation: float-particle 8s ease-in-out infinite;
+  }
+
+  .animate-draw-line {
+    animation: draw-line 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-node {
+    animation: pulse-node 2s ease-in-out infinite;
+  }
+
+  .animate-quantum-float {
+    animation: quantum-float 6s ease-in-out infinite;
+  }
+
+  .quantum-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    opacity: 0.1;
+    animation: quantum-wave 12s linear infinite;
+  }
+
+  .quantum-wave-1 {
+    animation-delay: 0s;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  }
+
+  .quantum-wave-2 {
+    animation-delay: 4s;
+    background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+  }
+
+  .quantum-wave-3 {
+    animation-delay: 8s;
+    background: linear-gradient(90deg, transparent, var(--color-accent-500), transparent);
+  }
+</style>
+
+<!-- Interactive JavaScript -->
+<script>
+  // Mouse tracking effect
+  function initMouseTracking() {
+    const mouseGlow = document.getElementById('mouse-glow');
+    if (!mouseGlow) return;
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = document.getElementById('hero')?.getBoundingClientRect();
+      if (!rect) return;
+
+      targetX = e.clientX - rect.left;
+      targetY = e.clientY - rect.top;
+    };
+
+    const animateGlow = () => {
+      mouseX += (targetX - mouseX) * 0.1;
+      mouseY += (targetY - mouseY) * 0.1;
+
+      mouseGlow.style.transform = `translate(${mouseX - 192}px, ${mouseY - 192}px)`;
+      requestAnimationFrame(animateGlow);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    animateGlow();
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    initMouseTracking();
+  });
+</script>

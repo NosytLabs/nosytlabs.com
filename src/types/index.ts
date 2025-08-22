@@ -1,29 +1,90 @@
 /**
- * @fileoverview Consolidated Types Barrel Export
+ * @fileoverview Enhanced Types with Content Collection Integration
  *
  * Central export point for all TypeScript type definitions,
  * ensuring a single source of truth and improved maintainability.
+ * Now includes types inferred from Zod content collection schemas.
  *
  * @module types
- * @version 2.0.0
+ * @version 3.0.0
  * @author NosytLabs Team
- * @since 2025-06-16
+ * @since 2025-07-13
  */
 
+
+
+// Direct project data type definition (simplified)
+export type ProjectData = {
+  title: string;
+  description: string;
+  excerpt: string;
+  slug?: string;
+  category: string;
+  status: string;
+  featured: boolean;
+  publishedAt: Date;
+  lastModified: Date;
+  draft: boolean;
+};
+
+// Blog post type - will be added when blog collection is implemented
+export interface BlogPost {
+  title: string;
+  description: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  publishDate: Date;
+  tags: string[];
+  featured?: boolean;
+  slug: string;
+  readingTime?: string;
+  featuredImage?: string;
+}
 
 // Global types for the project
 declare global {
   // Window extensions for NosytLabs utilities
   interface Window {
-    NosytUtils?: any;
-    NosytLabs?: any;
+    NosytUtils?: {
+      dom: {
+        queryAll: (selector: string) => HTMLElement[];
+        query: (selector: string) => HTMLElement | null;
+      };
+      events: {
+        on: (element: HTMLElement, event: string, callback: (e: Event) => void) => void;
+        off: (element: HTMLElement, event: string, callback: (e: Event) => void) => void;
+      };
+    };
+    NosytLabs?: {
+      config: {
+        features: {
+          darkMode: boolean;
+          animations: boolean;
+          lazyLoading: boolean;
+          serviceWorker: boolean;
+        };
+      };
+      init: () => void;
+      initTheme: () => void;
+      initCore: () => void;
+    };
     announceToScreenReader?: (message: string) => void;
-    formValidation?: any; // For EnhancedFormValidation
-    enhancedEffects?: any; // For EnhancedEffects
-    blogSystem?: any; // For BlogSystem
+    formValidation?: {
+      validate: (form: HTMLFormElement) => boolean;
+      addValidator: (name: string, fn: (value: string) => boolean) => void;
+    }; // For EnhancedFormValidation
+    enhancedEffects?: {
+      init: () => void;
+      destroy: () => void;
+    }; // For EnhancedEffects
+    blogSystem?: {
+      init: () => void;
+      loadPosts: () => Promise<unknown[]>;
+    }; // For BlogSystem
     testSentryError?: () => void; // For Sentry test button
   }
-  
+
   // Environment variables
   namespace NodeJS {
     interface ProcessEnv {
@@ -38,12 +99,188 @@ declare global {
   }
 }
 
+// ========== ENHANCED PROJECT TYPES ==========
+
+/**
+ * Enhanced project type with all content collection data
+ * Inferred directly from the Zod schema for type safety
+ */
+export type Project = ProjectData;
+
+/**
+ * Project category enumeration (matching content collection schema)
+ */
+export type ProjectCategory =
+  | 'web-development'
+  | 'ai-integration'
+  | 'consulting'
+  | 'mobile-development'
+  | 'automation';
+
+/**
+ * Project status enumeration (matching content collection schema)
+ */
+export type ProjectStatus = 'completed' | 'in-progress' | 'featured' | 'archived';
+
+/**
+ * Company size enumeration for client information
+ */
+export type CompanySize = 'startup' | 'small-business' | 'mid-market' | 'enterprise';
+
+/**
+ * Budget range enumeration for project scope
+ */
+export type BudgetRange = 'under-10k' | '10k-25k' | '25k-50k' | '50k-100k' | 'over-100k';
+
+/**
+ * Phase status for project timeline
+ */
+export type PhaseStatus = 'completed' | 'in-progress' | 'planned';
+
+/**
+ * Media type enumeration for project gallery
+ */
+export type MediaType = 'screenshot' | 'mockup' | 'diagram' | 'result';
+
+/**
+ * Video type enumeration for project videos
+ */
+export type VideoType = 'demo' | 'testimonial' | 'presentation' | 'tutorial';
+
+/**
+ * Download type enumeration for project resources
+ */
+export type DownloadType = 'case-study-pdf' | 'technical-report' | 'presentation' | 'mockups';
+
+/**
+ * Client information extracted from project data
+ */
+export interface ProjectClient {
+  name: string;
+  industry: string;
+  companySize: CompanySize;
+  website?: string;
+  testimonial?: {
+    quote: string;
+    author: string;
+    role: string;
+    avatar?: string;
+    featured: boolean;
+  };
+}
+
+/**
+ * Project timeline information
+ */
+export interface ProjectTimeline {
+  startDate: Date;
+  endDate?: Date;
+  duration: string;
+  phases?: Array<{
+    name: string;
+    description: string;
+    startDate: Date;
+    endDate?: Date;
+    status: PhaseStatus;
+  }>;
+}
+
+/**
+ * Project scope information
+ */
+export interface ProjectScope {
+  budgetRange: BudgetRange;
+  teamSize: number;
+  technologies: string[];
+  services: string[];
+}
+
+/**
+ * Project challenge and solution pair
+ */
+export interface ProjectChallenge {
+  challenge: string;
+  solution: string;
+  impact: string;
+}
+
+/**
+ * Project metric for results
+ */
+export interface ProjectMetric {
+  label: string;
+  value: string;
+  improvement?: string;
+  icon?: string;
+}
+
+/**
+ * Project results with comprehensive metrics
+ */
+export interface ProjectResults {
+  metrics: ProjectMetric[];
+  roi?: string;
+  userEngagement?: {
+    before?: string;
+    after?: string;
+    improvement?: string;
+  };
+  performanceMetrics?: {
+    pageLoadTime?: string;
+    seoImprovement?: string;
+    conversionRate?: string;
+  };
+}
+
+/**
+ * Project media assets
+ */
+export interface ProjectMedia {
+  heroImage: string;
+  gallery?: Array<{
+    src: string;
+    alt: string;
+    caption?: string;
+    type: MediaType;
+  }>;
+  videos?: Array<{
+    src: string;
+    title: string;
+    description: string;
+    thumbnail?: string;
+    type: VideoType;
+  }>;
+  beforeAfter?: Array<{
+    before: string;
+    after: string;
+    description: string;
+  }>;
+  downloads?: Array<{
+    title: string;
+    description: string;
+    url: string;
+    type: DownloadType;
+  }>;
+}
+
+/**
+ * Project technical details
+ */
+export interface ProjectTechnical {
+  architecture?: string;
+  deployment?: string;
+  apis?: string[];
+  database?: string;
+  hosting?: string;
+  codeRepository?: string;
+}
+
 // ========== COMMON TYPE DEFINITIONS ==========
 
 /**
  * Standard API response structure
  */
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;
@@ -103,14 +340,16 @@ export interface ComponentState {
 /**
  * Responsive value type for layout properties
  */
-export type ResponsiveValue<T> = T | {
-  default?: T;
-  sm?: T;
-  md?: T;
-  lg?: T;
-  xl?: T;
-  '2xl'?: T;
-};
+export type ResponsiveValue<T> =
+  | T
+  | {
+      default?: T;
+      sm?: T;
+      md?: T;
+      lg?: T;
+      xl?: T;
+      '2xl'?: T;
+    };
 
 /**
  * Animation configuration type
@@ -156,38 +395,6 @@ export interface NavigationItem {
 }
 
 /**
- * Project data structure
- */
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image?: string;
-  technologies: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  featured?: boolean;
-  category?: string;
-  status: 'completed' | 'in-progress' | 'planned';
-}
-
-/**
- * Blog post data structure
- */
-export interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  publishedAt: Date;
-  updatedAt?: Date;
-  author: string;
-  tags: string[];
-  featured?: boolean;
-  image?: string;
-}
-
-/**
  * User data structure
  */
 export interface User {
@@ -215,7 +422,17 @@ export interface UserPreferences {
 export interface FormField {
   name: string;
   label: string;
-  type: 'text' | 'email' | 'password' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'tel' | 'url' | 'file'; // Added tel, url, file
+  type:
+    | 'text'
+    | 'email'
+    | 'password'
+    | 'textarea'
+    | 'select'
+    | 'checkbox'
+    | 'radio'
+    | 'tel'
+    | 'url'
+    | 'file'; // Added tel, url, file
   required?: boolean;
   placeholder?: string;
   options?: Array<{ label: string; value: string }>;
@@ -225,7 +442,7 @@ export interface FormField {
     maxLength?: number;
     min?: number;
     max?: number;
-    custom?: (value: any) => string | null; // Added custom validation
+    custom?: (value: unknown) => string | null; // Added custom validation
   };
   helpText?: string; // Added helpText
   icon?: string; // Added icon
@@ -287,17 +504,65 @@ export interface FormProps extends EnhancedBaseProps {
 }
 
 /**
- * Props for card components
+ * Enhanced props for card components with rich project support
  */
 export interface CardProps extends EnhancedBaseProps {
   title?: string;
   description?: string;
-  image?: {
-    src: string;
-    alt: string;
-    width?: number;
-    height?: number;
+  excerpt?: string;
+  image?:
+    | {
+        src: string;
+        alt: string;
+        width?: number;
+        height?: number;
+      }
+    | string; // Support both object and string formats for backward compatibility
+
+  // Enhanced media support
+  media?: {
+    heroImage?: string;
+    gallery?: Array<{
+      src: string;
+      alt: string;
+      caption?: string;
+      type?: MediaType;
+    }>;
+    videos?: Array<{
+      src: string;
+      title: string;
+      description: string;
+      thumbnail?: string;
+      type?: VideoType;
+    }>;
   };
+
+  // Client information for project cards
+  client?: {
+    name: string;
+    industry: string;
+    testimonial?: {
+      quote: string;
+      author: string;
+      role: string;
+      avatar?: string;
+    };
+  };
+
+  // Project-specific data
+  technologies?: string[];
+  category?: string | ProjectCategory;
+  status?: ProjectStatus;
+
+  // Metrics and results
+  metrics?: Array<{
+    label: string;
+    value: string;
+    improvement?: string;
+    icon?: string;
+  }>;
+
+  // Enhanced actions
   actions?: Array<{
     text: string;
     href?: string;
@@ -305,8 +570,43 @@ export interface CardProps extends EnhancedBaseProps {
     variant?: 'primary' | 'secondary' | 'outline';
     icon?: string;
   }>;
+
+  // Timeline and scope information
+  timeline?: {
+    duration?: string;
+    startDate?: Date;
+    endDate?: Date;
+  };
+
+  scope?: {
+    budgetRange?: BudgetRange;
+    teamSize?: number;
+    services?: string[];
+  };
+
+  // Enhanced styling options
   hoverable?: boolean;
-  theme?: 'default' | 'glass' | 'dark' | 'gradient';
+  theme?: 'default' | 'glass' | 'dark' | 'gradient' | 'project' | 'blog' | 'service';
+  contentType?: 'default' | 'project' | 'blog' | 'service' | 'feature' | 'info';
+
+  // Blog-specific props
+  author?: string;
+  publishDate?: Date;
+  readingTime?: string;
+  tags?: string[];
+
+  // Service-specific props
+  pricing?: {
+    startingPrice?: number;
+    priceLabel?: string;
+    currency?: 'USD' | 'EUR' | 'GBP';
+  };
+
+  // Feature flags
+  featured?: boolean;
+  showMetrics?: boolean;
+  showTimeline?: boolean;
+  showTechnologies?: boolean;
 }
 
 /**
@@ -367,7 +667,16 @@ export interface HeroProps extends EnhancedBaseProps {
  * Props for animated components
  */
 export interface AnimationProps extends BaseComponentProps {
-  animation?: 'fade-in' | 'slide-up' | 'slide-down' | 'slide-left' | 'slide-right' | 'zoom-in' | 'zoom-out' | 'bounce' | 'spin';
+  animation?:
+    | 'fade-in'
+    | 'slide-up'
+    | 'slide-down'
+    | 'slide-left'
+    | 'slide-right'
+    | 'zoom-in'
+    | 'zoom-out'
+    | 'bounce'
+    | 'spin';
   delay?: number;
   duration?: number;
   threshold?: number;
@@ -409,8 +718,8 @@ export interface ErrorState {
  * Error handling configuration
  */
 export interface ErrorHandlingConfig {
-  fallback?: any; // ComponentType<{ error: Error; retry: () => void }>;
-  onError?: (error: Error, errorInfo: any) => void;
+  fallback?: React.ComponentType<{ error: Error; retry: () => void }>;
+  onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
   reportErrors?: boolean;
   retryable?: boolean;
 }
@@ -445,7 +754,7 @@ export interface KeyboardNavigationProps {
 export interface FormSubmission {
   id: string;
   formType: string;
-  data: Record<string, any>;
+  data: Record<string, string | number | boolean | null | undefined>;
   metadata: {
     submittedAt: Date;
     userAgent?: string;
@@ -501,19 +810,30 @@ export type ServiceCategory =
   | 'maintenance';
 
 /**
- * Project status types
- */
-export type ProjectStatus =
-  | 'planning'
-  | 'in-progress'
-  | 'review'
-  | 'completed'
-  | 'on-hold';
-
-/**
  * Priority levels
  */
 export type Priority = 'low' | 'medium' | 'high' | 'urgent';
+
+/**
+ * Outdated package information
+ */
+export interface OutdatedPackage {
+  name: string;
+  current: string;
+  wanted: string;
+  latest: string;
+}
+
+/**
+ * CLI options for dependency analyzer
+ */
+export interface CliOptions {
+  verbose?: boolean;
+  security?: boolean;
+  unused?: boolean;
+  format?: 'json' | 'table' | 'summary';
+  output?: string;
+}
 
 /**
  * Service item with enhanced type safety
@@ -549,7 +869,7 @@ export interface ServiceItem {
     external?: boolean;
   };
   visual: {
-    icon: any; // ComponentType<{ className?: string }>;
+    icon: React.ComponentType<{ className?: string }>;
     backgroundGradient?: string;
     primaryColor?: string;
     image?: string;
@@ -599,8 +919,130 @@ export interface GridConfig {
  * Component composition props
  */
 export interface ComposableProps extends EnhancedBaseProps {
-  children?: any; // ReactNode;
-  as?: any; // keyof JSX.IntrinsicElements | ComponentType<any>;
+  children?: React.ReactNode;
+  as?: keyof JSX.IntrinsicElements | React.ComponentType<Record<string, unknown>>;
   animate?: AnimationConfig;
   grid?: GridConfig;
 }
+
+// ========== UTILITY TYPES FOR CONTENT COLLECTIONS ==========
+
+/**
+ * Helper type to extract specific fields from Project type
+ */
+export type ProjectSummary = {
+  title: string;
+  description: string;
+  excerpt: string;
+  category: ProjectCategory;
+  status: ProjectStatus;
+  featured: boolean;
+};
+
+/**
+ * Helper type for project card display
+ */
+export type ProjectCardData = ProjectSummary & {
+  slug: string;
+  media: {
+    heroImage: string;
+  };
+  scope: {
+    technologies: string[];
+  };
+  client: {
+    name: string;
+    industry: string;
+  };
+  results?: {
+    metrics: Array<{
+      label: string;
+      value: string;
+      improvement?: string;
+    }>;
+  };
+};
+
+/**
+ * Helper type for blog post card display
+ */
+export type BlogCardData = Pick<
+  BlogPost,
+  'title' | 'description' | 'excerpt' | 'author' | 'tags' | 'featured'
+> & {
+  slug: string;
+  publishDate: Date;
+  readingTime: string;
+  featuredImage?: string;
+};
+
+/**
+ * Collection entry type for Astro content collections
+ */
+export interface CollectionEntry<T> {
+  id: string;
+  slug: string;
+  body: string;
+  collection: string;
+  data: T;
+  render: () => Promise<{
+    Content: React.ComponentType;
+    headings: Array<{
+      depth: number;
+      slug: string;
+      text: string;
+    }>;
+    remarkPluginFrontmatter: Record<string, unknown>;
+  }>;
+}
+
+/**
+ * Type for project collection entries
+ */
+export type ProjectEntry = CollectionEntry<Project>;
+
+/**
+ * Type for blog collection entries
+ */
+export type BlogEntry = CollectionEntry<BlogPost>;
+
+// ========== TYPE GUARDS ==========
+
+/**
+ * Type guard to check if a project has enhanced data
+ */
+export function isEnhancedProject(project: unknown): project is Project {
+  return (
+    project !== null &&
+    typeof project === 'object' &&
+    'client' in project &&
+    'scope' in project &&
+    'results' in project &&
+    typeof (project as any).client === 'object' &&
+    typeof (project as any).scope === 'object' &&
+    typeof (project as any).results === 'object'
+  );
+}
+
+// ========== EXPORT CONVENIENCE TYPES ==========
+
+/**
+ * Re-export key types for easier imports
+ */
+export type { ProjectData as EnhancedProject, BlogPost as EnhancedBlogPost };
+
+/**
+ * Breaking changes documentation:
+ *
+ * v3.0.0 Changes:
+ * - Project interface now inferred from Zod schema (breaking change)
+ * - ProjectStatus values changed from legacy to: 'completed' | 'in-progress' | 'featured' | 'archived'
+ * - CardProps enhanced with comprehensive project, blog, and service support
+ * - Added new utility types: ProjectCardData, BlogCardData, CollectionEntry
+ * - Legacy interfaces marked as deprecated but maintained for backward compatibility
+ *
+ * Migration Guide:
+ * - Replace 'Project' imports with 'LegacyProject' if using old format
+ * - Update ProjectStatus usage to new enum values
+ * - Consider migrating to enhanced project schema for full feature support
+ */

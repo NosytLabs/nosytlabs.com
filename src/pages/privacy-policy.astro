@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/base-layout.astro';
+const title = 'Privacy Policy - NosytLabs';
+const description = 'How NosytLabs collects, uses, and protects your information.';
+---
+
+<BaseLayout title={title} description={description} pageKey="privacy" type="website">
+  <section class="section-xl container prose prose-invert max-w-3xl">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: {new Date().toISOString().slice(0,10)}</p>
+
+    <h2>Overview</h2>
+    <p>We value your privacy. This policy explains what data we collect, how we use it, and your rights.</p>
+
+    <h2>Information We Collect</h2>
+    <ul>
+      <li>Contact information you submit via forms</li>
+      <li>Usage analytics to improve our services</li>
+      <li>Technical logs for security and performance</li>
+    </ul>
+
+    <h2>How We Use Information</h2>
+    <ul>
+      <li>Provide and improve our services</li>
+      <li>Respond to inquiries</li>
+      <li>Maintain site security and integrity</li>
+    </ul>
+
+    <h2>Data Sharing</h2>
+    <p>We do not sell your personal data. We may share data with service providers strictly to operate the site (e.g., hosting, analytics, email).</p>
+
+    <h2>Cookies</h2>
+    <p>We use essential and analytics cookies. You can control cookies in your browser settings.</p>
+
+    <h2>Your Rights</h2>
+    <p>You can request access, correction, or deletion of your data by contacting contact@nosytlabs.com.</p>
+
+    <h2>Contact</h2>
+    <p>Email: privacy@nosytlabs.com</p>
+  </section>
+</BaseLayout>

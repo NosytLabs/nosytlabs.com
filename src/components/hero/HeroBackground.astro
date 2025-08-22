@@ -1,0 +1,60 @@
+---
+import { ASSET_SOURCES } from '../../config/assets';
+import UnifiedImageWrapper from '../optimization/UnifiedImageWrapper.astro';
+
+export interface Props {
+  background?: 'gradient' | 'image' | 'simple';
+}
+
+const { background = 'gradient' } = Astro.props;
+
+const heroDesktop = ASSET_SOURCES.hero.desktop;
+const heroMobile = ASSET_SOURCES.hero.mobile;
+const fallbackImage = ASSET_SOURCES.hero.fallback;
+---
+
+<!-- Background -->{
+  background === 'gradient' && (
+    <div class="absolute inset-0 bg-gradient-to-br from-background-muted via-background to-background-muted" />
+  )
+}
+
+{
+  background === 'image' && (
+    <>
+      <div class="absolute inset-0">
+        <picture>
+          <source
+            media="(min-width: 1024px)"
+            srcset={heroDesktop.src}
+            width={heroDesktop.width}
+            height={heroDesktop.height}
+          />
+          <source
+            media="(max-width: 1023px)"
+            srcset={heroMobile.src}
+            width={heroMobile.width}
+            height={heroMobile.height}
+          />
+          <UnifiedImageWrapper
+            src={heroDesktop.src}
+            alt={heroDesktop.alt}
+            fallbackSrc={fallbackImage}
+            className="w-full h-full object-cover"
+            width={heroDesktop.width}
+            height={heroDesktop.height}
+            loading="eager"
+            client="load"
+          />
+        </picture>
+        <div class="absolute inset-0 bg-gradient-to-br from-background-muted/90 via-background/85 to-background-muted/90" />
+      </div>
+    </>
+  )
+}
+
+{
+  background === 'simple' && (
+    <div class="absolute inset-0 bg-gradient-to-br from-background via-background to-background" />
+  )
+}

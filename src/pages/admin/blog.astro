@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/MainLayout.astro';
+import BlogManager from '../../components/blog/BlogManager';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts for the manager
+const blogPosts = await getCollection('blog');
+
+// Transform blog posts to match BlogManager interface
+const transformedPosts = blogPosts.map(post => ({
+  id: post.slug,
+  title: post.data.title,
+  description: post.data.description,
+  excerpt: post.data.excerpt,
+  category: post.data.category,
+  tags: post.data.tags,
+  author: post.data.author,
+  publishDate: post.data.publishDate.toISOString(),
+  lastModified: post.data.lastModified?.toISOString(),
+  featuredImage: post.data.featuredImage,
+  readingTime: post.data.readingTime,
+  draft: post.data.draft || false,
+  featured: post.data.featured || false
+}));
+
+// Sort posts by publish date (newest first)
+transformedPosts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
+---
+
+<Layout 
+  title="Blog Admin - NosyT Labs"
+  description="Manage blog posts and content for NosyT Labs"
+>
+  <main class="section-lg">
+    <BlogManager initialPosts={transformedPosts} client:load />
+  </main>
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    main {
+      min-height: 100vh;
+    }
+  </style>
+</Layout>

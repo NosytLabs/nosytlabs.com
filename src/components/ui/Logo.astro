@@ -1,0 +1,9 @@
+---
+import { Logo, type LogoProps } from './Logo.tsx';
+
+export interface Props extends LogoProps {}
+
+const { ...props } = Astro.props;
+---
+
+<Logo client:load {...props} />

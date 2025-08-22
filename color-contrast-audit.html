@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Contrast Audit Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 1000px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { color: #0056b3; }
+        .summary { display: flex; justify-content: space-around; margin-bottom: 20px; padding: 15px; background-color: #e9ecef; border-radius: 5px; }
+        .summary-item { text-align: center; }
+        .summary-item h3 { margin: 0; font-size: 1.2em; }
+        .summary-item p { font-size: 1.8em; font-weight: bold; margin-top: 5px; }
+        .passed { color: #28a745; }
+        .warning { color: #ffc107; }
+        .failed { color: #dc3545; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .color-box { width: 30px; height: 30px; border: 1px solid #ccc; display: inline-block; vertical-align: middle; margin-right: 5px; }
+        .result-row.fail { background-color: #f8d7da; }
+        .result-row.warning { background-color: #fff3cd; }
+        .result-row.pass { background-color: #d4edda; }
+        .filter-buttons button { padding: 8px 15px; margin-right: 10px; border: none; border-radius: 5px; cursor: pointer; background-color: #007bff; color: white; }
+        .filter-buttons button.active { background-color: #0056b3; }
+        .filter-buttons button:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Color Contrast Audit Report</h1>
+        <div class="summary">
+            <div class="summary-item">
+                <h3>Total Tests</h3>
+                <p>28</p>
+            </div>
+            <div class="summary-item">
+                <h3>Passed</h3>
+                <p class="passed">28</p>
+            </div>
+            <div class="summary-item">
+                <h3>Warnings</h3>
+                <p class="warning">0</p>
+            </div>
+            <div class="summary-item">
+                <h3>Failed</h3>
+                <p class="failed">0</p>
+            </div>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="active" onclick="filterResults('all')" data-filter="all">All (28)</button>
+            <button onclick="filterResults('pass')" data-filter="pass">Passed (28)</button>
+            <button onclick="filterResults('warning')" data-filter="warning">Warnings (0)</button>
+            <button onclick="filterResults('fail')" data-filter="fail">Failed (0)</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Context/Component</th>
+                    <th>Foreground</th>
+                    <th>Background</th>
+                    <th>Ratio</th>
+                    <th>Level</th>
+                    <th>Recommendation</th>
+                </tr>
+            </thead>
+            <tbody id="auditResultsBody">
+                
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #000000;"></span> #000000</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>21.00:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #0f172a;"></span> #0f172a</td>
+            <td><span class="color-box" style="background-color: #f8fafc;"></span> #f8fafc</td>
+            <td>17.06:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #0f172a;"></span> #0f172a</td>
+            <td><span class="color-box" style="background-color: #f1f5f9;"></span> #f1f5f9</td>
+            <td>16.30:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #0c4a6e;"></span> #0c4a6e</td>
+            <td><span class="color-box" style="background-color: #f0f9ff;"></span> #f0f9ff</td>
+            <td>8.87:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #831843;"></span> #831843</td>
+            <td><span class="color-box" style="background-color: #fdf2f8;"></span> #fdf2f8</td>
+            <td>8.84:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td><span class="color-box" style="background-color: #1e293b;"></span> #1e293b</td>
+            <td>14.63:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td><span class="color-box" style="background-color: #0f172a;"></span> #0f172a</td>
+            <td>17.85:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td><span class="color-box" style="background-color: #000000;"></span> #000000</td>
+            <td>21.00:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td><span class="color-box" style="background-color: #0c4a6e;"></span> #0c4a6e</td>
+            <td>9.46:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>text-background</td>
+            <td>Text/Background</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td><span class="color-box" style="background-color: #831843;"></span> #831843</td>
+            <td>9.65:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Primary Button</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td><span class="color-box" style="background-color: #027cbb;"></span> #027cbb</td>
+            <td>4.56:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Secondary Button</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td><span class="color-box" style="background-color: #db2777;"></span> #db2777</td>
+            <td>4.60:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Outline Button</td>
+            <td><span class="color-box" style="background-color: #027cbb;"></span> #027cbb</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>4.56:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Primary Link</td>
+            <td><span class="color-box" style="background-color: #027cbb;"></span> #027cbb</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>4.56:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Secondary Link</td>
+            <td><span class="color-box" style="background-color: #db2777;"></span> #db2777</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>4.60:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Input Text</td>
+            <td><span class="color-box" style="background-color: #0f172a;"></span> #0f172a</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>17.85:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Placeholder Text</td>
+            <td><span class="color-box" style="background-color: #64748b;"></span> #64748b</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>4.76:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Success Text</td>
+            <td><span class="color-box" style="background-color: #047857;"></span> #047857</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>5.48:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Warning Text</td>
+            <td><span class="color-box" style="background-color: #a16207;"></span> #a16207</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>4.92:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Error Text</td>
+            <td><span class="color-box" style="background-color: #dc2626;"></span> #dc2626</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>4.83:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>ui-component</td>
+            <td>Info Text</td>
+            <td><span class="color-box" style="background-color: #2563eb;"></span> #2563eb</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>5.17:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>semantic</td>
+            <td>Dark Theme Primary Text</td>
+            <td><span class="color-box" style="background-color: #f1f5f9;"></span> #f1f5f9</td>
+            <td><span class="color-box" style="background-color: #0f172a;"></span> #0f172a</td>
+            <td>16.30:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>semantic</td>
+            <td>Dark Theme Secondary Text</td>
+            <td><span class="color-box" style="background-color: #cbd5e1;"></span> #cbd5e1</td>
+            <td><span class="color-box" style="background-color: #1e293b;"></span> #1e293b</td>
+            <td>9.85:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>semantic</td>
+            <td>Dark Theme Tertiary Text</td>
+            <td><span class="color-box" style="background-color: #a8b5c9;"></span> #a8b5c9</td>
+            <td><span class="color-box" style="background-color: #334155;"></span> #334155</td>
+            <td>4.99:1</td>
+            <td>AA</td>
+            <td>Good - Meets WCAG AA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>semantic</td>
+            <td>High Contrast White on Black</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td><span class="color-box" style="background-color: #000000;"></span> #000000</td>
+            <td>21.00:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>semantic</td>
+            <td>High Contrast Black on White</td>
+            <td><span class="color-box" style="background-color: #000000;"></span> #000000</td>
+            <td><span class="color-box" style="background-color: #ffffff;"></span> #ffffff</td>
+            <td>21.00:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>semantic</td>
+            <td>Brand Light on Dark</td>
+            <td><span class="color-box" style="background-color: #f0f9ff;"></span> #f0f9ff</td>
+            <td><span class="color-box" style="background-color: #0c4a6e;"></span> #0c4a6e</td>
+            <td>8.87:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+        <tr class="result-row pass" data-status="pass">
+            <td>semantic</td>
+            <td>Brand Dark on Light</td>
+            <td><span class="color-box" style="background-color: #0c4a6e;"></span> #0c4a6e</td>
+            <td><span class="color-box" style="background-color: #f0f9ff;"></span> #f0f9ff</td>
+            <td>8.87:1</td>
+            <td>AAA</td>
+            <td>Excellent - Exceeds WCAG AAA standards</td>
+        </tr>
+    
+                
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filterResults(status) {
+            const rows = document.querySelectorAll('#auditResultsBody tr');
+            rows.forEach(row => {
+                if (status === 'all' || row.classList.contains(status)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            document.querySelectorAll('.filter-buttons button').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.filter-buttons button[data-filter="' + status + '"]').classList.add('active');
+        }
+    </script>
+</body>
+</html>

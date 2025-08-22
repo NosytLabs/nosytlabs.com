@@ -1,0 +1,108 @@
+---
+/**
+ * AI Integration Service Detail Page
+ * 
+ * Comprehensive page showcasing AI integration services with detailed features,
+ * use cases, pricing, and conversion-optimized CTAs
+ */
+
+import ServiceDetail from '../../components/services/ServiceDetail.astro';
+import { aiIntegrationServices } from '../../config/services/ai-integration';
+import { allServices } from '../../config/services';
+
+// Get the main AI integration service
+const service = aiIntegrationServices[0]; // AI-Powered Features
+
+// Get related services (excluding current service)
+const relatedServices = allServices.filter(s => 
+  s.category !== service.category || s.id !== service.id
+).slice(0, 3);
+
+// Service-specific testimonials
+const testimonials = [
+  {
+    name: "David Park",
+    role: "CTO",
+    company: "InnovateTech",
+    content: "The AI chatbot NosytLabs built for us handles 80% of customer inquiries automatically, saving us thousands in support costs while improving customer satisfaction.",
+    rating: 5,
+    image: "/images/testimonials/david-park.jpg"
+  },
+  {
+    name: "Lisa Thompson",
+    role: "Operations Manager",
+    company: "DataFlow Solutions",
+    content: "Their predictive analytics implementation helped us reduce inventory costs by 30% and improve demand forecasting accuracy significantly.",
+    rating: 5,
+    image: "/images/testimonials/lisa-thompson.jpg"
+  },
+  {
+    name: "Robert Kim",
+    role: "Product Director",
+    company: "SmartApp Co.",
+    content: "The AI-powered recommendation engine increased our user engagement by 200% and boosted revenue per user substantially.",
+    rating: 5,
+    image: "/images/testimonials/robert-kim.jpg"
+  }
+];
+
+// Service-specific FAQs
+const faqs = [
+  {
+    question: "What types of AI solutions do you implement?",
+    answer: "We specialize in chatbots, recommendation engines, predictive analytics, natural language processing, computer vision, and custom machine learning models tailored to your business needs."
+  },
+  {
+    question: "How do you ensure AI solutions are ethical and unbiased?",
+    answer: "We follow strict ethical AI guidelines, implement bias detection and mitigation strategies, ensure data privacy compliance, and provide transparent AI decision-making processes."
+  },
+  {
+    question: "What's the ROI timeline for AI integration projects?",
+    answer: "Most clients see initial ROI within 3-6 months, with significant improvements in efficiency, cost reduction, or revenue generation. We provide detailed ROI projections during planning."
+  },
+  {
+    question: "Do you provide AI model training and maintenance?",
+    answer: "Yes, we handle complete AI lifecycle management including initial training, ongoing model updates, performance monitoring, and continuous improvement based on new data."
+  },
+  {
+    question: "Can you integrate AI into existing systems?",
+    answer: "Absolutely! We specialize in seamless AI integration with existing workflows, databases, and applications through APIs and custom connectors."
+  }
+];
+
+// AI Integration process steps
+const processSteps = [
+  {
+    step: 1,
+    title: "AI Readiness Assessment",
+    description: "Evaluate your data, infrastructure, and business processes to identify optimal AI integration opportunities.",
+    duration: "1-2 weeks"
+  },
+  {
+    step: 2,
+    title: "Solution Design & Architecture",
+    description: "Design custom AI solutions that align with your business objectives and technical requirements.",
+    duration: "2-3 weeks"
+  },
+  {
+    step: 3,
+    title: "Development & Training",
+    description: "Build and train AI models using your data, with rigorous testing for accuracy and performance.",
+    duration: "6-12 weeks"
+  },
+  {
+    step: 4,
+    title: "Deployment & Monitoring",
+    description: "Deploy AI solutions with comprehensive monitoring, performance tracking, and continuous optimization.",
+    duration: "2-4 weeks"
+  }
+];
+---
+
+<ServiceDetail 
+  service={service}
+  testimonials={testimonials}
+  faqs={faqs}
+  relatedServices={relatedServices}
+  processSteps={processSteps}
+/>

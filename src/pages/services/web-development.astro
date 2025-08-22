@@ -1,0 +1,108 @@
+---
+/**
+ * Web Development Service Detail Page
+ * 
+ * Comprehensive page showcasing web development services with detailed features,
+ * pricing, testimonials, and conversion-optimized CTAs
+ */
+
+import ServiceDetail from '../../components/services/ServiceDetail.astro';
+import { webDevelopmentServices } from '../../config/services/web-development';
+import { allServices } from '../../config/services';
+
+// Get the main web development service
+const service = webDevelopmentServices[0]; // Modern Web Development
+
+// Get related services (excluding current service)
+const relatedServices = allServices.filter(s => 
+  s.category === service.category && s.id !== service.id
+).slice(0, 3);
+
+// Service-specific testimonials
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "CEO, TechStart Inc.",
+    company: "TechStart Inc.",
+    content: "NosytLabs transformed our outdated website into a modern, lightning-fast platform. Our conversion rates increased by 150% within the first month!",
+    rating: 5,
+    image: "/images/testimonials/sarah-johnson.jpg"
+  },
+  {
+    name: "Michael Chen",
+    role: "Marketing Director",
+    company: "GrowthCorp",
+    content: "The team's expertise in modern web technologies is outstanding. They delivered a Progressive Web App that works flawlessly across all devices.",
+    rating: 5,
+    image: "/images/testimonials/michael-chen.jpg"
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Founder",
+    company: "Creative Studio",
+    content: "Professional, responsive, and incredibly talented. Our new website perfectly captures our brand and has significantly improved our online presence.",
+    rating: 5,
+    image: "/images/testimonials/emily-rodriguez.jpg"
+  }
+];
+
+// Service-specific FAQs
+const faqs = [
+  {
+    question: "What technologies do you use for web development?",
+    answer: "We use modern technologies including React, Vue.js, Astro, Node.js, TypeScript, and various headless CMS solutions. Our tech stack is chosen based on your specific requirements and scalability needs."
+  },
+  {
+    question: "How long does it take to build a website?",
+    answer: "Timeline varies based on complexity. A simple business website takes 2-4 weeks, while complex web applications can take 8-16 weeks. We provide detailed timelines during our initial consultation."
+  },
+  {
+    question: "Do you provide ongoing maintenance and support?",
+    answer: "Yes, we offer comprehensive maintenance packages including security updates, performance optimization, content updates, and technical support. We ensure your website stays current and secure."
+  },
+  {
+    question: "Can you help with SEO and digital marketing?",
+    answer: "Absolutely! We build SEO-optimized websites from the ground up and can connect you with our digital marketing partners for comprehensive online growth strategies."
+  },
+  {
+    question: "What's included in your web development service?",
+    answer: "Our service includes responsive design, performance optimization, SEO setup, security implementation, content management system, analytics integration, and post-launch support."
+  }
+];
+
+// Development process steps
+const processSteps = [
+  {
+    step: 1,
+    title: "Discovery & Planning",
+    description: "We analyze your requirements, target audience, and business goals to create a comprehensive project roadmap.",
+    duration: "1-2 weeks"
+  },
+  {
+    step: 2,
+    title: "Design & Prototyping",
+    description: "Create wireframes, mockups, and interactive prototypes to visualize the final product before development.",
+    duration: "2-3 weeks"
+  },
+  {
+    step: 3,
+    title: "Development & Testing",
+    description: "Build your website using modern technologies with rigorous testing for performance, security, and compatibility.",
+    duration: "4-8 weeks"
+  },
+  {
+    step: 4,
+    title: "Launch & Optimization",
+    description: "Deploy your website, monitor performance, and make optimizations based on real-world usage data.",
+    duration: "1-2 weeks"
+  }
+];
+---
+
+<ServiceDetail 
+  service={service}
+  testimonials={testimonials}
+  faqs={faqs}
+  relatedServices={relatedServices}
+  processSteps={processSteps}
+/>

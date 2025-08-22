@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/base-layout.astro';
+const title = 'Cookie Policy - NosytLabs';
+const description = 'Information about cookies used by NosytLabs and how to manage them.';
+---
+
+<BaseLayout title={title} description={description} pageKey="cookies" type="website">
+  <section class="section-xl container prose prose-invert max-w-3xl">
+    <h1>Cookie Policy</h1>
+    <p>Last updated: {new Date().toISOString().slice(0,10)}</p>
+
+    <h2>What Are Cookies?</h2>
+    <p>Cookies are small text files used to store information on your device. We use essential and analytics cookies.</p>
+
+    <h2>Types of Cookies We Use</h2>
+    <ul>
+      <li>Essential cookies for core functionality</li>
+      <li>Analytics cookies to understand usage</li>
+      <li>Preference cookies to remember settings</li>
+    </ul>
+
+    <h2>Managing Cookies</h2>
+    <p>You can control cookies in your browser and opt out of analytics at any time.</p>
+
+    <h2>Contact</h2>
+    <p>Email: privacy@nosytlabs.com</p>
+  </section>
+</BaseLayout>

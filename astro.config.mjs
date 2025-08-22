@@ -1,28 +1,55 @@
 import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
-import node from '@astrojs/node';
+import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://nosytlabs.com',
   integrations: [
+    tailwind({
+      applyBaseStyles: false, // Use our custom base styles
+    }),
     react(),
-    tailwind()
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
   ],
-  output: 'server',
-  adapter: node({
-    mode: 'standalone'
-  }),
-  server: {
-    port: 3000,
-    host: true
+  output: 'static',
+  image: {
+    domains: ['nosytlabs.com'],
+    remotePatterns: [{ protocol: 'https' }],
   },
+  build: {
+    inlineStylesheets: 'auto',
+    assets: '_astro',
+  },
+  compressHTML: true,
   vite: {
-    server: {
-      hmr: {
-        clientPort: 3000
-      }
-    }
-  }
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom'],
+            'vendor-utils': ['clsx', 'tailwind-merge'],
+          },
+        },
+      },
+    },
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        '@/lib': path.resolve(__dirname, './src/lib'),
+        '@components': path.resolve(__dirname, './src/components'),
+        '@layouts': path.resolve(__dirname, './src/layouts'),
+      },
+    },
+  },
 });

@@ -23,38 +23,21 @@
  */
 
 import type { GetStaticPaths } from 'astro';
-import UnifiedLayout from '@/layouts/UnifiedLayout.astro';
-import { services, type ServiceData, getServiceBySlug } from '../../config/services';
-import { generateCanonicalUrl } from '../../utils/pathResolvers';
-import ServiceCTAForm from '../../components/conversion/ServiceCTAForm.astro';
-import {
-  Globe,
-  Users,
-  Clock,
-  CheckCircle,
-  Star,
-  ArrowRight,
-  Zap,
-  Bot,
-  Lightbulb,
-  Smartphone,
-  Settings
-} from 'lucide-react';
+import BaseLayout from '../../layouts/base-layout.astro';
+import { allServices as services, type ServiceData } from '../../config/services/index';
+import { generateCanonicalUrl } from '../../utils/path-resolvers';
+import ServiceCTAWrapper from '../../components/conversion/ServiceCTAWrapper.astro';
+import Button from '../../components/ui/Button.astro';
+// Using inline SVG icons for better performance and compatibility
+import AstroIcon from '../../components/ui/AstroIcon.astro';
+// Using AstroIcon components instead of inline SVGs
 
-// Icon mapping for dynamic icon rendering
-const iconMap = {
-  Globe,
-  Zap,
-  Bot,
-  Lightbulb,
-  Smartphone,
-  Settings
-};
+export const prerender = true;
 
 export const getStaticPaths: GetStaticPaths = () => {
   return services.map(service => ({
     params: { name: service.slug },
-    props: { service }
+    props: { service },
   }));
 };
 
@@ -62,142 +45,157 @@ interface Props {
   service: ServiceData;
 }
 
+// Import logger
+import { logger } from '../../utils/logger';
+
 // Parameter extraction and validation
 const { name } = Astro.params;
 const { service } = Astro.props;
 
 // Enhanced error handling with multiple validation layers
 if (!name || typeof name !== 'string') {
-  console.error('Invalid service name parameter:', name);
+  logger.error(`Invalid service name parameter: ${name}`, undefined, 'ServicePage');
   return Astro.redirect('/404');
 }
 
 if (!service) {
-  console.error('Service not found for slug:', name);
+  logger.error(`Service not found for slug: ${name}`, undefined, 'ServicePage');
   return Astro.redirect('/404');
 }
 
 // Validate service data integrity
 if (!service.name || !service.description || !service.slug) {
-  console.error('Invalid service data structure:', service);
+  logger.error(
+    'Invalid service data structure',
+    new Error(`Missing required fields in service: ${JSON.stringify(service)}`),
+    'ServicePage'
+  );
   return Astro.redirect('/404');
 }
 
 // Verify slug matches parameter (additional security)
 if (service.slug !== name) {
-  console.error('Service slug mismatch:', { expected: name, actual: service.slug });
+  logger.error(
+    'Service slug mismatch',
+    new Error(`Expected: ${name}, Actual: ${service.slug}`),
+    'ServicePage'
+  );
   return Astro.redirect('/404');
 }
 
 // Sanitize service name for SEO contexts (prevent XSS)
-const sanitizedServiceName = service.name.replace(/[<>\"'&]/g, '');
+const sanitizedServiceName = service.name.replace(/[<>"'&]/g, '');
 const canonicalUrl = generateCanonicalUrl(service.href);
 
-// Get the appropriate icon component with fallback
-const IconComponent = iconMap[service.icon as keyof typeof iconMap] || Globe;
+// Import SEO utilities
+import { generateServiceSEO } from '../../config/seo/index';
+import { generateServiceStructuredData } from '../../utils/seo';
 
-// Generate dynamic SEO metadata with truncation for optimal length
-const dynamicTitle = `${sanitizedServiceName} Service Page - NosytLabs`.slice(0, 60);
-const dynamicDescription = `${service.description} ${service.features.join(', ')}. Starting from ${service.price} with ${service.timeline} delivery.`.slice(0, 160);
+// Generate dynamic SEO configuration
+const serviceSEO = generateServiceSEO(
+  sanitizedServiceName,
+  service.description,
+  service.category.toLowerCase().replace(/\s+/g, '-'),
+  service.href
+);
 
 // Generate structured data for Schema.org
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": sanitizedServiceName,
-  "description": service.description,
-  "provider": {
-    "@type": "Organization",
-    "name": "NosytLabs",
-    "url": "https://nosytlabs.com"
-  },
-  "category": service.category,
-  "offers": {
-    "@type": "Offer",
-    "price": service.price,
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": service.testimonial ? {
-    "@type": "AggregateRating",
-    "ratingValue": "5",
-    "reviewCount": "1"
-  } : undefined
-};
+const structuredData = generateServiceStructuredData(
+  sanitizedServiceName,
+  service.description,
+  service.category,
+  service.price
+).data;
+
+// Ensure all SEO properties are properly defined
+const seoTitle = serviceSEO.title || sanitizedServiceName;
+const seoDescription = serviceSEO.description || service.description;
+const seoKeywords = serviceSEO.keywords || [];
 ---
 
-<UnifiedLayout
-  title={dynamicTitle}
-  description={dynamicDescription}
-  keywords={service.metadata.keywords?.join(', ') || `${sanitizedServiceName}, NosytLabs, web development, AI solutions`}
-  canonicalUrl={canonicalUrl}
-  ogType="service"
+<BaseLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  {canonicalUrl}
+  type="service"
+  {structuredData}
 >
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} slot="head"></script>
   <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-    <div class="absolute inset-0">
-      {service.background}
-    </div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+  <section class="section-lg">
+    <div
+      class="relative container py-24 flex justify-center items-center"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl">
         <div>
           <div class="flex items-center gap-3 mb-6">
-            <div class="p-3 bg-white/10 backdrop-blur-sm rounded-lg">
-              <IconComponent className="w-8 h-8 text-white" />
+            <div class="p-3 bg-background/10 backdrop-blur-sm rounded-lg">
+              <AstroIcon name="tabler:player-play" class="w-6 h-6 text-on-primary" />
             </div>
-            <span class="px-3 py-1 bg-blue-500/20 text-blue-200 rounded-full text-sm font-medium">
+            <span
+              class="px-3 py-1 bg-primary/20 text-primary-muted rounded-full text-sm font-medium"
+            >
               {service.category}
             </span>
-            {service.popular && (
-              <span class="px-3 py-1 bg-yellow-500/20 text-yellow-200 rounded-full text-sm font-medium flex items-center gap-1">
-                <Star className="w-3 h-3" />
-                Popular
-              </span>
-            )}
+            {
+              service.popular && (
+                <span class="px-3 py-1 bg-warning/20 text-warning-muted rounded-full text-sm font-medium flex items-center gap-1">
+                  <AstroIcon name="tabler:star-filled" class="w-4 h-4" />
+                  Popular
+                </span>
+              )
+            }
           </div>
-          
-          <h1 id="service-title" class="text-4xl lg:text-5xl font-bold text-white mb-6">
+
+          <h1 id="service-title" class="text-4xl lg:text-5xl font-bold text-on-primary mb-6">
             {sanitizedServiceName}
           </h1>
-          
-          <p class="text-xl text-gray-200 mb-8">
-            {service.description}
+
+          <p class="text-xl text-text-muted mb-8 leading-relaxed">
+            {service.description} Our approach emphasizes sustainable, ethical practices for long-term
+            impact.
           </p>
-          
+
           <div class="flex flex-wrap gap-4 mb-8">
-            <div class="flex items-center gap-2 text-gray-200">
-              <Clock className="w-5 h-5 text-blue-400" />
+            <div class="flex items-center gap-2 text-text-muted">
+              <AstroIcon name="tabler:clock" class="w-5 h-5" />
               <span>{service.timeline}</span>
             </div>
-            <div class="flex items-center gap-2 text-gray-200">
-              <Globe className="w-5 h-5 text-green-400" />
+            <div class="flex items-center gap-2 text-text-muted">
+              <AstroIcon name="tabler:users" class="w-5 h-5" />
               <span>{service.price}</span>
             </div>
           </div>
-          
+
           <div class="flex flex-col sm:flex-row gap-4">
-            <button class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors flex items-center justify-center gap-2">
-              {service.cta}
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <button class="px-8 py-4 border border-white/20 hover:bg-white/10 text-white rounded-lg font-medium transition-colors">
-              Learn More
-            </button>
+            <Button variant="primary" class="btn-lg flex items-center justify-center gap-2">
+              Get Started Today
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </Button>
+            <Button variant="secondary" class="btn-lg"> Learn More </Button>
           </div>
         </div>
-        
+
         <div class="relative">
-          <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-            <h3 class="text-xl font-semibold text-white mb-4">Key Features</h3>
-            <ul class="space-y-3">
-              {service.features.map(feature => (
-                <li class="flex items-center gap-3 text-gray-200">
-                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                  <span>{feature}</span>
-                </li>
-              ))}
+          <div class="bg-background/10 backdrop-blur-sm rounded-2xl p-8">
+            <h3 class="text-xl font-semibold text-on-primary mb-4">Key Features</h3>
+            <ul class="space-y-4">
+              {
+                service.features.map(feature => (
+                  <li class="flex items-start gap-3 text-text-muted">
+                    <AstroIcon
+                      name="tabler:circle-check"
+                      class="w-5 h-5 text-success flex-shrink-0 mt-0.5"
+                    />
+                    <span>{feature}</span>
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>
@@ -206,117 +204,155 @@ const structuredData = {
   </section>
 
   <!-- Detailed Features Section -->
-  <section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="section-lg bg-background">
+    <div class="container">
       <div class="text-center mb-16">
-        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-          What's Included
-        </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-          Comprehensive solutions designed to deliver exceptional results for your business
-        </p>
+        <h1 class="text-4xl font-bold text-text mb-4">{service.title}</h1>
+        <p class="text-xl text-text-muted mb-8">{service.description}</p>
       </div>
-      
+
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {service.detailedFeatures.map((featureGroup, index) => (
-          <div class="bg-gray-50 rounded-xl p-8">
-            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-              <span class="text-blue-600 font-bold text-lg">{index + 1}</span>
+        {
+          service.detailedFeatures.map((featureGroup, index) => (
+            <div class="bg-background-muted rounded-xl p-8">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                <span class="text-primary font-bold text-lg">{index + 1}</span>
+              </div>
+              <h3 class="text-xl font-semibold text-text mb-3">
+                {featureGroup.title}
+              </h3>
+              <p class="text-text-muted mb-6">{featureGroup.description}</p>
+              <ul class="space-y-2">
+                {featureGroup.items.map(item => (
+                  <li class="flex items-start gap-2 text-text">
+                    <AstroIcon
+                      name="tabler:circle-check"
+                      class="w-4 h-4 text-success mt-0.5"
+                    />
+                    <span class="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-3">
-              {featureGroup.title}
-            </h3>
-            <p class="text-gray-600 mb-6">
-              {featureGroup.description}
-            </p>
-            <ul class="space-y-2">
-              {featureGroup.items.map(item => (
-                <li class="flex items-start gap-2 text-gray-700">
-                  <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span class="text-sm">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section-lg bg-background-muted">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-center mb-12 text-text">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-8 max-w-4xl mx-auto">
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-text">
+            What makes this service unique?
+          </h3>
+          <p class="text-text-muted">
+            Our approach combines cutting-edge technology with personalized strategies to deliver
+            measurable results tailored to your needs.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-text">
+            How long does it take to see results?
+          </h3>
+          <p class="text-text-muted">
+            Most clients see initial improvements within the first 4-6 weeks, with significant
+            results in 3 months.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 text-text">
+            What is your pricing structure?
+          </h3>
+          <p class="text-text-muted">
+            We offer flexible packages starting from {service.price}, customized based on your
+            specific requirements.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Testimonial Section -->
-  {service.testimonial && (
-    <section class="py-24 bg-gray-900">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="mb-8">
-          <div class="flex justify-center mb-6">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star className="w-6 h-6 text-yellow-400 fill-current" />
-            ))}
-          </div>
-          <blockquote class="text-2xl lg:text-3xl font-medium text-white mb-8">
+  {
+    service.testimonial && (
+      <section class="section-lg bg-background">
+        <div class="container max-w-4xl text-center">
+          <blockquote class="text-2xl lg:text-3xl font-medium text-on-primary mb-8">
             "{service.testimonial.quote}"
           </blockquote>
-          <div class="text-gray-300">
-            <div class="font-semibold">{service.testimonial.author}</div>
-            <div class="text-gray-400">{service.testimonial.company}</div>
+          <div class="text-text-muted">
+            <p class="font-semibold">{service.testimonial.author}</p>
+            <p>{service.testimonial.role}</p>
           </div>
         </div>
-      </div>
-    </section>
-  )}
+      </section>
+    )
+  }
 
   <!-- Conversion-Optimized CTA Section -->
-  <ServiceCTAForm serviceSlug={service.slug} serviceName={service.name} />
+  <ServiceCTAWrapper serviceSlug={service.slug} serviceName={service.name} />
 
   <!-- Related Services -->
-  <section class="py-24 bg-gray-50">
+  <section class="section-lg bg-background-muted">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+        <h2 class="text-3xl lg:text-4xl font-bold text-text mb-4">
           Related Services
         </h2>
-        <p class="text-xl text-gray-600">
+        <p class="text-xl text-text-muted">
           Explore our other services that complement {service.name.toLowerCase()}
         </p>
       </div>
-      
+
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services
-          .filter(s => s.slug !== service.slug && s.category === service.category)
-          .slice(0, 3)
-          .map(relatedService => {
-            const RelatedIconComponent = iconMap[relatedService.icon as keyof typeof iconMap] || Globe;
-            return (
+        {
+          services
+            .filter(s => s.slug !== service.slug && s.category === service.category)
+            .slice(0, 3)
+            .map(relatedService => (
               <a
                 href={relatedService.href}
-                class="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-200"
+                class="group bg-background rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-border"
               >
                 <div class="flex items-center gap-3 mb-4">
-                  <div class="p-2 bg-gray-100 rounded-lg group-hover:bg-blue-100 transition-colors">
-                    <RelatedIconComponent className="w-6 h-6 text-gray-600 group-hover:text-blue-600" />
+                  <div class="p-2 bg-background-muted rounded-lg group-hover:bg-primary/10 transition-colors">
+                    <AstroIcon
+                      name="tabler:player-play"
+                      class="w-5 h-5 text-text-muted"
+                    />
                   </div>
-                  <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-sm">
+                  <span class="px-2 py-1 bg-background-muted text-text-muted rounded text-sm">
                     {relatedService.category}
                   </span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 class="text-lg font-semibold text-text mb-2 group-hover:text-primary transition-colors">
                   {relatedService.name}
                 </h3>
-                <p class="text-gray-600 text-sm mb-4">
+                <p class="text-text-muted text-sm mb-4">
                   {relatedService.shortDescription}
                 </p>
                 <div class="flex items-center justify-between">
-                  <span class="text-sm text-gray-500">{relatedService.price}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                  <span class="text-sm text-text-muted">
+                    {relatedService.price}
+                  </span>
+                  <AstroIcon
+                    name="tabler:arrow-right"
+                    class="w-4 h-4 text-text-muted group-hover:text-primary transition-colors"
+                  />
                 </div>
               </a>
-            );
-          })
+            ))
         }
       </div>
     </div>
   </section>
-</UnifiedLayout>
+</BaseLayout>
 
 <script>
   // Add any client-side interactivity here if needed
@@ -324,9 +360,9 @@ const structuredData = {
     // Example: Smooth scroll for anchor links
     const ctaButtons = document.querySelectorAll('button');
     ctaButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
+      button.addEventListener('click', () => {
         // Add analytics tracking or form handling here
-        console.log('CTA clicked:', button.textContent);
+        // CTA button clicked - can add analytics tracking here
       });
     });
   });

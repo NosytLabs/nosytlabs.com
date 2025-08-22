@@ -1,0 +1,83 @@
+---
+/**
+ * NavigationLink Component
+ *
+ * A reusable navigation link component that handles active state styling,
+ * supports icons, and works for both mobile and desktop navigation.
+ */
+
+import AstroIcon from '../ui/AstroIcon.astro';
+import NavigationBadge from './NavigationBadge.astro';
+import type { NavigationItem } from '../../config/navigation-constants';
+
+export interface Props extends NavigationItem {
+  currentPath: string;
+  isMobile?: boolean;
+  className?: string;
+}
+
+const {
+  name,
+  href,
+  icon,
+  description,
+  isNew,
+  aiPowered,
+  currentPath,
+  isMobile = false,
+  className = '',
+} = Astro.props;
+
+// Determine if the current link is active
+const isActive = currentPath === href || (href !== '/' && currentPath && currentPath.startsWith(href));
+
+// Note: All styling is handled directly in the class:list for better conditional logic
+
+// Note: Classes are applied using class:list for better conditional handling
+---
+
+<a
+  {href}
+  class:list={[
+    'relative flex items-center transition-colors duration-200 ease-in-out',
+    isMobile
+      ? [
+'block py-3 px-4 text-lg font-medium w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+          isActive
+            ? 'text-text dark:text-text font-semibold'
+            : 'text-text dark:text-text hover:text-primary-800 hover:dark:text-primary-300'
+        ]
+      : [
+'inline-flex items-center px-3 py-2 text-sm font-medium rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+          isActive
+            ? 'text-text dark:text-text bg-white/70 dark:bg-black/50 backdrop-blur-sm px-3 py-2 rounded-md font-semibold'
+            : 'text-text dark:text-text hover:text-primary-800 hover:dark:text-primary-300',
+          'after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-current',
+          'after:transform after:transition-transform after:duration-300 after:ease-in-out',
+          isActive ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
+        ],
+    className,
+  ]}
+  aria-current={isActive ? 'page' : undefined}
+  title={description}
+>
+  <span class="flex items-center space-x-2">
+    {
+      icon && (
+        <span class="inline-flex items-center">
+          <AstroIcon name={icon} size={isMobile ? 24 : 18} />
+        </span>
+      )
+    }
+    <span>{name}</span>
+  </span>
+
+  {
+    (isNew || aiPowered) && (
+      <span class="flex items-center space-x-2 ml-2">
+        {isNew && <NavigationBadge type="new" />}
+        {aiPowered && <NavigationBadge type="ai" />}
+      </span>
+    )
+  }
+</a>

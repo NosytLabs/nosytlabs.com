@@ -1,0 +1,2421 @@
+{
+  "timestamp": "2025-08-11T17:16:44.816Z",
+  "summary": {
+    "total": 182,
+    "passedCount": 73,
+    "failedCount": 68,
+    "warningCount": 41
+  },
+  "results": {
+    "passed": [
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#ffffff",
+        "ratio": 21,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#f8fafc",
+        "ratio": 20.071189561616038,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#f1f5f9",
+        "ratio": 19.16902818586287,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#f0f9ff",
+        "ratio": 19.699325692264978,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#0ea5e9",
+        "ratio": 7.5773642690850425,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#fdf2f8",
+        "ratio": 19.23284381009325,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#ec4899",
+        "ratio": 5.953500872309584,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#1e293b",
+        "ratio": 14.628718079350337,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#0f172a",
+        "ratio": 17.85253496299567,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#000000",
+        "ratio": 21,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#0c4a6e",
+        "ratio": 9.458172533681237,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#831843",
+        "ratio": 9.647356903790751,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#ffffff",
+        "ratio": 7.577663953533317,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#f8fafc",
+        "ratio": 7.242510935504382,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#f1f5f9",
+        "ratio": 6.916973995632248,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#f0f9ff",
+        "ratio": 7.108327152723288,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#fdf2f8",
+        "ratio": 6.940001298270476,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#ffffff",
+        "ratio": 10.35474573184942,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#f8fafc",
+        "ratio": 9.896764973632585,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#f1f5f9",
+        "ratio": 9.451924418631656,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#f0f9ff",
+        "ratio": 9.713405172966304,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#fdf2f8",
+        "ratio": 9.483390826375697,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#ffffff",
+        "ratio": 14.628718079350337,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#f8fafc",
+        "ratio": 13.981703505432394,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#f1f5f9",
+        "ratio": 13.353252818386112,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#f0f9ff",
+        "ratio": 13.722661043116537,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#0ea5e9",
+        "ratio": 5.278434556047029,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#fdf2f8",
+        "ratio": 13.39770714104916,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#ffffff",
+        "ratio": 17.85253496299567,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#f8fafc",
+        "ratio": 17.062933971317335,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#f1f5f9",
+        "ratio": 16.295987899750777,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#f0f9ff",
+        "ratio": 16.746804793742825,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#0ea5e9",
+        "ratio": 6.441674311485468,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#fdf2f8",
+        "ratio": 16.350238883691645,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#ec4899",
+        "ratio": 5.0611944035777165,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#000000",
+        "ratio": 5.127791101307666,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#ffffff",
+        "ratio": 5.933638668604332,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#f8fafc",
+        "ratio": 5.671199357509169,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#f1f5f9",
+        "ratio": 5.416289851581061,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#f0f9ff",
+        "ratio": 5.566127651097822,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#fdf2f8",
+        "ratio": 5.43432122565699,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#ffffff",
+        "ratio": 4.596590808200417,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#000000",
+        "ratio": 4.568603314120445,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#ffffff",
+        "ratio": 6.037699049194929,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#f8fafc",
+        "ratio": 5.770657244399064,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#f1f5f9",
+        "ratio": 5.5112772977035736,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#f0f9ff",
+        "ratio": 5.663742857236642,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#fdf2f8",
+        "ratio": 5.529624894548315,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#0f172a",
+        "ratio": 4.7377020870153075,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#000000",
+        "ratio": 5.572975716532453,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#1e293b",
+        "ratio": 4.591817240144963,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#0f172a",
+        "ratio": 5.603743087994131,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#000000",
+        "ratio": 6.5917028081333155,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#ffffff",
+        "ratio": 4.829404522659002,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#f8fafc",
+        "ratio": 4.615804459238792,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#f0f9ff",
+        "ratio": 4.530286313883673,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#ffffff",
+        "ratio": 5.168555560022562,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#f8fafc",
+        "ratio": 4.939955162140827,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#f1f5f9",
+        "ratio": 4.717913676679559,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#f0f9ff",
+        "ratio": 4.84843139692626,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#fdf2f8",
+        "ratio": 4.733620086176333,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "ui-component",
+        "component": "Secondary Button",
+        "foreground": "#ffffff",
+        "background": "#db2777",
+        "ratio": 4.596590808200417,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "ui-component",
+        "component": "Secondary Link",
+        "foreground": "#db2777",
+        "background": "#ffffff",
+        "ratio": 4.596590808200417,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "ui-component",
+        "component": "Input Text",
+        "foreground": "#0f172a",
+        "background": "#ffffff",
+        "ratio": 17.85253496299567,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "ui-component",
+        "component": "Placeholder Text",
+        "foreground": "#64748b",
+        "background": "#ffffff",
+        "ratio": 4.758842787868666,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "ui-component",
+        "component": "Error Text",
+        "foreground": "#dc2626",
+        "background": "#ffffff",
+        "ratio": 4.829404522659002,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "ui-component",
+        "component": "Info Text",
+        "foreground": "#2563eb",
+        "background": "#ffffff",
+        "ratio": 5.168555560022562,
+        "level": "AA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Good - Meets WCAG AA standards"
+      },
+      {
+        "type": "semantic",
+        "context": "Dark Theme Primary Text",
+        "foreground": "#f1f5f9",
+        "background": "#0f172a",
+        "ratio": 16.295987899750777,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "semantic",
+        "context": "Dark Theme Secondary Text",
+        "foreground": "#cbd5e1",
+        "background": "#1e293b",
+        "ratio": 9.852964414874926,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "semantic",
+        "context": "High Contrast White on Black",
+        "foreground": "#ffffff",
+        "background": "#000000",
+        "ratio": 21,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "semantic",
+        "context": "High Contrast Black on White",
+        "foreground": "#000000",
+        "background": "#ffffff",
+        "ratio": 21,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "semantic",
+        "context": "Brand Light on Dark",
+        "foreground": "#f0f9ff",
+        "background": "#0c4a6e",
+        "ratio": 8.872362914029607,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      },
+      {
+        "type": "semantic",
+        "context": "Brand Dark on Light",
+        "foreground": "#0c4a6e",
+        "background": "#f0f9ff",
+        "ratio": 8.872362914029607,
+        "level": "AAA",
+        "passes": {
+          "normalText": true,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Excellent - Exceeds WCAG AAA standards"
+      }
+    ],
+    "warnings": [
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#ec4899",
+        "ratio": 3.5273363438432357,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#0ea5e9",
+        "ratio": 3.7362704916179355,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#ec4899",
+        "ratio": 4.147242183151581,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#ffffff",
+        "ratio": 4.095330637522397,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#f8fafc",
+        "ratio": 3.9141979782478997,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#f1f5f9",
+        "ratio": 3.7382623057664093,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#1e293b",
+        "ratio": 3.572048113849106,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#0f172a",
+        "ratio": 4.359241424715865,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#f0f9ff",
+        "ratio": 3.841678668860232,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#fdf2f8",
+        "ratio": 3.7507073572456138,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#0f172a",
+        "ratio": 3.0086993765656467,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#000000",
+        "ratio": 3.539143714819337,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#f8fafc",
+        "ratio": 4.3932878785034495,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#f1f5f9",
+        "ratio": 4.195818036251047,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#1e293b",
+        "ratio": 3.182514757078744,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#0f172a",
+        "ratio": 3.883864304637768,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#f0f9ff",
+        "ratio": 4.311892352610072,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#fdf2f8",
+        "ratio": 4.209786336810901,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#000000",
+        "ratio": 3.4781461992213996,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#ffffff",
+        "ratio": 3.7681843718971657,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#f8fafc",
+        "ratio": 3.6015210872127184,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#f1f5f9",
+        "ratio": 3.4396396397345117,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#1e293b",
+        "ratio": 3.882166220010414,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#f0f9ff",
+        "ratio": 3.5347948195478667,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#fdf2f8",
+        "ratio": 3.451090546301549,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#ffffff",
+        "ratio": 3.1858232404059073,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#f8fafc",
+        "ratio": 3.0449172460947063,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#831843",
+        "ratio": 3.028214742561039,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#f1f5f9",
+        "ratio": 4.408332924561144,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#1e293b",
+        "ratio": 3.029093547809901,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#0f172a",
+        "ratio": 3.6966327586007055,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#000000",
+        "ratio": 4.34836218450338,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#fdf2f8",
+        "ratio": 4.423008708574216,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#0f172a",
+        "ratio": 3.4540665676655196,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#000000",
+        "ratio": 4.0630307164403066,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "ui-component",
+        "component": "Primary Button",
+        "foreground": "#ffffff",
+        "background": "#0284c7",
+        "ratio": 4.095330637522397,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "ui-component",
+        "component": "Outline Button",
+        "foreground": "#0284c7",
+        "background": "#ffffff",
+        "ratio": 4.095330637522397,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "ui-component",
+        "component": "Primary Link",
+        "foreground": "#0284c7",
+        "background": "#ffffff",
+        "ratio": 4.095330637522397,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "ui-component",
+        "component": "Success Text",
+        "foreground": "#059669",
+        "background": "#ffffff",
+        "ratio": 3.7681843718971657,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "ui-component",
+        "component": "Warning Text",
+        "foreground": "#d97706",
+        "background": "#ffffff",
+        "ratio": 3.1858232404059073,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      },
+      {
+        "type": "semantic",
+        "context": "Dark Theme Tertiary Text",
+        "foreground": "#94a3b8",
+        "background": "#334155",
+        "ratio": 4.038447183508816,
+        "level": "A",
+        "passes": {
+          "normalText": false,
+          "largeText": true,
+          "uiComponents": true
+        },
+        "recommendation": "Caution - Only suitable for large text (18pt+ or 14pt+ bold)"
+      }
+    ],
+    "failed": [
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#1e293b",
+        "ratio": 1.4355324838506023,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.44:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#0f172a",
+        "ratio": 1.1763035358019647,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.18:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#0c4a6e",
+        "ratio": 2.2203020641902524,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.22:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#000000",
+        "background": "#831843",
+        "ratio": 2.176762009473127,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.18:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#f8fafc",
+        "ratio": 1.0462758042084466,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.05:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#f1f5f9",
+        "ratio": 1.0955171955711072,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.10:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#f0f9ff",
+        "ratio": 1.0660263365382978,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.07:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#0ea5e9",
+        "ratio": 2.7714122291412187,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.77:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#ffffff",
+        "background": "#fdf2f8",
+        "ratio": 1.0918822097946512,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.09:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#1e293b",
+        "ratio": 1.9305049905953209,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.93:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#0f172a",
+        "ratio": 2.3559417615334315,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.36:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#000000",
+        "ratio": 2.7713026242352843,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.77:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#0ea5e9",
+        "ratio": 2.734224765935098,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.73:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#0c4a6e",
+        "ratio": 1.2481646839552811,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.25:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#ec4899",
+        "ratio": 2.1482680455918803,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.15:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#475569",
+        "background": "#831843",
+        "ratio": 1.2731307383052235,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.27:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#1e293b",
+        "ratio": 1.4127549297859543,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.41:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#0f172a",
+        "ratio": 1.7240920661223322,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.72:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#000000",
+        "ratio": 2.028055593427814,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.03:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#0c4a6e",
+        "ratio": 1.0947934915519273,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.09:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#ec4899",
+        "ratio": 2.9355708451004503,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.94:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#334155",
+        "background": "#831843",
+        "ratio": 1.0733246250878015,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.07:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#0f172a",
+        "ratio": 1.220375898021852,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.22:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#000000",
+        "ratio": 1.4355324838506023,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.44:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#0c4a6e",
+        "ratio": 1.5466749022875625,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.55:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#1e293b",
+        "background": "#831843",
+        "ratio": 1.5163446553534525,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.52:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#1e293b",
+        "ratio": 1.220375898021852,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.22:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#000000",
+        "ratio": 1.1763035358019647,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.18:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#0c4a6e",
+        "ratio": 1.8875247728270443,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.89:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0f172a",
+        "background": "#831843",
+        "ratio": 1.8505104704876052,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.85:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#0ea5e9",
+        "ratio": 1.47770533537388,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.48:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#0c4a6e",
+        "ratio": 2.309501569183011,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.31:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#ec4899",
+        "ratio": 1.1610264058517028,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.16:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0284c7",
+        "background": "#831843",
+        "ratio": 2.355696708685585,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.36:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#1e293b",
+        "ratio": 2.4653874117331784,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.47:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#0ea5e9",
+        "ratio": 2.141016268244943,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.14:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#0c4a6e",
+        "ratio": 1.5939919941073732,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.59:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#ec4899",
+        "ratio": 1.6821868090240841,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.68:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#0369a1",
+        "background": "#831843",
+        "ratio": 1.6258753595557132,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.63:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#0ea5e9",
+        "ratio": 1.658573473793456,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.66:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#0c4a6e",
+        "ratio": 2.0576494468047173,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.06:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#ec4899",
+        "ratio": 1.3031336850605426,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.30:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#db2777",
+        "background": "#831843",
+        "ratio": 2.098806986817199,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.10:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#1e293b",
+        "ratio": 2.422896199389226,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.42:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#0f172a",
+        "ratio": 2.9568441251433586,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.96:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#0ea5e9",
+        "ratio": 2.1785640496599235,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.18:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#0c4a6e",
+        "ratio": 1.566519373790649,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.57:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#ec4899",
+        "ratio": 1.7116879312440358,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.71:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#be185d",
+        "background": "#831843",
+        "ratio": 1.597853226069149,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.60:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#0ea5e9",
+        "ratio": 1.3596621723303928,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.36:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#0c4a6e",
+        "ratio": 2.510007897760941,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.51:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#ec4899",
+        "ratio": 1.0682804259577676,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.07:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#059669",
+        "background": "#831843",
+        "ratio": 2.560213607311789,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.56:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#f1f5f9",
+        "ratio": 2.9080540709770393,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.91:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#f0f9ff",
+        "ratio": 2.9885033147972835,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.99:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#0ea5e9",
+        "ratio": 1.1495306280701167,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.15:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#0c4a6e",
+        "ratio": 2.9688315452417147,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.97:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#fdf2f8",
+        "ratio": 2.9177352756805703,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.92:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#d97706",
+        "background": "#ec4899",
+        "ratio": 1.107197756330579,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.11:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#0ea5e9",
+        "ratio": 1.7425789176644773,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.74:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#0c4a6e",
+        "ratio": 1.9584552276175247,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.96:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#ec4899",
+        "ratio": 1.3691363827802958,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.37:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#dc2626",
+        "background": "#831843",
+        "ratio": 1.9976286638500627,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.00:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#1e293b",
+        "ratio": 2.830330042787908,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 2.83:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#0ea5e9",
+        "ratio": 1.8649537249188473,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.86:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#0c4a6e",
+        "ratio": 1.829945025035186,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.83:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#ec4899",
+        "ratio": 1.4652857159607082,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.47:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      },
+      {
+        "type": "text-background",
+        "foreground": "#2563eb",
+        "background": "#831843",
+        "ratio": 1.8665479729792511,
+        "level": "FAIL",
+        "passes": {
+          "normalText": false,
+          "largeText": false,
+          "uiComponents": false
+        },
+        "recommendation": "Fail - Does not meet WCAG standards. Current ratio: 1.87:1, Required: 4.5:1 for normal text, 3:1 for large text"
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "issue": "Color contrast failures detected",
+      "action": "Update failing color combinations to meet WCAG 2.2 AA standards (4.5:1 for normal text, 3:1 for large text)",
+      "impact": "Critical accessibility issue affecting users with visual impairments"
+    },
+    {
+      "priority": "MEDIUM",
+      "issue": "Color combinations only suitable for large text",
+      "action": "Consider strengthening these combinations or ensure they are only used for large text (18pt+ or 14pt+ bold)",
+      "impact": "Limited accessibility - may cause issues for users with visual impairments when used with normal-sized text"
+    },
+    {
+      "priority": "LOW",
+      "issue": "Ongoing accessibility maintenance",
+      "action": "Run this audit regularly when adding new colors or updating the design system",
+      "impact": "Preventive measure to maintain accessibility standards"
+    }
+  ]
+}

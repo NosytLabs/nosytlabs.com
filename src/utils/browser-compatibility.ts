@@ -20,39 +20,41 @@ export function detectBrowserSupport(): BrowserSupport {
     containerQueries: false,
     webkitLineClamp: false,
     maskComposite: false,
-    supportsQueries: false
+    supportsQueries: false,
   };
 
   // Check if CSS.supports is available
   if (typeof CSS !== 'undefined' && CSS.supports) {
     support.supportsQueries = true;
-    
+
     // Test backdrop-filter support
-    support.backdropFilter = CSS.supports('backdrop-filter', 'blur(10px)') || 
-                             CSS.supports('-webkit-backdrop-filter', 'blur(10px)');
-    
+    support.backdropFilter =
+      CSS.supports('backdrop-filter', 'blur(10px)') ||
+      CSS.supports('-webkit-backdrop-filter', 'blur(10px)');
+
     // Test container queries support
     support.containerQueries = CSS.supports('container-type', 'inline-size');
-    
+
     // Test webkit line clamp
     support.webkitLineClamp = CSS.supports('-webkit-line-clamp', '3');
-    
+
     // Test mask composite
     support.maskComposite = CSS.supports('mask-composite', 'xor');
   } else {
     // Fallback detection for older browsers
     const testElement = document.createElement('div');
     const style = testElement.style;
-    
+
     // Test backdrop filter
     style.backdropFilter = 'blur(10px)';
     (style as any)['webkitBackdropFilter'] = 'blur(10px)';
-    support.backdropFilter = style.backdropFilter !== '' || (style as any)['webkitBackdropFilter'] !== '';
-    
+    support.backdropFilter =
+      style.backdropFilter !== '' || (style as any)['webkitBackdropFilter'] !== '';
+
     // Test webkit line clamp
     (style as any)['webkitLineClamp'] = '3';
     support.webkitLineClamp = (style as any)['webkitLineClamp'] !== '';
-    
+
     // Container queries are newer, assume false if CSS.supports not available
     support.containerQueries = false;
     support.maskComposite = false;
@@ -98,33 +100,33 @@ async function loadBackdropFilterPolyfill(): Promise<void> {
   const style = document.createElement('style');
   style.innerHTML = `
     .backdrop-blur-fallback {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      background: rgb(var(--background-rgb) / 0.1);
+      border: 1px solid rgb(var(--background-rgb) / 0.2);
+      box-shadow: 0 4px 6px -1px var(--shadow-color);
     }
     
     .backdrop-blur-fallback::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgb(var(--background-rgb) / 0.05);
       z-index: -1;
     }
     
     .backdrop-blur-glass-fallback {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      background: rgb(var(--background-rgb) / 0.1);
+      border: 1px solid rgb(var(--background-rgb) / 0.2);
+      box-shadow: 0 8px 32px 0 var(--shadow-color);
     }
     
     .dark .backdrop-blur-fallback {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgb(var(--background-dark-rgb) / 0.3);
+      border: 1px solid rgb(var(--background-rgb) / 0.1);
     }
     
     .dark .backdrop-blur-glass-fallback {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgb(var(--background-dark-rgb) / 0.3);
+      border: 1px solid rgb(var(--background-rgb) / 0.1);
     }
   `;
   document.head.appendChild(style);
@@ -137,7 +139,7 @@ async function loadContainerQueriesPolyfill(): Promise<void> {
   // Use ResizeObserver for container query fallback
   if (typeof ResizeObserver !== 'undefined') {
     const containerElements = document.querySelectorAll('[data-container-query]');
-    
+
     containerElements.forEach(element => {
       const observer = new ResizeObserver(entries => {
         for (const entry of entries) {
@@ -156,7 +158,7 @@ async function loadContainerQueriesPolyfill(): Promise<void> {
 function updateContainerClasses(element: HTMLElement, width: number): void {
   // Remove existing container classes
   element.classList.remove('container-sm', 'container-md', 'container-lg', 'container-xl');
-  
+
   // Add appropriate container class
   if (width < 300) {
     element.classList.add('container-sm');
@@ -201,7 +203,7 @@ async function loadLineClampPolyfill(): Promise<void> {
     }
   `;
   document.head.appendChild(style);
-  
+
   // JavaScript fallback for non-webkit browsers
   const lineClampElements = document.querySelectorAll('.line-clamp-2, .line-clamp-3');
   lineClampElements.forEach(element => {
@@ -216,12 +218,12 @@ async function loadLineClampPolyfill(): Promise<void> {
 function applyLineClampFallback(element: HTMLElement, lines: number): void {
   const lineHeight = parseFloat(getComputedStyle(element).lineHeight);
   const maxHeight = lineHeight * lines;
-  
+
   if (element.scrollHeight > maxHeight) {
     element.style.maxHeight = `${maxHeight}px`;
     element.style.overflow = 'hidden';
     element.style.position = 'relative';
-    
+
     // Add ellipsis indicator
     const ellipsis = document.createElement('span');
     ellipsis.textContent = '...';
@@ -249,7 +251,7 @@ async function loadMaskCompositePolyfill(): Promise<void> {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+      background: linear-gradient(45deg, transparent 30%, rgb(var(--background-rgb) / 0.1) 50%, transparent 70%);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -266,7 +268,7 @@ async function loadMaskCompositePolyfill(): Promise<void> {
  */
 export async function initializeCompatibility(): Promise<BrowserSupport> {
   const support = detectBrowserSupport();
-  
+
   // Add browser classes to document
   document.documentElement.classList.add(
     support.backdropFilter ? 'supports-backdrop-filter' : 'no-backdrop-filter',
@@ -274,9 +276,9 @@ export async function initializeCompatibility(): Promise<BrowserSupport> {
     support.webkitLineClamp ? 'supports-line-clamp' : 'no-line-clamp',
     support.maskComposite ? 'supports-mask-composite' : 'no-mask-composite'
   );
-  
+
   // Load necessary polyfills
   await loadPolyfills(support);
-  
+
   return support;
 }

@@ -1,0 +1,212 @@
+---
+/**
+ * Contact Information Component
+ *
+ * Contact details, business hours, location info, and trust indicators
+ * for the contact page sidebar
+ */
+
+import AstroIcon from '../ui/AstroIcon.astro';
+---
+
+<!-- Enhanced Contact Information -->
+<div class="relative">
+  <!-- Contact Info Background Card -->
+  <div
+    class="bg-background/60 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-border/50"
+  >
+    <!-- Contact Header -->
+    <div class="text-center mb-8">
+      <div
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-secondary/10 backdrop-blur-sm px-4 py-2 rounded-full mb-4 border border-primary/30"
+      >
+        <AstroIcon name="tabler:message-circle" class="w-5 h-5 text-primary" />
+        <span class="text-primary font-semibold text-sm">Contact Info</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold text-text mb-4">
+        Let's Connect
+      </h2>
+      <p class="text-text-muted text-lg">
+        We're here to help you succeed. Reach out through any of these channels.
+      </p>
+    </div>
+
+    <div class="space-y-8 mb-12">
+      <div
+        class="group flex items-start gap-6 p-4 rounded-xl hover:bg-primary/10 transition-all duration-300"
+      >
+        <div class="flex-shrink-0">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-primary to-primary-hover rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+          >
+            <AstroIcon name="tabler:mail" class="w-7 h-7 text-on-primary" />
+          </div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-text mb-1">Email Us</h3>
+          <p class="text-text-muted mb-2">
+            For general inquiries and project discussions
+          </p>
+          <a
+            href="mailto:hello@nosytlabs.com"
+            class="text-primary hover:underline font-semibold text-lg"
+          >
+            hello@nosytlabs.com
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="group flex items-start gap-6 p-4 rounded-xl hover:bg-success/10 transition-all duration-300"
+      >
+        <div class="flex-shrink-0">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-success to-success-hover rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+          >
+            <AstroIcon name="tabler:phone" class="w-7 h-7 text-on-primary" />
+          </div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-text mb-1">Call Us</h3>
+          <p class="text-text-muted mb-2">Speak directly with our team</p>
+          <a
+            href="tel:+1-555-123-4567"
+            class="text-success hover:underline font-semibold text-lg"
+          >
+            +1 (555) 123-4567
+          </a>
+          <p class="text-text-muted text-sm mt-1">
+            Available during business hours
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="group flex items-start gap-6 p-4 rounded-xl hover:bg-secondary/10 transition-all duration-300"
+      >
+        <div class="flex-shrink-0">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-secondary to-secondary-hover rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+          >
+            <AstroIcon name="tabler:map-pin" class="w-7 h-7 text-on-primary" />
+          </div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-text mb-1">Business Hours</h3>
+          <p class="text-text-muted font-semibold">
+            Monday - Friday: 9:00 AM - 6:00 PM EST
+          </p>
+          <p class="text-text-muted">Saturday: 10:00 AM - 2:00 PM EST</p>
+          <p class="text-text-muted">Sunday: Closed</p>
+          <p class="text-text-muted text-sm mt-1">We're in your timezone</p>
+        </div>
+      </div>
+
+      <div
+        class="group flex items-start gap-6 p-4 rounded-xl hover:bg-warning/10 transition-all duration-300"
+      >
+        <div class="flex-shrink-0">
+          <div
+            class="w-14 h-14 bg-gradient-to-br from-warning to-warning-hover rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300"
+          >
+            <AstroIcon name="tabler:building" class="w-8 h-8 text-on-primary" />
+          </div>
+          <div class="text-3xl font-bold text-warning mb-1">50+</div>
+          <div class="text-sm font-semibold text-text-muted">
+            Projects Completed
+          </div>
+        </div>
+
+        <div class="text-center group">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-success to-success-hover rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg"
+          >
+            <AstroIcon name="tabler:clock" class="w-8 h-8 text-on-primary" />
+          </div>
+          <div class="text-3xl font-bold text-success mb-1">24h</div>
+          <div class="text-sm font-semibold text-text-muted">Response Time</div>
+        </div>
+      </div>
+
+      <div class="mt-6 space-y-3">
+        <div class="flex items-center gap-3">
+          <AstroIcon name="check-circle" class="w-5 h-5 text-success flex-shrink-0" />
+          <span class="text-text-muted">24-hour response time</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <AstroIcon name="check-circle" class="w-5 h-5 text-success flex-shrink-0" />
+          <span class="text-text-muted">Transparent pricing</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <AstroIcon name="check-circle" class="w-5 h-5 text-success flex-shrink-0" />
+          <span class="text-text-muted">Professional expertise</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Quick Stats -->
+    <div
+      class="bg-gradient-to-br from-background to-primary/20 rounded-2xl p-8 border border-border/50"
+    >
+      <div class="text-center mb-6">
+        <div
+          class="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-secondary/10 backdrop-blur-sm px-4 py-2 rounded-full mb-3 border border-primary/30"
+        >
+          <AstroIcon name="tabler:circle-check" class="w-4 h-4 text-primary" />
+          <span class="text-primary font-semibold text-sm">Why Choose Us</span>
+        </div>
+        <h3 class="text-2xl font-bold text-text">
+          Trusted by Clients Worldwide
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6">
+        <div class="text-center group">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-primary to-primary-hover rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg"
+          >
+            <AstroIcon name="tabler:building" class="w-8 h-8 text-on-primary" />
+          </div>
+          <div class="text-3xl font-bold text-primary mb-1">50+</div>
+          <div class="text-sm font-semibold text-text-muted">
+            Projects Completed
+          </div>
+        </div>
+
+        <div class="text-center group">
+          <div
+            class="w-16 h-16 bg-gradient-to-br from-success to-success-hover rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg"
+          >
+            <AstroIcon name="tabler:clock" class="w-8 h-8 text-on-primary" />
+          </div>
+          <div class="text-3xl font-bold text-success mb-1">24h</div>
+          <div class="text-sm font-semibold text-text-muted">Response Time</div>
+        </div>
+      </div>
+
+      <div class="mt-6 space-y-3">
+        <div class="flex items-center gap-3">
+          <AstroIcon name="check-circle" class="w-5 h-5 text-success flex-shrink-0" />
+          <span class="text-text-muted">24-hour response time</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <AstroIcon name="check-circle" class="w-5 h-5 text-success flex-shrink-0" />
+          <span class="text-text-muted">Transparent pricing</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <AstroIcon name="check-circle" class="w-5 h-5 text-success flex-shrink-0" />
+          <span class="text-text-muted">Professional expertise</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<li class="flex items-start gap-3">
+  <span class="mt-1 text-primary">🌍</span>
+  <div>
+    <p class="font-medium text-text">Location</p>
+    <p class="text-text-muted">Remote, Worldwide</p>
+    <p class="text-text-muted">Remote-first company</p>
+    <p class="text-text-muted">Serving clients worldwide</p>
+  </div>
+</li>

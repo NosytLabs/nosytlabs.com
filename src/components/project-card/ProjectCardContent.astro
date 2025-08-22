@@ -1,0 +1,101 @@
+---
+// ProjectCard Content Component
+// Handles project title, description, category, and CTA
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  featured?: boolean;
+}
+
+const { title, description, category, featured = false } = Astro.props;
+---
+
+<!-- Enhanced Project Content -->
+<div class="project-content relative z-10 p-6 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm">
+  <!-- Category Badge with AI Glow -->
+  <div class="project-header mb-4">
+    <span
+      class="inline-block bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 text-gray-700 dark:text-gray-200 text-xs font-medium px-3 py-1 rounded-full mb-3 category-badge"
+    >
+      {category}
+    </span>
+
+    <!-- Enhanced Title -->
+    <h3
+      class="project-title text-xl font-bold text-gray-900 dark:text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-secondary-600 group-hover:bg-clip-text transition-all duration-500"
+    >
+      {title}
+    </h3>
+  </div>
+
+  <!-- Enhanced Description -->
+  <p class="project-description text-gray-600 dark:text-gray-300 mb-4 line-clamp-3 leading-relaxed">
+    {description}
+  </p>
+
+  <!-- Enhanced CTA Button -->
+  <div class="project-footer">
+    <div
+      class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium text-sm transition-all duration-300 group/cta"
+    >
+      <span class="mr-2">View Project</span>
+      <svg
+        class="w-4 h-4 group-hover/cta:translate-x-2 group-hover/cta:scale-110 transition-all duration-300"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          strokeWidth="2"
+          d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Enhanced Typography */
+  .project-title {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  .project-description {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Category Badge Enhancement */
+  .category-badge {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .category-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgb(var(--color-neutral-0-rgb) / 0.4), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .project-card:hover .category-badge::before {
+    left: 100%;
+  }
+</style>

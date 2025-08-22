@@ -1,0 +1,26 @@
+---
+export interface Props {
+  currentPath: string;
+  className?: string;
+}
+
+const { currentPath, className = '' } = Astro.props;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/95 border-b border-border/80" role="banner" {...Astro.props}>
+  <div class="container">
+    <div class="flex items-center justify-between h-16 lg:h-20 space-x-4">
+      <div class="flex items-center space-x-4">
+        <div class="flex items-center font-bold text-primary h-10">
+          <span class="text-2xl">NosytLabs</span>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
+          <a href="/" class="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-sm px-2 py-1" aria-current={currentPath === '/' ? 'page' : undefined}>Home</a>
+          <a href="/about" class="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-sm px-2 py-1" aria-current={currentPath === '/about' ? 'page' : undefined}>About</a>
+          <a href="/services" class="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-sm px-2 py-1" aria-current={currentPath === '/services' ? 'page' : undefined}>Services</a>
+          <a href="/contact" class="text-foreground hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-sm px-2 py-1" aria-current={currentPath === '/contact' ? 'page' : undefined}>Contact</a>
+        </nav>
+    </div>
+  </div>
+</header>

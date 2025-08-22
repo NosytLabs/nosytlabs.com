@@ -1,0 +1,12 @@
+{
+  "timestamp": "2025-08-18T00:24:06.995Z",
+  "score": 50,
+  "totalChecks": 4,
+  "passedChecks": 2,
+  "results": {
+    "NPM Audit": false,
+    "Secret Detection": true,
+    "Dependency Check": true,
+    "Configuration Check": false
+  }
+}

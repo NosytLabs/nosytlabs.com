@@ -1,150 +1,455 @@
-import dotenv from 'dotenv';
-import path from 'path';
-
 /**
- * Security Configuration for NosytLabs
- * Handles environment variable validation, security headers, and access control
+ * Security Configuration
+ * Centralized security settings for the application
  */
 
-// Load environment variables from .env.local
-dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
+export interface SecurityConfig {
+  // Rate limiting configuration
+  rateLimit: {
+    windowMs: number;
+    maxRequests: number;
+    skipSuccessfulRequests: boolean;
+    skipFailedRequests: boolean;
+    standardHeaders: boolean;
+    legacyHeaders: boolean;
+  };
 
-// Security validation for environment variables
-export function validateEnvironmentVariables() {
-  const requiredVars = [
-    'DATABASE_URL',
-    'RESEND_API_KEY',
-    'ENCRYPTION_KEY',
-    'JWT_SECRET'
-  ];
+  // CSRF protection configuration
+  csrf: {
+    enabled: boolean;
+    tokenLength: number;
+    cookieName: string;
+    headerName: string;
+    sameSite: 'strict' | 'lax' | 'none';
+    secure: boolean;
+    httpOnly: boolean;
+  };
 
-  const missingVars = requiredVars.filter(varName => !process.env[varName]);
-  
-  if (missingVars.length > 0) {
-    console.error('❌ Missing required environment variables:', missingVars);
-    if (process.env.NODE_ENV === 'production') {
-      throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
-    } else {
-      console.warn('⚠️ Running in development mode with missing environment variables');
-    }
-  }
+  // Content Security Policy configuration
+  csp: {
+    enabled: boolean;
+    reportOnly: boolean;
+    reportUri?: string;
+    directives: {
+      defaultSrc: string[];
+      scriptSrc: string[];
+      styleSrc: string[];
+      imgSrc: string[];
+      connectSrc: string[];
+      fontSrc: string[];
+      objectSrc: string[];
+      mediaSrc: string[];
+      frameSrc: string[];
+      childSrc: string[];
+      workerSrc: string[];
+      manifestSrc: string[];
+      formAction: string[];
+      frameAncestors: string[];
+      baseUri: string[];
+      upgradeInsecureRequests: boolean;
+    };
+  };
+
+  // Security headers configuration
+  headers: {
+    hsts: {
+      enabled: boolean;
+      maxAge: number;
+      includeSubDomains: boolean;
+      preload: boolean;
+    };
+    xFrameOptions: string;
+    xContentTypeOptions: string;
+    referrerPolicy: string;
+    permissionsPolicy: string;
+    crossOriginEmbedderPolicy: string;
+    crossOriginOpenerPolicy: string;
+    crossOriginResourcePolicy: string;
+  };
+
+  // Logging and monitoring configuration
+  logging: {
+    enabled: boolean;
+    level: 'debug' | 'info' | 'warn' | 'error';
+    maxEvents: number;
+    retentionDays: number;
+    sensitiveDataMasking: boolean;
+  };
+
+  // Alert configuration
+  alerts: {
+    enabled: boolean;
+    channels: {
+      console: boolean;
+      email: boolean;
+      webhook: boolean;
+      slack: boolean;
+    };
+    thresholds: {
+      criticalEvents: number;
+      suspiciousIPs: number;
+      blockedRequests: number;
+      timeWindow: number; // minutes
+    };
+    cooldown: number; // minutes
+  };
+
+  // IP filtering configuration
+  ipFiltering: {
+    enabled: boolean;
+    whitelist: string[];
+    blacklist: string[];
+    maxFailedAttempts: number;
+    blockDuration: number; // minutes
+  };
+
+  // Input validation configuration
+  validation: {
+    maxRequestSize: number; // bytes
+    maxUrlLength: number;
+    maxHeaderSize: number;
+    allowedMethods: string[];
+    blockedUserAgents: (string | RegExp)[];
+    suspiciousPatterns: (string | RegExp)[];
+  };
 }
 
-// Security headers configuration
-export const securityHeaders = {
-  'X-Frame-Options': 'DENY',
-  'X-Content-Type-Options': 'nosniff',
-  'X-XSS-Protection': '1; mode=block',
-  'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
-  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
-  'Content-Security-Policy': [
-    "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    "font-src 'self' https://fonts.gstatic.com",
-    "img-src 'self' data: https: blob:",
-    "connect-src 'self' https://api.resend.com https://jvorgukgexezucwxygdi.supabase.co wss://jvorgukgexezucwxygdi.supabase.co",
-    "frame-src 'none'",
-    "object-src 'none'",
-    "base-uri 'self'"
-  ].join('; ')
-};
-
-// Environment variable sanitization
-export function sanitizeEnvVar(value: string | undefined): string | undefined {
-  if (!value) return undefined;
-  
-  // Remove any potential injection attempts
-  return value.replace(/[<>'"&]/g, '').trim();
-}
-
-// Rate limiting configuration
-export const rateLimitConfig = {
-  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW || '900000'), // 15 minutes
-  max: parseInt(process.env.RATE_LIMIT_MAX || '100'), // limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later.',
-  standardHeaders: true,
-  legacyHeaders: false,
-};
-
-// CORS configuration
-export const corsConfig = {
-  origin (origin: string | undefined, callback: Function) {
-    const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'http://localhost:4329').split(',');
-    
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
+/**
+ * Development security configuration
+ */
+const developmentConfig: SecurityConfig = {
+  rateLimit: {
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    maxRequests: 1000, // More lenient for development
+    skipSuccessfulRequests: false,
+    skipFailedRequests: false,
+    standardHeaders: true,
+    legacyHeaders: false,
   },
-  credentials: true,
-  optionsSuccessStatus: 200
+
+  csrf: {
+    enabled: true,
+    tokenLength: 32,
+    cookieName: '__csrf_token',
+    headerName: 'x-csrf-token',
+    sameSite: 'lax',
+    secure: false, // HTTP in development
+    httpOnly: true,
+  },
+
+  csp: {
+    enabled: true,
+    reportOnly: true, // Report-only in development
+    reportUri: '/api/security/csp-report',
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'localhost:*', '127.0.0.1:*'],
+      styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'],
+      imgSrc: ["'self'", 'data:', 'blob:', 'https:'],
+      connectSrc: ["'self'", 'localhost:*', '127.0.0.1:*', 'ws:', 'wss:'],
+      fontSrc: ["'self'", 'fonts.gstatic.com'],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'self'"],
+      childSrc: ["'self'"],
+      workerSrc: ["'self'", 'blob:'],
+      manifestSrc: ["'self'"],
+      formAction: ["'self'"],
+      frameAncestors: ["'none'"],
+      baseUri: ["'self'"],
+      upgradeInsecureRequests: false, // Allow HTTP in development
+    },
+  },
+
+  headers: {
+    hsts: {
+      enabled: false, // Disabled for HTTP development
+      maxAge: 31536000,
+      includeSubDomains: true,
+      preload: false,
+    },
+    xFrameOptions: 'DENY',
+    xContentTypeOptions: 'nosniff',
+    referrerPolicy: 'strict-origin-when-cross-origin',
+    permissionsPolicy: 'camera=(), microphone=(), geolocation=()',
+    crossOriginEmbedderPolicy: 'unsafe-none',
+    crossOriginOpenerPolicy: 'same-origin',
+    crossOriginResourcePolicy: 'same-origin',
+  },
+
+  logging: {
+    enabled: true,
+    level: 'debug',
+    maxEvents: 10000,
+    retentionDays: 7,
+    sensitiveDataMasking: true,
+  },
+
+  alerts: {
+    enabled: true,
+    channels: {
+      console: true,
+      email: false,
+      webhook: false,
+      slack: false,
+    },
+    thresholds: {
+      criticalEvents: 5,
+      suspiciousIPs: 10,
+      blockedRequests: 50,
+      timeWindow: 15,
+    },
+    cooldown: 5,
+  },
+
+  ipFiltering: {
+    enabled: true,
+    whitelist: ['127.0.0.1', '::1', 'localhost'],
+    blacklist: [],
+    maxFailedAttempts: 10,
+    blockDuration: 15,
+  },
+
+  validation: {
+    maxRequestSize: 10 * 1024 * 1024, // 10MB
+    maxUrlLength: 2048,
+    maxHeaderSize: 8192,
+    allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    blockedUserAgents: [],
+    suspiciousPatterns: [
+      /\b(union|select|insert|delete|drop|create|alter)\b/i, // SQL injection
+      /<script[^>]*>.*?<\/script>/gi, // XSS
+      /javascript:/gi, // JavaScript protocol
+      /vbscript:/gi, // VBScript protocol
+      /on\w+\s*=/gi, // Event handlers
+    ],
+  },
 };
 
-// API key validation
-export function validateApiKey(apiKey: string | undefined, keyName: string): boolean {
-  if (!apiKey) {
-    console.warn(`⚠️ ${keyName} not configured`);
-    return false;
-  }
-  
-  // Basic format validation
-  if (apiKey.length < 10) {
-    console.error(`❌ ${keyName} appears to be invalid (too short)`);
-    return false;
-  }
-  
-  return true;
-}
+/**
+ * Production security configuration
+ */
+const productionConfig: SecurityConfig = {
+  rateLimit: {
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    maxRequests: 100, // Stricter for production
+    skipSuccessfulRequests: false,
+    skipFailedRequests: false,
+    standardHeaders: true,
+    legacyHeaders: false,
+  },
 
-// Database connection security
-export function validateDatabaseUrl(url: string | undefined): boolean {
-  if (!url) {
-    console.error('❌ DATABASE_URL not configured');
-    return false;
-  }
-  
-  // Ensure it's using SSL in production
-  if (process.env.NODE_ENV === 'production' && !url.includes('sslmode=require')) {
-    console.warn('⚠️ Database connection should use SSL in production');
-  }
-  
-  return true;
-}
+  csrf: {
+    enabled: true,
+    tokenLength: 32,
+    cookieName: '__csrf_token',
+    headerName: 'x-csrf-token',
+    sameSite: 'strict',
+    secure: true, // HTTPS in production
+    httpOnly: true,
+  },
 
-// Initialize security validation
-export function initializeSecurity() {
-  console.log('🔒 Initializing security configuration...');
-  
-  try {
-    validateEnvironmentVariables();
-    
-    // Validate critical API keys
-    validateApiKey(process.env.RESEND_API_KEY, 'RESEND_API_KEY');
-    validateApiKey(process.env.SUPABASE_ANON_KEY, 'SUPABASE_ANON_KEY');
-    validateDatabaseUrl(process.env.DATABASE_URL);
-    
-    console.log('✅ Security configuration initialized successfully');
-    return true;
-  } catch (error) {
-    console.error('❌ Security initialization failed:', error);
-    return false;
-  }
-}
+  csp: {
+    enabled: true,
+    reportOnly: false, // Enforce in production
+    reportUri: '/api/security/csp-report',
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", 'fonts.googleapis.com'],
+      imgSrc: ["'self'", 'data:', 'https:'],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'", 'fonts.gstatic.com'],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'none'"],
+      childSrc: ["'none'"],
+      workerSrc: ["'self'"],
+      manifestSrc: ["'self'"],
+      formAction: ["'self'"],
+      frameAncestors: ["'none'"],
+      baseUri: ["'self'"],
+      upgradeInsecureRequests: true,
+    },
+  },
 
-// Export security utilities
-export default {
-  validateEnvironmentVariables,
-  securityHeaders,
-  sanitizeEnvVar,
-  rateLimitConfig,
-  corsConfig,
-  validateApiKey,
-  validateDatabaseUrl,
-  initializeSecurity
+  headers: {
+    hsts: {
+      enabled: true,
+      maxAge: 31536000, // 1 year
+      includeSubDomains: true,
+      preload: true,
+    },
+    xFrameOptions: 'DENY',
+    xContentTypeOptions: 'nosniff',
+    referrerPolicy: 'strict-origin-when-cross-origin',
+    permissionsPolicy: 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
+    crossOriginEmbedderPolicy: 'require-corp',
+    crossOriginOpenerPolicy: 'same-origin',
+    crossOriginResourcePolicy: 'same-origin',
+  },
+
+  logging: {
+    enabled: true,
+    level: 'info',
+    maxEvents: 50000,
+    retentionDays: 30,
+    sensitiveDataMasking: true,
+  },
+
+  alerts: {
+    enabled: true,
+    channels: {
+      console: true,
+      email: true,
+      webhook: true,
+      slack: true,
+    },
+    thresholds: {
+      criticalEvents: 1,
+      suspiciousIPs: 5,
+      blockedRequests: 20,
+      timeWindow: 5,
+    },
+    cooldown: 15,
+  },
+
+  ipFiltering: {
+    enabled: true,
+    whitelist: [],
+    blacklist: [],
+    maxFailedAttempts: 5,
+    blockDuration: 60,
+  },
+
+  validation: {
+    maxRequestSize: 5 * 1024 * 1024, // 5MB
+    maxUrlLength: 1024,
+    maxHeaderSize: 4096,
+    allowedMethods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    blockedUserAgents: [/bot/i, /crawler/i, /spider/i, /scraper/i],
+    suspiciousPatterns: [
+      /\b(union|select|insert|delete|drop|create|alter|exec|execute)\b/i,
+      /<script[^>]*>.*?<\/script>/gi,
+      /javascript:/gi,
+      /vbscript:/gi,
+      /on\w+\s*=/gi,
+      /\.\.\//g, // Path traversal
+      /\\x[0-9a-f]{2}/gi, // Hex encoding
+      /%[0-9a-f]{2}/gi, // URL encoding
+    ],
+  },
 };
+
+/**
+ * Get security configuration based on environment
+ */
+export function getSecurityConfig(): SecurityConfig {
+  // Use process.env for Node.js compatibility or fallback to development
+  const environment = (typeof process !== 'undefined' && process.env.NODE_ENV) || 
+                     (typeof import.meta !== 'undefined' && import.meta.env?.MODE) || 
+                     'development';
+
+  if (environment === 'production') {
+    return productionConfig;
+  }
+
+  return developmentConfig;
+}
+
+/**
+ * Merge custom configuration with defaults
+ */
+export function mergeSecurityConfig(customConfig: Partial<SecurityConfig>): SecurityConfig {
+  const defaultConfig = getSecurityConfig();
+
+  return {
+    ...defaultConfig,
+    ...customConfig,
+    rateLimit: { ...defaultConfig.rateLimit, ...customConfig.rateLimit },
+    csrf: { ...defaultConfig.csrf, ...customConfig.csrf },
+    csp: {
+      ...defaultConfig.csp,
+      ...customConfig.csp,
+      directives: { ...defaultConfig.csp.directives, ...customConfig.csp?.directives },
+    },
+    headers: {
+      ...defaultConfig.headers,
+      ...customConfig.headers,
+      hsts: { ...defaultConfig.headers.hsts, ...customConfig.headers?.hsts },
+    },
+    logging: { ...defaultConfig.logging, ...customConfig.logging },
+    alerts: {
+      ...defaultConfig.alerts,
+      ...customConfig.alerts,
+      channels: { ...defaultConfig.alerts.channels, ...customConfig.alerts?.channels },
+      thresholds: { ...defaultConfig.alerts.thresholds, ...customConfig.alerts?.thresholds },
+    },
+    ipFiltering: { ...defaultConfig.ipFiltering, ...customConfig.ipFiltering },
+    validation: { ...defaultConfig.validation, ...customConfig.validation },
+  };
+}
+
+/**
+ * Validate security configuration
+ */
+export function validateSecurityConfig(config: SecurityConfig): {
+  valid: boolean;
+  errors: string[];
+} {
+  const errors: string[] = [];
+
+  // Validate rate limit
+  if (config.rateLimit.windowMs <= 0) {
+    errors.push('Rate limit window must be positive');
+  }
+
+  if (config.rateLimit.maxRequests <= 0) {
+    errors.push('Rate limit max requests must be positive');
+  }
+
+  // Validate CSRF
+  if (config.csrf.tokenLength < 16) {
+    errors.push('CSRF token length must be at least 16 characters');
+  }
+
+  // Validate HSTS
+  if (config.headers.hsts.enabled && config.headers.hsts.maxAge <= 0) {
+    errors.push('HSTS max age must be positive when enabled');
+  }
+
+  // Validate logging
+  if (config.logging.maxEvents <= 0) {
+    errors.push('Logging max events must be positive');
+  }
+
+  if (config.logging.retentionDays <= 0) {
+    errors.push('Logging retention days must be positive');
+  }
+
+  // Validate alerts
+  if (config.alerts.thresholds.timeWindow <= 0) {
+    errors.push('Alert time window must be positive');
+  }
+
+  if (config.alerts.cooldown < 0) {
+    errors.push('Alert cooldown cannot be negative');
+  }
+
+  // Validate validation limits
+  if (config.validation.maxRequestSize <= 0) {
+    errors.push('Max request size must be positive');
+  }
+
+  if (config.validation.maxUrlLength <= 0) {
+    errors.push('Max URL length must be positive');
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors,
+  };
+}
+
+// Export default configuration
+export default getSecurityConfig();
