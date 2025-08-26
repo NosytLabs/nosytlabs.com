@@ -11,9 +11,9 @@ export const consultingServices: ServiceData[] = [
     slug: 'strategic-consulting',
     name: 'Strategic Consulting',
     shortDescription:
-      'Expert guidance to align technology with business goals, optimize operations, and accelerate growth through strategic planning.',
+      'Collaborative guidance to help align technology with business goals and support growth through practical planning.',
     description:
-      'Our strategic consulting services help you navigate complex technology decisions, optimize your digital infrastructure, and create roadmaps that drive sustainable business growth.',
+      'We provide strategic consulting services to help you make informed technology decisions, improve your digital setup, and create practical roadmaps for business growth.',
     icon: 'Target',
     category: 'Consulting',
     href: '/services/strategic-consulting',
@@ -93,9 +93,9 @@ export const consultingServices: ServiceData[] = [
     slug: 'technical-advisory',
     name: 'Technical Advisory',
     shortDescription:
-      'Expert technical guidance for architecture decisions, code reviews, and technology implementation best practices.',
+      'Collaborative technical guidance for architecture decisions, code reviews, and modern development practices.',
     description:
-      'Get expert technical advice from seasoned professionals to make informed decisions about your technology stack, architecture, and development practices.',
+      'Get practical technical advice using modern development knowledge and AI-assisted analysis to help with your technology stack, architecture, and development practices.',
     icon: 'Users',
     category: 'Consulting',
     href: '/services/technical-advisory',
@@ -110,7 +110,7 @@ export const consultingServices: ServiceData[] = [
     detailedFeatures: [
       {
         title: 'Architecture & Design Review',
-        description: 'Expert evaluation of your technical architecture and design decisions',
+        description: 'Practical evaluation of your technical architecture and design decisions using modern tools',
         items: [
           'System architecture assessment and recommendations',
           'Database design and optimization review',
@@ -134,7 +134,7 @@ export const consultingServices: ServiceData[] = [
       },
       {
         title: 'Team Development & Mentoring',
-        description: 'Elevate your team\'s technical capabilities and practices',
+        description: 'Support your team\'s technical development and modern practices',
         items: [
           'Technical mentoring and skill development',
           'Development process optimization',

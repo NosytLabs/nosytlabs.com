@@ -5,7 +5,7 @@
  * across the entire application with type-safe error management.
  */
 
-import React from 'react';
+import * as React from 'react';
 import { logger } from '../logger.js';
 
 /**

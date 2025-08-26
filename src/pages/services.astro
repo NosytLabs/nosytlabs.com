@@ -2,16 +2,27 @@
 /**
  * Enhanced Services Page
  * 
- * Comprehensive services showcase with modern design, filtering, and conversion optimization
+ * Comprehensive services showcase with modern design, filtering and conversion optimization
  */
 
 import MainLayout from '../layouts/MainLayout.astro';
-import EnhancedHero from '../components/hero/EnhancedHero.astro';
-import EnhancedParticleSystem from '../components/hero/EnhancedParticleSystem.astro';
-import ServicesShowcase from '../components/services/ServicesShowcase.astro';
+import Hero from '../components/hero/Hero.astro';
+import { OptimizedServices } from '../components/sections';
 import { allServices } from '../config/services';
 
-const services = allServices;
+const services = allServices.map(service => ({
+  id: service.id,
+  title: service.name,
+  description: service.description,
+  icon: service.icon || 'code',
+  features: service.features.slice(0, 3),
+  badge: service.timeline ? `${service.timeline} delivery` : undefined,
+  action: {
+    text: 'Learn More',
+    href: `/services/${service.slug}`,
+    variant: 'ghost' as const
+  }
+}));
 
 // SEO Configuration
 const seoConfig = {
@@ -40,17 +51,9 @@ const heroConfig = {
   description={seoConfig.description}
   keywords={seoConfig.keywords}
 >
-  <!-- Enhanced Hero Section -->
+  <!-- Hero Section -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden" role="banner" aria-label="Services hero section">
-    <EnhancedParticleSystem 
-      particleCount={150}
-      connectionDistance={120}
-      particleSpeed={0.5}
-      interactive={true}
-      theme="ai"
-      intensity="medium"
-    />
-    <EnhancedHero 
+    <Hero 
       title={heroConfig.title}
       subtitle={heroConfig.subtitle}
       primaryCTA={heroConfig.primaryCTA}
@@ -63,9 +66,26 @@ const heroConfig = {
   <!-- Services Showcase -->
   <main>
     <section id="services-showcase" class="section-lg" role="main" aria-label="Services showcase">
-    <div class="container">
-      <ServicesShowcase services={services} />
-    </div>
+      <div class="container">
+        <OptimizedServices
+          client:load
+          variant="default"
+          layout="grid"
+          columns={3}
+          title="Our Comprehensive Services"
+          subtitle="Expert Solutions for Your Business"
+          description="We combine modern development practices with AI-assisted tools to deliver practical solutions that meet your needs and can grow with your business."
+          services={services}
+          showViewAll={false}
+          animateOnView={true}
+          staggerDelay={100}
+          disableAnimations={false}
+          ariaLabel="Services showcase"
+          enableLazyLoading={true}
+          preloadOnHover={true}
+          chunkSize={6}
+        />
+      </div>
     </section>
   </main>
 

@@ -5,7 +5,8 @@
  */
 
 import BaseLayout from '../layouts/base-layout.astro';
-import { Hero, Services, Stats, CTA } from '../components/ui';
+import Hero from '../components/Hero.astro';
+import { OptimizedServices, OptimizedStats, CTA } from '../components/sections';
 
 // Import service data
 import { allServices } from '../config/services/index.ts';
@@ -50,7 +51,7 @@ const whyChooseFeatures = [
   {
     icon: 'brain',
     title: 'AI-First Approach',
-    description: 'We integrate artificial intelligence into every solution, ensuring your business stays ahead of the curve.'
+    description: 'We use AI development tools in our workflow to build more efficient and modern solutions.'
   },
   {
     icon: 'rocket',
@@ -63,6 +64,7 @@ const whyChooseFeatures = [
     description: 'Built-in security measures and best practices protect your data and users at every level.'
   }
 ];
+export const prerender = true;
 ---
 
 <BaseLayout
@@ -73,8 +75,8 @@ const whyChooseFeatures = [
   type="website"
 >
   <!-- Hero Section -->
+  // Updated Hero with enhanced accessibility and modern UX
   <Hero
-    client:load
     variant="ai"
     size="xl"
     alignment="center"
@@ -82,41 +84,40 @@ const whyChooseFeatures = [
       text: "AI-Powered Solutions",
       variant: "ai"
     }}
-    title="Transform Your Business with AI-Powered Digital Solutions"
-    subtitle="We combine cutting-edge web development, intelligent AI integration, and strategic technical consulting to deliver solutions that drive real results and sustainable growth."
-    description="From concept to deployment, we build modern, scalable applications that adapt to your business needs and exceed user expectations."
+    title="Modern Digital Solutions Built with AI Assistance"
+    subtitle="Using AI development tools, modern web technologies, and collaborative consulting to create practical solutions that help your business grow."
+    description="We build user-friendly platforms with good performance and modern features, using AI tools to enhance our development process."
     primaryAction={{
-      text: "Start Your Project",
+      text: "Get Started",
       href: "/contact",
-      variant: "ai"
+      variant: "ai",
+      ariaLabel: "Start your project with NosytLabs"
     }}
     secondaryAction={{
-      text: "View Our Work",
-      href: "/projects",
-      variant: "ghost"
+      text: "Explore Services",
+      href: "/services",
+      variant: "ghost",
+      ariaLabel: "View all services offered"
     }}
     backgroundPattern="neural"
     particles={true}
     stats={stats}
     animateOnView={true}
     disableAnimations={false}
-    ariaLabel="Hero section showcasing NosytLabs AI-powered digital solutions"
+    ariaLabel="Enhanced hero section for better accessibility"
   />
 
   <!-- Main Content Area -->
   <main id="main-content" role="main" aria-label="Homepage content">
     <!-- Services Section -->
-    <Services
+    <OptimizedServices
       client:load
       variant="ai"
       layout="grid"
       columns={3}
-      badge={{
-        text: "Our Expertise",
-        variant: "primary"
-      }}
+      badge="Our Expertise"
       title="Comprehensive Digital Solutions"
-      subtitle="We combine technical excellence with strategic thinking to deliver solutions that not only meet your current needs but scale with your future growth."
+      subtitle="We combine modern development practices with AI-assisted tools to deliver practical solutions that meet your needs and can grow with your business."
       services={featuredServices}
       showViewAll={true}
       viewAllAction={{
@@ -128,10 +129,13 @@ const whyChooseFeatures = [
       staggerDelay={100}
       disableAnimations={false}
       ariaLabel="Featured services showcase"
+      enableLazyLoading={true}
+      preloadOnHover={true}
+      chunkSize={6}
     />
 
     <!-- Stats Section -->
-    <Stats
+    <OptimizedStats
       client:load
       variant="ai"
       layout="grid"
@@ -142,12 +146,16 @@ const whyChooseFeatures = [
       staggerDelay={200}
       disableAnimations={false}
       ariaLabel="Company statistics and achievements"
+      enableLazyLoading={true}
+      preloadOnHover={true}
+      chunkSize={2}
+      priority="medium"
     />
 
     <!-- Why Choose Us Section -->
-    <section class="section-lg bg-background-muted/30" aria-labelledby="why-choose-heading" role="region">
-      <div class="container">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
+    <section class="unified-layout type-section size-lg bg-background-muted/30 container-query container-query-md p-4 m-4" aria-labelledby="why-choose-heading" role="region">
+      <div class="unified-layout type-container mx-auto">
+        <div class="unified-layout type-grid cols-1 lg:cols-2 gap-16 items-center">
           <!-- Content -->
           <div>
             <div class="inline-flex items-center gap-2 bg-secondary/10 px-4 py-2 rounded-full mb-6">
@@ -210,9 +218,9 @@ const whyChooseFeatures = [
     </section>
 
     <!-- Grand Opening Notice -->
-    <section class="section-lg bg-background" aria-label="Grand opening announcement" role="region">
-      <div class="container">
-        <div class="max-w-3xl mx-auto text-center p-6 rounded-2xl border border-border bg-background-muted/40">
+    <section class="unified-layout type-section size-lg bg-background container-query container-query-md p-4 m-4 align-center" aria-label="Grand opening announcement" role="region">
+      <div class="container mx-auto">
+        <div class="unified-layout type-container size-3xl mx-auto text-center p-6 rounded-2xl border border-border bg-background-muted/40">
           <p class="text-sm uppercase tracking-wider text-primary font-semibold">Grand Opening</p>
           <h3 class="text-2xl md:text-3xl font-bold text-text mt-2">We're just getting started</h3>
           <p class="text-text-muted mt-4">
@@ -235,10 +243,7 @@ const whyChooseFeatures = [
       size="lg"
       alignment="center"
       layout="simple"
-      badge={{
-        text: "Ready to Transform Your Business?",
-        variant: "success"
-      }}
+      badge="Ready to Transform Your Business?"
       title="Let's Build Something Amazing Together"
       subtitle="Take the first step towards digital transformation. Our team is ready to discuss your project and provide a customized solution that drives real results."
       primaryAction={{
@@ -299,3 +304,24 @@ const whyChooseFeatures = [
     }
   }
 </style>
+
+// Added new section for UX improvements
+<section class="unified-layout type-section size-lg bg-background container-query container-query-md p-4 m-4" aria-labelledby="ux-features">
+  <div class="container mx-auto">
+    <h2 id="ux-features" class="text-3xl font-bold mb-8">Modern UX Features</h2>
+    <div class="unified-layout type-grid cols-1 md:cols-3 gap-6">
+      <div class="p-6 rounded-lg bg-muted">
+        <h3>Responsive Design</h3>
+        <p>Perfect on all devices.</p>
+      </div>
+      <div class="p-6 rounded-lg bg-muted">
+        <h3>Fast Loading</h3>
+        <p>Optimized performance.</p>
+      </div>
+      <div class="p-6 rounded-lg bg-muted">
+        <h3>Accessible</h3>
+        <p>WCAG compliant.</p>
+      </div>
+    </div>
+  </div>
+</section>

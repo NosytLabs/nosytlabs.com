@@ -27,8 +27,10 @@ APP_URL=http://localhost:3000
 # Database (PostgreSQL with Neon)
 DATABASE_URL=postgresql://username:password@localhost:5432/nosytlabs
 
-# Email Service (Resend)
-RESEND_API_KEY=your_resend_api_key_here
+# Email Service (EmailJS)
+VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id_here
+VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id_here
+VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key_here
 FROM_EMAIL=NosytLabs <noreply@nosytlabs.com>
 CONTACT_EMAIL=contact@nosytlabs.com
 
@@ -171,6 +173,9 @@ console.log('2. Set up your PostgreSQL database');
 console.log('3. Run: npm install');
 console.log('4. Run: npm run dev');
 console.log('\nFor production:');
-console.log('1. Sign up for Resend (email service)');
+console.log('1. Sign up for EmailJS (email service)');
+console.log('   Visit: https://emailjs.com');
+console.log('   Create a service and template');
+console.log('   Add to .env: VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY');
 console.log('2. Set up Neon PostgreSQL database');
 console.log('3. Deploy to Vercel');

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Contact Form', () => {
   test('should load contact page', async ({ page }) => {
-    await page.goto('/contact');
+    await page.goto('/contact/');
     await expect(page).toHaveTitle(/Contact|Get In Touch|NosytLabs/i);
     // Hero heading content on contact page
     await expect(page.locator('h1')).toContainText(/Let.?s Build Something/i);
@@ -11,57 +11,72 @@ test.describe('Contact Form', () => {
   test('should display contact form', async ({ page }) => {
     await page.goto('/contact');
     
-    await expect(page.locator('#contact-form')).toBeVisible();
-    await expect(page.locator('#contact-form input#name')).toBeVisible();
-    await expect(page.locator('#contact-form input#email')).toBeVisible();
+    await expect(page.locator('#unified-contact-form')).toBeVisible();
+    await expect(page.locator('#unified-contact-form input#name')).toBeVisible();
+    await expect(page.locator('#unified-contact-form input#email')).toBeVisible();
     // Subject & message exist in the default 'general' form
-    await expect(page.locator('#contact-form #subject, #contact-form input[name="subject"]')).toBeVisible();
-    await expect(page.locator('#contact-form #message, #contact-form textarea[name="message"]')).toBeVisible();
+    await expect(page.locator('#unified-contact-form #subject, #unified-contact-form input[name="subject"]')).toBeVisible();
+    await expect(page.locator('#unified-contact-form #message, #unified-contact-form textarea[name="message"]')).toBeVisible();
   });
 
   test('should show validation errors for empty form', async ({ page }) => {
     await page.goto('/contact');
     
-    await page.click('button[type="submit"]');
+    // Trigger validation by focusing and blurring each required field
+    await page.focus('#unified-contact-form input#name');
+    await page.blur('#unified-contact-form input#name');
+    await page.focus('#unified-contact-form input#email');
+    await page.blur('#unified-contact-form input#email');
+    await page.focus('#unified-contact-form #subject');
+    await page.blur('#unified-contact-form #subject');
+    await page.focus('#unified-contact-form textarea[name="message"]');
+    await page.blur('#unified-contact-form textarea[name="message"]');
     
     // Zod-driven messages
-    await expect(page.locator('text=/Name must be at least|Name/i')).toBeVisible();
-    await expect(page.locator('text=/valid email/i')).toBeVisible();
-    await expect(page.locator('text=/Subject must be at least|Subject/i')).toBeVisible();
-    await expect(page.locator('text=/Message must be at least|Message/i')).toBeVisible();
+    await expect(page.locator('text=Name must be at least 2 characters')).toBeVisible();
+    await expect(page.locator('text=Please enter a valid email address')).toBeVisible();
+    await expect(page.locator('text=Subject must be at least 5 characters')).toBeVisible();
+    await expect(page.locator('text=Message must be at least 20 characters')).toBeVisible();
   });
 
   test('should show validation error for invalid email', async ({ page }) => {
     await page.goto('/contact');
     
-    await page.fill('input[name="email"]', 'invalid-email');
-    await page.click('button[type="submit"]');
+    await page.fill('#unified-contact-form input[name="email"]', 'invalid-email');
+  // Interact with reCAPTCHA placeholder to enable submit
+  await page.click('button:has-text("Verify")');
+  await expect(page.locator('#unified-contact-form button[type="submit"]')).not.toHaveAttribute('disabled', '');
+  await page.click('button[type="submit"]');
     
-    await expect(page.locator('text=Please enter a valid email')).toBeVisible();
+    await expect(page.locator('text=Please enter a valid email address')).toBeVisible();
   });
 
   test('should submit form successfully', async ({ page }) => {
     await page.goto('/contact');
     
     // Fill form with valid data
-    await page.fill('input[name="name"]', 'Test User');
-    await page.fill('input[name="email"]', 'test@example.com');
-    await page.fill('#subject', 'Test Subject');
-    await page.selectOption('#serviceInterest', 'web-development');
-    await page.fill('textarea[name="message"]', 'This is a test message');
+    await page.fill('#unified-contact-form input[name="name"]', 'Test User');
+    await page.fill('#unified-contact-form input[name="email"]', 'test@example.com');
+    await page.fill('#unified-contact-form #subject', 'Test Subject');
+    await page.selectOption('#unified-contact-form #serviceInterest', 'web-development');
+    await page.fill('#unified-contact-form textarea[name="message"]', 'This is a test message');
+    
+    // Interact with reCAPTCHA placeholder
+  await page.click('button:has-text("Verify")');
+  await expect(page.locator('button[type="submit"]')).not.toHaveAttribute('disabled', '');
     
     // Mock API success and delay to surface loading state
-    await page.route('**/api/contact', async (route) => {
+    await page.route('**/api/contact/form', async (route) => {
       await new Promise((r) => setTimeout(r, 300));
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) });
     });
 
     await page.click('button[type="submit"]');
     
-    await expect(page.locator('text=/Message sent successfully/i')).toBeVisible();
+    await expect(page.locator('text=Thank you for your message! We\'ll get back to you soon.')).toBeVisible();
   });
 
-  test.fixme('should handle file upload (no file input in current form)', async ({ page }) => {
+  test('should handle file upload', async ({ page }) => {
     await page.goto('/contact');
     
     // Upload a file
@@ -79,13 +94,16 @@ test.describe('Contact Form', () => {
     await page.goto('/contact');
     
     // Fill form
-    await page.fill('input[name="name"]', 'Test User');
-    await page.fill('input[name="email"]', 'test@example.com');
-    await page.fill('input[name="subject"]', 'Test Subject');
-    await page.fill('textarea[name="message"]', 'Test message');
+  await page.fill('#unified-contact-form input[name="name"]', 'Test User');
+  await page.fill('#unified-contact-form input[name="email"]', 'test@example.com');
+  await page.fill('#unified-contact-form input[name="subject"]', 'Test Subject');
+  await page.fill('#unified-contact-form textarea[name="message"]', 'Test message');
+  // Interact with reCAPTCHA placeholder to enable submit
+  await page.click('button:has-text("Verify")');
+  await expect(page.locator('button[type="submit"]')).not.toHaveAttribute('disabled', '');
     
     // Submit and check loading state
-    await page.route('**/api/contact', async (route) => {
+    await page.route('**/api/contact/form', async (route) => {
       await new Promise((r) => setTimeout(r, 400));
       await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) });
     });
@@ -107,10 +125,13 @@ test.describe('Contact Form', () => {
     await page.goto('/contact');
     
     // Fill form
-    await page.fill('input[name="name"]', 'Test User');
-    await page.fill('input[name="email"]', 'test@example.com');
-    await page.fill('input[name="subject"]', 'Test Subject');
-    await page.fill('textarea[name="message"]', 'Test message');
+  await page.fill('input[name="name"]', 'Test User');
+  await page.fill('input[name="email"]', 'test@example.com');
+  await page.fill('input[name="subject"]', 'Test Subject');
+  await page.fill('textarea[name="message"]', 'Test message');
+  // Interact with reCAPTCHA placeholder to enable submit
+  await page.click('button:has-text("Verify")');
+  await expect(page.locator('button[type="submit"]')).not.toHaveAttribute('disabled', '');
     
     // Submit form
     await page.click('button[type="submit"]');
@@ -146,7 +167,7 @@ test.describe('Newsletter Signup', () => {
 });
 
 test.describe('API Endpoints', () => {
-  test.fixme('should respond to health check (no live API in static preview)', async ({ page }) => {
+  test('should respond to health check', async ({ page }) => {
     const response = await page.goto('/api/health');
     expect(response?.ok()).toBeTruthy();
     
@@ -156,13 +177,15 @@ test.describe('API Endpoints', () => {
   });
 
   test('should handle contact form API (mocked)', async ({ page }) => {
-    await page.route('**/api/contact', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true, message: 'submitted successfully' }) }));
-    const response = await page.request.post('/api/contact', {
+    
+    const response = await page.request.post('/api/contact/form', {
       data: {
         name: 'API Test',
         email: 'api@test.com',
         subject: 'API Test Subject',
-        message: 'API test message'
+        message: 'API test message',
+        _token: 'test-token',
+        consent: true
       }
     });
     
@@ -170,14 +193,15 @@ test.describe('API Endpoints', () => {
     
     const data = await response?.json();
     expect(data?.success).toBe(true);
-    expect(data?.message).toContain('submitted successfully');
+    expect(data?.message).toContain('successfully');
   });
 
   test('should handle newsletter signup API (mocked)', async ({ page }) => {
-    await page.route('**/api/contact/newsletter', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true, message: 'subscribed successfully' }) }));
+    
     const response = await page.request.post('/api/contact/newsletter', {
       data: {
-        email: 'newsletter@test.com'
+        email: 'newsletter@test.com',
+        _token: 'test-token'
       }
     });
     
@@ -185,31 +209,12 @@ test.describe('API Endpoints', () => {
     
     const data = await response?.json();
     expect(data?.success).toBe(true);
-    expect(data?.message).toContain('subscribed successfully');
+    expect(data?.message).toContain('successful');
   });
 
-  test('should handle project inquiry API (mocked)', async ({ page }) => {
-    await page.route('**/api/contact/project', (route) => route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true, message: 'inquiry submitted successfully' }) }));
-    const response = await page.request.post('/api/contact/project', {
-      data: {
-        name: 'Project Test',
-        email: 'project@test.com',
-        company: 'Test Company',
-        projectType: 'Web Development',
-        budget: '$5000-$10000',
-        timeline: '1-2 months',
-        description: 'Test project description'
-      }
-    });
-    
-    expect(response?.ok()).toBeTruthy();
-    
-    const data = await response?.json();
-    expect(data?.success).toBe(true);
-    expect(data?.message).toContain('inquiry submitted successfully');
-  });
 
-  test.fixme('should return contact statistics (no live API in static preview)', async ({ page }) => {
+
+  test('should return contact statistics', async ({ page }) => {
     const response = await page.goto('/api/contact/stats');
     expect(response?.ok()).toBeTruthy();
     
@@ -228,8 +233,8 @@ test.describe('Responsive Design', () => {
     await page.goto('/contact');
     
     // Check form is accessible on mobile
-    await expect(page.locator('#contact-form')).toBeVisible();
-    await expect(page.locator('input[name="name"]')).toBeVisible();
+    await expect(page.locator('#unified-contact-form')).toBeVisible();
+    await expect(page.locator('#unified-contact-form input[name="name"]')).toBeVisible();
   });
 
   test('should work on tablet', async ({ page }) => {

@@ -1,16 +1,16 @@
 import { useState, useCallback } from 'react';
 import { logger } from '../utils/logger';
-import { AppError, ErrorType } from '../utils/error-handling';
+import { UnifiedAppError, UnifiedErrorType } from '../utils/unified-error-handler';
 
 interface AsyncState<T> {
   data: T | null;
   loading: boolean;
-  error: AppError | null;
+  error: UnifiedAppError | null;
 }
 
-interface UseAsyncErrorOptions {
-  onError?: (error: AppError) => void;
-  onSuccess?: <T>(data: T) => void;
+interface UseAsyncErrorOptions<T = any> {
+  onError?: (error: UnifiedAppError) => void;
+  onSuccess?: (data: T) => void;
   resetOnRetry?: boolean;
 }
 
@@ -23,7 +23,7 @@ interface UseAsyncErrorOptions {
  * - Supports retry functionality
  * - Integrates with the logger system
  */
-export function useAsyncError<T>(asyncFn: () => Promise<T>, options: UseAsyncErrorOptions = {}) {
+export function useAsyncError<T>(asyncFn: () => Promise<T>, options: UseAsyncErrorOptions<T> = {}) {
   const { onError, onSuccess, resetOnRetry = true } = options;
   const [state, setState] = useState<AsyncState<T>>({
     data: null,
@@ -48,14 +48,14 @@ export function useAsyncError<T>(asyncFn: () => Promise<T>, options: UseAsyncErr
 
       return data;
     } catch (error) {
-      let appError: AppError;
+      let appError: UnifiedAppError;
 
-      if (error instanceof AppError) {
+      if (error instanceof UnifiedAppError) {
         appError = error;
       } else {
-        appError = new AppError({
+        appError = new UnifiedAppError({
           message: (error as Error)?.message || 'An unknown error occurred',
-          type: ErrorType.UNKNOWN,
+          type: UnifiedErrorType.UNKNOWN,
           originalError: error as Error
         });
       }

@@ -54,7 +54,7 @@ export const testimonials: Testimonial[] = [
     name: 'Sarah Johnson',
     role: 'CEO',
     company: 'TechStart Inc.',
-    content: 'NosyT Labs transformed our digital presence completely. Their expertise in modern web development and AI integration helped us increase our conversion rates by 300%. The team is professional, responsive, and truly understands business needs.',
+    content: 'NosyT Labs helped us build a modern website using current web technologies. Their AI-assisted development approach delivered a clean, functional site that improved our online presence. The team was responsive and collaborative throughout the project.',
     rating: 5,
     avatar: '/images/testimonials/sarah-johnson.jpg',
     featured: true,
@@ -63,10 +63,10 @@ export const testimonials: Testimonial[] = [
     location: 'San Francisco, CA',
     projectType: 'E-commerce Platform',
     metrics: [
-      { label: 'Conversion Rate', value: '+300%', improvement: 'vs previous site' },
-      { label: 'Page Load Time', value: '1.2s', improvement: '60% faster' },
-      { label: 'Mobile Score', value: '98/100', improvement: 'Perfect optimization' },
-      { label: 'SEO Ranking', value: 'Top 3', improvement: 'All target keywords' }
+      { label: 'Modern Design', value: 'Responsive', improvement: 'vs previous site' },
+      { label: 'Page Load Speed', value: 'Optimized', improvement: '60% faster' },
+      { label: 'User Experience', value: 'Improved', improvement: 'Perfect optimization' },
+      { label: 'Mobile Friendly', value: 'Yes', improvement: 'All target keywords' }
     ]
   },
   {
@@ -74,7 +74,7 @@ export const testimonials: Testimonial[] = [
     name: 'Michael Chen',
     role: 'CTO',
     company: 'DataFlow Solutions',
-    content: 'The AI integration project exceeded all our expectations. NosyT Labs delivered a sophisticated machine learning solution that automated 80% of our data processing tasks. Their technical expertise is unmatched.',
+    content: 'NosyT Labs helped us integrate modern AI tools into our workflow. Using services like OpenAI and other AI platforms, they built practical automation that streamlined our data processing. The implementation was straightforward and effective.',
     rating: 5,
     avatar: '/images/testimonials/michael-chen.jpg',
     featured: true,
@@ -83,10 +83,10 @@ export const testimonials: Testimonial[] = [
     location: 'New York, NY',
     projectType: 'AI Automation Platform',
     metrics: [
-      { label: 'Process Automation', value: '80%', improvement: 'Tasks automated' },
-      { label: 'Processing Speed', value: '10x', improvement: 'Faster than manual' },
-      { label: 'Accuracy Rate', value: '99.7%', improvement: 'Error reduction' },
-      { label: 'Cost Savings', value: '$2M/year', improvement: 'Operational efficiency' }
+      { label: 'AI Integration', value: 'OpenAI API', improvement: 'Tasks automated' },
+      { label: 'Automation', value: 'Workflow tools', improvement: 'Faster than manual' },
+      { label: 'Data Processing', value: 'Streamlined', improvement: 'Error reduction' },
+      { label: 'Modern Stack', value: 'React/Node.js', improvement: 'Operational efficiency' }
     ]
   },
   {
@@ -94,7 +94,7 @@ export const testimonials: Testimonial[] = [
     name: 'Emily Rodriguez',
     role: 'Marketing Director',
     company: 'GrowthCorp',
-    content: 'Working with NosyT Labs was a game-changer for our marketing efforts. They built us a comprehensive analytics dashboard that gives us real-time insights into our campaigns. ROI improved by 250%.',
+    content: 'NosyT Labs built us a useful analytics dashboard using modern web technologies. The real-time insights help us track our campaigns more effectively. The development process was transparent and collaborative.',
     rating: 5,
     avatar: '/images/testimonials/emily-rodriguez.jpg',
     featured: false,
@@ -103,9 +103,9 @@ export const testimonials: Testimonial[] = [
     location: 'Austin, TX',
     projectType: 'Analytics Dashboard',
     metrics: [
-      { label: 'ROI Improvement', value: '+250%', improvement: 'Campaign performance' },
-      { label: 'Data Processing', value: 'Real-time', improvement: 'Instant insights' },
-      { label: 'User Engagement', value: '+180%', improvement: 'Dashboard usage' }
+      { label: 'Dashboard', value: 'Real-time', improvement: 'Campaign performance' },
+      { label: 'Analytics', value: 'Comprehensive', improvement: 'Instant insights' },
+      { label: 'Data Visualization', value: 'Charts & Graphs', improvement: 'Dashboard usage' }
     ]
   },
   {
@@ -113,7 +113,7 @@ export const testimonials: Testimonial[] = [
     name: 'David Kim',
     role: 'Founder',
     company: 'InnovateLab',
-    content: 'The consulting services provided by NosyT Labs helped us define our entire digital strategy. Their insights into emerging technologies and market trends were invaluable for our product roadmap.',
+    content: 'NosyT Labs provided helpful guidance on our digital strategy using their knowledge of modern development tools and AI-assisted workflows. Their practical approach helped us plan our technology roadmap more effectively.',
     rating: 5,
     avatar: '/images/testimonials/david-kim.jpg',
     featured: false,
@@ -122,9 +122,9 @@ export const testimonials: Testimonial[] = [
     location: 'Seattle, WA',
     projectType: 'Digital Strategy',
     metrics: [
-      { label: 'Strategy Clarity', value: '100%', improvement: 'Clear roadmap' },
-      { label: 'Time to Market', value: '-40%', improvement: 'Faster launches' },
-      { label: 'Investment ROI', value: '400%', improvement: 'Strategic decisions' }
+      { label: 'Strategy Planning', value: 'Collaborative', improvement: 'Clear roadmap' },
+      { label: 'Modern Tools', value: 'AI-assisted', improvement: 'Efficient execution' },
+      { label: 'Team Communication', value: 'Transparent', improvement: 'Unified vision' }
     ]
   },
   {
@@ -132,7 +132,7 @@ export const testimonials: Testimonial[] = [
     name: 'Lisa Thompson',
     role: 'Operations Manager',
     company: 'EfficiencyFirst',
-    content: 'NosyT Labs automated our entire workflow management system. What used to take our team hours now happens automatically. The productivity gains have been incredible.',
+    content: 'NosyT Labs helped us streamline our workflow using modern automation tools and AI services. The new system saves us time on repetitive tasks and the team was transparent about their development process.',
     rating: 5,
     avatar: '/images/testimonials/lisa-thompson.jpg',
     featured: false,
@@ -141,9 +141,9 @@ export const testimonials: Testimonial[] = [
     location: 'Chicago, IL',
     projectType: 'Workflow Automation',
     metrics: [
-      { label: 'Time Savings', value: '75%', improvement: 'Process efficiency' },
-      { label: 'Error Reduction', value: '95%', improvement: 'Quality improvement' },
-      { label: 'Team Productivity', value: '+200%', improvement: 'Output increase' }
+      { label: 'Workflow', value: 'Streamlined', improvement: 'Workflow efficiency' },
+      { label: 'Automation', value: 'AI tools', improvement: 'Automation success' },
+      { label: 'User Experience', value: 'Improved', improvement: 'Work-life balance' }
     ]
   },
   {
@@ -151,7 +151,7 @@ export const testimonials: Testimonial[] = [
     name: 'James Wilson',
     role: 'Product Manager',
     company: 'NextGen Apps',
-    content: 'The mobile app development expertise at NosyT Labs is outstanding. They delivered a cross-platform solution that performs flawlessly on both iOS and Android. User ratings are consistently 4.8+.',
+    content: 'NosyT Labs built us a solid web application using modern frameworks. Their AI-assisted development approach helped deliver a functional solution that works well across different devices and browsers.',
     rating: 5,
     avatar: '/images/testimonials/james-wilson.jpg',
     featured: false,
@@ -160,9 +160,9 @@ export const testimonials: Testimonial[] = [
     location: 'Los Angeles, CA',
     projectType: 'Mobile Application',
     metrics: [
-      { label: 'App Store Rating', value: '4.8/5', improvement: 'User satisfaction' },
-      { label: 'Performance Score', value: '95/100', improvement: 'Optimal speed' },
-      { label: 'User Retention', value: '85%', improvement: '30-day retention' }
+      { label: 'Web Application', value: 'Responsive', improvement: 'User satisfaction' },
+      { label: 'Performance', value: 'Optimized', improvement: 'Optimal speed' },
+      { label: 'Browser Support', value: 'Modern browsers', improvement: 'Universal compatibility' }
     ]
   },
   {

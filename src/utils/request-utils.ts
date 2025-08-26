@@ -12,6 +12,7 @@ import type { APIContext } from 'astro';
  * @returns Headers object from the request
  */
 export function getRequestHeaders(context: APIContext): Headers {
+  if (context.prerender) return new Headers();
   return context.request.headers;
 }
 
@@ -22,6 +23,7 @@ export function getRequestHeaders(context: APIContext): Headers {
  * @returns The header value or null if not found
  */
 export function getHeader(context: APIContext, headerName: string): string | null {
+  if (context.prerender) return null;
   return context.request.headers.get(headerName);
 }
 
@@ -67,6 +69,7 @@ export function isGetRequest(context: APIContext): boolean {
  * @returns The client IP address or null if not available
  */
 export function getClientIp(context: APIContext): string | null {
+  if (context.prerender) return null;
   const headers = context.request.headers;
   
   // Check various headers that might contain the real IP
@@ -97,6 +100,7 @@ export function getClientIp(context: APIContext): string | null {
  * @returns The user agent string or null if not available
  */
 export function getUserAgent(context: APIContext): string | null {
+  if (context.prerender) return null;
   return context.request.headers.get('user-agent');
 }
 
@@ -106,6 +110,7 @@ export function getUserAgent(context: APIContext): string | null {
  * @returns True if the request accepts JSON
  */
 export function acceptsJson(context: APIContext): boolean {
+  if (context.prerender) return false;
   const acceptHeader = context.request.headers.get('accept');
   return acceptHeader ? acceptHeader.includes('application/json') : false;
 }
@@ -116,5 +121,6 @@ export function acceptsJson(context: APIContext): boolean {
  * @returns The content type or null if not available
  */
 export function getContentType(context: APIContext): string | null {
+  if (context.prerender) return null;
   return context.request.headers.get('content-type');
 }

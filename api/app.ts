@@ -5,7 +5,7 @@
 import express, { type Request, type Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 import { validateEnvironment } from './utils/validate-env';
 import { errorHandler, notFoundHandler } from './middleware/error-handler';
 import { 
@@ -18,9 +18,16 @@ import {
 import { csrfMiddleware, setCSRFToken } from '../src/lib/csrf';
 import authRoutes from './routes/auth';
 import contactRoutes from './routes/contact';
+import performanceMetricsRoutes from './routes/performance-metrics';
 import cookieParser from 'cookie-parser';
+import * as path from 'path';
+import * as fs from 'fs';
 
 // Environment configuration
+// Note: These variables are available but not currently used in this file
+
+// Get current directory - using process.cwd() for Node.js compatibility
+const __dirname = process.cwd();
 
 // load env
 dotenv.config();
@@ -31,6 +38,42 @@ const env = { ...legacyEnv, NODE_ENV: process.env.NODE_ENV || 'development' };
 
 const app: express.Application = express();
 
+// Serve static files in preview mode
+if (env.NODE_ENV === 'production' && process.env.SERVE_STATIC === 'true') {
+  // Use project root as base; dist/client contains static output
+  const distPath = path.join(__dirname, 'dist/client');
+  // Add trailing slash for directory-like paths
+  app.use((req, res, next) => {
+    if (!req.path.endsWith('/') && !req.path.includes('.') && !req.path.startsWith('/api')) {
+      res.redirect(301, req.path + '/');
+    } else {
+      next();
+    }
+  });
+
+  app.use(express.static(distPath, { index: 'index.html' }));
+
+  // Fallback for unknown paths to 404.html if exists, else to index.html
+  app.get('*', (req, res, next) => {
+    if (!req.path.startsWith('/api')) {
+      // Normalize path to avoid absolute path issues on Windows
+      const rel = (req.path.endsWith('/') ? req.path + 'index.html' : req.path).replace(/^\/+/, '');
+      const filePath = path.join(distPath, rel);
+      if (fs.existsSync(filePath)) {
+        return res.sendFile(filePath);
+      }
+      const notFoundPath = path.join(distPath, '404.html');
+      if (fs.existsSync(notFoundPath)) {
+        return res.sendFile(notFoundPath);
+      }
+      return res.sendFile(path.join(distPath, 'index.html'));
+    } else {
+      // Ensure API routes continue to downstream handlers
+      return next();
+    }
+  });
+}
+
 // Security headers with Helmet
 const helmetConfig = {
   contentSecurityPolicy: {
@@ -40,7 +83,7 @@ const helmetConfig = {
       fontSrc: ["'self'", 'https://fonts.gstatic.com'],
       imgSrc: ["'self'", 'data:', 'https:'],
       scriptSrc: ["'self'"],
-      connectSrc: ["'self'", env.SUPABASE_URL || ''],
+      connectSrc: ["'self'"],
       frameSrc: ["'none'"],
       objectSrc: ["'none'"],
       baseUri: ["'self'"],
@@ -58,7 +101,12 @@ const helmetConfig = {
 // Enhanced CORS configuration
 const corsOptions = {
   origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-    const allowedOrigins = env.CORS_ORIGIN ? env.CORS_ORIGIN.split(',') : ['http://localhost:4321'];
+    const defaultAllowedOrigins = [
+      'http://localhost:4321',
+      'http://localhost:5173',
+      'http://localhost:3000'
+    ];
+    const allowedOrigins = env.CORS_ORIGIN ? env.CORS_ORIGIN.split(',') : defaultAllowedOrigins;
     
     // Allow requests with no origin (mobile apps, etc.)
     if (!origin) return callback(null, true);
@@ -78,8 +126,7 @@ const corsOptions = {
     'Content-Type', 
     'Accept',
     'Authorization',
-    'X-CSRF-Token',
-    'X-Requested-With'
+    'X-CSRF-Token'
   ],
   exposedHeaders: ['X-CSRF-Token']
 };
@@ -138,6 +185,7 @@ app.get('/api/csrf-token', async (req: Request, res: Response) => {
  */
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/performance-metrics', performanceMetricsRoutes);
 
 /**
  * Health check endpoint
@@ -148,8 +196,7 @@ app.get('/api/health', (_req: Request, res: Response) => {
     success: true,
     message: 'ok',
     timestamp: new Date().toISOString(),
-    environment: env.NODE_ENV,
-    database: 'ok'
+    environment: env.NODE_ENV
   });
 });
 

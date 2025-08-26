@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react';
-import type { AppError } from '../utils/error-handling';
+import type { UnifiedAppError } from '../utils/unified-error-handler';
 
 interface AsyncErrorContextType {
-  onError: (error: Error | AppError) => void;
+  onError: (error: Error | UnifiedAppError) => void;
   setPending: (pending: boolean) => void;
   resetError: () => void;
 }

@@ -134,30 +134,30 @@ export const shadows = {
 
 export const colors = {
   primary: {
-    50: '#eff6ff',
-    100: '#dbeafe',
-    200: '#bfdbfe',
-    300: '#93c5fd',
-    400: '#60a5fa',
-    500: '#3b82f6',
-    600: '#2563eb',
-    700: '#1d4ed8',
-    800: '#1e40af',
-    900: '#1e3a8a',
-    950: '#172554',
+    50: '#eef2ff',
+    100: '#e0e7ff',
+    200: '#c7d2fe',
+    300: '#a5b4fc',
+    400: '#818cf8',
+    500: '#6366f1',
+    600: '#4f46e5',
+    700: '#4338ca',
+    800: '#3730a3',
+    900: '#312e81',
+    950: '#1e1b4b'
   },
   secondary: {
-    50: '#faf5ff',
-    100: '#f3e8ff',
-    200: '#e9d5ff',
-    300: '#d8b4fe',
-    400: '#c084fc',
-    500: '#a855f7',
-    600: '#9333ea',
-    700: '#7c3aed',
-    800: '#6b21a8',
-    900: '#581c87',
-    950: '#3b0764',
+    50: '#f5f3ff',
+    100: '#ede9fe',
+    200: '#ddd6fe',
+    300: '#c4b5fd',
+    400: '#a78bfa',
+    500: '#8b5cf6',
+    600: '#7c3aed',
+    700: '#6d28d9',
+    800: '#5b21b6',
+    900: '#4c1d95',
+    950: '#2e1065'
   },
   accent: {
     50: '#ecfeff',
@@ -170,10 +170,9 @@ export const colors = {
     700: '#0e7490',
     800: '#155e75',
     900: '#164e63',
-    950: '#083344',
+    950: '#083344'
   },
   neutral: {
-    0: '#fff',
     50: '#f8fafc',
     100: '#f1f5f9',
     200: '#e2e8f0',
@@ -184,7 +183,7 @@ export const colors = {
     700: '#334155',
     800: '#1e293b',
     900: '#0f172a',
-    950: '#020617',
+    950: '#020617'
   },
   success: {
     50: '#f0fdf4',
@@ -236,59 +235,71 @@ export const colors = {
   },
 };
 
-// ============================================================================
-// SEMANTIC COLOR TOKENS
-// ============================================================================
-
+// Add dark mode semantic colors
 export const semanticColors = {
-  // Text colors
-  text: {
-    primary: 'var(--color-neutral-900)',
-    secondary: 'var(--color-neutral-700)',
-    muted: 'var(--color-neutral-500)',
+  light: {
+    text: { primary: '#0f172a', secondary: '#475569', muted: '#64748b' },
+    background: { primary: '#ffffff', secondary: '#f8fafc' },
     headings: 'var(--color-neutral-900)',
     link: 'var(--color-primary-600)',
     linkHover: 'var(--color-primary-700)',
     inverse: 'var(--color-neutral-0)',
     disabled: 'var(--color-neutral-400)',
+    surface: {
+      primary: 'var(--color-neutral-0)',
+      secondary: 'var(--color-neutral-50)',
+      tertiary: 'var(--color-neutral-100)',
+      muted: 'var(--color-neutral-100)',
+    },
+    border: {
+      primary: 'var(--color-neutral-200)',
+      strong: 'var(--color-neutral-300)',
+      emphasis: 'var(--color-neutral-400)',
+      muted: 'var(--color-neutral-100)',
+    },
+    interactive: {
+      focusOutline: 'var(--color-primary-500)',
+      onPrimary: 'var(--color-neutral-0)',
+      onSuccess: 'var(--color-neutral-0)',
+      onWarning: 'var(--color-neutral-900)',
+      onError: 'var(--color-neutral-0)',
+      onInfo: 'var(--color-neutral-0)',
+    },
+    shadow: {
+      color: 'rgb(0 0 0 / 0.1)',
+    },
   },
-  
-  // Surface colors
-  surface: {
-    primary: 'var(--color-neutral-0)',
-    secondary: 'var(--color-neutral-50)',
-    tertiary: 'var(--color-neutral-100)',
-    muted: 'var(--color-neutral-100)',
-  },
-  
-  // Background colors
-  background: {
-    primary: 'var(--color-neutral-0)',
-    secondary: 'var(--color-neutral-50)',
-    muted: 'var(--color-neutral-100)',
-  },
-  
-  // Border colors
-  border: {
-    primary: 'var(--color-neutral-200)',
-    strong: 'var(--color-neutral-300)',
-    emphasis: 'var(--color-neutral-400)',
-    muted: 'var(--color-neutral-100)',
-  },
-  
-  // Interactive colors
-  interactive: {
-    focusOutline: 'var(--color-primary-500)',
-    onPrimary: 'var(--color-neutral-0)',
-    onSuccess: 'var(--color-neutral-0)',
-    onWarning: 'var(--color-neutral-900)',
-    onError: 'var(--color-neutral-0)',
-    onInfo: 'var(--color-neutral-0)',
-  },
-  
-  // Shadow color
-  shadow: {
-    color: 'rgb(0 0 0 / 0.1)',
+  dark: {
+    text: { primary: '#f1f5f9', secondary: '#cbd5e1', muted: '#94a3b8' },
+    background: { primary: '#0f172a', secondary: '#1e293b' },
+    headings: 'var(--color-neutral-50)',
+    link: 'var(--color-primary-400)',
+    linkHover: 'var(--color-primary-300)',
+    inverse: 'var(--color-neutral-900)',
+    disabled: 'var(--color-neutral-500)',
+    surface: {
+      primary: 'var(--color-neutral-900)',
+      secondary: 'var(--color-neutral-800)',
+      tertiary: 'var(--color-neutral-700)',
+      muted: 'var(--color-neutral-800)',
+    },
+    border: {
+      primary: 'var(--color-neutral-700)',
+      strong: 'var(--color-neutral-600)',
+      emphasis: 'var(--color-neutral-500)',
+      muted: 'var(--color-neutral-800)',
+    },
+    interactive: {
+      focusOutline: 'var(--color-primary-400)',
+      onPrimary: 'var(--color-neutral-900)',
+      onSuccess: 'var(--color-neutral-900)',
+      onWarning: 'var(--color-neutral-50)',
+      onError: 'var(--color-neutral-900)',
+      onInfo: 'var(--color-neutral-900)',
+    },
+    shadow: {
+      color: 'rgb(255 255 255 / 0.1)',
+    },
   },
 };
 

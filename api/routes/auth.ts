@@ -8,9 +8,9 @@ import {
   adminAuthSchema, 
   validateAndSanitize 
 } from '../../src/lib/validation';
-import { createError, ErrorTypes, asyncErrorHandler } from '../middleware/error-handler';
+import { ErrorFactory, asyncHandler } from '../../src/utils/unified-error-handler';
 
-// Supabase imports removed - not currently used in this auth implementation
+// Authentication routes - currently using placeholder responses
 import * as jwt from 'jsonwebtoken';
 
 const router = Router();
@@ -27,17 +27,14 @@ const env = {
  * Admin Authentication
  * POST /api/auth/admin
  */
-router.post('/admin', authLimiter, asyncErrorHandler(async (req: Request, res: Response): Promise<void> => {
+import { csrfMiddleware } from '../../src/lib/csrf';
+router.post('/admin', authLimiter, csrfMiddleware, asyncHandler(async (req: Request, res: Response): Promise<void> => {
   // Validate and sanitize input
   let validatedData;
   try {
     validatedData = validateAndSanitize(req.body, adminAuthSchema);
   } catch (error) {
-    throw createError(
-      'Invalid authentication credentials',
-      400,
-      ErrorTypes.VALIDATION_ERROR
-    );
+    throw ErrorFactory.validation('Invalid authentication credentials');
   }
 
   const { email, password } = validatedData;
@@ -49,11 +46,7 @@ router.post('/admin', authLimiter, asyncErrorHandler(async (req: Request, res: R
     const adminPassword = env.ADMIN_PASSWORD;
     
     if (email !== adminUsername || password !== adminPassword) {
-      throw createError(
-        'Invalid credentials',
-        401,
-        ErrorTypes.AUTHENTICATION_ERROR
-      );
+      throw ErrorFactory.authentication('Invalid credentials');
     }
 
     // Generate JWT token
@@ -97,7 +90,7 @@ router.post('/admin', authLimiter, asyncErrorHandler(async (req: Request, res: R
  * Admin Logout
  * POST /api/auth/logout
  */
-router.post('/logout', asyncErrorHandler(async (_req: Request, res: Response): Promise<void> => {
+router.post('/logout', asyncHandler(async (_req: Request, res: Response): Promise<void> => {
   try {
     // Clear the admin token cookie
     res.clearCookie('admin_token', {
@@ -121,15 +114,12 @@ router.post('/logout', asyncErrorHandler(async (_req: Request, res: Response): P
  * Verify Admin Token
  * GET /api/auth/verify
  */
-router.get('/verify', asyncErrorHandler(async (req: Request, res: Response): Promise<void> => {
+router.get('/verify', asyncHandler(async (req: Request, res: Response): Promise<void> => {
   try {
     const token = req.cookies.admin_token;
     
     if (!token) {
-      throw createError(
-        'No authentication token provided',
-        401
-      );
+      throw ErrorFactory.authentication('No authentication token provided');
     }
 
     // Verify JWT token
@@ -148,10 +138,7 @@ router.get('/verify', asyncErrorHandler(async (req: Request, res: Response): Pro
     });
   } catch (error) {
     if (error instanceof jwt.JsonWebTokenError) {
-      throw createError(
-        'Invalid authentication token',
-        401
-      );
+      throw ErrorFactory.authentication('Invalid authentication token');
     }
     // Re-throw to be handled by error middleware
     throw error;
@@ -164,10 +151,10 @@ router.get('/verify', asyncErrorHandler(async (req: Request, res: Response): Pro
  */
 router.post('/register', authLimiter, async (_req: Request, res: Response): Promise<void> => {
   res.status(501).json({ 
-    message: 'User registration coming soon - will integrate with Supabase Auth',
+    message: 'User registration coming soon - will integrate with authentication service',
     status: 'not_implemented',
     features: {
-      supabase_auth: 'planned',
+      auth_service: 'planned',
       email_verification: 'planned',
       social_login: 'planned'
     }
@@ -180,10 +167,10 @@ router.post('/register', authLimiter, async (_req: Request, res: Response): Prom
  */
 router.post('/login', authLimiter, async (_req: Request, res: Response): Promise<void> => {
   res.status(501).json({ 
-    message: 'User login coming soon - will integrate with Supabase Auth',
+    message: 'User login coming soon - will integrate with authentication service',
     status: 'not_implemented',
     features: {
-      supabase_auth: 'planned',
+      auth_service: 'planned',
       password_reset: 'planned',
       social_login: 'planned'
     }

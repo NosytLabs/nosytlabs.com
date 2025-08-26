@@ -1,272 +1,242 @@
-import { cva } from "class-variance-authority";
-import React from "react";
-import { cn } from "../../lib/utils";
-import { applyResponsiveTouchTargets, applyInteractionStates } from "../../utils/unified-accessibility";
+import React, { forwardRef, useState, useEffect } from 'react';
+import { cn } from '../../lib/utils';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { Eye, EyeOff, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
 
 const inputVariants = cva(
-  "flex w-full rounded-md border bg-background text-sm ring-offset-background transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  [
+    'flex w-full rounded-lg border bg-background px-3 py-2 text-sm',
+    'transition-all duration-300 ease-out transform-gpu will-change-transform',
+    'placeholder:text-muted-foreground placeholder:transition-colors placeholder:duration-200',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+    'disabled:cursor-not-allowed disabled:opacity-50',
+    'file:border-0 file:bg-transparent file:text-sm file:font-medium',
+    'hover:shadow-sm hover:-translate-y-0.5 focus:translate-y-0 focus:shadow-md',
+  ],
   {
     variants: {
       variant: {
-        default: "border-input hover:border-input/80 focus-visible:border-ring",
-        error: "border-destructive bg-destructive/5 focus-visible:ring-destructive hover:border-destructive/80",
-        success: "border-green-500 bg-green-50 dark:bg-green-950/20 focus-visible:ring-green-500 hover:border-green-600",
-        warning: "border-yellow-500 bg-yellow-50 dark:bg-yellow-950/20 focus-visible:ring-yellow-500 hover:border-yellow-600",
-        ghost: "border-transparent bg-transparent hover:bg-muted/50 focus-visible:bg-background focus-visible:border-input",
-        filled: "border-transparent bg-muted hover:bg-muted/80 focus-visible:bg-background focus-visible:border-ring",
+        default: [
+          'border-border',
+          'focus-visible:ring-primary focus-visible:border-primary',
+          'hover:border-border-hover hover:bg-surface-secondary/30',
+          'focus:border-primary focus:bg-background focus:shadow-primary/10',
+        ],
+        error: [
+          'border-error bg-error/5',
+          'focus-visible:ring-error focus-visible:border-error',
+          'hover:border-error hover:bg-error/10 hover:shadow-error/20',
+          'focus:shadow-error/20 animate-shake',
+        ],
+        success: [
+          'border-success bg-success/5',
+          'focus-visible:ring-success focus-visible:border-success',
+          'hover:border-success hover:bg-success/10 hover:shadow-success/20',
+          'focus:shadow-success/20',
+        ],
+        warning: [
+          'border-warning bg-warning/5',
+          'focus-visible:ring-warning focus-visible:border-warning',
+          'hover:border-warning',
+        ],
       },
       size: {
-        xs: "h-7 px-2 text-xs",
-        sm: "h-8 px-2 text-xs",
-        default: "h-10 px-3 text-sm",
-        lg: "h-12 px-4 text-base",
-        xl: "h-14 px-5 text-lg",
-      },
-      rounded: {
-        none: "rounded-none",
-        sm: "rounded-sm",
-        default: "rounded-md",
-        lg: "rounded-lg",
-        xl: "rounded-xl",
-        full: "rounded-full",
+        sm: 'h-8 px-2 text-xs',
+        md: 'h-10 px-3 text-sm',
+        lg: 'h-12 px-4 text-base',
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
-      rounded: "default",
+      variant: 'default',
+      size: 'md',
     },
   }
 );
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  // Explicitly type variant props to avoid string | undefined issues
-  variant?: "default" | "error" | "success" | "warning" | "ghost" | "filled";
-  size?: "xs" | "sm" | "default" | "lg" | "xl";
-  rounded?: "none" | "sm" | "default" | "lg" | "xl" | "full";
-  // Label and helper text
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
+    VariantProps<typeof inputVariants> {
   label?: string;
+  error?: string;
+  success?: string;
+  warning?: string;
   helperText?: string;
-  errorMessage?: string;
-  successMessage?: string;
-  warningMessage?: string;
-  // Visual indicators
-  required?: boolean;
-  showRequiredIndicator?: boolean;
-  // Icons and addons
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  leftAddon?: React.ReactNode;
-  rightAddon?: React.ReactNode;
-  // Loading state
+  showPasswordToggle?: boolean;
   loading?: boolean;
-  // Animation controls
-  disableAnimations?: boolean;
-  // Enhanced accessibility
-  ariaDescribedBy?: string;
+  containerClassName?: string;
+  animated?: boolean;
+  showCharacterCount?: boolean;
+  maxLength?: number;
+  onValidate?: (value: string) => boolean;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      className,
-      type,
-      variant,
-      size,
-      rounded,
-      label,
-      helperText,
-      errorMessage,
-      successMessage,
-      warningMessage,
-      required,
-      showRequiredIndicator = true,
-      leftIcon,
-      rightIcon,
-      leftAddon,
-      rightAddon,
-      loading,
-      disableAnimations,
-      ariaDescribedBy,
-      id,
-      ...props
-    },
-    ref
-  ) => {
-    const inputId = id || React.useId();
-    const helperTextId = `${inputId}-helper`;
-    const errorId = `${inputId}-error`;
-    const successId = `${inputId}-success`;
-    const warningId = `${inputId}-warning`;
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({
+    className,
+    variant = 'default',
+    size = 'md',
+    type = 'text',
+    label,
+    error,
+    success,
+    warning,
+    helperText,
+    leftIcon,
+    rightIcon,
+    showPasswordToggle = false,
+    loading = false,
+    containerClassName,
+    animated = true,
+    showCharacterCount = false,
+    maxLength,
+    onValidate,
+    disabled,
+    ...props
+  }, ref) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
+    const [isValid, setIsValid] = useState<boolean | null>(null);
+    const [charCount, setCharCount] = useState(0);
 
-    // Determine variant based on validation state
-    const effectiveVariant = errorMessage
-      ? "error"
-      : successMessage
-      ? "success"
-      : warningMessage
-      ? "warning"
-      : variant;
+    const [hasInteracted, setHasInteracted] = useState(false);
 
-    // Build aria-describedby IDs
-    const describedByIds = [
-      helperText && helperTextId,
-      errorMessage && errorId,
-      successMessage && successId,
-      warningMessage && warningId,
-      ariaDescribedBy
-    ].filter(Boolean).join(' ');
+    // Determine the current variant based on validation states
+    const currentVariant = error ? 'error' : success ? 'success' : warning ? 'warning' : variant;
+    
+    // Determine the input type
+    const inputType = showPasswordToggle && type === 'password' 
+      ? (showPassword ? 'text' : 'password')
+      : type;
 
-    const helperId = helperTextId;
-
-    // Apply accessibility enhancements
-    React.useEffect(() => {
-      const inputElement = document.getElementById(inputId) as HTMLInputElement;
-      if (inputElement) {
-        applyResponsiveTouchTargets(inputElement);
-        applyInteractionStates(inputElement);
+    // Handle validation and character counting
+    useEffect(() => {
+      const value = props.value?.toString() || '';
+      setCharCount(value.length);
+      
+      if (onValidate && hasInteracted) {
+        setIsValid(onValidate(value));
       }
-    }, [inputId]);
+    }, [props.value, onValidate, hasInteracted]);
 
-    // Note: hasAddons and hasIcons variables removed as they were unused
+    // Get the appropriate icon for validation states
+    const getValidationIcon = () => {
+      if (loading) {
+        return (
+          <Loader2 className="h-4 w-4 animate-spin text-primary" />
+        );
+      }
+      if (error) return <AlertCircle className="h-4 w-4 text-error animate-pulse" />;
+      if (success || isValid) return <CheckCircle className="h-4 w-4 text-success animate-bounce" />;
+      if (warning) return <AlertCircle className="h-4 w-4 text-warning animate-pulse" />;
+      return null;
+    };
+
+    const validationIcon = getValidationIcon();
 
     return (
-      <div className="space-y-2">
+      <div className={cn('space-y-2', containerClassName)}>
+        {/* Label */}
         {label && (
-          <label
-            htmlFor={inputId}
-            className={cn(
-              'block text-sm font-medium',
-              errorMessage ? 'text-critical' : 'text-text-muted'
-            )}
-          >
+          <label className={cn(
+            'block text-sm font-medium transition-colors duration-200',
+            error ? 'text-error' : success ? 'text-success' : warning ? 'text-warning' : 'text-text-primary',
+            isFocused && !error && !success && !warning && 'text-primary'
+          )}>
             {label}
-            {required && showRequiredIndicator && (
-              <span
-                className="ml-1 text-critical"
-                aria-label="required"
-                title="This field is required"
-              >
-                *
-              </span>
-            )}
           </label>
         )}
 
+        {/* Input Container */}
         <div className="relative">
+          {/* Left Icon */}
+          {leftIcon && (
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+              {leftIcon}
+            </div>
+          )}
+
+          {/* Input Field */}
           <input
-            ref={ref}
-            type={type}
-            id={inputId}
-            required={required}
-            aria-required={required ? 'true' : undefined}
-            aria-invalid={!!errorMessage ? 'true' : 'false'}
-            aria-describedby={describedByIds || undefined}
+            type={inputType}
             className={cn(
-              inputVariants({ variant: effectiveVariant, size, rounded }),
-              errorMessage && 'pr-10', // Space for error icon
-              successMessage && 'pr-10', // Space for success icon
+              inputVariants({ variant: currentVariant, size }),
+              leftIcon && 'pl-10',
+              (rightIcon || validationIcon || showPasswordToggle) && 'pr-10',
+              isFocused && 'ring-2 ring-offset-2',
+              error && isFocused && 'ring-error',
+              success && isFocused && 'ring-success',
+              warning && isFocused && 'ring-warning',
+              !error && !success && !warning && isFocused && 'ring-primary',
               className
             )}
+            ref={ref}
+            disabled={disabled || loading}
+            onFocus={(e) => {
+              setIsFocused(true);
+              setHasInteracted(true);
+              props.onFocus?.(e);
+            }}
+            onBlur={(e) => {
+              setIsFocused(false);
+              props.onBlur?.(e);
+            }}
+            onChange={(e) => {
+              setHasInteracted(true);
+              props.onChange?.(e);
+            }}
             {...props}
           />
 
-          {/* Error Icon */}
-          {errorMessage && (
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-              <svg
-                className="h-5 w-5 text-critical"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
+          {/* Right Icons */}
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
+            {/* Validation Icon */}
+            {validationIcon}
+            
+            {/* Custom Right Icon */}
+            {rightIcon && !validationIcon && (
+              <div className="text-muted-foreground">
+                {rightIcon}
+              </div>
+            )}
+            
+            {/* Password Toggle */}
+            {showPasswordToggle && type === 'password' && (
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="text-muted-foreground hover:text-text-primary transition-colors duration-200 p-1"
+                tabIndex={-1}
               >
-                <path
-                  fillRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z"
-                  clipRule="evenodd"
-                />
-              </svg>
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Helper Text / Error Message */}
+        <div className="flex justify-between items-center">
+          {(error || success || warning || helperText) && (
+            <div className={cn(
+              'text-xs transition-all duration-300 transform',
+              error ? 'text-error animate-slideInLeft' : success || isValid ? 'text-success animate-slideInLeft' : warning ? 'text-warning animate-slideInLeft' : 'text-muted-foreground',
+              animated && 'animate-fadeIn'
+            )}>
+              {error || success || warning || helperText}
             </div>
           )}
-
-          {/* Success Icon */}
-          {successMessage && !errorMessage && (
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-              <svg
-                className="h-5 w-5 text-success"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.236 4.53L7.53 10.23a.75.75 0 00-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                  clipRule="evenodd"
-                />
-              </svg>
+          
+          {/* Character Count */}
+          {showCharacterCount && maxLength && (
+            <div className={cn(
+              'text-xs transition-colors duration-200',
+              charCount > maxLength * 0.9 ? 'text-warning' : charCount === maxLength ? 'text-error' : 'text-muted-foreground'
+            )}>
+              {charCount}/{maxLength}
             </div>
           )}
         </div>
-
-        {/* Helper Text */}
-        {helperText && !errorMessage && !successMessage && (
-          <p id={helperId} className="text-sm text-text-muted">
-            {helperText}
-          </p>
-        )}
-
-        {/* Error Message */}
-        {errorMessage && (
-          <p
-            id={errorId}
-            className="text-sm text-critical flex items-center gap-1"
-            role="alert"
-            aria-live="polite"
-          >
-            <svg
-              className="h-4 w-4 flex-shrink-0"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z"
-                clipRule="evenodd"
-              />
-            </svg>
-            {errorMessage}
-          </p>
-        )}
-
-        {/* Success Message */}
-        {successMessage && !errorMessage && (
-          <p
-            id={successId}
-            className="text-sm text-success flex items-center gap-1"
-            role="status"
-            aria-live="polite"
-          >
-            <svg
-              className="h-4 w-4 flex-shrink-0"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.236 4.53L7.53 10.23a.75.75 0 00-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                clipRule="evenodd"
-              />
-            </svg>
-            {successMessage}
-          </p>
-        )}
       </div>
     );
   }

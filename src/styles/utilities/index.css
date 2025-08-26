@@ -1,8 +1,6 @@
-/* Utility Classes - Import all utility files */
-@import url('./animations.css');
-@import url('./container-queries.css');
-
+/* Utility Classes */
 @layer utilities {
+  /* Original utilities below */
   /* Layout Utilities */
   .aspect-square {
     aspect-ratio: 1 / 1;
@@ -162,28 +160,6 @@
 
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background: var(--color-neutral-400);
-  }
-
-  /* Container Queries */
-  @container (min-width: 320px) {
-    .cq-sm\:text-lg {
-      font-size: 1.125rem;
-      line-height: 1.75rem;
-    }
-  }
-
-  @container (min-width: 768px) {
-    .cq-md\:text-xl {
-      font-size: 1.25rem;
-      line-height: 1.75rem;
-    }
-  }
-
-  @container (min-width: 1024px) {
-    .cq-lg\:text-2xl {
-      font-size: 1.5rem;
-      line-height: 2rem;
-    }
   }
 
   /* Print Utilities */

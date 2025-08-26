@@ -161,7 +161,7 @@ export const STRUCTURED_DATA_CONFIG: StructuredDataConfig = {
               itemOffered: {
                 '@type': 'Service',
                 name: 'Custom Web Applications',
-                description: 'Professional web application development using React, Next.js, and TypeScript'
+                description: 'Modern web application development using React, Next.js, and TypeScript with AI-assisted development'
               }
             },
             {
@@ -182,8 +182,8 @@ export const STRUCTURED_DATA_CONFIG: StructuredDataConfig = {
               '@type': 'Offer',
               itemOffered: {
                 '@type': 'Service',
-                name: 'Machine Learning Implementation',
-                description: 'Custom machine learning solutions and AI model integration'
+                name: 'AI Tool Integration',
+                description: 'Integration of modern AI services and platforms like OpenAI into business workflows'
               }
             },
             {
@@ -191,7 +191,7 @@ export const STRUCTURED_DATA_CONFIG: StructuredDataConfig = {
               itemOffered: {
                 '@type': 'Service',
                 name: 'Process Automation',
-                description: 'Intelligent automation solutions for business processes'
+                description: 'Workflow automation using modern AI tools and development practices'
               }
             }
           ]

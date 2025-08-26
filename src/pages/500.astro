@@ -26,9 +26,9 @@ const seoConfig = {
   type="website"
 >
   <!-- 500 Error Section -->
-  <section class="section-lg min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20">
-    <div class="container">
-      <div class="max-w-4xl mx-auto text-center">
+  <section class="unified-layout type-section size-lg min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20 container-query container-query-md align-center justify-center p-4 m-4">
+    <div class="unified-layout type-container mx-auto">
+      <div class="unified-layout type-container size-xl mx-auto text-center">
         <!-- Error Code -->
         <div class="mb-8">
           <h1 class="text-9xl md:text-[12rem] font-bold text-red-500/20 leading-none select-none">
@@ -62,7 +62,7 @@ const seoConfig = {
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <div class="unified-layout type-flex direction-col sm:direction-row gap-4 justify-center mb-12">
           <button 
             onclick="window.location.reload()" 
             class="btn btn-primary inline-flex items-center gap-2"
@@ -84,9 +84,9 @@ const seoConfig = {
         </div>
 
         <!-- What You Can Do -->
-        <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-12">
+        <div class="unified-layout type-grid cols-1 md:cols-2 gap-6 max-w-3xl mx-auto mb-12">
           <!-- Wait and Retry -->
-          <div class="card p-6 text-center">
+          <div class="unified-layout type-card p-6 text-center rounded-md shadow-sm">
             <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto mb-4">
               <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />

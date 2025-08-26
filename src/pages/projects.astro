@@ -1,38 +1,21 @@
 ---
 import BaseLayout from '../layouts/base-layout.astro';
-import Button from '../components/ui/Button.astro';
-import AstroIcon from '../components/ui/AstroIcon.astro';
+import { getCollection } from 'astro:content';
+import EnhancedPortfolioShowcase from '../components/EnhancedPortfolioShowcase.astro';
 
-const title = 'Projects - Coming Soon';
-const description = 'Our project portfolio will be available soon. We\'re a new AI chatbot studio building practical solutions.';
+const projects = await getCollection('projects');
+const title = 'Our Projects';
+const description = 'Explore our portfolio of innovative web development and AI integration projects.';
 ---
 
-<BaseLayout title={title} description={description} pageKey="projects" type="website" noindex={true}>
+<BaseLayout title={title} description={description} pageKey="projects" type="website">
   <main>
-    <section class="section-xl" role="main" aria-label="Projects coming soon">
-    <div class="container text-center">
-      <div class="max-w-3xl mx-auto">
-        <div class="mb-8">
-          <AstroIcon name="tabler:building" class="w-16 h-16 mx-auto text-primary mb-4" />
-        </div>
-        <h1 class="text-4xl md:text-5xl font-bold text-text mb-6">
-          Projects Coming Soon
+    <section class="section-xl" role="main" aria-label="Our Projects">
+      <div class="container">
+        <h1 class="text-4xl md:text-5xl font-bold text-text mb-6 text-center">
+          Our Projects
         </h1>
-        <p class="text-xl text-text-muted mb-8 leading-relaxed">
-          We're a new studio focused on practical AI chatbots. Our first projects are currently in development.
-          Check back soon to see our work!
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="/services" variant="primary">
-            <AstroIcon name="tabler:brain" class="w-5 h-5 mr-2" />
-            View Our Services
-          </Button>
-          <Button href="/contact" variant="outline">
-            <AstroIcon name="tabler:mail" class="w-5 h-5 mr-2" />
-            Start a Conversation
-          </Button>
-        </div>
-      </div>
+        <EnhancedPortfolioShowcase projects={projects} showFilters={true} showSearch={true} />
       </div>
     </section>
   </main>

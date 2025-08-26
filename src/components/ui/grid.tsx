@@ -49,6 +49,12 @@ export interface GridProps
   as?: keyof JSX.IntrinsicElements;
 }
 
+export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 'full';
+  rowSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 'full';
+  as?: keyof JSX.IntrinsicElements;
+}
+
 const Grid = React.forwardRef<HTMLDivElement, GridProps>(
   ({ className, cols, gap, align, justify, as = 'div', ...props }, ref) => {
     const Component = as;
@@ -63,14 +69,8 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(
 
 Grid.displayName = 'Grid';
 
-const GridItem = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
-    colSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 'full';
-    rowSpan?: 1 | 2 | 3 | 4 | 5 | 6 | 'full';
-    as?: keyof JSX.IntrinsicElements;
-  }
->(({ className, colSpan, rowSpan, as = 'div', ...props }, ref) => {
+const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
+  ({ className, colSpan, rowSpan, as = 'div', ...props }, ref) => {
   const Component = as;
 
   const colSpanClass = colSpan

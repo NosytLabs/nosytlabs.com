@@ -8,19 +8,19 @@ export const COMPANY: CompanyInfo = {
   NAME: 'NosytLabs',
   FULL_NAME: 'NOSYT LLC',
   TAGLINE: 'Notable Opportunities Shape Your Tomorrow',
-  DESCRIPTION: 'Innovative digital solutions that help businesses thrive in the modern landscape.',
+  DESCRIPTION: 'AI-assisted development services helping businesses build modern digital solutions.',
   FOUNDED: '2025',
   WEBSITE: 'https://nosytlabs.com',
   CDN_URL: 'https://cdn.nosytlabs.com',
 } as const;
 
 export const BRAND_MESSAGING: BrandMessaging = {
-  SLOGAN: 'AI-Powered Innovation for 2025',
-  HERO_HEADLINE: 'Transform Your Business with Next-Generation AI Solutions',
+  SLOGAN: 'AI-Assisted Development for 2025',
+  HERO_HEADLINE: 'Build Better Software with AI Development Tools',
   VALUE_PROPOSITION:
-    'Leading-edge AI development and autonomous agent solutions that revolutionize how businesses operate. We build intelligent systems using 2025 AI technologies including advanced LLMs, multimodal AI, and self-operating agents.',
-  CTA_PRIMARY: 'Build AI Solutions',
-  CTA_SECONDARY: 'Explore AI Services',
+    'Modern web development using AI tools like Cursor, Claude, and ChatGPT to build efficient, reliable solutions. We leverage AI assistance to deliver quality software faster while maintaining transparency about our development process.',
+  CTA_PRIMARY: 'Start Your Project',
+  CTA_SECONDARY: 'Learn About Our Process',
 } as const;
 
 export const CONTACT: ContactInfo = {

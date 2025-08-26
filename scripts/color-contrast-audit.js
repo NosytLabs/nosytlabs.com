@@ -229,8 +229,8 @@ class ColorContrastAuditor {
     const result = colorContrastManager.analyzeContrast(foreground, background);
     const testResult = {
         type: 'text-background',
-        foreground: foreground,
-        background: background,
+        foreground,
+        background,
         ratio: result.ratio,
         level: result.level,
         passes: result.passes,

@@ -1,5 +1,7 @@
 /**
- * Contact API routes for handling contact forms, newsletter signup, and project inquiries
+ * Contact API routes - simplified for EmailJS client-side integration
+ * These routes now return success responses for preview/testing purposes
+ * Actual email sending is handled by EmailJS on the client side
  */
 import { Router, type Request, type Response } from 'express';
 import { 
@@ -8,17 +10,11 @@ import {
 } from '../../src/lib/rateLimiter';
 import { 
   contactFormSchema, 
-  newsletterSchema, 
-  projectInquirySchema,
+  newsletterSchema,
   validateAndSanitize 
 } from '../../src/lib/validation';
-import { createError, ErrorTypes, asyncErrorHandler } from '../middleware/error-handler';
-
-// Import Supabase client and EmailService
-import { supabase, supabaseAdmin } from '../../src/lib/supabase';
-import { EmailService } from '../../src/lib/EmailService';
-// Initialize services
-const emailService = new EmailService();
+import { ErrorFactory, asyncHandler } from '../../src/utils/unified-error-handler';
+import { setCSRFToken } from '../../src/lib/csrf';
 
 const router = Router();
 
@@ -26,400 +22,191 @@ const router = Router();
  * Contact Form Submission
  * POST /api/contact/form
  */
-router.post('/form', contactLimiter, asyncErrorHandler(async (req: Request, res: Response): Promise<void> => {
+router.post('/form', contactLimiter, asyncHandler(async (req: Request, res: Response): Promise<void> => {
+  
   // Validate and sanitize input
   let validatedData;
   try {
     validatedData = validateAndSanitize(req.body, contactFormSchema);
   } catch (error) {
-    throw createError(
-      'Invalid contact form data',
-      400,
-      ErrorTypes.VALIDATION_ERROR
-    );
+    throw ErrorFactory.validation('Invalid contact form data');
   }
 
-  const { name, email, message, subject, service, company } = validatedData;
+  // Generate a simple ID for tracking
+  const submissionId = `contact_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   
-  try {
-    // Save to Supabase database
-    const { data: savedContact, error: dbError } = await supabase
-      .from('contact_submissions')
-      .insert({
-        name,
-        email,
-        subject: subject || 'Contact Form Submission',
-        message,
-        service: service || null,
-        company: company || null,
-        status: 'new',
-        ip_address: req.ip,
-        user_agent: req.get('User-Agent')
-      })
-      .select()
-      .single();
+  console.log('Contact form submission received (EmailJS mode):', submissionId);
 
-    if (dbError) {
-      throw createError(
-        'Failed to save contact form',
-        500,
-        ErrorTypes.DATABASE_ERROR
-      );
-    }
-
-    console.log('Contact form submission saved:', savedContact.id);
-
-    // Send confirmation email to user
-    await emailService.sendContactConfirmation({
-      name,
-      email,
-      subject: subject || 'Contact Form Submission',
-      message,
-      ...(service && { service }),
-      ...(company && { company }),
-      timestamp: new Date().toISOString()
-    });
-
-    // Send notification to admin
-    await emailService.sendAdminContactNotification({
-      name,
-      email,
-      subject: subject || 'Contact Form Submission',
-      message,
-      ...(service && { service }),
-      ...(company && { company }),
-      timestamp: new Date().toISOString(),
-      submissionId: savedContact.id
-    });
-    
-    res.status(200).json({ 
-      success: true,
-      message: 'Contact form submitted successfully',
-      id: savedContact.id
-    });
-  } catch (error) {
-    // Re-throw to be handled by error middleware
-    throw error;
-  }
+  // In EmailJS mode, we just return success - actual email sending happens client-side
+  res.status(200).json({ 
+    success: true,
+    message: 'Contact form submitted successfully',
+    id: submissionId
+  });
 }));
 
 /**
  * Newsletter Subscription
  * POST /api/contact/newsletter
  */
-router.post('/newsletter', newsletterLimiter, asyncErrorHandler(async (req: Request, res: Response): Promise<void> => {
+router.post('/newsletter', newsletterLimiter, asyncHandler(async (req: Request, res: Response): Promise<void> => {
+  
   // Validate and sanitize input
   let validatedData;
   try {
     validatedData = validateAndSanitize(req.body, newsletterSchema);
   } catch (error) {
-    throw createError(
-      'Invalid newsletter subscription data',
-      400,
-      ErrorTypes.VALIDATION_ERROR
-    );
+    throw ErrorFactory.validation('Invalid newsletter subscription data');
   }
 
   const { email, name, interests } = validatedData;
   
-  try {
-    // Check if email already exists
-    const { data: existingSubscriber } = await supabase
-      .from('newsletter_subscribers')
-      .select('id, status')
-      .eq('email', email)
-      .single();
-
-    if (existingSubscriber) {
-      if (existingSubscriber.status === 'active') {
-        throw createError(
-          'Email already subscribed to newsletter',
-          400,
-          ErrorTypes.VALIDATION_ERROR
-        );
-      } else {
-        // Reactivate subscription
-        const { data: reactivatedSubscriber, error: updateError } = await supabase
-          .from('newsletter_subscribers')
-          .update({
-            status: 'active',
-            name: name || null,
-            preferences: interests || null,
-            updated_at: new Date().toISOString()
-          })
-          .eq('id', existingSubscriber.id)
-          .select()
-          .single();
-
-        if (updateError) {
-          throw createError(
-            'Failed to reactivate newsletter subscription',
-            500,
-            ErrorTypes.DATABASE_ERROR
-          );
-        }
-
-        console.log('Newsletter subscription reactivated:', reactivatedSubscriber.id);
-
-        // Send welcome back email
-        await emailService.sendNewsletterWelcome({
-          email,
-          name: name || 'Subscriber',
-          preferences: interests || [],
-          isReturning: true,
-          timestamp: new Date().toISOString()
-        });
-
-        res.status(200).json({ 
-          success: true,
-          message: 'Newsletter subscription reactivated successfully',
-          id: reactivatedSubscriber.id
-        });
-        return;
-      }
-    }
-    
-    // Create new subscription
-    const { data: savedSubscriber, error: dbError } = await supabase
-      .from('newsletter_subscribers')
-      .insert({
-        email,
-        name: name || null,
-        preferences: interests || null,
-        status: 'active',
-        ip_address: req.ip,
-        user_agent: req.get('User-Agent')
-      })
-      .select()
-      .single();
-
-    if (dbError) {
-      throw createError(
-        'Failed to save newsletter subscription',
-        500,
-        ErrorTypes.DATABASE_ERROR
-      );
-    }
-    
-    console.log('Newsletter subscription saved:', savedSubscriber.id);
-
-    // Send welcome email
-    await emailService.sendNewsletterWelcome({
-      email,
-      name: name || 'Subscriber',
-      preferences: interests || [],
-      isReturning: false,
-      timestamp: new Date().toISOString()
-    });
-
-    // Send admin notification
-    await emailService.sendAdminNewsletterNotification({
-      email,
-      name: name || 'Anonymous',
-      preferences: interests || [],
-      timestamp: new Date().toISOString(),
-      subscriptionId: savedSubscriber.id
-    });
-    
-    res.status(200).json({ 
-      success: true,
-      message: 'Successfully subscribed to newsletter',
-      id: savedSubscriber.id
-    });
-  } catch (error) {
-    // Re-throw to be handled by error middleware
-    throw error;
-  }
-}));
-
-/**
- * Project Inquiry Submission
- * POST /api/contact/project
- */
-router.post('/project', contactLimiter, asyncErrorHandler(async (req: Request, res: Response): Promise<void> => {
-  // Validate and sanitize input
-  let validatedData;
-  try {
-    validatedData = validateAndSanitize(req.body, projectInquirySchema);
-  } catch (error) {
-    throw createError(
-      'Invalid project inquiry data',
-      400,
-      ErrorTypes.VALIDATION_ERROR
-    );
-  }
-
-  const { 
-    name, 
-    email, 
-    company, 
-    projectType, 
-    budget, 
-    timeline, 
-    projectDescription,
-    features,
-    attachments
-  } = validatedData;
+  // Generate a simple ID for tracking
+  const subscriptionId = `newsletter_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   
-  try {
-    // Save to Supabase database
-    const { data: savedInquiry, error: dbError } = await supabase
-      .from('project_inquiries')
-      .insert({
-        name,
-        email,
-        company: company || null,
-        project_type: projectType,
-        budget,
-        timeline,
-        description: projectDescription,
-        features: features ? JSON.stringify(features) : null,
-        attachments: attachments ? JSON.stringify(attachments) : null,
-        status: 'new',
-        ip_address: req.ip,
-        user_agent: req.get('User-Agent')
-      })
-      .select()
-      .single();
+  console.log('Newsletter subscription received (EmailJS mode):', subscriptionId);
 
-    if (dbError) {
-      throw createError(
-        'Failed to save project inquiry',
-        500,
-        ErrorTypes.DATABASE_ERROR
-      );
-    }
-    
-    console.log('Project inquiry saved:', savedInquiry.id);
-
-    // Send confirmation email to user
-    await emailService.sendProjectInquiryConfirmation({
-      name,
-      email,
-      company,
-      projectType,
-      budget,
-      timeline,
-      description: projectDescription,
-      features,
-      attachments,
-      timestamp: new Date().toISOString()
-    });
-
-    // Send notification to admin
-    await emailService.sendAdminProjectNotification({
-      name,
-      email,
-      company,
-      projectType,
-      budget,
-      timeline,
-      description: projectDescription,
-      features,
-      attachments,
-      timestamp: new Date().toISOString(),
-      inquiryId: savedInquiry.id
-    });
-    
-    res.status(200).json({ 
-      success: true,
-      message: 'Project inquiry submitted successfully',
-      id: savedInquiry.id
-    });
-  } catch (error) {
-    // Re-throw to be handled by error middleware
-    throw error;
-  }
+  // In EmailJS mode, we just return success - actual email sending happens client-side
+  res.status(200).json({ 
+    success: true,
+    message: 'Successfully subscribed to newsletter',
+    id: subscriptionId
+  });
 }));
+
+
 
 /**
  * Get CSRF Token
  * GET /api/contact/csrf-token
- * Note: CSRF protection is handled at the app level
  */
-router.get('/csrf-token', (_req: Request, res: Response): void => {
-  // CSRF token is handled by the app-level middleware
-  res.status(200).json({ csrfToken: 'csrf-token-placeholder' });
-});
+router.get('/csrf-token', asyncHandler(async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Generate and set CSRF token using shared middleware util
+    const csrfToken = await setCSRFToken(req, res);
+
+    res.status(200).json({ 
+      success: true,
+      csrfToken 
+    });
+  } catch (error) {
+    throw ErrorFactory.internal('Failed to generate CSRF token');
+  }
+}));
 
 /**
  * Get Contact Statistics (Admin only)
  * GET /api/contact/stats
  */
-router.get('/stats', asyncErrorHandler(async (_req: Request, res: Response): Promise<void> => {
+router.get('/stats', asyncHandler(async (_req: Request, res: Response): Promise<void> => {
   try {
-    // Get contact form submissions count
-    const { count: contactCount, error: contactError } = await supabaseAdmin
-      .from('contact_submissions')
-      .select('*', { count: 'exact', head: true });
-
-    if (contactError) {
-      throw createError(
-        'Failed to get contact statistics',
-        500,
-        ErrorTypes.DATABASE_ERROR
-      );
-    }
-
-    // Get newsletter subscribers count
-    const { count: newsletterCount, error: newsletterError } = await supabaseAdmin
-      .from('newsletter_subscribers')
-      .select('*', { count: 'exact', head: true })
-      .eq('status', 'active');
-
-    if (newsletterError) {
-      throw createError(
-        'Failed to get newsletter statistics',
-        500,
-        ErrorTypes.DATABASE_ERROR
-      );
-    }
-
-    // Get project inquiries count
-    const { count: projectCount, error: projectError } = await supabaseAdmin
-      .from('project_inquiries')
-      .select('*', { count: 'exact', head: true });
-
-    if (projectError) {
-      throw createError(
-        'Failed to get project statistics',
-        500,
-        ErrorTypes.DATABASE_ERROR
-      );
-    }
-
-    // Get recent submissions (last 30 days)
-    const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-
-    const { count: recentContactCount, error: recentContactError } = await supabaseAdmin
-      .from('contact_submissions')
-      .select('*', { count: 'exact', head: true })
-      .gte('created_at', thirtyDaysAgo.toISOString());
-
-    if (recentContactError) {
-      throw createError(
-        'Failed to get recent contact statistics',
-        500,
-        ErrorTypes.DATABASE_ERROR
-      );
-    }
-
+    // Since we removed the database, return placeholder stats
     const stats = {
       total: {
-        contacts: (contactCount as number) || 0,
-        newsletter: (newsletterCount as number) || 0,
-        projects: (projectCount as number) || 0
+        contacts: 0,
+        newsletter: 0,
+        projects: 0
       },
       recent: {
-        contacts: (recentContactCount as number) || 0
+        contacts: 0
       },
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      note: 'Statistics tracking disabled - using email-only mode'
     };
 
     res.status(200).json({
       success: true,
       data: stats
+    });
+  } catch (error) {
+    // Re-throw to be handled by error middleware
+    throw error;
+  }
+}));
+
+/**
+ * Booking Consultation Endpoint
+ * POST /api/contact/booking
+ */
+router.post('/booking', contactLimiter, asyncHandler(async (req: Request, res: Response): Promise<void> => {
+  
+  // Validate and sanitize input
+  let validatedData;
+  try {
+    validatedData = validateAndSanitize(req.body, compositeBookingSchema);
+  } catch (error) {
+    throw ErrorFactory.validation('Invalid booking inquiry data');
+  }
+
+  if (process.env.NODE_ENV === 'production' && process.env.SERVE_STATIC === 'true') {
+    res.status(200).json({ 
+      success: true,
+      message: 'Booking inquiry submitted successfully (preview mode)',
+      id: 'preview-id'
+    });
+    return;
+  }
+
+  const { 
+    name, 
+    email, 
+    phone,
+    company, 
+    timezone,
+    consultationType,
+    businessSize,
+    currentChallenges,
+    goals,
+    projectGoals,
+    preferredDate,
+    preferredTime,
+    meetingType,
+    duration,
+    additionalNotes
+  } = validatedData as any;
+  
+  try {
+    // Generate a simple ID for tracking
+    const bookingId = `booking_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    
+    console.log('Processing booking inquiry:', bookingId);
+
+    // Send confirmation email to user
+    await emailService.sendBookingConfirmation({
+      name,
+      email,
+      consultationType,
+      preferredDate,
+      preferredTime,
+      meetingType,
+      duration,
+      timestamp: new Date().toISOString()
+    });
+
+    // Send notification to admin
+    await emailService.sendAdminBookingNotification({
+      name,
+      email,
+      phone,
+      company,
+      consultationType,
+      businessSize,
+      currentChallenges,
+      goals, // pass through as-is; may be undefined
+      projectGoals, // include projectGoals as well; downstream can decide display
+      preferredDate,
+      preferredTime,
+      meetingType,
+      duration,
+      additionalNotes,
+      timestamp: new Date().toISOString(),
+      bookingId: bookingId
+    });
+  
+    res.status(200).json({ 
+      success: true,
+      message: 'Booking inquiry submitted successfully',
+      id: bookingId
     });
   } catch (error) {
     // Re-throw to be handled by error middleware

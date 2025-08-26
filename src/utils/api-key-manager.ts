@@ -23,19 +23,6 @@ interface ApiKeyConfig {
 // API key registry
 const apiKeys: ApiKeyConfig[] = [
   {
-    name: 'Resend API Key',
-    envVar: 'RESEND_API_KEY',
-    required: true,
-    validator: key => key.startsWith('re_'),
-    rotationInterval: 90, // Rotate every 90 days
-  },
-  {
-    name: 'Database URL',
-    envVar: 'DATABASE_URL',
-    required: true,
-    validator: url => url.includes('://'),
-  },
-  {
     name: 'JWT Secret',
     envVar: 'JWT_SECRET',
     required: false,

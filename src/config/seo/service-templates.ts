@@ -7,7 +7,7 @@ import type { ServiceSEOTemplate } from './types';
 export const SERVICE_SEO_TEMPLATES: Record<string, ServiceSEOTemplate> = {
   'web-development': {
     titleTemplate: '{serviceName} - Professional Web Development | NosytLabs',
-    descriptionTemplate: 'Professional {serviceName} services using modern technologies. {shortDescription} Get expert web development solutions tailored to your needs.',
+    descriptionTemplate: 'Modern {serviceName} services using current technologies. {shortDescription} Get web development solutions built with AI assistance and modern tools.',
     keywordBase: [
       'web development',
       'React development',
@@ -33,7 +33,7 @@ export const SERVICE_SEO_TEMPLATES: Record<string, ServiceSEOTemplate> = {
 
   'ai-integration': {
     titleTemplate: '{serviceName} - AI Integration Services | NosytLabs',
-    descriptionTemplate: 'Expert {serviceName} services with cutting-edge AI technology. {shortDescription} Transform your business with intelligent automation.',
+    descriptionTemplate: 'AI-assisted {serviceName} services using modern AI tools. {shortDescription} Enhance your business with intelligent automation built using AI development tools.',
     keywordBase: [
       'AI integration',
       'machine learning',
@@ -59,7 +59,7 @@ export const SERVICE_SEO_TEMPLATES: Record<string, ServiceSEOTemplate> = {
 
   'consulting': {
     titleTemplate: '{serviceName} - Technical Consulting | NosytLabs',
-    descriptionTemplate: 'Strategic {serviceName} for your business growth. {shortDescription} Expert guidance for technical decision-making.',
+    descriptionTemplate: 'Collaborative {serviceName} for your business growth. {shortDescription} AI-assisted guidance for technical decision-making.',
     keywordBase: [
       'technical consulting',
       'software architecture',

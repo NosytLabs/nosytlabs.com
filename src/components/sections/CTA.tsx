@@ -60,15 +60,15 @@ export interface CTAProps
     text: string;
     href?: string;
     onClick?: () => void;
-    variant?: "primary" | "AI" | "neural" | "quantum" | "outline" | "ghost";
-    size?: "sm" | "default" | "lg";
+    variant?: "primary" | "secondary" | "outline" | "ghost" | "destructive" | "gradient" | "glow";
+    size?: "sm" | "md" | "lg";
   };
   secondaryAction?: {
     text: string;
     href?: string;
     onClick?: () => void;
-    variant?: "outline" | "ghost" | "link";
-    size?: "sm" | "default" | "lg";
+    variant?: "outline" | "ghost" | "secondary";
+    size?: "sm" | "md" | "lg";
   };
   // Visual elements
   image?: string;
@@ -201,10 +201,10 @@ const CTA = React.forwardRef<HTMLElement, CTAProps>(
     const textColorClass = isGradientVariant ? 'text-white' : '';
 
     const renderContent = () => (
-      <div className={`max-w-4xl ${
-        alignment === "center" ? "mx-auto" : 
-        alignment === "right" ? "ml-auto" : ""
-      }`}>
+      <div className={`max-w-4xl mx-auto ${
+    alignment === "center" ? "text-center" : 
+    alignment === "right" ? "text-right" : "text-left"
+  }`}>
         {/* Badge */}
         {badge && (
           <div className={`mb-6 ${
@@ -293,7 +293,7 @@ const CTA = React.forwardRef<HTMLElement, CTAProps>(
           }`}>
             {primaryAction && (
               <Button
-                variant={primaryAction.variant || (isGradientVariant ? "outline" : "AI")}
+                variant={primaryAction.variant || (isGradientVariant ? "outline" : "primary")}
                 size={primaryAction.size || "lg"}
                 onClick={primaryAction.onClick}
                 className={`min-w-[160px] ${
@@ -354,8 +354,7 @@ const CTA = React.forwardRef<HTMLElement, CTAProps>(
         {/* Testimonial */}
         {testimonial && (
           <div className={`max-w-2xl ${
-            alignment === "center" ? "mx-auto" : 
-            alignment === "right" ? "ml-auto" : ""
+            `mx-auto ${alignment === "center" ? "text-center" : alignment === "right" ? "text-right" : "text-left"}`
           } ${
             !disableAnimations ? "animate-in slide-in-from-bottom-4 duration-700 delay-700" : ""
           }`}>

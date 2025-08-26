@@ -1,20 +1,16 @@
 /* CSS Layer Declaration - Establishes cascade order */
-@layer reset, base, tokens, components, utilities;
+@layer base, tokens, components, utilities;
 
 /* Import design tokens first */
 @import url('./tokens/design-tokens.css');
 
 /* Import base styles */
-@import url('./base/reset.css');
-@import url('./base/accessibility.css');
+@import url('./base.css');
 
 /* Import components */
-@import url('./components.css');
+/* forms.css has been deprecated - using unified React components instead */
 
 /* Import utilities */
-@import url('./utilities/animation-variables.css');
-@import url('./utilities/animations.css');
-@import url('./utilities/text-shadow.css');
 @import url('./utilities/index.css');
 
 /* Tailwind CSS layers */
@@ -33,29 +29,37 @@
     font-feature-settings: 'liga' on, 'calt' on;
   }
 
+  /* Let Tailwind handle container styles - removed conflicting custom styles */
+
   /* Section spacing utilities (used throughout pages like index.astro) */
   .section-xs {
-    padding-block: var(--spacing-8);
+    padding-top: var(--spacing-8);
+    padding-bottom: var(--spacing-8);
   }
   
   .section-sm {
-    padding-block: var(--spacing-12);
+    padding-top: var(--spacing-12);
+    padding-bottom: var(--spacing-12);
   }
   
   .section-md {
-    padding-block: var(--spacing-16);
+    padding-top: var(--spacing-16);
+    padding-bottom: var(--spacing-16);
   }
   
   .section-lg {
-    padding-block: var(--spacing-20);
+    padding-top: var(--spacing-20);
+    padding-bottom: var(--spacing-20);
   }
   
   .section-xl {
-    padding-block: var(--spacing-24);
+    padding-top: var(--spacing-24);
+    padding-bottom: var(--spacing-24);
   }
   
   .section-2xl {
-    padding-block: var(--spacing-32);
+    padding-top: var(--spacing-32);
+    padding-bottom: var(--spacing-32);
   }
 
   /* Headings - establish clear hierarchy */

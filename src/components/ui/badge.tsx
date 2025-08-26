@@ -18,7 +18,7 @@ const badgeVariants = cva(
         neural: "border-transparent bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-600 hover:to-blue-600",
         quantum: "border-transparent bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600",
         // Modern variants
-        neon: "border-transparent bg-black text-green-400 shadow-[0_0_10px_rgba(34,197,94,0.5)] hover:shadow-[0_0_20px_rgba(34,197,94,0.7)]",
+        neon: "border-transparent bg-neutral-900 text-success-400 shadow-[0_0_10px_rgb(var(--color-success-400-rgb)/0.5)] hover:shadow-[0_0_20px_rgb(var(--color-success-400-rgb)/0.7)]",
         glass: "border-white/20 bg-white/10 text-foreground backdrop-blur-sm hover:bg-white/20",
         gradient: "border-transparent bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-600 hover:to-red-600",
       },

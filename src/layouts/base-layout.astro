@@ -59,6 +59,10 @@ const {
     preloadImages = [],
 } = Astro.props as Props;
 
+// Analytics configuration
+const GA_ID = import.meta.env.PUBLIC_GA_ID;
+const SENTRY_DSN = import.meta.env.PUBLIC_SENTRY_DSN;
+
 // Generate SEO tags
 const seoTags = generateSEOTags({
     title,
@@ -128,16 +132,63 @@ const nonce = getNonce(Astro);
     <!-- Canonical URL -->
     <link rel="canonical" href={seoTags.canonicalUrl} />
 
+    <!-- Critical CSS for Core Web Vitals -->
+    <link rel="preload" href="/assets/css/critical.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="/assets/css/critical.css" /></noscript>
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/api/health" as="fetch" crossorigin />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    
     {preloadImages.map((src) => (
-        <link rel="preload" as="image" href={src} />
+        <link rel="preload" as="image" href={src} fetchpriority="high" />
     ))}
 
     <style>
-      /* Minimal critical CSS for hero/header to reduce render-blocking */
-      :root { --critical-container-max: 72rem; }
+      /* Critical CSS for Core Web Vitals optimization */
       .section-xl { padding-block: clamp(3rem, 5vw, 6rem); }
-      .container { margin-inline: auto; max-width: var(--critical-container-max); padding-inline: 1rem; }
+      html { 
+        scrollbar-gutter: stable;
+        font-display: swap;
+      }
+      .container { 
+        margin-left: auto; 
+        margin-right: auto; 
+        padding-left: 1rem; 
+        padding-right: 1rem; 
+        width: 100%;
+        max-width: 1280px;
+      }
       h1 { line-height: 1.1; letter-spacing: -0.01em; }
+      
+      /* LCP optimization */
+      .optimize-lcp {
+        content-visibility: auto;
+        contain-intrinsic-size: 0 400px;
+      }
+      
+      /* CLS prevention */
+      .optimize-cls {
+        aspect-ratio: attr(width) / attr(height);
+      }
+      
+      /* Skip links for accessibility */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: #000;
+        color: #fff;
+        padding: 8px;
+        text-decoration: none;
+        z-index: 1000;
+      }
+      .skip-link:focus {
+        top: 6px;
+      }
     </style>
 
     <!-- AI-Powered Meta Tags (Conditional) -->
@@ -168,32 +219,31 @@ const nonce = getNonce(Astro);
 
     <ViewTransitions />
     <SpeedInsights />
-    {import.meta.env.PUBLIC_GA_ID && (
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GA_ID}`}></script>
-    )}
-    {import.meta.env.PUBLIC_GA_ID && (
-      <script is:inline>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', import.meta.env.PUBLIC_GA_ID, { anonymize_ip: true });
-      </script>
-    )}
-
-    {import.meta.env.PUBLIC_SENTRY_DSN && (
-      <script src="https://js.sentry-cdn.com/7.111.0/bundle.min.js" crossorigin="anonymous"></script>
-    )}
-    {import.meta.env.PUBLIC_SENTRY_DSN && (
-      <script is:inline>
-        if (window.Sentry) {
-          window.Sentry.init({
-            dsn: import.meta.env.PUBLIC_SENTRY_DSN,
-            integrations: [],
-            tracesSampleRate: 0.1,
-          });
-        }
-      </script>
-    )}
+    <!-- Analytics Integration -->
+    <script>
+      // Analytics configuration
+      window.ANALYTICS_CONFIG = {
+        googleAnalytics: {
+          measurementId: import.meta.env.PUBLIC_GA_ID,
+          enableEnhancedEcommerce: true,
+          enableCustomEvents: true,
+          enableWebVitals: true
+        },
+        sentry: {
+          dsn: import.meta.env.PUBLIC_SENTRY_DSN,
+          environment: import.meta.env.MODE || 'production',
+          tracesSampleRate: import.meta.env.MODE === 'development' ? 1.0 : 0.1,
+          enablePerformanceMonitoring: true,
+          enableErrorTracking: true
+        },
+        enableAutoTracking: true,
+        enableWebVitalsTracking: true,
+        enableErrorTracking: true,
+        enableUserInteractionTracking: true,
+        gdprCompliant: true,
+        privacyFirst: true
+      };
+    </script>
 
     <Analytics />
 </head>
@@ -201,11 +251,166 @@ const nonce = getNonce(Astro);
     <!-- Skip Links for Screen Readers -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <a href="#navigation" class="skip-link">Skip to navigation</a>
-        <Navigation currentPath={currentUrl} id="navigation" />
-        <main id="main-content" class="main-content">
-            <slot />
-        </main>
-        <Toaster />
-        <Footer />
+    
+    <!-- Performance Monitor (Development Only) -->
+    {import.meta.env.DEV && (
+        <div id="performance-monitor-root"></div>
+    )}
+    
+    <Navigation currentPath={currentUrl} id="navigation" />
+    <main id="main-content" class="main-content optimize-lcp">
+        <slot />
+    </main>
+    <Toaster />
+    <Footer />
+    
+    <!-- Service Worker Registration -->
+    <script is:inline>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+    
+    <!-- Initialize Analytics Integration -->
+    <script type="module">
+      // Initialize comprehensive analytics integration
+      if (typeof window !== 'undefined' && window.ANALYTICS_CONFIG) {
+        import('/src/services/analytics-integration.js').then(module => {
+          const { analyticsIntegration } = module;
+          
+          // Initialize with configuration
+          analyticsIntegration.initialize(window.ANALYTICS_CONFIG).then(() => {
+            console.log('Analytics integration initialized successfully');
+            
+            // Track initial page view
+            analyticsIntegration.trackPageView(window.location.pathname, document.title);
+            
+            // Set up GDPR compliance if needed
+            if (window.ANALYTICS_CONFIG.gdprCompliant) {
+              // Check for consent before full tracking
+              const hasConsent = localStorage.getItem('analytics-consent') === 'true';
+              if (!hasConsent) {
+                // Show consent banner or disable tracking until consent is given
+                console.log('Analytics consent required - tracking limited until consent provided');
+              }
+            }
+            
+            // Track performance budget violations
+            const performanceBudgets = {
+              LCP: 2500, // Largest Contentful Paint
+              FID: 100,  // First Input Delay
+              CLS: 0.1,  // Cumulative Layout Shift
+              FCP: 1800, // First Contentful Paint
+              TTFB: 800  // Time to First Byte
+            };
+            
+            // Set up performance monitoring with budgets
+            window.addEventListener('load', () => {
+              // Monitor for budget violations
+              if ('PerformanceObserver' in window) {
+                const observer = new PerformanceObserver((list) => {
+                  for (const entry of list.getEntries()) {
+                    const metric = entry.name;
+                    const value = entry.value || entry.duration;
+                    
+                    if (performanceBudgets[metric] && value > performanceBudgets[metric]) {
+                      analyticsIntegration.trackBudgetViolation({
+                        metric,
+                        actual: value,
+                        budget: performanceBudgets[metric],
+                        severity: value > performanceBudgets[metric] * 1.5 ? 'error' : 'warning'
+                      });
+                    }
+                  }
+                });
+                
+                try {
+                  observer.observe({ entryTypes: ['measure', 'navigation'] });
+                } catch (e) {
+                  console.warn('Performance monitoring not fully supported:', e);
+                }
+              }
+            });
+            
+          }).catch(error => {
+            console.error('Failed to initialize analytics integration:', error);
+          });
+        }).catch(error => {
+          console.error('Failed to load analytics integration:', error);
+        });
+      }
+    </script>
+    
+    <!-- GDPR Compliance Banner -->
+    <script type="module">
+      // Simple GDPR compliance banner
+      if (window.ANALYTICS_CONFIG?.gdprCompliant && !localStorage.getItem('analytics-consent')) {
+        const banner = document.createElement('div');
+        banner.id = 'gdpr-banner';
+        banner.style.cssText = `
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: #2d3748;
+          color: white;
+          padding: 1rem;
+          z-index: 10000;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: system-ui, -apple-system, sans-serif;
+          font-size: 14px;
+        `;
+        
+        banner.innerHTML = `
+          <div>
+            <p style="margin: 0;">We use analytics to improve your experience. By continuing to use this site, you consent to our use of cookies and analytics tracking.</p>
+          </div>
+          <div style="display: flex; gap: 1rem;">
+            <button id="gdpr-accept" style="background: #4299e1; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Accept</button>
+            <button id="gdpr-decline" style="background: transparent; color: white; border: 1px solid white; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;">Decline</button>
+          </div>
+        `;
+        
+        document.body.appendChild(banner);
+        
+        document.getElementById('gdpr-accept').addEventListener('click', () => {
+          localStorage.setItem('analytics-consent', 'true');
+          banner.remove();
+          // Reinitialize analytics with full tracking
+          window.location.reload();
+        });
+        
+        document.getElementById('gdpr-decline').addEventListener('click', () => {
+          localStorage.setItem('analytics-consent', 'false');
+          banner.remove();
+          // Continue with limited tracking
+        });
+      }
+    </script>
+    
+    <!-- Performance Dashboard (Development Only) -->
+    {import.meta.env.DEV && (
+        <script type="module">
+            import PerformanceDashboard from '/src/components/performance/PerformanceDashboard.tsx';
+            import { createRoot } from 'react-dom/client';
+            import React from 'react';
+            
+            const container = document.getElementById('performance-monitor-root');
+            if (container) {
+                const root = createRoot(container);
+                root.render(React.createElement(PerformanceDashboard));
+            }
+        </script>
+    )}
 </body>
 </html>

@@ -1,10 +1,15 @@
 // Section Components
-export { Hero, heroVariants, type HeroProps } from './Hero';
-export { Services, servicesVariants, type ServicesProps, type Service } from './Services';
-export { Stats, statsVariants, type StatsProps, type Stat } from './Stats';
+export { OptimizedServices, type OptimizedServicesProps } from './OptimizedServices';
+export { ServiceCard, type ServiceCardProps } from './ServiceCard';
+export { OptimizedStats, type OptimizedStatsProps } from './OptimizedStats';
+export { StatItem, type StatItemProps } from './StatItem';
 export { CTA, ctaVariants, type CTAProps } from './CTA';
 
 // Re-export common types for convenience
 export type {
   VariantProps
 } from 'class-variance-authority';
+
+// Export types that were previously exported from the deleted files
+export type { Service } from './OptimizedServices';
+export type { Stat } from './OptimizedStats';

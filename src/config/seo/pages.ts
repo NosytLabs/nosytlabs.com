@@ -6,8 +6,8 @@ import type { PageSEOConfig } from './types';
  */
 export const PAGE_SEO_CONFIG: Record<string, PageSEOConfig> = {
   home: {
-    title: 'NosytLabs - Premium Web Development & AI Integration Services',
-    description: 'Transform your business with cutting-edge web development, AI integration, and technical consulting. Expert solutions for modern enterprises.',
+    title: 'NosytLabs - AI-Assisted Web Development & Integration Services',
+    description: 'Modern web development and AI integration services using current technologies and AI development tools. Collaborative solutions for businesses.',
     keywords: [
       'web development',
       'AI integration',
@@ -20,8 +20,8 @@ export const PAGE_SEO_CONFIG: Record<string, PageSEOConfig> = {
       'digital transformation'
     ],
     openGraph: {
-      title: 'NosytLabs - Premium Web Development & AI Integration',
-      description: 'Expert web development and AI integration services for modern businesses',
+      title: 'NosytLabs - AI-Assisted Web Development & Integration',
+      description: 'Modern web development and AI integration services using current technologies',
       type: 'website',
       images: [{
         url: '/images/hero/og-home.webp',
@@ -32,8 +32,8 @@ export const PAGE_SEO_CONFIG: Record<string, PageSEOConfig> = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'NosytLabs - Premium Web Development & AI Integration',
-      description: 'Expert web development and AI integration services for modern businesses',
+      title: 'NosytLabs - AI-Assisted Web Development & Integration',
+      description: 'Modern web development and AI integration services using current technologies',
       images: ['/images/hero/twitter-home.webp']
     },
     canonical: 'https://nosytlabs.com/',
@@ -72,7 +72,7 @@ export const PAGE_SEO_CONFIG: Record<string, PageSEOConfig> = {
 
   'web-development': {
     title: 'Web Development Services - React, Next.js, TypeScript | NosytLabs',
-    description: 'Professional web development services using React, Next.js, and TypeScript. Custom web applications, e-commerce solutions, and PWAs.',
+    description: 'Modern web development using React, Next.js, and TypeScript with AI-assisted development tools. Web applications, e-commerce solutions, and PWAs.',
     keywords: [
       'React development',
       'Next.js development',
@@ -85,7 +85,7 @@ export const PAGE_SEO_CONFIG: Record<string, PageSEOConfig> = {
     ],
     openGraph: {
       title: 'Web Development Services - NosytLabs',
-      description: 'Professional React, Next.js, and TypeScript development services',
+      description: 'Modern React, Next.js, and TypeScript development with AI assistance',
       type: 'website',
       images: [{
         url: '/images/services/web-development/og-web-dev.webp',
@@ -98,8 +98,8 @@ export const PAGE_SEO_CONFIG: Record<string, PageSEOConfig> = {
   },
 
   'ai-integration': {
-    title: 'AI Integration Services - Machine Learning & Automation | NosytLabs',
-    description: 'Expert AI integration services including machine learning implementation, process automation, and intelligent system development.',
+    title: 'AI Integration Services - Modern AI Tools & Automation | NosytLabs',
+    description: 'AI integration services using modern AI platforms like OpenAI, process automation, and intelligent system development with current AI tools.',
     keywords: [
       'AI integration',
       'machine learning',
@@ -112,7 +112,7 @@ export const PAGE_SEO_CONFIG: Record<string, PageSEOConfig> = {
     ],
     openGraph: {
       title: 'AI Integration Services - NosytLabs',
-      description: 'Expert AI integration and machine learning implementation services',
+      description: 'Modern AI integration using current AI platforms and tools',
       type: 'website',
       images: [{
         url: '/images/services/ai-integration/og-ai.webp',
@@ -126,7 +126,7 @@ export const PAGE_SEO_CONFIG: Record<string, PageSEOConfig> = {
 
   'technical-consulting': {
     title: 'Technical Consulting Services - Architecture & Strategy | NosytLabs',
-    description: 'Strategic technical consulting for architecture design, technology selection, and digital transformation initiatives.',
+    description: 'Collaborative technical consulting for architecture design, technology selection, and digital transformation using modern development practices.',
     keywords: [
       'technical consulting',
       'software architecture',
@@ -138,7 +138,7 @@ export const PAGE_SEO_CONFIG: Record<string, PageSEOConfig> = {
     ],
     openGraph: {
       title: 'Technical Consulting Services - NosytLabs',
-      description: 'Strategic technical consulting and architecture design services',
+      description: 'Collaborative technical consulting and architecture design services',
       type: 'website',
       images: [{
         url: '/images/services/consulting/og-consulting.webp',

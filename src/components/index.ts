@@ -11,7 +11,7 @@ export { Button, buttonVariants, type ButtonProps } from './ui/button';
 
 export { Input, inputVariants, type InputProps } from './ui/input';
 
-export { Textarea, textareaVariants, type TextareaProps } from './ui/textarea';
+export { Textarea, type TextareaProps } from './ui/textarea';
 
 // Icon component removed - using AstroIcon.astro instead
 

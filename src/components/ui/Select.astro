@@ -1,9 +1,0 @@
----
-import { Select, type SelectProps } from './select';
-
-export interface Props extends SelectProps {}
-
-const { ...props } = Astro.props;
----
-
-<Select client:load {...props} />

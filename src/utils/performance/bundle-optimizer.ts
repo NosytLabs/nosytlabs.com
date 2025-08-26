@@ -3,7 +3,7 @@
  * Phase 2 Performance Enhancement: Advanced bundle splitting and dynamic loading strategies
  */
 
-import type React from 'react';
+import * as React from 'react';
 import { logger } from '../logger';
 
 // ============================================================================

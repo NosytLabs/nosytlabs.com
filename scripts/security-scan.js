@@ -235,7 +235,7 @@ function runConfigurationCheck() {
       name: 'CSRF protection implemented',
       check: () => {
         try {
-          const csrfFile = fs.existsSync(path.join(projectRoot, 'src/utils/csrf.ts'));
+          const csrfFile = fs.existsSync(path.join(projectRoot, 'src/lib/csrf.ts'));
           let middleware = '';
           const middlewarePath = path.join(projectRoot, 'src/middleware/index.ts');
           if (fs.existsSync(middlewarePath)) {

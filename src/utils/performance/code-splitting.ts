@@ -3,7 +3,8 @@
  * Dynamic component loading and bundle optimization
  */
 
-import React, { type ComponentType, type LazyExoticComponent, Suspense, createElement } from 'react';
+import * as React from 'react';
+import { type ComponentType, type LazyExoticComponent, Suspense, createElement } from 'react';
 
 /**
  * Configuration for dynamic imports

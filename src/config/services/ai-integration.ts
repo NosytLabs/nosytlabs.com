@@ -13,7 +13,7 @@ export const aiIntegrationServices: ServiceData[] = [
     shortDescription:
       'Integrate advanced AI to automate processes, personalize experiences, and drive data-driven decisions that boost efficiency and revenue.',
     description:
-      'We embed cutting-edge AI capabilities into your applications, leveraging the latest models to solve real business challenges, from automating routine tasks to providing predictive insights that give you a competitive edge.',
+      'We integrate AI capabilities into your applications using modern AI tools and services, helping automate routine tasks and provide useful insights for your business operations.',
     icon: 'Bot',
     category: 'AI Solutions',
     href: '/services/ai-powered-features',
@@ -27,13 +27,13 @@ export const aiIntegrationServices: ServiceData[] = [
     ],
     detailedFeatures: [
       {
-        title: 'Cutting-Edge AI Integration',
-        description: 'Harness the latest AI technologies to enhance your applications',
+        title: 'Modern AI Integration',
+        description: 'Use current AI technologies and tools to enhance your applications',
         items: [
-          'Seamless integration with leading LLMs like GPT-4 and Claude',
+          'Integration with popular AI services like OpenAI and Anthropic',
           'Multimodal processing for text, images, and voice inputs',
           'Real-time AI responses with minimal latency',
-          'Fine-tuned models customized to your data and needs',
+          'AI implementations tailored to your specific use cases',
           'Automated workflows that reduce manual effort',
           'Advanced retrieval systems for accurate information access',
         ],

@@ -140,7 +140,8 @@ module.exports = [
       '.astro/**',
       'public/**/*.js',
       '**/*.min.js',
-      '**/vendor/**'
+      '**/vendor/**',
+      '**/*.d.ts'
     ],
   },
 ];

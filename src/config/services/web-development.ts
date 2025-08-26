@@ -12,7 +12,7 @@ export const webDevelopmentServices: ServiceData[] = [
     name: 'Modern Web Development',
     shortDescription: 'Build high-performance websites that drive business growth',
     description:
-      'We create responsive, fast-loading websites using cutting-edge technologies like Astro and React, ensuring your online presence captivates visitors and converts them into loyal customers while meeting accessibility standards.',
+      'We build responsive, fast-loading websites using modern technologies like Astro and React with AI development assistance, creating online experiences that engage visitors while following accessibility best practices.',
     icon: 'Globe',
     category: 'Web Development',
     href: '/services/modern-web-development',
@@ -28,7 +28,7 @@ export const webDevelopmentServices: ServiceData[] = [
       {
         title: 'Advanced Technology Stack',
         description:
-          'Leverage modern tools to create robust web solutions that solve real business challenges',
+          'Using modern tools and AI assistance to create practical web solutions that address your business needs',
         items: [
           'Astro framework for superior performance',
           'React components for dynamic interactions',
@@ -41,7 +41,7 @@ export const webDevelopmentServices: ServiceData[] = [
       {
         title: 'Performance Excellence',
         description:
-          'Deliver lightning-fast experiences that keep users engaged and improve search rankings',
+          'Focus on fast-loading experiences that provide good user engagement and search performance',
         items: [
           'Core Web Vitals compliance',
           'Intelligent code splitting',
@@ -54,7 +54,7 @@ export const webDevelopmentServices: ServiceData[] = [
       {
         title: 'Quality and Reliability',
         description:
-          'Ensure your website stands the test of time with thorough testing and best practices',
+          'Build reliable websites using current best practices and testing approaches',
         items: [
           'Vitest-powered testing suite',
           'Automated accessibility checks',

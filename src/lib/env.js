@@ -14,17 +14,12 @@ const baseEnvSchema = z.object({
   APP_VERSION: z.string().min(1, 'APP_VERSION is required'),
   PORT: z.string().regex(/^\d+$/, 'PORT must be a number').transform(Number).default('3000'),
 
-  // Database Configuration (Supabase)
-  SUPABASE_URL: z.string().url('SUPABASE_URL must be a valid URL'),
-  SUPABASE_ANON_KEY: z.string().min(1, 'SUPABASE_ANON_KEY is required'),
-  DATABASE_URL: z.string().url('DATABASE_URL must be a valid PostgreSQL URL').optional(),
 
-  // Email Service Configuration (Resend)
-  RESEND_API_KEY: z.string().regex(/^re_/, 'RESEND_API_KEY must start with "re_"'),
-  FROM_EMAIL: z.string().email('FROM_EMAIL must be a valid email'),
-  ADMIN_EMAIL: z.string().email('ADMIN_EMAIL must be a valid email'),
-  CONTACT_EMAIL: z.string().email('CONTACT_EMAIL must be a valid email'),
-  REPLY_TO_EMAIL: z.string().email('REPLY_TO_EMAIL must be a valid email').optional(),
+
+  // Email Service Configuration (EmailJS)
+  VITE_EMAILJS_SERVICE_ID: z.string().min(1, 'VITE_EMAILJS_SERVICE_ID is required'),
+  VITE_EMAILJS_TEMPLATE_ID: z.string().min(1, 'VITE_EMAILJS_TEMPLATE_ID is required'),
+  VITE_EMAILJS_PUBLIC_KEY: z.string().min(1, 'VITE_EMAILJS_PUBLIC_KEY is required'),
 
   // Security Configuration
   ENCRYPTION_KEY: z.string().min(32, 'ENCRYPTION_KEY must be at least 32 characters'),
@@ -53,9 +48,8 @@ const baseEnvSchema = z.object({
   ENABLE_HOT_RELOAD: z.string().transform(val => val === 'true').default('true'),
 });
 
-// Production-specific schema (requires service role key)
+// Production-specific schema
 const productionEnvSchema = baseEnvSchema.extend({
-  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1, 'SUPABASE_SERVICE_ROLE_KEY is required in production'),
   CSRF_SECRET: z.string().min(16, 'CSRF_SECRET is required in production'),
 });
 
@@ -161,14 +155,13 @@ export function validateFeatureEnv(requiredVars, env = process.env) {
 
 /**
  * Checks if all required environment variables for a specific service are present
- * @param {'supabase'|'resend'|'stripe'|'analytics'} service - Service name
+ * @param {'emailjs'|'stripe'|'analytics'} service - Service name
  * @param {object} env - Environment variables object (defaults to process.env)
  * @returns {boolean} True if all required variables are present
  */
 export function isServiceConfigured(service, env = process.env) {
   const serviceRequirements = {
-    supabase: ['SUPABASE_URL', 'SUPABASE_ANON_KEY'],
-    resend: ['RESEND_API_KEY', 'FROM_EMAIL', 'ADMIN_EMAIL', 'CONTACT_EMAIL'],
+    emailjs: ['VITE_EMAILJS_SERVICE_ID', 'VITE_EMAILJS_TEMPLATE_ID', 'VITE_EMAILJS_PUBLIC_KEY'],
     stripe: ['STRIPE_SECRET_KEY', 'STRIPE_PUBLISHABLE_KEY'],
     analytics: ['GOOGLE_ANALYTICS_ID'],
     sentry: ['SENTRY_DSN'],
@@ -200,18 +193,10 @@ export function getEnvConfig(env) {
       port: env.PORT,
     },
     
-    database: {
-      url: env.SUPABASE_URL,
-      anonKey: env.SUPABASE_ANON_KEY,
-      serviceRoleKey: env.SUPABASE_SERVICE_ROLE_KEY,
-    },
-    
-    email: {
-      apiKey: env.RESEND_API_KEY,
-      from: env.FROM_EMAIL,
-      admin: env.ADMIN_EMAIL,
-      contact: env.CONTACT_EMAIL,
-      replyTo: env.REPLY_TO_EMAIL,
+    emailjs: {
+      serviceId: env.VITE_EMAILJS_SERVICE_ID,
+      templateId: env.VITE_EMAILJS_TEMPLATE_ID,
+      publicKey: env.VITE_EMAILJS_PUBLIC_KEY,
     },
     
     security: {

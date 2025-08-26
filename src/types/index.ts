@@ -27,21 +27,6 @@ export type ProjectData = {
   draft: boolean;
 };
 
-// Blog post type - will be added when blog collection is implemented
-export interface BlogPost {
-  title: string;
-  description: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  publishDate: Date;
-  tags: string[];
-  featured?: boolean;
-  slug: string;
-  readingTime?: string;
-  featuredImage?: string;
-}
-
 // Global types for the project
 declare global {
   // Window extensions for NosytLabs utilities
@@ -89,12 +74,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       NODE_ENV: 'development' | 'production' | 'test';
-      PUBLIC_SITE_URL?: string;
-      SUPABASE_URL?: string; // Added for Supabase config
-      SUPABASE_ANON_KEY?: string; // Added for Supabase config
-      SUPABASE_SERVICE_ROLE_KEY?: string; // Added for Supabase config
-      DATABASE_URL?: string; // Added for Neon config
-      POSTGRES_URL?: string; // Added for Neon config
+    PUBLIC_SITE_URL?: string;
     }
   }
 }
@@ -926,6 +906,19 @@ export interface ComposableProps extends EnhancedBaseProps {
 }
 
 // ========== UTILITY TYPES FOR CONTENT COLLECTIONS ==========
+
+/**
+ * Consultation type for booking inquiries
+ */
+export type ConsultationType =
+  | 'strategy'
+  | 'technical-audit'
+  | 'ai-readiness'
+  | 'digital-transformation'
+  | 'mvp-development'
+  | 'performance-optimization'
+  | 'security-audit'
+  | 'other';
 
 /**
  * Helper type to extract specific fields from Project type
