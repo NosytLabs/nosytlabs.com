@@ -1,0 +1,314 @@
+---
+// Typography Showcase Page - Demonstrates Brand Typography System
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Typography Showcase - NosyT Labs">
+  <div class="container mx-auto px-6 py-12 max-w-4xl">
+    <!-- Header -->
+    <header class="mb-16">
+        <h1 class="heading-display text-6xl mb-4 text-brand-primary-400">
+          Typography System
+        </h1>
+        <p class="body-large text-brand-light-300 max-w-2xl">
+          A comprehensive showcase of the NosyT Labs brand typography system, featuring Satoshi, Inter, and JetBrains Mono fonts with carefully crafted scales and presets.
+        </p>
+      </header>
+
+      <!-- Font Families Section -->
+      <section class="mb-16">
+        <h2 class="heading-primary text-4xl mb-8 text-brand-accent-400">
+          Font Families
+        </h2>
+        
+        <div class="grid gap-8 md:grid-cols-3">
+          <!-- Primary Font - Satoshi -->
+          <div class="bg-brand-dark-800 p-6 rounded-lg border border-brand-dark-700">
+            <h3 class="heading-secondary text-xl mb-4 text-brand-primary-300">
+              Primary - Satoshi
+            </h3>
+            <div class="font-brand-primary space-y-2">
+              <p class="font-light text-brand-light-200">Light 300</p>
+              <p class="font-regular text-brand-light-200">Regular 400</p>
+              <p class="font-medium text-brand-light-200">Medium 500</p>
+              <p class="font-semibold text-brand-light-200">Semibold 600</p>
+              <p class="font-bold text-brand-light-200">Bold 700</p>
+              <p class="font-extrabold text-brand-light-200">Extrabold 800</p>
+              <p class="font-black text-brand-light-200">Black 900</p>
+            </div>
+          </div>
+
+          <!-- Secondary Font - Inter -->
+          <div class="bg-brand-dark-800 p-6 rounded-lg border border-brand-dark-700">
+            <h3 class="heading-secondary text-xl mb-4 text-brand-secondary-300">
+              Secondary - Inter
+            </h3>
+            <div class="font-brand-secondary space-y-2">
+              <p class="font-light text-brand-light-200">Light 300</p>
+              <p class="font-regular text-brand-light-200">Regular 400</p>
+              <p class="font-medium text-brand-light-200">Medium 500</p>
+              <p class="font-semibold text-brand-light-200">Semibold 600</p>
+              <p class="font-bold text-brand-light-200">Bold 700</p>
+              <p class="font-extrabold text-brand-light-200">Extrabold 800</p>
+              <p class="font-black text-brand-light-200">Black 900</p>
+            </div>
+          </div>
+
+          <!-- Monospace Font - JetBrains Mono -->
+          <div class="bg-brand-dark-800 p-6 rounded-lg border border-brand-dark-700">
+            <h3 class="heading-secondary text-xl mb-4 text-brand-accent-300">
+              Mono - JetBrains
+            </h3>
+            <div class="font-brand-mono space-y-2">
+              <p class="font-light text-brand-light-200">Light 300</p>
+              <p class="font-regular text-brand-light-200">Regular 400</p>
+              <p class="font-medium text-brand-light-200">Medium 500</p>
+              <p class="font-semibold text-brand-light-200">Semibold 600</p>
+              <p class="font-bold text-brand-light-200">Bold 700</p>
+              <p class="font-extrabold text-brand-light-200">Extrabold 800</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography Scale -->
+      <section class="mb-16">
+        <h2 class="heading-primary text-4xl mb-8 text-brand-accent-400">
+          Typography Scale
+        </h2>
+        
+        <div class="space-y-4">
+          <div class="text-9xl font-brand-primary font-bold text-brand-primary-400 leading-none">
+            9XL - 8rem
+          </div>
+          <div class="text-8xl font-brand-primary font-bold text-brand-primary-400 leading-none">
+            8XL - 6rem
+          </div>
+          <div class="text-7xl font-brand-primary font-bold text-brand-primary-400 leading-tight">
+            7XL - 4.5rem
+          </div>
+          <div class="text-6xl font-brand-primary font-bold text-brand-primary-400 leading-tight">
+            6XL - 3.75rem
+          </div>
+          <div class="text-5xl font-brand-primary font-semibold text-brand-primary-300 leading-tight">
+            5XL - 3rem
+          </div>
+          <div class="text-4xl font-brand-primary font-semibold text-brand-primary-300 leading-snug">
+            4XL - 2.25rem
+          </div>
+          <div class="text-3xl font-brand-primary font-semibold text-brand-light-100 leading-snug">
+            3XL - 1.875rem
+          </div>
+          <div class="text-2xl font-brand-primary font-medium text-brand-light-100 leading-normal">
+            2XL - 1.5rem
+          </div>
+          <div class="text-xl font-brand-secondary font-medium text-brand-light-200 leading-normal">
+            XL - 1.25rem
+          </div>
+          <div class="text-lg font-brand-secondary font-regular text-brand-light-200 leading-normal">
+            LG - 1.125rem
+          </div>
+          <div class="text-base font-brand-secondary font-regular text-brand-light-300 leading-normal">
+            Base - 1rem
+          </div>
+          <div class="text-sm font-brand-secondary font-regular text-brand-light-400 leading-normal">
+            SM - 0.875rem
+          </div>
+          <div class="text-xs font-brand-secondary font-medium text-brand-light-500 leading-normal tracking-wide">
+            XS - 0.75rem
+          </div>
+        </div>
+      </section>
+
+      <!-- Typography Presets -->
+      <section class="mb-16">
+        <h2 class="heading-primary text-4xl mb-8 text-brand-accent-400">
+          Typography Presets
+        </h2>
+        
+        <div class="space-y-8">
+          <!-- Headings -->
+          <div>
+            <h3 class="heading-secondary text-2xl mb-4 text-brand-secondary-300">
+              Headings
+            </h3>
+            <div class="space-y-4">
+              <h1 class="heading-display text-5xl text-brand-primary-400">
+                Display Heading - Bold, Tight Leading
+              </h1>
+              <h2 class="heading-primary text-4xl text-brand-primary-300">
+                Primary Heading - Semibold, Snug Leading
+              </h2>
+              <h3 class="heading-secondary text-2xl text-brand-light-100">
+                Secondary Heading - Medium, Normal Leading
+              </h3>
+            </div>
+          </div>
+
+          <!-- Body Text -->
+          <div>
+            <h3 class="heading-secondary text-2xl mb-4 text-brand-secondary-300">
+              Body Text
+            </h3>
+            <div class="space-y-4">
+              <p class="body-large text-brand-light-200">
+                Large body text - Perfect for introductory paragraphs and important content that needs to stand out. This text uses Inter font with relaxed line height for optimal readability.
+              </p>
+              <p class="body-regular text-brand-light-300">
+                Regular body text - The standard text size for most content. This provides excellent readability while maintaining efficient use of space. Inter font ensures clarity across all devices.
+              </p>
+              <p class="body-small text-brand-light-400">
+                Small body text - Ideal for captions, footnotes, and secondary information. Despite the smaller size, Inter maintains excellent legibility and character distinction.
+              </p>
+            </div>
+          </div>
+
+          <!-- Code Examples -->
+          <div>
+            <h3 class="heading-secondary text-2xl mb-4 text-brand-secondary-300">
+              Code & Technical Text
+            </h3>
+            <div class="space-y-4">
+              <p class="body-regular text-brand-light-300">
+                Inline code example: <code class="code-inline bg-brand-dark-800 px-2 py-1 rounded text-brand-accent-300">const greeting = 'Hello, World!';</code>
+              </p>
+              <pre class="code-block bg-brand-dark-800 p-4 rounded-lg border border-brand-dark-700 text-brand-light-200 overflow-x-auto" set:html={`<code>// JetBrains Mono with ligatures
+const fibonacci = (n: number): number => {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+};
+
+// Arrow functions and operators
+const result = arr
+  .filter(x => x > 0)
+  .map(x => x * 2)
+  .reduce((a, b) => a + b, 0);
+
+// Comparison operators
+if (a === b && c !== d || e >= f) {
+  console.log('Complex logic with clear operators');
+}
+</code>`}></pre>
+            </div>
+          </div>
+
+          <!-- Labels and Captions -->
+          <div>
+            <h3 class="heading-secondary text-2xl mb-4 text-brand-secondary-300">
+              Labels & Captions
+            </h3>
+            <div class="space-y-4">
+              <div class="space-y-2">
+                <label class="label text-brand-light-200 block">
+                  Form Label - Medium Weight, Normal Spacing
+                </label>
+                <input 
+                  type="text" 
+                  placeholder="Input field with label"
+                  class="w-full px-3 py-2 bg-brand-dark-800 border border-brand-dark-600 rounded text-brand-light-200 focus:border-brand-primary-400 focus:outline-none"
+                />
+              </div>
+              <div class="text-center">
+                <div class="w-full h-32 bg-gradient-to-r from-brand-primary-500 to-brand-accent-500 rounded-lg mb-2"></div>
+                <p class="caption text-brand-light-400">
+                  FIGURE 1.1 - BRAND GRADIENT SHOWCASE
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Font Features -->
+      <section class="mb-16">
+        <h2 class="heading-primary text-4xl mb-8 text-brand-accent-400">
+          Font Features
+        </h2>
+        
+        <div class="grid gap-8 md:grid-cols-2">
+          <!-- Ligatures -->
+          <div class="bg-brand-dark-800 p-6 rounded-lg border border-brand-dark-700">
+            <h3 class="heading-secondary text-xl mb-4 text-brand-accent-300">
+              Code Ligatures
+            </h3>
+            <pre class="font-brand-mono text-sm text-brand-light-200 space-y-1" set:html={`<code>// JetBrains Mono Ligatures
+!== !== === == <= >= => ->
+&& || ++ -- ** // /* */
+:= :: ... .. ?. ?: ??
+<= >= <> << >> |> <|
+~> ~@ #{ #[ ]# #( #?
+<$> <+> <*> </> <#--></code>`}></pre>
+          </div>
+
+          <!-- Character Distinction -->
+          <div class="bg-brand-dark-800 p-6 rounded-lg border border-brand-dark-700">
+            <h3 class="heading-secondary text-xl mb-4 text-brand-accent-300">
+              Character Distinction
+            </h3>
+            <div class="font-brand-mono text-2xl text-brand-light-200 space-y-2">
+              <div>1 l I | (one, lowercase L, uppercase i, pipe)</div>
+              <div>0 O o (zero, uppercase O, lowercase o)</div>
+              <div>. , ; : (period, comma, semicolon, colon)</div>
+              <div>" ' ` (quotes and backtick)</div>
+              <div>6 9 b d p q (similar shapes)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Responsive Behavior -->
+      <section class="mb-16">
+        <h2 class="heading-primary text-4xl mb-8 text-brand-accent-400">
+          Responsive Typography
+        </h2>
+        
+        <div class="bg-brand-dark-800 p-6 rounded-lg border border-brand-dark-700">
+          <p class="body-regular text-brand-light-300 mb-4">
+            The typography system automatically adjusts font sizes on smaller screens to maintain readability and visual hierarchy. Large display fonts scale down appropriately while preserving the design's impact.
+          </p>
+          <div class="grid gap-4 text-center">
+            <div class="text-5xl md:text-7xl font-brand-primary font-bold text-brand-primary-400 leading-tight">
+              Responsive
+            </div>
+            <div class="text-3xl md:text-5xl font-brand-primary font-semibold text-brand-primary-300 leading-tight">
+              Typography
+            </div>
+            <div class="text-xl md:text-3xl font-brand-secondary font-medium text-brand-light-100 leading-normal">
+              Scales Beautifully
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-center pt-8 border-t border-brand-dark-700">
+        <p class="body-small text-brand-light-500">
+          Typography System by NosyT Labs • Featuring Satoshi, Inter & JetBrains Mono
+        </p>
+      </footer>
+    </div>
+</Layout>
+
+<style>
+  /* Additional styles for better showcase */
+  .container {
+    scroll-behavior: smooth;
+  }
+  
+  /* Ensure code blocks don't break layout */
+  pre {
+    white-space: pre;
+    overflow-x: auto;
+  }
+  
+  /* Smooth focus transitions */
+  input:focus {
+    transition: border-color 0.2s ease;
+  }
+  
+  /* Improve text selection */
+  ::selection {
+    background-color: rgba(var(--brand-primary-400-rgb), 0.3);
+    color: var(--brand-light-100);
+  }
+</style>

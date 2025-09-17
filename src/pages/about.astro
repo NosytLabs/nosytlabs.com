@@ -1,0 +1,161 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const teamMembers = [
+  {
+    name: "Tyson",
+    role: "Founder & Vibe Coder",
+    bio: "A practical developer who believes in using AI tools to build better websites faster. No corporate nonsense - just honest tech solutions that actually work for real businesses.",
+    avatar: "/avatars/tyson.webp",
+  },
+];
+---
+
+<Layout title="About Us - Nosyt Labs" description="Learn about Nosyt Labs - a worldwide technology company specializing in web development, AI integration, and innovative digital solutions.">
+  <main class="relative min-h-screen bg-background overflow-hidden">
+    <!-- Subtle background pattern -->
+    <div class="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/10"></div>
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute top-20 left-20 w-32 h-32 border border-primary/20 rounded-2xl rotate-12"></div>
+      <div class="absolute bottom-32 right-32 w-24 h-24 border border-primary/30 rounded-xl -rotate-12"></div>
+    </div>
+    
+    <div class="relative z-10 container mx-auto px-6 py-24">
+      <!-- Hero Section -->
+      <div class="text-center mb-20">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+          <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+          <span class="text-sm font-medium text-primary uppercase tracking-wider">About Us</span>
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 font-heading leading-tight">
+          Empowering Businesses with
+          <span class="text-primary block mt-2">Innovative Technology</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto font-sans leading-relaxed">
+          I'm a solo developer who uses AI tools to build websites and solve tech problems for small businesses. No enterprise fluff - just practical solutions that fit your budget and timeline.
+        </p>
+      </div>
+
+      <!-- Mission Section -->
+      <section id="mission" class="mb-24">
+        <div class="max-w-4xl mx-auto">
+          <div class="p-12 bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-8 font-heading text-center">
+              Our <span class="text-primary">Mission</span>
+            </h2>
+            <p class="text-lg md:text-xl text-muted-foreground font-sans leading-relaxed text-center">
+              To help small businesses get online without the headaches. I use AI tools to build websites faster and cheaper than traditional agencies, while still delivering professional results. No buzzwords, no overselling - just honest work that gets the job done.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Values Section -->
+      <section id="values" class="mb-24">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 font-heading">
+            Our Core <span class="text-primary">Values</span>
+          </h2>
+          <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+            The principles that guide everything we do
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="group p-8 text-center bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:scale-105">
+            <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-foreground mb-4 font-heading">Innovation</h3>
+            <p class="text-muted-foreground font-sans leading-relaxed">
+              We constantly explore cutting-edge technologies and creative solutions to stay ahead of industry trends and deliver exceptional results.
+            </p>
+          </div>
+          
+          <div class="group p-8 text-center bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:scale-105">
+            <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-foreground mb-4 font-heading">Excellence</h3>
+            <p class="text-muted-foreground font-sans leading-relaxed">
+              We're dedicated to delivering high-quality, reliable, and scalable solutions that exceed expectations and meet the highest professional standards.
+            </p>
+          </div>
+          
+          <div class="group p-8 text-center bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:scale-105">
+            <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-colors">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-foreground mb-4 font-heading">Partnership</h3>
+            <p class="text-muted-foreground font-sans leading-relaxed">
+              We work closely with our clients as true partners, understanding their unique needs and collaborating to achieve their business goals together.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Leadership Section -->
+      <section id="team">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4 font-heading">
+            Meet Our <span class="text-primary">Leadership</span>
+          </h2>
+          <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Experienced professionals driving innovation and excellence
+          </p>
+        </div>
+        
+        <div class="max-w-2xl mx-auto">
+          {
+            teamMembers.map((member) => (
+              <div class="group p-8 text-center bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl transition-all duration-300 hover:border-primary/30 hover:shadow-xl">
+                <div class="w-32 h-32 bg-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center">
+                  <svg class="w-16 h-16 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                  </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-foreground mb-2 font-heading">{member.name}</h3>
+                <p class="text-lg text-primary font-semibold mb-4 font-sans">{member.role}</p>
+                <p class="text-muted-foreground font-sans leading-relaxed">{member.bio}</p>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+      
+      <!-- Call to Action -->
+      <section class="text-center py-16 px-8 rounded-2xl bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20">
+        <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6 font-heading">
+          Ready to Work <span class="text-primary">Together?</span>
+        </h2>
+        <p class="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+          Let's discuss how we can help transform your business with innovative technology solutions.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.959 8.959 0 01-4.906-1.456L3 21l2.456-5.094A8.959 8.959 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
+            </svg>
+            Get In Touch
+          </a>
+          
+          <a href="/services" class="inline-flex items-center justify-center gap-3 border-2 border-primary text-primary px-8 py-4 rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h3M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+            View Services
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>

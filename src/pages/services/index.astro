@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Services | Nosyt Labs" description="Comprehensive technology services including AI integration, cloud solutions, and custom software development.">
+  
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-surface-primary">
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          Our
+          <span class="text-nexus-cyan block">Services</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-brand-gray mb-8 max-w-3xl mx-auto">
+          Transform your business with cutting-edge technology solutions tailored to your needs.
+          From AI innovation to cloud scalability, we deliver excellence.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-nexus-cyan text-deep-space-black px-8 py-4 rounded-lg font-semibold hover:bg-brand-accent-muted transition-colors">
+            Get Started
+          </a>
+          <a href="#services" class="border border-nexus-cyan text-nexus-cyan px-8 py-4 rounded-lg font-semibold hover:bg-nexus-cyan hover:text-deep-space-black transition-colors">
+            Explore Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Overview -->
+  <section id="services" class="py-20 bg-surface-secondary">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+          What We <span class="text-nexus-cyan">Offer</span>
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <a href="/services/ai-integration" class="group">
+            <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6 group-hover:bg-surface-primary transition-colors">
+                <svg class="w-8 h-8 text-deep-space-black group-hover:text-nexus-cyan" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.73 12.04l6.27-3.81c.52-.31.85-.88.85-1.5V5.07a1.5 1.5 0 0 0-1.5-1.5H9.22c-.66 0-1.2.42-1.41.99l-1.67 5.02a1.5 1.5 0 0 0 1.41 1.99h5.89l-1.68 5.03a1.5 1.5 0 0 0 1.41.99h5.75a1.5 1.5 0 0 0 1.5-1.5v-1.65c0-.62-.33-1.19-.85-1.5l-6.27-3.81a1.5 1.5 0 0 0-1.47 0 1.49 1.49 0 0 0-.5 1.33v.03c0 .41.21.79.55 1.01l4.99 3.29a1.5 1.5 0 0 0 1.95-2.3l-4.99-3.29a.49.49 0 0 0-.55-.01z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-nexus-cyan transition-colors">AI Integration</h3>
+              <p class="text-brand-gray leading-relaxed">
+                Embed intelligent AI solutions into your existing systems and workflows.
+              </p>
+            </div>
+          </a>
+          
+          <a href="/services/cloud-solutions" class="group">
+            <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 bg-brand-highlight rounded-lg flex items-center justify-center mb-6 group-hover:bg-surface-primary transition-colors">
+                <svg class="w-8 h-8 text-white group-hover:text-brand-highlight" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.75 11.35a4.32 4.32 0 0 0-.79-.08 4.34 4.34 0 0 0-4.34 4.34 4.34 4.34 0 0 0 4.34 4.34 4.32 4.32 0 0 0 .79-.08c-.78 2.12-2.85 3.61-5.26 3.61-3.11 0-5.63-2.52-5.63-5.63s2.52-5.63 5.63-5.63c2.41 0 4.48 1.49 5.26 3.61z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-nexus-cyan transition-colors">Cloud Solutions</h3>
+              <p class="text-brand-gray leading-relaxed">
+                Scalable infrastructure and DevOps automation across major cloud platforms.
+              </p>
+            </div>
+          </a>
+          
+          <a href="/services/custom-software" class="group">
+            <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300 transform hover:scale-105">
+              <div class="w-16 h-16 bg-brand-accent-alt rounded-lg flex items-center justify-center mb-6 group-hover:bg-surface-primary transition-colors">
+                <svg class="w-8 h-8 text-white group-hover:text-brand-accent-alt" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-nexus-cyan transition-colors">Custom Software</h3>
+              <p class="text-brand-gray leading-relaxed">
+                Bespoke software development tailored to your unique business requirements.
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-surface-primary">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+          Why <span class="text-nexus-cyan">Choose Nosyt Labs</span>
+        </h2>
+        <ul class="grid md:grid-cols-3 gap-8" role="list">
+          <li class="text-center" role="listitem">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Proven Expertise</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Years of experience delivering innovative solutions for global clients.
+            </p>
+          </li>
+          
+          <li class="text-center" role="listitem">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Reliable Delivery</h3>
+            <p class="text-brand-gray leading-relaxed">
+              On-time, on-budget projects with transparent communication throughout.
+            </p>
+          </li>
+          
+          <li class="text-center" role="listitem">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Future-Proof</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Scalable, secure solutions designed for long-term growth and adaptability.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,68 @@
+---
+export interface Props {
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+  style?: 'default' | 'display' | 'section' | 'subsection';
+  spacing?: 'tight' | 'normal' | 'loose';
+  id?: string;
+  class?: string;
+}
+
+const { level = 1, style = 'default', spacing = 'normal', id, class: className } = Astro.props;
+const Tag = `h${level}`;
+
+const styleMap = {
+  default: 'size-md weight-semibold',
+  display: 'size-xl weight-bold',
+  section: 'size-lg weight-semibold',
+  subsection: 'size-sm weight-medium',
+} as const;
+---
+
+<Tag id={id} class={`heading-hierarchy ${styleMap[style]} h${level} spacing-${spacing} ${className || ''}`}>
+  <slot />
+</Tag>
+
+<style>
+  .heading-hierarchy {
+    font-family: var(--font-family-heading);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: var(--line-height-heading, 1.2);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-tight, -0.01em);
+    scroll-margin-top: var(--spacing-4xl);
+  }
+
+  /* Weight utilities */
+  .weight-bold { font-weight: var(--font-weight-bold); }
+  .weight-semibold { font-weight: var(--font-weight-semibold); }
+  .weight-medium { font-weight: var(--font-weight-medium); }
+
+  /* Size utilities */
+  .size-xl { font-size: clamp(2rem, 1.2rem + 2vw, 3rem); }
+  .size-lg { font-size: clamp(1.5rem, 1rem + 1vw, 2.25rem); }
+  .size-md { font-size: clamp(1.25rem, 0.9rem + 0.6vw, 1.75rem); }
+  .size-sm { font-size: clamp(1rem, 0.85rem + 0.3vw, 1.25rem); }
+
+  /* Spacing variants for different contexts */
+  .spacing-tight.h1 { margin: var(--spacing-md) 0 var(--spacing-sm); }
+  .spacing-tight.h2 { margin: var(--spacing-sm) 0 var(--spacing-sm); }
+  .spacing-tight.h3 { margin: var(--spacing-sm) 0 var(--spacing-sm); }
+
+  .spacing-normal.h1 { margin: var(--spacing-xl) 0 var(--spacing-md); }
+  .spacing-normal.h2 { margin: var(--spacing-lg) 0 var(--spacing-sm); }
+  .spacing-normal.h3 { margin: var(--spacing-md) 0 var(--spacing-sm); }
+
+  .spacing-loose.h1 { margin: var(--spacing-2xl) 0 var(--spacing-lg); }
+  .spacing-loose.h2 { margin: var(--spacing-xl) 0 var(--spacing-md); }
+  .spacing-loose.h3 { margin: var(--spacing-lg) 0 var(--spacing-sm); }
+
+  /* Anchor link affordance */
+  [id]:hover::after { content: ' #'; opacity: 0.6; }
+
+  /* Accessibility */
+  .heading-hierarchy:focus-visible { outline: 2px solid var(--color-brand-primary); outline-offset: 2px; }
+
+  @media print { .heading-hierarchy { color: var(--color-brand-secondary, #000) !important; } }
+</style>

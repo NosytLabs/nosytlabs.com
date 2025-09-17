@@ -1,312 +1,154 @@
 ---
-/**
- * Blog Index Page
- *
- * Main blog landing page that displays all blog posts
- * with proper layout, filtering, and pagination.
- */
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import BlogSearch from '@/components/BlogSearch.jsx';
 
-// Using inline SVG icons for better performance and compatibility
-import BaseLayout from '../../layouts/base-layout.astro';
-import { generateCanonicalUrl } from '../../utils/path-resolvers';
-import Button from '../../components/ui/Button.astro';
-import AstroIcon from '../../components/ui/AstroIcon.astro';
-// Using inline SVG icons instead of React components
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 
-const canonicalUrl = generateCanonicalUrl('/blog');
-
-// Mock blog posts data - replace with actual CMS or markdown collection
-const blogPosts = [
-  {
-    id: 1,
-    title: 'The Future of AI in Web Development',
-    excerpt:
-      'Exploring how artificial intelligence is revolutionizing the way we build and interact with websites.',
-    author: 'NosytLabs Team',
-    date: '2024-01-15',
-    category: 'AI & Technology',
-    readTime: '5 min read',
-    image:
-'/images/blog/modern-web-development.webp',
-    href: '/blog/future-of-ai-web-development',
-  },
-  {
-    id: 2,
-    title: 'Building High-Performance React Applications',
-    excerpt:
-      'Best practices and optimization techniques for creating lightning-fast React applications.',
-    author: 'NosytLabs Team',
-    date: '2024-01-10',
-    category: 'Web Development',
-    readTime: '8 min read',
-    image:
-'/images/blog/web-performance-optimization.webp',
-    href: '/blog/high-performance-react-applications',
-  },
-  {
-    id: 3,
-    title: 'TypeScript Best Practices for 2024',
-    excerpt:
-      'Essential TypeScript patterns and practices every developer should know for modern web development.',
-    author: 'NosytLabs Team',
-    date: '2024-01-05',
-    category: 'Programming',
-    readTime: '6 min read',
-    image:
-'/images/blog/ai-integration-guide.webp',
-    href: '/blog/typescript-best-practices-2024',
-  },
-];
-
-const categories = ['All', 'AI & Technology', 'Web Development', 'Programming'];
-
-// SEO configuration
-const seoConfig = {
-  title: 'Blog | Latest Insights on Web Development & AI | NosytLabs',
-  description:
-    'Stay updated with the latest trends in web development, AI integration, and technology insights. Expert articles, tutorials, and industry analysis.',
-  keywords: [
-    'web development blog',
-    'AI insights',
-    'technology articles',
-    'programming tutorials',
-    'industry trends',
-  ],
+const blogJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Nosyt Labs Blog",
+  "description": "Thoughts, tutorials, and insights on web development, AI, and design. Stay updated with the latest trends in LLMs, coding tools, and modern web technologies.",
+  "url": "https://nosytlabs.com/blog",
+  "blogPost": posts.slice(0, 5).map(post => ({
+    "@type": "BlogPosting",
+    "headline": post.data.title,
+    "description": post.data.description,
+    "datePublished": post.data.pubDate,
+    "author": {
+      "@type": "Person",
+      "name": post.data.author
+    },
+    "url": `https://nosytlabs.com/blog/${post.slug}`
+  }))
 };
-
-// Get the featured post safely
-const featuredPost = blogPosts.length > 0 ? blogPosts[0] : null;
 ---
 
-<BaseLayout
-  title={seoConfig.title}
-  description={seoConfig.description}
-  keywords={seoConfig.keywords}
-  {canonicalUrl}
-  type="website"
-  preloadImages={featuredPost ? [featuredPost.image] : []}
+<Layout 
+  title="Blog - Nosyt Labs | AI, Web Development & Design Insights" 
+  description="Explore our latest insights on AI, web development, and design. Stay updated with trends in LLMs, coding tools, autonomous agents, synthetic data, and modern web technologies."
+  ogTitle="Nosyt Labs Blog - AI & Web Development Insights"
+  ogDescription="Explore our latest insights on AI, web development, and design. Stay updated with trends in LLMs, coding tools, autonomous agents, synthetic data, and modern web technologies."
+  ogImage="/images/blog-index-og.jpg"
+  twitterCard="summary_large_image"
+  canonicalUrl="https://nosytlabs.com/blog"
+  jsonLd={blogJsonLd}
 >
-  <!-- Hero Section -->
-  <section class="section-xl text-center">
-    <div class="container relative section-xl">
-      <div class="text-center">
-        <h1 class="text-4xl lg:text-6xl font-bold text-text mb-6">
-          Latest <span class="text-primary">Insights</span>
+  <main class="relative min-h-screen bg-background overflow-hidden">
+    <div class="relative container mx-auto px-4 py-24">
+      <div class="text-center mb-20">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 font-heading">
+          Nosyt Labs <span class="text-primary">Blog</span>
         </h1>
-        <p class="text-xl text-text-muted mb-8 max-w-3xl mx-auto">
-          Stay ahead with expert insights on web development, AI integration, and emerging
-          technologies. Practical guides, industry trends, and technical deep-dives.
+        <p class="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          Thoughts, tutorials, and insights on web development, AI, and design. Stay updated with the latest trends in LLMs, coding tools, and modern web technologies.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="primary" href="#posts" class="btn-lg flex items-center justify-center gap-2">
-            <AstroIcon name="tabler:book" class="w-5 h-5" />
-            Browse Articles
-          </Button>
-          <Button variant="secondary" href="/contact" class="btn-lg"> Subscribe to Updates </Button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog Posts Section -->
-  <section id="posts" class="section-xl">
-    <div class="container">
-      <!-- Category Filter -->
-      <div class="flex flex-wrap justify-center gap-4 mb-12">
-        {
-          categories.map(category => (
-            <Button variant="outline" class="px-6 py-2 rounded-full">
-              {category}
-            </Button>
-          ))
-        }
       </div>
 
-      <!-- Featured Post -->
-      {
-        featuredPost && (
-          <div class="mb-16">
-            <div class="section-header">
-              <h2 class="section-title">Featured Article</h2>
-            </div>
-            <div class="bg-background rounded-2xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300">
-              <div class="md:flex">
-                <div class="md:w-1/2">
-                  <img
-                    src={featuredPost.image}
-                    alt={featuredPost.title}
-                    decoding="async"
-                    fetchpriority="high"
-                    width="1200"
-                    height="675"
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    class="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      <BlogSearch client:only="react" posts={posts} />
+      
+      <!-- Featured Posts -->
+      <section class="mt-24">
+        <h2 class="text-3xl font-bold text-foreground mb-8 text-center font-heading">Featured Articles</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.slice(0, 3).map((post) => (
+            <article class="group bg-card border border-border rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div class="h-48 bg-gradient-to-r from-primary/10 to-primary/5 relative">
+                {post.data.heroImage ? (
+                  <img 
+                    src={post.data.heroImage} 
+                    alt={post.data.title}
+                    class="w-full h-full object-cover"
                   />
-                </div>
-                <div class="md:w-1/2 p-8">
-                  <div class="flex items-center gap-4 mb-4">
-                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
-                      {featuredPost.category}
-                    </span>
-                    <span class="text-text-muted text-sm">
-                      {featuredPost.readTime}
-                    </span>
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center bg-gradient-to-r from-primary/10 to-primary/5">
+                    <svg class="w-12 h-12 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
                   </div>
-                  <h3 class="text-2xl font-bold text-text mb-4 group-hover:text-primary transition-colors">
-                    {featuredPost.title}
-                  </h3>
-                  <p class="text-text-muted mb-6 leading-relaxed">
-                    {featuredPost.excerpt}
-                  </p>
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                      <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
-                        <AstroIcon name="tabler:user-circle" class="w-5 h-5 text-on-primary" />
-                      </div>
-                      <div>
-                        <p class="font-medium text-text">
-                          {featuredPost.author}
-                        </p>
-                        <p class="text-sm text-text-muted">{featuredPost.date}</p>
-                      </div>
-                    </div>
-                    <Button href={featuredPost.href} variant="primary">
-                      Read More
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )
-      }
-
-      <!-- Blog Posts Grid -->
-      <div class="grid-layout grid-3">
-        {
-          blogPosts.slice(1).map(post => (
-            <article class="bg-background rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105">
-              <div class="relative">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  loading="lazy"
-                  decoding="async"
-                  fetchpriority="low"
-                  width="640"
-                  height="360"
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div class="absolute top-4 right-4">
-                  <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">
-                    {post.category}
-                  </span>
-                </div>
+                )}
               </div>
               <div class="p-6">
-                <div class="flex items-center justify-between mb-3">
-                  <p class="text-sm text-text-muted">{post.date}</p>
-                  <p class="text-sm text-text-muted">{post.readTime}</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {post.data.tags.slice(0, 2).map((tag) => (
+                    <span class="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                <h3 class="text-xl font-bold text-text mb-3 group-hover:text-primary transition-colors">
-                  {post.title}
+                <h3 class="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                  <a href={`/blog/${post.slug}`}>{post.data.title}</a>
                 </h3>
-                <p class="text-text-muted mb-4 leading-relaxed line-clamp-3">
-                  {post.excerpt}
+                <p class="text-muted-foreground text-sm mb-4 line-clamp-3">
+                  {post.data.description}
                 </p>
-                <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
-                    <AstroIcon name="tabler:user-circle" class="w-4 h-4 text-on-primary" />
-                  </div>
-                  <p class="text-sm font-medium text-text">{post.author}</p>
+                <div class="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>{new Date(post.data.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                  <a href={`/blog/${post.slug}`} class="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Read more
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </a>
                 </div>
               </div>
             </article>
-          ))
-        }
-      </div>
+          ))}
+        </div>
+      </section>
+      
+      <!-- All Posts -->
+      <section class="mt-24">
+        <h2 class="text-3xl font-bold text-foreground mb-8 text-center font-heading">All Articles</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <article class="group bg-card border border-border rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div class="h-48 bg-gradient-to-r from-primary/10 to-primary/5 relative">
+                {post.data.heroImage ? (
+                  <img 
+                    src={post.data.heroImage} 
+                    alt={post.data.title}
+                    class="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center bg-gradient-to-r from-primary/10 to-primary/5">
+                    <svg class="w-12 h-12 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                  </div>
+                )}
+              </div>
+              <div class="p-6">
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {post.data.tags.slice(0, 3).map((tag) => (
+                    <span class="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 class="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                  <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                </h3>
+                <p class="text-muted-foreground text-sm mb-4 line-clamp-3">
+                  {post.data.description}
+                </p>
+                <div class="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>{new Date(post.data.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                  <a href={`/blog/${post.slug}`} class="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Read more
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
-  </section>
-</BaseLayout>
-
-<script>
-  // Blog newsletter form submission
-  document.addEventListener('DOMContentLoaded', function() {
-    const blogNewsletterForm = document.getElementById('blog-newsletter-form');
-    if (blogNewsletterForm) {
-      blogNewsletterForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const submitButton = this.querySelector('button[type="submit"]');
-        const originalHTML = submitButton.innerHTML;
-        
-        // Disable submit button and show loading state
-        submitButton.disabled = true;
-        submitButton.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>Subscribing...';
-        
-        try {
-          const formData = new FormData(this);
-          const data = Object.fromEntries(formData.entries());
-          
-          const response = await fetch('/api/contact/newsletter', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email }),
-          });
-          
-          const result = await response.json();
-          
-          if (response.ok) {
-            // Success feedback
-            submitButton.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Subscribed!';
-            submitButton.classList.add('bg-green-500', 'hover:bg-green-600');
-            
-            // Reset form
-            this.reset();
-            
-            // Show success message
-            const successMessage = document.createElement('div');
-            successMessage.className = 'text-green-600 dark:text-green-400 text-center mt-4 p-3 bg-green-100 dark:bg-green-900/20 rounded-lg';
-            successMessage.textContent = 'Thank you for subscribing! You\'ll receive our latest blog updates.';
-            this.appendChild(successMessage);
-            
-            // Remove success message after 5 seconds
-            setTimeout(() => {
-              if (successMessage.parentNode) {
-                successMessage.parentNode.removeChild(successMessage);
-              }
-            }, 5000);
-            
-          } else {
-            throw new Error(result.error || 'Subscription failed');
-          }
-        } catch (error) {
-          console.error('Blog newsletter subscription error:', error);
-          
-          // Show error message
-          const errorMessage = document.createElement('div');
-          errorMessage.className = 'text-red-600 dark:text-red-400 text-center mt-4 p-3 bg-red-100 dark:bg-red-900/20 rounded-lg';
-          errorMessage.textContent = 'Sorry, there was an error. Please try again later.';
-          this.appendChild(errorMessage);
-          
-          // Remove error message after 5 seconds
-          setTimeout(() => {
-            if (errorMessage.parentNode) {
-              errorMessage.parentNode.removeChild(errorMessage);
-            }
-          }, 5000);
-        } finally {
-          // Re-enable submit button after 3 seconds
-          setTimeout(() => {
-            submitButton.disabled = false;
-            submitButton.innerHTML = originalHTML;
-            submitButton.classList.remove('bg-green-500', 'hover:bg-green-600');
-          }, 3000);
-        }
-      });
-    }
-  });
-</script>
+  </main>
+</Layout>

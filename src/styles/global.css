@@ -1,0 +1,33 @@
+/* Global styles for accessibility and baseline focus indicators */
+
+/* Respect user focus and provide a clear visible indicator */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-accent, #00F0FF);
+  outline-offset: 2px;
+}
+
+/* Provide a fallback focus style for browsers without :focus-visible */
+*:focus {
+  outline: 2px solid var(--color-brand-accent, #00F0FF);
+  outline-offset: 2px;
+}
+
+/* Skip link helper (paired with sr-only utility in main CSS) */
+.skip-nav-link:focus {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 9999;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

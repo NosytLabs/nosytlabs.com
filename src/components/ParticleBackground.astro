@@ -1,0 +1,6 @@
+---
+const { class: className = "" } = Astro.props;
+---
+<div class={`pointer-events-none absolute inset-0 -z-10 ${className}`} aria-hidden="true" style="--particle-color: var(--color-brand-accent);">
+  <div class="w-full h-full [background-image:radial-gradient(circle_at_20%_30%,_var(--particle-color)/.15_2px,_transparent_2px),radial-gradient(circle_at_70%_60%,_var(--particle-color)/.12_2px,_transparent_2px)] [background-size:40px_40px,50px_50px] [background-position:0_0,10px_10px]"></div>
+</div>

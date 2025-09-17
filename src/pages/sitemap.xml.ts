@@ -1,37 +1,52 @@
-/**
- * Sitemap XML Endpoint
- * Generates dynamic sitemap.xml for SEO
- */
-
 import type { APIRoute } from 'astro';
-import { generateCompleteSitemap } from '../utils/sitemap';
-import { logger } from '../utils/logger';
 
-export const GET: APIRoute = async () => {
-  try {
-    const sitemap = await generateCompleteSitemap();
-
-    return new Response(sitemap, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
-      },
-    });
-  } catch (error) {
-    logger.error(
-      'Error generating sitemap:',
-      error instanceof Error ? error : new Error(String(error)),
-      'sitemap'
-    );
-
-    return new Response('Error generating sitemap', {
-      status: 500,
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-    });
-  }
+const getPages = async () => {
+  // Import all blog posts
+  const blogPosts = await import.meta.glob('../content/blog/*.md', { eager: true });
+  
+  // Static pages
+  const staticPages = [
+    '/',
+    '/about',
+    '/services',
+    '/projects',
+    '/blog',
+    '/contact',
+    '/book-a-consultation',
+    '/gallery',
+    '/team'
+  ];
+  
+  // Generate blog post URLs
+  const blogUrls = Object.keys(blogPosts).map((path) => {
+    const slug = path.split('/').pop()?.replace('.md', '');
+    return `/blog/${slug}`;
+  });
+  
+  // Combine all URLs
+  const allUrls = [...staticPages, ...blogUrls];
+  
+  return allUrls;
 };
 
-export const prerender = true;
+const generateSitemap = (urls: string[]) => {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map((url) => `  <url>
+    <loc>https://nosytlabs.com${url}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>${url === '/' ? '1.0' : url.startsWith('/blog') ? '0.8' : '0.7'}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+};
+
+export const GET: APIRoute = async () => {
+  const urls = await getPages();
+  const sitemap = generateSitemap(urls);
+  
+  return new Response(sitemap, {
+    headers: {
+      'Content-Type': 'application/xml',
+    },
+  });
+};

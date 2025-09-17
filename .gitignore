@@ -1,155 +1,179 @@
-# ========================================
-# NOSYTLABS .GITIGNORE - SECURITY FOCUSED
-# ========================================
+node_modules
 
-# ========================================
-# DEPENDENCIES
-# ========================================
-node_modules/
-.pnpm-store/
-.npm/
-.yarn/
-yarn-error.log
-package-lock.json
-pnpm-lock.yaml
+# Build outputs
+/dist
+/.astro
 
-# ========================================
-# BUILD OUTPUTS
-# ========================================
-dist/
-build/
-.astro/
-.vercel/
-.netlify/
-.output/
-.nuxt/
-.next/
-
-# ========================================
-# ENVIRONMENT & SECRETS (CRITICAL SECURITY)
-# ========================================
-# Environment files - NEVER COMMIT THESE
-.env
-.env.*
+# Environment variables
+.env*
 !.env.example
-!.env.template
 
-# API Keys and secrets
-*.key
-*.pem
-*.p12
-*.pfx
-secrets.json
-config.json
-credentials.json
-
-# Database files
-*.db
-*.sqlite
-*.sqlite3
-
-# SSL certificates
-*.crt
-*.cert
-*.ca-bundle
-
-# ========================================
-# LOGS & DEBUG FILES
-# ========================================
+# Logs
 *.log
-logs/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
 
-# ========================================
-# OPERATING SYSTEM FILES
-# ========================================
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon?
-._*
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
-# Windows
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
-Desktop.ini
-$RECYCLE.BIN/
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
 
-# Linux
-*~
-.fuse_hidden*
-.directory
-.Trash-*
+# Dependency directories
+jspm_packages/
 
-# ========================================
-# IDE & EDITOR FILES
-# ========================================
+# Typescript v1 declaration files
+typings/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# IDE specific files
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-.project
-.settings/
-.classpath
 
-# ========================================
-# CACHE & TEMPORARY FILES
-# ========================================
-.cache/
-.temp/
-.tmp/
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
 *.tmp
 *.temp
-.sass-cache/
-.parcel-cache/
 
-# ========================================
-# TESTING & COVERAGE
-# ========================================
+# Astro build cache
+astro.config.*.ts
+
+# Testing
 coverage/
 .nyc_output/
-.coverage
-*.lcov
-test-results/
-playwright-report/
-test-results.xml
 
-# ========================================
-# DEPLOYMENT & CI/CD
-# ========================================
+# Vercel
 .vercel
+
+# Netlify
 .netlify
-.firebase/
-.github/workflows/secrets.yml
 
-# ========================================
-# BACKUP & VERSION CONTROL
-# ========================================
-# YoYo AI version control directory
-.yoyo/
-*.backup
-*.bak
-*.orig
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# ========================================
-# SECURITY SCAN RESULTS
-# ========================================
-security-scan-results/
-vulnerability-reports/
-audit-results.json
+# Optional eslint cache
+.eslintcache
 
-# ========================================
-# CUSTOM NOSYTLABS EXCLUSIONS
-# ========================================
-# Add any project-specific files to ignore
-private/
-internal/
-confidential/
+# Optional stylelint cache
+.stylelintcache
+
+# Optional typescript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional jest cache
+.jest
+
+# Optional parcel cache
+.parcel-cache
+
+# SvelteKit build output
+.svelte-kit
+
+# Next.js build output
+.next
+
+# Nuxt.js build output
+.nuxt
+
+# Gatsby build output
+.cache
+public/*
+!public/brand/
+!public/icons/
+!public/images/
+!public/logo*
+!public/manifest.json
+!public/service-worker.js
+
+# Temporary folders
+tmp/
+temp/
+
+# Additional files to ignore
+*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.atom/
+.buildpath
+.settings/
+.tmproj
+.tox
+.coverage
+.installed.cfg
+.lein-deps-sum
+.cargo-lock
+
+# Qoder IDE files
+.qoder/
+
+# Trae directory (if exists)
+.trae/
+
+# Old accessibility report files (keep only the summary)
+config/reports/axe-*.json
+!config/reports/axe-issues-summary.json
+config/reports/axe-summary-*.json
+config/reports/func-*.json
+config/reports/perf-*.json
+config/reports/func-summary.json
+config/reports/perf-summary.json
+
+# Additional cleanup for audit reports
+config/reports/playwright/
+test_output.txt
+vitest-output.json
+vitest-output.txt
+vitest-report.json
+last-test-output.txt
+
+# Ignore dist directory (already covered but being explicit)
+dist/
+
+# Ignore node_modules (already covered but being explicit)
+node_modules/

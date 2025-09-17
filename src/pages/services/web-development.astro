@@ -1,108 +1,391 @@
 ---
-/**
- * Web Development Service Detail Page
- * 
- * Comprehensive page showcasing web development services with detailed features,
- * pricing, testimonials, and conversion-optimized CTAs
- */
-
-import ServiceDetail from '../../components/services/ServiceDetail.astro';
-import { webDevelopmentServices } from '../../config/services/web-development';
-import { allServices } from '../../config/services';
-
-// Get the main web development service
-const service = webDevelopmentServices[0]; // Modern Web Development
-
-// Get related services (excluding current service)
-const relatedServices = allServices.filter(s => 
-  s.category === service.category && s.id !== service.id
-).slice(0, 3);
-
-// Service-specific testimonials
-const testimonials = [
-  {
-    name: "Sarah Johnson",
-    role: "CEO, TechStart Inc.",
-    company: "TechStart Inc.",
-    content: "NosytLabs transformed our outdated website into a modern, lightning-fast platform. Our conversion rates increased by 150% within the first month!",
-    rating: 5,
-    image: "/images/testimonials/sarah-johnson.jpg"
-  },
-  {
-    name: "Michael Chen",
-    role: "Marketing Director",
-    company: "GrowthCorp",
-    content: "The team's expertise in modern web technologies is outstanding. They delivered a Progressive Web App that works flawlessly across all devices.",
-    rating: 5,
-    image: "/images/testimonials/michael-chen.jpg"
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Founder",
-    company: "Creative Studio",
-    content: "Professional, responsive, and incredibly talented. Our new website perfectly captures our brand and has significantly improved our online presence.",
-    rating: 5,
-    image: "/images/testimonials/emily-rodriguez.jpg"
-  }
-];
-
-// Service-specific FAQs
-const faqs = [
-  {
-    question: "What technologies do you use for web development?",
-    answer: "We use modern technologies including React, Vue.js, Astro, Node.js, TypeScript, and various headless CMS solutions. Our tech stack is chosen based on your specific requirements and scalability needs."
-  },
-  {
-    question: "How long does it take to build a website?",
-    answer: "Timeline varies based on complexity. A simple business website takes 2-4 weeks, while complex web applications can take 8-16 weeks. We provide detailed timelines during our initial consultation."
-  },
-  {
-    question: "Do you provide ongoing maintenance and support?",
-    answer: "Yes, we offer comprehensive maintenance packages including security updates, performance optimization, content updates, and technical support. We ensure your website stays current and secure."
-  },
-  {
-    question: "Can you help with SEO and digital marketing?",
-    answer: "Absolutely! We build SEO-optimized websites from the ground up and can connect you with our digital marketing partners for comprehensive online growth strategies."
-  },
-  {
-    question: "What's included in your web development service?",
-    answer: "Our service includes responsive design, performance optimization, SEO setup, security implementation, content management system, analytics integration, and post-launch support."
-  }
-];
-
-// Development process steps
-const processSteps = [
-  {
-    step: 1,
-    title: "Discovery & Planning",
-    description: "We analyze your requirements, target audience, and business goals to create a comprehensive project roadmap.",
-    duration: "1-2 weeks"
-  },
-  {
-    step: 2,
-    title: "Design & Prototyping",
-    description: "Create wireframes, mockups, and interactive prototypes to visualize the final product before development.",
-    duration: "2-3 weeks"
-  },
-  {
-    step: 3,
-    title: "Development & Testing",
-    description: "Build your website using modern technologies with rigorous testing for performance, security, and compatibility.",
-    duration: "4-8 weeks"
-  },
-  {
-    step: 4,
-    title: "Launch & Optimization",
-    description: "Deploy your website, monitor performance, and make optimizations based on real-world usage data.",
-    duration: "1-2 weeks"
-  }
-];
+import Layout from '../../layouts/Layout.astro';
+import ServicePageLayout from '../../components/ServicePageLayout.astro';
 ---
 
-<ServiceDetail 
-  service={service}
-  testimonials={testimonials}
-  faqs={faqs}
-  relatedServices={relatedServices}
-  processSteps={processSteps}
-/>
+<Layout title="Professional Web Development Services | Nosyt Labs" description="Modern, responsive websites built with cutting-edge technologies for superior performance and user experience">
+  <ServicePageLayout
+    title="Modern Web"
+    subtitle="Development"
+    description="Lightning-fast, responsive websites built with cutting-edge technologies and AI-enhanced development processes for superior performance and user experience."
+    primaryCTA={{
+      text: "Get Started",
+      href: "/contact?service=Web Development",
+      price: "$2,500"
+    }}
+    secondaryCTA={{
+      text: "View Portfolio",
+      href: "/projects"
+    }}
+    benefits={[
+      {
+        metric: "50%",
+        description: "Faster development with AI assistance"
+      },
+      {
+        metric: "99.9%",
+        description: "Uptime guarantee with optimized hosting"
+      },
+      {
+        metric: "<3s",
+        description: "Average page load time"
+      }
+    ]}
+    features={[
+      {
+        icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>',
+        title: "Responsive Design",
+        description: "Mobile-first approach ensuring perfect display across all devices and screen sizes."
+      },
+      {
+        icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>',
+        title: "Performance Optimization",
+        description: "Lightning-fast loading speeds with advanced caching, compression, and optimization techniques."
+      },
+      {
+        icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>',
+        title: "SEO Optimization",
+        description: "Built-in SEO best practices to improve search engine rankings and organic visibility."
+      },
+      {
+        icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>',
+        title: "Security & Reliability",
+        description: "Enterprise-grade security measures and reliable hosting infrastructure for peace of mind."
+      },
+      {
+        icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>',
+        title: "Modern Frameworks",
+        description: "Built with React, Vue, Astro, and other cutting-edge technologies for scalability."
+      },
+      {
+        icon: '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>',
+        title: "Ongoing Support",
+        description: "Comprehensive maintenance, updates, and technical support to keep your site running smoothly."
+      }
+    ]}
+  >
+
+  <!-- Why Choose AI-Enhanced Development Section -->
+  <section id="features" class="py-20 bg-card/30">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-6 font-heading">
+            Why Choose AI-Enhanced <span class="text-primary">Development?</span>
+          </h2>
+          <p class="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            We leverage cutting-edge AI tools and modern frameworks to deliver exceptional websites faster and more efficiently than traditional development methods.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">50% Faster Development</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              AI-powered code generation and optimization tools accelerate development without compromising quality.
+            </p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">Mobile-First Design</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Responsive designs that work perfectly on all devices, from smartphones to desktops.
+            </p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">SEO Optimized</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Built-in SEO optimization ensures your website ranks well in search engines from day one.
+            </p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">Modern Frameworks</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Built with cutting-edge technologies like Astro, React, and Next.js for optimal performance.
+            </p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0L17 13"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">E-commerce Ready</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Integrated payment processing and e-commerce functionality for online businesses.
+            </p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">Analytics Integration</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Built-in analytics and conversion tracking to measure your website's performance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Stack Section -->
+  <section class="py-20 bg-background">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-6 font-heading">
+            Modern Technology <span class="text-primary">Stack</span>
+          </h2>
+          <p class="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            We use the latest and most reliable technologies to ensure your website is fast, secure, and future-proof.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors text-center">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6 mx-auto">
+              <span class="text-primary-foreground font-bold text-lg">React</span>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">React</h3>
+            <p class="text-muted-foreground">Interactive UI components</p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors text-center">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6 mx-auto">
+              <span class="text-primary-foreground font-bold text-lg">Astro</span>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">Astro</h3>
+            <p class="text-muted-foreground">Ultra-fast static sites</p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors text-center">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6 mx-auto">
+              <span class="text-primary-foreground font-bold text-lg">Next</span>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">Next.js</h3>
+            <p class="text-muted-foreground">Full-stack React framework</p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border hover:border-primary/50 transition-colors text-center">
+            <div class="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-6 mx-auto">
+              <span class="text-primary-foreground font-bold text-lg">CSS</span>
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-3">Tailwind CSS</h3>
+            <p class="text-muted-foreground">Utility-first styling</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-20 bg-card/30">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-6 font-heading">
+            Transparent <span class="text-primary">Pricing</span>
+          </h2>
+          <p class="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            No hidden fees. Pay what you want with our flexible pricing model.
+          </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-card p-8 rounded-2xl border border-border">
+            <div class="text-center mb-8">
+              <h3 class="text-3xl font-bold text-foreground mb-4">AI-Enhanced Web Development</h3>
+              <div class="flex justify-center items-center gap-8 mb-4">
+                <div class="text-center">
+                  <div class="text-sm text-muted-foreground mb-1">Starting at</div>
+                  <div class="text-4xl font-bold text-primary">$1200</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-sm text-muted-foreground mb-1">Suggested</div>
+                  <div class="text-4xl font-bold text-foreground">$2000</div>
+                </div>
+              </div>
+              <p class="text-muted-foreground">Pay what you want - minimum $1200, suggested $2000</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="text-xl font-bold text-foreground mb-4">What's Included:</h4>
+                <ul class="space-y-3">
+                  <li class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-muted-foreground">AI-Accelerated Development (50% faster)</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-muted-foreground">Mobile-First Responsive Design</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-muted-foreground">Lightning-Fast Performance & SEO</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-muted-foreground">Modern Frameworks (Astro, React, Next.js)</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div>
+                <h4 class="text-xl font-bold text-foreground mb-4">Additional Features:</h4>
+                <ul class="space-y-3">
+                  <li class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-muted-foreground">E-commerce & Payment Integration</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-muted-foreground">Analytics & Conversion Tracking</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-muted-foreground">1-3 Week Delivery Timeline</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-muted-foreground">30-Day Money Back Guarantee</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="text-center mt-8 p-6 bg-background/50 rounded-xl border border-border/50">
+              <h3 class="text-xl font-bold text-foreground mb-2">Ready to Get Started?</h3>
+              <div class="flex items-center justify-center gap-4 mb-4">
+                <span class="text-lg text-muted-foreground">AI-Enhanced Web Development</span>
+                <span class="text-2xl font-bold text-primary">$1,200+</span>
+              </div>
+              <a href="/contact" class="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold hover:bg-primary/90 transition-colors inline-block">
+                Start Your Project
+              </a>
+              <p class="text-sm text-muted-foreground mt-2">30-day money-back guarantee</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-background">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-12 text-center font-heading">
+          Frequently Asked <span class="text-primary">Questions</span>
+        </h2>
+        
+        <div class="space-y-8">
+          <div class="bg-card p-8 rounded-xl border border-border">
+            <h3 class="text-xl font-bold text-foreground mb-4">How does AI-enhanced development work?</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              We use advanced AI tools like GitHub Copilot, Claude, and custom automation to accelerate code generation, testing, and optimization while maintaining high quality standards.
+            </p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border">
+            <h3 class="text-xl font-bold text-foreground mb-4">What's included in the base price?</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              The base price includes a fully responsive website with up to 5 pages, basic SEO optimization, contact forms, and mobile-first design using modern frameworks.
+            </p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border">
+            <h3 class="text-xl font-bold text-foreground mb-4">How long does development take?</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Most projects are completed within 1-3 weeks, depending on complexity. Our AI-enhanced workflow allows us to deliver 50% faster than traditional development methods.
+            </p>
+          </div>
+          
+          <div class="bg-card p-8 rounded-xl border border-border">
+            <h3 class="text-xl font-bold text-foreground mb-4">Do you provide ongoing support?</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Yes! We offer 30 days of free support after launch, plus optional maintenance packages for ongoing updates and improvements.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-primary/5">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-foreground mb-6 font-heading">
+          Ready to Build Your <span class="text-primary">Website?</span>
+        </h2>
+        <p class="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+          Let's discuss your project and create something amazing together. Get started with our AI-enhanced development process today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+            Start Your Project
+          </a>
+          <a href="/projects" class="border border-primary text-primary px-8 py-4 rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-colors">
+            View Our Work
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Custom animations and effects */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>

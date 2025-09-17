@@ -1,56 +1,572 @@
 ---
-/**
- * Contact Page
- *
- * Modular contact page using extracted components for better maintainability
- */
-
-import BaseLayout from '../layouts/base-layout.astro';
-import { generateCanonicalUrl } from '../utils/path-resolvers';
-import ContactHero from '../components/contact/ContactHero.astro';
-import ContactForm from '../components/contact/ContactForm.astro';
-import ContactInfo from '../components/contact/ContactInfo.astro';
-import ContactFAQ from '../components/contact/ContactFAQ.astro';
-import ContactCTA from '../components/contact/ContactCTA.astro';
-
-const canonicalUrl = generateCanonicalUrl('/contact');
-
-// SEO configuration
-const seoConfig = {
-  title: 'Contact NosytLabs | Get In Touch Today',
-  description:
-    'Ready to transform your operations with cutting-edge technology? Contact NosytLabs for expert web development, AI integration, and technical consulting services.',
-  keywords: [
-    'contact nosytlabs',
-    'web development consultation',
-    'AI integration services',
-    'technical consulting',
-    'business technology solutions',
-    'get in touch',
-  ],
-};
+import Layout from '../layouts/Layout.astro';
 ---
 
-<BaseLayout
-  title={seoConfig.title}
-  description={seoConfig.description}
-  keywords={seoConfig.keywords}
-  {canonicalUrl}
-  type="website"
->
-  <ContactHero />
-
-  <!-- Enhanced Contact Form & Info Section -->
-  <section class="section-xl">
-    <div class="container">
-      <div class="grid lg:grid-cols-2 gap-16 items-start">
-        <ContactForm />
-        <ContactInfo />
+<Layout title="Contact Us - Nosyt Labs">
+  <main class="relative min-h-screen bg-brand-black overflow-hidden">
+    <!-- Background Effects -->
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-black via-brand-gray-900 to-brand-black"></div>
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-20 left-20 w-96 h-96 bg-brand-cyan-400/10 rounded-full blur-3xl animate-pulse-slow floating animation-delay-1000"></div>
+      <div class="absolute bottom-20 right-20 w-80 h-80 bg-brand-cyan-400/5 rounded-full blur-2xl animate-pulse-slow floating animation-delay-2000"></div>
+    </div>
+    
+    <!-- Geometric Grid -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="grid grid-cols-12 gap-4 h-full">
+        {Array.from({ length: 144 }, (_, i) => (
+          <div class="border border-brand-cyan-400/20 animate-pulse" style={`animation-delay: ${i * 50}ms`}></div>
+        ))}
       </div>
     </div>
-  </section>
 
-  <ContactFAQ />
+    <div class="relative container mx-auto px-4 py-24">
+      <!-- Header Section -->
+      <section class="text-center mb-20 animate-fade-in-up">
+        <h1 class="brand-heading-1 text-brand-white mb-6 glow-accent-strong">
+          Get In <span class="text-brand-cyan-400 brand-glow">Touch</span>
+        </h1>
+        <p class="brand-body-xl text-brand-gray-300 max-w-3xl mx-auto animate-fade-in-up animation-delay-300">
+          Ready to transform your digital presence? Let's discuss your project and explore how we can bring your vision to life with cutting-edge technology.
+        </p>
+      </section>
 
-  <ContactCTA />
-</BaseLayout>
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <!-- Contact Form -->
+        <section class="animate-fade-in-up animation-delay-500">
+          <div class="p-8 backdrop-blur-sm bg-brand-gray-800/30 border border-brand-gray-600/30 rounded-2xl hover-lift hover-glow">
+            <h2 class="brand-heading-2 text-brand-cyan-400 mb-8">Send Us a Message</h2>
+            <!-- Form Status Messages -->
+            <div id="form-messages" class="mb-6 hidden">
+              <div id="success-message" class="p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 hidden animate-fade-in">
+                <div class="flex items-center">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span>Message sent successfully! We'll get back to you within 24 hours.</span>
+                </div>
+              </div>
+              <div id="error-message" class="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 hidden animate-fade-in">
+                <div class="flex items-center">
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span id="error-text">There was an error sending your message. Please try again.</span>
+                </div>
+              </div>
+            </div>
+
+            <form method="POST" netlify data-netlify="true" name="contact-form" id="contact-form" class="space-y-6">
+              <input type="hidden" name="form-name" value="contact-form" />
+              <p class="hidden">
+                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+              </p>
+              <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                  <label for="name" class="brand-body-lg text-brand-white font-semibold">Name <span class="text-red-400">*</span></label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required
+                    minlength="2"
+                    maxlength="100"
+                    class="w-full px-4 py-3 bg-brand-gray-800/50 border border-brand-gray-700 rounded-lg text-brand-white placeholder-brand-gray-400 focus:border-brand-cyan-400 focus:ring-2 focus:ring-brand-cyan-400/20 focus:outline-none transition-all duration-300 hover-lift"
+                    placeholder="Your Name"
+                  />
+                  <div class="error-message text-red-400 text-sm hidden" data-field="name"></div>
+                </div>
+                <div class="space-y-2">
+                  <label for="email" class="brand-body-lg text-brand-white font-semibold">Email <span class="text-red-400">*</span></label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}"
+                    class="w-full px-4 py-3 bg-brand-gray-800/50 border border-brand-gray-700 rounded-lg text-brand-white placeholder-brand-gray-400 focus:border-brand-cyan-400 focus:ring-2 focus:ring-brand-cyan-400/20 focus:outline-none transition-all duration-300 hover-lift"
+                    placeholder="your@email.com"
+                  />
+                  <div class="error-message text-red-400 text-sm hidden" data-field="email"></div>
+                </div>
+              </div>
+              
+              <div class="space-y-2">
+                <label for="subject" class="brand-body-lg text-brand-white font-semibold">Subject <span class="text-red-400">*</span></label>
+                <input 
+                  type="text" 
+                  id="subject" 
+                  name="subject" 
+                  required
+                  minlength="5"
+                  maxlength="200"
+                  class="w-full px-4 py-3 bg-brand-gray-800/50 border border-brand-gray-700 rounded-lg text-brand-white placeholder-brand-gray-400 focus:border-brand-cyan-400 focus:ring-2 focus:ring-brand-cyan-400/20 focus:outline-none transition-all duration-300 hover-lift"
+                  placeholder="Project Inquiry"
+                />
+                <div class="error-message text-red-400 text-sm hidden" data-field="subject"></div>
+              </div>
+              
+              <div class="space-y-2">
+                <label for="service" class="brand-body-lg text-brand-white font-semibold">Service Interested In <span class="text-red-400">*</span></label>
+                <select 
+                  id="service" 
+                  name="service" 
+                  required
+                  class="w-full px-4 py-3 bg-brand-gray-800/50 border border-brand-gray-700 rounded-lg text-brand-white focus:border-brand-cyan-400 focus:ring-2 focus:ring-brand-cyan-400/20 focus:outline-none transition-all duration-300 hover-lift"
+                >
+                  <option value="">Select a service</option>
+                  <option value="web-development">Web Development</option>
+                  <option value="ai-integration">AI Integration</option>
+                  <option value="tech-consulting-seo-audit">Tech Consulting & SEO Audit</option>
+                  <option value="3d-printing">3D Printing Services</option>
+                  <option value="other">Other</option>
+                </select>
+                <div class="error-message text-red-400 text-sm hidden" data-field="service"></div>
+              </div>
+              
+              <div class="space-y-2">
+                <label for="message" class="brand-body-lg text-brand-white font-semibold">Message <span class="text-red-400">*</span></label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows="6" 
+                  required
+                  minlength="10"
+                  maxlength="2000"
+                  class="w-full px-4 py-3 bg-brand-gray-800/50 border border-brand-gray-700 rounded-lg text-brand-white placeholder-brand-gray-400 focus:border-brand-cyan-400 focus:ring-2 focus:ring-brand-cyan-400/20 focus:outline-none transition-all duration-300 resize-vertical hover-lift"
+                  placeholder="Tell us about your project..."
+                ></textarea>
+                <div class="error-message text-red-400 text-sm hidden" data-field="message"></div>
+                <div class="text-sm text-brand-gray-400 text-right">
+                  <span id="message-count">0</span>/2000 characters
+                </div>
+              </div>
+              
+              <div class="space-y-2">
+                <label for="files" class="brand-body-lg text-brand-white font-semibold">Upload Files (Optional)</label>
+                <div id="file-drop-zone" class="w-full px-4 py-8 bg-brand-gray-800/50 border-2 border-dashed border-brand-gray-700 rounded-lg text-center hover:border-brand-cyan-400 transition-colors duration-300 cursor-pointer hover-lift">
+                  <input 
+                    type="file" 
+                    id="files" 
+                    name="files" 
+                    multiple
+                    accept=".pdf,.png,.jpg,.jpeg,.gif"
+                    class="hidden"
+                  />
+                  <p class="text-brand-gray-300">Drag and drop files here or click to upload</p>
+                  <p class="text-sm text-brand-gray-400 mt-2">PDF, PNG, JPG, GIF up to 10MB</p>
+                </div>
+              </div>
+              
+              <div class="pt-4">
+                <button 
+                  type="submit"
+                  class="w-full bg-nexus-cyan hover:bg-nexus-cyan/80 text-deep-space-black font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-nexus-cyan/25 hover-lift pulse glow-accent"
+                >
+                  Send Message
+                  <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                  </svg>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- Contact Information -->
+        <section class="space-y-8 animate-fade-in-up animation-delay-700">
+          <div class="p-8 backdrop-blur-sm bg-brand-gray-800/30 border border-brand-gray-600/30 rounded-2xl hover-lift hover-glow">
+            <h3 class="brand-heading-3 text-brand-cyan-400 mb-6">Let's Connect</h3>
+            <div class="space-y-6">
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-brand-cyan-400/10 rounded-lg flex items-center justify-center flex-shrink-0 hover-lift">
+                  <svg class="w-6 h-6 text-brand-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="brand-body-lg text-brand-white font-semibold mb-2">Email</h4>
+                  <p class="brand-body text-brand-gray-300">hi@nosytlabs.com</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-brand-cyan-400/10 rounded-lg flex items-center justify-center flex-shrink-0 hover-lift">
+                  <svg class="w-6 h-6 text-brand-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="brand-body-lg text-brand-white font-semibold mb-2">Response Time</h4>
+                  <p class="brand-body text-brand-gray-300">Within 24 hours</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start space-x-4">
+                <div class="w-12 h-12 bg-brand-cyan-400/10 rounded-lg flex items-center justify-center flex-shrink-0 hover-lift">
+                  <svg class="w-6 h-6 text-brand-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="brand-body-lg text-brand-white font-semibold mb-2">Location</h4>
+                  <p class="brand-body text-brand-gray-300">Remote & Global</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="p-8 backdrop-blur-sm bg-brand-gray-800/30 border border-brand-gray-600/30 rounded-2xl hover-lift hover-glow">
+            <h3 class="brand-heading-3 text-brand-cyan-400 mb-6">What to Expect</h3>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <div class="w-2 h-2 bg-brand-cyan-400 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h4 class="brand-body-lg text-brand-white font-semibold mb-1">Initial Consultation</h4>
+                  <p class="brand-body text-brand-gray-300">Free 30-minute discovery call to understand your needs</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="w-2 h-2 bg-brand-cyan-400 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h4 class="brand-body-lg text-brand-white font-semibold mb-1">Detailed Proposal</h4>
+                  <p class="brand-body text-brand-gray-300">Comprehensive project scope, timeline, and pricing</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="w-2 h-2 bg-brand-cyan-400 rounded-full mt-3 flex-shrink-0"></div>
+                <div>
+                  <h4 class="brand-body-lg text-brand-white font-semibold mb-1">Transparent Process</h4>
+                  <p class="brand-body text-brand-gray-300">Regular updates and collaborative development approach</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector('#contact-form');
+      const fileInput = document.querySelector('#files');
+      const dropZone = document.querySelector('#file-drop-zone');
+      const messageTextarea = document.querySelector('#message');
+      const messageCount = document.querySelector('#message-count');
+      const formMessages = document.querySelector('#form-messages');
+      const successMessage = document.querySelector('#success-message');
+      const errorMessage = document.querySelector('#error-message');
+      const errorText = document.querySelector('#error-text');
+
+      if (!form || !fileInput || !dropZone) return;
+
+      // Form validation functions
+      const validators = {
+        name: (value) => {
+          if (!value.trim()) return 'Name is required';
+          if (value.trim().length < 2) return 'Name must be at least 2 characters';
+          if (value.trim().length > 100) return 'Name must be less than 100 characters';
+          return null;
+        },
+        email: (value) => {
+          if (!value.trim()) return 'Email is required';
+          const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+          if (!emailRegex.test(value)) return 'Please enter a valid email address';
+          return null;
+        },
+        subject: (value) => {
+          if (!value.trim()) return 'Subject is required';
+          if (value.trim().length < 5) return 'Subject must be at least 5 characters';
+          if (value.trim().length > 200) return 'Subject must be less than 200 characters';
+          return null;
+        },
+        service: (value) => {
+          if (!value) return 'Please select a service';
+          return null;
+        },
+        message: (value) => {
+          if (!value.trim()) return 'Message is required';
+          if (value.trim().length < 10) return 'Message must be at least 10 characters';
+          if (value.trim().length > 2000) return 'Message must be less than 2000 characters';
+          return null;
+        }
+      };
+
+      // Show/hide error messages
+      function showFieldError(fieldName, message) {
+        const errorDiv = document.querySelector(`[data-field="${fieldName}"]`);
+        const field = document.querySelector(`#${fieldName}`);
+        if (errorDiv && field) {
+          errorDiv.textContent = message;
+          errorDiv.classList.remove('hidden');
+          field.classList.add('border-red-500');
+          field.classList.remove('border-brand-gray-700');
+        }
+      }
+
+      function hideFieldError(fieldName) {
+        const errorDiv = document.querySelector(`[data-field="${fieldName}"]`);
+        const field = document.querySelector(`#${fieldName}`);
+        if (errorDiv && field) {
+          errorDiv.classList.add('hidden');
+          field.classList.remove('border-red-500');
+          field.classList.add('border-brand-gray-700');
+        }
+      }
+
+      // Validate single field
+      function validateField(fieldName, value) {
+        const error = validators[fieldName] ? validators[fieldName](value) : null;
+        if (error) {
+          showFieldError(fieldName, error);
+          return false;
+        } else {
+          hideFieldError(fieldName);
+          return true;
+        }
+      }
+
+      // Validate entire form
+      function validateForm() {
+        let isValid = true;
+        const formData = new FormData(form);
+        
+        Object.keys(validators).forEach(fieldName => {
+          const value = formData.get(fieldName) || '';
+          if (!validateField(fieldName, value)) {
+            isValid = false;
+          }
+        });
+        
+        return isValid;
+      }
+
+      // Real-time validation
+      Object.keys(validators).forEach(fieldName => {
+        const field = document.querySelector(`#${fieldName}`);
+        if (field) {
+          field.addEventListener('blur', () => {
+            validateField(fieldName, field.value);
+          });
+          
+          field.addEventListener('input', () => {
+            // Clear error on input
+            hideFieldError(fieldName);
+          });
+        }
+      });
+
+      // Message character counter
+      if (messageTextarea && messageCount) {
+        messageTextarea.addEventListener('input', () => {
+          const count = messageTextarea.value.length;
+          messageCount.textContent = count;
+          
+          if (count > 2000) {
+            messageCount.parentElement.classList.add('text-red-400');
+            messageCount.parentElement.classList.remove('text-brand-gray-400');
+          } else {
+            messageCount.parentElement.classList.remove('text-red-400');
+            messageCount.parentElement.classList.add('text-brand-gray-400');
+          }
+        });
+      }
+
+      // Show form messages
+      function showMessage(type, message = null) {
+        formMessages.classList.remove('hidden');
+        
+        if (type === 'success') {
+          successMessage.classList.remove('hidden');
+          errorMessage.classList.add('hidden');
+        } else if (type === 'error') {
+          errorMessage.classList.remove('hidden');
+          successMessage.classList.add('hidden');
+          if (message) {
+            errorText.textContent = message;
+          }
+        }
+        
+        // Scroll to message
+        formMessages.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      function hideMessages() {
+        formMessages.classList.add('hidden');
+        successMessage.classList.add('hidden');
+        errorMessage.classList.add('hidden');
+      }
+
+      // Drag and drop functionality
+      const maxFileSize = 10 * 1024 * 1024; // 10MB
+      const allowedTypes = ['.pdf', '.png', '.jpg', '.jpeg', '.gif'];
+
+      ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+      });
+
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => dropZone.classList.add('bg-brand-gray-700/50', 'border-brand-cyan-400'), false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => dropZone.classList.remove('bg-brand-gray-700/50', 'border-brand-cyan-400'), false);
+      });
+
+      dropZone.addEventListener('drop', handleDrop, false);
+
+      function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+
+        if (files.length > 0) {
+          const validFiles = Array.from(files).filter(file => {
+            const fileExt = '.' + file.name.split('.').pop().toLowerCase();
+            const isValidType = allowedTypes.includes(fileExt);
+            const isValidSize = file.size <= maxFileSize;
+
+            if (!isValidType) {
+              showMessage('error', `File type ${fileExt} is not supported. Please upload PDF, PNG, JPG, GIF only.`);
+            }
+            if (!isValidSize) {
+              showMessage('error', `File ${file.name} is too large. Maximum size is 10MB.`);
+            }
+
+            return isValidType && isValidSize;
+          });
+
+          if (validFiles.length > 0) {
+            const dtNew = new DataTransfer();
+            validFiles.forEach(file => dtNew.items.add(file));
+            fileInput.files = dtNew.files;
+
+            // Update UI to show selected files
+            dropZone.innerHTML = `<p class="text-brand-cyan-400 font-semibold">${validFiles.length} file(s) selected</p><p class="text-sm text-brand-gray-300 mt-1">Click to change or drag new files</p>`;
+          } else {
+            dropZone.innerHTML = '<p class="text-brand-red-400">No valid files. Please try again.</p>';
+            setTimeout(() => {
+              dropZone.innerHTML = '<p class="text-brand-gray-300">Drag and drop files here or click to upload</p><p class="text-sm text-brand-gray-400 mt-2">PDF, PNG, JPG, GIF up to 10MB</p>';
+            }, 3000);
+          }
+        }
+      }
+
+      // Click to upload
+      dropZone.addEventListener('click', () => fileInput.click());
+
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+          const validFiles = Array.from(fileInput.files).filter(file => {
+            const fileExt = '.' + file.name.split('.').pop().toLowerCase();
+            const isValidType = allowedTypes.includes(fileExt);
+            const isValidSize = file.size <= maxFileSize;
+
+            if (!isValidType || !isValidSize) {
+              showMessage('error', `Invalid file: ${file.name}. Please select valid files.`);
+              return false;
+            }
+            return true;
+          });
+
+          if (validFiles.length > 0) {
+            const dtNew = new DataTransfer();
+            validFiles.forEach(file => dtNew.items.add(file));
+            fileInput.files = dtNew.files;
+            dropZone.innerHTML = `<p class="text-brand-cyan-400 font-semibold">${validFiles.length} file(s) selected</p><p class="text-sm text-brand-gray-300 mt-1">Click to change or drag new files</p>`;
+          }
+        }
+      });
+
+      // Form submission with enhanced validation and feedback
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Hide any existing messages
+        hideMessages();
+        
+        // Validate form
+        if (!validateForm()) {
+          showMessage('error', 'Please correct the errors above and try again.');
+          return;
+        }
+
+        const button = form.querySelector('button[type="submit"]');
+        const originalButtonText = button.innerHTML;
+        
+        // Show loading state
+        button.disabled = true;
+        button.innerHTML = 'Sending... <svg class="w-5 h-5 ml-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>';
+
+        try {
+          // Submit form data
+          const formData = new FormData(form);
+          
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(formData).toString()
+          });
+
+          if (response.ok) {
+            showMessage('success');
+            form.reset();
+            
+            // Reset file upload UI
+            dropZone.innerHTML = '<p class="text-brand-gray-300">Drag and drop files here or click to upload</p><p class="text-sm text-brand-gray-400 mt-2">PDF, PNG, JPG, GIF up to 10MB</p>';
+            
+            // Reset character counter
+            if (messageCount) {
+              messageCount.textContent = '0';
+            }
+          } else {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+        } catch (error) {
+          console.error('Form submission error:', error);
+          showMessage('error', 'There was an error sending your message. Please try again or contact us directly at hi@nosytlabs.com.');
+        } finally {
+          // Reset button
+          button.disabled = false;
+          button.innerHTML = originalButtonText;
+        }
+      });
+    });
+  </script>
+
+  <style>
+    /* Enhanced form styling */
+    input:focus, select:focus, textarea:focus {
+      box-shadow: 0 0 0 3px var(--color-brand-accent-subtle, rgba(0, 240, 255, 0.1)), 0 0 20px var(--shadow-glow, rgba(0, 240, 255, 0.2));
+    }
+    
+    /* Custom select arrow */
+    select {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2300F0FF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.5em 1.5em;
+      padding-right: var(--spacing-2xl);
+    }
+    
+    /* Smooth animations */
+    .animate-pulse {
+      animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+    }
+  </style>
+</Layout>

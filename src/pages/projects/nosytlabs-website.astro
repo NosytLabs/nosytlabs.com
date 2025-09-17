@@ -1,0 +1,87 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+const project = {
+  title: 'NosytLabs Corporate Website',
+  description: 'A modern, responsive corporate website for NosytLabs, showcasing their services in software development, consulting, and innovation. Built with Astro for fast performance and SEO optimization.',
+  features: [
+    'Responsive design for all devices',
+    'Fast loading times with Astro framework',
+    'Integrated contact forms and blog section',
+    'SEO-friendly structure',
+    'Custom animations and interactive elements'
+  ],
+  technologies: ['Astro', 'Tailwind CSS', 'JavaScript', 'Markdown for content'],
+  image: '/images/projects/nosytlabs-website.png', // Placeholder image path
+  date: '2023-10-01',
+  client: 'NosytLabs'
+};
+
+---
+
+<Layout title={project.title}>
+  <section class="project-hero">
+    <Image src={project.image} alt={project.title} width={800} height={400} />
+    <div class="hero-content">
+      <h1>{project.title}</h1>
+      <p>{project.description}</p>
+    </div>
+  </section>
+
+  <section class="project-details">
+    <h2>Project Overview</h2>
+    <p>This website serves as the digital face of NosytLabs, highlighting their expertise in cutting-edge software solutions. The design emphasizes clean lines, professional aesthetics, and user-friendly navigation.</p>
+
+    <h3>Key Features</h3>
+    <ul>
+      {project.features.map((feature) => (
+        <li>{feature}</li>
+      ))}
+    </ul>
+
+    <h3>Technologies Used</h3>
+    <ul>
+      {project.technologies.map((tech) => (
+        <li>{tech}</li>
+      ))}
+    </ul>
+
+    <div class="project-meta">
+      <p><strong>Date:</strong> {project.date}</p>
+      <p><strong>Client:</strong> {project.client}</p>
+    </div>
+  </section>
+
+  <section class="project-links">
+    <a href="/projects" class="back-link">← Back to Projects</a>
+  </section>
+</Layout>
+
+<style>
+  /* Add styles here or import from global */
+  .project-hero {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+  }
+  .hero-content {
+    flex: 1;
+  }
+  .project-details ul {
+    list-style-type: disc;
+    padding-left: var(--spacing-lg);
+  }
+  .project-meta {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+  }
+  .back-link {
+    display: inline-block;
+    margin-top: var(--spacing-xl);
+    color: var(--brand-accent);
+    text-decoration: none;
+  }
+</style>

@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2025-09-17T01:47:36.761Z",
+  "totals": {
+    "routesProcessed": 15,
+    "totalViolations": 213,
+    "uniqueRules": 2
+  },
+  "byRoute": [
+    {
+      "route": "/",
+      "violations": 164
+    },
+    {
+      "route": "/services/consulting",
+      "violations": 28
+    },
+    {
+      "route": "/services",
+      "violations": 20
+    },
+    {
+      "route": "/blog",
+      "violations": 1
+    },
+    {
+      "route": "/about",
+      "violations": 0
+    },
+    {
+      "route": "/team",
+      "violations": 0
+    },
+    {
+      "route": "/projects",
+      "violations": 0
+    },
+    {
+      "route": "/projects/alpha",
+      "violations": 0
+    },
+    {
+      "route": "/projects/beta",
+      "violations": 0
+    },
+    {
+      "route": "/projects/gamma",
+      "violations": 0
+    },
+    {
+      "route": "/projects/neural",
+      "violations": 0
+    },
+    {
+      "route": "/projects/nexusflow",
+      "violations": 0
+    },
+    {
+      "route": "/projects/quantum",
+      "violations": 0
+    },
+    {
+      "route": "/contact",
+      "violations": 0
+    },
+    {
+      "route": "/gallery",
+      "violations": 0
+    }
+  ],
+  "byRule": {
+    "color-contrast": {
+      "totalInstances": 212,
+      "impact": {
+        "critical": 0,
+        "serious": 212,
+        "moderate": 0,
+        "minor": 0,
+        "unknown": 0
+      },
+      "routes": [
+        "/",
+        "/services",
+        "/services/consulting"
+      ],
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI"
+    },
+    "select-name": {
+      "totalInstances": 1,
+      "impact": {
+        "critical": 1,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0,
+        "unknown": 0
+      },
+      "routes": [
+        "/blog"
+      ],
+      "help": "Select element must have an accessible name",
+      "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/select-name?application=axeAPI"
+    }
+  }
+}

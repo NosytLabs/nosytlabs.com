@@ -1,10 +1,6 @@
 {
   "threshold": 0,
-  "reporters": [
-    "json",
-    "html",
-    "console"
-  ],
+  "reporters": ["json", "html", "console"],
   "ignore": [
     "**/node_modules/**",
     "**/__tests__/**",

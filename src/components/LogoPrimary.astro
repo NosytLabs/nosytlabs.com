@@ -1,0 +1,98 @@
+---
+// LogoPrimary.astro - Primary logo with geometric N and wordmark
+// Brand-compliant primary logo for headers, footers, and main placements
+
+export interface Props {
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'custom';
+  width?: string;
+  height?: string;
+  theme?: 'default' | 'monochrome-black' | 'monochrome-white';
+  showTagline?: boolean;
+  animated?: boolean;
+  class?: string;
+}
+
+const {
+  size = 'md',
+  width,
+  height,
+  theme = 'default',
+  showTagline = false,
+  animated = false,
+  class: className = '',
+} = Astro.props;
+
+// Size presets for primary logo with proper clear space
+const sizeMap = {
+  sm: { width: '140px', height: '32px' },
+  md: { width: '180px', height: '40px' },
+  lg: { width: '220px', height: '48px' },
+  xl: { width: '300px', height: '64px' },
+  custom: { width: width || '180px', height: height || '40px' }
+};
+
+const dimensions = sizeMap[size];
+const logoWidth = width || dimensions.width;
+const logoHeight = height || dimensions.height;
+
+// Theme-based logo source selection
+const logoSrc = {
+  'default': '/brand/logos/logo-primary.svg',
+  'monochrome-black': '/brand/logos/logo-monochrome-black.svg',
+  'monochrome-white': '/brand/logos/logo-monochrome-white.svg'
+}[theme];
+---
+
+<div 
+  class={`brand-logo-primary inline-flex items-center ${animated ? 'animate-pulse' : ''} ${className}`}
+  style={`height: ${logoHeight}; width: ${logoWidth}; padding: var(--spacing-brand-logo-clear, 0.5rem);`}
+>
+  <img 
+    src={logoSrc}
+    alt="Nosyt Labs - Network Intelligence Platform"
+    width={logoWidth}
+    height={logoHeight}
+    class={`brand-logo-image transition-all duration-300 hover:scale-105 ${animated ? 'animate-glow' : ''}`}
+    loading="lazy"
+  />
+  {showTagline && (
+    <div class="brand-tagline text-sm text-brand-signal-white/70 mt-2 font-inter">
+      Network Intelligence Platform
+    </div>
+  )}
+</div>
+
+<style>
+  .brand-logo-primary {
+    /* Brand-compliant clear space and positioning */
+    padding: var(--spacing-brand-logo-clear, 0.5rem);
+    transition: all var(--transition-brand-smooth, 0.3s) ease;
+  }
+  
+  .brand-logo-image {
+    filter: drop-shadow(var(--effect-brand-node-shadow, 0 2px 8px rgba(0, 240, 255, 0.2)));
+    transition: all var(--transition-brand-smooth, 0.3s) ease;
+  }
+  
+  .brand-logo-image:hover {
+    filter: drop-shadow(var(--effect-brand-glow, 0 0 20px rgba(0, 240, 255, 0.4)));
+    transform: scale(1.05);
+  }
+  
+  .brand-tagline {
+    font-family: var(--font-brand-body, 'Inter', sans-serif);
+    color: var(--color-brand-signal-white-70, rgba(255, 255, 255, 0.7));
+    font-size: var(--text-brand-caption, 0.875rem);
+    margin-top: var(--spacing-brand-xs, 0.5rem);
+  }
+  
+  /* Animation for glow effect */
+  @keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3)); }
+    50% { filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.6)); }
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+</style>

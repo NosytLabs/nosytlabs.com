@@ -1,0 +1,55 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a3a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00e5ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ff9d;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGradient)" />
+  
+  <!-- Abstract circuit patterns -->
+  <g opacity="0.3">
+    <path d="M50 100 L150 100 L150 150 L200 150" stroke="#00e5ff" stroke-width="2" fill="none" />
+    <path d="M300 200 L400 200 L400 250 L450 250" stroke="#00ff9d" stroke-width="2" fill="none" />
+    <path d="M600 100 L700 100 L700 180 L750 180" stroke="#00e5ff" stroke-width="2" fill="none" />
+    <circle cx="100" cy="300" r="5" fill="#00e5ff" />
+    <circle cx="350" cy="350" r="5" fill="#00ff9d" />
+    <circle cx="650" cy="250" r="5" fill="#00e5ff" />
+  </g>
+  
+  <!-- Central abstract representation of AI coding -->
+  <g transform="translate(400, 200)">
+    <!-- Outer ring -->
+    <circle cx="0" cy="0" r="80" fill="none" stroke="url(#accentGradient)" stroke-width="3" stroke-dasharray="5,5" />
+    
+    <!-- Inner elements -->
+    <circle cx="0" cy="0" r="40" fill="none" stroke="#00e5ff" stroke-width="2" />
+    <path d="M-20 -20 L20 20 M20 -20 L-20 20" stroke="#00ff9d" stroke-width="3" />
+    
+    <!-- Surrounding code brackets -->
+    <text x="-120" y="-50" fill="#00e5ff" font-family="monospace" font-size="24">{</text>
+    <text x="110" y="-50" fill="#00e5ff" font-family="monospace" font-size="24">}</text>
+    <text x="-120" y="50" fill="#00e5ff" font-family="monospace" font-size="24">{</text>
+    <text x="110" y="50" fill="#00e5ff" font-family="monospace" font-size="24">}</text>
+    
+    <!-- Binary code elements -->
+    <text x="-100" y="-80" fill="#00ff9d" font-family="monospace" font-size="14">01010100</text>
+    <text x="40" y="-80" fill="#00ff9d" font-family="monospace" font-size="14">10101011</text>
+    <text x="-100" y="95" fill="#00ff9d" font-family="monospace" font-size="14">11001100</text>
+    <text x="40" y="95" fill="#00ff9d" font-family="monospace" font-size="14">00110011</text>
+  </g>
+  
+  <!-- Title text -->
+  <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="bold">
+    AI Coding Tools 2025
+  </text>
+  <text x="400" y="80" text-anchor="middle" fill="#00e5ff" font-family="Arial, sans-serif" font-size="16">
+    Reality Check for Small Businesses
+  </text>
+</svg>

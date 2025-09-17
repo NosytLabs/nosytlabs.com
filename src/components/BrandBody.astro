@@ -1,0 +1,97 @@
+---
+export interface Props {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  leading?: 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
+  align?: 'left' | 'center' | 'right' | 'justify';
+  variant?: 'body' | 'caption' | 'label' | 'description';
+  emphasis?: boolean;
+  class?: string;
+}
+
+const { size = 'md', leading = 'normal', align = 'left', variant = 'body', emphasis = false, class: className } = Astro.props;
+---
+
+<p class={`brand-body size-${size} leading-${leading} align-${align} variant-${variant} ${emphasis ? 'emphasis' : ''} ${className || ''}`}>
+  <slot />
+</p>
+
+<style>
+  .brand-body {
+    font-family: var(--font-family-body);
+    color: var(--color-brand-text-primary);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    line-height: var(--line-height-body);
+  }
+
+  /* Size variants */
+  .size-xs { font-size: var(--font-size-xs); }
+  .size-sm { font-size: var(--font-size-sm); }
+  .size-md { font-size: var(--font-size-base); }
+  .size-lg { font-size: var(--font-size-lg); }
+  .size-xl { font-size: var(--font-size-xl); }
+
+  /* Leading variants */
+  .leading-tight { line-height: var(--line-height-tight); }
+  .leading-snug { line-height: var(--line-height-snug); }
+  .leading-normal { line-height: var(--line-height-normal); }
+  .leading-relaxed { line-height: var(--line-height-relaxed); }
+  .leading-loose { line-height: var(--line-height-loose); }
+
+  /* Alignment */
+  .align-left { text-align: left; }
+  .align-center { text-align: center; }
+  .align-right { text-align: right; }
+  .align-justify { text-align: justify; }
+
+  /* Variant styles */
+  .variant-body { color: var(--color-brand-text-primary); }
+  .variant-caption { 
+    color: var(--color-brand-text-secondary); 
+    font-size: var(--font-size-sm);
+  }
+  .variant-label { 
+    color: var(--color-brand-text-primary); 
+    font-weight: var(--font-weight-medium);
+  }
+  .variant-description { 
+    color: var(--color-brand-text-muted); 
+  }
+
+  /* Links and code within body */
+  .brand-body :global(a) { 
+    color: var(--color-brand-accent); 
+    text-decoration: underline; 
+    transition: color var(--transition-fast);
+  }
+  
+  .brand-body :global(a:hover) { 
+    color: var(--color-brand-accent-muted); 
+  }
+  
+  .brand-body :global(a:focus-visible) { 
+    outline: 2px solid var(--color-brand-accent); 
+    outline-offset: var(--spacing-xs); 
+  }
+  
+  .brand-body :global(code) { 
+    font-family: var(--font-family-mono); 
+    background: var(--color-surface-secondary); 
+    color: var(--color-brand-accent);
+    padding: var(--spacing-xs) var(--spacing-sm); 
+    border-radius: var(--border-radius-sm); 
+    border: 1px solid var(--color-border);
+  }
+
+  /* Emphasis */
+  .emphasis { 
+    font-weight: var(--font-weight-semibold); 
+    color: var(--color-brand-text-primary);
+  }
+
+  @media print {
+    .brand-body { 
+      color: var(--color-brand-secondary, #000) !important; 
+    }
+  }
+</style>

@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://nosytlabs.com/sitemap-index.xml
-
-# Prevent crawling of specific paths
-Disallow: /api/
-Disallow: /admin/
-Disallow: /dashboard/

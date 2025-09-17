@@ -1,0 +1,136 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D0D0D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0080FF;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="networkGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#00F0FF;stop-opacity:0.1" />
+    </radialGradient>
+    <linearGradient id="dataFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:0.2" />
+      <stop offset="50%" style="stop-color:#00F0FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00F0FF;stop-opacity:0.2" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- Network grid background -->
+  <g opacity="0.2">
+    <defs>
+      <pattern id="networkGrid" width="50" height="50" patternUnits="userSpaceOnUse">
+        <circle cx="25" cy="25" r="2" fill="#00F0FF"/>
+        <line x1="25" y1="0" x2="25" y2="50" stroke="#00F0FF" stroke-width="0.5"/>
+        <line x1="0" y1="25" x2="50" y2="25" stroke="#00F0FF" stroke-width="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="800" height="400" fill="url(#networkGrid)"/>
+  </g>
+  
+  <!-- Main content area -->
+  <rect x="60" y="60" width="680" height="280" rx="12" fill="rgba(26, 26, 26, 0.9)" stroke="#333" stroke-width="2"/>
+  
+  <!-- Central AI brain/network hub -->
+  <g transform="translate(350, 150)">
+    <circle cx="50" cy="50" r="40" fill="url(#networkGradient)" stroke="#00F0FF" stroke-width="2"/>
+    <!-- Inner neural network -->
+    <circle cx="35" cy="35" r="4" fill="#00F0FF"/>
+    <circle cx="65" cy="35" r="4" fill="#00F0FF"/>
+    <circle cx="50" cy="55" r="5" fill="#00F0FF"/>
+    <circle cx="30" cy="65" r="3" fill="#00F0FF"/>
+    <circle cx="70" cy="65" r="3" fill="#00F0FF"/>
+    <circle cx="50" cy="25" r="3" fill="#00F0FF"/>
+    <!-- Neural connections -->
+    <line x1="35" y1="35" x2="50" y2="55" stroke="#00F0FF" stroke-width="1.5"/>
+    <line x1="65" y1="35" x2="50" y2="55" stroke="#00F0FF" stroke-width="1.5"/>
+    <line x1="50" y1="55" x2="30" y2="65" stroke="#00F0FF" stroke-width="1"/>
+    <line x1="50" y1="55" x2="70" y2="65" stroke="#00F0FF" stroke-width="1"/>
+    <line x1="50" y1="25" x2="35" y2="35" stroke="#00F0FF" stroke-width="1"/>
+    <line x1="50" y1="25" x2="65" y2="35" stroke="#00F0FF" stroke-width="1"/>
+    <!-- AI label -->
+    <text x="50" y="105" text-anchor="middle" fill="#00F0FF" font-family="Arial, sans-serif" font-size="12" font-weight="bold">AI HUB</text>
+  </g>
+  
+  <!-- Network nodes around the central hub -->
+  <g>
+    <!-- Top left node -->
+    <circle cx="150" cy="120" r="15" fill="rgba(0, 240, 255, 0.3)" stroke="#00F0FF" stroke-width="2"/>
+    <circle cx="150" cy="120" r="3" fill="#00F0FF"/>
+    <line x1="165" y1="120" x2="350" y2="180" stroke="url(#dataFlow)" stroke-width="2"/>
+    <text x="150" y="145" text-anchor="middle" fill="#B0B0B0" font-family="Arial, sans-serif" font-size="9">IoT</text>
+    
+    <!-- Top right node -->
+    <circle cx="650" cy="120" r="15" fill="rgba(0, 240, 255, 0.3)" stroke="#00F0FF" stroke-width="2"/>
+    <circle cx="650" cy="120" r="3" fill="#00F0FF"/>
+    <line x1="635" y1="120" x2="450" y2="180" stroke="url(#dataFlow)" stroke-width="2"/>
+    <text x="650" y="145" text-anchor="middle" fill="#B0B0B0" font-family="Arial, sans-serif" font-size="9">Cloud</text>
+    
+    <!-- Bottom left node -->
+    <circle cx="150" cy="280" r="15" fill="rgba(0, 240, 255, 0.3)" stroke="#00F0FF" stroke-width="2"/>
+    <circle cx="150" cy="280" r="3" fill="#00F0FF"/>
+    <line x1="165" y1="280" x2="350" y2="220" stroke="url(#dataFlow)" stroke-width="2"/>
+    <text x="150" y="305" text-anchor="middle" fill="#B0B0B0" font-family="Arial, sans-serif" font-size="9">Edge</text>
+    
+    <!-- Bottom right node -->
+    <circle cx="650" cy="280" r="15" fill="rgba(0, 240, 255, 0.3)" stroke="#00F0FF" stroke-width="2"/>
+    <circle cx="650" cy="280" r="3" fill="#00F0FF"/>
+    <line x1="635" y1="280" x2="450" y2="220" stroke="url(#dataFlow)" stroke-width="2"/>
+    <text x="650" y="305" text-anchor="middle" fill="#B0B0B0" font-family="Arial, sans-serif" font-size="9">5G</text>
+  </g>
+  
+  <!-- Data flow particles -->
+  <g opacity="0.6">
+    <circle cx="250" cy="150" r="2" fill="#00F0FF">
+      <animate attributeName="cx" values="250;350;450" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="550" cy="150" r="2" fill="#00F0FF">
+      <animate attributeName="cx" values="550;450;350" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="250" cy="250" r="2" fill="#00F0FF">
+      <animate attributeName="cy" values="250;200;150" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="550" cy="250" r="2" fill="#00F0FF">
+      <animate attributeName="cy" values="250;200;150" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="140" text-anchor="middle" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="32" font-weight="bold">
+    AI Network Intelligence
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="400" y="170" text-anchor="middle" fill="#B0B0B0" font-family="Arial, sans-serif" font-size="18">
+    The Connected Future of 2025
+  </text>
+  
+  <!-- Intelligence metrics -->
+  <g transform="translate(100, 320)">
+    <rect x="0" y="0" width="600" height="8" rx="4" fill="#333"/>
+    <rect x="0" y="0" width="480" height="8" rx="4" fill="url(#accentGradient)"/>
+    <text x="300" y="25" text-anchor="middle" fill="#B0B0B0" font-family="Arial, sans-serif" font-size="12">Network Intelligence: 80% Autonomous</text>
+  </g>
+  
+  <!-- Technology badges -->
+  <g transform="translate(520, 100)">
+    <rect x="0" y="0" width="40" height="20" rx="10" fill="#333" stroke="#00F0FF" stroke-width="1"/>
+    <text x="20" y="13" text-anchor="middle" fill="#00F0FF" font-family="Arial, sans-serif" font-size="8">ML</text>
+    
+    <rect x="45" y="0" width="40" height="20" rx="10" fill="#333" stroke="#00F0FF" stroke-width="1"/>
+    <text x="65" y="13" text-anchor="middle" fill="#00F0FF" font-family="Arial, sans-serif" font-size="8">5G</text>
+    
+    <rect x="90" y="0" width="40" height="20" rx="10" fill="#333" stroke="#00F0FF" stroke-width="1"/>
+    <text x="110" y="13" text-anchor="middle" fill="#00F0FF" font-family="Arial, sans-serif" font-size="8">IoT</text>
+  </g>
+  
+  <!-- Year badge -->
+  <rect x="650" y="80" width="80" height="30" rx="15" fill="url(#accentGradient)"/>
+  <text x="690" y="100" text-anchor="middle" fill="#0D0D0D" font-family="Arial, sans-serif" font-size="14" font-weight="bold">2025</text>
+</svg>

@@ -1,108 +1,167 @@
 ---
-/**
- * Consulting Service Detail Page
- * 
- * Comprehensive page showcasing consulting services with detailed expertise areas,
- * case studies, pricing, and conversion-optimized CTAs
- */
-
-import ServiceDetail from '../../components/services/ServiceDetail.astro';
-import { consultingServices } from '../../config/services/consulting';
-import { allServices } from '../../config/services';
-
-// Get the main consulting service
-const service = consultingServices[0]; // Strategic Consulting
-
-// Get related services (excluding current service)
-const relatedServices = allServices.filter(s => 
-  s.category !== service.category || s.id !== service.id
-).slice(0, 3);
-
-// Service-specific testimonials
-const testimonials = [
-  {
-    name: "Jennifer Walsh",
-    role: "CEO",
-    company: "ScaleUp Ventures",
-    content: "NosytLabs' strategic consulting helped us identify key technology gaps and develop a roadmap that accelerated our growth by 300% in just 18 months.",
-    rating: 5,
-    image: "/images/testimonials/jennifer-walsh.jpg"
-  },
-  {
-    name: "Marcus Johnson",
-    role: "VP of Technology",
-    company: "Enterprise Corp",
-    content: "Their technical advisory services were instrumental in our digital transformation. The team's expertise saved us from costly mistakes and optimized our tech stack.",
-    rating: 5,
-    image: "/images/testimonials/marcus-johnson.jpg"
-  },
-  {
-    name: "Anna Rodriguez",
-    role: "Founder",
-    company: "TechStartup Inc.",
-    content: "The strategic insights and actionable recommendations we received were game-changing. Our product-market fit improved dramatically following their guidance.",
-    rating: 5,
-    image: "/images/testimonials/anna-rodriguez.jpg"
-  }
-];
-
-// Service-specific FAQs
-const faqs = [
-  {
-    question: "What areas do your consulting services cover?",
-    answer: "We provide strategic technology consulting, digital transformation guidance, architecture reviews, team scaling advice, product strategy, and technical due diligence for investments."
-  },
-  {
-    question: "How do you approach strategic consulting engagements?",
-    answer: "We start with a comprehensive assessment of your current state, identify opportunities and challenges, develop actionable strategies, and provide ongoing support for implementation."
-  },
-  {
-    question: "What's the typical duration of a consulting engagement?",
-    answer: "Engagements vary from short-term assessments (2-4 weeks) to long-term strategic partnerships (6-12 months). We tailor the approach based on your specific needs and objectives."
-  },
-  {
-    question: "Do you provide hands-on implementation support?",
-    answer: "Yes, we offer both strategic guidance and hands-on implementation support. We can work alongside your team or provide complete implementation services as needed."
-  },
-  {
-    question: "How do you measure the success of consulting projects?",
-    answer: "We establish clear KPIs and success metrics upfront, provide regular progress reports, and conduct post-engagement reviews to ensure objectives are met and value is delivered."
-  }
-];
-
-// Consulting process steps
-const processSteps = [
-  {
-    step: 1,
-    title: "Current State Assessment",
-    description: "Comprehensive analysis of your technology stack, processes, team capabilities, and business objectives.",
-    duration: "1-2 weeks"
-  },
-  {
-    step: 2,
-    title: "Strategy Development",
-    description: "Create detailed strategic recommendations with prioritized action items and implementation roadmaps.",
-    duration: "2-4 weeks"
-  },
-  {
-    step: 3,
-    title: "Implementation Planning",
-    description: "Develop detailed implementation plans with timelines, resource requirements, and risk mitigation strategies.",
-    duration: "1-2 weeks"
-  },
-  {
-    step: 4,
-    title: "Ongoing Support",
-    description: "Provide continuous guidance, progress monitoring, and strategic adjustments throughout implementation.",
-    duration: "Ongoing"
-  }
-];
+import Layout from '../../layouts/Layout.astro';
 ---
 
-<ServiceDetail 
-  service={service}
-  testimonials={testimonials}
-  faqs={faqs}
-  relatedServices={relatedServices}
-  processSteps={processSteps}
-/>
+<Layout title="Technology Consulting | Nosyt Labs" description="Strategic technology consulting services. Digital transformation, architecture planning, and technical leadership.">
+  
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-surface-primary">
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          Technology
+          <span class="text-nexus-cyan block">Consulting</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-brand-gray mb-8 max-w-3xl mx-auto">
+          Strategic guidance to navigate complex technology decisions, 
+          accelerate digital transformation, and optimize your tech stack.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-nexus-cyan text-deep-space-black px-8 py-4 rounded-lg font-semibold hover:bg-brand-accent-muted transition-colors">
+            Book Consultation
+          </a>
+          <a href="/tech-audit" class="border border-nexus-cyan text-nexus-cyan px-8 py-4 rounded-lg font-semibold hover:bg-nexus-cyan hover:text-deep-space-black transition-colors">
+            Free Tech Audit
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consulting Services -->
+  <section class="py-20 bg-surface-secondary">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+          Consulting <span class="text-nexus-cyan">Expertise</span>
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-colors">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Digital Strategy</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Develop comprehensive digital transformation roadmaps aligned with business objectives.
+            </p>
+          </div>
+          
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-colors">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Architecture Review</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Evaluate and optimize your technical architecture for scalability and performance.
+            </p>
+          </div>
+          
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-colors">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Technology Selection</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Choose the right technologies and frameworks for your specific use cases and goals.
+            </p>
+          </div>
+          
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-colors">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Process Optimization</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Streamline development workflows and implement best practices for efficiency.
+            </p>
+          </div>
+          
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-colors">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Security Assessment</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Comprehensive security audits and implementation of robust security measures.
+            </p>
+          </div>
+          
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-colors">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Performance Optimization</h3>
+            <p class="text-brand-gray leading-relaxed">
+              Identify bottlenecks and optimize applications for maximum performance and scalability.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consulting Process -->
+  <section class="py-20 bg-surface-primary">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
+          Our Consulting <span class="text-nexus-cyan">Process</span>
+        </h2>
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-deep-space-black">1</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-4">Discovery</h3>
+            <p class="text-brand-gray">
+              Understand your business goals, challenges, and current technology landscape.
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-deep-space-black">2</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-4">Analysis</h3>
+            <p class="text-brand-gray">
+              Deep dive into your systems, processes, and identify optimization opportunities.
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-deep-space-black">3</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-4">Strategy</h3>
+            <p class="text-brand-gray">
+              Develop actionable recommendations and implementation roadmaps.
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-deep-space-black">4</span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-4">Implementation</h3>
+            <p class="text-brand-gray">
+              Support execution with hands-on guidance and ongoing optimization.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

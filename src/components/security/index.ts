@@ -1,1 +1,0 @@
-export { ReCAPTCHA } from './ReCAPTCHA';

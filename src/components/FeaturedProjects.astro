@@ -1,0 +1,92 @@
+---
+import Card from "./ui/Card.astro";
+import Button from "./ui/Button.astro";
+
+const featuredProjects = [
+  {
+    title: "NosytLabs Corporate Website",
+    description: "Our own modern, responsive corporate website built with Astro, React, and TypeScript. Features dark mode, accessibility compliance, and optimized performance with Grade A+ optimization.",
+    link: "/projects/nosytlabs-website",
+    image: "/icons/web-development.svg",
+    tech: ["Astro", "React", "TypeScript", "Tailwind CSS"],
+  },
+  {
+    title: "Small Business Website",
+    description: "Professional website for a local New Mexico business featuring modern design, mobile responsiveness, and SEO optimization to improve online presence.",
+    link: "/projects/small-business",
+    image: "/icons/web-development.svg",
+    tech: ["WordPress", "Elementor", "SEO Tools"],
+  },
+  {
+    title: "Rapid Prototype Development",
+    description: "Quick MVP development for a startup client using AI-assisted coding tools, delivering a functional prototype in under a week.",
+    link: "/projects/rapid-prototype",
+    image: "/icons/ai-integration.svg",
+    tech: ["React", "Node.js", "AI Tools"],
+  },
+];
+---
+
+<section class="section-padding">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="text-center mb-2xl">
+      <h2 class="brand-heading-2 text-center mb-lg">
+        Featured <span class="text-brand-accent">Projects</span>
+      </h2>
+      <p class="brand-body-large text-center max-w-2xl mx-auto text-brand-text-muted">
+        Explore our latest work showcasing innovative solutions and cutting-edge technology implementations.
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+      {
+        featuredProjects.map((project) => (
+          <Card class="group hover:shadow-brand transition-all duration-300 hover:-translate-y-1">
+            <a href={project.link} class="block h-full">
+              <div class="p-lg">
+                <!-- Project Icon -->
+                <div class="w-16 h-16 rounded-xl bg-surface-elevated flex items-center justify-center mb-lg group-hover:bg-brand-accent/20 transition-colors">
+                  <img src={project.image} alt={project.title} class="w-8 h-8 text-brand-accent" />
+                </div>
+                
+                <!-- Project Content -->
+                <h3 class="brand-heading-3 mb-sm group-hover:text-brand-accent transition-colors">
+                  {project.title}
+                </h3>
+                <p class="body-text-muted mb-lg leading-relaxed">
+                  {project.description}
+                </p>
+
+                <!-- Technologies -->
+                <div class="flex flex-wrap gap-xs mb-lg">
+                  {project.tech.map((tech) => (
+                    <span class="px-sm py-xs text-xs font-medium bg-surface-secondary text-brand-text-secondary rounded-md border border-border/30">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
+                <!-- CTA -->
+                <div class="flex items-center gap-sm text-brand-accent font-medium group-hover:text-brand-accent/80 transition-colors">
+                  <span>View Project</span>
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </Card>
+        ))
+      }
+    </div>
+    
+    <!-- View All Projects CTA -->
+    <div class="text-center mt-2xl">
+      <Button href="/projects" variant="outline" class="brand-button-outline">
+        View All Projects
+      </Button>
+    </div>
+  </div>
+</section>

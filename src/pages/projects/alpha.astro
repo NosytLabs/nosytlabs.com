@@ -1,0 +1,141 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Project Alpha - Nosyt Labs" description="Discover Project Alpha: Our innovative AI-driven web application that revolutionizes user interaction through intelligent automation and seamless integration.">
+  <main class="relative min-h-screen bg-background overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-16 md:pt-32 md:pb-20 bg-gradient-to-br from-primary/5 to-muted/20">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-secondary/10"></div>
+      <div class="relative container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold text-foreground mb-6 font-heading leading-tight">
+          Project <span class="text-primary">Alpha</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+          Revolutionizing web experiences with AI-powered automation and intelligent user interfaces.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a href="/contact" class="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors">
+            Start Your Project
+          </a>
+          <a href="#features" class="inline-flex items-center px-8 py-4 border-2 border-primary text-primary bg-transparent rounded-xl font-medium hover:bg-primary/5 transition-colors">
+            View Details
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6 font-heading">Project Overview</h2>
+            <p class="text-lg text-muted-foreground mb-6 leading-relaxed">
+              Project Alpha is a cutting-edge web application that leverages artificial intelligence to create dynamic, responsive user experiences. Built from the ground up with modern technologies, it automates complex workflows, provides real-time insights, and adapts to user behavior for unparalleled engagement.
+            </p>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start gap-3">
+                <div class="w-2 h-2 bg-primary rounded-full mt-2.5 flex-shrink-0"></div>
+                <p class="text-muted-foreground">AI-driven content generation and personalization</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-2 h-2 bg-primary rounded-full mt-2.5 flex-shrink-0"></div>
+                <p class="text-muted-foreground">Seamless integration with existing business systems</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-2 h-2 bg-primary rounded-full mt-2.5 flex-shrink-0"></div>
+                <p class="text-muted-foreground">Scalable architecture for high-traffic applications</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Web App</span>
+              <span class="px-3 py-1 bg-secondary/10 text-secondary text-sm rounded-full">AI/ML</span>
+              <span class="px-3 py-1 bg-accent/10 text-accent text-sm rounded-full">Automation</span>
+            </div>
+          </div>
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop" alt="Project Alpha Dashboard" class="rounded-2xl shadow-2xl w-full h-64 object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent rounded-2xl"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-20 bg-muted/5">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center font-heading">Key Features</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center p-6 rounded-2xl bg-background border border-border hover:border-primary/50 transition-colors">
+            <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Intelligent Automation</h3>
+            <p class="text-muted-foreground">Automate repetitive tasks with AI that learns from your patterns and improves over time.</p>
+          </div>
+          <div class="text-center p-6 rounded-2xl bg-background border border-border hover:border-primary/50 transition-colors">
+            <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Real-time Analytics</h3>
+            <p class="text-muted-foreground">Get instant insights into user behavior and system performance with live dashboards.</p>
+          </div>
+          <div class="text-center p-6 rounded-2xl bg-background border border-border hover:border-primary/50 transition-colors">
+            <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Secure Integration</h3>
+            <p class="text-muted-foreground">Enterprise-grade security with seamless API integrations for all major platforms.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technologies -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center font-heading">Technologies Used</h2>
+        <div class="grid md:grid-cols-4 gap-6 justify-items-center">
+          <div class="text-center p-4">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" class="w-12 h-12 mx-auto mb-2">
+            <p class="text-sm text-muted-foreground">JavaScript</p>
+          </div>
+          <div class="text-center p-4">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/React_icon.svg" alt="React" class="w-12 h-12 mx-auto mb-2">
+            <p class="text-sm text-muted-foreground">React</p>
+          </div>
+          <div class="text-center p-4">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Socket.io-logo.svg" alt="Node.js" class="w-12 h-12 mx-auto mb-2">
+            <p class="text-sm text-muted-foreground">Node.js</p>
+          </div>
+          <div class="text-center p-4">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/NextJS-logo.svg" alt="TensorFlow" class="w-12 h-12 mx-auto mb-2">
+            <p class="text-sm text-muted-foreground">TensorFlow</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 px-8 rounded-2xl bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5 border border-primary/20">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-6 font-heading">
+          Ready to Transform Your <span class="text-primary">Business?</span>
+        </h2>
+        <p class="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+          Contact us today to discuss how Project Alpha's technology can be adapted for your specific needs.
+        </p>
+        <a href="/contact" class="inline-flex items-center px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors">
+          Get In Touch
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
