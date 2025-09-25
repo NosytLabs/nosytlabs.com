@@ -1,0 +1,785 @@
+---
+// Enhanced Hero Section with improved animations and layout---
+import Icon from '../ui/Icon.astro';
+import ResponsiveImageOptimizer from '../layout/ResponsiveImageOptimizer.astro';
+
+// Hero content configuration
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  primaryCTA?: {
+    text: string;
+    href: string;
+    icon?: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+    icon?: string;
+  };
+  backgroundImage?: string;
+  showStats?: boolean;
+}
+
+const {
+  title = "Transform Your Digital Presence",
+  subtitle = "Professional Web Development & Design",
+  description = "We create stunning, high-performance websites and applications that drive results. From concept to launch, we're your trusted digital partner.",
+  primaryCTA = {
+    text: "Start Your Project",
+    href: "/get-started",
+    icon: "arrow-right"
+  },
+  secondaryCTA = {
+    text: "View Our Work",
+    href: "/portfolio",
+    icon: "external-link"
+  },
+  backgroundImage,
+  showStats = true
+} = Astro.props;
+
+// Statistics data
+const stats = [
+  { value: "150+", label: "Projects Completed", icon: "briefcase" },
+  { value: "98%", label: "Client Satisfaction", icon: "heart" },
+  { value: "5+", label: "Years Experience", icon: "calendar" },
+  { value: "24/7", label: "Support Available", icon: "headphones" }
+];
+---
+
+<section class="layout-section hero-section" id="hero">
+  <div class="hero-background">
+    {backgroundImage && (
+      <ResponsiveImageOptimizer
+        src={backgroundImage}
+        alt=""
+        width={1920}
+        height={1080}
+        aspectRatio="16/9"
+        loading="eager"
+        fetchpriority="high"
+        class="hero-background-image"
+      />
+    )}
+    <div class="hero-background-overlay"></div>
+    <div class="hero-background-pattern"></div>
+  </div>
+
+  <div class="layout-container">
+    <div class="hero-content">
+      <!-- Main Content -->
+      <div class="hero-main">
+        <div class="hero-text" data-animate="fade-up">
+          {subtitle && (
+            <p class="hero-subtitle">
+              <Icon name="sparkles" size="sm" class="hero-subtitle-icon" />
+              {subtitle}
+            </p>
+          )}
+          
+          <h1 class="hero-title">
+            {title}
+          </h1>
+          
+          {description && (
+            <p class="hero-description">
+              {description}
+            </p>
+          )}
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="hero-actions" data-animate="fade-up" data-animate-delay="200">
+          <a 
+            href={primaryCTA.href} 
+            class="btn btn--primary btn--lg hero-cta-primary"
+          >
+            {primaryCTA.text}
+            {primaryCTA.icon && (
+              <Icon name={primaryCTA.icon} size="sm" class="btn-icon" />
+            )}
+          </a>
+          
+          {secondaryCTA && (
+            <a 
+              href={secondaryCTA.href} 
+              class="btn btn--outline btn--lg hero-cta-secondary"
+            >
+              {secondaryCTA.text}
+              {secondaryCTA.icon && (
+                <Icon name={secondaryCTA.icon} size="sm" class="btn-icon" />
+              )}
+            </a>
+          )}
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="hero-trust" data-animate="fade-up" data-animate-delay="400">
+          <p class="hero-trust-text">Trusted by innovative companies</p>
+          <div class="hero-trust-logos">
+            <!-- Add client logos here -->
+            <div class="hero-trust-logo">
+              <Icon name="star" size="md" />
+            </div>
+            <div class="hero-trust-logo">
+              <Icon name="award" size="md" />
+            </div>
+            <div class="hero-trust-logo">
+              <Icon name="shield" size="md" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual -->
+      <div class="hero-visual" data-animate="fade-left" data-animate-delay="300">
+        <div class="hero-visual-container">
+          <div class="hero-visual-card hero-visual-card--primary">
+            <Icon name="code" size="xl" />
+            <h3>Modern Development</h3>
+            <p>Latest technologies and best practices</p>
+          </div>
+          
+          <div class="hero-visual-card hero-visual-card--secondary">
+            <Icon name="zap" size="xl" />
+            <h3>Lightning Fast</h3>
+            <p>Optimized for speed and performance</p>
+          </div>
+          
+          <div class="hero-visual-card hero-visual-card--accent">
+            <Icon name="shield-check" size="xl" />
+            <h3>Secure & Reliable</h3>
+            <p>Built with security and reliability in mind</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistics Section -->
+    {showStats && (
+      <div class="hero-stats" data-animate="fade-up" data-animate-delay="600">
+        <div class="hero-stats-grid">
+          {stats.map((stat, index) => (
+            <div 
+              class="hero-stat"
+              data-animate="fade-up"
+              data-animate-delay={700 + (index * 100)}
+            >
+              <div class="hero-stat-icon">
+                <Icon name={stat.icon} size="md" />
+              </div>
+              <div class="hero-stat-content">
+                <div class="hero-stat-value">{stat.value}</div>
+                <div class="hero-stat-label">{stat.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="hero-scroll-indicator" data-animate="bounce" data-animate-delay="1000">
+    <button class="hero-scroll-button" aria-label="Scroll to next section">
+      <Icon name="chevron-down" size="md" />
+    </button>
+  </div>
+</section>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--surface-primary);
+  }
+
+  /* Hero Background */
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.1;
+  }
+
+  .hero-background-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      var(--surface-primary) 0%,
+      transparent 50%,
+      var(--surface-primary) 100%
+    );
+  }
+
+  .hero-background-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 25% 25%, var(--color-primary-500) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, var(--color-secondary-500) 0%, transparent 50%);
+    opacity: 0.05;
+    animation: none;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    contain: layout style paint;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+    will-change: auto;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+  }
+
+  /* Hero Content */
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+    min-height: 80vh;
+  }
+
+  /* Hero Main Content */
+  .hero-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .hero-text {
+    margin-bottom: var(--space-2);
+  }
+
+  .hero-subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-primary-600);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-subtitle-icon {
+    color: var(--color-primary-500);
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: var(--font-weight-black);
+    line-height: var(--line-height-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+    background: linear-gradient(
+      135deg,
+      var(--text-primary) 0%,
+      var(--color-primary-600) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    max-width: 500px;
+  }
+
+  /* Hero Actions */
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .hero-cta-primary,
+  .hero-cta-secondary {
+    min-width: 160px;
+    justify-content: center;
+  }
+
+  /* Hero Trust */
+  .hero-trust {
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .hero-trust-text {
+    color: var(--text-tertiary);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-trust-logos {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .hero-trust-logo {
+    color: var(--text-tertiary);
+    opacity: 0.6;
+    transition: all var(--transition-fast);
+  }
+
+  .hero-trust-logo:hover {
+    color: var(--color-primary-500);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-visual-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    transform: perspective(1000px) rotateY(-5deg);
+  }
+
+  .hero-visual-card {
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    text-align: center;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-visual-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+  }
+
+  .hero-visual-card--primary::before {
+    background: var(--gradient-primary);
+  }
+
+  .hero-visual-card--secondary::before {
+    background: var(--gradient-secondary);
+  }
+
+  .hero-visual-card--accent::before {
+    background: var(--gradient-accent);
+  }
+
+  .hero-visual-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .hero-visual-card:hover::before {
+    opacity: 0.1;
+  }
+
+  .hero-visual-card:nth-child(1) {
+    grid-column: 1 / -1;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-visual-card:nth-child(2) {
+    transform: translateY(var(--space-8));
+  }
+
+  .hero-visual-card:nth-child(3) {
+    transform: translateY(var(--space-4));
+  }
+
+  .hero-visual-card h3 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin: var(--space-4) 0 var(--space-2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-visual-card p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-visual-card svg {
+    color: var(--color-primary-500);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Hero Stats */
+  .hero-stats {
+    margin-top: var(--space-16);
+    padding-top: var(--space-12);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .hero-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .hero-stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    text-align: left;
+  }
+
+  .hero-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--surface-tertiary);
+    border-radius: var(--radius-full);
+    color: var(--color-primary-500);
+    flex-shrink: 0;
+  }
+
+  .hero-stat-value {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-black);
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin-top: var(--space-1);
+  }
+
+  /* Scroll Indicator */
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: var(--space-8);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .hero-scroll-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    animation: bounce 2s infinite;
+  }
+
+  .hero-scroll-button:hover {
+    background: var(--surface-tertiary);
+    color: var(--color-primary-500);
+    transform: translateY(-2px);
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-8px); }
+    60% { transform: translateY(-4px); }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      text-align: center;
+    }
+
+    .hero-visual-container {
+      transform: none;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: 90vh;
+    }
+
+    .hero-content {
+      gap: var(--space-8);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-visual-card:nth-child(1) {
+      margin-bottom: var(--space-2);
+    }
+
+    .hero-visual-card:nth-child(2),
+    .hero-visual-card:nth-child(3) {
+      transform: none;
+    }
+
+    .hero-stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .hero-visual-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Enhanced Focus States */
+  .hero-cta-primary:focus-visible,
+  .hero-cta-secondary:focus-visible,
+  .hero-scroll-button:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Dark Mode Enhancements */
+  @media (prefers-color-scheme: dark) {
+    .hero-background-overlay {
+      background: linear-gradient(
+        135deg,
+        var(--surface-primary-dark) 0%,
+        transparent 50%,
+        var(--surface-primary-dark) 100%
+      );
+    }
+
+    .hero-visual-card {
+      background: var(--surface-secondary-dark);
+      border-color: var(--border-subtle-dark);
+    }
+
+    .hero-visual-card:hover {
+      box-shadow: var(--shadow-xl-dark);
+    }
+
+    .hero-stat-icon {
+      background: var(--surface-tertiary-dark);
+    }
+
+    .hero-scroll-button {
+      background: var(--surface-secondary-dark);
+      border-color: var(--border-subtle-dark);
+    }
+
+    .hero-scroll-button:hover {
+      background: var(--surface-tertiary-dark);
+    }
+  }
+
+  /* High Contrast Mode */
+  @media (prefers-contrast: high) {
+    .hero-title {
+      -webkit-text-fill-color: unset;
+      background: unset;
+      color: var(--text-primary);
+    }
+
+    .hero-visual-card {
+      border-width: 2px;
+    }
+
+    .hero-scroll-button {
+      border-width: 2px;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-background-pattern,
+    .hero-visual-card,
+    .hero-trust-logo,
+    .hero-scroll-button {
+      animation: none;
+      transition: none;
+    }
+
+    .hero-visual-card:hover {
+      transform: none;
+    }
+
+    .hero-scroll-button:hover {
+      transform: none;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .hero-section {
+      min-height: auto;
+      background: white;
+    }
+
+    .hero-background,
+    .hero-scroll-indicator {
+      display: none;
+    }
+
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .hero-actions {
+      display: none;
+    }
+
+    .hero-title {
+      color: black;
+      -webkit-text-fill-color: unset;
+      background: unset;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced hero interactions and animations
+  function initHeroSection() {
+    const heroSection = document.querySelector('.hero-section');
+    const scrollButton = document.querySelector('.hero-scroll-button');
+    
+    if (!heroSection) return;
+
+    // Smooth scroll to next section
+    if (scrollButton) {
+      scrollButton.addEventListener('click', () => {
+        const nextSection = heroSection.nextElementSibling;
+        if (nextSection) {
+          nextSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    }
+
+    // Parallax effect for background elements
+    const handleScroll = () => {
+      const scrolled = window.pageYOffset;
+      const rate = scrolled * -0.5;
+      
+      const backgroundPattern = document.querySelector('.hero-background-pattern');
+      if (backgroundPattern) {
+        backgroundPattern.style.transform = `translateY(${rate}px)`;
+      }
+    };
+
+    // Throttled scroll handler
+    let ticking = false;
+    const throttledScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      window.removeEventListener('scroll', throttledScroll);
+    });
+
+    // Add intersection observer for stats animation
+    const statsElements = document.querySelectorAll('.hero-stat-value');
+    const statsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    statsElements.forEach((stat) => {
+      statsObserver.observe(stat);
+    });
+
+    // Counter animation function
+    function animateCounter(element) {
+      const target = element.textContent;
+      const numericValue = parseInt(target.replace(/\D/g, ''));
+      const suffix = target.replace(/\d/g, '');
+      
+      if (isNaN(numericValue)) return;
+
+      let current = 0;
+      const increment = numericValue / 30;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= numericValue) {
+          current = numericValue;
+          clearInterval(timer);
+        }
+        element.textContent = Math.floor(current) + suffix;
+      }, 50);
+    }
+  }
+
+  // Initialize on DOM content loaded
+  document.addEventListener('DOMContentLoaded', initHeroSection);
+
+  // Re-initialize on navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', initHeroSection);
+</script>

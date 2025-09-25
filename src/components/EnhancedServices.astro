@@ -1,0 +1,284 @@
+---
+import Icon from './ui/Icon.astro';
+
+const services = [
+  {
+    title: "Web Development",
+    description: "Modern, responsive websites built with cutting-edge technologies and best practices for optimal performance and user experience.",
+    icon: "code",
+    features: [
+      "Responsive Design",
+      "Performance Optimization",
+      "SEO Ready",
+      "Modern Frameworks"
+    ],
+    color: "primary"
+  },
+  {
+    title: "UI/UX Design",
+    description: "User-centered design solutions that combine beautiful aesthetics with intuitive functionality to create engaging digital experiences.",
+    icon: "palette",
+    features: [
+      "User Research",
+      "Wireframing",
+      "Prototyping",
+      "Design Systems"
+    ],
+    color: "accent"
+  },
+  {
+    title: "Mobile Apps",
+    description: "Native and cross-platform mobile applications that deliver seamless experiences across iOS and Android devices.",
+    icon: "smartphone",
+    features: [
+      "Cross-Platform",
+      "Native Performance",
+      "App Store Ready",
+      "Push Notifications"
+    ],
+    color: "success"
+  },
+  {
+    title: "E-commerce",
+    description: "Complete e-commerce solutions with secure payment processing, inventory management, and conversion optimization.",
+    icon: "shopping-cart",
+    features: [
+      "Payment Integration",
+      "Inventory Management",
+      "Analytics Dashboard",
+      "Mobile Commerce"
+    ],
+    color: "warning"
+  },
+  {
+    title: "Digital Marketing",
+    description: "Strategic digital marketing campaigns that drive growth through SEO, content marketing, and social media engagement.",
+    icon: "trending-up",
+    features: [
+      "SEO Optimization",
+      "Content Strategy",
+      "Social Media",
+      "Analytics Tracking"
+    ],
+    color: "info"
+  },
+  {
+    title: "Consulting",
+    description: "Expert technical consulting to help you make informed decisions about technology stack, architecture, and digital strategy.",
+    icon: "users",
+    features: [
+      "Technical Audits",
+      "Strategy Planning",
+      "Team Training",
+      "Best Practices"
+    ],
+    color: "secondary"
+  }
+];
+---
+
+<section class="services-enhanced section-layout bg-surface-primary">
+  <div class="container-enhanced">
+    <!-- Section Header -->
+    <div class="section-header-enhanced animate-enhanced-fade-in">
+      <div class="badge bg-primary/10 text-primary border border-primary/20 px-4 py-2 rounded-full text-sm font-medium inline-flex items-center gap-2">
+        <Icon name="briefcase" size="xs" />
+        Our Services
+      </div>
+      
+      <h2 class="text-responsive-2xl font-bold text-text-primary text-balance">
+        Comprehensive Digital Solutions
+      </h2>
+      
+      <p class="text-responsive text-text-secondary text-pretty">
+        From concept to deployment, we provide end-to-end digital services that help your business thrive in the modern digital landscape.
+      </p>
+    </div>
+    
+    <!-- Services Grid -->
+    <div class="grid-enhanced animate-enhanced-slide-up animate-delay-200">
+      {services.map((service, index) => (
+        <div class={`card-enhanced group animate-enhanced-scale-in animate-delay-${(index + 3) * 100}`}>
+          <!-- Service Header -->
+          <div class="flex-enhanced-between mb-6">
+            <div class={`icon-container-enhanced icon-container-xl bg-${service.color}/10 group-hover:bg-${service.color}/20 transition-colors duration-300`}>
+              <Icon name={service.icon} size="xl" class={`text-${service.color}`} />
+            </div>
+            
+            <div class="flex items-center gap-1 text-text-tertiary">
+              <Icon name="arrow-right" size="sm" class="transform group-hover:translate-x-1 transition-transform duration-300" />
+            </div>
+          </div>
+          
+          <!-- Service Content -->
+          <div class="flex-1 space-y-enhanced">
+            <div>
+              <h3 class="text-xl font-semibold text-text-primary mb-3 group-hover:text-primary transition-colors duration-300">
+                {service.title}
+              </h3>
+              
+              <p class="text-text-secondary text-pretty leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+            
+            <!-- Features List -->
+            <div class="space-y-enhanced-sm">
+              <h4 class="text-sm font-medium text-text-primary uppercase tracking-wide">Key Features</h4>
+              <ul class="grid grid-cols-2 gap-2">
+                {service.features.map((feature) => (
+                  <li class="flex-enhanced gap-2 text-sm text-text-secondary">
+                    <Icon name="check" size="xs" class={`text-${service.color} flex-shrink-0 mt-0.5`} />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Service Action -->
+          <div class="mt-6 pt-6 border-t border-border-primary">
+            <button class={`btn btn-${service.color} btn-sm w-full flex-enhanced-center group-hover:shadow-lg transition-all duration-300`}>
+              <span>Learn More</span>
+              <Icon name="external-link" size="xs" />
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Process Section -->
+    <div class="mt-20 animate-enhanced-slide-up animate-delay-800">
+      <div class="text-center mb-12">
+        <h3 class="text-responsive-xl font-bold text-text-primary mb-4">Our Process</h3>
+        <p class="text-responsive text-text-secondary max-w-2xl mx-auto text-pretty">
+          We follow a proven methodology to ensure your project is delivered on time, within budget, and exceeds expectations.
+        </p>
+      </div>
+      
+      <div class="grid-enhanced-4">
+        {[
+          { step: "01", title: "Discovery", description: "Understanding your needs and goals", icon: "search" },
+          { step: "02", title: "Planning", description: "Strategic roadmap and timeline", icon: "map" },
+          { step: "03", title: "Development", description: "Building your solution with precision", icon: "code" },
+          { step: "04", title: "Launch", description: "Deployment and ongoing support", icon: "rocket" }
+        ].map((process, index) => (
+          <div class={`text-center group animate-enhanced-fade-in animate-delay-${(index + 10) * 100}`}>
+            <div class="relative mb-6">
+              <div class="icon-container-enhanced icon-container-lg bg-primary/10 group-hover:bg-primary/20 mx-auto transition-colors duration-300">
+                <Icon name={process.icon} size="lg" class="text-primary" />
+              </div>
+              <div class="absolute -top-2 -right-2 w-8 h-8 bg-accent text-white rounded-full flex items-center justify-center text-xs font-bold">
+                {process.step}
+              </div>
+            </div>
+            
+            <h4 class="text-lg font-semibold text-text-primary mb-2 group-hover:text-primary transition-colors duration-300">
+              {process.title}
+            </h4>
+            
+            <p class="text-sm text-text-secondary text-pretty">
+              {process.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- CTA Section -->
+    <div class="mt-20 text-center animate-enhanced-scale-in animate-delay-1200">
+      <div class="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl border border-border-primary p-8 md:p-12">
+        <div class="max-w-2xl mx-auto">
+          <div class="icon-container-enhanced icon-container-2xl bg-primary/10 mx-auto mb-6">
+            <Icon name="message-circle" size="2xl" class="text-primary" />
+          </div>
+          
+          <h3 class="text-responsive-xl font-bold text-text-primary mb-4">
+            Ready to Start Your Project?
+          </h3>
+          
+          <p class="text-responsive text-text-secondary mb-8 text-pretty">
+            Let's discuss how we can help bring your vision to life with our comprehensive digital solutions.
+          </p>
+          
+          <div class="btn-group-enhanced">
+            <a href="/contact" class="btn btn-primary btn-lg flex-enhanced">
+              <Icon name="calendar" size="sm" />
+              Schedule Consultation
+            </a>
+            
+            <a href="/portfolio" class="btn btn-secondary btn-lg flex-enhanced">
+              <Icon name="eye" size="sm" />
+              View Our Work
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-enhanced {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .services-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--border-primary)), transparent);
+  }
+  
+  /* Enhanced hover effects for service cards */
+  .card-enhanced:hover .icon-container-enhanced {
+    transform: scale(1.05);
+  }
+  
+  /* Process step connector lines */
+  @media (min-width: 768px) {
+    .grid-enhanced-4 > div:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -1rem;
+      width: 2rem;
+      height: 2px;
+      background: linear-gradient(90deg, hsl(var(--primary)), transparent);
+      transform: translateY(-50%);
+      z-index: -1;
+    }
+    
+    .grid-enhanced-4 > div {
+      position: relative;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .services-enhanced .grid-enhanced {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .services-enhanced .grid-enhanced-4 {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .services-enhanced .card-enhanced {
+      padding: 1.5rem;
+    }
+    
+    .services-enhanced .icon-container-xl {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+</style>

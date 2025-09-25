@@ -1,0 +1,764 @@
+---
+// CSS Validator Component - Validates and optimizes CSS usage
+// Monitors CSS loading, detects conflicts, and validates CSS variables
+
+export interface Props {
+  enableValidation?: boolean;
+  enableConflictDetection?: boolean;
+  enableVariableValidation?: boolean;
+  enableUnusedCSSDetection?: boolean;
+  enablePerformanceMonitoring?: boolean;
+  enableErrorReporting?: boolean;
+  enableWarningReporting?: boolean;
+  enableDebugMode?: boolean;
+  validationThreshold?: number;
+}
+
+// CSS Validator Configuration - Enable all validation features
+const config = {
+  enableValidation: true,
+  enableConflictDetection: true,
+  enableVariableValidation: true,
+  enableUnusedCSSDetection: true,
+  enablePerformanceMonitoring: true,
+  enableErrorReporting: true,
+  enableWarningReporting: true,
+  enableDebugMode: true,
+  enableAutoFix: true,
+  enableRealTimeValidation: true
+};
+---
+
+const {
+  enableValidation = true,
+  enableConflictDetection = true,
+  enableVariableValidation = true,
+  enableUnusedCSSDetection = true,
+  enablePerformanceMonitoring = true,
+  enableErrorReporting = true,
+  enableWarningReporting = true,
+  enableDebugMode = false,
+  validationThreshold = 50, // ms
+} = Astro.props;
+
+// CSS validation configuration
+const config = {
+  enableValidation,
+  enableConflictDetection,
+  enableVariableValidation,
+  enableUnusedCSSDetection,
+  enablePerformanceMonitoring,
+  enableErrorReporting,
+  enableWarningReporting,
+  enableDebugMode,
+  validationThreshold,
+};
+---
+
+<script define:vars={{ config }}>
+  class CSSValidator {
+    constructor(config) {
+      this.config = config;
+      this.issues = {
+        conflicts: [],
+        unusedRules: [],
+        invalidVariables: [],
+        performanceIssues: [],
+        loadingErrors: [],
+        deprecatedProperties: [],
+        browserCompatibility: [],
+      };
+      this.stats = {
+        totalRules: 0,
+        totalSelectors: 0,
+        totalDeclarations: 0,
+        fileSizes: {},
+        loadTimes: {},
+        variableUsage: {},
+      };
+      this.cssVariables = new Set();
+      this.loadedStylesheets = new Set();
+      this.validationRules = {
+        deprecated: [
+          'behavior',
+          'filter',
+          'zoom',
+          'expression',
+          'alpha',
+          'progid',
+          '-ms-filter',
+          'word-wrap', // Use overflow-wrap instead
+          'word-break: break-word', // Use overflow-wrap instead
+        ],
+        performance: [
+          'box-shadow: .*inset.*', // Complex box-shadows
+          'filter: .*blur.*', // Blur filters
+          'backdrop-filter', // Can be expensive
+          'transform: .*3d.*', // 3D transforms
+          'will-change: .*all.*', // Overuse of will-change
+        ],
+        compatibility: [
+          'backdrop-filter', // Limited support
+          'clip-path', // Varies by browser
+          'mask-image', // Limited support
+          'scroll-behavior', // Limited support
+          'overscroll-behavior', // Limited support
+        ],
+      };
+      
+      this.init();
+    }
+    
+    init() {
+      this.validateCSSVariables();
+      this.detectConflicts();
+      this.monitorPerformance();
+      this.detectUnusedCSS();
+      this.validateCSSRules();
+      this.monitorLoadingErrors();
+      this.checkBrowserCompatibility();
+      
+      // Periodic validation
+      setInterval(() => {
+        this.runFullValidation();
+      }, 30000); // Validate every 30 seconds
+      
+      // Validate on DOM changes
+      if ('MutationObserver' in window) {
+        const observer = new MutationObserver(() => {
+          setTimeout(() => this.runQuickValidation(), 100);
+        });
+        
+        observer.observe(document.documentElement, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+          attributeFilter: ['style', 'class'],
+        });
+      }
+      
+      this.log('CSS Validator initialized');
+    }
+    
+    validateCSSVariables() {
+      if (!this.config.enableVariableValidation) {
+        return;
+      }
+      
+      try {
+        // Extract CSS variables from stylesheets
+        const stylesheets = Array.from(document.styleSheets);
+        
+        stylesheets.forEach((stylesheet, index) => {
+          try {
+            if (stylesheet.cssRules) {
+              Array.from(stylesheet.cssRules).forEach((rule) => {
+                if (rule.type === CSSRule.STYLE_RULE) {
+                  this.extractVariablesFromRule(rule);
+                } else if (rule.type === CSSRule.STYLE_DECLARATION) {
+                  this.extractVariablesFromRule(rule);
+                }
+              });
+            }
+          } catch (error) {
+            this.warn(`Cannot access stylesheet ${index}:`, error);
+          }
+        });
+        
+        // Extract from inline styles
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach((element) => {
+          if (element.style && element.style.cssText) {
+            this.extractVariablesFromText(element.style.cssText);
+          }
+        });
+        
+        // Validate variable usage
+        this.checkVariableUsage();
+        
+        this.log('CSS variables validated');
+      } catch (error) {
+        this.error('Failed to validate CSS variables:', error);
+      }
+    }
+    
+    extractVariablesFromRule(rule) {
+      if (!rule.style) return;
+      
+      const cssText = rule.style.cssText;
+      this.extractVariablesFromText(cssText);
+    }
+    
+    extractVariablesFromText(cssText) {
+      // Extract variable definitions
+      const varDefinitions = cssText.match(/--[\w-]+\s*:/g);
+      if (varDefinitions) {
+        varDefinitions.forEach((def) => {
+          const varName = def.replace(':', '').trim();
+          this.cssVariables.add(varName);
+        });
+      }
+      
+      // Extract variable usage
+      const varUsage = cssText.match(/var\(--[\w-]+\)/g);
+      if (varUsage) {
+        varUsage.forEach((usage) => {
+          const varName = usage.replace('var(', '').replace(')', '');
+          if (!this.stats.variableUsage[varName]) {
+            this.stats.variableUsage[varName] = 0;
+          }
+          this.stats.variableUsage[varName]++;
+        });
+      }
+    }
+    
+    checkVariableUsage() {
+      Object.keys(this.stats.variableUsage).forEach((varName) => {
+        if (!this.cssVariables.has(varName)) {
+          this.issues.invalidVariables.push({
+            variable: varName,
+            usage: this.stats.variableUsage[varName],
+            message: `CSS variable ${varName} is used but not defined`,
+          });
+        }
+      });
+      
+      // Check for unused variables
+      this.cssVariables.forEach((varName) => {
+        if (!this.stats.variableUsage[varName] || this.stats.variableUsage[varName] === 0) {
+          this.issues.unusedRules.push({
+            type: 'unused-variable',
+            variable: varName,
+            message: `CSS variable ${varName} is defined but never used`,
+          });
+        }
+      });
+    }
+    
+    detectConflicts() {
+      if (!this.config.enableConflictDetection) {
+        return;
+      }
+      
+      try {
+        // Check for conflicting CSS rules
+        const stylesheets = Array.from(document.styleSheets);
+        const rulesMap = new Map();
+        
+        stylesheets.forEach((stylesheet, sheetIndex) => {
+          try {
+            if (stylesheet.cssRules) {
+              Array.from(stylesheet.cssRules).forEach((rule, ruleIndex) => {
+                if (rule.selectorText) {
+                  const selector = rule.selectorText;
+                  
+                  if (rulesMap.has(selector)) {
+                    const existingRule = rulesMap.get(selector);
+                    
+                    // Check for conflicting properties
+                    const conflicts = this.findPropertyConflicts(rule, existingRule);
+                    if (conflicts.length > 0) {
+                      this.issues.conflicts.push({
+                        selector: selector,
+                        conflicts: conflicts,
+                        sheets: [sheetIndex, existingRule.sheetIndex],
+                        rules: [ruleIndex, existingRule.ruleIndex],
+                        message: `Conflicting CSS properties for selector "${selector}"`,
+                      });
+                    }
+                  } else {
+                    rulesMap.set(selector, {
+                      rule: rule,
+                      sheetIndex: sheetIndex,
+                      ruleIndex: ruleIndex,
+                    });
+                  }
+                }
+              });
+            }
+          } catch (error) {
+            this.warn(`Cannot access stylesheet ${sheetIndex} for conflict detection:`, error);
+          }
+        });
+        
+        this.log('CSS conflicts detected');
+      } catch (error) {
+        this.error('Failed to detect CSS conflicts:', error);
+      }
+    }
+    
+    findPropertyConflicts(rule1, rule2) {
+      const conflicts = [];
+      
+      if (rule1.style && rule2.rule.style) {
+        const props1 = Array.from(rule1.style);
+        const props2 = Array.from(rule2.rule.style);
+        
+        props1.forEach((prop) => {
+          if (props2.includes(prop)) {
+            const value1 = rule1.style.getPropertyValue(prop);
+            const value2 = rule2.rule.style.getPropertyValue(prop);
+            
+            if (value1 !== value2) {
+              conflicts.push({
+                property: prop,
+                value1: value1,
+                value2: value2,
+                message: `Property "${prop}" has conflicting values: "${value1}" vs "${value2}"`,
+              });
+            }
+          }
+        });
+      }
+      
+      return conflicts;
+    }
+    
+    monitorPerformance() {
+      if (!this.config.enablePerformanceMonitoring) {
+        return;
+      }
+      
+      try {
+        // Monitor stylesheet loading performance
+        const stylesheets = Array.from(document.querySelectorAll('link[rel="stylesheet"]'));
+        
+        stylesheets.forEach((link) => {
+          const href = link.href;
+          
+          // Check if already loaded
+          if (link.sheet) {
+            this.loadedStylesheets.add(href);
+            this.measureStylesheetPerformance(link);
+          } else {
+            // Monitor load event
+            link.addEventListener('load', () => {
+              this.loadedStylesheets.add(href);
+              this.measureStylesheetPerformance(link);
+            });
+            
+            link.addEventListener('error', () => {
+              this.issues.loadingErrors.push({
+                url: href,
+                message: `Failed to load stylesheet: ${href}`,
+              });
+            });
+          }
+        });
+        
+        // Monitor inline style performance
+        const inlineStyles = Array.from(document.querySelectorAll('style'));
+        inlineStyles.forEach((style, index) => {
+          this.measureInlineStylePerformance(style, index);
+        });
+        
+        this.log('Performance monitoring initialized');
+      } catch (error) {
+        this.error('Failed to setup performance monitoring:', error);
+      }
+    }
+    
+    measureStylesheetPerformance(link) {
+      try {
+        const href = link.href;
+        
+        // Measure file size if available
+        if (link.sheet && link.sheet.cssRules) {
+          const rules = Array.from(link.sheet.cssRules);
+          this.stats.totalRules += rules.length;
+          
+          // Estimate file size
+          const cssText = rules.map(rule => rule.cssText).join('\n');
+          const size = new Blob([cssText]).size;
+          this.stats.fileSizes[href] = size;
+        }
+        
+        // Check for performance issues
+        if (this.stats.fileSizes[href] > 50000) { // 50KB
+          this.issues.performanceIssues.push({
+            type: 'large-stylesheet',
+            url: href,
+            size: this.stats.fileSizes[href],
+            message: `Large stylesheet detected: ${href} (${(this.stats.fileSizes[href] / 1024).toFixed(2)}KB)`,
+          });
+        }
+        
+      } catch (error) {
+        this.warn('Failed to measure stylesheet performance:', error);
+      }
+    }
+    
+    measureInlineStylePerformance(style, index) {
+      try {
+        if (style.textContent) {
+          const size = new Blob([style.textContent]).size;
+          this.stats.fileSizes[`inline-style-${index}`] = size;
+          
+          if (size > 10000) { // 10KB
+            this.issues.performanceIssues.push({
+              type: 'large-inline-style',
+              size: size,
+              message: `Large inline style detected (${(size / 1024).toFixed(2)}KB)`,
+            });
+          }
+        }
+      } catch (error) {
+        this.warn('Failed to measure inline style performance:', error);
+      }
+    }
+    
+    detectUnusedCSS() {
+      if (!this.config.enableUnusedCSSDetection) {
+        return;
+      }
+      
+      try {
+        // Simple unused CSS detection
+        const stylesheets = Array.from(document.styleSheets);
+        
+        stylesheets.forEach((stylesheet, sheetIndex) => {
+          try {
+            if (stylesheet.cssRules) {
+              Array.from(stylesheet.cssRules).forEach((rule, ruleIndex) => {
+                if (rule.selectorText) {
+                  const selectors = rule.selectorText.split(',').map(s => s.trim());
+                  
+                  selectors.forEach((selector) => {
+                    try {
+                      const elements = document.querySelectorAll(selector);
+                      
+                      if (elements.length === 0) {
+                        this.issues.unusedRules.push({
+                          selector: selector,
+                          sheetIndex: sheetIndex,
+                          ruleIndex: ruleIndex,
+                          message: `CSS selector "${selector}" matches no elements`,
+                        });
+                      }
+                    } catch (selectorError) {
+                      // Invalid selector
+                      this.issues.unusedRules.push({
+                        selector: selector,
+                        sheetIndex: sheetIndex,
+                        ruleIndex: ruleIndex,
+                        message: `Invalid CSS selector: "${selector}"`,
+                      });
+                    }
+                  });
+                }
+              });
+            }
+          } catch (error) {
+            this.warn(`Cannot access stylesheet ${sheetIndex} for unused CSS detection:`, error);
+          }
+        });
+        
+        this.log('Unused CSS detection completed');
+      } catch (error) {
+        this.error('Failed to detect unused CSS:', error);
+      }
+    }
+    
+    validateCSSRules() {
+      if (!this.config.enableValidation) {
+        return;
+      }
+      
+      try {
+        const stylesheets = Array.from(document.styleSheets);
+        
+        stylesheets.forEach((stylesheet, sheetIndex) => {
+          try {
+            if (stylesheet.cssRules) {
+              Array.from(stylesheet.cssRules).forEach((rule, ruleIndex) => {
+                if (rule.style) {
+                  this.validateRuleProperties(rule, sheetIndex, ruleIndex);
+                }
+              });
+            }
+          } catch (error) {
+            this.warn(`Cannot access stylesheet ${sheetIndex} for rule validation:`, error);
+          }
+        });
+        
+        this.log('CSS rules validated');
+      } catch (error) {
+        this.error('Failed to validate CSS rules:', error);
+      }
+    }
+    
+    validateRuleProperties(rule, sheetIndex, ruleIndex) {
+      if (!rule.style) return;
+      
+      const properties = Array.from(rule.style);
+      
+      properties.forEach((property) => {
+        const value = rule.style.getPropertyValue(property);
+        
+        // Check for deprecated properties
+        if (this.validationRules.deprecated.includes(property)) {
+          this.issues.deprecatedProperties.push({
+            property: property,
+            value: value,
+            selector: rule.selectorText,
+            sheetIndex: sheetIndex,
+            ruleIndex: ruleIndex,
+            message: `Deprecated CSS property "${property}" used`,
+          });
+        }
+        
+        // Check for performance issues
+        this.validationRules.performance.forEach((pattern) => {
+          const regex = new RegExp(pattern, 'i');
+          if (regex.test(`${property}: ${value}`)) {
+            this.issues.performanceIssues.push({
+              type: 'performance-property',
+              property: property,
+              value: value,
+              selector: rule.selectorText,
+              pattern: pattern,
+              message: `Performance issue: ${property}: ${value} matches pattern "${pattern}"`,
+            });
+          }
+        });
+        
+        // Check for browser compatibility issues
+        this.validationRules.compatibility.forEach((compatProperty) => {
+          if (property === compatProperty) {
+            this.issues.browserCompatibility.push({
+              property: property,
+              value: value,
+              selector: rule.selectorText,
+              message: `Browser compatibility issue: "${property}" has limited support`,
+            });
+          }
+        });
+      });
+    }
+    
+    monitorLoadingErrors() {
+      if (!this.config.enableErrorReporting) {
+        return;
+      }
+      
+      try {
+        // Monitor for CSS loading errors
+        window.addEventListener('error', (event) => {
+          if (event.target && event.target.tagName === 'LINK' && event.target.rel === 'stylesheet') {
+            this.issues.loadingErrors.push({
+              url: event.target.href,
+              message: `CSS loading error: ${event.target.href}`,
+              error: event.message,
+            });
+          }
+        }, true);
+        
+        this.log('Loading error monitoring initialized');
+      } catch (error) {
+        this.error('Failed to setup loading error monitoring:', error);
+      }
+    }
+    
+    checkBrowserCompatibility() {
+      if (!this.config.enableValidation) {
+        return;
+      }
+      
+      try {
+        // Check for CSS features that might not be supported
+        const testElement = document.createElement('div');
+        
+        // Test CSS Grid support
+        if (!('grid' in testElement.style)) {
+          this.issues.browserCompatibility.push({
+            feature: 'CSS Grid',
+            message: 'CSS Grid not supported in this browser',
+          });
+        }
+        
+        // Test Flexbox support
+        if (!('flex' in testElement.style)) {
+          this.issues.browserCompatibility.push({
+            feature: 'Flexbox',
+            message: 'Flexbox not supported in this browser',
+          });
+        }
+        
+        // Test CSS Variables support
+        if (!('--test' in testElement.style)) {
+          this.issues.browserCompatibility.push({
+            feature: 'CSS Variables',
+            message: 'CSS Variables not supported in this browser',
+          });
+        }
+        
+        this.log('Browser compatibility checked');
+      } catch (error) {
+        this.error('Failed to check browser compatibility:', error);
+      }
+    }
+    
+    runFullValidation() {
+      this.log('Running full CSS validation...');
+      
+      this.validateCSSVariables();
+      this.detectConflicts();
+      this.detectUnusedCSS();
+      this.validateCSSRules();
+      this.checkBrowserCompatibility();
+      
+      this.reportIssues();
+    }
+    
+    runQuickValidation() {
+      this.log('Running quick CSS validation...');
+      
+      this.validateCSSVariables();
+      this.detectConflicts();
+      
+      this.reportIssues();
+    }
+    
+    reportIssues() {
+      const totalIssues = Object.values(this.issues).flat().length;
+      
+      if (totalIssues === 0) {
+        this.log('No CSS issues detected');
+        return;
+      }
+      
+      if (this.config.enableErrorReporting) {
+        console.group('CSS Validation Issues');
+        
+        Object.entries(this.issues).forEach(([category, issues]) => {
+          if (issues.length > 0) {
+            console.group(`${category} (${issues.length})`);
+            issues.forEach((issue) => {
+              console.error(issue.message, issue);
+            });
+            console.groupEnd();
+          }
+        });
+        
+        console.groupEnd();
+      }
+      
+      if (this.config.enableWarningReporting) {
+        this.warn(`Total CSS issues detected: ${totalIssues}`);
+      }
+      
+      // Send to analytics
+      if (window.gtag) {
+        window.gtag('event', 'css_validation', {
+          total_issues: totalIssues,
+          conflicts: this.issues.conflicts.length,
+          unused_rules: this.issues.unusedRules.length,
+          invalid_variables: this.issues.invalidVariables.length,
+          performance_issues: this.issues.performanceIssues.length,
+          loading_errors: this.issues.loadingErrors.length,
+          deprecated_properties: this.issues.deprecatedProperties.length,
+          browser_compatibility: this.issues.browserCompatibility.length,
+        });
+      }
+    }
+    
+    log(message, ...args) {
+      if (this.config.enableDebugMode) {
+        console.log(`[CSSValidator] ${message}`, ...args);
+      }
+    }
+    
+    warn(message, ...args) {
+      if (this.config.enableDebugMode || this.config.enableWarningReporting) {
+        console.warn(`[CSSValidator] ${message}`, ...args);
+      }
+    }
+    
+    error(message, ...args) {
+      if (this.config.enableDebugMode || this.config.enableErrorReporting) {
+        console.error(`[CSSValidator] ${message}`, ...args);
+      }
+    }
+    
+    // Public API methods
+    getIssues() {
+      return { ...this.issues };
+    }
+    
+    getStats() {
+      return { ...this.stats };
+    }
+    
+    getCSSVariables() {
+      return Array.from(this.cssVariables);
+    }
+    
+    validateSelector(selector) {
+      try {
+        document.querySelectorAll(selector);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    }
+    
+    checkPropertySupport(property, value) {
+      const testElement = document.createElement('div');
+      testElement.style[property] = value;
+      return testElement.style[property] === value;
+    }
+    
+    resetIssues() {
+      this.issues = {
+        conflicts: [],
+        unusedRules: [],
+        invalidVariables: [],
+        performanceIssues: [],
+        loadingErrors: [],
+        deprecatedProperties: [],
+        browserCompatibility: [],
+      };
+    }
+  }
+  
+  // Initialize CSS validator
+  window.cssValidator = new CSSValidator(config);
+  
+  // Expose global CSS validation functions
+  window.validateCSS = () => window.cssValidator.runFullValidation();
+  window.getCSSIssues = () => window.cssValidator.getIssues();
+  window.getCSSStats = () => window.cssValidator.getStats();
+  window.resetCSSValidation = () => window.cssValidator.resetIssues();
+  window.checkCSSSupport = (property, value) => window.cssValidator.checkPropertySupport(property, value);
+  
+  // CSS debugging helpers
+  window.cssDebug = {
+    log: (message) => window.cssValidator.log(message),
+    validateSelector: (selector) => window.cssValidator.validateSelector(selector),
+    checkVariableUsage: (variable) => {
+      const stats = window.cssValidator.getStats();
+      return stats.variableUsage[variable] || 0;
+    },
+    exportReport: () => {
+      const issues = window.cssValidator.getIssues();
+      const stats = window.cssValidator.getStats();
+      const report = {
+        timestamp: Date.now(),
+        url: window.location.href,
+        issues: issues,
+        stats: stats,
+        variables: window.cssValidator.getCSSVariables(),
+      };
+      
+      const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `css-validation-report-${Date.now()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    },
+  };
+  
+  console.log('CSSValidator initialized with config:', config);
+</script>

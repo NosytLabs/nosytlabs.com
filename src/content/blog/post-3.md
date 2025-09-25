@@ -29,12 +29,9 @@ Need interactive components? Add them where you need them:
 <Header />
 <MainContent />
 <InteractiveWidget client:load /> <!-- Only this loads JS -->
-<Footer />
 ```
 
-This approach, known as partial hydration, ensures optimal performance while maintaining interactivity where needed.
-
-### Framework Agnostic
+This approach, known as partial hydration, ensures optimal performance while maintaining interactivity where needed.### Framework Agnostic
 Use React, Vue, Svelte, or vanilla JS components in the same project. No vendor lock-in.
 
 ## Performance Comparison
@@ -67,9 +64,7 @@ In 2025, performance remains a critical factor for user experience and SEO. Goog
 - Complex web applications
 - Real-time dashboards
 - Heavy interactive experiences
-- Apps that need lots of client-side state
-
-## Development Experience
+- Apps that need lots of client-side state## Development Experience
 
 ### What I Love
 1. **File-based routing** - Create a file, get a route
@@ -102,9 +97,7 @@ In 2025, performance remains a critical factor for user experience and SEO. Goog
 ### Content Management
 - Use Markdown for blog posts
 - [Sanity](https://www.sanity.io/) or [Strapi](https://strapi.io/) for complex content
-- Git-based CMS like [Forestry](https://forestry.io/) for non-technical users
-
-### Deployment
+- Git-based CMS like [Forestry](https://forestry.io/) for non-technical users### Deployment
 - **Static sites**: Vercel, Netlify, GitHub Pages
 - **SSR sites**: Vercel, Netlify Functions, Node.js servers
 - **Hybrid**: Astro's new server islands (experimental)

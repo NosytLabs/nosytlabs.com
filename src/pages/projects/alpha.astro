@@ -1,8 +1,9 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import ResponsiveImageOptimizer from '../../components/layout/ResponsiveImageOptimizer.astro';
 ---
 
-<Layout title="Project Alpha - Nosyt Labs" description="Discover Project Alpha: Our innovative AI-driven web application that revolutionizes user interaction through intelligent automation and seamless integration.">
+<MainLayout title="Project Alpha - Nosyt Labs" description="Discover Project Alpha: Our innovative AI-driven web application that revolutionizes user interaction through intelligent automation and seamless integration.">
   <main class="relative min-h-screen bg-background overflow-hidden">
     <!-- Hero Section -->
     <section class="relative pt-24 pb-16 md:pt-32 md:pb-20 bg-gradient-to-br from-primary/5 to-muted/20">
@@ -55,7 +56,16 @@ import Layout from '../../layouts/Layout.astro';
             </div>
           </div>
           <div class="relative">
-            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop" alt="Project Alpha Dashboard" class="rounded-2xl shadow-2xl w-full h-64 object-cover">
+            <ResponsiveImageOptimizer
+              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&h=400&fit=crop"
+              alt="Project Alpha Dashboard"
+              width={600}
+              height={400}
+              aspectRatio="3/2"
+              loading="eager"
+              fetchpriority="high"
+              class="rounded-2xl shadow-2xl w-full h-64 object-cover"
+            />
             <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent rounded-2xl"></div>
           </div>
         </div>
@@ -104,19 +114,55 @@ import Layout from '../../layouts/Layout.astro';
         <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center font-heading">Technologies Used</h2>
         <div class="grid md:grid-cols-4 gap-6 justify-items-center">
           <div class="text-center p-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" class="w-12 h-12 mx-auto mb-2">
+            <ResponsiveImageOptimizer
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+              alt="JavaScript"
+              width={48}
+              height={48}
+              aspectRatio="1/1"
+              loading="lazy"
+              fetchpriority="low"
+              class="w-12 h-12 mx-auto mb-2"
+            />
             <p class="text-sm text-muted-foreground">JavaScript</p>
           </div>
           <div class="text-center p-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/React_icon.svg" alt="React" class="w-12 h-12 mx-auto mb-2">
+            <ResponsiveImageOptimizer
+              src="https://upload.wikimedia.org/wikipedia/commons/d/d5/React_icon.svg"
+              alt="React"
+              width={48}
+              height={48}
+              aspectRatio="1/1"
+              loading="lazy"
+              fetchpriority="low"
+              class="w-12 h-12 mx-auto mb-2"
+            />
             <p class="text-sm text-muted-foreground">React</p>
           </div>
           <div class="text-center p-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Socket.io-logo.svg" alt="Node.js" class="w-12 h-12 mx-auto mb-2">
+            <ResponsiveImageOptimizer
+              src="https://upload.wikimedia.org/wikipedia/commons/9/96/Socket.io-logo.svg"
+              alt="Node.js"
+              width={48}
+              height={48}
+              aspectRatio="1/1"
+              loading="lazy"
+              fetchpriority="low"
+              class="w-12 h-12 mx-auto mb-2"
+            />
             <p class="text-sm text-muted-foreground">Node.js</p>
           </div>
           <div class="text-center p-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/NextJS-logo.svg" alt="TensorFlow" class="w-12 h-12 mx-auto mb-2">
+            <ResponsiveImageOptimizer
+              src="https://upload.wikimedia.org/wikipedia/commons/8/8e/NextJS-logo.svg"
+              alt="TensorFlow"
+              width={48}
+              height={48}
+              aspectRatio="1/1"
+              loading="lazy"
+              fetchpriority="low"
+              class="w-12 h-12 mx-auto mb-2"
+            />
             <p class="text-sm text-muted-foreground">TensorFlow</p>
           </div>
         </div>
@@ -138,4 +184,4 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </section>
   </main>
-</Layout>
+</MainLayout>

@@ -1,0 +1,162 @@
+---
+// TestimonialCard Component with enhanced visual design
+import Icon from './Icon.astro';
+import ResponsiveImageOptimizer from '../layout/ResponsiveImageOptimizer.astro';
+
+export interface Props {
+  name: string;
+  role: string;
+  company: string;
+  content: string;
+  avatar?: string;
+  rating?: number;
+  class?: string;
+}
+
+const {
+  name,
+  role,
+  company,
+  content,
+  avatar,
+  rating = 5,
+  class: className = '',
+  ...rest
+} = Astro.props;
+---
+
+<div 
+  class={`card-enhanced bg-white/90 dark:bg-[hsl(var(--surface-elevated))]/90 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 p-8 h-full flex flex-col ${className}`}
+  role="article"
+  aria-label={`Testimonial from ${name}, ${role} at ${company}`}
+  {...rest}
+>
+  <!-- Rating Stars -->
+  <div class="flex items-center mb-6">
+    {Array.from({ length: 5 }, (_, i) => (
+      <Icon 
+        name="star" 
+        size="sm" 
+        class={i < rating ? "text-[hsl(var(--warning))]" : "text-[hsl(var(--surface-muted))]"} 
+        aria-hidden="true" 
+      />
+    ))}
+    <span class="sr-only">{rating} out of 5 stars</span>
+  </div>
+
+  <!-- Quote Icon -->
+  <div class="mb-6">
+    <Icon name="quote" size="xl" class="text-[hsl(var(--primary))]/20" aria-hidden="true" />
+  </div>
+
+  <!-- Testimonial Content -->
+  <blockquote class="text-base md:text-lg text-[hsl(var(--text-secondary))] dark:text-[hsl(var(--text-tertiary))] leading-relaxed mb-8 flex-grow">
+    "{content}"
+  </blockquote>
+
+  <!-- Author Information -->
+  <footer class="flex items-center mt-auto">
+    <!-- Avatar -->
+    <div class="flex-shrink-0 mr-4">
+      {avatar ? (
+        <ResponsiveImageOptimizer
+          src={avatar}
+          alt={`${name}'s profile picture`}
+          width={48}
+          height={48}
+          aspectRatio="1/1"
+          loading="lazy"
+          fetchpriority="low"
+          class="w-12 h-12 rounded-full object-cover border-2 border-[hsl(var(--primary))]/20"
+        />
+      ) : (
+        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] flex items-center justify-center">
+          <Icon name="user" size="md" class="text-white" aria-hidden="true" />
+        </div>
+      )}
+    </div>
+
+    <!-- Author Details -->
+    <div class="flex-grow">
+      <cite class="text-base font-semibold text-[var(--text-primary)] dark:text-[var(--text-primary)] not-italic">
+        {name}
+      </cite>
+      <div class="text-sm text-[hsl(var(--text-secondary))] dark:text-[hsl(var(--text-tertiary))]">
+        {role} at {company}
+      </div>
+    </div>
+
+    <!-- Verified Badge -->
+    <div class="flex-shrink-0 ml-4">
+      <div class="inline-flex items-center px-2 py-1 bg-[hsl(var(--success))]/10 text-[hsl(var(--success))] rounded-full text-xs font-medium">
+        <Icon name="check-circle" size="xs" class="mr-1" aria-hidden="true" />
+        Verified
+      </div>
+    </div>
+  </footer>
+</div>
+
+<style>
+  /* Enhanced testimonial card styling */
+  .card-enhanced {
+    position: relative;
+    border: 1px solid hsl(var(--surface-elevated) / 0.2);
+  }
+
+  .card-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+      hsl(var(--primary)), 
+      hsl(var(--accent)), 
+      hsl(var(--success))
+    );
+    border-radius: inherit;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .card-enhanced:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Quote styling */
+  blockquote {
+    position: relative;
+  }
+
+  /* Enhanced focus states */
+  .card-enhanced:focus-within {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+
+  /* Smooth transitions */
+  .card-enhanced * {
+    transition: all 0.3s ease;
+  }
+
+  /* Avatar hover effect */
+  .card-enhanced img:hover {
+    transform: scale(1.1);
+  }
+
+  /* Rating stars animation */
+  .card-enhanced:hover [data-icon="star"] {
+    animation: starPulse 0.6s ease-in-out;
+  }
+
+  @keyframes starPulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+</style>

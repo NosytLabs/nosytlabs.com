@@ -1,21 +1,18 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import FeaturedProjects from "../components/FeaturedProjects.astro";
-import Testimonials from "../components/Testimonials.astro";
-import Services from "../components/Services.astro";
+import MainLayout from '../layouts/MainLayout.astro';
+import EnhancedHero from '../components/enhanced/EnhancedHero.astro';
+import EnhancedServices from "../components/enhanced/EnhancedServices.astro";
+import FeaturedProjects from '../components/content/FeaturedProjects.astro';
+import Testimonials from '../components/content/Testimonials.astro';
 
 ---
 
-<Layout title="Nosyt Labs - Web Development & AI Integration">
-  <main>
-    <!-- Hidden headings for accessibility and SEO -->
-    <h1 class="sr-only">Nosyt Labs - Web Development & AI Integration</h1>
-    <h2 class="sr-only">Innovative Technology Solutions for Your Business</h2>
-    
-    <Hero />
-    <Services />
-    <FeaturedProjects />
-    <Testimonials />
-  </main>
-</Layout>
+<MainLayout title="Nosyt Labs - Web Development & AI Integration">
+  <!-- Single H1 will be in EnhancedHero component -->
+  
+  <EnhancedHero />
+  <EnhancedServices />
+
+  <FeaturedProjects />
+  <Testimonials />
+</MainLayout>

@@ -1,0 +1,10 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo Icon (scaled down version of logo-mark) -->
+  <g transform="translate(0, 10)">
+    <rect width="40" height="40" rx="4" fill="#1A1A1A"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.6337 12.4904H25.3555L17.9716 23.1301H15.7584L22.6337 12.4904Z M18.8918 8.25H21.0219L14.5243 18.5334L23.698 29.75H19.285L10.1647 14.7536L8.2929 29.75H6.1627L14.5069 17.3565L4.5938 8.25H9.6199L16.9004 21.0974L18.8918 8.25Z" fill="white"/>
+  </g>
+
+  <!-- Company Text -->
+  <text x="50" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#1A1A1A">NosytLabs</text>
+</svg>

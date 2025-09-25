@@ -1,0 +1,316 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import EnhancedHero from '../../components/enhanced/EnhancedHero.astro';
+import EnhancedCTA from '../../components/enhanced/EnhancedCTA.astro';
+---
+
+<MainLayout 
+  title="Performance Optimization Services | Nosyt Labs"
+  description="Boost your website's speed, performance, and user experience with our comprehensive optimization services. From Core Web Vitals to advanced caching strategies."
+>
+  <EnhancedHero
+    title="Performance Optimization"
+    subtitle="Accelerate your digital presence with lightning-fast performance"
+    description="Transform your website into a high-performance powerhouse that delivers exceptional user experiences and drives better business results."
+    primaryCTA={{
+      text: "Start Optimization",
+      href: "/contact"
+    }}
+    secondaryCTA={{
+      text: "View Performance Audit",
+      href: "#audit"
+    }}
+  />
+
+  <main>
+    <!-- Performance Impact -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-6">
+            Why Performance Matters
+          </h2>
+          <p class="text-xl text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] max-w-3xl mx-auto">
+            Every millisecond counts. Faster websites lead to better user experiences, higher conversions, and improved search rankings.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[var(--primary-50)] dark:bg-[var(--primary-900)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-[var(--primary-600)] dark:text-[var(--primary-400)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+              </svg>
+            </div>
+            <div class="text-3xl font-bold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-2">53%</div>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)]">of users abandon sites that take longer than 3 seconds to load</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[var(--success)/0.1)] dark:bg-[var(--success)/0.2)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-[var(--success)] dark:text-[var(--success)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+              </svg>
+            </div>
+            <div class="text-3xl font-bold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-2">+7%</div>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)]">conversion rate increase for every 100ms improvement in load time</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[var(--accent-50)] dark:bg-[var(--accent-900)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-[var(--accent-600)] dark:text-[var(--accent-400)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <div class="text-3xl font-bold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-2">2x</div>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)]">better search rankings for sites with superior Core Web Vitals</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[var(--warning)/0.1)] dark:bg-[var(--warning)/0.2)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-[var(--warning)] dark:text-[var(--warning)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+              </svg>
+            </div>
+            <div class="text-3xl font-bold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-2">88%</div>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)]">of users are less likely to return after a bad experience</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Optimization Services -->
+    <section class="py-20 bg-surface-secondary dark:bg-surface-dark">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-6">
+            Comprehensive Performance Solutions
+          </h2>
+          <p class="text-xl text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] max-w-3xl mx-auto">
+            From frontend optimizations to backend infrastructure, we cover every aspect of web performance.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+            <div class="w-12 h-12 bg-[var(--primary-50)] dark:bg-[var(--primary-900)] rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-[var(--primary-600)] dark:text-[var(--primary-400)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-4">Core Web Vitals</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] mb-4">Optimize Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS) for better search rankings.</p>
+            <ul class="text-sm text-[var(--text-muted)] dark:text-[var(--text-quaternary)] space-y-1">
+              <li>• LCP optimization</li>
+              <li>• FID improvements</li>
+              <li>• CLS reduction</li>
+              <li>• Performance monitoring</li>
+            </ul>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+            <div class="w-12 h-12 bg-[var(--success)/0.1)] dark:bg-[var(--success)/0.2)] rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-[var(--success)] dark:text-[var(--success)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-4">Image Optimization</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] mb-4">Reduce image file sizes without compromising quality using modern formats and compression techniques.</p>
+            <ul class="text-sm text-[var(--text-muted)] dark:text-[var(--text-quaternary)] space-y-1">
+              <li>• WebP/AVIF conversion</li>
+              <li>• Lazy loading</li>
+              <li>• Responsive images</li>
+              <li>• CDN integration</li>
+            </ul>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+            <div class="w-12 h-12 bg-[var(--accent-50)] dark:bg-[var(--accent-900)] rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-[var(--accent-600)] dark:text-[var(--accent-400)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-4">Code Optimization</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] mb-4">Minimize, compress, and optimize your JavaScript and CSS for faster loading and execution.</p>
+            <ul class="text-sm text-[var(--text-muted)] dark:text-[var(--text-quaternary)] space-y-1">
+              <li>• Code splitting</li>
+              <li>• Tree shaking</li>
+              <li>• Minification</li>
+              <li>• Bundle optimization</li>
+            </ul>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+            <div class="w-12 h-12 bg-[var(--warning)/0.1)] dark:bg-[var(--warning)/0.2)] rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-[var(--warning)] dark:text-[var(--warning)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-4">Caching Strategies</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] mb-4">Implement advanced caching mechanisms to reduce server load and improve response times.</p>
+            <ul class="text-sm text-[var(--text-muted)] dark:text-[var(--text-quaternary)] space-y-1">
+              <li>• Browser caching</li>
+              <li>• CDN configuration</li>
+              <li>• Service workers</li>
+              <li>• Database optimization</li>
+            </ul>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+            <div class="w-12 h-12 bg-[var(--error)/0.1)] dark:bg-[var(--error)/0.2)] rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-[var(--error)] dark:text-[var(--error)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-4">Performance Monitoring</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] mb-4">Continuous monitoring and alerting to maintain optimal performance over time.</p>
+            <ul class="text-sm text-[var(--text-muted)] dark:text-[var(--text-quaternary)] space-y-1">
+              <li>• Real user monitoring</li>
+              <li>• Performance budgets</li>
+              <li>• Automated testing</li>
+              <li>• Regular audits</li>
+            </ul>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+            <div class="w-12 h-12 bg-[var(--secondary-100)] dark:bg-[var(--secondary-800)] rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-[var(--secondary-600)] dark:text-[var(--secondary-400)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-4">Mobile Optimization</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] mb-4">Ensure your site performs exceptionally on mobile devices with targeted optimizations.</p>
+            <ul class="text-sm text-[var(--text-muted)] dark:text-[var(--text-quaternary)] space-y-1">
+              <li>• Mobile-first approach</li>
+              <li>• Touch optimization</li>
+              <li>• Network adaptation</li>
+              <li>• Progressive enhancement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Performance Audit -->
+    <section id="audit" class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-[var(--text-primary)] dark:text-[var(--text-primary)] mb-6">
+            Free Performance Audit
+          </h2>
+          <p class="text-xl text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] max-w-3xl mx-auto">
+            Get a comprehensive analysis of your website's performance with actionable recommendations for improvement.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h3 class="text-2xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-on-dark)] mb-6">What's Included</h3>
+              <ul class="space-y-4">
+                <li class="flex items-start">
+                  <svg class="w-6 h-6 text-[hsl(var(--success))] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-[hsl(var(--text-secondary))] dark:text-[hsl(var(--text-tertiary))]">Core Web Vitals assessment</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-6 h-6 text-[hsl(var(--success))] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-[hsl(var(--text-secondary))] dark:text-[hsl(var(--text-tertiary))]">Page speed analysis</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-6 h-6 text-[hsl(var(--success))] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-[hsl(var(--text-secondary))] dark:text-[hsl(var(--text-tertiary))]">Mobile performance review</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-6 h-6 text-[hsl(var(--success))] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-[hsl(var(--text-secondary))] dark:text-[hsl(var(--text-tertiary))]">SEO impact analysis</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-6 h-6 text-[hsl(var(--success))] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-[hsl(var(--text-secondary))] dark:text-[hsl(var(--text-tertiary))]">Prioritized improvement roadmap</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-6 h-6 text-[hsl(var(--success))] mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <span class="text-[hsl(var(--text-secondary))] dark:text-[hsl(var(--text-tertiary))]">30-minute consultation call</span>
+                </li>
+              </ul>
+            </div>
+            <div class="bg-surface-muted dark:bg-[hsl(var(--surface-dark)/0.8)] p-8 rounded-xl">
+              <div class="text-center mb-6">
+                <div class="text-4xl font-bold text-[hsl(var(--text-primary))] dark:text-[hsl(var(--text-on-dark))] mb-2">Free</div>
+                <p class="text-[hsl(var(--text-secondary))] dark:text-[hsl(var(--text-tertiary))]">Comprehensive Performance Audit</p>
+              </div>
+              <a href="/contact" class="w-full bg-[hsl(var(--primary-600))] hover:bg-[hsl(var(--primary-700))] text-white px-8 py-4 rounded-lg transition-colors text-center block">
+                Get Your Free Audit
+              </a>
+              <p class="text-sm text-[hsl(var(--text-muted))] dark:text-[hsl(var(--text-quaternary))] text-center mt-4">
+                No commitment required • Results in 48 hours
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-20 bg-surface-secondary dark:bg-surface-dark">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-[var(--text-primary)] dark:text-[var(--text-on-dark)] mb-6">
+            Our Optimization Process
+          </h2>
+          <p class="text-xl text-[var(--text-secondary)] dark:text-[var(--text-tertiary)] max-w-3xl mx-auto">
+            A systematic approach to identifying, prioritizing, and implementing performance improvements.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[var(--primary-50)] dark:bg-[var(--primary-900)] rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-[var(--primary-600)] dark:text-[var(--primary-400)]">1</span>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-on-dark)] mb-4">Audit & Analysis</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)]">Comprehensive performance assessment using industry-leading tools and methodologies.</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[var(--success)/0.1)] dark:bg-[var(--success)/0.2)] rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-[var(--success)] dark:text-[var(--success)]">2</span>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-on-dark)] mb-4">Strategy Development</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)]">Create a prioritized roadmap based on impact, effort, and your business goals.</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[var(--accent-50)] dark:bg-[var(--accent-900)] rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-[var(--accent-600)] dark:text-[var(--accent-400)]">3</span>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-on-dark)] mb-4">Implementation</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)]">Execute optimizations with minimal disruption to your existing workflows.</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-[var(--warning)/0.1)] dark:bg-[var(--warning)/0.2)] rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-[var(--warning)] dark:text-[var(--warning)]">4</span>
+            </div>
+            <h3 class="text-xl font-semibold text-[var(--text-primary)] dark:text-[var(--text-on-dark)] mb-4">Monitor & Maintain</h3>
+            <p class="text-[var(--text-secondary)] dark:text-[var(--text-tertiary)]">Ongoing monitoring and optimization to ensure sustained performance improvements.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <EnhancedCTA />
+</MainLayout>

@@ -164,33 +164,27 @@ export const animationManager = new AnimationManager();
  * Initialize all animation systems
  */
 export function initAnimations() {
-  // Wait for DOM to be ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initScrollAnimations();
-      initHoverEffects();
-      initLoadingAnimations();
-    });
-  } else {
+  // Initialize animations immediately
+  const initializeAnimations = () => {
     initScrollAnimations();
     initHoverEffects();
     initLoadingAnimations();
+  };
+
+  // Wait for DOM to be ready if still loading
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeAnimations);
+  } else {
+    initializeAnimations();
   }
 
   // Re-initialize on page navigation (for SPAs)
   window.addEventListener('popstate', () => {
-    setTimeout(() => {
-      initScrollAnimations();
-      initHoverEffects();
-      initLoadingAnimations();
-    }, 100);
+    setTimeout(initializeAnimations, 100);
   });
 }
 
 // Auto-initialize when module is imported
-if (typeof window !== 'undefined') {
-  initAnimations();
-}
 
 // Export for testing
 export { AnimationManager };

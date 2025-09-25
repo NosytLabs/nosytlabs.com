@@ -1,0 +1,215 @@
+---
+import Icon from './ui/Icon.astro';
+
+export interface Props {
+  title: string;
+  subtitle?: string;
+  description: string;
+  primaryCTA?: {
+    text: string;
+    href: string;
+    icon?: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+    icon?: string;
+  };
+}
+
+const { title, subtitle, description, primaryCTA, secondaryCTA } = Astro.props;
+---
+
+<section class="hero-enhanced section-layout-xl relative overflow-hidden">
+  <!-- Background Elements -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.1),transparent_50%)]"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.1),transparent_50%)]"></div>
+  
+  <!-- Animated Background Shapes -->
+  <div class="absolute top-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+  <div class="absolute bottom-20 right-10 w-40 h-40 bg-accent/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+  
+  <div class="container-enhanced relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Badge/Subtitle -->
+      {subtitle && (
+        <div class="badge bg-primary/10 text-primary border border-primary/20 px-4 py-2 rounded-full text-sm font-medium mb-6 inline-flex items-center gap-2 animate-enhanced-fade-in">
+          <Icon name="sparkles" size="xs" />
+          {subtitle}
+        </div>
+      )}
+      
+      <!-- Main Title -->
+      <h1 class="text-responsive-3xl font-bold text-text-primary mb-6 text-balance animate-enhanced-slide-up animate-delay-100">
+        {title}
+      </h1>
+      
+      <!-- Description -->
+      <p class="text-responsive-lg text-text-secondary mb-8 max-w-2xl mx-auto text-pretty animate-enhanced-slide-up animate-delay-200">
+        {description}
+      </p>
+      
+      <!-- CTA Buttons -->
+      {(primaryCTA || secondaryCTA) && (
+        <div class="btn-group-enhanced animate-enhanced-slide-up animate-delay-300">
+          {primaryCTA && (
+            <a 
+              href={primaryCTA.href}
+              class="btn btn-primary btn-lg flex-enhanced"
+            >
+              {primaryCTA.icon && <Icon name={primaryCTA.icon} size="sm" />}
+              {primaryCTA.text}
+            </a>
+          )}
+          
+          {secondaryCTA && (
+            <a 
+              href={secondaryCTA.href}
+              class="btn btn-secondary btn-lg flex-enhanced"
+            >
+              {secondaryCTA.icon && <Icon name={secondaryCTA.icon} size="sm" />}
+              {secondaryCTA.text}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+    
+    <!-- Hero Visual Element -->
+    <div class="mt-16 relative animate-enhanced-scale-in animate-delay-400">
+      <div class="relative max-w-4xl mx-auto">
+        <!-- Main Visual Container -->
+        <div class="relative bg-gradient-to-br from-surface-primary to-surface-elevated rounded-2xl border border-border-primary shadow-2xl overflow-hidden">
+          <!-- Header Bar -->
+          <div class="flex items-center gap-2 px-4 py-3 bg-surface-elevated border-b border-border-primary">
+            <div class="flex gap-2">
+              <div class="w-3 h-3 rounded-full bg-red-500"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
+            <div class="flex-1 text-center">
+              <div class="text-xs text-text-tertiary font-mono">nosytlabs.com</div>
+            </div>
+          </div>
+          
+          <!-- Content Area -->
+          <div class="p-8 md:p-12">
+            <div class="grid-enhanced-2 items-center gap-8">
+              <!-- Left Content -->
+              <div class="space-y-enhanced">
+                <div class="flex-enhanced gap-4">
+                  <div class="icon-container-enhanced icon-container-lg bg-primary/10">
+                    <Icon name="code" size="lg" class="text-primary" />
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-text-primary mb-1">Professional Development</h3>
+                    <p class="text-sm text-text-secondary">Modern, scalable solutions</p>
+                  </div>
+                </div>
+                
+                <div class="flex-enhanced gap-4">
+                  <div class="icon-container-enhanced icon-container-lg bg-accent/10">
+                    <Icon name="palette" size="lg" class="text-accent" />
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-text-primary mb-1">Creative Design</h3>
+                    <p class="text-sm text-text-secondary">Beautiful, user-centered interfaces</p>
+                  </div>
+                </div>
+                
+                <div class="flex-enhanced gap-4">
+                  <div class="icon-container-enhanced icon-container-lg bg-success/10">
+                    <Icon name="rocket" size="lg" class="text-success" />
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-semibold text-text-primary mb-1">Performance Focused</h3>
+                    <p class="text-sm text-text-secondary">Optimized for speed and efficiency</p>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Right Visual -->
+              <div class="relative">
+                <div class="aspect-square bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl flex items-center justify-center">
+                  <div class="text-6xl opacity-50">
+                    <Icon name="terminal" size="3xl" class="text-primary" />
+                  </div>
+                </div>
+                
+                <!-- Floating Elements -->
+                <div class="absolute -top-4 -right-4 icon-container-enhanced icon-container-md bg-primary text-white shadow-lg animate-bounce" style="animation-delay: 2s;">
+                  <Icon name="check" size="sm" />
+                </div>
+                
+                <div class="absolute -bottom-4 -left-4 icon-container-enhanced icon-container-md bg-accent text-white shadow-lg animate-bounce" style="animation-delay: 3s;">
+                  <Icon name="star" size="sm" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Decorative Elements -->
+        <div class="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-3xl blur-xl opacity-30 -z-10"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <div class="flex flex-col items-center gap-2 text-text-tertiary">
+      <span class="text-xs font-medium">Scroll to explore</span>
+      <Icon name="chevron-down" size="sm" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-enhanced {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-enhanced {
+      min-height: 90vh;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+  
+  /* Enhanced animations for hero elements */
+  .hero-enhanced .animate-bounce {
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+      transform: translate3d(0, -8px, 0);
+    }
+    70% {
+      transform: translate3d(0, -4px, 0);
+    }
+    90% {
+      transform: translate3d(0, -2px, 0);
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .hero-enhanced .grid-enhanced-2 {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .hero-enhanced .aspect-square {
+      aspect-ratio: 16/9;
+    }
+  }
+</style>

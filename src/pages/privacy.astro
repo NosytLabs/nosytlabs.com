@@ -1,17 +1,17 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<Layout 
+<MainLayout 
   title="Privacy Policy - Nosyt Labs"
   description="Privacy Policy for Nosyt Labs - Learn how we collect, use, and protect your personal information."
   canonicalUrl="https://nosytlabs.com/privacy"
 >
   <div class="container mx-auto px-4 py-16 max-w-4xl">
     <div class="prose prose-lg dark:prose-invert mx-auto">
-      <h1 class="text-4xl font-bold mb-8 text-center">Privacy Policy</h1>
+      <h1 class="brand-heading-1 text-center md:text-left">Privacy Policy</h1>
       
-      <p class="text-lg text-muted-foreground mb-8 text-center">
+      <p class="brand-body-lg text-muted mb-8 text-center md:text-left">
         Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
       </p>
 

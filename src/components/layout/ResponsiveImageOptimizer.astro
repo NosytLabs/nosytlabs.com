@@ -1,0 +1,281 @@
+---
+/**
+ * Responsive Image Optimizer Component
+ * Provides optimized image loading with responsive breakpoints and performance enhancements
+ */
+
+export interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+  aspectRatio?: string;
+  objectFit?: 'cover' | 'contain' | 'fill' | 'scale-down' | 'none';
+  placeholder?: boolean;
+  quality?: number;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  class: className = '',
+  aspectRatio,
+  objectFit = 'cover',
+  placeholder = true,
+  quality = 80
+} = Astro.props;
+
+// Generate responsive image sources
+const generateSrcSet = (baseSrc: string) => {
+  const breakpoints = [320, 640, 768, 1024, 1280, 1536];
+  return breakpoints.map(bp => `${baseSrc}?w=${bp}&q=${quality} ${bp}w`).join(', ');
+};
+
+const srcSet = generateSrcSet(src);
+const optimizedSrc = `${src}?w=${width || 800}&q=${quality}`;
+---
+
+<div class={`responsive-image-container ${className}`} data-aspect-ratio={aspectRatio}>
+  {placeholder && (
+    <div class="image-placeholder" aria-hidden="true">
+      <div class="placeholder-shimmer"></div>
+    </div>
+  )}
+  
+  <img
+    src={optimizedSrc}
+    srcset={srcSet}
+    sizes={sizes}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+    class="responsive-image"
+    style={`object-fit: ${objectFit}; ${aspectRatio ? `aspect-ratio: ${aspectRatio};` : ''}`}
+    onload="this.parentElement.classList.add('loaded')"
+    onerror="this.parentElement.classList.add('error')"
+  />
+</div>
+
+<style>
+  .responsive-image-container {
+    position: relative;
+    overflow: hidden;
+    background-color: hsl(var(--surface-muted, 0 0% 95%));
+    border-radius: 0.5rem;
+    transition: opacity 0.3s ease;
+  }
+
+  .responsive-image-container[data-aspect-ratio="16/9"] {
+    aspect-ratio: 16 / 9;
+  }
+
+  .responsive-image-container[data-aspect-ratio="4/3"] {
+    aspect-ratio: 4 / 3;
+  }
+
+  .responsive-image-container[data-aspect-ratio="1/1"] {
+    aspect-ratio: 1 / 1;
+  }
+
+  .responsive-image-container[data-aspect-ratio="3/4"] {
+    aspect-ratio: 3 / 4;
+  }
+
+  .image-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, 
+      hsl(var(--surface-muted, 0 0% 95%)) 0%, 
+      hsl(var(--surface-secondary, 0 0% 90%)) 50%, 
+      hsl(var(--surface-muted, 0 0% 95%)) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
+  }
+
+  .placeholder-shimmer {
+    width: 100%;
+    height: 100%;
+    background: inherit;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .responsive-image {
+    width: 100%;
+    height: 100%;
+    object-fit: inherit;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+    position: relative;
+  }
+
+  .responsive-image-container:not(.loaded) .responsive-image {
+    opacity: 0;
+  }
+
+  .responsive-image-container.loaded .responsive-image {
+    opacity: 1;
+  }
+
+  .responsive-image-container.loaded .image-placeholder {
+    opacity: 0;
+  }
+
+  .responsive-image-container.error .image-placeholder {
+    background: hsl(var(--error, 0 84% 60%)) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z'%3E%3C/path%3E%3C/svg%3E") center/24px no-repeat;
+    animation: none;
+  }
+
+  /* Performance optimizations */
+  .responsive-image-container {
+    contain: layout style paint;
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 200px;
+  }
+
+  /* Hover effects for interactive images */
+  .responsive-image-container:hover .responsive-image {
+    transform: scale(1.05);
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .responsive-image,
+    .image-placeholder {
+      animation: none;
+      transition: none;
+    }
+    
+    .responsive-image-container:hover .responsive-image {
+      transform: none;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .responsive-image-container {
+      background-color: hsl(var(--surface-elevated, 0 0% 15%));
+    }
+
+    .image-placeholder {
+      background: linear-gradient(90deg, 
+        hsl(var(--surface-elevated, 0 0% 15%)) 0%, 
+        hsl(var(--surface-secondary, 0 0% 20%)) 50%, 
+        hsl(var(--surface-elevated, 0 0% 15%)) 100%
+      );
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .responsive-image-container:hover .responsive-image {
+      transform: none; /* Disable hover effects on mobile */
+    }
+  }
+</style>
+
+<script>
+  // Enhanced image loading with Intersection Observer
+  class ResponsiveImageOptimizer {
+    constructor() {
+      this.init();
+    }
+
+    init() {
+      // Use Intersection Observer for better lazy loading control
+      if ('IntersectionObserver' in window) {
+        this.setupIntersectionObserver();
+      }
+
+      // Preload critical images
+      this.preloadCriticalImages();
+
+      // Setup error handling
+      this.setupErrorHandling();
+    }
+
+    setupIntersectionObserver() {
+      const imageContainers = document.querySelectorAll('.responsive-image-container');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target.querySelector('.responsive-image');
+            if (img && img.loading === 'lazy') {
+              // Force load the image
+              img.src = img.src;
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        rootMargin: '50px 0px',
+        threshold: 0.1
+      });
+
+      imageContainers.forEach(container => {
+        observer.observe(container);
+      });
+    }
+
+    preloadCriticalImages() {
+      // Preload images marked as high priority
+      const criticalImages = document.querySelectorAll('img[fetchpriority="high"]');
+      criticalImages.forEach(img => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = img.src;
+        if (img.srcset) {
+          link.imagesrcset = img.srcset;
+          link.imagesizes = img.sizes || '100vw';
+        }
+        document.head.appendChild(link);
+      });
+    }
+
+    setupErrorHandling() {
+      const images = document.querySelectorAll('.responsive-image');
+      images.forEach(img => {
+        img.addEventListener('error', (e) => {
+          console.warn('Image failed to load:', e.target.src);
+          e.target.parentElement.classList.add('error');
+        });
+
+        img.addEventListener('load', (e) => {
+          e.target.parentElement.classList.add('loaded');
+        });
+      });
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ResponsiveImageOptimizer();
+    });
+  } else {
+    new ResponsiveImageOptimizer();
+  }
+</script>

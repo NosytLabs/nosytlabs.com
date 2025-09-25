@@ -1,0 +1,484 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import EnhancedCTA from '../components/enhanced/EnhancedCTA.astro';
+---
+
+<MainLayout title="Get Started - Transform Your Digital Presence | Nosyt Labs">
+  <main>
+    <!-- Hero Section -->
+    <section class="relative py-20 bg-surface-primary dark:bg-surface-dark overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-accent-primary to-accent-secondary opacity-10"></div>
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-5xl md:text-6xl font-bold text-text-primary dark:text-text-on-dark mb-6">
+            Ready to Transform Your
+            <span class="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
+              Digital Presence?
+            </span>
+          </h1>
+          <p class="text-xl text-text-secondary dark:text-text-tertiary mb-8 max-w-3xl mx-auto">
+            Let's discuss your project and create a custom solution that drives real results for your business.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#consultation" class="bg-accent-primary hover:bg-accent-primary/90 text-text-on-accent px-8 py-4 rounded-lg font-semibold transition-colors">
+              Schedule Free Consultation
+            </a>
+            <a href="/portfolio" class="border border-accent-primary text-accent-primary hover:bg-accent-primary hover:text-text-on-accent px-8 py-4 rounded-lg font-semibold transition-colors">
+              View Our Work
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Overview -->
+    <section class="py-20 bg-surface-secondary dark:bg-surface-dark">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <h2 class="text-4xl font-bold text-text-primary dark:text-text-on-dark mb-6">Our Proven Process</h2>
+          <p class="text-xl text-text-secondary dark:text-text-tertiary">
+            We follow a structured approach to ensure your project's success from concept to launch.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Step 1 -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-accent-primary text-text-on-accent rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              1
+            </div>
+            <h3 class="text-xl font-semibold text-text-primary dark:text-text-on-dark mb-3">Discovery</h3>
+            <p class="text-text-secondary dark:text-text-tertiary">
+              We analyze your business, goals, and target audience to create a tailored strategy.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-success text-text-on-accent rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              2
+            </div>
+            <h3 class="text-xl font-semibold text-text-primary dark:text-text-on-dark mb-3">Planning</h3>
+            <p class="text-text-secondary dark:text-text-tertiary">
+              Detailed project roadmap with timelines, milestones, and clear deliverables.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-accent-secondary text-text-on-accent rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              3
+            </div>
+            <h3 class="text-xl font-semibold text-text-primary dark:text-text-on-dark mb-3">Development</h3>
+            <p class="text-text-secondary dark:text-text-tertiary">
+              Agile development with regular updates and feedback loops throughout the process.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-warning text-text-on-accent rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              4
+            </div>
+            <h3 class="text-xl font-semibold text-text-primary dark:text-text-on-dark mb-3">Launch</h3>
+            <p class="text-text-secondary dark:text-text-tertiary">
+              Thorough testing, optimization, and seamless deployment with ongoing support.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Packages -->
+    <section class="py-20 bg-surface-primary dark:bg-surface-dark">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <h2 class="text-4xl font-bold text-text-primary dark:text-text-on-dark mb-6">Choose Your Package</h2>
+          <p class="text-xl text-text-secondary dark:text-text-tertiary">
+            Flexible solutions designed to meet different business needs and budgets.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Starter Package -->
+          <div class="bg-surface-secondary dark:bg-surface-muted rounded-xl p-8 border border-border-primary dark:border-border-dark">
+            <div class="text-center mb-8">
+              <div class="w-16 h-16 bg-accent-primary text-text-on-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-text-primary dark:text-text-on-dark mb-2">Starter</h3>
+              <p class="text-text-secondary dark:text-text-tertiary mb-4">Perfect for small businesses</p>
+              <div class="text-4xl font-bold text-accent-primary mb-2">$2,500</div>
+              <p class="text-text-muted dark:text-text-tertiary">Starting price</p>
+            </div>
+            
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">5-page responsive website</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">Mobile optimization</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">Basic SEO setup</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">Contact form integration</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">30 days support</span>
+              </li>
+            </ul>
+            
+            <a href="#consultation" class="w-full bg-accent-primary hover:bg-accent-primary/90 text-text-on-accent py-3 px-6 rounded-lg font-semibold transition-colors text-center block">
+              Get Started
+            </a>
+          </div>
+
+          <!-- Professional Package -->
+          <div class="bg-surface-secondary dark:bg-surface-muted rounded-xl p-8 border-2 border-accent-primary relative">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <span class="bg-accent-primary text-text-on-accent px-4 py-2 rounded-full text-sm font-semibold">
+                Most Popular
+              </span>
+            </div>
+            
+            <div class="text-center mb-8">
+              <div class="w-16 h-16 bg-success text-text-on-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-text-primary dark:text-text-on-dark mb-2">Professional</h3>
+              <p class="text-text-secondary dark:text-text-tertiary mb-4">For growing businesses</p>
+              <div class="text-4xl font-bold text-accent-primary mb-2">$5,500</div>
+              <p class="text-text-muted dark:text-text-tertiary">Starting price</p>
+            </div>
+            
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">10-page responsive website</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">Advanced SEO optimization</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">CMS integration</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">E-commerce functionality</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">Analytics integration</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">90 days support</span>
+              </li>
+            </ul>
+            
+            <a href="#consultation" class="w-full bg-accent-primary hover:bg-accent-primary/90 text-text-on-accent py-3 px-6 rounded-lg font-semibold transition-colors text-center block">
+              Get Started
+            </a>
+          </div>
+
+          <!-- Enterprise Package -->
+          <div class="bg-surface-secondary dark:bg-surface-muted rounded-xl p-8 border border-border-primary dark:border-border-dark">
+            <div class="text-center mb-8">
+              <div class="w-16 h-16 bg-accent-secondary text-text-on-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-text-primary dark:text-text-on-dark mb-2">Enterprise</h3>
+              <p class="text-text-secondary dark:text-text-tertiary mb-4">For large organizations</p>
+              <div class="text-4xl font-bold text-accent-primary mb-2">Custom</div>
+              <p class="text-text-muted dark:text-text-tertiary">Tailored pricing</p>
+            </div>
+            
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">Unlimited pages</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">Custom development</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">API integrations</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">Priority support</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">Dedicated account manager</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-success mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-text-secondary dark:text-text-tertiary">1 year support included</span>
+              </li>
+            </ul>
+            
+            <a href="#consultation" class="w-full bg-accent-primary hover:bg-accent-primary/90 text-text-on-accent py-3 px-6 rounded-lg font-semibold transition-colors text-center block">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultation Form -->
+    <section id="consultation" class="py-20 bg-surface-secondary dark:bg-surface-dark">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-text-primary dark:text-text-on-dark mb-6">Schedule Your Free Consultation</h2>
+            <p class="text-xl text-text-secondary dark:text-text-tertiary">
+              Let's discuss your project requirements and explore how we can help you achieve your goals.
+            </p>
+          </div>
+
+          <div class="bg-surface-primary dark:bg-surface-muted rounded-xl p-8 shadow-lg">
+            <form class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-text-primary dark:text-text-on-dark mb-2">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-border-primary dark:border-border-dark bg-surface-primary dark:bg-surface-dark text-text-primary dark:text-text-on-dark placeholder-text-muted dark:placeholder-text-tertiary focus:ring-2 focus:ring-accent-primary/50 focus:border-accent-primary transition-colors"
+                  placeholder="Enter your full name"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-medium text-text-primary dark:text-text-on-dark mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-border-primary dark:border-border-dark bg-surface-primary dark:bg-surface-dark text-text-primary dark:text-text-on-dark placeholder-text-muted dark:placeholder-text-tertiary focus:ring-2 focus:ring-accent-primary/50 focus:border-accent-primary transition-colors"
+                  placeholder="Enter your email address"
+                />
+              </div>
+
+              <div>
+                <label for="company" class="block text-sm font-medium text-text-primary dark:text-text-on-dark mb-2">
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  class="w-full px-4 py-3 rounded-lg border border-border-primary dark:border-border-dark bg-surface-primary dark:bg-surface-dark text-text-primary dark:text-text-on-dark placeholder-text-muted dark:placeholder-text-tertiary focus:ring-2 focus:ring-accent-primary/50 focus:border-accent-primary transition-colors"
+                  placeholder="Enter your company name"
+                />
+              </div>
+
+              <div>
+                <label for="phone" class="block text-sm font-medium text-text-primary dark:text-text-on-dark mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="w-full px-4 py-3 rounded-lg border border-border-primary dark:border-border-dark bg-surface-primary dark:bg-surface-dark text-text-primary dark:text-text-on-dark placeholder-text-muted dark:placeholder-text-tertiary focus:ring-2 focus:ring-accent-primary/50 focus:border-accent-primary transition-colors"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="service" class="block text-sm font-medium text-text-primary dark:text-text-on-dark mb-2">
+                  Service Interest *
+                </label>
+                <select
+                  id="service"
+                  name="service"
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-border-primary dark:border-border-dark bg-surface-primary dark:bg-surface-dark text-text-primary dark:text-text-on-dark focus:ring-2 focus:ring-accent-primary/50 focus:border-accent-primary transition-colors"
+                >
+                  <option value="">Select a service</option>
+                  <option value="web-development">Web Development</option>
+                  <option value="mobile-app">Mobile App Development</option>
+                  <option value="ecommerce">E-commerce Solutions</option>
+                  <option value="digital-marketing">Digital Marketing</option>
+                  <option value="branding">Branding & Design</option>
+                  <option value="consulting">Technical Consulting</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="budget" class="block text-sm font-medium text-text-primary dark:text-text-on-dark mb-2">
+                  Project Budget
+                </label>
+                <select
+                  id="budget"
+                  name="budget"
+                  class="w-full px-4 py-3 rounded-lg border border-border-primary dark:border-border-dark bg-surface-primary dark:bg-surface-dark text-text-primary dark:text-text-on-dark focus:ring-2 focus:ring-accent-primary/50 focus:border-accent-primary transition-colors"
+                >
+                  <option value="">Select budget range</option>
+                  <option value="under-5k">Under $5,000</option>
+                  <option value="5k-10k">$5,000 - $10,000</option>
+                  <option value="10k-25k">$10,000 - $25,000</option>
+                  <option value="25k-50k">$25,000 - $50,000</option>
+                  <option value="50k-plus">$50,000+</option>
+                </select>
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="timeline" class="block text-sm font-medium text-text-primary dark:text-text-on-dark mb-2">
+                  Project Timeline
+                </label>
+                <select
+                  id="timeline"
+                  name="timeline"
+                  class="w-full px-4 py-3 rounded-lg border border-border-primary dark:border-border-dark bg-surface-primary dark:bg-surface-dark text-text-primary dark:text-text-on-dark focus:ring-2 focus:ring-accent-primary/50 focus:border-accent-primary transition-colors"
+                >
+                  <option value="">Select timeline</option>
+                  <option value="asap">ASAP</option>
+                  <option value="1-month">Within 1 month</option>
+                  <option value="2-3-months">2-3 months</option>
+                  <option value="3-6-months">3-6 months</option>
+                  <option value="6-months-plus">6+ months</option>
+                </select>
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="message" class="block text-sm font-medium text-text-primary dark:text-text-on-dark mb-2">
+                  Project Details *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="6"
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-border-primary dark:border-border-dark bg-surface-primary dark:bg-surface-dark text-text-primary dark:text-text-on-dark placeholder-text-muted dark:placeholder-text-tertiary focus:ring-2 focus:ring-accent-primary/50 focus:border-accent-primary transition-colors resize-vertical"
+                  placeholder="Tell us about your project, goals, and any specific requirements..."
+                ></textarea>
+              </div>
+
+              <div class="md:col-span-2">
+                <button
+                  type="submit"
+                  class="w-full bg-accent-primary hover:bg-accent-primary/90 text-text-on-accent py-4 px-8 rounded-lg font-semibold transition-colors"
+                >
+                  Schedule Free Consultation
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-surface-primary dark:bg-surface-dark">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <h2 class="text-4xl font-bold text-text-primary dark:text-text-on-dark mb-6">Frequently Asked Questions</h2>
+          <p class="text-xl text-text-secondary dark:text-text-tertiary">
+            Get answers to common questions about our services and process.
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto space-y-8">
+          <div class="bg-surface-secondary dark:bg-surface-muted rounded-xl p-6">
+            <h3 class="text-xl font-semibold text-text-primary dark:text-text-on-dark mb-4">How long does a typical project take?</h3>
+            <p class="text-text-secondary dark:text-text-tertiary">Project timelines vary based on complexity and scope. A simple website typically takes 2-4 weeks, while complex applications can take 3-6 months. We provide detailed timelines during the planning phase.</p>
+          </div>
+
+          <div class="bg-surface-secondary dark:bg-surface-muted rounded-xl p-6">
+            <h3 class="text-xl font-semibold text-text-primary dark:text-text-on-dark mb-4">What's included in the project cost?</h3>
+            <p class="text-text-secondary dark:text-text-tertiary">Our pricing includes design, development, testing, deployment, and initial support. We provide transparent pricing with no hidden fees. Additional services like ongoing maintenance are clearly outlined separately.</p>
+          </div>
+
+          <div class="bg-surface-secondary dark:bg-surface-muted rounded-xl p-6">
+            <h3 class="text-xl font-semibold text-text-primary dark:text-text-on-dark mb-4">Do you work with existing websites?</h3>
+            <p class="text-text-secondary dark:text-text-tertiary">Yes, we can redesign, optimize, or add new features to existing websites. We'll assess your current site and recommend the best approach to achieve your goals while preserving valuable content and SEO rankings.</p>
+          </div>
+
+          <div class="bg-surface-secondary dark:bg-surface-muted rounded-xl p-6">
+            <h3 class="text-xl font-semibold text-text-primary dark:text-text-on-dark mb-4">What technologies do you use?</h3>
+            <p class="text-text-secondary dark:text-text-tertiary">We use modern, proven technologies including React, Next.js, Node.js, Python, and cloud platforms like AWS and Vercel. We choose the best tech stack for each project's specific requirements.</p>
+          </div>
+
+          <div class="bg-surface-secondary dark:bg-surface-muted rounded-xl p-6">
+            <h3 class="text-xl font-semibold text-text-primary dark:text-text-on-dark mb-4">Do you provide ongoing support?</h3>
+            <p class="text-text-secondary dark:text-text-tertiary">Yes, we offer comprehensive support packages including bug fixes, security updates, performance monitoring, and feature enhancements. Support plans are tailored to your specific needs and budget.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <EnhancedCTA
+    title="Ready to Get Started?"
+    description="Let's discuss your project and explore how we can help you achieve your digital goals."
+    primaryCTA={{
+      text: "Schedule Free Consultation",
+      href: "#consultation"
+    }}
+    secondaryCTA={{
+      text: "View Our Portfolio",
+      href: "/portfolio"
+    }}
+  />
+</MainLayout>

@@ -1,0 +1,185 @@
+---
+export interface Props {
+  component: string;
+  props?: Record<string, any>;
+  fallback?: string;
+  threshold?: number;
+  rootMargin?: string;
+}
+
+const {
+  component,
+  props = {},
+  fallback = '<div class="animate-pulse bg-gray-200 rounded-lg h-64"></div>',
+  threshold = 0.1,
+  rootMargin = '50px'
+} = Astro.props;
+
+// Convert props object to JSON string for client-side use
+const propsJson = JSON.stringify(props);
+---
+
+<div
+  class="lazy-load-container"
+  data-component={component}
+  data-props={propsJson}
+  data-fallback={fallback}
+  data-threshold={threshold}
+  data-root-margin={rootMargin}
+>
+  <!-- Fallback content while loading -->
+  <div class="lazy-fallback" set:html={fallback}></div>
+</div>
+
+<script>
+class LazyLoadManager {
+  constructor() {
+    this.loadedComponents = new Set();
+    this.observer = null;
+    this.init();
+  }
+
+  init() {
+    // Check if IntersectionObserver is supported
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: load all components immediately
+      this.loadAllComponents();
+      return;
+    }
+
+    this.observer = new IntersectionObserver(
+      this.handleIntersection.bind(this),
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    );
+
+    // Start observing all lazy load containers
+    this.observeContainers();
+  }
+
+  observeContainers() {
+    const containers = document.querySelectorAll('.lazy-load-container');
+    containers.forEach(container => this.observer.observe(container));
+  }
+
+  async handleIntersection(entries: IntersectionObserverEntry[]) {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        const container = entry.target as HTMLElement;
+        await this.loadComponent(container);
+        this.observer.unobserve(container);
+      }
+    }
+  }
+
+  async loadComponent(container) {
+    const component = container.dataset.component;
+    const propsJson = container.dataset.props;
+    const fallback = container.dataset.fallback;
+
+    try {
+      // Show loading state
+      container.innerHTML = '<div class="animate-pulse bg-gray-100 rounded-lg h-64 flex items-center justify-center">Loading...</div>';
+
+      // Dynamic import based on component path
+      let ComponentModule;
+      switch (component) {
+        case 'FeaturedProjects':
+          ComponentModule = await import('../components/content/FeaturedProjects.astro');
+          break;
+        case 'Testimonials':
+          ComponentModule = await import('../components/content/Testimonials.astro');
+          break;
+        case 'EnhancedServices':
+          ComponentModule = await import('../components/enhanced/EnhancedServices.astro');
+          break;
+        default:
+          throw new Error(`Unknown component: ${component}`);
+      }
+
+      // Get the component from the module
+      const Component = ComponentModule.default;
+
+      // Parse props
+      let props = {};
+      try {
+        props = JSON.parse(propsJson);
+      } catch (e) {
+        console.warn('Failed to parse component props:', e);
+      }
+
+      // Render component with props
+      // For client-side dynamic imports, we'll render the component directly
+      const html = Component(props);
+
+      // Replace container content
+      container.innerHTML = html;
+
+      // Add loaded class for styling
+      container.classList.add('lazy-loaded');
+
+    } catch (error) {
+      console.error('Failed to load component:', component, error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      container.innerHTML = `<div class="error-fallback p-4 bg-red-50 border border-red-200 rounded-lg">
+        <p class="text-red-600">Failed to load component: ${component}</p>
+        <p class="text-sm text-red-500">${errorMessage}</p>
+      </div>`;
+    }
+  }
+
+  loadAllComponents() {
+    const containers = document.querySelectorAll('.lazy-load-container');
+    containers.forEach(container => this.loadComponent(container));
+  }
+}
+
+// Initialize lazy loading when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    new LazyLoadManager();
+  });
+} else {
+  new LazyLoadManager();
+}
+</script>
+
+<style>
+.lazy-load-container {
+  min-height: 200px;
+}
+
+.lazy-fallback {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lazy-loaded {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-6) /* Fixed: 8px grid */);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .lazy-fallback,
+  .lazy-loaded {
+    animation: none;
+  }
+}
+</style>

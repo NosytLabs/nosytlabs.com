@@ -1,0 +1,478 @@
+---
+// Layout Fixer Component - Enhanced version for comprehensive layout fixes
+// Automatically detects and fixes common layout issues
+
+export interface Props {
+  enableAutoFix?: boolean;
+  enableOverflowFix?: boolean;
+  enableAlignmentFix?: boolean;
+  enableResponsiveFix?: boolean;
+  enableZIndexFix?: boolean;
+  enableGridFlexFix?: boolean;
+  enableSpacingFix?: boolean;
+  enableColorFix?: boolean;
+  enablePerformanceFix?: boolean;
+  debugMode?: boolean;
+}
+
+const {
+  enableAutoFix = true,
+  enableOverflowFix = true,
+  enableAlignmentFix = true,
+  enableResponsiveFix = true,
+  enableZIndexFix = true,
+  enableGridFlexFix = true,
+  enableSpacingFix = true,
+  enableColorFix = false,
+  enablePerformanceFix = true,
+  debugMode = false,
+} = Astro.props;
+---
+
+<script>
+  class LayoutFixer {
+    constructor() {
+      this.issues = {
+        overflowIssues: [],
+        alignmentProblems: [],
+        responsiveIssues: [],
+        zIndexProblems: [],
+        gridFlexIssues: [],
+        spacingProblems: [],
+        colorIssues: [],
+        performanceIssues: []
+      };
+      this.fixedIssues = [];
+      this.config = {
+        enableAutoFix: true,
+        enableOverflowFix: true,
+        enableAlignmentFix: true,
+        enableResponsiveFix: true,
+        enableZIndexFix: true,
+        enableGridFlexFix: true,
+        enableSpacingFix: true,
+        enableColorFix: false,
+        enablePerformanceFix: true,
+        debugMode: false,
+      };
+      
+      this.init();
+    }
+
+    init() {
+      console.log('🔧 Layout Fixer: Starting comprehensive layout analysis and fixes...');
+      
+      // Wait for DOM to be fully loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.runAnalysis());
+      } else {
+        this.runAnalysis();
+      }
+    }
+
+    runAnalysis() {
+      // Run all checks
+      this.checkOverflowIssues();
+      this.checkAlignmentProblems();
+      this.checkResponsiveIssues();
+      this.checkZIndexProblems();
+      this.checkGridFlexIssues();
+      this.checkSpacingProblems();
+      this.checkPerformanceIssues();
+      
+      // Apply fixes
+      if (this.config.enableAutoFix) {
+        this.applyFixes();
+      }
+      
+      // Report results
+      this.reportIssues();
+    }
+
+    checkOverflowIssues() {
+      if (!this.config.enableOverflowFix) return;
+      
+      const elements = document.querySelectorAll('*');
+      elements.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(element);
+        
+        // Check for horizontal overflow
+        if (rect.width > window.innerWidth && computedStyle.position !== 'fixed') {
+          this.issues.overflowIssues.push({
+            element: element,
+            type: 'horizontal-overflow',
+            width: rect.width,
+            viewportWidth: window.innerWidth,
+            selector: this.getElementSelector(element),
+            message: `Element width (${rect.width}px) exceeds viewport (${window.innerWidth}px)`
+          });
+        }
+        
+        // Check for elements extending beyond their containers
+        const parent = element.parentElement;
+        if (parent) {
+          const parentRect = parent.getBoundingClientRect();
+          if (rect.right > parentRect.right + 10) { // 10px tolerance
+            this.issues.overflowIssues.push({
+              element: element,
+              type: 'container-overflow',
+              selector: this.getElementSelector(element),
+              message: `Element extends beyond parent container`
+            });
+          }
+        }
+      });
+    }
+
+    checkAlignmentProblems() {
+      if (!this.config.enableAlignmentFix) return;
+      
+      // Check for misaligned flex/grid items
+      const flexContainers = document.querySelectorAll('[style*="flex"], .flex, .d-flex');
+      flexContainers.forEach((container) => {
+        const children = Array.from(container.children);
+        if (children.length > 1) {
+          const firstChildRect = children[0].getBoundingClientRect();
+          children.slice(1).forEach((child) => {
+            const childRect = child.getBoundingClientRect();
+            if (Math.abs(firstChildRect.top - childRect.top) > 5) {
+              this.issues.alignmentProblems.push({
+                element: child,
+                container: container,
+                type: 'flex-misalignment',
+                selector: this.getElementSelector(child),
+                message: `Flex item not aligned with siblings`
+              });
+            }
+          });
+        }
+      });
+    }
+
+    checkResponsiveIssues() {
+      if (!this.config.enableResponsiveFix) return;
+      
+      // Check for fixed widths that might cause issues
+      const elements = document.querySelectorAll('*');
+      elements.forEach((element) => {
+        const computedStyle = window.getComputedStyle(element);
+        const width = computedStyle.width;
+        
+        if (width && width.includes('px') && !width.includes('max-width')) {
+          const pixelWidth = parseInt(width);
+          if (pixelWidth > window.innerWidth * 0.8) {
+            this.issues.responsiveIssues.push({
+              element: element,
+              type: 'fixed-width-issue',
+              width: pixelWidth,
+              selector: this.getElementSelector(element),
+              message: `Fixed width (${pixelWidth}px) may cause responsive issues`
+            });
+          }
+        }
+      });
+    }
+
+    checkZIndexProblems() {
+      if (!this.config.enableZIndexFix) return;
+      
+      const elements = document.querySelectorAll('*');
+      const zIndexMap = new Map();
+      
+      elements.forEach((element) => {
+        const computedStyle = window.getComputedStyle(element);
+        const zIndex = computedStyle.zIndex;
+        
+        if (zIndex !== 'auto' && zIndex !== '0') {
+          if (!zIndexMap.has(zIndex)) {
+            zIndexMap.set(zIndex, []);
+          }
+          zIndexMap.get(zIndex).push(element);
+        }
+      });
+      
+      // Check for z-index conflicts
+      zIndexMap.forEach((elements, zIndex) => {
+        if (elements.length > 3) {
+          this.issues.zIndexProblems.push({
+            type: 'z-index-conflict',
+            zIndex: zIndex,
+            elements: elements.length,
+            message: `${elements.length} elements have z-index of ${zIndex}`
+          });
+        }
+      });
+    }
+
+    checkGridFlexIssues() {
+      if (!this.config.enableGridFlexFix) return;
+      
+      // Check for Grid and Flexbox issues
+      const gridElements = document.querySelectorAll('[style*="grid"], .grid');
+      gridElements.forEach((element) => {
+        const computedStyle = window.getComputedStyle(element);
+        
+        if (computedStyle.display === 'grid') {
+          const templateColumns = computedStyle.gridTemplateColumns;
+          if (templateColumns === 'none') {
+            this.issues.gridFlexIssues.push({
+              element: element,
+              type: 'grid-no-template',
+              selector: this.getElementSelector(element),
+              message: `Grid container lacks grid-template-columns`
+            });
+          }
+        }
+      });
+      
+      // Check flex issues
+      const flexElements = document.querySelectorAll('[style*="flex"], .flex');
+      flexElements.forEach((element) => {
+        const children = Array.from(element.children);
+        if (children.length === 0) {
+          this.issues.gridFlexIssues.push({
+            element: element,
+            type: 'empty-flex-container',
+            selector: this.getElementSelector(element),
+            message: `Flex container has no children`
+          });
+        }
+      });
+    }
+
+    checkSpacingProblems() {
+      if (!this.config.enableSpacingFix) return;
+      
+      // Check for excessive margins/padding
+      const elements = document.querySelectorAll('*');
+      elements.forEach((element) => {
+        const computedStyle = window.getComputedStyle(element);
+        const margin = parseInt(computedStyle.marginTop) + parseInt(computedStyle.marginBottom);
+        const padding = parseInt(computedStyle.paddingTop) + parseInt(computedStyle.paddingBottom);
+        
+        if (margin > 200) {
+          this.issues.spacingProblems.push({
+            element: element,
+            type: 'excessive-margin',
+            value: margin,
+            selector: this.getElementSelector(element),
+            message: `Excessive vertical margin: ${margin}px`
+          });
+        }
+        
+        if (padding > 200) {
+          this.issues.spacingProblems.push({
+            element: element,
+            type: 'excessive-padding',
+            value: padding,
+            selector: this.getElementSelector(element),
+            message: `Excessive vertical padding: ${padding}px`
+          });
+        }
+      });
+    }
+
+    checkPerformanceIssues() {
+      if (!this.config.enablePerformanceFix) return;
+      
+      // Check for performance-impacting styles
+      const elements = document.querySelectorAll('*');
+      elements.forEach((element) => {
+        const computedStyle = window.getComputedStyle(element);
+        
+        // Check for expensive box-shadows
+        if (computedStyle.boxShadow && computedStyle.boxShadow !== 'none') {
+          const shadowComplexity = (computedStyle.boxShadow.match(/,/g) || []).length + 1;
+          if (shadowComplexity > 3) {
+            this.issues.performanceIssues.push({
+              element: element,
+              type: 'complex-box-shadow',
+              complexity: shadowComplexity,
+              selector: this.getElementSelector(element),
+              message: `Complex box-shadow with ${shadowComplexity} shadows`
+            });
+          }
+        }
+        
+        // Check for expensive transforms
+        if (computedStyle.transform && computedStyle.transform !== 'none') {
+          if (computedStyle.transform.includes('matrix3d')) {
+            this.issues.performanceIssues.push({
+              element: element,
+              type: 'complex-transform',
+              selector: this.getElementSelector(element),
+              message: `Complex 3D transform detected`
+            });
+          }
+        }
+      });
+    }
+
+    applyFixes() {
+      console.log('🔧 Layout Fixer: Applying automatic fixes...');
+      
+      // Fix overflow issues
+      this.issues.overflowIssues.forEach((issue) => {
+        if (issue.type === 'horizontal-overflow') {
+          issue.element.style.maxWidth = '100%';
+          issue.element.style.overflowX = 'hidden';
+          issue.element.style.boxSizing = 'border-box';
+          this.fixedIssues.push({
+            type: 'overflow-fix',
+            element: issue.element,
+            message: `Applied overflow fix to ${issue.selector}`
+          });
+        }
+      });
+      
+      // Fix alignment problems
+      this.issues.alignmentProblems.forEach((issue) => {
+        if (issue.type === 'flex-misalignment') {
+          issue.container.style.alignItems = 'center';
+          this.fixedIssues.push({
+            type: 'alignment-fix',
+            element: issue.container,
+            message: `Applied flex alignment fix to ${this.getElementSelector(issue.container)}`
+          });
+        }
+      });
+      
+      // Fix responsive issues
+      this.issues.responsiveIssues.forEach((issue) => {
+        if (issue.type === 'fixed-width-issue') {
+          issue.element.style.maxWidth = '100%';
+          issue.element.style.width = 'auto';
+          this.fixedIssues.push({
+            type: 'responsive-fix',
+            element: issue.element,
+            message: `Applied responsive fix to ${issue.selector}`
+          });
+        }
+      });
+      
+      // Fix grid issues
+      this.issues.gridFlexIssues.forEach((issue) => {
+        if (issue.type === 'grid-no-template') {
+          issue.element.style.gridTemplateColumns = 'repeat(auto-fit, minmax(250px, 1fr))';
+          this.fixedIssues.push({
+            type: 'grid-fix',
+            element: issue.element,
+            message: `Applied grid template fix to ${issue.selector}`
+          });
+        }
+      });
+      
+      // Fix spacing issues
+      this.issues.spacingProblems.forEach((issue) => {
+        if (issue.type === 'excessive-margin' && issue.value > 300) {
+          issue.element.style.marginTop = '2rem';
+          issue.element.style.marginBottom = '2rem';
+          this.fixedIssues.push({
+            type: 'spacing-fix',
+            element: issue.element,
+            message: `Reduced excessive margin on ${issue.selector}`
+          });
+        }
+      });
+    }
+
+    getElementSelector(element) {
+      if (element.id) return `#${element.id}`;
+      if (element.className) {
+        const classes = element.className.split(' ').filter(c => c.length > 0);
+        if (classes.length > 0) return `.${classes[0]}`;
+      }
+      return element.tagName.toLowerCase();
+    }
+
+    reportIssues() {
+      const totalIssues = Object.values(this.issues).reduce((sum, arr) => sum + arr.length, 0);
+      
+      if (totalIssues === 0) {
+        console.log('✅ Layout Fixer: No layout issues detected');
+        return;
+      }
+      
+      console.group('🚨 Layout Issues Detected');
+      
+      Object.entries(this.issues).forEach(([category, issues]) => {
+        if (issues.length > 0) {
+          console.group(`${category} (${issues.length})`);
+          issues.forEach((issue) => {
+            console.warn(issue.message, issue.element || '');
+          });
+          console.groupEnd();
+        }
+      });
+      
+      console.groupEnd();
+      
+      if (this.fixedIssues.length > 0) {
+        console.group('✅ Auto-fixes Applied');
+        this.fixedIssues.forEach((fix) => {
+          console.log(fix.message, fix.element || '');
+        });
+        console.groupEnd();
+      }
+      
+      // Update status display
+      this.updateStatusDisplay(totalIssues, this.fixedIssues.length);
+    }
+
+    updateStatusDisplay(issues, fixes) {
+      // Create or update status display
+      let statusEl = document.querySelector('.layout-fixer-status');
+      if (!statusEl) {
+        statusEl = document.createElement('div');
+        statusEl.className = 'layout-fixer-status';
+        document.body.appendChild(statusEl);
+      }
+      
+      statusEl.textContent = `Layout: ${issues} issues, ${fixes} fixes applied`;
+      statusEl.style.opacity = issues > 0 ? '1' : '0.5';
+    }
+  }
+
+  // Initialize Layout Fixer
+  new LayoutFixer();
+
+  // Re-run on window resize
+  window.addEventListener('resize', () => {
+    setTimeout(() => new LayoutFixer(), 200);
+  });
+</script>
+
+<style>
+  .layout-fixer-status {
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    background: rgba(0, 100, 200, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: monospace;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .layout-fixer-status.active {
+    opacity: 1;
+  }
+
+  /* Visual indicators for fixed elements */
+  .layout-fixed {
+    outline: 2px solid green !important;
+    outline-offset: 2px;
+  }
+
+  .layout-issue {
+    outline: 2px solid orange !important;
+    outline-offset: 2px;
+  }
+</style>

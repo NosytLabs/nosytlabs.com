@@ -1,0 +1,248 @@
+---
+export interface Props {
+  variant?: 'inline' | 'block' | 'terminal' | 'snippet';
+  language?: string;
+  theme?: 'light' | 'dark' | 'auto';
+  showLineNumbers?: boolean;
+  copyable?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'inline',
+  language = 'plaintext',
+  theme = 'auto',
+  showLineNumbers = false,
+  copyable = true,
+  class: className
+} = Astro.props;
+---
+
+<div class={`brand-code-wrapper variant-${variant} theme-${theme} ${className || ''}`}>
+  {copyable && (<button type="button" type="button" type="button" class="copy-button focus:outline-none focus:ring-2 focus:ring-brand-accent" aria-label="Copy code to clipboard">Copy</button>)}
+  <code class={`brand-code lang-${language} ${showLineNumbers ? 'with-lines' : ''}`}>
+    <slot />
+  </code>
+</div>
+
+<style>
+  .brand-code {
+    font-family: var(--font-family-mono);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    background: transparent;
+  }
+
+  .variant-inline .brand-code {
+    background: color-mix(in srgb, var(--color-brand-primary), transparent 90%);
+    padding: var(--space-0-5) var(--space-1);
+    border-radius: var(--radius-md);
+  }  .variant-block .brand-code {
+    display: block;
+    padding: var(--space-4);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--color-brand-primary), transparent 95%);
+  }
+
+  .variant-terminal .brand-code {
+    background: hsl(var(--surface-tertiary));
+    color: hsl(var(--text-secondary));
+    border-radius: 8px;
+    padding: var(--space-4);
+    font-size: 0.95rem;
+  }
+
+  .variant-snippet .brand-code {
+    display: block;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--color-brand-primary);
+  }
+
+  .brand-code :global(.token.keyword) {
+    color: var(--color-brand-accent-muted, var(--color-blue-500));
+    font-weight: var(--font-weight-semibold);
+    padding: var(--space-0-5) var(--space-1);
+    border-radius: var(--border-radius-sm);
+  }
+
+  .brand-code :global(.token.string) {
+    color: var(--color-brand-highlight, var(--color-cyan-400));
+    padding: var(--space-1);
+    border-radius: var(--border-radius-md);
+    background: var(--color-surface-secondary);
+  }
+
+  .brand-code :global(.token.comment) {
+    color: hsl(var(--text-muted));
+    font-style: italic;
+    padding: var(--space-1) var(--space-1);
+    border-radius: var(--border-radius-md);
+  }
+
+  .brand-code :global(.token.operator) {
+    margin-left: var(--space-1);
+    color: var(--color-brand-accent);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-1) var(--space-1);
+    border-radius: var(--border-radius-sm);
+  }
+
+  .copy-button {
+    margin-left: var(--space-1);
+    color: var(--color-brand-accent);
+    font-weight: var(--font-weight-medium);
+    padding: var(--space-1) var(--space-1);
+    border-radius: var(--border-radius-sm);
+  }
+
+  .copy-button:focus-visible {
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: var(--space-0-5);
+  }
+
+  /* ===== RESPONSIVE DESIGN ===== */
+  /* Mobile-first responsive design */
+  .brand-code-wrapper {
+    margin-bottom: var(--grid-lg);
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .brand-code {
+    font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Copy button responsive design */
+  .copy-button {
+    min-height: 48px /* Fixed: 8px grid compliance */;
+    min-width: 48px /* Fixed: 8px grid compliance */;
+    padding: var(--grid-sm) var(--grid-md);
+    font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    position: relative;
+    z-index: 1;
+  }
+
+  .copy-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px var(--color-shadow-light) /* Fixed: design token */;
+  }
+
+  /* Variant responsive adjustments */
+  .variant-inline .brand-code {
+    display: inline;
+    padding: var(--grid-xs) var(--grid-sm);
+    font-size: 0.9em;
+  }
+
+  .variant-block .brand-code {
+    display: block;
+    padding: var(--grid-md);
+    margin: var(--grid-sm) 0;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+
+  .variant-terminal .brand-code {
+    display: block;
+    padding: var(--grid-md);
+    margin: var(--grid-sm) 0;
+    border-radius: var(--radius-md);
+    font-size: clamp(0.7rem, 0.65rem + 0.2vw, 0.8rem);
+    line-height: 1.4;
+  }
+
+  .variant-snippet .brand-code {
+    display: block;
+    padding: var(--grid-sm) var(--grid-md);
+    margin: var(--grid-sm) 0;
+    border-left: 3px solid var(--color-brand-primary);
+    background: var(--color-brand-signal-white-05) /* Fixed: design token */;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: var(--breakpoint-md)) {
+    .brand-code-wrapper {
+      margin-bottom: var(--grid-md);
+    }
+
+    .copy-button {
+      min-height: 48px;
+      min-width: 48px;
+      padding: var(--grid-md) var(--grid-lg);
+      font-size: 0.8rem;
+    }
+
+    .variant-block .brand-code,
+    .variant-terminal .brand-code {
+      padding: var(--grid-sm);
+      font-size: clamp(0.65rem, 1.5vw + 0.5rem, 0.75rem);
+    }
+
+    .variant-snippet .brand-code {
+      padding: var(--grid-sm);
+      margin-left: var(--grid-xs);
+      border-left-width: var(--space-0-5); /* 2px -> 4px for grid alignment */
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: var(--breakpoint-md)) and (max-width: var(--breakpoint-lg)) {
+    .brand-code {
+      font-size: clamp(0.75rem, 0.8vw + 0.65rem, 0.85rem);
+    }
+  }
+
+  /* Desktop optimizations */
+  @media (min-width: 1024px) {
+    .brand-code {
+      font-size: clamp(0.8rem, 0.4vw + 0.75rem, 0.9rem);
+    }
+  }
+
+  /* Touch-friendly scrolling */
+  .brand-code-wrapper::-webkit-scrollbar {
+    height: var(--space-1-5); /* 6px equivalent */
+  }
+
+  .brand-code-wrapper::-webkit-scrollbar-track {
+    background: var(--color-brand-signal-white-10) /* Fixed: design token */;
+    border-radius: 3px;
+  }
+
+  .brand-code-wrapper::-webkit-scrollbar-thumb {
+    background: var(--color-brand-signal-white-30) /* Fixed: design token */;
+    border-radius: 3px;
+  }
+
+  .brand-code-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-signal-white-50) /* Fixed: design token */;
+  }
+
+  @media print {
+    .brand-code { color: var(--color-brand-secondary, var(--color-brand-primary) /* Fixed: design token */) !important; background: transparent !important; }
+    .copy-button { display: none !important; }
+  }
+</style>
+
+<script>
+  const btn = document.currentScript?.previousElementSibling?.previousElementSibling?.querySelector('.copy-button');
+  if (btn) {
+    btn.addEventListener('click', async () => {
+      const code = btn.nextElementSibling?.textContent || '';
+      try {
+        await navigator.clipboard.writeText(code);
+        btn.textContent = 'Copied!';
+        setTimeout(() => (btn.textContent = 'Copy'), 1500);
+      } catch (e) {
+        console.error('Copy failed', e);
+      }
+    });
+  }
+</script>

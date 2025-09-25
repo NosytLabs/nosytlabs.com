@@ -1,26 +1,276 @@
 ---
-import { cva, type VariantProps } from "class-variance-authority";
-
-const cardVariants = cva("rounded-lg border bg-card text-card-foreground shadow-sm", {
-  variants: {
-    variant: {
-      default: "",
-      featured: "border-primary/80 shadow-md",
-    },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-});
-
-export interface Props extends VariantProps<typeof cardVariants> {
+export interface Props {
+  variant?: 'default' | 'elevated' | 'outlined' | 'filled' | 'glass' | 'gradient';
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
+  rounded?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+  shadow?: 'none' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  hover?: boolean;
+  interactive?: boolean;
+  glow?: boolean;
+  blur?: boolean;
   class?: string;
-  [key: string]: any;
+  role?: string;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
+  tabIndex?: number;
 }
 
-const { variant, class: className, ...props } = Astro.props;
+const {
+  variant = 'default',
+  padding = 'md',
+  rounded = 'xl',
+  shadow = 'lg',
+  hover = false,
+  interactive = false,
+  glow = false,
+  blur = false,
+  class: className = '',
+  role,
+  ariaLabel,
+  ariaDescribedBy,
+  tabIndex,
+  ...rest
+} = Astro.props;
+
+// Base classes with modern design principles
+const baseClasses = [
+  'card',
+  'relative',
+  'overflow-hidden',
+  'transition-all',
+  'duration-500',
+  'ease-out',
+  'group',
+  'transform-gpu'
+];
+
+// Enhanced variant classes with 2025 design trends
+const variantClasses = {
+  default: [
+    'card-default',
+    'border',
+    'border-surface-elevated/50'
+  ],
+  elevated: [
+    'card-elevated',
+    'border-0'
+  ],
+  outlined: [
+    'card-outlined',
+    'border-2',
+    'border-surface-elevated'
+  ],
+  filled: [
+    'card-filled',
+    'border',
+    'border-surface-elevated/30'
+  ],
+  glass: [
+    'card-glass',
+    'border',
+    'border-white/20',
+    'backdrop-blur-xl'
+  ],
+  gradient: [
+    'card-gradient',
+    'border-0'
+  ]
+};
+
+// Enhanced padding classes - aligned with 8px baseline grid
+const paddingClasses = {
+  none: [],
+  sm: ['p-sm'],
+  md: ['p-md'],
+  lg: ['p-lg'],
+  xl: ['p-xl']
+};
+
+// Enhanced rounded classes
+const roundedClasses = {
+  none: [],
+  sm: ['rounded-lg'],
+  md: ['rounded-xl'],
+  lg: ['rounded-2xl'],
+  xl: ['rounded-3xl'],
+  '2xl': ['rounded-[2rem]'],
+  '3xl': ['rounded-[3rem]']
+};
+
+// Enhanced shadow classes
+const shadowClasses = {
+  none: [],
+  sm: ['shadow-sm'],
+  md: ['shadow-lg', 'shadow-black/5'],
+  lg: ['shadow-xl', 'shadow-black/10'],
+  xl: ['shadow-2xl', 'shadow-black/15'],
+  '2xl': ['shadow-[0_25px_50px_-12px_hsl(var(--accent)/0.1)]']
+};
+
+// Enhanced hover classes with modern effects
+const hoverClasses = hover ? [
+  'hover:shadow-2xl',
+  'hover:shadow-[hsl(var(--accent)/0.2)]',
+  'hover:-translate-y-2',
+  'hover:scale-[1.02]',
+  'hover:rotate-[0.5deg]'
+] : [];
+
+// Enhanced interactive classes
+const interactiveClasses = interactive ? [
+  'cursor-pointer',
+  'focus:outline-none',
+  'focus-visible:ring-2',
+  'focus-visible:ring-[hsl(var(--accent))]',
+  'focus-visible:ring-offset-2',
+  'active:scale-[0.98]',
+  'active:rotate-0'
+] : [];
+
+// Glow effect classes
+const glowClasses = glow ? [
+  'before:absolute',
+  'before:inset-0',
+  'before:rounded-[inherit]',
+  'before:p-[1px]',
+  'before:bg-gradient-to-r',
+  'before:from-[hsl(var(--accent)/0.5)]',
+  'before:to-[hsl(var(--accent-light)/0.5)]',
+  'before:opacity-0',
+  'hover:before:opacity-100',
+  'before:transition-opacity',
+  'before:duration-500'
+] : [];
+
+// Blur effect classes
+const blurClasses = blur ? ['backdrop-blur-md'] : [];
+
+// Combine all classes
+const allClasses = [
+  ...baseClasses,
+  ...variantClasses[variant],
+  ...paddingClasses[padding],
+  ...roundedClasses[rounded],
+  ...shadowClasses[shadow],
+  ...hoverClasses,
+  ...interactiveClasses,
+  ...glowClasses,
+  ...blurClasses,
+  className
+].filter(Boolean).join(' ');
+
+// Component props
+const componentProps = {
+  class: allClasses,
+  role: interactive ? (role || 'button') : role,
+  'aria-label': ariaLabel,
+  'aria-describedby': ariaDescribedBy,
+  tabindex: interactive ? (tabIndex ?? 0) : tabIndex,
+  ...rest
+};
 ---
 
-<div class={cardVariants({ variant, class: className })} {...props}>
-  <slot />
+<div {...componentProps}>
+  <!-- Animated background gradient for modern appeal -->
+  <div class="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 focus:outline-none focus:ring-2 focus:ring-accent"></div>
+
+  <!-- Content wrapper with proper z-index -->
+  <div class="relative z-10">
+    <slot />
+  </div>
 </div>
+
+<style>
+  .card {
+    background-clip: padding-box;
+    transform: translateZ(0); /* Hardware acceleration */
+  }
+
+  /* Modern card variants with enhanced styling */
+  .card-default {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--surface-primary)) 100%);
+  }
+
+  .card-elevated {
+    background: linear-gradient(135deg, hsl(var(--surface-muted)) 0%, hsl(var(--surface-primary)) 100%);
+  }
+
+  .card-outlined {
+    background: hsl(var(--surface-primary));
+    backdrop-filter: blur(var(--space-2));
+  }
+
+  .card-filled {
+    background: linear-gradient(135deg, hsl(var(--surface-muted)) 0%, hsl(var(--surface-primary)) 100%);
+  }
+
+  .card-glass {
+    background: hsl(var(--surface-primary)/0.5);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .card-gradient {
+    background: linear-gradient(135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 50%,
+      hsl(var(--success)) 100%);
+    color: white;
+  }
+
+  /* Enhanced focus styles for accessibility */
+  .card[role="button"]:focus-visible,
+  .card[tabindex]:focus-visible {
+    outline: var(--space-0-5) solid hsl(var(--accent));
+    outline-offset: var(--space-0-5);
+    box-shadow: 0 0 0 var(--space-1) hsl(var(--accent)/0.1);
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .card {
+      border-width: var(--space-1); /* 2px -> 4px for grid alignment */
+    }
+
+    .card[role="button"]:focus-visible,
+    .card[tabindex]:focus-visible {
+      outline-width: var(--space-1); /* 3px -> 4px for grid alignment */
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+      transform: none !important;
+    }
+
+    .card * {
+      transition: none;
+    }
+  }
+
+  /* Dark mode enhancements */
+  @media (prefers-color-scheme: dark) {
+    .card-default,
+    .card-elevated {
+      background: linear-gradient(135deg, hsl(var(--surface-muted)) 0%, hsl(var(--surface-primary)) 100%);
+      border-color: hsl(var(--surface-muted));
+      color: hsl(var(--foreground));
+    }
+
+    .card-outlined {
+      background: hsl(var(--surface-primary)/0.2);
+      border-color: hsl(var(--surface-muted));
+    }
+
+    .card-filled {
+      background: linear-gradient(135deg, hsl(var(--surface-primary)) 0%, hsl(var(--surface-muted)) 100%);
+      border-color: hsl(var(--surface-muted));
+    }
+
+    .card-glass {
+      background: hsl(var(--surface-primary)/0.1);
+    }
+  }
+</style>

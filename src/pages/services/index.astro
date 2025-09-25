@@ -1,133 +1,164 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import EnhancedServices from '../../components/enhanced/EnhancedServices.astro';
+import Button from '../../components/ui/Button.astro';
+
+const servicesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Nosyt Labs",
+  "url": "https://nosytlabs.com",
+  "description": "Professional web development, mobile app development, UI/UX design, and consulting services.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Digital Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Web Development",
+          "description": "Custom web applications and websites built with modern technologies"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Mobile App Development",
+          "description": "Native and cross-platform mobile applications"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "UI/UX Design",
+          "description": "User-centered design solutions for digital products"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Consulting",
+          "description": "Technical consulting and digital strategy services"
+        }
+      }
+    ]
+  }
+};
 ---
 
-<Layout title="Services | Nosyt Labs" description="Comprehensive technology services including AI integration, cloud solutions, and custom software development.">
+<MainLayout 
+  title="Our Services - Nosyt Labs" 
+  description="Professional web development, mobile app development, UI/UX design, and consulting services. Transform your digital presence with our expert team."
+  ogImage="/images/services-og.jpg"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(servicesJsonLd)} />
   
-  <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-surface-primary">
-    
-    <div class="container mx-auto px-6 relative z-10">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-          Our
-          <span class="text-nexus-cyan block">Services</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-brand-gray mb-8 max-w-3xl mx-auto">
-          Transform your business with cutting-edge technology solutions tailored to your needs.
-          From AI innovation to cloud scalability, we deliver excellence.
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <!-- Hero Section -->
+    <section class="relative py-20 lg:py-32 overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-5 dark:opacity-10">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 transform rotate-12 scale-150"></div>
+      </div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Services</span>
+          </h1>
+          <p class="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-8">
+            Transform your digital presence with our comprehensive suite of development and design services. From concept to launch, we're your trusted digital partner.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button href="/contact" variant="primary" size="lg">
+              Start Your Project
+            </Button>
+            <Button href="/portfolio" variant="outline" size="lg">
+              View Our Work
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <EnhancedServices />
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-16 bg-white dark:bg-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            Our Process
+          </h2>
+          <p class="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+            We follow a proven methodology to ensure your project's success from start to finish.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+              <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">1</span>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">Discovery</h3>
+            <p class="text-slate-600 dark:text-slate-300">Understanding your goals, requirements, and target audience.</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
+              <span class="text-2xl font-bold text-purple-600 dark:text-purple-400">2</span>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">Design</h3>
+            <p class="text-slate-600 dark:text-slate-300">Creating wireframes, prototypes, and visual designs.</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
+              <span class="text-2xl font-bold text-green-600 dark:text-green-400">3</span>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">Development</h3>
+            <p class="text-slate-600 dark:text-slate-300">Building your solution with modern technologies and best practices.</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-orange-100 dark:bg-orange-900 flex items-center justify-center">
+              <span class="text-2xl font-bold text-orange-600 dark:text-orange-400">4</span>
+            </div>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2">Launch</h3>
+            <p class="text-slate-600 dark:text-slate-300">Testing, deployment, and ongoing support for your project.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          Ready to Get Started?
+        </h2>
+        <p class="text-xl text-slate-600 dark:text-slate-300 mb-8">
+          Let's discuss your project and how we can help bring your vision to life.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="bg-nexus-cyan text-deep-space-black px-8 py-4 rounded-lg font-semibold hover:bg-brand-accent-muted transition-colors">
-            Get Started
-          </a>
-          <a href="#services" class="border border-nexus-cyan text-nexus-cyan px-8 py-4 rounded-lg font-semibold hover:bg-nexus-cyan hover:text-deep-space-black transition-colors">
-            Explore Services
-          </a>
+          <Button href="/contact" variant="primary" size="lg">
+            Contact Us Today
+          </Button>
+          <Button href="/book-a-consultation" variant="outline" size="lg">
+            Book a Consultation
+          </Button>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Services Overview -->
-  <section id="services" class="py-20 bg-surface-secondary">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-          What We <span class="text-nexus-cyan">Offer</span>
-        </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <a href="/services/ai-integration" class="group">
-            <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300 transform hover:scale-105">
-              <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6 group-hover:bg-surface-primary transition-colors">
-                <svg class="w-8 h-8 text-deep-space-black group-hover:text-nexus-cyan" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.73 12.04l6.27-3.81c.52-.31.85-.88.85-1.5V5.07a1.5 1.5 0 0 0-1.5-1.5H9.22c-.66 0-1.2.42-1.41.99l-1.67 5.02a1.5 1.5 0 0 0 1.41 1.99h5.89l-1.68 5.03a1.5 1.5 0 0 0 1.41.99h5.75a1.5 1.5 0 0 0 1.5-1.5v-1.65c0-.62-.33-1.19-.85-1.5l-6.27-3.81a1.5 1.5 0 0 0-1.47 0 1.49 1.49 0 0 0-.5 1.33v.03c0 .41.21.79.55 1.01l4.99 3.29a1.5 1.5 0 0 0 1.95-2.3l-4.99-3.29a.49.49 0 0 0-.55-.01z"/>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-nexus-cyan transition-colors">AI Integration</h3>
-              <p class="text-brand-gray leading-relaxed">
-                Embed intelligent AI solutions into your existing systems and workflows.
-              </p>
-            </div>
-          </a>
-          
-          <a href="/services/cloud-solutions" class="group">
-            <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300 transform hover:scale-105">
-              <div class="w-16 h-16 bg-brand-highlight rounded-lg flex items-center justify-center mb-6 group-hover:bg-surface-primary transition-colors">
-                <svg class="w-8 h-8 text-white group-hover:text-brand-highlight" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.75 11.35a4.32 4.32 0 0 0-.79-.08 4.34 4.34 0 0 0-4.34 4.34 4.34 4.34 0 0 0 4.34 4.34 4.32 4.32 0 0 0 .79-.08c-.78 2.12-2.85 3.61-5.26 3.61-3.11 0-5.63-2.52-5.63-5.63s2.52-5.63 5.63-5.63c2.41 0 4.48 1.49 5.26 3.61z"/>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-nexus-cyan transition-colors">Cloud Solutions</h3>
-              <p class="text-brand-gray leading-relaxed">
-                Scalable infrastructure and DevOps automation across major cloud platforms.
-              </p>
-            </div>
-          </a>
-          
-          <a href="/services/custom-software" class="group">
-            <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300 transform hover:scale-105">
-              <div class="w-16 h-16 bg-brand-accent-alt rounded-lg flex items-center justify-center mb-6 group-hover:bg-surface-primary transition-colors">
-                <svg class="w-8 h-8 text-white group-hover:text-brand-accent-alt" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-nexus-cyan transition-colors">Custom Software</h3>
-              <p class="text-brand-gray leading-relaxed">
-                Bespoke software development tailored to your unique business requirements.
-              </p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Choose Us -->
-  <section class="py-20 bg-surface-primary">
-    <div class="container mx-auto px-6">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-          Why <span class="text-nexus-cyan">Choose Nosyt Labs</span>
-        </h2>
-        <ul class="grid md:grid-cols-3 gap-8" role="list">
-          <li class="text-center" role="listitem">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-4">Proven Expertise</h3>
-            <p class="text-brand-gray leading-relaxed">
-              Years of experience delivering innovative solutions for global clients.
-            </p>
-          </li>
-          
-          <li class="text-center" role="listitem">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-4">Reliable Delivery</h3>
-            <p class="text-brand-gray leading-relaxed">
-              On-time, on-budget projects with transparent communication throughout.
-            </p>
-          </li>
-          
-          <li class="text-center" role="listitem">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-4">Future-Proof</h3>
-            <p class="text-brand-gray leading-relaxed">
-              Scalable, secure solutions designed for long-term growth and adaptability.
-            </p>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</Layout>
+    </section>
+  </div>
+</MainLayout>

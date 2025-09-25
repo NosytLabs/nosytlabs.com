@@ -1,5 +1,5 @@
 ---
-import Card from "./ui/Card.astro";
+import Icon from './ui/Icon.astro';
 
 interface Props {
   name: string;
@@ -13,38 +13,154 @@ interface Props {
 const { name, company, role, quote, avatar, rating } = Astro.props;
 ---
 
-<Card class="flex flex-col">
-  <div class="mb-4">
-    <svg class="w-8 h-8 text-muted-foreground" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-    </svg>
+<div class="card-enhanced group animate-enhanced-scale-in">
+  <!-- Quote Icon -->
+  <div class="mb-6">
+    <div class="icon-container-enhanced icon-container-md bg-accent/10">
+      <Icon name="quote" size="md" class="text-accent" />
+    </div>
   </div>
-  
-  <div class="flex-grow space-y-4">
-    <blockquote class="text-muted-foreground italic">
+
+  <!-- Quote Content -->
+  <div class="flex-1 space-y-enhanced">
+    <blockquote class="text-responsive-lg text-text-secondary italic text-pretty leading-relaxed">
       "{quote}"
     </blockquote>
-    
-    <div class="flex space-x-1">
-      {Array.from({ length: rating }).map(() => (
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-        </svg>
+
+    <!-- Rating Stars -->
+    <div class="flex-enhanced gap-1">
+      {Array.from({ length: rating }, (_, index: number) => (
+        <Icon name="star" size="sm" class="text-accent" />
+      ))}
+      {Array.from({ length: 5 - rating }, (_, index: number) => (
+        <Icon name="star" size="sm" class="text-border-primary opacity-30" />
       ))}
     </div>
   </div>
-  
-  <div class="flex items-center space-x-4 pt-4 mt-4 border-t border-border">
-    <div class="w-12 h-12 bg-muted rounded-full flex items-center justify-center">
-      <img src={avatar} alt={name} class="w-10 h-10 rounded-full object-cover" loading="lazy" />
+
+  <!-- Author Info -->
+  <div class="flex-enhanced gap-4 mt-6 pt-6 border-t border-border-primary">
+    <!-- Avatar -->
+    <div class="icon-container-enhanced icon-container-lg bg-surface-elevated flex-shrink-0 overflow-hidden">
+      {avatar ? (
+        <img 
+          loading="lazy" 
+          src={avatar} 
+          alt={name} 
+          class="w-full h-full object-cover" 
+        />
+      ) : (
+        <Icon name="user" size="lg" class="text-text-tertiary" />
+      )}
     </div>
-    <div>
-      <h4 class="font-semibold text-foreground">
+    
+    <!-- Author Details -->
+    <div class="min-w-0 flex-1 space-y-enhanced-sm">
+      <h4 class="text-responsive font-semibold text-text-primary group-hover:text-primary transition-colors duration-300">
         {name}
       </h4>
-      <p class="text-sm text-muted-foreground">
-        {role}, {company}
+      <p class="text-responsive text-text-secondary">
+        {role}
+      </p>
+      <p class="text-sm text-text-tertiary font-medium">
+        {company}
       </p>
     </div>
+    
+    <!-- Verification Badge -->
+    <div class="flex-shrink-0">
+      <div class="icon-container-enhanced icon-container-sm bg-success/10 group-hover:bg-success/20 transition-colors duration-300">
+        <Icon name="check" size="sm" class="text-success" />
+      </div>
+    </div>
   </div>
-</Card>
+</div>
+
+<style>
+  /* Enhanced testimonial card styles */
+  .card-enhanced {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-enhanced::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--primary)));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card-enhanced:hover::after {
+    opacity: 1;
+  }
+  
+  /* Quote styling enhancements */
+  blockquote {
+    position: relative;
+  }
+  
+  blockquote::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, hsl(var(--accent)), hsl(var(--primary)));
+    border-radius: 2px;
+    opacity: 0.3;
+  }
+  
+  /* Avatar hover effect */
+  .icon-container-enhanced img {
+    transition: transform 0.3s ease;
+  }
+  
+  .group:hover .icon-container-enhanced img {
+    transform: scale(1.05);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .card-enhanced {
+      padding: 1.5rem;
+    }
+    
+    .flex-enhanced {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .icon-container-lg {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+  
+  /* Accessibility enhancements */
+  @media (prefers-reduced-motion: reduce) {
+    .card-enhanced,
+    .icon-container-enhanced img,
+    .group:hover .icon-container-enhanced img {
+      transition: none;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .card-enhanced {
+      border-width: 2px;
+    }
+    
+    blockquote::before {
+      opacity: 1;
+      width: 6px;
+    }
+  }
+</style>

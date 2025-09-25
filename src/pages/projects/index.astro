@@ -1,8 +1,9 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import ResponsiveImageOptimizer from '../../components/layout/ResponsiveImageOptimizer.astro';
 ---
 
-<Layout title="Our Projects - Nosyt Labs" description="Explore our portfolio of innovative AI-driven web applications and cutting-edge technology solutions.">
+<MainLayout title="Our Projects - Nosyt Labs" description="Explore our portfolio of innovative AI-driven web applications and cutting-edge technology solutions.">
   <main class="relative min-h-screen bg-background overflow-hidden">
     <!-- Hero Section -->
     <section class="relative pt-24 pb-16 md:pt-32 md:pb-20 bg-gradient-to-br from-primary/5 to-muted/20">
@@ -33,7 +34,16 @@ import Layout from '../../layouts/Layout.astro';
           <!-- Project Alpha Card -->
           <a href="/projects/alpha" class="group relative overflow-hidden rounded-2xl bg-background border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
             <div class="relative h-48 bg-gradient-to-br from-primary/10 to-secondary/10 group-hover:from-primary/20 group-hover:to-secondary/20 transition-colors">
-              <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop" alt="Project Alpha" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity">
+              <ResponsiveImageOptimizer
+                src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop"
+                alt="Project Alpha"
+                width={400}
+                height={300}
+                aspectRatio="4/3"
+                loading="lazy"
+                fetchpriority="low"
+                class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+              />
               <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             </div>
             <div class="p-6">
@@ -55,7 +65,16 @@ import Layout from '../../layouts/Layout.astro';
           <!-- Project Beta Card -->
           <a href="/projects/beta" class="group relative overflow-hidden rounded-2xl bg-background border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
             <div class="relative h-48 bg-gradient-to-br from-secondary/10 to-accent/10 group-hover:from-secondary/20 group-hover:to-accent/20 transition-colors">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" alt="Project Beta" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity">
+              <ResponsiveImageOptimizer
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop"
+                alt="Project Beta"
+                width={400}
+                height={300}
+                aspectRatio="4/3"
+                loading="lazy"
+                fetchpriority="low"
+                class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+              />
               <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             </div>
             <div class="p-6">
@@ -77,7 +96,16 @@ import Layout from '../../layouts/Layout.astro';
           <!-- Project Gamma Card -->
           <a href="/projects/gamma" class="group relative overflow-hidden rounded-2xl bg-background border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
             <div class="relative h-48 bg-gradient-to-br from-accent/10 to-primary/10 group-hover:from-accent/20 group-hover:to-primary/20 transition-colors">
-              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop" alt="Project Gamma" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity">
+              <ResponsiveImageOptimizer
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop"
+                alt="Project Gamma"
+                width={400}
+                height={300}
+                aspectRatio="4/3"
+                loading="lazy"
+                fetchpriority="low"
+                class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity"
+              />
               <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             </div>
             <div class="p-6">
@@ -114,4 +142,4 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </section>
   </main>
-</Layout>
+</MainLayout>

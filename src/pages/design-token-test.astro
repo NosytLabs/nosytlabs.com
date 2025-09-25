@@ -1,12 +1,11 @@
 ---
-import DesignTokenTest from '../components/test/DesignTokenTest.astro';
+import DesignTokenTestComponent from '../components/test/DesignTokenTest.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+
+const title = 'Design Token Test | Nosyt Labs';
+const description = 'Test page for design tokens and component styling at Nosyt Labs';
 ---
 
-<html>
-  <head>
-    <title>Design Token Test</title>
-  </head>
-  <body>
-    <DesignTokenTest />
-  </body>
-</html>
+<MainLayout {title} {description}>
+  <DesignTokenTestComponent />
+</MainLayout>

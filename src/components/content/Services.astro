@@ -1,0 +1,186 @@
+---
+import ServiceCard from '../ui/ServiceCard.astro';
+import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+
+const services = [
+  {
+    title: 'Modern Web Development',
+    description: 'Full-stack web applications built with cutting-edge technologies and best practices for performance, scalability, and user experience.',
+    icon: `<svg class="w-8 h-8 focus:outline-none focus:ring-2 focus:ring-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+    </svg>`,
+    badge: 'Most Popular',
+    pricing: 'From $2,500',
+    features: [
+      'React/Vue.js Frontend',
+      'Node.js/Python Backend', 
+      'Database Design',
+      'API Development',
+      'Performance Optimization',
+      '3 Months Support'
+    ],
+    link: '/services/web-development'
+  },
+  {
+    title: 'AI Integration & Automation',
+    description: 'Intelligent solutions that automate workflows, enhance decision-making, and provide personalized user experiences through advanced AI.',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+    </svg>`,
+    badge: 'Trending',
+    pricing: 'From $3,500',
+    features: [
+      'Custom AI Models',
+      'Workflow Automation',
+      'Data Analytics',
+      'Machine Learning',
+      'API Integrations',
+      '6 Months Support'
+    ],
+    link: '/services/ai-integration'
+  },
+  {
+    title: 'Mobile App Development',
+    description: 'Native and cross-platform mobile applications that deliver exceptional user experiences across iOS and Android devices.',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a1 1 0 001-1V4a1 1 0 00-1-1H8a1 1 0 00-1 1v16a1 1 0 001 1z"/>
+    </svg>`,
+    badge: 'New',
+    pricing: 'From $4,000',
+    features: [
+      'React Native/Flutter',
+      'iOS & Android',
+      'App Store Deployment',
+      'Push Notifications',
+      'Offline Functionality',
+      '4 Months Support'
+    ],
+    link: '/services/mobile-development'
+  },
+  {
+    title: 'UI/UX Design',
+    description: 'User-centered design solutions that create intuitive, accessible, and visually stunning digital experiences.',
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
+    </svg>`,
+    badge: 'Premium',
+    pricing: 'From $2,000',
+    features: [
+      'User Research',
+      'Wireframing & Prototyping',
+      'Visual Design',
+      'Usability Testing',
+      'Design Systems',
+      '2 Months Support'
+    ],
+    link: '/services/ui-ux-design'
+  }
+];
+---
+
+<section class="layout-section services-section relative py-16 overflow-hidden">
+  <!-- Enhanced background patterns -->
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-primary via-surface-secondary to-brand-primary"></div>
+  
+  <!-- Animated geometric elements -->
+  <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand-accent/20 to-purple-500/20 rounded-full blur-xl animate-pulse"></div>
+  <div class="absolute bottom-20 right-10 w-48 h-48 bg-gradient-to-br from-blue-500/10 to-brand-accent/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+  
+  <!-- Floating particles -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-brand-accent/30 rounded-full animate-bounce delay-300"></div>
+    <div class="absolute top-3/4 right-1/3 w-1 h-1 bg-purple-400/40 rounded-full animate-bounce delay-700"></div>
+    <div class="absolute bottom-1/3 left-2/3 w-3 h-3 bg-blue-400/20 rounded-full animate-bounce delay-1000"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Enhanced hero section -->
+    <div class="section-header text-center mb-20">
+      <div class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-brand-accent/10 to-purple-500/10 border border-brand-accent/20 mb-6">
+        <span class="text-sm font-medium text-brand-accent">✨ Our Services</span>
+      </div>
+      
+      <h2 class="section-title text-4xl md:text-6xl font-bold text-brand-text-primary mb-6">
+        Transforming Ideas Into
+        <span class="bg-gradient-to-r from-brand-accent via-purple-500 to-blue-500 bg-clip-text text-transparent">
+          Digital Excellence
+        </span>
+      </h2>
+      
+      <p class="section-description text-responsive-xl text-brand-text-secondary max-w-3xl mx-auto mb-12">
+        We deliver cutting-edge solutions that drive growth, enhance user experiences, 
+        and position your business at the forefront of digital innovation.
+      </p>
+      
+      <!-- Enhanced quick stats with modern cards -->
+      <div class="grid-enhanced grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <Card variant="glass" padding="lg" rounded="xl" hover={true} class="text-center group" interactive={false}>
+          <div class="text-3xl font-bold text-brand-accent mb-2 group-hover:scale-110 transition-transform duration-300">50+</div>
+          <div class="text-sm text-brand-text-secondary">Projects Delivered</div>
+        </Card>
+        
+        <Card variant="glass" padding="lg" rounded="xl" hover={true} class="text-center group" interactive={false}>
+          <div class="text-3xl font-bold text-brand-accent mb-2 group-hover:scale-110 transition-transform duration-300">98%</div>
+          <div class="text-sm text-brand-text-secondary">Client Satisfaction</div>
+        </Card>
+        
+        <Card variant="glass" padding="lg" rounded="xl" hover={true} class="text-center group" interactive={false}>
+          <div class="text-3xl font-bold text-brand-accent mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
+          <div class="text-sm text-brand-text-secondary">Support Available</div>
+        </Card>
+        
+        <Card variant="glass" padding="lg" rounded="xl" hover={true} class="text-center group" interactive={false}>
+          <div class="text-3xl font-bold text-brand-accent mb-2 group-hover:scale-110 transition-transform duration-300">5⭐</div>
+          <div class="text-sm text-brand-text-secondary">Average Rating</div>
+        </Card>
+      </div>
+    </div>
+
+    <!-- Enhanced services grid -->
+    <div class="services-grid grid-enhanced grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+      {services.map((service) => (
+        <ServiceCard {...service} />
+      ))}
+    </div>
+
+    <!-- Enhanced call to action section -->
+    <Card variant="gradient" padding="xl" rounded="3xl" class="text-center">
+      <div class="max-w-3xl mx-auto">
+        <h3 class="text-responsive-3xl md:text-responsive-4xl font-bold mb-6">
+          Ready to Transform Your Business?
+        </h3>
+        
+        <p class="text-responsive-xl mb-8 opacity-90">
+          Let's discuss your project and create something extraordinary together. 
+          Our team is ready to bring your vision to life with cutting-edge technology and innovative design.
+        </p>
+        
+        <div class="button-group-enhanced flex-col sm:flex-row gap-4 justify-center items-center">
+          <Button 
+            variant="secondary" 
+            size="lg" 
+            href="/contact"
+            class="bg-white/20 hover:bg-white/30 text-white border-white/30"
+          >
+            Get Started Today
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            size="lg" 
+            href="/book-a-consultation"
+            class="border-white/30 text-white hover:bg-white/10"
+          >
+            Book Free Consultation
+          </Button>
+        </div>
+        
+        <div class="mt-8 text-sm opacity-75">
+          💡 Free consultation • 📞 Quick response • 🚀 Fast delivery
+        </div>
+      </div>
+    </Card>
+  </div>
+</section>

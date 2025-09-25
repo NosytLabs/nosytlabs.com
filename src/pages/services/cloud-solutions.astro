@@ -1,8 +1,9 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import Button from '../../components/ui/Button.astro';
 ---
 
-<Layout title="Cloud Solutions | Nosyt Labs" description="Scalable cloud infrastructure and DevOps solutions. AWS, Azure, Google Cloud deployment and management services.">
+<MainLayout title="Cloud Solutions | Nosyt Labs" description="Scalable cloud infrastructure and DevOps solutions. AWS, Azure, Google Cloud deployment and management services.">
   
   <!-- Hero Section -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-surface-primary">
@@ -11,19 +12,19 @@ import Layout from '../../layouts/Layout.astro';
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
           Cloud
-          <span class="text-nexus-cyan block">Solutions</span>
+          <span class="text-brand-accent block">Solutions</span>
         </h1>
-        <p class="text-xl md:text-2xl text-brand-gray mb-8 max-w-3xl mx-auto">
+        <p class="text-xl md:text-2xl text-muted mb-8 max-w-3xl mx-auto">
           Scale your applications with robust cloud infrastructure, 
           automated deployments, and enterprise-grade security.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="bg-nexus-cyan text-deep-space-black px-8 py-4 rounded-lg font-semibold hover:bg-brand-accent-muted transition-colors">
+          <Button href="/contact" variant="primary" size="lg">
             Start Cloud Migration
-          </a>
-          <a href="/cloud-assessment" class="border border-nexus-cyan text-nexus-cyan px-8 py-4 rounded-lg font-semibold hover:bg-nexus-cyan hover:text-deep-space-black transition-colors">
+          </Button>
+          <Button href="/cloud-assessment" variant="outline" size="lg">
             Free Cloud Assessment
-          </a>
+          </Button>
         </div>
       </div>
     </div>
@@ -34,22 +35,22 @@ import Layout from '../../layouts/Layout.astro';
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-          Cloud Platforms We <span class="text-nexus-cyan">Support</span>
+          Cloud Platforms We <span class="text-brand-accent">Support</span>
         </h2>
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-colors">
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-brand-accent/50 transition-colors">
             <div class="w-16 h-16 bg-brand-highlight rounded-lg flex items-center justify-center mb-6">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M18.75 11.35a4.32 4.32 0 0 0-.79-.08 4.34 4.34 0 0 0-4.34 4.34 4.34 4.34 0 0 0 4.34 4.34 4.32 4.32 0 0 0 .79-.08c-.78 2.12-2.85 3.61-5.26 3.61-3.11 0-5.63-2.52-5.63-5.63s2.52-5.63 5.63-5.63c2.41 0 4.48 1.49 5.26 3.61z"/>
               </svg>
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">Amazon AWS</h3>
-            <p class="text-brand-gray leading-relaxed">
+            <p class="text-muted leading-relaxed">
               Complete AWS solutions including EC2, Lambda, RDS, S3, and advanced services.
             </p>
           </div>
           
-          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-colors">
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-brand-accent/50 transition-colors">
             <div class="w-16 h-16 bg-brand-accent-alt rounded-lg flex items-center justify-center mb-6">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
@@ -61,14 +62,14 @@ import Layout from '../../layouts/Layout.astro';
             </p>
           </div>
           
-          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-colors">
-            <div class="w-16 h-16 bg-[var(--color-brand-accent-alt)] rounded-lg flex items-center justify-center mb-6">
+          <div class="glass p-8 rounded-xl hover:border-accent/50 transition-colors">
+            <div class="w-16 h-16 bg-secondary rounded-lg flex items-center justify-center mb-6">
               <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">Google Cloud</h3>
-            <p class="text-brand-gray leading-relaxed">
+            <p class="text-text-secondary leading-relaxed">
               GCP services including Compute Engine, Cloud Functions, and AI/ML platforms.
             </p>
           </div>
@@ -82,15 +83,15 @@ import Layout from '../../layouts/Layout.astro';
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-          DevOps & <span class="text-nexus-cyan">Automation</span>
+          DevOps & <span class="text-accent">Automation</span>
         </h2>
         <div class="grid md:grid-cols-2 gap-8">
           <div class="bg-surface-secondary p-8 rounded-xl border border-surface-tertiary">
             <h3 class="text-2xl font-bold text-white mb-4">CI/CD Pipelines</h3>
-            <p class="text-brand-gray leading-relaxed mb-6">
+            <p class="text-muted leading-relaxed mb-6">
               Automated deployment pipelines that ensure fast, reliable releases with zero downtime.
             </p>
-            <ul class="text-brand-gray space-y-2">
+            <ul class="text-muted space-y-2">
               <li>• GitHub Actions & GitLab CI</li>
               <li>• Docker containerization</li>
               <li>• Kubernetes orchestration</li>
@@ -100,10 +101,10 @@ import Layout from '../../layouts/Layout.astro';
           
           <div class="bg-surface-secondary p-8 rounded-xl border border-surface-tertiary">
             <h3 class="text-2xl font-bold text-white mb-4">Infrastructure as Code</h3>
-            <p class="text-brand-gray leading-relaxed mb-6">
+            <p class="text-muted leading-relaxed mb-6">
               Manage your infrastructure with code for consistency, scalability, and version control.
             </p>
-            <ul class="text-brand-gray space-y-2">
+            <ul class="text-muted space-y-2">
               <li>• Terraform & CloudFormation</li>
               <li>• Ansible automation</li>
               <li>• Infrastructure monitoring</li>
@@ -114,4 +115,4 @@ import Layout from '../../layouts/Layout.astro';
       </div>
     </div>
   </section>
-</Layout>
+</MainLayout>

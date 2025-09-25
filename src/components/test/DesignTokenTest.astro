@@ -1,12 +1,374 @@
 ---
+import BrandHeading from '../brand/BrandHeading.astro';
+import BrandBody from '../brand/BrandBody.astro';
+import BrandCode from '../brand/BrandCode.astro';
 ---
 
-<div class="brand-heading-1">Brand Heading 1</div>
-<div class="brand-heading-2">Brand Heading 2</div>
-<div class="brand-heading-3">Brand Heading 3</div>
-<div class="brand-body">Brand Body</div>
-<div class="brand-code">Brand Code</div>
-<div class="brand-glow">Brand Glow</div>
-<div class="brand-button">Brand Button</div>
-<div class="brand-card">Brand Card</div>
-<div class="text-nexus-cyan">Nexus Cyan</div>
+<div class="design-token-test">
+  <div class="test-header">
+    <h1 class="test-title">Design Token Test Suite</h1>
+    <p class="test-description">Testing responsive design tokens across all breakpoints</p>
+  </div>
+
+  <div class="token-grid">
+    <!-- New Brand Components -->
+    <div class="token-item">
+      <div class="brand-heading-1 focus:outline-none focus:ring-2 focus:ring-accent">Brand Heading 1</div>
+    </div>
+    <div class="token-item">
+      <div class="brand-heading-2">Brand Heading 2</div>
+    </div>
+    <div class="token-item">
+      <div class="brand-heading-3">Brand Heading 3</div>
+    </div>
+    <div class="token-item">
+      <div class="brand-body">Brand Body</div>
+    </div>
+    <div class="token-item">
+      <div class="brand-code">Brand Code</div>
+    </div>
+
+    <!-- Legacy Components (for comparison) -->
+    <div class="token-item">
+      <div class="brand-glow">Brand Glow</div>
+    </div>
+    <div class="token-item">
+      <div class="brand-button">Brand Button</div>
+    </div>
+    <div class="token-item">
+      <div class="brand-card">Brand Card</div>
+    </div>
+    <div class="token-item">
+      <div class="text-accent">Nexus Cyan</div>
+    </div>
+  </div>
+
+  <!-- New Brand Components Showcase -->
+  <div class="new-components-section">
+    <BrandHeading level={2} size="lg" weight="semibold" spacing="normal">
+      New Brand Components
+    </BrandHeading>
+    <BrandBody spacing="normal">
+      The following components have been implemented with full design system integration:
+    </BrandBody>
+
+    <div class="components-showcase">
+      <div class="component-demo">
+        <BrandHeading level={3} size="md" weight="semibold" spacing="tight">
+          BrandHeading Component
+        </BrandHeading>
+        <BrandBody size="sm" color="secondary" spacing="tight">
+          Semantic heading component with responsive typography and accessibility features.
+        </BrandBody>
+        <BrandHeading level={4} size="sm" weight="medium" spacing="none">Level 4 Example</BrandHeading>
+        <BrandHeading level={5} size="xs" weight="normal" spacing="none">Level 5 Example</BrandHeading>
+      </div>
+
+      <div class="component-demo">
+        <BrandHeading level={3} size="md" weight="semibold" spacing="tight">
+          BrandBody Component
+        </BrandHeading>
+        <BrandBody spacing="tight">
+          Flexible body text component supporting multiple sizes and semantic elements.
+        </BrandBody>
+        <BrandBody size="lg" weight="medium" spacing="none">Large emphasis text</BrandBody>
+        <BrandBody size="base" spacing="none">Standard body text</BrandBody>
+        <BrandBody size="sm" color="secondary" spacing="none">Secondary information</BrandBody>
+      </div>
+
+      <div class="component-demo">
+        <BrandHeading level={3} size="md" weight="semibold" spacing="tight">
+          BrandCode Component
+        </BrandHeading>
+        <BrandBody size="sm" color="secondary" spacing="tight">
+          Code styling for inline and block elements with syntax highlighting.
+        </BrandBody>
+        <BrandCode inline={true}>const component = "BrandCode";</BrandCode>
+        <BrandCode as="pre" language="javascript" background="surface">
+{`function render() {
+ return <BrandCode />;
+}`}
+        </BrandCode>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="breakpoint-indicator">
+    <div class="breakpoint-label" id="breakpoint-label">Current Breakpoint: <span id="current-breakpoint">Loading...</span></div>
+  </div>
+</div>
+
+<style>
+  .design-token-test {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--grid-xl);
+    background: var(--color-surface-primary);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .test-header {
+    text-align: center;
+    margin-bottom: var(--grid-2xl);
+  }
+
+  .test-title {
+    font-size: clamp(1.5rem, 2vw + 1.2rem, 2.5rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--grid-md);
+    line-height: 1.2;
+  }
+
+  .test-description {
+    font-size: clamp(1rem, 1.5vw + 0.8rem, 1.25rem);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .token-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--grid-lg);
+    margin-bottom: var(--grid-2xl);
+  }
+
+  .token-item {
+    padding: var(--grid-lg);
+    background: var(--color-surface-secondary);
+    border-radius: var(--border-radius-lg);
+    border: var(--space-0-25) solid var(--color-border);
+    transition: all var(--transition-normal);
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .token-item:hover {
+    transform: translateY(var(--space-0-5));
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand-accent);
+  }
+
+  .breakpoint-indicator {
+    padding: var(--grid-lg);
+    background: var(--color-surface-tertiary);
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    border: var(--space-0-25) solid var(--color-border);
+  }
+
+  .breakpoint-label {
+    font-size: clamp(0.875rem, 1vw + 0.75rem, 1rem);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* New Components Showcase Styles */
+  .new-components-section {
+    margin-top: var(--space-8);
+    padding: var(--space-6);
+    background: hsl(var(--surface-elevated));
+    border-radius: var(--radius-lg);
+    border: var(--space-0-25) solid hsl(var(--border-light));
+  }
+
+  .components-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .component-demo {
+    padding: var(--space-5);
+    background: hsl(var(--surface-secondary));
+    border-radius: var(--radius-md);
+    border: var(--space-0-25) solid hsl(var(--border-light));
+    transition: all var(--duration-normal) var(--ease-standard);
+  }
+
+  .component-demo:hover {
+    transform: translateY(var(--space-0-25));
+    box-shadow: var(--shadow-sm);
+    border-color: hsl(var(--brand-accent));
+  }
+
+  .button-row {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  /* Container queries for component-level responsiveness */
+  @container (max-width: 600px) {
+    .design-token-test {
+      padding: var(--grid-md);
+    }
+
+    .token-grid {
+      grid-template-columns: 1fr;
+      gap: var(--grid-md);
+    }
+
+    .token-item {
+      padding: var(--grid-md);
+      min-height: var(--space-26) /* Fixed: 8px grid compliance */;
+    }
+  }
+
+  /* Mobile-first responsive design */
+  @media (max-width: var(--breakpoint-md)) {
+    .design-token-test {
+      padding: var(--grid-md);
+      margin: var(--grid-md);
+    }
+
+    .test-header {
+      margin-bottom: var(--grid-xl);
+    }
+
+    .token-grid {
+      grid-template-columns: 1fr;
+      gap: var(--grid-md);
+    }
+
+    .token-item {
+      padding: var(--grid-md);
+      min-height: var(--space-20);
+    }
+
+    /* Touch-friendly interactions */
+    .token-item {
+      min-height: var(--space-12) /* Fixed: 8px grid compliance */;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .token-item:active {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: var(--breakpoint-md)) and (max-width: var(--breakpoint-lg)) {
+    .token-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Desktop optimizations */
+  @media (min-width: 1024px) {
+    .token-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: var(--breakpoint-xs)) {
+    .design-token-test {
+      padding: var(--grid-sm);
+      margin: var(--grid-sm);
+    }
+
+    .token-item {
+      padding: var(--grid-sm);
+      min-height: var(--space-16) /* Fixed: 8px grid */;
+    }
+
+    .test-title {
+      font-size: clamp(1.25rem, 3vw + 1rem, 1.75rem);
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    .token-item:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .token-item:active {
+      background: var(--color-surface-tertiary);
+      transform: scale(0.98);
+    }
+  }
+
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .token-item {
+      transition: none;
+    }
+
+    .token-item:hover {
+      transform: none;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .token-item {
+      border-width: var(--space-0-5);
+    }
+
+    .breakpoint-indicator {
+      border-width: var(--space-0-5);
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .design-token-test {
+      box-shadow: none;
+      border: var(--space-0-25) solid var(--color-brand-primary) /* Fixed: design token */;
+    }
+
+    .token-item {
+      break-inside: avoid;
+      border: var(--space-0-25) solid var(--color-brand-primary) /* Fixed: design token */;
+    }
+  }
+</style>
+
+<script>
+  // Breakpoint detection for testing
+  function updateBreakpointLabel() {
+    const breakpointLabel = document.getElementById('current-breakpoint');
+    if (!breakpointLabel) return;
+
+    const width = window.innerWidth;
+
+    let breakpoint = 'Unknown';
+    if (width <= 320) breakpoint = '320px (XS)';
+    else if (width <= 480) breakpoint = '480px (XS)';
+    else if (width <= 768) breakpoint = '768px (SM)';
+    else if (width <= 1024) breakpoint = '1024px (MD)';
+    else if (width <= 1280) breakpoint = '1280px (LG)';
+    else breakpoint = '1280px+ (XL)';
+
+    breakpointLabel.textContent = breakpoint;
+  }
+
+  // Initialize breakpoint detection
+  updateBreakpointLabel();
+  window.addEventListener('resize', updateBreakpointLabel);
+
+  // Add touch feedback for token items
+  document.addEventListener('DOMContentLoaded', () => {
+    const tokenItems = document.querySelectorAll('.token-item');
+    tokenItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // Add visual feedback
+        item.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          item.style.transform = '';
+        }, 150);
+      });
+    });
+  });
+</script>

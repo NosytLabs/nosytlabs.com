@@ -15,6 +15,11 @@ export default defineConfig({
     }),
     react(),
   ],
+  server: {
+    port: 4321,
+    host: '127.0.0.1',
+    open: false
+  },
   vite: {
     resolve: {
       alias: {
@@ -23,8 +28,47 @@ export default defineConfig({
     },
     server: {
       hmr: {
-        overlay: false
+        overlay: true,
+        clientPort: 4321
+      },
+      watch: {
+        usePolling: false,
+        ignored: ['**/node_modules/**', '**/dist/**']
+      },
+      cors: true
+    },
+    build: {
+      // Enable minification and compression
+      minify: 'terser',
+      cssCodeSplit: true,
+      chunkSizeWarningLimit: 1000,
+      sourcemap: false,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor-react': ['react', 'react-dom'],
+            'vendor-ui': ['@astrojs/react', 'lucide-react'],
+            'vendor-utils': ['clsx', 'tailwind-merge']
+          },
+          chunkFileNames: 'assets/[name]-[hash].js',
+          entryFileNames: 'assets/[name]-[hash].js',
+          assetFileNames: 'assets/[name]-[hash].[ext]'
+        }
       }
+    },
+    optimizeDeps: {
+      exclude: ['astro:content'],
+      include: ['react', 'react-dom', 'lucide-react']
+    },
+    ssr: {
+      noExternal: ['@astrojs/react']
     }
   },
+  // Enable compression at the Astro level
+  compressHTML: true,
+  // Add prefetch configuration
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport'
+  }
 });

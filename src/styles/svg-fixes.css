@@ -1,0 +1,71 @@
+/* SVG Image Fixes - Resolves rendering issues with SVG images */
+
+/* Fix for SVG images with object-cover causing rendering issues */
+img[src$=".svg"] {
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* Ensure SVG images maintain aspect ratio */
+img[src$=".svg"].object-cover {
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+/* Specific fixes for project images */
+.project-image img[src$=".svg"] {
+  object-fit: contain !important;
+  object-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Specific fixes for testimonial avatars */
+.testimonial-avatar img[src$=".svg"] {
+  object-fit: contain !important;
+  object-position: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Ensure SVG images have proper dimensions */
+img[src$=".svg"] {
+  min-height: 120px;
+  min-width: 120px;
+}
+
+/* Fix for rounded SVG avatars */
+.rounded-full img[src$=".svg"] {
+  object-fit: contain !important;
+  padding: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Fallback for any SVG display issues */
+svg, img[src$=".svg"] {
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* Ensure containers don't collapse */
+.testimonial-avatar,
+.project-image-container,
+[class*="h-40"],
+[class*="h-48"],
+[class*="h-56"] {
+  min-height: 160px !important;
+}
+
+/* Additional fixes for responsive heights */
+@media (min-width: 640px) {
+  [class*="sm:h-48"] {
+    min-height: 192px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  [class*="md:h-56"] {
+    min-height: 224px !important;
+  }
+}

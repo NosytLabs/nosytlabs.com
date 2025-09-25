@@ -1,0 +1,101 @@
+---
+import ResponsiveImageOptimizer from '../layout/ResponsiveImageOptimizer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  slug: string;
+  tags?: string[];
+  heroImage?: string;
+}
+
+const { title, description, pubDate, slug, tags = [], heroImage } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('en-US', { 
+  year: 'numeric', 
+  month: 'short', 
+  day: 'numeric' 
+});
+---
+
+<article class="card-polished h-full flex flex-col focus:outline-none focus:ring-2 focus:ring-brand-accent" tabindex="0" role="article" aria-label={`Blog post: ${title}`}>
+  <a href={`/blog/${slug}`} class="block focus-enhanced rounded-xl">
+    <div class="h-40 sm:h-48 md:h-52 rounded-t-xl overflow-hidden mb-6 relative">
+      {heroImage ? (
+        <ResponsiveImageOptimizer
+          src={heroImage}
+          alt={title}
+          width={400}
+          height={300}
+          aspectRatio="4/3"
+          loading="lazy"
+          fetchpriority="low"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+      ) : (
+        <div class="w-full h-full bg-gradient-to-br from-brand-primary-subtle to-brand-primary/5 flex items-center justify-center">
+          <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-brand-primary to-brand-primary-dark flex items-center justify-center shadow-brand">
+            <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 01-2-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+          </div>
+        </div>
+      )}
+    </div>
+  </a>
+  
+  <div class="px-6 pb-6 flex flex-col flex-grow">
+    <div class="flex flex-wrap gap-2 mb-4">
+      {tags.slice(0, 3).map((tag) => (
+        <span class="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border-perfect transition-all duration-200 hover:shadow-sm">
+          {tag}
+        </span>
+      ))}
+    </div>
+    
+    <h3 class="heading-enhanced text-xl leading-snug leading-snug leading-snug font-bold mb-3 group-hover:text-primary transition-colors duration-300">
+      <a href={`/blog/${slug}`} class="focus-enhanced">
+        {title}
+      </a>
+    </h3>
+    
+    <p class="text-enhanced text-sm leading-relaxed leading-relaxed leading-relaxed mb-4 flex-grow line-clamp-3">
+      {description}
+    </p>
+    
+    <footer class="mt-auto pt-4 border-t border-border text-text-tertiary">
+      <time datetime={pubDate.toISOString()} class="text-xs font-medium">
+        {formattedDate}
+      </time>
+    </footer>
+  </div>
+</article>
+
+<script>
+  // Enhanced keyboard navigation
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('article[tabindex="0"]');
+    
+    cards.forEach((card: Element) => {
+      (card as HTMLElement).addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const link = card.querySelector('a');
+          if (link) {
+            link.click();
+          }
+        }
+      });
+      
+      // Enhanced hover effects
+      (card as HTMLElement).addEventListener('mouseenter', () => {
+        (card as HTMLElement).style.transform = `translateY(-${getComputedStyle(document.documentElement).getPropertyValue('--space-0-5').trim()})`;
+      });
+      
+      (card as HTMLElement).addEventListener('mouseleave', () => {
+        (card as HTMLElement).style.transform = 'translateY(0)';
+      });
+    });
+  });
+</script>

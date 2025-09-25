@@ -1,44 +1,379 @@
 ---
-import { cva, type VariantProps } from "class-variance-authority";
-
-const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 touch-target relative overflow-hidden group",
-  {
-    variants: {
-      variant: {
-        default:
-          "bg-[var(--color-brand-accent)] text-[var(--color-brand-primary)] border-2 border-[var(--color-brand-accent)] hover:bg-transparent hover:text-[var(--color-brand-accent)] hover:shadow-[var(--shadow-glow)] transform hover:-translate-y-0.5 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[var(--color-brand-accent)] before:to-[var(--color-brand-purple)] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 z-0 pulse hover-lift",
-        destructive:
-          "bg-red-600 text-white hover:bg-red-700 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 pulse hover-lift",
-        outline:
-          "border border-input bg-transparent hover:bg-surface-secondary shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-[var(--shadow-glow)] hover-lift",
-        secondary:
-          "bg-surface-secondary text-foreground hover:bg-surface-tertiary shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-[var(--shadow-glow)] hover-lift",
-        ghost: "hover:bg-surface-secondary transform hover:-translate-y-0.5 hover-lift",
-        link: "text-[var(--color-brand-accent)] underline-offset-4 hover:underline transform hover:-translate-y-0.5 hover:shadow-[var(--shadow-glow)] hover-lift",
-      },
-      size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-12 rounded-lg px-8 text-base",
-        icon: "h-10 w-10",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-);
-
-export interface Props extends VariantProps<typeof buttonVariants> {
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  disabled?: boolean;
+  loading?: boolean;
+  fullWidth?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  href?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  rel?: string;
+  ariaLabel?: string;
+  ariaDescribedBy?: string;
   class?: string;
-  [key: string]: any;
+  icon?: string;
+  iconPosition?: 'left' | 'right';
 }
 
-const { variant, size, class: className, ...props } = Astro.props;
+const {
+  variant = 'primary',
+  size = 'md',
+  disabled = false,
+  loading = false,
+  fullWidth = false,
+  type = 'button',
+  href,
+  target,
+  rel,
+  ariaLabel,
+  ariaDescribedBy,
+  class: className = '',
+  icon,
+  iconPosition = 'left',
+  ...rest
+} = Astro.props;
+
+// Base classes with modern design principles
+const baseClasses = [
+  'btn',
+  'inline-flex',
+  'items-center',
+  'justify-center',
+  'font-medium',
+  'transition-all',
+  'duration-300',
+  'ease-out',
+  'focus:outline-none',
+  'focus-visible:ring-2',
+  'focus-visible:ring-offset-2',
+  'focus-visible:ring-[hsl(var(--accent))]',
+  'disabled:opacity-50',
+  'disabled:cursor-not-allowed',
+  'disabled:pointer-events-none',
+  'relative',
+  'overflow-hidden',
+  'group'
+];
+
+// Variant classes with consistent design system
+const variantClasses = {
+  primary: [
+    'btn-primary',
+    'shadow-lg',
+    'shadow-[hsl(var(--accent)/0.25)]',
+    'hover:shadow-xl',
+    'hover:shadow-[hsl(var(--accent)/0.3)]'
+  ],
+  secondary: [
+    'btn-secondary',
+    'shadow-md'
+  ],
+  outline: [
+    'btn-outline',
+    'border-2',
+    'hover:shadow-md'
+  ],
+  ghost: [
+    'btn-ghost',
+    'hover:bg-[hsl(var(--surface-muted)/0.5)]'
+  ],
+  danger: [
+    'btn-danger',
+    'shadow-lg',
+    'shadow-[hsl(var(--error)/0.25)]',
+    'hover:shadow-xl',
+    'hover:shadow-[hsl(var(--error)/0.3)]'
+  ],
+  success: [
+    'btn-success',
+    'shadow-lg',
+    'shadow-[hsl(var(--success)/0.25)]',
+    'hover:shadow-xl',
+    'hover:shadow-[hsl(var(--success)/0.3)]'
+  ]
+};
+
+// Consistent size classes using design tokens
+const sizeClasses = {
+  sm: ['text-sm', 'leading-relaxed', 'px-3', 'py-1.5', 'min-h-9', 'gap-1'],
+  md: ['text-base', 'leading-normal', 'px-4', 'py-2', 'min-h-11', 'gap-1'],
+  lg: ['text-lg', 'leading-relaxed', 'px-6', 'py-3', 'min-h-13', 'gap-2'],
+  xl: ['text-xl', 'leading-snug', 'px-8', 'py-4', 'min-h-15', 'gap-2']
+};
+
+// Width classes
+const widthClasses = fullWidth ? ['w-full'] : [];
+
+// Loading classes
+const loadingClasses = loading ? ['cursor-wait'] : [];
+
+// Icon classes
+const iconClasses = icon ? ['has-icon'] : [];
+
+// Combine all classes
+const allClasses = [
+  ...baseClasses,
+  ...variantClasses[variant],
+  ...sizeClasses[size],
+  ...widthClasses,
+  ...loadingClasses,
+  ...iconClasses,
+  className
+].filter(Boolean).join(' ');
+
+// Component props
+const componentProps = {
+  class: allClasses,
+  disabled: disabled || loading,  type: href ? undefined : type,
+  'aria-label': ariaLabel,
+  'aria-describedby': ariaDescribedBy,
+  ...rest
+};
+
+// Link-specific props
+const linkProps = href ? {
+  href,
+  target,
+  rel: target === '_blank' ? 'noopener noreferrer' : rel
+} : {};
 ---
 
-<button class={buttonVariants({ variant, size, class: className })} {...props}>
-  <slot />
-</button>
+{href ? (
+  <a {...componentProps} {...linkProps}>
+    {icon && iconPosition === 'left' && (
+      <span class="icon-left" aria-hidden="true">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor">
+          <use href={`#${icon}`}></use>
+        </svg>
+      </span>
+    )}
+    
+    {loading && (
+      <span class="animate-spin mr-2" aria-hidden="true">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12a9 9 0 11-6.219-8.56"/>
+        </svg>
+      </span>
+    )}
+    
+    <slot />
+    
+    {icon && iconPosition === 'right' && (
+      <span class="icon-right" aria-hidden="true">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor">
+          <use href={`#${icon}`}></use>
+        </svg>
+      </span>
+    )}
+    
+    <!-- Shimmer effect for modern appeal -->
+    <span class="absolute inset-0 -top-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer group-hover:animate-shimmer" aria-hidden="true"></span>
+  </a>
+) : (
+  <button {...componentProps}>
+    {icon && iconPosition === 'left' && (
+      <span class="icon-left" aria-hidden="true">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor">
+          <use href={`#${icon}`}></use>
+        </svg>
+      </span>
+    )}
+    
+    {loading && (
+      <span class="animate-spin mr-2" aria-hidden="true">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12a9 9 0 11-6.219-8.56"/>
+        </svg>
+      </span>
+    )}
+    
+    <slot />
+    
+    {icon && iconPosition === 'right' && (
+      <span class="icon-right" aria-hidden="true">
+        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor">
+          <use href={`#${icon}`}></use>
+        </svg>
+      </span>
+    )}
+    
+    <!-- Shimmer effect for modern appeal -->
+    <span class="absolute inset-0 -top-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer group-hover:animate-shimmer" aria-hidden="true"></span>
+  </button>
+)}
+
+<style>
+  /* Shimmer animation */
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 1.5s ease-in-out;
+  }
+
+  /* Base button styles using design tokens */
+  .btn {
+    font-weight: var(--font-semibold);
+    border-radius: var(--radius-md); /* Consistent 12px border-radius */
+    border: var(--border-width-sm) solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    white-space: nowrap;
+    transform: translateY(0);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Size-specific border-radius using design tokens */
+  .btn.text-sm { border-radius: var(--radius-sm); } /* 8px for small */
+  .btn.text-base { border-radius: var(--radius-md); } /* 12px for medium */
+  .btn.text-lg { border-radius: var(--radius-lg); } /* 16px for large */
+  .btn.text-xl { border-radius: var(--radius-xl); } /* 24px for extra large */
+
+  /* Enhanced focus styles for accessibility */
+  .btn:focus-visible {
+    outline: var(--border-width-md) solid hsl(var(--accent));
+    outline-offset: var(--space-0-5);
+    box-shadow: 0 0 0 var(--space-1) hsl(var(--accent) / 0.1);
+  }
+
+  /* Primary button variant */
+  .btn-primary {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+    color: hsl(var(--surface-primary));
+    border-color: hsl(var(--primary));
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--primary)) 100%);
+    transform: translateY(calc(-1 * var(--space-0-5)));
+    border-color: hsl(var(--accent));
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    background: hsl(var(--primary) / 0.8);
+  }
+
+  /* Secondary button variant */
+  .btn-secondary {
+    background: linear-gradient(135deg, hsl(var(--surface-muted)) 0%, hsl(var(--surface-secondary)) 100%);
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--surface-secondary));
+  }
+
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, hsl(var(--surface-secondary)) 0%, hsl(var(--surface-muted)) 100%);
+    transform: translateY(calc(-1 * var(--space-0-25)));
+    border-color: hsl(var(--surface-secondary));
+  }
+
+  /* Outline button variant */
+  .btn-outline {
+    background: transparent;
+    color: hsl(var(--accent));
+    border-color: hsl(var(--accent));
+    border-width: var(--border-width-md);
+    backdrop-filter: blur(var(--blur-md));
+  }
+
+  .btn-outline:hover {
+    background: hsl(var(--accent) / 0.1);
+    color: hsl(var(--accent));
+    transform: translateY(calc(-1 * var(--space-0-25)));
+    border-color: hsl(var(--accent));
+  }
+
+  /* Ghost button variant */
+  .btn-ghost {
+    background: transparent;
+    color: hsl(var(--foreground-muted));
+    border-color: transparent;
+  }
+
+  .btn-ghost:hover {
+    background: hsl(var(--surface-muted));
+    color: hsl(var(--foreground));
+  }
+
+  /* Danger button variant */
+  .btn-danger {
+    background: linear-gradient(135deg, hsl(var(--error)) 0%, hsl(var(--error) / 0.9) 100%);
+    color: hsl(var(--surface-primary));
+    border-color: hsl(var(--error));
+  }
+
+  .btn-danger:hover {
+    background: linear-gradient(135deg, hsl(var(--error) / 0.9) 0%, hsl(var(--error) / 0.8) 100%);
+    transform: translateY(calc(-1 * var(--space-0-5)));
+    border-color: hsl(var(--error) / 0.9);
+  }
+
+  /* Success button variant */
+  .btn-success {
+    background: linear-gradient(135deg, hsl(var(--success-light)) 0%, hsl(var(--success)) 100%);
+    color: hsl(var(--surface-primary));
+    border-color: hsl(var(--success-light));
+  }
+
+  .btn-success:hover {
+    transform: translateY(calc(-1 * var(--space-0-5)));
+    border-color: hsl(var(--success));
+  }
+
+  /* Icon styling */
+  .icon-left,
+  .icon-right {
+    display: inline-flex;
+    align-items: center;
+    width: 1em;
+    height: 1em;
+  }
+
+  .icon-left svg,
+  .icon-right svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .btn {
+      border-width: var(--border-width-lg);
+    }
+
+    .btn:focus-visible {
+      outline-width: var(--border-width-lg);
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+      transform: none !important;
+    }
+
+    .animate-shimmer {
+      animation: none;
+    }
+
+    .animate-spin {
+      animation: none;
+    }
+  }
+
+  /* Dark mode enhancements */
+  @media (prefers-color-scheme: dark) {
+    .btn-outline {
+      background: hsl(var(--surface-primary) / 0.2);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, hsl(var(--surface-primary)) 0%, hsl(var(--surface-secondary)) 100%);
+    }
+  }
+</style>

@@ -1,9 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import ResponsiveImageOptimizer from '../components/layout/ResponsiveImageOptimizer.astro';
 
 ---
 
-<Layout title="Gallery | Nosyt Labs">
+<MainLayout title="Gallery | Nosyt Labs">
   <main class="container mx-auto px-4 py-16">
     
     <h1 class="brand-heading-1 text-center">Gallery</h1>
@@ -12,53 +13,107 @@ import Layout from '../layouts/Layout.astro';
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
       <!-- Gallery Item 1 -->
-      <div class="bg-secondary rounded-lg overflow-hidden">
-        <img src="/gallery/ai-analytics.png" alt="AI Analytics Dashboard" class="w-full h-64 object-cover">
+      <div class="bg-surface-secondary rounded-lg overflow-hidden border border-border">
+        <ResponsiveImageOptimizer
+          src="/images/gallery/gallery1.svg"
+          alt="AI Analytics Dashboard"
+          width={400}
+          height={256}
+          aspectRatio="25/16"
+          loading="lazy"
+          fetchpriority="low"
+          class="w-full h-64 object-cover"
+        />
         <div class="p-6">
-          <h3 class="brand-heading-5">AI Analytics Platform</h3>
-          <p class="brand-body-sm mt-2">Advanced data visualization and predictive analytics tool developed for enterprise clients.</p>
+          <h3 class="text-xl font-semibold mb-2">AI Analytics Platform</h3>
+          <p class="text-muted-foreground">Advanced data visualization and predictive analytics tool developed for enterprise clients.</p>
         </div>
       </div>
       <!-- Gallery Item 2 -->
-      <div class="bg-secondary rounded-lg overflow-hidden">
-        <img src="/gallery/blockchain-app.png" alt="Blockchain Application" class="w-full h-64 object-cover">
+      <div class="bg-surface-secondary rounded-lg overflow-hidden border border-border">
+        <ResponsiveImageOptimizer
+          src="/images/gallery/gallery2.svg"
+          alt="Blockchain Application"
+          width={400}
+          height={256}
+          aspectRatio="25/16"
+          loading="lazy"
+          fetchpriority="low"
+          class="w-full h-64 object-cover"
+        />
         <div class="p-6">
-          <h3 class="brand-heading-5">Decentralized Finance App</h3>
-          <p class="brand-body-sm mt-2">Secure blockchain-based solution for financial transactions and smart contracts.</p>
+          <h3 class="text-xl font-semibold mb-2">Decentralized Finance App</h3>
+          <p class="text-muted-foreground">Secure blockchain-based solution for financial transactions and smart contracts.</p>
         </div>
       </div>
       <!-- Gallery Item 3 -->
-      <div class="bg-secondary rounded-lg overflow-hidden">
-        <img src="/gallery/team-event.png" alt="Team Event" class="w-full h-64 object-cover">
+      <div class="bg-surface-secondary rounded-lg overflow-hidden border border-border">
+        <ResponsiveImageOptimizer
+          src="/images/gallery/gallery3.svg"
+          alt="Team Event"
+          width={400}
+          height={256}
+          aspectRatio="25/16"
+          loading="lazy"
+          fetchpriority="low"
+          class="w-full h-64 object-cover"
+        />
         <div class="p-6">
-          <h3 class="brand-heading-5">Tech Conference 2023</h3>
-          <p class="brand-body-sm mt-2">Nosyt Labs team presenting innovations at the annual technology summit.</p>
+          <h3 class="text-xl font-semibold mb-2">Tech Conference 2023</h3>
+          <p class="text-muted-foreground">Nosyt Labs team presenting innovations at the annual technology summit.</p>
         </div>
       </div>
       <!-- Gallery Item 4 -->
-      <div class="bg-secondary rounded-lg overflow-hidden">
-        <img src="/gallery/iot-device.png" alt="IoT Device Prototype" class="w-full h-64 object-cover">
+      <div class="bg-surface-secondary rounded-lg overflow-hidden border border-border">
+        <ResponsiveImageOptimizer
+          src="/images/gallery/gallery1.svg"
+          alt="IoT Device Prototype"
+          width={400}
+          height={256}
+          aspectRatio="25/16"
+          loading="lazy"
+          fetchpriority="low"
+          class="w-full h-64 object-cover"
+        />
         <div class="p-6">
-          <h3 class="brand-heading-5">IoT Smart Device</h3>
-          <p class="brand-body-sm mt-2">Prototype for connected home automation system with AI integration.</p>
+          <h3 class="text-xl font-semibold mb-2">IoT Smart Device</h3>
+          <p class="text-muted-foreground">Prototype for connected home automation system with AI integration.</p>
         </div>
       </div>
       <!-- Gallery Item 5 -->
-      <div class="bg-secondary rounded-lg overflow-hidden">
-        <img src="/gallery/cloud-infra.png" alt="Cloud Infrastructure" class="w-full h-64 object-cover">
+      <div class="bg-surface-secondary rounded-lg overflow-hidden border border-border">
+        <ResponsiveImageOptimizer
+          src="/images/gallery/gallery2.svg"
+          alt="Cloud Infrastructure"
+          width={400}
+          height={256}
+          aspectRatio="25/16"
+          loading="lazy"
+          fetchpriority="low"
+          class="w-full h-64 object-cover"
+        />
         <div class="p-6">
-          <h3 class="brand-heading-5">Cloud Migration Project</h3>
-          <p class="brand-body-sm mt-2">Seamless transition to scalable cloud architecture for a major client.</p>
+          <h3 class="text-xl font-semibold mb-2">Cloud Migration Project</h3>
+          <p class="text-muted-foreground">Seamless transition to scalable cloud architecture for a major client.</p>
         </div>
       </div>
       <!-- Gallery Item 6 -->
-      <div class="bg-secondary rounded-lg overflow-hidden">
-        <img src="/gallery/mobile-app.png" alt="Mobile Application" class="w-full h-64 object-cover">
+      <div class="bg-surface-secondary rounded-lg overflow-hidden border border-border">
+        <ResponsiveImageOptimizer
+          src="/images/gallery/gallery3.svg"
+          alt="Mobile Application"
+          width={400}
+          height={256}
+          aspectRatio="25/16"
+          loading="lazy"
+          fetchpriority="low"
+          class="w-full h-64 object-cover"
+        />
         <div class="p-6">
-          <h3 class="brand-heading-5">Mobile Health App</h3>
-          <p class="brand-body-sm mt-2">Cross-platform app for health monitoring and telemedicine services.</p>
+          <h3 class="text-xl font-semibold mb-2">Mobile Health App</h3>
+          <p class="text-muted-foreground">Cross-platform app for health monitoring and telemedicine services.</p>
         </div>
       </div>
     </div>
   </main>
-</Layout>
+</MainLayout>

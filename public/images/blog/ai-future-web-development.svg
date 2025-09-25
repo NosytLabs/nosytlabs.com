@@ -1,0 +1,95 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="400" fill="url(#grid)"/>
+  
+  <!-- AI Brain/Network -->
+  <g transform="translate(150, 100)">
+    <!-- Central AI node -->
+    <circle cx="250" cy="100" r="30" fill="url(#aiGradient)" filter="url(#glow)"/>
+    <text x="250" y="105" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">AI</text>
+    
+    <!-- Connected nodes -->
+    <circle cx="150" cy="50" r="15" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="350" cy="50" r="15" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="100" cy="150" r="15" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="400" cy="150" r="15" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="200" cy="200" r="15" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="300" cy="200" r="15" fill="rgba(255,255,255,0.8)"/>
+    
+    <!-- Connection lines -->
+    <line x1="250" y1="100" x2="150" y2="50" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+    <line x1="250" y1="100" x2="350" y2="50" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+    <line x1="250" y1="100" x2="100" y2="150" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+    <line x1="250" y1="100" x2="400" y2="150" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+    <line x1="250" y1="100" x2="200" y2="200" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+    <line x1="250" y1="100" x2="300" y2="200" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+    
+    <!-- Node labels -->
+    <text x="150" y="35" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10">Code</text>
+    <text x="350" y="35" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10">Design</text>
+    <text x="100" y="135" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10">Test</text>
+    <text x="400" y="135" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10">Deploy</text>
+    <text x="200" y="185" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10">Debug</text>
+    <text x="300" y="185" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10">Optimize</text>
+  </g>
+  
+  <!-- Code elements -->
+  <g transform="translate(50, 50)">
+    <rect x="0" y="0" width="120" height="80" rx="8" fill="rgba(0,0,0,0.3)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+    <text x="10" y="20" fill="#00ff88" font-family="monospace" font-size="10">&lt;html&gt;</text>
+    <text x="10" y="35" fill="#ff6b6b" font-family="monospace" font-size="10">  &lt;body&gt;</text>
+    <text x="10" y="50" fill="#4ecdc4" font-family="monospace" font-size="10">    AI++</text>
+    <text x="10" y="65" fill="#ff6b6b" font-family="monospace" font-size="10">  &lt;/body&gt;</text>
+  </g>
+  
+  <!-- Future elements -->
+  <g transform="translate(580, 280)">
+    <rect x="0" y="0" width="150" height="100" rx="12" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+    <text x="75" y="25" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Future Web</text>
+    <text x="75" y="45" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="10">• Auto-coding</text>
+    <text x="75" y="60" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="10">• Smart UX</text>
+    <text x="75" y="75" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="10">• AI Testing</text>
+    <text x="75" y="90" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="10">• Zero-config</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="50" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="28" font-weight="bold">AI Future of Web Development</text>
+  <text x="400" y="75" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="16">Transforming Development in 2025</text>
+  
+  <!-- Floating particles -->
+  <circle cx="100" cy="300" r="3" fill="rgba(255,255,255,0.6)">
+    <animate attributeName="cy" values="300;280;300" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="700" cy="150" r="2" fill="rgba(255,255,255,0.4)">
+    <animate attributeName="cy" values="150;130;150" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="50" cy="200" r="2.5" fill="rgba(255,255,255,0.5)">
+    <animate attributeName="cy" values="200;180;200" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+</svg>

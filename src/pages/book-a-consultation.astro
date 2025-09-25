@@ -1,9 +1,10 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/ui/Button.astro';
 
 ---
 
-<Layout title="Book a Consultation | Nosyt Labs">
+<MainLayout title="Book a Consultation | Nosyt Labs">
   <main class="container mx-auto px-4 py-16">
     
     <h1 class="brand-heading-1 text-center">Book a Consultation</h1>
@@ -12,28 +13,172 @@ import Layout from '../layouts/Layout.astro';
     </p>
     <div class="max-w-2xl mx-auto mt-16">
       <div class="bg-secondary rounded-lg p-8">
-        <form>
+        <form method="POST" action="/api/contact" id="consultation-form">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="flex flex-col">
-              <label for="name" class="brand-body-sm mb-2">Full Name</label>
-              <input type="text" id="name" name="name" class="bg-primary border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-nexus-cyan">
+              <label for="name" class="brand-body-sm mb-2">Full Name <span class="text-red-400">*</span></label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required
+                minlength="2"
+                maxlength="100"
+                class="bg-primary border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
+                placeholder="Your Name"
+              />
             </div>
             <div class="flex flex-col">
-              <label for="email" class="brand-body-sm mb-2">Email Address</label>
-              <input type="email" id="email" name="email" class="bg-primary border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-nexus-cyan">
+              <label for="email" class="brand-body-sm mb-2">Email Address <span class="text-red-400">*</span></label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required
+                pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                class="bg-primary border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
+                placeholder="your@email.com"
+              />
             </div>
           </div>
           <div class="flex flex-col mt-6">
-            <label for="message" class="brand-body-sm mb-2">Message</label>
-            <textarea id="message" name="message" rows="4" class="bg-primary border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-nexus-cyan"></textarea>
+            <label for="message" class="brand-body-sm mb-2">Message <span class="text-red-400">*</span></label>
+            <textarea 
+              id="message" 
+              name="message" 
+              rows="4" 
+              required
+              minlength="10"
+              maxlength="2000"
+              class="bg-primary border border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-accent"
+              placeholder="Tell us about your project..."
+            ></textarea>
           </div>
           <div class="text-center mt-8">
-            <button type="submit" class="bg-nexus-cyan text-primary font-bold rounded-full px-8 py-3 hover:bg-white transition-colors duration-300">
+            <Button type="submit" variant="primary" size="lg">
               Send Message
-            </button>
+            </Button>
           </div>
         </form>
       </div>
     </div>
   </main>
-</Layout>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.querySelector('#consultation-form');
+      
+      if (!form) return;
+
+      // Form validation
+      const validators = {
+        name: (value) => {
+          if (!value.trim()) return 'Name is required';
+          if (value.trim().length < 2) return 'Name must be at least 2 characters';
+          if (value.trim().length > 100) return 'Name must be less than 100 characters';
+          return null;
+        },
+        email: (value) => {
+          if (!value.trim()) return 'Email is required';
+          const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          if (!emailRegex.test(value)) return 'Please enter a valid email address';
+          return null;
+        },
+        message: (value) => {
+          if (!value.trim()) return 'Message is required';
+          if (value.trim().length < 10) return 'Message must be at least 10 characters';
+          if (value.trim().length > 2000) return 'Message must be less than 2000 characters';
+          return null;
+        }
+      };
+
+      // Show/hide error messages
+      function showFieldError(fieldName, message) {
+        const field = document.querySelector(`#${fieldName}`);
+        const errorDiv = field.parentElement.querySelector('.error-message');
+        if (errorDiv && field) {
+          errorDiv.textContent = message;
+          errorDiv.classList.remove('hidden');
+          field.classList.add('border-red-500');
+          field.classList.remove('border-gray-700');
+        }
+      }
+
+      function hideFieldError(fieldName) {
+        const field = document.querySelector(`#${fieldName}`);
+        const errorDiv = field.parentElement.querySelector('.error-message');
+        if (errorDiv && field) {
+          errorDiv.classList.add('hidden');
+          field.classList.remove('border-red-500');
+          field.classList.add('border-gray-700');
+        }
+      }
+
+      // Add error message containers
+      Object.keys(validators).forEach(fieldName => {
+        const field = document.querySelector(`#${fieldName}`);
+        if (field) {
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'error-message text-red-400 text-sm hidden mt-1';
+          field.parentElement.appendChild(errorDiv);
+        }
+      });
+
+      // Real-time validation
+      Object.keys(validators).forEach(fieldName => {
+        const field = document.querySelector(`#${fieldName}`);
+        if (field) {
+          field.addEventListener('blur', () => {
+            const error = validators[fieldName](field.value);
+            if (error) {
+              showFieldError(fieldName, error);
+            } else {
+              hideFieldError(fieldName);
+            }
+          });
+          
+          field.addEventListener('input', () => {
+            hideFieldError(fieldName);
+          });
+        }
+      });
+
+      // Form submission
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        let isValid = true;
+        Object.keys(validators).forEach(fieldName => {
+          const field = document.querySelector(`#${fieldName}`);
+          if (field) {
+            const error = validators[fieldName](field.value);
+            if (error) {
+              showFieldError(fieldName, error);
+              isValid = false;
+            }
+          }
+        });
+
+        if (!isValid) return;
+
+        // Submit form
+        try {
+          const formData = new FormData(form);
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            body: formData
+          });
+
+          if (response.ok) {
+            form.reset();
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+          } else {
+            alert('There was an error sending your message. Please try again.');
+          }
+        } catch (error) {
+          alert('There was an error sending your message. Please try again.');
+        }
+      });
+    });
+  </script>
+</MainLayout>

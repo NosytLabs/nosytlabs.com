@@ -1,0 +1,60 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8fafc;stop-opacity:0.95" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bg)"/>
+  
+  <!-- Browser Window -->
+  <rect x="20" y="40" width="360" height="220" rx="8" fill="url(#card)" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Browser Header -->
+  <rect x="20" y="40" width="360" height="30" rx="8" fill="#f1f5f9"/>
+  <circle cx="35" cy="55" r="4" fill="#ef4444"/>
+  <circle cx="50" cy="55" r="4" fill="#f59e0b"/>
+  <circle cx="65" cy="55" r="4" fill="#10b981"/>
+  
+  <!-- URL Bar -->
+  <rect x="90" y="48" width="200" height="14" rx="7" fill="#ffffff" stroke="#e2e8f0"/>
+  <text x="95" y="58" font-family="Arial, sans-serif" font-size="8" fill="#64748b">ecommerce-platform.demo</text>
+  
+  <!-- Shopping Cart Icon -->
+  <g transform="translate(180, 120)">
+    <rect x="0" y="15" width="40" height="30" rx="4" fill="#667eea" opacity="0.1"/>
+    <path d="M8 4l2.5 14h19l2.5-14H8z" fill="none" stroke="#667eea" stroke-width="2"/>
+    <circle cx="15" cy="25" r="2" fill="#667eea"/>
+    <circle cx="25" cy="25" r="2" fill="#667eea"/>
+    <path d="M8 4H4" stroke="#667eea" stroke-width="2"/>
+  </g>
+  
+  <!-- Product Cards -->
+  <rect x="50" y="100" width="80" height="60" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="55" y="105" width="70" height="30" rx="2" fill="#f8fafc"/>
+  <rect x="55" y="140" width="40" height="8" rx="2" fill="#667eea"/>
+  <rect x="100" y="140" width="20" height="8" rx="2" fill="#10b981"/>
+  
+  <rect x="150" y="100" width="80" height="60" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="155" y="105" width="70" height="30" rx="2" fill="#f8fafc"/>
+  <rect x="155" y="140" width="40" height="8" rx="2" fill="#667eea"/>
+  <rect x="200" y="140" width="20" height="8" rx="2" fill="#10b981"/>
+  
+  <rect x="250" y="100" width="80" height="60" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="255" y="105" width="70" height="30" rx="2" fill="#f8fafc"/>
+  <rect x="255" y="140" width="40" height="8" rx="2" fill="#667eea"/>
+  <rect x="300" y="140" width="20" height="8" rx="2" fill="#10b981"/>
+  
+  <!-- AI Badge -->
+  <rect x="300" y="200" width="80" height="20" rx="10" fill="#764ba2"/>
+  <text x="340" y="212" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">AI Powered</text>
+  
+  <!-- Title -->
+  <text x="200" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">E-Commerce Platform</text>
+</svg>

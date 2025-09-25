@@ -1,0 +1,56 @@
+---
+// CSS Optimizer Component - Properly loads CSS files for Astro
+// This component handles CSS loading using Astro's style system
+
+export interface Props {
+  criticalCSS?: boolean;
+  deferredCSS?: boolean;
+  preloadCSS?: boolean;
+}
+
+const {
+  criticalCSS = true,   // Enable critical CSS inlining
+  deferredCSS = true,   // Enable deferred loading for non-critical CSS
+  preloadCSS = true,    // Keep preload for performance
+} = Astro.props;
+
+// Import CSS files directly in the frontmatter
+import '../styles/unified.css';
+import '../styles/design-system.css';
+import '../styles/svg-fixes.css';
+---
+
+<style>
+  /* CSS Optimizer component styles */
+  .css-optimizer-loaded {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* Prevent FOUC (Flash of Unstyled Content) */
+  body:not(.css-loaded) {
+    visibility: hidden;
+  }
+  
+  body.css-loaded {
+    visibility: visible;
+  }
+</style>
+
+<script>
+  // CSS loading script
+  (function() {
+    // Mark CSS as loaded
+    window.cssLoaded = true;
+    document.body.classList.add('css-loaded');
+    
+    // Remove any loading indicators
+    const loadingIndicators = document.querySelectorAll('[data-css-loading]');
+    loadingIndicators.forEach(indicator => {
+      indicator.remove();
+    });
+    
+    // Dispatch custom event for CSS loaded
+    window.dispatchEvent(new CustomEvent('css-loaded'));
+  })();
+</script>

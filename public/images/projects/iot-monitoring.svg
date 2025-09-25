@@ -1,0 +1,126 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iotGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="deviceGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:0.8" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#iotGradient)"/>
+  
+  <!-- Dashboard Container -->
+  <rect x="30" y="30" width="340" height="240" rx="15" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <!-- Header -->
+  <rect x="30" y="30" width="340" height="45" rx="15" fill="#f8fafc"/>
+  <rect x="30" y="60" width="340" height="1" fill="#e2e8f0"/>
+  
+  <!-- Title -->
+  <rect x="50" y="45" width="100" height="6" rx="3" fill="#374151"/>
+  <rect x="50" y="55" width="70" height="4" rx="2" fill="#9ca3af"/>
+  
+  <!-- Status Indicators -->
+  <circle cx="300" cy="50" r="4" fill="#10b981"/>
+  <rect x="310" y="47" width="30" height="3" rx="1.5" fill="#10b981"/>
+  <rect x="310" y="52" width="20" height="2" rx="1" fill="#9ca3af"/>
+  
+  <!-- Device Network Visualization -->
+  <g transform="translate(200, 150)">
+    <!-- Central Hub -->
+    <circle cx="0" cy="0" r="15" fill="url(#deviceGradient)" stroke="#0ea5e9" stroke-width="2"/>
+    <circle cx="0" cy="0" r="8" fill="white"/>
+    <rect x="-4" y="-2" width="8" height="4" rx="2" fill="#0ea5e9"/>
+    
+    <!-- Connected Devices -->
+    <!-- Device 1 - Top -->
+    <line x1="0" y1="-15" x2="0" y2="-40" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3,3">
+      <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="0" cy="-50" r="8" fill="#22c55e"/>
+    <rect x="-3" y="-53" width="6" height="6" rx="1" fill="white"/>
+    
+    <!-- Device 2 - Top Right -->
+    <line x1="11" y1="-11" x2="25" y2="-25" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3,3">
+      <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="35" cy="-35" r="8" fill="#f59e0b"/>
+    <rect x="32" y="-38" width="6" height="6" rx="1" fill="white"/>
+    
+    <!-- Device 3 - Right -->
+    <line x1="15" y1="0" x2="40" y2="0" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3,3">
+      <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="50" cy="0" r="8" fill="#8b5cf6"/>
+    <rect x="47" y="-3" width="6" height="6" rx="1" fill="white"/>
+    
+    <!-- Device 4 - Bottom Right -->
+    <line x1="11" y1="11" x2="25" y2="25" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3,3">
+      <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" begin="1.5s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="35" cy="35" r="8" fill="#ef4444"/>
+    <rect x="32" y="32" width="6" height="6" rx="1" fill="white"/>
+    
+    <!-- Device 5 - Bottom -->
+    <line x1="0" y1="15" x2="0" y2="40" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3,3">
+      <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" begin="0.3s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="0" cy="50" r="8" fill="#06b6d4"/>
+    <rect x="-3" y="47" width="6" height="6" rx="1" fill="white"/>
+    
+    <!-- Device 6 - Left -->
+    <line x1="-15" y1="0" x2="-40" y2="0" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3,3">
+      <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" begin="0.8s" repeatCount="indefinite"/>
+    </line>
+    <circle cx="-50" cy="0" r="8" fill="#f97316"/>
+    <rect x="-53" y="-3" width="6" height="6" rx="1" fill="white"/>
+  </g>
+  
+  <!-- Monitoring Panel -->
+  <rect x="50" y="80" width="120" height="80" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <!-- Device Status List -->
+  <rect x="60" y="90" width="100" height="15" rx="4" fill="white" stroke="#d1d5db" stroke-width="1"/>
+  <circle cx="70" cy="97" r="3" fill="#10b981"/>
+  <rect x="78" y="94" width="50" height="3" rx="1.5" fill="#374151"/>
+  <rect x="78" y="99" width="30" height="2" rx="1" fill="#9ca3af"/>
+  <rect x="140" y="94" width="15" height="3" rx="1.5" fill="#10b981"/>
+  
+  <rect x="60" y="110" width="100" height="15" rx="4" fill="white" stroke="#d1d5db" stroke-width="1"/>
+  <circle cx="70" cy="117" r="3" fill="#f59e0b"/>
+  <rect x="78" y="114" width="45" height="3" rx="1.5" fill="#374151"/>
+  <rect x="78" y="119" width="25" height="2" rx="1" fill="#9ca3af"/>
+  <rect x="140" y="114" width="18" height="3" rx="1.5" fill="#f59e0b"/>
+  
+  <rect x="60" y="130" width="100" height="15" rx="4" fill="white" stroke="#d1d5db" stroke-width="1"/>
+  <circle cx="70" cy="137" r="3" fill="#ef4444"/>
+  <rect x="78" y="134" width="40" height="3" rx="1.5" fill="#374151"/>
+  <rect x="78" y="139" width="35" height="2" rx="1" fill="#9ca3af"/>
+  <rect x="140" y="134" width="12" height="3" rx="1.5" fill="#ef4444"/>
+  
+  <!-- Metrics Panel -->
+  <rect x="200" y="80" width="120" height="80" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <!-- Metric Cards -->
+  <rect x="210" y="90" width="45" height="30" rx="4" fill="#ecfdf5" stroke="#22c55e" stroke-width="1"/>
+  <rect x="215" y="95" width="20" height="3" rx="1.5" fill="#22c55e"/>
+  <rect x="215" y="100" width="35" height="5" rx="2.5" fill="#16a34a"/>
+  <rect x="215" y="108" width="15" height="2" rx="1" fill="#9ca3af"/>
+  
+  <rect x="265" y="90" width="45" height="30" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <rect x="270" y="95" width="25" height="3" rx="1.5" fill="#f59e0b"/>
+  <rect x="270" y="100" width="30" height="5" rx="2.5" fill="#d97706"/>
+  <rect x="270" y="108" width="20" height="2" rx="1" fill="#9ca3af"/>
+  
+  <rect x="210" y="130" width="45" height="20" rx="4" fill="#fef2f2" stroke="#ef4444" stroke-width="1"/>
+  <rect x="215" y="135" width="18" height="3" rx="1.5" fill="#ef4444"/>
+  <rect x="215" y="140" width="25" height="3" rx="1.5" fill="#dc2626"/>
+  
+  <rect x="265" y="130" width="45" height="20" rx="4" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="1"/>
+  <rect x="270" y="135" width="22" height="3" rx="1.5" fill="#0ea5e9"/>
+  <rect x="270" y="140" width="30" height="3" rx="1.5" fill="#0284c7"/>
+</svg>

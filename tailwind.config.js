@@ -1,215 +1,194 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
-  content: ['./pages/**/*.{ts,tsx,astro,html,js}', './components/**/*.{ts,tsx,astro,html,js}', './app/**/*.{ts,tsx,astro,html,js}', './src/**/*.{ts,tsx,astro,html,js}'],
+  content: [
+    './src/**/*.{astro,js,jsx,ts,tsx,mdx}',
+    './public/**/*.html'
+  ],
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px'
-      }
-    },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+          50: 'hsl(var(--color-primary-50) / <alpha-value>)',
+          100: 'hsl(var(--color-primary-100) / <alpha-value>)',
+          200: 'hsl(var(--color-primary-200) / <alpha-value>)',
+          300: 'hsl(var(--color-primary-300) / <alpha-value>)',
+          400: 'hsl(var(--color-primary-400) / <alpha-value>)',
+          500: 'hsl(var(--color-primary-500) / <alpha-value>)',
+          600: 'hsl(var(--color-primary-600) / <alpha-value>)',
+          700: 'hsl(var(--color-primary-700) / <alpha-value>)',
+          800: 'hsl(var(--color-primary-800) / <alpha-value>)',
+          900: 'hsl(var(--color-primary-900) / <alpha-value>)',
+          950: 'hsl(var(--color-primary-950) / <alpha-value>)',
         },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))'
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))'
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))'
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))'
-        },
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))'
-        },
-        // 2025 Brand & Geometric Color System
-        brand: {
-          primary: 'var(--color-brand-primary)',
-          secondary: 'var(--color-brand-secondary)',
-          accent: 'var(--color-brand-accent)',
-          'accent-muted': 'var(--color-brand-accent-muted)',
-          'accent-subtle': 'var(--color-brand-accent-subtle)',
-          'text-primary': 'var(--color-brand-text-primary)',
-          'text-secondary': 'var(--color-brand-text-secondary)',
-          'text-muted': 'var(--color-brand-text-muted)',
-          'signal-white': 'var(--color-brand-signal-white)',
-          // Added design tokens for highlight and alternate accent
-          'highlight': 'var(--color-brand-highlight)',
-          'accent-alt': 'var(--color-brand-accent-alt)'
-        },
-        geometric: {
-          primary: 'var(--color-geometric-primary)',
-          secondary: 'var(--color-geometric-secondary)',
-          tertiary: 'var(--color-geometric-tertiary)',
-          quaternary: 'var(--color-geometric-quaternary)'
+        neutral: {
+          0: 'hsl(var(--color-neutral-0) / <alpha-value>)',
+          50: 'hsl(var(--color-neutral-50) / <alpha-value>)',
+          100: 'hsl(var(--color-neutral-100) / <alpha-value>)',
+          200: 'hsl(var(--color-neutral-200) / <alpha-value>)',
+          300: 'hsl(var(--color-neutral-300) / <alpha-value>)',
+          400: 'hsl(var(--color-neutral-400) / <alpha-value>)',
+          500: 'hsl(var(--color-neutral-500) / <alpha-value>)',
+          600: 'hsl(var(--color-neutral-600) / <alpha-value>)',
+          700: 'hsl(var(--color-neutral-700) / <alpha-value>)',
+          800: 'hsl(var(--color-neutral-800) / <alpha-value>)',
+          900: 'hsl(var(--color-neutral-900) / <alpha-value>)',
+          950: 'hsl(var(--color-neutral-950) / <alpha-value>)',
         },
         surface: {
-          primary: 'var(--color-surface-primary)',
-          secondary: 'var(--color-surface-secondary)',
-          tertiary: 'var(--color-surface-tertiary)',
-          elevated: 'var(--color-surface-elevated)',
-          glass: 'var(--color-surface-glass)',
-          'glass-strong': 'var(--color-surface-glass-strong)'
+          primary: 'hsl(var(--surface-primary) / <alpha-value>)',
+          secondary: 'hsl(var(--surface-secondary) / <alpha-value>)',
+          tertiary: 'hsl(var(--surface-tertiary) / <alpha-value>)',
+          quaternary: 'hsl(var(--surface-quaternary) / <alpha-value>)',
+          muted: 'hsl(var(--surface-muted) / <alpha-value>)',
+          elevated: 'hsl(var(--surface-elevated) / <alpha-value>)',
+          overlay: 'hsl(var(--surface-overlay) / <alpha-value>)',
         },
-        // Brand colors for tests
-        'deep-space-black': '#0D0D0D',
-        'signal-white': '#FFFFFF',
-        'nexus-cyan': '#00F0FF',
-        'brand-gray': '#808080'
+        text: {
+          primary: 'hsl(var(--text-primary) / <alpha-value>)',
+          secondary: 'hsl(var(--text-secondary) / <alpha-value>)',
+          tertiary: 'hsl(var(--text-tertiary) / <alpha-value>)',
+          quaternary: 'hsl(var(--text-quaternary) / <alpha-value>)',
+          muted: 'hsl(var(--text-muted) / <alpha-value>)',
+          inverse: 'hsl(var(--text-inverse) / <alpha-value>)',
+          accent: 'hsl(var(--text-accent) / <alpha-value>)',
+          'on-brand': 'hsl(var(--text-on-brand) / <alpha-value>)',
+        },
+        border: {
+          DEFAULT: 'hsl(var(--border) / <alpha-value>)',
+          primary: 'hsl(var(--border-primary) / <alpha-value>)',
+          secondary: 'hsl(var(--border-secondary) / <alpha-value>)',
+          accent: 'hsl(var(--border-accent) / <alpha-value>)',
+          subtle: 'hsl(var(--border-subtle) / <alpha-value>)',
+        },
+        brand: {
+          primary: 'hsl(var(--brand-primary) / <alpha-value>)',
+          'primary-hover': 'hsl(var(--brand-primary-hover) / <alpha-value>)',
+          accent: 'hsl(var(--brand-accent) / <alpha-value>)',
+        },
+        interactive: {
+          primary: 'hsl(var(--interactive-primary) / <alpha-value>)',
+          'primary-hover': 'hsl(var(--interactive-primary-hover) / <alpha-value>)',
+          'primary-active': 'hsl(var(--interactive-primary-active) / <alpha-value>)',
+          secondary: 'hsl(var(--interactive-secondary) / <alpha-value>)',
+          'secondary-hover': 'hsl(var(--interactive-secondary-hover) / <alpha-value>)',
+          'secondary-active': 'hsl(var(--interactive-secondary-active) / <alpha-value>)',
+        },
+        feedback: {
+          success: 'hsl(var(--success) / <alpha-value>)',
+          'success-hover': 'hsl(var(--success-hover) / <alpha-value>)',
+          'success-light': 'hsl(var(--success-light) / <alpha-value>)',
+          warning: 'hsl(var(--warning) / <alpha-value>)',
+          'warning-hover': 'hsl(var(--warning-hover) / <alpha-value>)',
+          'warning-light': 'hsl(var(--warning-light) / <alpha-value>)',
+          error: 'hsl(var(--error) / <alpha-value>)',
+          'error-hover': 'hsl(var(--error-hover) / <alpha-value>)',
+          'error-light': 'hsl(var(--error-light) / <alpha-value>)',
+          info: 'hsl(var(--info) / <alpha-value>)',
+        },
       },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-        // 2025 Soft Rounded Edges
-        'soft': 'var(--border-radius-md)',
-        'soft-lg': 'var(--border-radius-lg)',
-        'soft-xl': 'var(--border-radius-xl)',
-        'soft-2xl': 'var(--border-radius-2xl)'
+      spacing: {
+        '0': 'var(--space-0)',
+        '0.5': 'var(--space-0-5)',
+        '1': 'var(--space-1)',
+        '1.5': 'var(--space-1-5)',
+        '2': 'var(--space-2)',
+        '2.5': 'var(--space-2-5)',
+        '3': 'var(--space-3)',
+        '3.5': 'var(--space-3-5)',
+        '4': 'var(--space-4)',
+        '5': 'var(--space-5)',
+        '6': 'var(--space-6)',
+        '8': 'var(--space-8)',
+        '10': 'var(--space-10)',
+        '12': 'var(--space-12)',
+        '16': 'var(--space-16)',
+        '20': 'var(--space-20)',
+        '24': 'var(--space-24)',
+        '32': 'var(--space-32)',
+        '40': 'var(--space-40)',
+        '48': 'var(--space-48)',
+        '56': 'var(--space-56)',
+        '64': 'var(--space-64)',
+        '72': 'var(--space-72)',
       },
       fontFamily: {
-        satoshi: [
-          'Satoshi',
-          'sans-serif'
-        ],
-        inter: [
-          'Inter',
-          'sans-serif'
-        ],
-        'jetbrains-mono': [
-          'JetBrains Mono',
-          'monospace'
-        ]
+        primary: 'var(--font-primary)',
+        mono: 'var(--font-mono)',
       },
-      keyframes: {
-        'accordion-down': {
-          from: {
-            height: '0'
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)'
-          }
-        },
-        'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)'
-          },
-          to: {
-            height: '0'
-          }
-        },
-        // 2025 Enhanced Animations
-        'fade-in': {
-          from: { opacity: '0', transform: 'translateY(20px)' },
-          to: { opacity: '1', transform: 'translateY(0)' }
-        },
-        'slide-up': {
-          from: { transform: 'translateY(100%)', opacity: '0' },
-          to: { transform: 'translateY(0)', opacity: '1' }
-        },
-        'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.3)' },
-          '50%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.6)' }
-        },
-        'geometric-float': {
-          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-          '50%': { transform: 'translateY(-10px) rotate(5deg)' }
-        },
-        'geometric-spin': {
-          from: { transform: 'rotate(0deg)' },
-          to: { transform: 'rotate(360deg)' }
-        },
-        // Brand effects
-        'brand-glow': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.3)' },
-          '50%': { boxShadow: '0 0 40px rgba(0, 240, 255, 0.6)' }
-        },
-        'brand-node-shadow': {
-          '0%': { boxShadow: '0 0 0 rgba(0, 240, 255, 0)' },
-          '50%': { boxShadow: '0 5px 15px rgba(0, 240, 255, 0.4)' },
-          '100%': { boxShadow: '0 0 0 rgba(0, 240, 255, 0)' }
-        },
-        'pulse-glow': {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.5' }
-        },
-        'float': {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' }
-        },
-        'particle': {
-          '0%': { transform: 'translate(0, 0) scale(1)', opacity: '1' },
-          '100%': { transform: 'translate(20px, -20px) scale(0)', opacity: '0' }
-        }
+      fontSize: {
+        xs: 'var(--text-xs)',
+        sm: 'var(--text-sm)',
+        base: 'var(--text-base)',
+        lg: 'var(--text-lg)',
+        xl: 'var(--text-xl)',
+        '2xl': 'var(--text-2xl)',
+        '3xl': 'var(--text-3xl)',
+        '4xl': 'var(--text-4xl)',
+        '5xl': 'var(--text-5xl)',
+        '6xl': 'var(--text-6xl)',
+        '7xl': 'var(--text-7xl)',
       },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        // 2025 Enhanced Animations
-        'fade-in': 'fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-        'slide-up': 'slide-up 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-        'glow-pulse': 'glow-pulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite',
-        'geometric-float': 'geometric-float 6s ease-in-out infinite',
-        'geometric-spin': 'geometric-spin 20s linear infinite',
-        // Brand effects
-        'brand-glow': 'brand-glow 2s ease-in-out infinite',
-        'brand-node-shadow': 'brand-node-shadow 3s ease-in-out infinite',
-        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.2, 1) infinite',
-        'float': 'float 3s ease-in-out infinite',
-        'particle': 'particle 1s linear forwards'
+      fontWeight: {
+        light: 'var(--font-light)',
+        normal: 'var(--font-normal)',
+        medium: 'var(--font-medium)',
+        semibold: 'var(--font-semibold)',
+        bold: 'var(--font-bold)',
+        extrabold: 'var(--font-extrabold)',
       },
-      // 2025 Enhanced Shadows
+      lineHeight: {
+        none: 'var(--line-height-none)',
+        tight: 'var(--line-height-tight)',
+        snug: 'var(--line-height-snug)',
+        normal: 'var(--line-height-normal)',
+        relaxed: 'var(--line-height-relaxed)',
+        loose: 'var(--line-height-loose)',
+      },
+      borderRadius: {
+        none: 'var(--radius-none)',
+        sm: 'var(--radius-sm)',
+        DEFAULT: 'var(--radius)',
+        md: 'var(--radius-md)',
+        lg: 'var(--radius-lg)',
+        xl: 'var(--radius-xl)',
+        '2xl': 'var(--radius-2xl)',
+        '3xl': 'var(--radius-3xl)',
+        full: 'var(--radius-full)',
+      },
       boxShadow: {
-        'glow-sm': 'var(--shadow-glow)',
-        'glow-lg': 'var(--shadow-glow-strong)',
-        'brand': '0 4px 8px rgba(0, 240, 255, 0.15)',
-        'brand-lg': '0 8px 16px rgba(0, 240, 255, 0.2)',
-        'geometric': '0 0 30px rgba(0, 240, 255, 0.4)',
-        // Brand effects
-        'brand-glow': '0 0 20px rgba(0, 240, 255, 0.3)',
-        'brand-node-shadow': '0 5px 15px rgba(0, 240, 255, 0.4)',
-        'pulse-glow': '0 0 30px rgba(0, 240, 255, 0.5)'
+        sm: 'var(--shadow-sm)',
+        DEFAULT: 'var(--shadow-base)',
+        md: 'var(--shadow-md)',
+        lg: 'var(--shadow-lg)',
+        xl: 'var(--shadow-xl)',
+        '2xl': 'var(--shadow-2xl)',
+        inner: 'var(--shadow-inner)',
       },
-      // 2025 Enhanced Spacing
-      spacing: {
-        '18': '4.5rem',
-        '22': '5.5rem',
-        '26': '6.5rem',
-        '30': '7.5rem',
-        '34': '8.5rem',
-        '38': '9.5rem',
-        // Brand spacing
-        'brand-logo-clear': '2rem',
-        'brand-section': '4rem',
-        'brand-component': '2rem',
-        'brand-element': '1rem'
-      }
-    }
+      transitionProperty: {
+        DEFAULT: 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
+      },
+      transitionTimingFunction: {
+        DEFAULT: 'var(--transition-base)',
+      },
+      zIndex: {
+        hide: 'var(--z-hide)',
+        auto: 'var(--z-auto)',
+        base: 'var(--z-base)',
+        docked: 'var(--z-docked)',
+        dropdown: 'var(--z-dropdown)',
+        sticky: 'var(--z-sticky)',
+        banner: 'var(--z-banner)',
+        overlay: 'var(--z-overlay)',
+        modal: 'var(--z-modal)',
+        popover: 'var(--z-popover)',
+        skiplink: 'var(--z-skiplink)',
+        toast: 'var(--z-toast)',
+        tooltip: 'var(--z-tooltip)',
+      },
+    },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
+  corePlugins: {
+    // accessibility: false, // Re-enable if you have custom sr-only styles
+  },
 };

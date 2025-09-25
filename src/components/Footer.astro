@@ -1,97 +1,44 @@
 ---
-import LogoPrimary from './LogoPrimary.astro';
+import Icon from './Icon.tsx';
 ---
 
-<footer class="border-t border-border bg-background animated-gradient-bg glass hover-lift" role="contentinfo">
-  <div class="container mx-auto px-6 py-12">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Company Info -->
-      <div class="lg:col-span-1 animate-fade-in-up">
-        <a href="/" class="inline-flex items-center group" aria-label="Nosyt Labs - Home">
-          <LogoPrimary size="md" class="transition-all duration-300 group-hover:scale-105 glow-accent" />
-        </a>
-        <p class="mt-4 text-sm text-muted-foreground brand-body text-center md:text-left animate-fade-in-up animation-delay-100">
-          Innovative web development and AI-driven solutions tailored to your business.
+<footer class="bg-gray-900 text-white py-12 mt-16">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="col-span-1 md:col-span-2">
+        <h3 class="text-xl font-bold mb-4">Nosyt Labs</h3>
+        <p class="text-gray-400">
+          Innovating web development and AI integration for modern businesses.
         </p>
-        <div class="flex space-x-4 mt-6 justify-center md:justify-start" role="list" aria-label="Social media links">
-          <a 
-            href="https://x.com/nosytlabs" 
-            class="text-muted-foreground hover:text-foreground transition-colors touch-target neon-glow p-2 rounded-full hover-lift animate-fade-in-up animation-delay-200" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            aria-label="Follow us on Twitter (opens in new tab)"
-            role="listitem"
-          >
-            <svg class="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Services</h4>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="/services" class="hover:text-white">Web Development</a></li>
+          <li><a href="/services" class="hover:text-white">AI Integration</a></li>
+          <li><a href="/services" class="hover:text-white">Consulting</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Connect</h4>
+        <div class="space-y-2">
+          <a href="https://twitter.com/nosytlabs" class="flex items-center space-x-2 text-gray-400 hover:text-white">
+            <Icon name="twitter" size={20} client:load />
+            <span>Twitter</span>
           </a>
-          <a 
-            href="https://github.com/nosytlabs" 
-            class="text-muted-foreground hover:text-foreground transition-colors touch-target neon-glow p-2 rounded-full hover-lift animate-fade-in-up animation-delay-300" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            aria-label="View our GitHub profile (opens in new tab)"
-            role="listitem"
-          >
-            <svg class="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
+          <a href="https://linkedin.com/company/nosytlabs" class="flex items-center space-x-2 text-gray-400 hover:text-white">
+            <Icon name="linkedin" size={20} client:load />
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/nosytlabs" class="flex items-center space-x-2 text-gray-400 hover:text-white">
+            <Icon name="github" size={20} client:load />
+            <span>GitHub</span>
           </a>
         </div>
       </div>
-
-      <!-- Services -->
-      <nav aria-labelledby="services-heading" class="animate-fade-in-up animation-delay-100">
-        <h3 id="services-heading" class="text-sm font-semibold text-foreground tracking-wide uppercase">Services</h3>
-        <ul class="mt-4 space-y-2 text-sm brand-body" role="list">
-          <li role="listitem">
-            <a href="/services/web-development" class="text-muted-foreground hover:text-primary transition-colors touch-target hover-lift">Web Development</a>
-          </li>
-          <li role="listitem">
-            <a href="/services/ai-integration" class="text-muted-foreground hover:text-primary transition-colors touch-target hover-lift">AI Integration</a>
-          </li>
-          <li role="listitem">
-            <a href="/services/ecommerce-solutions" class="text-muted-foreground hover:text-primary transition-colors touch-target hover-lift">E-commerce Solutions</a>
-          </li>
-          <li role="listitem">
-            <a href="/services/consulting" class="text-muted-foreground hover:text-primary transition-colors touch-target hover-lift">Consulting</a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Company -->
-      <nav aria-labelledby="company-heading" class="animate-fade-in-up animation-delay-200">
-        <h3 id="company-heading" class="text-sm font-semibold text-foreground tracking-wide uppercase">Company</h3>
-        <ul class="mt-4 space-y-2 text-sm brand-body" role="list">
-          <li role="listitem"><a href="/about" class="text-muted-foreground hover:text-foreground transition-colors touch-target hover-lift">About</a></li>
-          <li role="listitem"><a href="/blog" class="text-muted-foreground hover:text-foreground transition-colors touch-target hover-lift">Blog</a></li>
-          <li role="listitem"><a href="/projects" class="text-muted-foreground hover:text-foreground transition-colors touch-target hover-lift">Projects</a></li>
-          <li role="listitem"><a href="/contact" class="text-muted-foreground hover:text-foreground transition-colors touch-target hover-lift">Contact</a></li>
-        </ul>
-      </nav>
-
-      <!-- Contact Info -->
-      <div aria-labelledby="contact-heading" class="animate-fade-in-up animation-delay-300">
-        <h3 id="contact-heading" class="text-sm font-semibold text-foreground tracking-wide uppercase">Contact</h3>
-        <address class="mt-4 space-y-2 text-sm brand-body text-muted-foreground not-italic">
-          <div>
-            <span class="sr-only">Email address:</span>
-            <a href="mailto:hi@nosytlabs.com" class="hover:text-foreground transition-colors touch-target hover-lift">hi@nosytlabs.com</a>
-          </div>
-          <div>Serving clients worldwide</div>
-        </address>
-      </div>
     </div>
-
-    <div class="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-xs text-muted-foreground brand-body text-center md:text-left animate-fade-in-up animation-delay-400">
-        <span aria-label="Copyright">&copy;</span> {new Date().getFullYear()} Nosyt Labs. All rights reserved.
-      </p>
-      <nav class="mt-4 md:mt-0 flex space-x-6 text-xs brand-body" aria-label="Legal links">
-        <a href="/privacy" class="text-muted-foreground hover:text-foreground transition-colors touch-target hover-lift animate-fade-in-up animation-delay-500">Privacy Policy</a>
-        <a href="/terms" class="text-muted-foreground hover:text-foreground transition-colors touch-target hover-lift animate-fade-in-up animation-delay-600">Terms of Service</a>
-      </nav>
+    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+      <p>&copy; 2024 Nosyt Labs. All rights reserved.</p>
     </div>
   </div>
 </footer>

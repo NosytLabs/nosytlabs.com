@@ -1,6 +1,347 @@
 ---
-const { class: className = "" } = Astro.props;
+/**
+ * Enhanced Particle Background Component
+ * Optimized for performance with GPU acceleration and reduced motion support
+ */
+
+export interface Props {
+  class?: string;
+  particleCount?: number;
+  animationSpeed?: 'slow' | 'medium' | 'fast';
+  enableInteraction?: boolean;
+  colorScheme?: 'primary' | 'secondary' | 'accent';
+}
+
+const { 
+  class: className = "",
+  particleCount = 50,
+  animationSpeed = 'medium',
+  enableInteraction = false,
+  colorScheme = 'primary'
+} = Astro.props;
+
+// Generate particle positions
+const particles = Array.from({ length: particleCount }, (_, i) => ({
+  id: i,
+  x: Math.random() * 100,
+  y: Math.random() * 100,
+  size: Math.random() * 3 + 1,
+  opacity: Math.random() * 0.5 + 0.1,
+  speed: Math.random() * 2 + 1
+}));
+
+const speedMultiplier = {
+  slow: 0.5,
+  medium: 1,
+  fast: 2
+}[animationSpeed];
 ---
-<div class={`pointer-events-none absolute inset-0 -z-10 ${className}`} aria-hidden="true" style="--particle-color: var(--color-brand-accent);">
-  <div class="w-full h-full [background-image:radial-gradient(circle_at_20%_30%,_var(--particle-color)/.15_2px,_transparent_2px),radial-gradient(circle_at_70%_60%,_var(--particle-color)/.12_2px,_transparent_2px)] [background-size:40px_40px,50px_50px] [background-position:0_0,10px_10px]"></div>
+
+<div 
+  class={`particle-background ${className}`} 
+  aria-hidden="true"
+  data-particle-count={particleCount}
+  data-animation-speed={animationSpeed}
+  data-enable-interaction={enableInteraction}
+  data-color-scheme={colorScheme}
+>
+  <canvas 
+    class="particle-canvas"
+    width="800" 
+    height="600"
+    role="img" 
+    aria-label="animated particle background"
+  ></canvas>
+  
+  <!-- Fallback SVG for reduced motion -->
+  <svg 
+    class="particle-fallback" 
+    viewBox="0 0 800 600" 
+    preserveAspectRatio="xMidYMid slice"
+    role="img" 
+    aria-label="decorative particle background"
+  >
+    <defs>
+      <radialGradient id="particle-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="hsl(var(--primary))" stop-opacity="0.3" />
+        <stop offset="100%" stop-color="hsl(var(--primary))" stop-opacity="0" />
+      </radialGradient>
+      <filter id="particle-blur">
+        <feGaussianBlur stdDeviation="2" />
+      </filter>
+    </defs>
+    
+    {particles.slice(0, 20).map(particle => (
+      <circle
+        cx={`${particle.x}%`}
+        cy={`${particle.y}%`}
+        r={particle.size}
+        fill="hsl(var(--primary))"
+        opacity={particle.opacity}
+        filter="url(#particle-blur)"
+      />
+    ))}
+    
+    <rect width="100%" height="100%" fill="url(#particle-glow)" />
+  </svg>
 </div>
+
+<style>
+  .particle-background {
+    position: absolute;
+    inset: 0;
+    z-index: -10;
+    overflow: hidden;
+    pointer-events: none;
+    contain: layout style paint;
+    transform: translateZ(0); /* Force GPU acceleration */
+  }
+
+  .particle-canvas {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    will-change: transform;
+  }
+
+  .particle-fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    display: none;
+  }
+
+  /* Color scheme variations */
+  .particle-background[data-color-scheme="secondary"] {
+    --particle-color: var(--secondary);
+  }
+
+  .particle-background[data-color-scheme="accent"] {
+    --particle-color: var(--accent);
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .particle-canvas {
+      display: none;
+    }
+    
+    .particle-fallback {
+      display: block;
+    }
+  }
+
+  /* Performance optimizations for mobile */
+  @media (max-width: 768px) {
+    .particle-background[data-particle-count] {
+      --mobile-particle-count: 25;
+    }
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .particle-canvas {
+      opacity: 0.4;
+    }
+    
+    .particle-fallback {
+      opacity: 0.2;
+    }
+  }
+</style>
+
+<script define:vars={{ particles, speedMultiplier, particleCount, enableInteraction, colorScheme }}>
+  class ParticleSystem {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.particles = [];
+      this.animationId = null;
+      this.isVisible = true;
+      this.mousePosition = { x: 0, y: 0 };
+      
+      this.init();
+    }
+
+    init() {
+      this.setupCanvas();
+      this.createParticles();
+      this.setupEventListeners();
+      this.startAnimation();
+    }
+
+    setupCanvas() {
+      const rect = this.canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      
+      this.canvas.width = rect.width * dpr;
+      this.canvas.height = rect.height * dpr;
+      
+      this.ctx.scale(dpr, dpr);
+      this.canvas.style.width = rect.width + 'px';
+      this.canvas.style.height = rect.height + 'px';
+    }
+
+    createParticles() {
+      const count = window.innerWidth < 768 ? Math.min(particleCount, 25) : particleCount;
+      
+      for (let i = 0; i < count; i++) {
+        this.particles.push({
+          x: Math.random() * this.canvas.width,
+          y: Math.random() * this.canvas.height,
+          vx: (Math.random() - 0.5) * 2 * speedMultiplier,
+          vy: (Math.random() - 0.5) * 2 * speedMultiplier,
+          size: Math.random() * 3 + 1,
+          opacity: Math.random() * 0.5 + 0.1,
+          color: this.getParticleColor(),
+          life: Math.random() * 100 + 100
+        });
+      }
+    }
+
+    getParticleColor() {
+      const colors = {
+        primary: 'hsl(220, 100%, 50%)',
+        secondary: 'hsl(280, 100%, 60%)',
+        accent: 'hsl(160, 100%, 50%)'
+      };
+      return colors[colorScheme] || colors.primary;
+    }
+
+    setupEventListeners() {
+      // Handle visibility changes for performance
+      document.addEventListener('visibilitychange', () => {
+        this.isVisible = !document.hidden;
+        if (this.isVisible) {
+          this.startAnimation();
+        } else {
+          this.stopAnimation();
+        }
+      });
+
+      // Handle mouse interaction if enabled
+      if (enableInteraction) {
+        this.canvas.addEventListener('mousemove', (e) => {
+          const rect = this.canvas.getBoundingClientRect();
+          this.mousePosition.x = e.clientX - rect.left;
+          this.mousePosition.y = e.clientY - rect.top;
+        });
+      }
+
+      // Handle resize
+      window.addEventListener('resize', () => {
+        this.setupCanvas();
+      });
+    }
+
+    updateParticles() {
+      this.particles.forEach(particle => {
+        // Update position
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        // Mouse interaction
+        if (enableInteraction) {
+          const dx = this.mousePosition.x - particle.x;
+          const dy = this.mousePosition.y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            const force = (100 - distance) / 100;
+            particle.vx -= (dx / distance) * force * 0.1;
+            particle.vy -= (dy / distance) * force * 0.1;
+          }
+        }
+
+        // Boundary wrapping
+        if (particle.x < 0) particle.x = this.canvas.width;
+        if (particle.x > this.canvas.width) particle.x = 0;
+        if (particle.y < 0) particle.y = this.canvas.height;
+        if (particle.y > this.canvas.height) particle.y = 0;
+
+        // Update life
+        particle.life--;
+        if (particle.life <= 0) {
+          particle.x = Math.random() * this.canvas.width;
+          particle.y = Math.random() * this.canvas.height;
+          particle.life = Math.random() * 100 + 100;
+        }
+      });
+    }
+
+    drawParticles() {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      
+      this.particles.forEach(particle => {
+        this.ctx.save();
+        this.ctx.globalAlpha = particle.opacity;
+        this.ctx.fillStyle = particle.color;
+        this.ctx.shadowBlur = 10;
+        this.ctx.shadowColor = particle.color;
+        
+        this.ctx.beginPath();
+        this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        this.ctx.fill();
+        
+        this.ctx.restore();
+      });
+    }
+
+    animate() {
+      if (!this.isVisible) return;
+      
+      this.updateParticles();
+      this.drawParticles();
+      
+      this.animationId = requestAnimationFrame(() => this.animate());
+    }
+
+    startAnimation() {
+      if (!this.animationId && this.isVisible) {
+        this.animate();
+      }
+    }
+
+    stopAnimation() {
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId);
+        this.animationId = null;
+      }
+    }
+
+    destroy() {
+      this.stopAnimation();
+      window.removeEventListener('resize', this.setupCanvas);
+    }
+  }
+
+  // Initialize particle system when DOM is ready
+  function initParticleSystem() {
+    const canvas = document.querySelector('.particle-canvas');
+    if (!canvas) return;
+
+    // Check for reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      canvas.style.display = 'none';
+      return;
+    }
+
+    // Initialize particle system
+    const particleSystem = new ParticleSystem(canvas);
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      particleSystem.destroy();
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initParticleSystem);
+  } else {
+    initParticleSystem();
+  }
+</script>

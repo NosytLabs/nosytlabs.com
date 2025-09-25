@@ -1,8 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import type { Props as LayoutProps } from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import Button from '../components/ui/Button.astro';
+import type { Props as MainLayoutProps } from '../layouts/MainLayout.astro';
 
-const pageData: LayoutProps = {
+const pageData: MainLayoutProps = {
   title: "Pricing - Nosyt Labs",
   description: "Transparent pricing for our professional web development, AI integration, mobile apps, UI/UX design, and e-commerce solutions.",
   ogTitle: "Nosyt Labs Pricing",
@@ -70,8 +71,8 @@ const pricingPlans = [
 ];
 ---
 
-<Layout {...pageData}>
-  <section class="relative py-24 lg:py-32">
+<MainLayout {...pageData}>
+  <section class="relative py-16 lg:py-20">
     <!-- Subtle background pattern -->
     <div class="absolute inset-0 bg-gradient-to-br from-background via-background to-muted/10"></div>
     <div class="absolute inset-0 opacity-5">
@@ -210,29 +211,29 @@ const pricingPlans = [
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+          <Button href="/contact" variant="primary" size="lg" class="inline-flex items-center justify-center gap-3">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.959 8.959 0 01-4.906-1.456L3 21l2.456-5.094A8.959 8.959 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
             </svg>
             Contact Us
-          </a>
+          </Button>
           
-          <a href="/book-a-consultation" class="inline-flex items-center justify-center gap-3 border-2 border-primary text-primary px-8 py-4 rounded-xl font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105">
+          <Button href="/book-a-consultation" variant="outline" size="lg" class="inline-flex items-center justify-center gap-3">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
             </svg>
             Book Free Consultation
-          </a>
+          </Button>
         </div>
       </div>
     </div>
   </section>
-</Layout>
+</MainLayout>
 
 <style>
   /* Enhanced hover effects and animations */
   .group:hover {
-    transform: translateY(-4px);
+    transform: translateY(var(--space-1));
   }
   
   /* Smooth transitions for all interactive elements */

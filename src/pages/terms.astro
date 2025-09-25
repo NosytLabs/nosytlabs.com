@@ -1,17 +1,17 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<Layout 
+<MainLayout 
   title="Terms of Service - Nosyt Labs"
   description="Terms of Service for Nosyt Labs - Learn about the terms and conditions for using our services."
   canonicalUrl="https://nosytlabs.com/terms"
 >
   <div class="container mx-auto px-4 py-16 max-w-4xl">
     <div class="prose prose-lg dark:prose-invert mx-auto">
-      <h1 class="text-4xl font-bold mb-8 text-center">Terms of Service</h1>
+      <h1 class="brand-heading-1 text-center md:text-left">Terms of Service</h1>
       
-      <p class="text-lg text-muted-foreground mb-8 text-center">
+      <p class="brand-body-lg text-muted mb-8 text-center md:text-left">
         Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
       </p>
 

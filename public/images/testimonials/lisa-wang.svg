@@ -1,0 +1,38 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="avatar5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff9a9e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fecfef;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="60" cy="60" r="60" fill="url(#avatar5)"/>
+  
+  <!-- Face -->
+  <circle cx="60" cy="50" r="20" fill="#fef3c7" opacity="0.9"/>
+  
+  <!-- Hair -->
+  <path d="M35 28 Q60 18 85 28 Q90 55 80 58 Q60 48 40 58 Q30 55 35 28" fill="#1f2937"/>
+  
+  <!-- Eyes -->
+  <circle cx="52" cy="47" r="2" fill="#1f2937"/>
+  <circle cx="68" cy="47" r="2" fill="#1f2937"/>
+  
+  <!-- Eyebrows -->
+  <path d="M48 42 L56 43" stroke="#1f2937" stroke-width="1"/>
+  <path d="M64 43 L72 42" stroke="#1f2937" stroke-width="1"/>
+  
+  <!-- Nose -->
+  <circle cx="60" cy="52" r="1" fill="#f59e0b" opacity="0.6"/>
+  
+  <!-- Mouth -->
+  <path d="M55 57 Q60 62 65 57" stroke="#dc2626" stroke-width="1.5" fill="none"/>
+  
+  <!-- Body/Shoulders -->
+  <path d="M30 100 Q60 85 90 100 L90 120 L30 120 Z" fill="#06b6d4"/>
+  
+  <!-- Professional Badge -->
+  <rect x="70" y="15" width="40" height="12" rx="6" fill="#06b6d4"/>
+  <text x="90" y="23" font-family="Arial, sans-serif" font-size="7" fill="white" text-anchor="middle">Product</text>
+</svg>

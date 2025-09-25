@@ -1,92 +1,1098 @@
 ---
-import Card from "./ui/Card.astro";
-import Button from "./ui/Button.astro";
+// Featured Projects Section with enhanced layout and animations
+import Icon from './ui/Icon.astro';
 
-const featuredProjects = [
+// Project interface
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt?: string;
+  demoUrl?: string;
+  githubUrl?: string;
+  technologies: string[];
+  category?: string;
+  featured?: boolean;
+  status?: 'completed' | 'in-progress' | 'coming-soon';
+}
+
+// Component props
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  projects?: Project[];
+  showAllLink?: boolean;
+  maxProjects?: number;
+  layout?: 'grid' | 'masonry' | 'carousel';
+  showFilters?: boolean;
+}
+
+const {
+  title = "Featured Projects",
+  subtitle = "Our Latest Work",
+  description = "Discover our most recent projects showcasing innovative solutions and cutting-edge technologies.",
+  projects = [],
+  showAllLink = true,
+  maxProjects = 6,
+  layout = 'grid',
+  showFilters = false
+} = Astro.props;
+
+// Default projects data if none provided
+const defaultProjects: Project[] = [
   {
-    title: "NosytLabs Corporate Website",
-    description: "Our own modern, responsive corporate website built with Astro, React, and TypeScript. Features dark mode, accessibility compliance, and optimized performance with Grade A+ optimization.",
-    link: "/projects/nosytlabs-website",
-    image: "/icons/web-development.svg",
-    tech: ["Astro", "React", "TypeScript", "Tailwind CSS"],
+    id: '1',
+    title: 'E-Commerce Platform',
+    description: 'A modern, scalable e-commerce solution built with React and Node.js, featuring real-time inventory management and seamless payment integration.',
+    image: 'ecommerce-platform-inline',
+    imageAlt: 'E-Commerce Platform Screenshot',
+    demoUrl: 'https://demo.example.com',
+    githubUrl: 'https://github.com/example/ecommerce',
+    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'AWS'],
+    category: 'Web Application',
+    featured: true,
+    status: 'completed'
   },
   {
-    title: "Small Business Website",
-    description: "Professional website for a local New Mexico business featuring modern design, mobile responsiveness, and SEO optimization to improve online presence.",
-    link: "/projects/small-business",
-    image: "/icons/web-development.svg",
-    tech: ["WordPress", "Elementor", "SEO Tools"],
+    id: '2',
+    title: 'Mobile Banking App',
+    description: 'Secure and intuitive mobile banking application with biometric authentication, real-time transactions, and comprehensive financial analytics.',
+    image: 'banking-app-inline',
+    imageAlt: 'Mobile Banking App Screenshot',
+    demoUrl: 'https://demo.example.com',
+    technologies: ['React Native', 'TypeScript', 'Firebase', 'Plaid API'],
+    category: 'Mobile Application',
+    featured: true,
+    status: 'completed'
   },
   {
-    title: "Rapid Prototype Development",
-    description: "Quick MVP development for a startup client using AI-assisted coding tools, delivering a functional prototype in under a week.",
-    link: "/projects/rapid-prototype",
-    image: "/icons/ai-integration.svg",
-    tech: ["React", "Node.js", "AI Tools"],
+    id: '3',
+    title: 'SaaS Dashboard',
+    description: 'Comprehensive analytics dashboard for SaaS businesses with real-time metrics, customizable widgets, and advanced reporting capabilities.',
+    image: 'saas-dashboard-inline',
+    imageAlt: 'SaaS Dashboard Screenshot',
+    demoUrl: 'https://demo.example.com',
+    githubUrl: 'https://github.com/example/dashboard',
+    technologies: ['Vue.js', 'D3.js', 'Python', 'PostgreSQL', 'Docker'],
+    category: 'Web Application',
+    featured: true,
+    status: 'completed'
   },
+  {
+    id: '4',
+    title: 'AI Content Generator',
+    description: 'Intelligent content generation platform powered by machine learning, helping businesses create engaging content at scale.',
+    image: 'ai-content-inline',
+    imageAlt: 'AI Content Generator Screenshot',
+    demoUrl: 'https://demo.example.com',
+    technologies: ['Python', 'TensorFlow', 'FastAPI', 'React', 'OpenAI'],
+    category: 'AI/ML',
+    featured: false,
+    status: 'in-progress'
+  },
+  {
+    id: '5',
+    title: 'IoT Monitoring System',
+    description: 'Real-time IoT device monitoring and management system with predictive analytics and automated alerting capabilities.',
+    image: 'iot-monitoring-inline',
+    imageAlt: 'IoT Monitoring System Screenshot',
+    technologies: ['Node.js', 'InfluxDB', 'Grafana', 'MQTT', 'Kubernetes'],
+    category: 'IoT',
+    featured: false,
+    status: 'completed'
+  },
+  {
+    id: '6',
+    title: 'Blockchain Wallet',
+    description: 'Secure cryptocurrency wallet with multi-chain support, DeFi integration, and advanced security features.',
+    image: '/images/projects/blockchain-wallet.svg',
+    imageAlt: 'Blockchain Wallet Screenshot',
+    demoUrl: 'https://demo.example.com',
+    technologies: ['Solidity', 'Web3.js', 'React', 'MetaMask', 'IPFS'],
+    category: 'Blockchain',
+    featured: false,
+    status: 'coming-soon'
+  }
 ];
+
+// Use provided projects or default ones
+const displayProjects = projects.length > 0 ? projects : defaultProjects;
+const limitedProjects = displayProjects.slice(0, maxProjects);
+
+// Get unique categories for filters
+const categories = [...new Set(displayProjects.map(project => project.category).filter(Boolean))];
+
+// Status icons mapping
+const statusIcons = {
+  'completed': 'check',
+  'in-progress': 'clock',
+  'coming-soon': 'calendar'
+};
+
+// Status colors mapping
+const statusColors = {
+  'completed': 'text-green-600',
+  'in-progress': 'text-yellow-600',
+  'coming-soon': 'text-blue-600'
+};
 ---
 
-<section class="section-padding">
-  <div class="container">
+<section class="layout-section projects-section" id="projects">
+  <div class="layout-container">
     <!-- Section Header -->
-    <div class="text-center mb-2xl">
-      <h2 class="brand-heading-2 text-center mb-lg">
-        Featured <span class="text-brand-accent">Projects</span>
-      </h2>
-      <p class="brand-body-large text-center max-w-2xl mx-auto text-brand-text-muted">
-        Explore our latest work showcasing innovative solutions and cutting-edge technology implementations.
-      </p>
-    </div>
+    <header class="section-header section-header--center" data-animate="fade-up">
+      {subtitle && (
+        <p class="section-subtitle">
+          <Icon name="briefcase" size="sm" class="section-subtitle-icon" />
+          {subtitle}
+        </p>
+      )}
+      
+      <h2 class="section-title">{title}</h2>
+      
+      {description && (
+        <p class="section-description">{description}</p>
+      )}
+    </header>
+
+    <!-- Project Filters -->
+    {showFilters && categories.length > 0 && (
+      <div class="projects-filters" data-animate="fade-up" data-animate-delay="200">
+        <button 
+          class="projects-filter projects-filter--active" 
+          data-filter="all"
+        >
+          All Projects
+        </button>
+        {categories.map((category) => (
+          <button 
+            class="projects-filter" 
+            data-filter={category.toLowerCase().replace(/\s+/g, '-')}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+    )}
 
     <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-      {
-        featuredProjects.map((project) => (
-          <Card class="group hover:shadow-brand transition-all duration-300 hover:-translate-y-1">
-            <a href={project.link} class="block h-full">
-              <div class="p-lg">
-                <!-- Project Icon -->
-                <div class="w-16 h-16 rounded-xl bg-surface-elevated flex items-center justify-center mb-lg group-hover:bg-brand-accent/20 transition-colors">
-                  <img src={project.image} alt={project.title} class="w-8 h-8 text-brand-accent" />
-                </div>
-                
-                <!-- Project Content -->
-                <h3 class="brand-heading-3 mb-sm group-hover:text-brand-accent transition-colors">
-                  {project.title}
-                </h3>
-                <p class="body-text-muted mb-lg leading-relaxed">
-                  {project.description}
-                </p>
-
-                <!-- Technologies -->
-                <div class="flex flex-wrap gap-xs mb-lg">
-                  {project.tech.map((tech) => (
-                    <span class="px-sm py-xs text-xs font-medium bg-surface-secondary text-brand-text-secondary rounded-md border border-border/30">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <!-- CTA -->
-                <div class="flex items-center gap-sm text-brand-accent font-medium group-hover:text-brand-accent/80 transition-colors">
-                  <span>View Project</span>
-                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
-                </div>
+    <div 
+      class={`projects-grid projects-grid--${layout} grid-enhanced grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`}
+      data-animate="fade-up" 
+      data-animate-delay="400"
+    >
+      {limitedProjects.map((project, index) => (
+        <article 
+          class={`project-card ${project.featured ? 'project-card--featured' : ''} group`}
+          data-category={project.category?.toLowerCase().replace(/\s+/g, '-')}
+          data-animate="fade-up"
+          data-animate-delay={500 + (index * 100)}
+        >
+          <!-- Project Image -->
+          <div class="project-image relative overflow-hidden rounded-lg mb-6">
+            {project.image === 'ecommerce-platform-inline' ? (
+              <svg width="100%" height="192" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-48 transition-transform duration-300 group-hover:scale-105">
+                <defs>
+                  <linearGradient id="bg-ecommerce" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                  </linearGradient>
+                  <linearGradient id="card-ecommerce" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+                    <stop offset="100%" style="stop-color:#f8fafc;stop-opacity:0.95" />
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="300" fill="url(#bg-ecommerce)"/>
+                <rect x="20" y="40" width="360" height="220" rx="8" fill="url(#card-ecommerce)" stroke="#e2e8f0" stroke-width="2"/>
+                <rect x="20" y="40" width="360" height="30" rx="8" fill="#f1f5f9"/>
+                <circle cx="35" cy="55" r="4" fill="#ef4444"/>
+                <circle cx="50" cy="55" r="4" fill="#f59e0b"/>
+                <circle cx="65" cy="55" r="4" fill="#10b981"/>
+                <rect x="90" y="48" width="200" height="14" rx="7" fill="#ffffff" stroke="#e2e8f0"/>
+                <text x="95" y="58" font-family="Arial, sans-serif" font-size="8" fill="#64748b">ecommerce-platform.demo</text>
+                <g transform="translate(180, 120)">
+                  <rect x="0" y="15" width="40" height="30" rx="4" fill="#667eea" opacity="0.1"/>
+                  <path d="M8 4l2.5 14h19l2.5-14H8z" fill="none" stroke="#667eea" stroke-width="2"/>
+                  <circle cx="15" cy="25" r="2" fill="#667eea"/>
+                  <circle cx="25" cy="25" r="2" fill="#667eea"/>
+                  <path d="M8 4H4" stroke="#667eea" stroke-width="2"/>
+                </g>
+                <rect x="50" y="100" width="80" height="60" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+                <rect x="55" y="105" width="70" height="30" rx="2" fill="#f8fafc"/>
+                <rect x="55" y="140" width="40" height="8" rx="2" fill="#667eea"/>
+                <rect x="100" y="140" width="20" height="8" rx="2" fill="#10b981"/>
+                <rect x="150" y="100" width="80" height="60" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+                <rect x="155" y="105" width="70" height="30" rx="2" fill="#f8fafc"/>
+                <rect x="155" y="140" width="40" height="8" rx="2" fill="#667eea"/>
+                <rect x="200" y="140" width="20" height="8" rx="2" fill="#10b981"/>
+                <rect x="250" y="100" width="80" height="60" rx="4" fill="#ffffff" stroke="#e2e8f0"/>
+                <rect x="255" y="105" width="70" height="30" rx="2" fill="#f8fafc"/>
+                <rect x="255" y="140" width="40" height="8" rx="2" fill="#667eea"/>
+                <rect x="300" y="140" width="20" height="8" rx="2" fill="#10b981"/>
+              </svg>
+            ) : project.image === 'banking-app-inline' ? (
+              <svg width="100%" height="192" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-48 transition-transform duration-300 group-hover:scale-105">
+                <defs>
+                  <linearGradient id="bg-banking" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="300" fill="url(#bg-banking)"/>
+                <rect x="150" y="30" width="100" height="180" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+                <rect x="150" y="30" width="100" height="25" rx="12" fill="#f3f4f6"/>
+                <circle cx="200" cy="42" r="3" fill="#6b7280"/>
+                <rect x="160" y="70" width="80" height="40" rx="8" fill="#4f46e5" opacity="0.1"/>
+                <text x="200" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#4f46e5" font-weight="bold">$12,345.67</text>
+                <text x="200" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#6b7280">Available Balance</text>
+                <rect x="160" y="120" width="35" height="25" rx="4" fill="#10b981" opacity="0.2"/>
+                <text x="177" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#10b981">Send</text>
+                <rect x="205" y="120" width="35" height="25" rx="4" fill="#f59e0b" opacity="0.2"/>
+                <text x="222" y="135" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#f59e0b">Request</text>
+                <rect x="160" y="155" width="80" height="2" rx="1" fill="#e5e7eb"/>
+                <rect x="160" y="165" width="60" height="8" rx="2" fill="#f3f4f6"/>
+                <rect x="160" y="180" width="50" height="8" rx="2" fill="#f3f4f6"/>
+                <rect x="160" y="195" width="70" height="8" rx="2" fill="#f3f4f6"/>
+              </svg>
+            ) : project.image === 'saas-dashboard-inline' ? (
+              <svg width="100%" height="192" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-48 transition-transform duration-300 group-hover:scale-105">
+                <defs>
+                  <linearGradient id="bg-saas" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="300" fill="url(#bg-saas)"/>
+                <rect x="20" y="20" width="360" height="260" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+                <rect x="20" y="20" width="360" height="40" rx="8" fill="#f8fafc"/>
+                <rect x="30" y="30" width="80" height="20" rx="4" fill="#3b82f6" opacity="0.1"/>
+                <text x="35" y="42" font-family="Arial, sans-serif" font-size="10" fill="#3b82f6" font-weight="bold">Dashboard</text>
+                <rect x="40" y="80" width="100" height="60" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+                <text x="45" y="95" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Revenue</text>
+                <text x="45" y="115" font-family="Arial, sans-serif" font-size="14" fill="#1e293b" font-weight="bold">$24,567</text>
+                <text x="45" y="130" font-family="Arial, sans-serif" font-size="7" fill="#10b981">+12.5%</text>
+                <rect x="150" y="80" width="100" height="60" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+                <text x="155" y="95" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Users</text>
+                <text x="155" y="115" font-family="Arial, sans-serif" font-size="14" fill="#1e293b" font-weight="bold">1,234</text>
+                <text x="155" y="130" font-family="Arial, sans-serif" font-size="7" fill="#10b981">+8.2%</text>
+                <rect x="260" y="80" width="100" height="60" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+                <text x="265" y="95" font-family="Arial, sans-serif" font-size="8" fill="#64748b">Conversion</text>
+                <text x="265" y="115" font-family="Arial, sans-serif" font-size="14" fill="#1e293b" font-weight="bold">3.4%</text>
+                <text x="265" y="130" font-family="Arial, sans-serif" font-size="7" fill="#ef4444">-2.1%</text>
+                <rect x="40" y="160" width="320" height="100" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+                <polyline points="60,220 100,200 140,180 180,190 220,170 260,160 300,150 340,140" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                <circle cx="340" cy="140" r="3" fill="#3b82f6"/>
+              </svg>
+            ) : project.image === 'ai-content-inline' ? (
+              <svg width="100%" height="192" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-48 transition-transform duration-300 group-hover:scale-105">
+                <defs>
+                  <linearGradient id="bg-ai" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="300" fill="url(#bg-ai)"/>
+                <rect x="50" y="50" width="300" height="200" rx="12" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+                <rect x="60" y="70" width="280" height="30" rx="4" fill="#f3f4f6"/>
+                <text x="70" y="88" font-family="Arial, sans-serif" font-size="12" fill="#7c3aed" font-weight="bold">AI Content Generator</text>
+                <rect x="60" y="110" width="200" height="8" rx="2" fill="#e5e7eb"/>
+                <rect x="60" y="125" width="180" height="8" rx="2" fill="#e5e7eb"/>
+                <rect x="60" y="140" width="220" height="8" rx="2" fill="#e5e7eb"/>
+                <rect x="60" y="155" width="160" height="8" rx="2" fill="#e5e7eb"/>
+                <rect x="270" y="110" width="60" height="60" rx="8" fill="#7c3aed" opacity="0.1"/>
+                <circle cx="300" cy="130" r="8" fill="#7c3aed"/>
+                <path d="M296 126 L300 130 L304 126" stroke="#ffffff" stroke-width="2" fill="none"/>
+                <path d="M296 134 L300 130 L304 134" stroke="#ffffff" stroke-width="2" fill="none"/>
+                <rect x="60" y="180" width="100" height="25" rx="4" fill="#7c3aed"/>
+                <text x="110" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#ffffff">Generate</text>
+                <rect x="170" y="180" width="80" height="25" rx="4" fill="#e5e7eb"/>
+                <text x="210" y="195" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#6b7280">Preview</text>
+              </svg>
+            ) : project.image === 'iot-monitoring-inline' ? (
+              <svg width="100%" height="192" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" class="w-full h-48 transition-transform duration-300 group-hover:scale-105">
+                <defs>
+                  <linearGradient id="bg-iot" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="300" fill="url(#bg-iot)"/>
+                <rect x="30" y="40" width="340" height="220" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+                <rect x="40" y="60" width="80" height="60" rx="4" fill="#f0fdf4" stroke="#bbf7d0"/>
+                <circle cx="80" cy="80" r="8" fill="#10b981"/>
+                <text x="80" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#ffffff">OK</text>
+                <text x="50" y="105" font-family="Arial, sans-serif" font-size="8" fill="#059669">Sensor 1</text>
+                <text x="50" y="115" font-family="Arial, sans-serif" font-size="7" fill="#6b7280">23.5°C</text>
+                <rect x="130" y="60" width="80" height="60" rx="4" fill="#fef3c7" stroke="#fde68a"/>
+                <circle cx="170" cy="80" r="8" fill="#f59e0b"/>
+                <text x="170" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#ffffff">!</text>
+                <text x="140" y="105" font-family="Arial, sans-serif" font-size="8" fill="#d97706">Sensor 2</text>
+                <text x="140" y="115" font-family="Arial, sans-serif" font-size="7" fill="#6b7280">45.2°C</text>
+                <rect x="220" y="60" width="80" height="60" rx="4" fill="#f0fdf4" stroke="#bbf7d0"/>
+                <circle cx="260" cy="80" r="8" fill="#10b981"/>
+                <text x="260" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#ffffff">OK</text>
+                <text x="230" y="105" font-family="Arial, sans-serif" font-size="8" fill="#059669">Sensor 3</text>
+                <text x="230" y="115" font-family="Arial, sans-serif" font-size="7" fill="#6b7280">19.8°C</text>
+                <rect x="310" y="60" width="50" height="60" rx="4" fill="#fecaca" stroke="#fca5a5"/>
+                <circle cx="335" cy="80" r="8" fill="#ef4444"/>
+                <text x="335" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#ffffff">X</text>
+                <text x="315" y="105" font-family="Arial, sans-serif" font-size="8" fill="#dc2626">Alert</text>
+                <rect x="40" y="140" width="320" height="80" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+                <polyline points="60,200 80,180 100,190 120,170 140,160 160,150 180,140 200,130 220,135 240,125 260,120 280,115 300,110 320,105 340,100" fill="none" stroke="#10b981" stroke-width="2"/>
+                <polyline points="60,210 80,200 100,205 120,195 140,185 160,180 180,175 200,170 220,175 240,165 260,160 280,155 300,150 320,145 340,140" fill="none" stroke="#f59e0b" stroke-width="2"/>
+              </svg>
+            ) : (
+              <img 
+                src={project.image} 
+                alt={project.imageAlt || `${project.title} screenshot`}
+                loading="lazy"
+                decoding="async"
+                class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            )}
+            
+            <!-- Project Status Badge -->
+            {project.status && (
+              <div class={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium bg-white/90 backdrop-blur-sm ${statusColors[project.status]}`}>
+                <Icon name={statusIcons[project.status]} size="xs" class="inline mr-1" />
+                {project.status.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
               </div>
-            </a>
-          </Card>
-        ))
-      }
+            )}
+            
+            <!-- Project Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="absolute bottom-4 left-4 right-4 flex-enhanced gap-2">
+                {project.demoUrl && (
+                  <a 
+                    href={project.demoUrl} 
+                    class="flex-1 bg-white/20 hover:bg-white/30 text-white text-sm font-medium px-4 py-2 rounded-lg backdrop-blur-sm transition-colors duration-200"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name="external-link" size="xs" class="inline mr-2" />
+                    Live Demo
+                  </a>
+                )}
+                {project.githubUrl && (
+                  <a 
+                    href={project.githubUrl} 
+                    class="flex-1 bg-white/20 hover:bg-white/30 text-white text-sm font-medium px-4 py-2 rounded-lg backdrop-blur-sm transition-colors duration-200"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name="github" size="xs" class="inline mr-2" />
+                    Code
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Content -->
+          <div class="project-content space-y-enhanced">
+            <div class="flex-enhanced justify-between items-start">
+              <h3 class="text-responsive-xl font-bold text-white group-hover:text-accent transition-colors duration-300">
+                {project.title}
+              </h3>
+              {project.featured && (
+                <span class="px-2 py-1 text-xs font-medium bg-accent/20 text-accent rounded-full">
+                  Featured
+                </span>
+              )}
+            </div>
+            
+            <p class="text-responsive text-muted">
+              {project.description}
+            </p>
+            
+            {project.category && (
+              <div class="text-sm text-accent font-medium">
+                {project.category}
+              </div>
+            )}
+            
+            <!-- Technologies -->
+            {project.technologies && project.technologies.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {project.technologies.map((tech) => (
+                  <span class="px-3 py-1 text-xs font-medium bg-surface-tertiary text-muted rounded-full">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
     </div>
-    
-    <!-- View All Projects CTA -->
-    <div class="text-center mt-2xl">
-      <Button href="/projects" variant="outline" class="brand-button-outline">
-        View All Projects
-      </Button>
-    </div>
+
+    <!-- Show All Link -->
+    {showAllLink && (
+      <div class="text-center mt-12" data-animate="fade-up" data-animate-delay="600">
+        <a 
+          href="/portfolio" 
+          class="inline-flex-enhanced gap-2 px-8 py-4 bg-gradient-to-r from-accent to-secondary text-white font-medium rounded-xl hover:shadow-lg hover:shadow-accent/25 transition-all duration-300"
+        >
+          View All Projects
+          <Icon name="arrow-right" size="sm" class="group-hover:translate-x-1 transition-transform duration-300" />
+        </a>
+      </div>
+    )}
   </div>
 </section>
+
+<style>
+  /* Projects Section */
+  .projects-section {
+    background: var(--surface-primary);
+  }
+
+  /* Project Filters */
+  .projects-filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-12);
+    flex-wrap: wrap;
+  }
+
+  .projects-filter {
+    padding: var(--space-2) var(--space-4);
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .projects-filter:hover,
+  .projects-filter--active {
+    background: var(--color-primary-500);
+    border-color: var(--color-primary-500);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    display: grid;
+    gap: var(--space-8);
+    margin-bottom: var(--space-16);
+  }
+
+  .projects-grid--grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+
+  .projects-grid--masonry {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: masonry;
+  }
+
+  .projects-grid--carousel {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: var(--space-4);
+  }
+
+  /* Project Card */
+  .project-card {
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all var(--transition-smooth);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary-200);
+  }
+
+  .project-card--featured {
+    border-color: var(--color-primary-300);
+    background: linear-gradient(
+      135deg,
+      var(--surface-secondary) 0%,
+      var(--color-primary-50) 100%
+    );
+  }
+
+  .project-card--featured:hover {
+    border-color: var(--color-primary-400);
+  }
+
+  /* Project Image */
+  .project-image {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--surface-tertiary);
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-smooth);
+  }
+
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+
+  /* Project Overlay */
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+  }
+
+  .project-card:hover .project-overlay {
+    opacity: 1;
+  }
+
+  .project-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .project-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-primary);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(8px);
+  }
+
+  .project-action--primary {
+    background: var(--color-primary-500);
+    color: white;
+  }
+
+  .project-action--primary:hover {
+    background: var(--color-primary-600);
+    transform: translateY(-2px);
+  }
+
+  .project-action--secondary:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+  }
+
+  /* Project Status */
+  .project-status {
+    position: absolute;
+    top: var(--space-3);
+    right: var(--space-3);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    backdrop-filter: blur(8px);
+  }
+
+  .project-status-text {
+    text-transform: capitalize;
+  }
+
+  /* Project Badge */
+  .project-badge {
+    position: absolute;
+    top: var(--space-3);
+    left: var(--space-3);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-primary-500);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Project Content */
+  .project-content {
+    padding: var(--space-6);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .project-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    line-height: var(--line-height-tight);
+    margin: 0;
+  }
+
+  .project-category {
+    padding: var(--space-1) var(--space-2);
+    background: var(--surface-tertiary);
+    color: var(--text-tertiary);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .project-description {
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+    flex: 1;
+  }
+
+  /* Project Technologies */
+  .project-technologies {
+    margin-top: auto;
+  }
+
+  .project-tech-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--text-tertiary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-2);
+  }
+
+  .project-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .project-tech-tag {
+    padding: var(--space-1) var(--space-2);
+    background: var(--surface-tertiary);
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Project Links (Mobile) */
+  .project-links--mobile {
+    display: none;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .project-link--primary {
+    background: var(--color-primary-500);
+    color: white;
+  }
+
+  .project-link--primary:hover {
+    background: var(--color-primary-600);
+  }
+
+  .project-link--secondary {
+    background: var(--surface-tertiary);
+    color: var(--text-secondary);
+  }
+
+  .project-link--secondary:hover {
+    background: var(--surface-quaternary);
+    color: var(--text-primary);
+  }
+
+  /* Projects CTA */
+  .projects-cta {
+    text-align: center;
+    padding-top: var(--space-12);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .projects-cta-button {
+    margin-bottom: var(--space-6);
+  }
+
+  .projects-cta-text {
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+  }
+
+  .projects-cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-primary-600);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .projects-cta-link:hover {
+    color: var(--color-primary-700);
+    transform: translateX(2px);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .projects-grid--grid {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .projects-grid--carousel {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      gap: var(--space-6);
+    }
+
+    .projects-grid--grid,
+    .projects-grid--masonry,
+    .projects-grid--carousel {
+      grid-template-columns: 1fr;
+    }
+
+    .project-overlay {
+      opacity: 1;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8) 0%,
+        transparent 60%
+      );
+      align-items: flex-end;
+      padding: var(--space-4);
+    }
+
+    .project-actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .project-action {
+      flex: 1;
+      justify-content: center;
+    }
+
+    .project-links--mobile {
+      display: flex;
+    }
+
+    .projects-filters {
+      gap: var(--space-1);
+    }
+
+    .projects-filter {
+      padding: var(--space-1) var(--space-3);
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .project-content {
+      padding: var(--space-4);
+    }
+
+    .project-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .project-category {
+      align-self: flex-start;
+    }
+
+    .project-actions {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .project-action {
+      width: 100%;
+    }
+
+    .projects-cta-text {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  /* Enhanced Focus States */
+  .projects-filter:focus-visible,
+  .project-action:focus-visible,
+  .project-link:focus-visible,
+  .projects-cta-button:focus-visible,
+  .projects-cta-link:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Dark Mode Enhancements */
+  @media (prefers-color-scheme: dark) {
+    .project-card {
+      background: var(--surface-secondary-dark);
+      border-color: var(--border-subtle-dark);
+    }
+
+    .project-card:hover {
+      box-shadow: var(--shadow-xl-dark);
+      border-color: var(--color-primary-400);
+    }
+
+    .project-card--featured {
+      background: linear-gradient(
+        135deg,
+        var(--surface-secondary-dark) 0%,
+        var(--color-primary-900) 100%
+      );
+      border-color: var(--color-primary-600);
+    }
+
+    .project-category {
+      background: var(--surface-tertiary-dark);
+      color: var(--text-tertiary-dark);
+    }
+
+    .project-tech-tag {
+      background: var(--surface-tertiary-dark);
+      color: var(--text-secondary-dark);
+    }
+
+    .project-link--secondary {
+      background: var(--surface-tertiary-dark);
+      color: var(--text-secondary-dark);
+    }
+
+    .project-link--secondary:hover {
+      background: var(--surface-quaternary-dark);
+      color: var(--text-primary-dark);
+    }
+  }
+
+  /* High Contrast Mode */
+  @media (prefers-contrast: high) {
+    .project-card {
+      border-width: 2px;
+    }
+
+    .project-overlay {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .project-action,
+    .project-link {
+      border: 1px solid currentColor;
+    }
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .project-image img,
+    .project-overlay,
+    .project-action,
+    .project-link,
+    .projects-cta-link {
+      transition: none;
+    }
+
+    .project-card:hover {
+      transform: none;
+    }
+
+    .project-card:hover .project-image img {
+      transform: none;
+    }
+
+    .project-action:hover,
+    .project-link:hover {
+      transform: none;
+    }
+
+    .projects-cta-link:hover {
+      transform: none;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .projects-section {
+      background: white;
+    }
+
+    .project-overlay,
+    .projects-filters,
+    .projects-cta {
+      display: none;
+    }
+
+    .project-card {
+      break-inside: avoid;
+      border: 1px solid #ccc;
+      box-shadow: none;
+    }
+
+    .project-links--mobile {
+      display: flex;
+    }
+
+    .project-link {
+      color: #000;
+      text-decoration: underline;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced projects functionality
+  function initProjectsSection() {
+    const projectsSection = document.querySelector('.projects-section');
+    if (!projectsSection) return;
+
+    // Project filtering
+    const filters = document.querySelectorAll('.projects-filter');
+    const projects = document.querySelectorAll('.project-card');
+
+    filters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        const filterValue = filter.dataset.filter;
+        
+        // Update active filter
+        filters.forEach(f => f.classList.remove('projects-filter--active'));
+        filter.classList.add('projects-filter--active');
+        
+        // Filter projects
+        projects.forEach(project => {
+          const projectCategory = project.dataset.category;
+          const shouldShow = filterValue === 'all' || projectCategory === filterValue;
+          
+          if (shouldShow) {
+            project.style.display = 'flex';
+            project.style.animation = 'fadeInUp 0.5s ease forwards';
+          } else {
+            project.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lazy loading for project images
+    const projectImages = document.querySelectorAll('.project-image img');
+    const imageObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.removeAttribute('data-src');
+            }
+            imageObserver.unobserve(img);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    projectImages.forEach(img => {
+      imageObserver.observe(img);
+    });
+
+    // Enhanced keyboard navigation
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach((card, index) => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const primaryLink = card.querySelector('.project-action--primary, .project-link--primary');
+          if (primaryLink) {
+            primaryLink.click();
+          }
+        }
+        
+        // Arrow key navigation
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const nextCard = projectCards[index + 1];
+          if (nextCard) {
+            nextCard.focus();
+          }
+        }
+        
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prevCard = projectCards[index - 1];
+          if (prevCard) {
+            prevCard.focus();
+          }
+        }
+      });
+    });
+
+    // Add tabindex for keyboard navigation
+    projectCards.forEach(card => {
+      card.setAttribute('tabindex', '0');
+    });
+  }
+
+  // Initialize on DOM content loaded
+  document.addEventListener('DOMContentLoaded', initProjectsSection);
+
+  // Re-initialize on navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', initProjectsSection);
+</script>

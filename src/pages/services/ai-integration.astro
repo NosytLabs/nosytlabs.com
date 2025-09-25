@@ -1,9 +1,10 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import Button from '../../components/ui/Button.astro';
 
 ---
 
-<Layout title="AI Integration Services | Nosyt Labs" description="Seamless AI integration for your business. Enhance operations with machine learning, automation, and intelligent systems.">
+<MainLayout title="AI Integration Services | Nosyt Labs" description="Seamless AI integration for your business. Enhance operations with machine learning, automation, and intelligent systems.">
   
   <!-- Hero Section -->
   <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-surface-primary to-surface-secondary">
@@ -12,18 +13,18 @@ import Layout from '../../layouts/Layout.astro';
       <div class="max-w-4xl mx-auto text-center">
         <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
           AI
-          <span class="text-nexus-cyan block">Integration</span>
+          <span class="text-accent block">Integration</span>
         </h1>
-        <p class="text-xl md:text-2xl text-brand-gray mb-8 max-w-3xl mx-auto">
+        <p class="text-xl md:text-2xl text-muted mb-8 max-w-3xl mx-auto">
           Harness the power of artificial intelligence to transform your business processes and drive innovation.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/contact" class="bg-nexus-cyan text-deep-space-black px-8 py-4 rounded-lg font-semibold hover:bg-brand-accent-muted transition-colors">
+          <Button href="/contact" variant="primary" size="lg">
             Start Your AI Journey
-          </a>
-          <a href="#features" class="border border-nexus-cyan text-nexus-cyan px-8 py-4 rounded-lg font-semibold hover:bg-nexus-cyan hover:text-deep-space-black transition-colors">
+          </Button>
+          <Button href="#features" variant="outline" size="lg">
             Learn More
-          </a>
+          </Button>
         </div>
       </div>
     </div>
@@ -34,77 +35,77 @@ import Layout from '../../layouts/Layout.astro';
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-          Our <span class="text-nexus-cyan">AI Capabilities</span>
+          Our <span class="text-accent">AI Capabilities</span>
         </h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M14.73 12.04l6.27-3.81c.52-.31.85-.88.85-1.5V5.07a1.5 1.5 0 0 0-1.5-1.5H9.22c-.66 0-1.2.42-1.41.99l-1.67 5.02a1.5 1.5 0 0 0 1.41 1.99h5.89l-1.68 5.03a1.5 1.5 0 0 0 1.41.99h5.75a1.5 1.5 0 0 0 1.5-1.5v-1.65c0-.62-.33-1.19-.85-1.5l-6.27-3.81a1.5 1.5 0 0 0-1.47 0 1.49 1.49 0 0 0-.5 1.33v.03c0 .41.21.79.55 1.01l4.99 3.29a1.5 1.5 0 0 0 1.95-2.3l-4.99-3.29a.49.49 0 0 0-.55-.01z"/>
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-accent/50 transition-all duration-300">
+            <div class="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-foreground" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.73 12.04l6.27-3.81c.52-.31.85-.88.85-1.5V5.07a1.5 1.5 0 0 0-1.5-1.5H9.22c-.66 0-1.2.42-1.41.99l-1.67 5.02a1.5 1.5 0 0 0 1.41 1.99h5.89l-1.68 5.03a1.5 1.5 0 0 0 1.41.99h5.75a1.5 1.5 0 0 0 1.5-1.5v-1.65c0-.62-.33-1.19-.85-1.5l-6.27-3.81a1.5 1.5 0 0 0-1.47 0 1.49 1.49 0 0 0-.5 1.33v.03c0 .41.21.79.55 1.01l4.99 3.29a1.5 1.5 0 0 0 1.95-2.3l-4.99-3.29a.49 .49 0 0 0-.55-.01z"/>
               </svg>
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">Machine Learning Models</h3>
-            <p class="text-brand-gray leading-relaxed">
+            <p class="text-muted leading-relaxed">
               Deploy custom ML models for predictive analytics, recommendation systems, and data-driven decision making.
             </p>
           </div>
           
-          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-accent/50 transition-all duration-300">
+            <div class="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-foreground" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
               </svg>
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">Natural Language Processing</h3>
-            <p class="text-brand-gray leading-relaxed">
+            <p class="text-text-secondary leading-relaxed">
               Implement NLP solutions for chatbots, sentiment analysis, automated content generation, and voice interfaces.
             </p>
           </div>
           
-          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-accent/50 transition-all duration-300">
+            <div class="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-foreground" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
               </svg>
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">Computer Vision</h3>
-            <p class="text-brand-gray leading-relaxed">
+            <p class="text-text-secondary leading-relaxed">
               Integrate vision AI for image recognition, object detection, quality control, and augmented reality applications.
             </p>
           </div>
           
-          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300 md:col-span-2 lg:col-span-1">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-accent/50 transition-all duration-300 md:col-span-2 lg:col-span-1">
+            <div class="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-foreground" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
               </svg>
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">AI Automation</h3>
-            <p class="text-brand-gray leading-relaxed">
+            <p class="text-text-secondary leading-relaxed">
               Automate repetitive tasks with intelligent agents, robotic process automation enhanced by AI decision-making.
             </p>
           </div>
           
-          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300 md:col-span-2 lg:col-span-1">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-accent/50 transition-all duration-300 md:col-span-2 lg:col-span-1">
+            <div class="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-foreground" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
               </svg>
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">Ethical AI</h3>
-            <p class="text-brand-gray leading-relaxed">
+            <p class="text-text-secondary leading-relaxed">
               Ensure responsible AI deployment with bias detection, explainability tools, and compliance with regulations.
             </p>
           </div>
           
-          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-nexus-cyan/50 transition-all duration-300 md:col-span-2 lg:col-span-1">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-lg flex items-center justify-center mb-6">
-              <svg class="w-8 h-8 text-deep-space-black" fill="currentColor" viewBox="0 0 24 24">
+          <div class="bg-surface-primary p-8 rounded-xl border border-surface-tertiary hover:border-accent/50 transition-all duration-300 md:col-span-2 lg:col-span-1">
+            <div class="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-8 h-8 text-foreground" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             </div>
             <h3 class="text-2xl font-bold text-white mb-4">AI Consulting</h3>
-            <p class="text-brand-gray leading-relaxed">
+            <p class="text-text-secondary leading-relaxed">
               Strategic guidance on AI roadmap, technology selection, and integration best practices for your organization.
             </p>
           </div>
@@ -118,36 +119,36 @@ import Layout from '../../layouts/Layout.astro';
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">
-          Our <span class="text-nexus-cyan">Integration Process</span>
+          Our <span class="text-accent">Integration Process</span>
         </h2>
         <div class="grid md:grid-cols-4 gap-8">
           <div class="text-center">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl font-bold text-deep-space-black">1</span>
+            <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-foreground">1</span>
             </div>
             <h3 class="text-xl font-bold text-white mb-4">Discovery</h3>
-            <p class="text-brand-gray text-center">Assess your current systems and identify AI opportunities.</p>
+            <p class="text-muted text-center">Assess your current systems and identify AI opportunities.</p>
           </div>
           <div class="text-center">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl font-bold text-deep-space-black">2</span>
+            <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-foreground">2</span>
             </div>
             <h3 class="text-xl font-bold text-white mb-4">Design</h3>
-            <p class="text-brand-gray text-center">Architect the AI solution tailored to your business needs.</p>
+            <p class="text-muted text-center">Architect the AI solution tailored to your business needs.</p>
           </div>
           <div class="text-center">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl font-bold text-deep-space-black">3</span>
+            <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-foreground">3</span>
             </div>
             <h3 class="text-xl font-bold text-white mb-4">Implementation</h3>
-            <p class="text-brand-gray text-center">Seamlessly integrate AI into your existing infrastructure.</p>
+            <p class="text-muted text-center">Seamlessly integrate AI into your existing infrastructure.</p>
           </div>
           <div class="text-center">
-            <div class="w-16 h-16 bg-nexus-cyan rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl font-bold text-deep-space-black">4</span>
+            <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+              <span class="text-2xl font-bold text-foreground">4</span>
             </div>
             <h3 class="text-xl font-bold text-white mb-4">Optimization</h3>
-            <p class="text-brand-gray text-center">Monitor, refine, and scale your AI capabilities continuously.</p>
+            <p class="text-muted text-center">Monitor, refine, and scale your AI capabilities continuously.</p>
           </div>
         </div>
       </div>
@@ -158,14 +159,14 @@ import Layout from '../../layouts/Layout.astro';
   <section class="py-20 bg-gradient-to-br from-surface-secondary to-surface-primary">
     <div class="container mx-auto px-6 text-center">
       <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-        Ready to <span class="text-nexus-cyan">Integrate AI?</span>
+        Ready to <span class="text-accent">Integrate AI?</span>
       </h2>
-      <p class="text-xl text-brand-gray mb-8 max-w-3xl mx-auto">
+      <p class="text-xl text-muted mb-8 max-w-3xl mx-auto">
         Let's discuss how AI can revolutionize your business. Our experts are here to guide you every step of the way.
       </p>
-      <a href="/contact" class="bg-nexus-cyan text-deep-space-black px-12 py-5 rounded-lg font-semibold text-xl hover:bg-brand-accent-muted transition-colors inline-block">
+      <Button href="/contact" variant="primary" size="lg" class="text-xl px-12 py-5">
         Schedule a Consultation
-      </a>
+      </Button>
     </div>
   </section>
-</Layout>
+</MainLayout>

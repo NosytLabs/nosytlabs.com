@@ -1,0 +1,276 @@
+---
+// Enhanced Testimonials Component with improved layout and styling
+import Card from '../ui/Card.astro';
+import Icon from '../ui/Icon.astro';
+
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "CEO",
+    company: "TechStart Inc.",
+    content: "NosytLabs transformed our digital presence completely. Their AI integration solutions increased our efficiency by 300% and customer satisfaction by 85%. The team's expertise and dedication are unmatched.",
+    avatar: "sarah-johnson-inline",
+    rating: 5
+  },
+  {
+    name: "Michael Chen",
+    role: "CTO",
+    company: "DataFlow Systems",
+    content: "The performance optimization work they did for our platform was incredible. Page load times decreased by 70% and our server costs reduced by 40%. Highly recommend their services.",
+    avatar: "michael-chen-inline",
+    rating: 5
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Marketing Director",
+    company: "GrowthCorp",
+    content: "Working with NosytLabs was a game-changer for our marketing automation. Their custom solutions helped us increase lead generation by 250% while reducing manual work significantly.",
+    avatar: "emily-rodriguez-inline",
+    rating: 5
+  },
+  {
+    name: "David Thompson",
+    role: "Founder",
+    company: "InnovateLab",
+    content: "The team at NosytLabs delivered beyond our expectations. Their innovative approach to problem-solving and technical excellence helped us launch our product 3 months ahead of schedule.",
+    avatar: "david-thompson-inline",
+    rating: 5
+  },
+  {
+    name: "Lisa Wang",
+    role: "Product Manager",
+    company: "ScaleUp Solutions",
+    content: "Their attention to detail and technical expertise is outstanding. The AI-powered features they implemented have revolutionized how our customers interact with our platform.",
+    avatar: "lisa-wang-inline",
+    rating: 5
+  },
+  {
+    name: "James Miller",
+    role: "Operations Director",
+    company: "EfficiencyFirst",
+    content: "NosytLabs helped us automate complex workflows that saved us 20+ hours per week. Their solutions are robust, scalable, and perfectly tailored to our business needs.",
+    avatar: "james-miller-inline",
+    rating: 5
+  }
+];
+
+const stats = [
+  { number: "150+", label: "Projects Completed", icon: "briefcase" },
+  { number: "98%", label: "Client Satisfaction", icon: "star" },
+  { number: "50+", label: "Happy Clients", icon: "users" },
+  { number: "24/7", label: "Support Available", icon: "headphones" }
+];
+---
+
+<section class="layout-section testimonials-section" id="testimonials">
+  <div class="layout-container">
+    <!-- Section Header -->
+    <header class="section-header section-header--center" data-animate="fade-up">
+      <p class="section-subtitle">
+        <Icon name="star" size="sm" class="section-subtitle-icon" />
+        Client Testimonials
+      </p>
+      
+      <h2 class="section-title">What Our Clients Say</h2>
+      
+      <p class="section-description">
+        Don't just take our word for it. Here's what our satisfied clients have to say about working with NosytLabs.
+      </p>
+    </header>
+
+    <!-- Testimonials Grid -->
+    <div class="testimonials-grid grid-enhanced grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-animate="fade-up" data-animate-delay="200">
+      {testimonials.map((testimonial, index) => (
+        <Card class="testimonial-card group h-full flex-enhanced-col space-y-enhanced" data-animate="fade-up" data-animate-delay={300 + (index * 100)}>
+          <!-- Rating Stars -->
+          <div class="testimonial-rating flex-enhanced">
+            {Array.from({ length: testimonial.rating }, (_, i) => (
+              <Icon 
+                name="star" 
+                size="sm" 
+                class="text-warning" 
+                aria-hidden="true"
+              />
+            ))}
+            <span class="sr-only">{testimonial.rating} out of 5 stars</span>
+          </div>
+
+          <!-- Testimonial Content -->
+          <blockquote class="testimonial-content text-responsive text-muted leading-relaxed flex-grow italic">
+            "{testimonial.content}"
+          </blockquote>
+
+           <!-- Client Info -->
+           <div class="testimonial-author flex-enhanced mt-auto">
+             <div class="testimonial-avatar icon-container-enhanced icon-container-md">
+               {testimonial.avatar === 'sarah-johnson-inline' ? (
+                 <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rounded-full">
+                   <defs>
+                     <linearGradient id="sarah-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                       <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:1" />
+                       <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:1" />
+                     </linearGradient>
+                   </defs>
+                   <circle cx="50" cy="50" r="50" fill="url(#sarah-bg)"/>
+                   <circle cx="50" cy="35" r="15" fill="#64748b"/>
+                   <ellipse cx="50" cy="75" rx="25" ry="20" fill="#64748b"/>
+                   <circle cx="45" cy="32" r="2" fill="#ffffff"/>
+                   <circle cx="55" cy="32" r="2" fill="#ffffff"/>
+                   <path d="M45 40 Q50 45 55 40" stroke="#ffffff" stroke-width="2" fill="none"/>
+                 </svg>
+               ) : testimonial.avatar === 'michael-chen-inline' ? (
+                 <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rounded-full">
+                   <defs>
+                     <linearGradient id="michael-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                       <stop offset="0%" style="stop-color:#dbeafe;stop-opacity:1" />
+                       <stop offset="100%" style="stop-color:#bfdbfe;stop-opacity:1" />
+                     </linearGradient>
+                   </defs>
+                   <circle cx="50" cy="50" r="50" fill="url(#michael-bg)"/>
+                   <circle cx="50" cy="35" r="15" fill="#3b82f6"/>
+                   <ellipse cx="50" cy="75" rx="25" ry="20" fill="#3b82f6"/>
+                   <circle cx="45" cy="32" r="2" fill="#ffffff"/>
+                   <circle cx="55" cy="32" r="2" fill="#ffffff"/>
+                   <path d="M45 40 Q50 45 55 40" stroke="#ffffff" stroke-width="2" fill="none"/>
+                   <rect x="40" y="25" width="20" height="8" rx="4" fill="#1e40af"/>
+                 </svg>
+               ) : testimonial.avatar === 'emily-rodriguez-inline' ? (
+                 <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rounded-full">
+                   <defs>
+                     <linearGradient id="emily-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                       <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
+                       <stop offset="100%" style="stop-color:#fde68a;stop-opacity:1" />
+                     </linearGradient>
+                   </defs>
+                   <circle cx="50" cy="50" r="50" fill="url(#emily-bg)"/>
+                   <circle cx="50" cy="35" r="15" fill="#f59e0b"/>
+                   <ellipse cx="50" cy="75" rx="25" ry="20" fill="#f59e0b"/>
+                   <circle cx="45" cy="32" r="2" fill="#ffffff"/>
+                   <circle cx="55" cy="32" r="2" fill="#ffffff"/>
+                   <path d="M45 40 Q50 45 55 40" stroke="#ffffff" stroke-width="2" fill="none"/>
+                   <path d="M35 20 Q50 15 65 20" stroke="#d97706" stroke-width="3" fill="none"/>
+                 </svg>
+               ) : testimonial.avatar === 'david-thompson-inline' ? (
+                 <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rounded-full">
+                   <defs>
+                     <linearGradient id="david-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                       <stop offset="0%" style="stop-color:#f0fdf4;stop-opacity:1" />
+                       <stop offset="100%" style="stop-color:#dcfce7;stop-opacity:1" />
+                     </linearGradient>
+                   </defs>
+                   <circle cx="50" cy="50" r="50" fill="url(#david-bg)"/>
+                   <circle cx="50" cy="35" r="15" fill="#10b981"/>
+                   <ellipse cx="50" cy="75" rx="25" ry="20" fill="#10b981"/>
+                   <circle cx="45" cy="32" r="2" fill="#ffffff"/>
+                   <circle cx="55" cy="32" r="2" fill="#ffffff"/>
+                   <path d="M45 40 Q50 45 55 40" stroke="#ffffff" stroke-width="2" fill="none"/>
+                   <rect x="42" y="20" width="16" height="6" rx="3" fill="#059669"/>
+                 </svg>
+               ) : testimonial.avatar === 'lisa-wang-inline' ? (
+                 <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rounded-full">
+                   <defs>
+                     <linearGradient id="lisa-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                       <stop offset="0%" style="stop-color:#fdf2f8;stop-opacity:1" />
+                       <stop offset="100%" style="stop-color:#fce7f3;stop-opacity:1" />
+                     </linearGradient>
+                   </defs>
+                   <circle cx="50" cy="50" r="50" fill="url(#lisa-bg)"/>
+                   <circle cx="50" cy="35" r="15" fill="#ec4899"/>
+                   <ellipse cx="50" cy="75" rx="25" ry="20" fill="#ec4899"/>
+                   <circle cx="45" cy="32" r="2" fill="#ffffff"/>
+                   <circle cx="55" cy="32" r="2" fill="#ffffff"/>
+                   <path d="M45 40 Q50 45 55 40" stroke="#ffffff" stroke-width="2" fill="none"/>
+                   <path d="M30 25 Q50 10 70 25" stroke="#be185d" stroke-width="3" fill="none"/>
+                 </svg>
+               ) : testimonial.avatar === 'james-miller-inline' ? (
+                 <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="w-full h-full rounded-full">
+                   <defs>
+                     <linearGradient id="james-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                       <stop offset="0%" style="stop-color:#ede9fe;stop-opacity:1" />
+                       <stop offset="100%" style="stop-color:#ddd6fe;stop-opacity:1" />
+                     </linearGradient>
+                   </defs>
+                   <circle cx="50" cy="50" r="50" fill="url(#james-bg)"/>
+                   <circle cx="50" cy="35" r="15" fill="#7c3aed"/>
+                   <ellipse cx="50" cy="75" rx="25" ry="20" fill="#7c3aed"/>
+                   <circle cx="45" cy="32" r="2" fill="#ffffff"/>
+                   <circle cx="55" cy="32" r="2" fill="#ffffff"/>
+                   <path d="M45 40 Q50 45 55 40" stroke="#ffffff" stroke-width="2" fill="none"/>
+                   <rect x="35" y="22" width="30" height="4" rx="2" fill="#5b21b6"/>
+                 </svg>
+               ) : (
+                 <img 
+                   src={testimonial.avatar} 
+                   alt={`${testimonial.name} avatar`}
+                   class="w-full h-full rounded-full object-cover"
+                   loading="lazy"
+                 />
+               )}
+             </div>
+            <div class="testimonial-info flex-grow min-w-0 space-y-enhanced">
+              <h4 class="testimonial-name text-responsive-lg font-semibold text-primary truncate">
+                {testimonial.name}
+              </h4>
+              <p class="testimonial-role text-responsive-sm text-muted truncate">
+                {testimonial.role} at {testimonial.company}
+              </p>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+    <!-- Stats Section -->
+    <div class="testimonials-stats bg-surface-secondary rounded-2xl p-8 lg:p-12 shadow-xl" data-animate="fade-up" data-animate-delay="600">
+      <h3 class="text-responsive-3xl font-bold text-primary text-center mb-12">
+        Our Track Record
+      </h3>
+      <div class="stats-grid grid-enhanced grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((stat, index) => (
+          <div class="stat-item text-center group" data-animate="fade-up" data-animate-delay={700 + (index * 100)}>
+            <div class="stat-icon icon-container-enhanced icon-container-lg bg-gradient-to-r from-accent to-secondary rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon 
+                name={stat.icon} 
+                size="lg" 
+                class="text-white" 
+                aria-hidden="true"
+              />
+            </div>
+            <div class="stat-number text-responsive-4xl font-bold text-accent mb-2 group-hover:text-primary transition-colors duration-300">
+              {stat.number}
+            </div>
+            <div class="stat-label text-responsive text-muted font-medium">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="testimonials-cta text-center" data-animate="fade-up" data-animate-delay="800">
+      <h3 class="text-responsive-3xl font-bold text-primary mb-6">
+        Ready to Join Our Success Stories?
+      </h3>
+      <p class="text-responsive-xl text-muted mb-8 max-w-2xl mx-auto leading-relaxed">
+        Let's work together to create your own success story. Get in touch today to discuss your project.
+      </p>
+      <div class="button-group-enhanced">
+        <a 
+          href="/contact"
+          class="btn btn--primary btn--lg"
+        >
+          Get Started Today
+          <Icon name="arrow-right" size="sm" class="btn-icon" />
+        </a>
+        
+        <a 
+          href="/portfolio"
+          class="btn btn--outline btn--lg"
+        >
+          View Our Work
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

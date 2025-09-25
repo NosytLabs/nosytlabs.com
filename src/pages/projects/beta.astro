@@ -1,11 +1,12 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import ResponsiveImageOptimizer from '../../components/layout/ResponsiveImageOptimizer.astro';
 
 const title = 'Project Beta - Advanced Analytics Platform';
 const description = 'Discover NosytLabs Project Beta, our advanced analytics platform featuring real-time data processing and intelligent insights.';
 ---
 
-<Layout title={title} description={description}>
+<MainLayout title={title} description={description}>
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 py-20">
     <div class="container mx-auto px-4">
@@ -15,7 +16,16 @@ const description = 'Discover NosytLabs Project Beta, our advanced analytics pla
       </div>
       <div class="grid md:grid-cols-2 gap-8 items-center">
         <div>
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" alt="Project Beta Dashboard" class="rounded-2xl shadow-xl" width="600" height="400" loading="lazy">
+          <ResponsiveImageOptimizer
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
+            alt="Project Beta Dashboard"
+            width={600}
+            height={400}
+            aspectRatio="3/2"
+            loading="eager"
+            fetchpriority="high"
+            class="rounded-2xl shadow-xl"
+          />
         </div>
         <div class="space-y-6">
           <div class="flex items-center gap-3">
@@ -78,4 +88,4 @@ const description = 'Discover NosytLabs Project Beta, our advanced analytics pla
       </a>
     </div>
   </section>
-</Layout>
+</MainLayout>

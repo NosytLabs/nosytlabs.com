@@ -1,0 +1,66 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="card3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#fefefe;stop-opacity:0.95" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bg3)"/>
+  
+  <!-- Dashboard Container -->
+  <rect x="20" y="40" width="360" height="220" rx="12" fill="url(#card3)" stroke="#10b981" stroke-width="2"/>
+  
+  <!-- Header -->
+  <rect x="20" y="40" width="360" height="35" rx="12" fill="#10b981" opacity="0.1"/>
+  <text x="200" y="62" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#059669" text-anchor="middle">Performance Dashboard</text>
+  
+  <!-- Metrics Cards -->
+  <rect x="40" y="90" width="80" height="50" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="80" y="105" font-family="Arial, sans-serif" font-size="8" fill="#6b7280" text-anchor="middle">Load Time</text>
+  <text x="80" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#10b981" text-anchor="middle">1.2s</text>
+  <text x="80" y="132" font-family="Arial, sans-serif" font-size="8" fill="#059669" text-anchor="middle">↑ 75%</text>
+  
+  <rect x="140" y="90" width="80" height="50" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="180" y="105" font-family="Arial, sans-serif" font-size="8" fill="#6b7280" text-anchor="middle">Core Vitals</text>
+  <text x="180" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#10b981" text-anchor="middle">98</text>
+  <text x="180" y="132" font-family="Arial, sans-serif" font-size="8" fill="#059669" text-anchor="middle">Perfect</text>
+  
+  <rect x="240" y="90" width="80" height="50" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="280" y="105" font-family="Arial, sans-serif" font-size="8" fill="#6b7280" text-anchor="middle">Requests</text>
+  <text x="280" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#10b981" text-anchor="middle">12</text>
+  <text x="280" y="132" font-family="Arial, sans-serif" font-size="8" fill="#059669" text-anchor="middle">↓ 60%</text>
+  
+  <!-- Chart Area -->
+  <rect x="40" y="160" width="280" height="80" rx="6" fill="#ffffff" stroke="#e5e7eb"/>
+  
+  <!-- Performance Chart -->
+  <polyline points="50,220 70,200 90,180 110,170 130,160 150,165 170,155 190,150 210,145 230,140 250,135 270,130 290,125 310,120" 
+            fill="none" stroke="#10b981" stroke-width="3"/>
+  
+  <!-- Chart Grid -->
+  <line x1="50" y1="160" x2="50" y2="240" stroke="#e5e7eb" stroke-width="1"/>
+  <line x1="40" y1="240" x2="320" y2="240" stroke="#e5e7eb" stroke-width="1"/>
+  
+  <!-- Chart Points -->
+  <circle cx="50" cy="220" r="3" fill="#10b981"/>
+  <circle cx="110" cy="170" r="3" fill="#10b981"/>
+  <circle cx="170" cy="155" r="3" fill="#10b981"/>
+  <circle cx="230" cy="140" r="3" fill="#10b981"/>
+  <circle cx="290" cy="125" r="3" fill="#10b981"/>
+  
+  <!-- Speed Indicator -->
+  <g transform="translate(340, 180)">
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#10b981" stroke-width="3"/>
+    <path d="M-10 5 L0 -10 L10 5" fill="#10b981"/>
+    <text x="0" y="25" font-family="Arial, sans-serif" font-size="8" fill="#059669" text-anchor="middle">Fast</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="200" y="30" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#374151" text-anchor="middle">Performance Dashboard</text>
+</svg>

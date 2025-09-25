@@ -1,5 +1,5 @@
 // Import animation system
-import { initAnimations, initScrollAnimations, initHoverEffects } from './animations.js';
+import { initAnimations } from './animations.js';
 
 // Page loading animation
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,9 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
-                // Initialize animations after content is visible
-                initScrollAnimations();
-                initHoverEffects();
+                // Initialize all animations after content is visible
+                initAnimations();
             }, 500);
         }
     }, 800);
@@ -50,5 +49,9 @@ function initPageTransitions() {
     });
 }
 
-// Initialize transitions after content loads
-setTimeout(initPageTransitions, 1000);
+// Initialize transitions when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPageTransitions);
+} else {
+  initPageTransitions();
+}

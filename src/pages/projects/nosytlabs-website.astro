@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import { Image } from 'astro:assets';
 
 const project = {
@@ -13,14 +13,14 @@ const project = {
     'Custom animations and interactive elements'
   ],
   technologies: ['Astro', 'Tailwind CSS', 'JavaScript', 'Markdown for content'],
-  image: '/images/projects/nosytlabs-website.png', // Placeholder image path
+  image: '/images/og-image.jpg', // Using existing og-image
   date: '2023-10-01',
   client: 'NosytLabs'
 };
 
 ---
 
-<Layout title={project.title}>
+<MainLayout title={`${project.title} | Nosyt Labs Projects`}>
   <section class="project-hero">
     <Image src={project.image} alt={project.title} width={800} height={400} />
     <div class="hero-content">
@@ -56,7 +56,7 @@ const project = {
   <section class="project-links">
     <a href="/projects" class="back-link">← Back to Projects</a>
   </section>
-</Layout>
+</MainLayout>
 
 <style>
   /* Add styles here or import from global */

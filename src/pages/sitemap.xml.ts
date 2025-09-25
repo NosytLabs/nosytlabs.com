@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 
 const getPages = async () => {
   // Import all blog posts
-  const blogPosts = await import.meta.glob('../content/blog/*.md', { eager: true });
+  const blogPosts = import.meta.glob('../content/blog/*.md', { eager: true });
   
   // Static pages
   const staticPages = [
