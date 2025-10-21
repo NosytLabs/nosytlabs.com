@@ -1,0 +1,54 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="phoneGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="screenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8fafc"/>
+  
+  <!-- Phone Frame -->
+  <rect x="150" y="50" width="100" height="180" rx="15" ry="15" fill="url(#phoneGradient)" stroke="#4a5568" stroke-width="2"/>
+  
+  <!-- Screen -->
+  <rect x="160" y="70" width="80" height="140" rx="8" ry="8" fill="url(#screenGradient)"/>
+  
+  <!-- Screen Elements -->
+  <rect x="170" y="80" width="60" height="8" rx="4" fill="#ffffff" opacity="0.9"/>
+  <rect x="170" y="95" width="40" height="6" rx="3" fill="#ffffff" opacity="0.7"/>
+  <rect x="170" y="110" width="50" height="6" rx="3" fill="#ffffff" opacity="0.7"/>
+  
+  <!-- App Icons -->
+  <circle cx="180" cy="130" r="8" fill="#ffffff" opacity="0.9"/>
+  <circle cx="200" cy="130" r="8" fill="#ffffff" opacity="0.9"/>
+  <circle cx="220" cy="130" r="8" fill="#ffffff" opacity="0.9"/>
+  
+  <circle cx="180" cy="150" r="8" fill="#ffffff" opacity="0.9"/>
+  <circle cx="200" cy="150" r="8" fill="#ffffff" opacity="0.9"/>
+  <circle cx="220" cy="150" r="8" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Code Elements -->
+  <g transform="translate(50, 80)">
+    <rect x="0" y="0" width="80" height="60" rx="8" fill="#2d3748" opacity="0.9"/>
+    <text x="10" y="20" font-family="monospace" font-size="8" fill="#68d391">&lt;App/&gt;</text>
+    <text x="10" y="35" font-family="monospace" font-size="6" fill="#90cdf4">function</text>
+    <text x="10" y="50" font-family="monospace" font-size="6" fill="#fbb6ce">render()</text>
+  </g>
+  
+  <!-- Floating Elements -->
+  <circle cx="320" cy="100" r="15" fill="#48bb78" opacity="0.8"/>
+  <polygon points="320,90 330,110 310,110" fill="#ffffff"/>
+  
+  <circle cx="80" cy="200" r="12" fill="hsl(185, 75%, 50%)" opacity="0.8"/>
+  <rect x="75" y="195" width="10" height="10" fill="#ffffff"/>
+  
+  <!-- Connection Lines -->
+  <path d="M130 120 Q140 110 150 120" stroke="#4299e1" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M250 140 Q270 130 290 140" stroke="#4299e1" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>

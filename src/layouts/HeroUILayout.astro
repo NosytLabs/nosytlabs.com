@@ -1,0 +1,104 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  type?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  keywords?: string[];
+  noIndex?: boolean;
+  canonicalUrl?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { 
+  title, 
+  description,
+  image = '/images/og-default.jpg',
+  ogTitle = title,
+  ogDescription = description,
+  ogImage = image,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  author = 'NOSYT Labs',
+  keywords = [],
+  noIndex = false,
+  canonicalUrl = Astro.url.href,
+  jsonLd,
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Basic SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {author && <meta name="author" content={author} />}
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    {!noIndex && <meta name="robots" content="index, follow" />}
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="NOSYT Labs" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    {author && <meta property="article:author" content={author} />}
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
+    <meta name="twitter:site" content="@nosytlabs" />
+    <meta name="twitter:creator" content="@nosytlabs" />
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#000000" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    
+    <!-- Structured Data (JSON-LD) -->
+    {jsonLd && (
+      <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+    )}
+    
+    <!-- HeroUI Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/@heroui/theme@latest/dist/index.css" />
+    
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="font-sans antialiased bg-gray-50">
+    <div id="heroui-root" class="min-h-screen bg-white text-gray-900">
+      <slot />
+    </div>
+    
+    <script>
+      // Theme initialization for HeroUI
+      (function() {
+        const html = document.documentElement;
+        const theme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', theme);
+        html.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
+  </body>
+</html>

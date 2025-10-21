@@ -1,0 +1,217 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  sizes?: string;
+  quality?: number;
+  format?: 'webp' | 'avif' | 'png' | 'jpg';
+  fallbackFormat?: 'png' | 'jpg';
+  priority?: boolean;
+}
+
+const {
+  src,
+  alt,
+  width = 800,
+  height = 600,
+  class: className = '',
+  loading = 'lazy',
+  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+  quality = 80,
+  format = 'webp',
+  fallbackFormat = 'jpg',
+  priority = false,
+  ...rest
+} = Astro.props;
+
+// Check if the image is an SVG
+const isSvg = src.toLowerCase().endsWith('.svg');
+
+// Determine loading strategy based on priority
+const imageLoading = priority ? 'eager' : loading;
+const fetchPriority = priority ? 'high' : 'auto';
+
+// Resolve base URL for public assets when a non-root base is configured
+const baseUrl = import.meta.env.BASE_URL || '/';
+const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+const hasBasePrefix = src.startsWith(normalizedBaseUrl);
+const isAbsolutePath = src.startsWith('/');
+const resolvedSrc = hasBasePrefix
+  ? src
+  : isAbsolutePath
+    ? (normalizedBaseUrl === '/' ? src : `${normalizedBaseUrl}${src.slice(1)}`)
+    : `${normalizedBaseUrl}${src}`;
+
+// Generate responsive image URLs for different sizes (skip for SVG)
+const responsiveWidths = [320, 640, 768, 1024, 1280, 1536];
+
+const srcSet = !isSvg ? responsiveWidths
+  .filter(w => w <= width)
+  .map(w => `${resolvedSrc}?w=${w}&q=${quality}&f=${format} ${w}w`)
+  .join(', ') : '';
+
+const fallbackSrcSet = !isSvg ? responsiveWidths
+  .filter(w => w <= width)
+  .map(w => `${resolvedSrc}?w=${w}&q=${quality}&f=${fallbackFormat} ${w}w`)
+  .join(', ') : '';
+---
+
+{isSvg ? (
+  <img
+    src={resolvedSrc}
+    alt={alt}
+    width={width}
+    height={height}
+    class={`w-full h-auto object-cover ${className}`}
+    loading={imageLoading}
+    decoding="async"
+    fetchpriority={fetchPriority}
+    {...rest}
+  />
+) : (
+  <picture class={`block ${className}`}>
+    <!-- WebP/AVIF source for modern browsers -->
+    <source
+      srcset={srcSet}
+      sizes={sizes}
+      type={`image/${format}`}
+    />
+    
+    <!-- Fallback for older browsers -->
+    <source
+      srcset={fallbackSrcSet}
+      sizes={sizes}
+      type={`image/${fallbackFormat}`}
+    />
+    
+    <!-- Fallback img element -->
+    <img
+      src={`${resolvedSrc}?w=${width}&q=${quality}&f=${fallbackFormat}`}
+      alt={alt}
+      width={width}
+      height={height}
+      class="w-full h-auto object-cover"
+      loading={imageLoading}
+      decoding="async"
+      fetchpriority={fetchPriority}
+      {...rest}
+    />
+  </picture>
+)}
+<style>
+  picture {
+    display: block;
+  }
+  
+  img {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  img[loading="lazy"] {
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  img.loading {
+    opacity: 0.7;
+  }
+  
+  img.loaded {
+    opacity: 1;
+    background: none !important;
+    animation: none !important;
+  }
+  
+  img.error {
+    opacity: 0.5;
+    background: #fef2f2 !important;
+    animation: none !important;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes loading-skeleton {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  /* Intersection Observer fallback for browsers without native lazy loading */
+  @supports not (loading: lazy) {
+    img[loading="lazy"] {
+      opacity: 0;
+    }
+    
+    img[loading="lazy"].loaded {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script is:inline>
+  // Enhanced Intersection Observer with loading skeleton and error handling
+  if ('IntersectionObserver' in window) {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          
+          // Add loading state
+          img.classList.add('loading');
+          
+          // Handle image load success
+          const handleLoad = () => {
+            img.classList.remove('loading');
+            img.classList.add('loaded');
+            img.removeEventListener('load', handleLoad);
+            img.removeEventListener('error', handleError);
+          };
+          
+          // Handle image load error
+          const handleError = () => {
+            img.classList.remove('loading');
+            img.classList.add('error');
+            img.removeEventListener('load', handleLoad);
+            img.removeEventListener('error', handleError);
+          };
+          
+          img.addEventListener('load', handleLoad);
+          img.addEventListener('error', handleError);
+          
+          // For browsers without native lazy loading support
+          if (!('loading' in HTMLImageElement.prototype)) {
+            img.src = img.dataset.src || img.src;
+          }
+          
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px 0px',
+      threshold: 0.01
+    });
+    
+    images.forEach(img => {
+      // Add loading skeleton
+      img.style.backgroundColor = '#f3f4f6';
+      img.style.backgroundImage = 'linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%)';
+      img.style.backgroundSize = '200% 100%';
+      img.style.animation = 'loading-skeleton 1.5s infinite';
+      
+      imageObserver.observe(img);
+    });
+  }
+</script>

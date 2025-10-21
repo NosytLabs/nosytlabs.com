@@ -1,0 +1,73 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8fafc" rx="8"/>
+  
+  <!-- Header -->
+  <rect x="20" y="20" width="360" height="50" fill="#059669" rx="6"/>
+  <text x="40" y="45" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Real Estate Platform</text>
+  
+  <!-- Search Bar -->
+  <rect x="20" y="80" width="280" height="35" fill="white" stroke="#d1d5db" stroke-width="1" rx="6"/>
+  <text x="30" y="100" fill="#9ca3af" font-family="Arial, sans-serif" font-size="12">Search properties...</text>
+  
+  <!-- Search Button -->
+  <rect x="310" y="80" width="70" height="35" fill="#059669" rx="6"/>
+  <text x="335" y="100" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Search</text>
+  
+  <!-- Property Card 1 -->
+  <rect x="20" y="130" width="180" height="140" fill="white" stroke="#e5e7eb" stroke-width="1" rx="8"/>
+  
+  <!-- Property Image Placeholder -->
+  <rect x="30" y="140" width="160" height="80" fill="#e5e7eb" rx="4"/>
+  <text x="95" y="185" fill="#6b7280" font-family="Arial, sans-serif" font-size="12">Property Image</text>
+  
+  <!-- Property Details -->
+  <text x="30" y="240" fill="#1f2937" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Modern Family Home</text>
+  <text x="30" y="255" fill="#059669" font-family="Arial, sans-serif" font-size="16" font-weight="bold">$450,000</text>
+  
+  <!-- Property Features -->
+  <g transform="translate(30, 260)">
+    <text x="0" y="0" fill="#6b7280" font-family="Arial, sans-serif" font-size="10">3 bed • 2 bath • 1,800 sq ft</text>
+  </g>
+  
+  <!-- Property Card 2 -->
+  <rect x="210" y="130" width="170" height="140" fill="white" stroke="#e5e7eb" stroke-width="1" rx="8"/>
+  
+  <!-- Property Image Placeholder -->
+  <rect x="220" y="140" width="150" height="80" fill="#e5e7eb" rx="4"/>
+  <text x="280" y="185" fill="#6b7280" font-family="Arial, sans-serif" font-size="12">Property Image</text>
+  
+  <!-- Property Details -->
+  <text x="220" y="240" fill="#1f2937" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Downtown Condo</text>
+  <text x="220" y="255" fill="#059669" font-family="Arial, sans-serif" font-size="16" font-weight="bold">$320,000</text>
+  
+  <!-- Property Features -->
+  <g transform="translate(220, 260)">
+    <text x="0" y="0" fill="#6b7280" font-family="Arial, sans-serif" font-size="10">2 bed • 1 bath • 1,200 sq ft</text>
+  </g>
+  
+  <!-- Filter Sidebar -->
+  <rect x="20" y="280" width="100" height="15" fill="#f3f4f6" rx="4"/>
+  <text x="25" y="290" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Price Range</text>
+  
+  <rect x="130" y="280" width="100" height="15" fill="#f3f4f6" rx="4"/>
+  <text x="135" y="290" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Property Type</text>
+  
+  <rect x="240" y="280" width="80" height="15" fill="#f3f4f6" rx="4"/>
+  <text x="245" y="290" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Bedrooms</text>
+  
+  <rect x="330" y="280" width="50" height="15" fill="#f3f4f6" rx="4"/>
+  <text x="335" y="290" fill="#374151" font-family="Arial, sans-serif" font-size="10" font-weight="bold">More</text>
+  
+  <!-- House Icon in Header -->
+  <g transform="translate(350, 35)">
+    <path d="M10 2L3 9V20H7V14H13V20H17V9L10 2Z" fill="white" stroke="white" stroke-width="1"/>
+  </g>
+  
+  <!-- Status Indicators -->
+  <circle cx="180" cy="150" r="6" fill="#10b981"/>
+  <text x="190" y="155" fill="#10b981" font-family="Arial, sans-serif" font-size="8" font-weight="bold">Available</text>
+  
+  <circle cx="360" cy="150" r="6" fill="hsl(185, 75%, 50%)"/>
+  <text x="320" y="155" fill="hsl(185, 75%, 50%)" font-family="Arial, sans-serif" font-size="8" font-weight="bold">Pending</text>
+</svg>

@@ -1,0 +1,269 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import PageHero from '@/components/layout/PageHero.astro';
+import FeaturedProjects from '@/components/content/FeaturedProjects.astro';
+import CTA from '@/components/content/CTA.astro';
+import StatsDisplay from '@/components/ui/StatsDisplay.astro';
+import { createInternalLink, createImagePath } from '@/lib/constants';
+import { getPrimaryStats } from '@/lib/data/stats';
+
+// Extended project data with more comprehensive examples
+const allProjects = [
+  {
+    title: "E-Commerce Platform",
+    description: "A modern e-commerce solution with AI-powered product recommendations, real-time inventory management, and seamless payment integration. Built with React and Node.js for optimal performance.",
+    image: createImagePath('images/projects/ecommerce-platform.svg'),
+    tags: ["React", "Node.js", "AI", "Stripe", "PostgreSQL"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/ecommerce-platform",
+    featured: true,
+    status: 'completed',
+    category: 'ecommerce'
+  },
+  {
+    title: "SaaS Analytics Dashboard",
+    description: "Comprehensive analytics dashboard with real-time data visualization, user management, and advanced reporting capabilities. Features interactive charts and customizable widgets.",
+    image: createImagePath('images/projects/analytics.svg'),
+    tags: ["Vue.js", "Python", "PostgreSQL", "Docker", "Redis"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/saas-dashboard",
+    featured: true,
+    status: 'completed',
+    category: 'web'
+  },
+  {
+    title: "AI Chat Application",
+    description: "Intelligent chatbot with natural language processing, sentiment analysis, and multi-language support for enhanced customer service. Integrates with OpenAI GPT models.",
+    image: createImagePath('images/projects/ai-chat.svg'),
+    tags: ["React", "Python", "OpenAI", "WebSocket", "FastAPI"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/ai-chat-app",
+    featured: false,
+    status: 'in-progress',
+    category: 'ai'
+  },
+  {
+    title: "Mobile Banking App",
+    description: "Secure mobile banking application with biometric authentication, real-time transaction monitoring, and comprehensive financial management tools.",
+    image: createImagePath('images/projects/banking-app.svg'),
+    tags: ["React Native", "Node.js", "AWS", "Security", "Biometrics"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/mobile-banking",
+    featured: false,
+    status: 'completed',
+    category: 'mobile'
+  },
+  {
+    title: "AI Content Generator",
+    description: "Advanced content generation platform using machine learning to create high-quality articles, social media posts, and marketing copy with brand consistency.",
+    image: createImagePath('images/projects/ai-content-generator.svg'),
+    tags: ["Next.js", "Python", "OpenAI", "TensorFlow", "MongoDB"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/ai-content-generator",
+    featured: true,
+    status: 'completed',
+    category: 'ai'
+  },
+  {
+    title: "Healthcare Management System",
+    description: "Comprehensive healthcare platform with patient management, appointment scheduling, telemedicine capabilities, and HIPAA-compliant data handling.",
+    image: createImagePath('images/projects/healthcare-system.svg'),
+    tags: ["React", "Node.js", "PostgreSQL", "HIPAA", "WebRTC"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/healthcare-system",
+    featured: false,
+    status: 'completed',
+    category: 'web'
+  },
+  {
+    title: "IoT Monitoring Dashboard",
+    description: "Real-time IoT device monitoring and control system with predictive analytics, automated alerts, and comprehensive device management capabilities.",
+    image: createImagePath('images/projects/iot-monitoring.svg'),
+    tags: ["Vue.js", "Python", "InfluxDB", "MQTT", "Docker"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/iot-monitoring",
+    featured: false,
+    status: 'in-progress',
+    category: 'web'
+  },
+  {
+    title: "Blockchain Wallet",
+    description: "Secure cryptocurrency wallet with multi-chain support, DeFi integration, and advanced security features including hardware wallet compatibility.",
+    image: createImagePath('images/projects/blockchain-wallet.svg'),
+    tags: ["React Native", "Web3", "Ethereum", "Security", "DeFi"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/blockchain-wallet",
+    featured: false,
+    status: 'upcoming',
+    category: 'mobile'
+  },
+  {
+    title: "Smart Home Control System",
+    description: "Integrated smart home automation platform with voice control, energy monitoring, security features, and seamless device integration.",
+    image: createImagePath('images/projects/smarthome.svg'),
+    tags: ["React", "Python", "IoT", "Voice AI", "Raspberry Pi"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/smart-home",
+    featured: false,
+    status: 'completed',
+    category: 'ai'
+  },
+  {
+    title: "Real Estate Platform",
+    description: "Modern real estate marketplace with virtual tours, AI-powered property matching, mortgage calculators, and comprehensive listing management.",
+    image: createImagePath('images/projects/real-estate.svg'),
+    tags: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "Maps API"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/real-estate-platform",
+    featured: false,
+    status: 'completed',
+    category: 'web'
+  },
+  {
+    title: "Performance Analytics Suite",
+    description: "Enterprise-grade performance monitoring and analytics platform with custom dashboards, automated reporting, and predictive insights.",
+    image: createImagePath('images/projects/performance-dashboard.svg'),
+    tags: ["React", "Python", "ClickHouse", "Grafana", "Kubernetes"],
+    liveUrl: "/contact",
+    githubUrl: "https://github.com/nosytlabs/performance-analytics",
+    featured: false,
+    status: 'in-progress',
+    category: 'web'
+  }
+];
+
+const pageTitle = "Project Portfolio - Web Development & AI Integration Showcase | NOSYT Labs";
+const pageDescription = "Explore our comprehensive portfolio of 47 successful web development, mobile app, and AI integration projects. See real results from e-commerce platforms, SaaS applications, and proven solutions we've delivered.";
+---
+
+<MainLayout 
+  title={pageTitle}
+  description={pageDescription}
+  keywords={["web development portfolio", "AI integration projects", "React projects", "Node.js applications", "e-commerce development", "SaaS applications", "mobile app development", "proven solutions"]}
+  ogTitle="NOSYT Labs Portfolio - Successful Web Development & AI Projects"
+  ogDescription="See our proven track record with 47 successful web applications, AI integrations, and proven solutions. Real projects, real results for businesses worldwide."
+  canonicalUrl={createInternalLink("/projects")}
+>
+  <!-- Hero Section -->
+  <PageHero
+    title="Our Project Portfolio"
+    subtitle="Discover our comprehensive showcase of 47 successful projects that demonstrate our expertise across web development, mobile applications, AI integration, and proven solutions. Each project represents our commitment to measurable results, quality, and client success."
+    ctaText="Start Your Project"
+    ctaHref={createInternalLink("/contact")}
+    secondaryCtaText="View Services"
+    secondaryCtaHref={createInternalLink("/services")}
+    background="gradient"
+    size="standard"
+  />
+
+  <!-- Add H1 heading for proper hierarchy -->
+  <section class="sr-only">
+    <h1>Our Projects - NOSYT Labs Portfolio</h1>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <FeaturedProjects
+    title="Featured Projects"
+    subtitle="Our Best Work"
+    description="Highlighting our most impactful projects with proven ROI that showcase our technical expertise and measurable problem-solving results."
+    projects={allProjects}
+    showFilters={true}
+    className="bg-white dark:bg-gray-900"
+  />
+
+  <!-- Project Impact Section -->
+  <section class="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-primary/10 via-background to-accent/10">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="text-center mb-12 lg:mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Project Impact</h2>
+        <p class="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          Our projects have delivered measurable results and transformed businesses across various industries.
+        </p>
+      </div>
+      
+      <StatsDisplay stats={getPrimaryStats()} variant="hero" />
+    </div>
+  </section>
+
+  <!-- Technologies Section -->
+  <section class="py-16 md:py-20 lg:py-24 bg-muted/20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="text-center mb-12 lg:mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Technologies We Master</h2>
+        <p class="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          We leverage proven technologies and frameworks to build robust, scalable, and high-performance solutions.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {[
+          "React", "Vue.js", "Next.js", "Node.js", "Python", "TypeScript",
+          "PostgreSQL", "MongoDB", "AWS", "Docker", "Kubernetes", "AI/ML",
+          "React Native", "Flutter", "WebRTC", "Blockchain", "IoT", "Security"
+        ].map((tech) => (
+          <div class="card-base text-center hover:border-primary/30 hover:-translate-y-1">
+            <div class="text-lg font-semibold">{tech}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-16 md:py-20 lg:py-24 bg-background">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div class="text-center mb-12 lg:mb-16">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Our Development Process</h2>
+        <p class="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          We follow a proven methodology that ensures project success from conception to deployment and beyond.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">🎯</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Discovery</h3>
+          <p class="text-muted-foreground">Understanding your goals, requirements, and target audience</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">🎨</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Design</h3>
+          <p class="text-muted-foreground">Creating intuitive user experiences and modern interfaces</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">⚡</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Development</h3>
+          <p class="text-muted-foreground">Building robust, scalable solutions with proven technology</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl">🚀</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Launch</h3>
+          <p class="text-muted-foreground">Deploying your solution with ongoing support and optimization</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <CTA
+    title="Ready to Start Your Next Project?"
+    description="Let's discuss how we can help you achieve your goals with a custom solution tailored to your needs. Get a free consultation and personalized strategy for your project."
+    primaryCTA={{
+      text: "Get Started Today",
+      href: createInternalLink("/contact")
+    }}
+    secondaryCTA={{
+      text: "View Our Services",
+      href: createInternalLink("/services")
+    }}
+    className="bg-gradient-to-br from-primary-600 to-secondary-600 dark:from-primary-800 dark:to-secondary-800"
+  />
+</MainLayout>

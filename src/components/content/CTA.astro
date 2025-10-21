@@ -1,0 +1,105 @@
+---
+import { createInternalLink } from "../../lib/constants";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  primaryCTA?: {
+    text: string;
+    href: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+  };
+  // Backward compatibility aliases
+  cta1?: {
+    text: string;
+    href: string;
+  };
+  cta2?: {
+    text: string;
+    href: string;
+  };
+  showStats?: boolean;
+  stats?: Array<{
+    value: string;
+    label: string;
+  }>;
+  className?: string;
+}
+
+const {
+  title = "Ready to Build Your Next Application?",
+  subtitle = "Get Technical Assessment",
+  description = "Join 47 successful projects. Get a technical assessment and fixed-price estimate within 24 hours based on our proven track record.",
+  primaryCTA,
+  secondaryCTA,
+  cta1,
+  cta2,
+  showStats = true,
+  stats = [
+    { value: "500+", label: "Projects Completed" },
+    { value: "98%", label: "Client Satisfaction" },
+    { value: "24/7", label: "Support Available" },
+    { value: "5★", label: "Average Rating" }
+  ],
+  className = ""
+} = Astro.props as Props;
+---
+
+<section class={`section-spacing-md ${className}`}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="cta-content">
+      <!-- Main Content -->
+      <div>
+        <h2 class="cta-title">
+          {title}
+        </h2>
+        <p class="text-2xl font-semibold mb-4">
+          {subtitle}
+        </p>
+        <p class="cta-description">
+          {description}
+        </p>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="cta-actions">
+        {(primaryCTA || cta1) && (
+          <a href={(primaryCTA || cta1)?.href || createInternalLink("/contact")} class="btn btn-primary btn-lg">
+            {(primaryCTA || cta1)?.text || "Get a Free Quote"}
+          </a>
+        )}
+        {(secondaryCTA || cta2) && (
+          <a href={(secondaryCTA || cta2)?.href || createInternalLink("/services")} class="btn btn-outline btn-lg">
+            {(secondaryCTA || cta2)?.text || "Explore Services"}
+          </a>
+        )}
+        {!primaryCTA && !cta1 && !secondaryCTA && !cta2 && (
+          <>
+            <a href={createInternalLink("/contact")} class="btn btn-primary btn-lg">Get a Free Quote</a>
+            <a href={createInternalLink("/services")} class="btn btn-outline btn-lg">Explore Services</a>
+          </>
+        )}
+      </div>
+
+      <!-- Stats -->
+      {showStats && (
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          {stats.map((stat) => (
+            <div class="text-center">
+              <div class="stat-value">
+                {stat.value}
+              </div>
+              <div class="stat-label">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

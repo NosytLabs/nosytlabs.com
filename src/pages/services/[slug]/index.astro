@@ -1,0 +1,34 @@
+---
+import ServicePage from '@/components/content/ServicePage.astro';
+import { getCollection } from 'astro:content';
+import type { Service } from '@/types/blog';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map(service => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+// Prefer the service passed via getStaticPaths, but fall back to lookup by slug
+let service: Service | null = Astro.props?.service;
+if (!service) {
+  const services = await getCollection('services');
+  service = services.find((s) => s.slug === Astro.params.slug) || null;
+}
+
+// Gracefully handle missing content to avoid runtime crashes in dev
+let Content;
+if (service) {
+  ({ Content } = await service.render());
+} else {
+  Content = () => null;
+}
+---
+{service ? (
+  <ServicePage {...service.data}>
+    <Content />
+  </ServicePage>
+) : (
+  <div class="container py-16 text-center text-muted-foreground">Service not found.</div>
+)}

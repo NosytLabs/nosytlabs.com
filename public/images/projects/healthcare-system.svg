@@ -1,0 +1,63 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#f8fafc" rx="8"/>
+  
+  <!-- Header -->
+  <rect x="20" y="20" width="360" height="50" fill="#3b82f6" rx="6"/>
+  <text x="40" y="45" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Healthcare Management System</text>
+  
+  <!-- Navigation -->
+  <rect x="20" y="80" width="80" height="30" fill="#e2e8f0" rx="4"/>
+  <text x="35" y="98" fill="#475569" font-family="Arial, sans-serif" font-size="12">Dashboard</text>
+  
+  <rect x="110" y="80" width="80" height="30" fill="#e2e8f0" rx="4"/>
+  <text x="135" y="98" fill="#475569" font-family="Arial, sans-serif" font-size="12">Patients</text>
+  
+  <rect x="200" y="80" width="80" height="30" fill="#e2e8f0" rx="4"/>
+  <text x="220" y="98" fill="#475569" font-family="Arial, sans-serif" font-size="12">Appointments</text>
+  
+  <rect x="290" y="80" width="80" height="30" fill="#e2e8f0" rx="4"/>
+  <text x="315" y="98" fill="#475569" font-family="Arial, sans-serif" font-size="12">Reports</text>
+  
+  <!-- Main Content Area -->
+  <rect x="20" y="120" width="240" height="160" fill="white" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+  
+  <!-- Patient Card -->
+  <circle cx="50" cy="150" r="15" fill="#10b981"/>
+  <text x="75" y="145" fill="#1f2937" font-family="Arial, sans-serif" font-size="14" font-weight="bold">John Smith</text>
+  <text x="75" y="160" fill="#6b7280" font-family="Arial, sans-serif" font-size="12">Patient ID: #12345</text>
+  
+  <!-- Vital Signs -->
+  <text x="30" y="185" fill="#374151" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Vital Signs:</text>
+  <text x="30" y="200" fill="#6b7280" font-family="Arial, sans-serif" font-size="11">Heart Rate: 72 bpm</text>
+  <text x="30" y="215" fill="#6b7280" font-family="Arial, sans-serif" font-size="11">Blood Pressure: 120/80</text>
+  <text x="30" y="230" fill="#6b7280" font-family="Arial, sans-serif" font-size="11">Temperature: 98.6°F</text>
+  
+  <!-- Status Indicator -->
+  <circle cx="220" cy="150" r="8" fill="#10b981"/>
+  <text x="235" y="155" fill="#10b981" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Healthy</text>
+  
+  <!-- Sidebar -->
+  <rect x="270" y="120" width="110" height="160" fill="white" stroke="#e2e8f0" stroke-width="1" rx="6"/>
+  
+  <!-- Upcoming Appointments -->
+  <text x="280" y="140" fill="#374151" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Appointments</text>
+  
+  <rect x="280" y="150" width="90" height="25" fill="#fef3c7" rx="4"/>
+  <text x="285" y="165" fill="#92400e" font-family="Arial, sans-serif" font-size="10">10:00 AM - Dr. Wilson</text>
+  
+  <rect x="280" y="180" width="90" height="25" fill="#dbeafe" rx="4"/>
+  <text x="285" y="195" fill="#1e40af" font-family="Arial, sans-serif" font-size="10">2:30 PM - Dr. Johnson</text>
+  
+  <!-- Quick Stats -->
+  <text x="280" y="220" fill="#374151" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Today's Stats</text>
+  <text x="280" y="235" fill="#6b7280" font-family="Arial, sans-serif" font-size="10">Patients: 24</text>
+  <text x="280" y="250" fill="#6b7280" font-family="Arial, sans-serif" font-size="10">Appointments: 18</text>
+  <text x="280" y="265" fill="#6b7280" font-family="Arial, sans-serif" font-size="10">Emergencies: 2</text>
+  
+  <!-- Medical Cross Icon -->
+  <g transform="translate(340, 40)">
+    <rect x="-2" y="-8" width="4" height="16" fill="white"/>
+    <rect x="-8" y="-2" width="16" height="4" fill="white"/>
+  </g>
+</svg>

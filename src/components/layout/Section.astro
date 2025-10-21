@@ -1,0 +1,55 @@
+---
+export interface Props {
+  /** Section spacing variant */
+  spacing?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
+  /** Background variant */
+  background?: 'default' | 'muted' | 'gradient' | 'primary' | 'none';
+  /** Additional CSS classes */
+  className?: string;
+  /** HTML element type */
+  as?: 'section' | 'div' | 'article' | 'aside';
+  /** Section ID for navigation */
+  id?: string;
+}
+
+const {
+  spacing = 'md',
+  background = 'default',
+  className = '',
+  as: Element = 'section',
+  id,
+  ...rest
+} = Astro.props;
+
+// Spacing classes - Using CSS custom properties for consistency
+const spacingClasses = {
+  none: '',
+  sm: 'section-spacing-sm',
+  md: 'section-spacing-md', 
+  lg: 'section-spacing-lg',
+  xl: 'section-spacing-xl'
+};
+
+// Background classes with enhanced gradients
+const backgroundClasses = {
+  none: '',
+  default: 'bg-background',
+  muted: 'bg-muted/20',
+  gradient: 'bg-gradient-to-br from-background via-muted/10 to-primary/5',
+  primary: 'bg-primary text-primary-foreground'
+};
+
+const sectionClasses = [
+  spacingClasses[spacing as keyof typeof spacingClasses],
+  backgroundClasses[background as keyof typeof backgroundClasses],
+  'relative',
+  className
+].filter(Boolean).join(' ');
+
+// Add ARIA attributes for accessibility
+const ariaProps = Element === 'section' ? { role: 'region' } : {};
+---
+
+<Element class={sectionClasses} id={id} {...ariaProps} {...rest}>
+  <slot />
+</Element>

@@ -1,0 +1,96 @@
+---
+import { SITE_CONFIG } from '../../lib/constants';
+export interface Item {
+  name: string;
+  url?: string;
+}
+
+interface Props {
+  items: Item[];
+  includeSchema?: boolean;
+  separator?: string;
+  maxItems?: number;
+}
+
+const { 
+  items = [], 
+  includeSchema = true, 
+  separator = "/",
+  maxItems = 10 
+} = Astro.props as Props;
+
+// Validate and sanitize items
+const validItems = items
+  .filter((item): item is Item => Boolean(item?.name))
+  .slice(0, maxItems);
+
+const basePath = import.meta.env.BASE_URL || '/';
+const normalizedBasePath = basePath.endsWith('/') ? basePath : `${basePath}/`;
+const stripBase = (url?: string) => {
+  if (!url) return undefined;
+  const variants = [normalizedBasePath, normalizedBasePath.replace(/\/$/, '')];
+  let result = url;
+  for (const variant of variants) {
+    const safe = variant.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    result = result.replace(new RegExp(`^${safe}`), '/');
+  }
+  // Ensure leading slash
+  if (!result.startsWith('/')) result = `/${result}`;
+  return result;
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": validItems.map((item, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "name": item.name,
+    ...(item.url ? { "item": `${SITE_CONFIG.BASE_URL}${stripBase(item.url)}` } : {})
+  }))
+};
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumb-nav relative">
+  <!-- Background decoration -->
+  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-50 rounded-lg"></div>
+  
+  <!-- Floating particles -->
+  <div class="absolute top-2 left-4 w-0.5 h-0.5 bg-primary/30 rounded-full animate-float"></div>
+  <div class="absolute bottom-2 right-6 w-0.5 h-0.5 bg-accent/40 rounded-full animate-bounce-slow"></div>
+  
+  <ol class="breadcrumb-list relative z-content">
+    {validItems.map((item, idx) => (
+      <li class="breadcrumb-item animate-fade-in-up">
+        {item.url && idx < validItems.length - 1 ? (
+          <a 
+            href={item.url} 
+            class="breadcrumb-link group"
+            aria-current={idx === validItems.length - 1 ? "page" : undefined}
+          >
+            <span class="relative z-content">{item.name}</span>
+            <!-- Hover glow effect -->
+            <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 blur-sm transition-all duration-300 rounded-md"></div>
+            <!-- Shimmer effect -->
+            <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 rounded-md"></div>
+          </a>
+        ) : (
+          <span class="breadcrumb-current relative">
+            <span class="relative z-content">{item.name}</span>
+            <!-- Current page glow -->
+            <div class="absolute inset-0 bg-primary/20 blur-sm rounded-md animate-pulse-slow"></div>
+          </span>
+        )}
+        {idx < validItems.length - 1 && (
+          <span class="breadcrumb-separator animate-pulse-slow" aria-hidden="true">
+            {separator}
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+  
+  {includeSchema && (
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbJsonLd)} />
+  )}
+</nav>

@@ -1,1 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="30" y="10" width="40" height="80" rx="5" fill="none" stroke="#00F0FF" stroke-width="5"/><line x1="30" y1="25" x2="70" y2="25" stroke="#00F0FF" stroke-width="5"/><line x1="30" y1="75" x2="70" y2="75" stroke="#00F0FF" stroke-width="5"/><circle cx="50" cy="85" r="5" fill="#00F0FF"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="mobileGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:hsl(220, 85%, 55%);stop-opacity:1" />
+      <stop offset="50%" style="stop-color:hsl(235, 85%, 65%);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:hsl(185, 75%, 50%);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Enhanced phone body -->
+  <rect x="8" y="3" width="16" height="26" rx="4" fill="url(#mobileGradient)" opacity="0.9"/>
+  
+  <!-- Enhanced screen -->
+  <rect x="10" y="5.5" width="12" height="18" rx="1.5" fill="#1a1a1a" opacity="0.95"/>
+  
+  <!-- App icons grid with better spacing -->
+  <rect x="12" y="8" width="2.5" height="2.5" rx="0.6" fill="hsl(220, 85%, 55%)" opacity="0.9"/>
+  <rect x="17.5" y="8" width="2.5" height="2.5" rx="0.6" fill="hsl(235, 85%, 65%)" opacity="0.9"/>
+  <rect x="12" y="12" width="2.5" height="2.5" rx="0.6" fill="hsl(185, 75%, 50%)" opacity="0.9"/>
+  <rect x="17.5" y="12" width="2.5" height="2.5" rx="0.6" fill="hsl(220, 85%, 55%)" opacity="0.9"/>
+  
+  <!-- Enhanced navigation bar -->
+  <rect x="10.5" y="16" width="11" height="0.8" rx="0.4" fill="url(#mobileGradient)" opacity="0.7"/>
+  
+  <!-- Content area with better proportions -->
+  <rect x="11" y="18" width="10" height="4" rx="0.8" fill="url(#mobileGradient)" opacity="0.5"/>
+  
+  <!-- Home indicator -->
+  <rect x="14" y="25.5" width="4" height="0.8" rx="0.4" fill="url(#mobileGradient)" opacity="0.8"/>
+  
+  <!-- Enhanced speaker -->
+  <rect x="12.5" y="4.2" width="7" height="0.8" rx="0.4" fill="url(#mobileGradient)" opacity="0.7"/>
+  
+  <!-- Camera with better positioning -->
+  <circle cx="19.5" cy="4.5" r="0.6" fill="url(#mobileGradient)" opacity="0.8"/>
+  
+  <!-- Side buttons with better proportions -->
+  <rect x="7.2" y="10" width="0.8" height="3" rx="0.4" fill="url(#mobileGradient)" opacity="0.7"/>
+  <rect x="7.2" y="14" width="0.8" height="1.5" rx="0.4" fill="url(#mobileGradient)" opacity="0.7"/>
+  <rect x="24" y="12" width="0.8" height="4" rx="0.4" fill="url(#mobileGradient)" opacity="0.7"/>
+  
+  <!-- Status indicators -->
+  <circle cx="5" cy="8" r="0.8" fill="hsl(220, 85%, 55%)" opacity="0.8"/>
+  <circle cx="27" cy="8" r="0.8" fill="hsl(185, 75%, 50%)" opacity="0.8"/>
+  
+  <!-- Signal/connectivity dots -->
+  <circle cx="13" cy="6.5" r="0.3" fill="#00F0FF" opacity="0.6"/>
+  <circle cx="14.5" cy="6.5" r="0.3" fill="#00F0FF" opacity="0.8"/>
+  <circle cx="16" cy="6.5" r="0.3" fill="#00F0FF" opacity="1"/>
+</svg>

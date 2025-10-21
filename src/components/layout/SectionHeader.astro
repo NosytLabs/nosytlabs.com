@@ -1,0 +1,74 @@
+---
+export interface Props {
+  /** Section title */
+  title: string;
+  /** Section subtitle/description */
+  subtitle?: string;
+  /** Text alignment */
+  align?: 'left' | 'center' | 'right';
+  /** Title variant */
+  titleVariant?: 'section' | 'hero' | 'large';
+  /** Apply gradient to title */
+  gradient?: boolean;
+  /** Additional CSS classes */
+  className?: string;
+  /** Title tag level */
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+const {
+  title,
+  subtitle,
+  align = 'center',
+  titleVariant = 'section',
+  gradient = false,
+  className = '',
+  level = 2,
+  ...rest
+} = Astro.props;
+
+// Alignment classes
+const alignClasses = {
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right'
+};
+
+// Title variant classes - Enhanced sizing
+const titleVariantClasses = {
+  hero: 'text-5xl sm:text-6xl md:text-7xl font-bold',
+  large: 'text-4xl sm:text-5xl md:text-6xl font-bold',
+  section: 'text-3xl sm:text-4xl md:text-5xl font-bold'
+};
+
+const headerClasses = [
+  'section-header',
+  alignClasses[align],
+  className
+].filter(Boolean).join(' ');
+
+const titleClasses = [
+  'section-title',
+  titleVariantClasses[titleVariant],
+  gradient ? 'text-gradient' : ''
+].filter(Boolean).join(' ');
+
+const subtitleClasses = [
+  'section-subtitle'
+].filter(Boolean).join(' ');
+
+// Dynamic heading tag
+const HeadingTag = `h${level}` as keyof HTMLElementTagNameMap;
+---
+
+<div class={headerClasses} {...rest}>
+  <HeadingTag class={titleClasses}>
+    {title}
+  </HeadingTag>
+  {subtitle && (
+    <p class={subtitleClasses}>
+      {subtitle}
+    </p>
+  )}
+  <slot />
+</div>

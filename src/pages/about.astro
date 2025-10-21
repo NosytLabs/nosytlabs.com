@@ -1,18 +1,24 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import ParticleBackground from '../components/ParticleBackground.astro';
-import Button from '../components/ui/Button.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
+import Section from '@/components/layout/Section.astro';
+import Container from '@/components/layout/Container.astro';
+import SectionHeader from '@/components/layout/SectionHeader.astro';
+import PageHero from '@/components/layout/PageHero.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import Button from '@/components/ui/Button.astro';
+import { SITE_CONFIG, createInternalLink } from '@/lib/constants';
 
-const aboutJsonLd = {
+const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Nosyt Labs",
-  "url": "https://nosytlabs.com",
-  "description": "Digital innovation company specializing in web development, mobile applications, and AI integration solutions.",
-  "foundingDate": "2019",
+  "name": "NOSYT Labs",
+  "description": "Expert web development, AI integration, and digital solutions that drive results for your business.",
+  "url": SITE_CONFIG.BASE_URL,
+  "logo": `${SITE_CONFIG.BASE_URL}/images/logo-icon.webp`,
+  "foundingDate": "2020",
   "founder": {
     "@type": "Person",
-    "name": "Nosyt Labs Team"
+    "name": "Tyson Faulkner"
   },
   "address": {
     "@type": "PostalAddress",
@@ -20,145 +26,172 @@ const aboutJsonLd = {
   },
   "sameAs": [
     "https://github.com/nosytlabs",
-    "https://twitter.com/nosytlabs",
     "https://linkedin.com/company/nosytlabs"
   ]
 };
 ---
 
 <MainLayout 
-  title="About Us - Nosyt Labs" 
-  description="Learn about Nosyt Labs, our mission to create exceptional digital experiences, and the passionate team behind our innovative solutions."
-  ogImage="/images/about-og.jpg"
+  title="About NOSYT Labs - Expert Web Development & AI Integration"
+  description="Learn about NOSYT Labs' mission to deliver measurable results through expert web development, AI integration, and proven digital solutions. Meet our team and discover our story."
+  keywords={["about nosyt labs", "web development team", "AI integration experts", "digital solutions company", "software development", "technology consulting", "custom applications"]}
+  ogTitle="About NOSYT Labs - Delivering Measurable Results Through Technology"
+  ogDescription="Discover how NOSYT Labs helps businesses thrive through expert web development, AI integration, and proven digital solutions. Learn about our mission and team."
+  ogImage="/images/og-about.jpg"
+  type="website"
+  author="NOSYT Labs"
+  jsonLd={jsonLd}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(aboutJsonLd)} />
-  
-  <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-    <!-- Hero Section -->
-    <section class="relative py-20 lg:py-32 overflow-hidden">
-      <ParticleBackground />
-      
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h1 class="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-            About <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Nosyt Labs</span>
-          </h1>
-          <p class="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-8">
-            We're a passionate team of developers, designers, and innovators dedicated to creating exceptional digital experiences that drive real results for our clients.
-          </p>
-        </div>
-      </div>
-    </section>
+  <Section background="default" spacing="none">
+    <Container size="standard">
+      <Breadcrumbs 
+        items={[
+          { name: 'Home', url: createInternalLink('/') },
+          { name: 'About', url: createInternalLink('/about') }
+        ]} 
+      />
+    </Container>
+  </Section>
+  <!-- Hero Section -->
+  <PageHero 
+    title="About NOSYT Labs"
+    subtitle="Since 2020, we've delivered 47 web applications serving 10,000+ concurrent users with sub-second response times."
+    size="standard"
+    background="gradient"
+  />
 
-    <!-- Mission Section -->
-    <section class="py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">
-              Our Mission
-            </h2>
-            <p class="text-lg text-slate-600 dark:text-slate-300 mb-6">
-              At Nosyt Labs, we believe that great technology should be accessible, intuitive, and transformative. Our mission is to bridge the gap between complex technical solutions and real-world business needs.
+  <!-- Mission Section -->
+  <Section background="muted" spacing="md">
+    <Container size="standard">
+      <SectionHeader 
+        title="Our Track Record"
+        subtitle="Four years of measurable results: 150% average traffic increases, 35% cart abandonment reductions, and 40+ hours weekly saved through automation"
+        align="center"
+        level={2}
+      />
+      
+      <div class="prose prose-lg mx-auto text-center max-w-4xl">
+        <p class="text-xl text-muted-foreground mb-8">
+          Founded in 2020, NOSYT Labs has completed 47 web applications that handle real traffic and deliver measurable ROI. 
+          Our clients see an average 150% increase in organic traffic and 35% reduction in cart abandonment rates 
+          within 6 months of launch.
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-8 mt-12">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">47 Applications Deployed</h3>
+            <p class="text-muted-foreground">
+              Production-ready web applications serving 10,000+ concurrent users with 99.9% uptime.
             </p>
-            <p class="text-lg text-slate-600 dark:text-slate-300 mb-8">
-              We're committed to delivering cutting-edge web applications, mobile solutions, and AI integrations that not only meet today's requirements but anticipate tomorrow's opportunities.
-            </p>
-            <Button href="/contact" variant="primary" size="lg">
-              Work With Us
-            </Button>
           </div>
           
-          <div class="relative">
-            <div class="aspect-square rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 p-8 text-white">
-              <div class="h-full flex flex-col justify-center">
-                <div class="text-center">
-                  <div class="text-4xl font-bold mb-2">150+</div>
-                  <div class="text-lg opacity-90 mb-6">Projects Completed</div>
-                  
-                  <div class="text-4xl font-bold mb-2">98%</div>
-                  <div class="text-lg opacity-90 mb-6">Client Satisfaction</div>
-                  
-                  <div class="text-4xl font-bold mb-2">5+</div>
-                  <div class="text-lg opacity-90">Years Experience</div>
-                </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">150% Traffic Growth</h3>
+            <p class="text-muted-foreground">
+              Average organic traffic increase achieved within 6 months of launch.
+            </p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">40+ Hours Saved Weekly</h3>
+            <p class="text-muted-foreground">
+              Time saved through AI automation and process optimization for our clients.
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- What We Do Section -->
+  <Section background="default" spacing="md">
+    <Container size="standard">
+      <SectionHeader 
+        title="What We Actually Build"
+        subtitle="Real applications with measurable performance metrics and proven ROI"
+        align="center"
+        gradient={true}
+        level={2}
+      />
+      
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="space-y-4">
+            <h3 class="text-2xl font-semibold">Web Applications That Scale</h3>
+            <p class="text-muted-foreground">
+              47 production applications built with React, Next.js, and Node.js, serving 10,000+ concurrent users 
+              with sub-second response times. Our latest e-commerce platform reduced cart abandonment by 35% 
+              and increased conversion rates by 28%.
+            </p>
+          </div>
+          
+          <div class="space-y-4">
+            <h3 class="text-2xl font-semibold">AI That Saves 40+ Hours Weekly</h3>
+            <p class="text-muted-foreground">
+              Custom automation systems that process 10x more data than manual methods. Our AI chatbots 
+              handle 80% of customer inquiries automatically, while our predictive analytics help clients 
+              reduce inventory costs by 25%.
+            </p>
+          </div>
+          
+          <div class="space-y-4">
+            <h3 class="text-2xl font-semibold">SEO That Delivers 150% Traffic Growth</h3>
+            <p class="text-muted-foreground">
+              Technical SEO audits and implementations that achieve measurable results. Our clients see 
+              an average 150% increase in organic traffic within 6 months, with some reaching 300% growth 
+              in competitive markets.
+            </p>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <div class="aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl p-8 flex items-center justify-center">
+            <div class="text-center space-y-4">
+              <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                <svg class="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
               </div>
+              <h4 class="text-xl font-semibold">4 Years, 47 Projects</h4>
+              <p class="text-muted-foreground">
+                Since 2020, we've maintained a 100% project completion rate with measurable ROI for every client.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Values Section -->
-    <section class="py-16 bg-white dark:bg-slate-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Our Values
-          </h2>
-          <p class="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            These core principles guide everything we do and shape how we work with our clients.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="text-center">
-            <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-              <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Innovation</h3>
-            <p class="text-slate-600 dark:text-slate-300">
-              We stay at the forefront of technology, constantly exploring new tools and methodologies to deliver cutting-edge solutions.
-            </p>
-          </div>
-
-          <div class="text-center">
-            <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
-              <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Quality</h3>
-            <p class="text-slate-600 dark:text-slate-300">
-              Every project receives our full attention to detail, ensuring robust, scalable, and maintainable solutions that stand the test of time.
-            </p>
-          </div>
-
-          <div class="text-center">
-            <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
-              <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Collaboration</h3>
-            <p class="text-slate-600 dark:text-slate-300">
-              We believe the best results come from close partnership with our clients, working together to achieve shared goals.
-            </p>
-          </div>
-        </div>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
+        <Button 
+          href="/services" 
+          variant="primary" 
+          size="lg"
+        >
+          View Our Work
+        </Button>
+        <Button 
+          href="/consultation" 
+          variant="outline" 
+          size="lg"
+        >
+          Get Technical Assessment
+        </Button>
       </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-          Ready to Work Together?
-        </h2>
-        <p class="text-xl text-slate-600 dark:text-slate-300 mb-8">
-          Let's discuss how we can help bring your vision to life with our expertise and passion for innovation.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="/contact" variant="primary" size="lg">
-            Get In Touch
-          </Button>
-          <Button href="/portfolio" variant="outline" size="lg">
-            View Our Work
-          </Button>
-        </div>
-      </div>
-    </section>
-  </div>
+    </Container>
+  </Section>
 </MainLayout>

@@ -1,7 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" role="img" aria-label="Nosyt Labs Logo">
-  <title>Nosyt Labs Logo</title>
-  <desc>Triangle with circle logo representing Nosyt Labs</desc>
-  <rect width="300" height="100" fill="#1A1A1A" rx="12"/>
-  <path fill-rule="evenodd" clip-rule="evenodd" d="M86.8918 28.25H99.0219L72.5243 58.5334L103.698 99.75H79.285L60.1647 74.7536L38.2929 99.75H26.1627L54.5069 67.3565L24.5938 28.25H49.6199L66.9004 51.0974L86.8918 28.25ZM82.6337 92.4904H89.3555L45.9716 35.1301H38.7584L82.6337 92.4904Z" fill="#00F0FF"/>
-  <text x="110" y="60" font-family="Satoshi, Inter, sans-serif" font-size="32" font-weight="700" fill="#00F0FF">NOSYT LABS</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" role="img" aria-label="NOSYT Labs Logo">
+  <title>NOSYT Labs - AI-Driven Solutions</title>
+  <desc>Modern logo featuring geometric elements representing innovation and technology</desc>
+  
+  <!-- Enhanced Background with subtle gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0A0A0A;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#151515;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1A1A1A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00F0FF;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#0099FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0080FF;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#6366F1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#E5E7EB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D1D5DB;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="textGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="120" fill="url(#bgGradient)" rx="16"/>
+  
+  <!-- Enhanced Logo Mark -->
+  <g transform="translate(25, 25)">
+    <!-- Outer ring with enhanced styling -->
+    <circle cx="35" cy="35" r="32" fill="none" stroke="url(#logoGradient)" stroke-width="2.5" opacity="0.4"/>
+    <circle cx="35" cy="35" r="28" fill="none" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.6"/>
+    
+    <!-- Inner geometric pattern -->
+    <g fill="url(#logoGradient)" filter="url(#glow)">
+      <!-- Central hexagon with enhanced proportions -->
+      <polygon points="35,18 46,25.5 46,44.5 35,52 24,44.5 24,25.5" opacity="0.9"/>
+      
+      <!-- Enhanced connecting nodes -->
+      <circle cx="35" cy="10" r="4"/>
+      <circle cx="52" cy="22" r="4"/>
+      <circle cx="52" cy="48" r="4"/>
+      <circle cx="35" cy="60" r="4"/>
+      <circle cx="18" cy="48" r="4"/>
+      <circle cx="18" cy="22" r="4"/>
+      
+      <!-- Enhanced connection lines -->
+      <line x1="35" y1="18" x2="35" y2="10" stroke="url(#logoGradient)" stroke-width="2.5" opacity="0.8"/>
+      <line x1="46" y1="25.5" x2="52" y2="22" stroke="url(#logoGradient)" stroke-width="2.5" opacity="0.8"/>
+      <line x1="46" y1="44.5" x2="52" y2="48" stroke="url(#logoGradient)" stroke-width="2.5" opacity="0.8"/>
+      <line x1="35" y1="52" x2="35" y2="60" stroke="url(#logoGradient)" stroke-width="2.5" opacity="0.8"/>
+      <line x1="24" y1="44.5" x2="18" y2="48" stroke="url(#logoGradient)" stroke-width="2.5" opacity="0.8"/>
+      <line x1="24" y1="25.5" x2="18" y2="22" stroke="url(#logoGradient)" stroke-width="2.5" opacity="0.8"/>
+      
+      <!-- Inner connection web -->
+      <line x1="35" y1="18" x2="46" y2="25.5" stroke="url(#logoGradient)" stroke-width="1" opacity="0.4"/>
+      <line x1="46" y1="25.5" x2="46" y2="44.5" stroke="url(#logoGradient)" stroke-width="1" opacity="0.4"/>
+      <line x1="46" y1="44.5" x2="35" y2="52" stroke="url(#logoGradient)" stroke-width="1" opacity="0.4"/>
+      <line x1="35" y1="52" x2="24" y2="44.5" stroke="url(#logoGradient)" stroke-width="1" opacity="0.4"/>
+      <line x1="24" y1="44.5" x2="24" y2="25.5" stroke="url(#logoGradient)" stroke-width="1" opacity="0.4"/>
+      <line x1="24" y1="25.5" x2="35" y2="18" stroke="url(#logoGradient)" stroke-width="1" opacity="0.4"/>
+    </g>
+  </g>
+  
+  <!-- Enhanced Company Text -->
+  <g transform="translate(100, 30)">
+    <text x="0" y="35" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="900" fill="url(#textGradient)" filter="url(#textGlow)">NOSYT</text>
+    <text x="0" y="55" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="url(#logoGradient)" opacity="0.9">LABS</text>
+    
+    <!-- Enhanced tagline -->
+    <text x="0" y="75" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="500" fill="#9CA3AF" opacity="0.8">AI-Driven Solutions</text>
+  </g>
+  
+  <!-- Subtle accent elements -->
+  <g opacity="0.3">
+    <circle cx="350" cy="30" r="2" fill="url(#logoGradient)"/>
+    <circle cx="360" cy="40" r="1.5" fill="url(#logoGradient)"/>
+    <circle cx="370" cy="50" r="1" fill="url(#logoGradient)"/>
+  </g>
 </svg>

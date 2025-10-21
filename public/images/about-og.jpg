@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="About NOSYT Labs - Open Graph Image">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="150" cy="150" r="60" fill="#3b82f6" opacity="0.1"/>
+  <circle cx="1050" cy="480" r="100" fill="#8b5cf6" opacity="0.1"/>
+  <rect x="800" y="100" width="300" height="3" fill="url(#accentGradient)" opacity="0.4"/>
+  
+  <!-- Logo -->
+  <rect x="80" y="80" width="60" height="60" rx="12" fill="url(#accentGradient)"/>
+  <text x="110" y="120" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">N</text>
+  
+  <!-- Main heading -->
+  <text x="80" y="220" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white">About Us</text>
+  
+  <!-- Subheading -->
+  <text x="80" y="280" font-family="Arial, sans-serif" font-size="28" fill="#94a3b8">Innovative solutions for the digital age</text>
+  
+  <!-- Mission statement -->
+  <text x="80" y="340" font-family="Arial, sans-serif" font-size="22" fill="#cbd5e1">We transform ideas into powerful digital experiences</text>
+  <text x="80" y="380" font-family="Arial, sans-serif" font-size="22" fill="#cbd5e1">through cutting-edge technology and creative design.</text>
+  
+  <!-- Values icons -->
+  <g transform="translate(80, 450)">
+    <!-- Innovation -->
+    <rect x="0" y="0" width="60" height="60" rx="8" fill="#3b82f6" opacity="0.2"/>
+    <rect x="10" y="10" width="40" height="40" rx="6" fill="#3b82f6"/>
+    <text x="30" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">💡</text>
+    <text x="30" y="85" font-family="Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Innovation</text>
+    
+    <!-- Quality -->
+    <rect x="120" y="0" width="60" height="60" rx="8" fill="#8b5cf6" opacity="0.2"/>
+    <rect x="130" y="10" width="40" height="40" rx="6" fill="#8b5cf6"/>
+    <text x="150" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">⭐</text>
+    <text x="150" y="85" font-family="Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Quality</text>
+    
+    <!-- Partnership -->
+    <rect x="240" y="0" width="60" height="60" rx="8" fill="#06b6d4" opacity="0.2"/>
+    <rect x="250" y="10" width="40" height="40" rx="6" fill="#06b6d4"/>
+    <text x="270" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">🤝</text>
+    <text x="270" y="85" font-family="Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Partnership</text>
+  </g>
+  
+  <!-- Bottom text -->
+  <text x="80" y="580" font-family="Arial, sans-serif" font-size="24" fill="#64748b">NOSYT Labs</text>
+  <text x="1120" y="580" font-family="Arial, sans-serif" font-size="18" fill="#64748b" text-anchor="end">nosytlabs.com</text>
+</svg>

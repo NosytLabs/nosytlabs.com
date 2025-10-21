@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Nosyt Labs Logo">
-  <title>Nosyt Labs Logo</title>
-  <desc>Triangle with circle logo representing Nosyt Labs</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="NOSYT Labs Logo">
+<title>NOSYT Labs Logo</title>
+<desc>Triangle with circle logo representing NOSYT Labs</desc>
   <path d="M20 20 L50 80 L80 20 Z" fill="none" stroke="#00F0FF" stroke-width="8"/>
   <circle cx="50" cy="50" r="10" fill="#00F0FF"/>
 </svg>

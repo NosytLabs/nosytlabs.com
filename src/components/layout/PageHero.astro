@@ -1,0 +1,128 @@
+---
+import Container from './Container.astro';
+import Button from '../ui/Button.astro';
+
+export interface Props {
+  /** Hero title */
+  title: string;
+  /** Hero subtitle/description */
+  subtitle?: string;
+  /** Primary CTA text */
+  ctaText?: string;
+  /** Primary CTA link */
+  ctaHref?: string;
+  /** Secondary CTA text */
+  secondaryCtaText?: string;
+  /** Secondary CTA link */
+  secondaryCtaHref?: string;
+  /** Background variant */
+  background?: 'default' | 'gradient' | 'primary' | 'muted';
+  /** Hero size */
+  size?: 'standard' | 'large' | 'compact';
+  /** Additional CSS classes */
+  class?: string;
+  /** Show background pattern */
+  pattern?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  ctaText,
+  ctaHref,
+  secondaryCtaText,
+  secondaryCtaHref,
+  background = 'gradient',
+  size = 'standard',
+  class: className = '',
+  pattern = true,
+  ...rest
+} = Astro.props;
+
+// Size classes
+const sizeClasses = {
+  compact: 'py-16 md:py-20',
+  standard: 'py-20 md:py-24 lg:py-32',
+  large: 'py-24 md:py-32 lg:py-40'
+};
+
+// Background classes
+const backgroundClasses = {
+  default: 'bg-background',
+  gradient: 'bg-gradient-to-br from-background via-muted/20 to-primary/5',
+  primary: 'bg-primary text-primary-foreground',
+  muted: 'bg-muted/30'
+};
+
+const heroClasses = [
+  sizeClasses[size],
+  backgroundClasses[background],
+  'relative overflow-hidden',
+  className
+].filter(Boolean).join(' ');
+
+const titleClasses = [
+  'text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6',
+  background === 'primary' ? 'text-primary-foreground' : 'text-foreground'
+].join(' ');
+
+const subtitleClasses = [
+  'text-lg sm:text-xl md:text-2xl leading-relaxed mb-8',
+  background === 'primary' ? 'text-primary-foreground/90' : 'text-muted-foreground'
+].join(' ');
+---
+
+<section class={heroClasses} {...rest}>
+  <!-- Background Pattern -->
+  {pattern && (
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.1),transparent_50%)]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.1),transparent_50%)]"></div>
+    </div>
+  )}
+  
+  <Container size="standard" class="relative z-10">
+    <div class="text-center max-w-4xl mx-auto">
+      <h1 class={titleClasses}>
+        <slot name="title">
+          <span set:html={title} />
+        </slot>
+      </h1>
+      
+      {subtitle && (
+        <p class={subtitleClasses}>
+          <slot name="subtitle">
+            {subtitle}
+          </slot>
+        </p>
+      )}
+      
+      <!-- CTA Buttons -->
+      {(ctaText || secondaryCtaText) && (
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          {ctaText && ctaHref && (
+            <Button 
+              variant={background === 'primary' ? 'secondary' : 'primary'} 
+              size="lg" 
+              href={ctaHref}
+            >
+              {ctaText}
+            </Button>
+          )}
+          {secondaryCtaText && secondaryCtaHref && (
+            <Button 
+              variant="outline" 
+              size="lg" 
+              href={secondaryCtaHref}
+            >
+              {secondaryCtaText}
+            </Button>
+          )}
+        </div>
+      )}
+      
+      <!-- Additional content slot -->
+      <slot />
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="analyticsBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#analyticsBg)"/>
+  
+  <!-- Dashboard mockup -->
+  <rect x="50" y="50" width="500" height="300" rx="10" fill="#ffffff" opacity="0.95"/>
+  
+  <!-- Header -->
+  <rect x="50" y="50" width="500" height="40" rx="10" fill="#f8f9fa"/>
+  <text x="80" y="75" fill="#333" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Analytics Dashboard</text>
+  
+  <!-- Chart areas -->
+  <rect x="80" y="110" width="200" height="120" rx="5" fill="#e3f2fd"/>
+  <rect x="300" y="110" width="200" height="120" rx="5" fill="#f3e5f5"/>
+  
+  <!-- Bar chart mockup -->
+  <g transform="translate(100, 200)">
+    <rect x="0" y="-60" width="15" height="60" fill="#2196f3"/>
+    <rect x="20" y="-80" width="15" height="80" fill="#2196f3"/>
+    <rect x="40" y="-40" width="15" height="40" fill="#2196f3"/>
+    <rect x="60" y="-90" width="15" height="90" fill="#2196f3"/>
+    <rect x="80" y="-70" width="15" height="70" fill="#2196f3"/>
+  </g>
+  
+  <!-- Line chart mockup -->
+  <g transform="translate(320, 170)">
+    <polyline points="0,40 30,20 60,30 90,10 120,25 150,5" stroke="#9c27b0" stroke-width="3" fill="none"/>
+    <circle cx="0" cy="40" r="3" fill="#9c27b0"/>
+    <circle cx="30" cy="20" r="3" fill="#9c27b0"/>
+    <circle cx="60" cy="30" r="3" fill="#9c27b0"/>
+    <circle cx="90" cy="10" r="3" fill="#9c27b0"/>
+    <circle cx="120" cy="25" r="3" fill="#9c27b0"/>
+    <circle cx="150" cy="5" r="3" fill="#9c27b0"/>
+  </g>
+  
+  <!-- Stats boxes -->
+  <rect x="80" y="250" width="80" height="50" rx="5" fill="#4caf50" opacity="0.8"/>
+  <rect x="180" y="250" width="80" height="50" rx="5" fill="hsl(185, 75%, 50%)" opacity="0.8"/>
+  <rect x="280" y="250" width="80" height="50" rx="5" fill="#f44336" opacity="0.8"/>
+  <rect x="380" y="250" width="80" height="50" rx="5" fill="#9c27b0" opacity="0.8"/>
+  
+  <!-- Title overlay -->
+  <rect x="0" y="320" width="600" height="80" fill="rgba(0,0,0,0.8)"/>
+  <text x="300" y="365" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="28" font-weight="bold">AI-Powered Analytics</text>
+  <text x="300" y="385" text-anchor="middle" fill="#cccccc" font-family="Arial, sans-serif" font-size="16">Intelligent business insights dashboard</text>
+</svg>

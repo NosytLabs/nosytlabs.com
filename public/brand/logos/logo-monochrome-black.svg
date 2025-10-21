@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" role="img" aria-label="Nosyt Labs Logo">
-  <title>Nosyt Labs Logo</title>
-  <desc>Triangle with circle logo representing Nosyt Labs</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" role="img" aria-label="NOSYT Labs Logo">
+<title>NOSYT Labs Logo</title>
+<desc>Triangle with circle logo representing NOSYT Labs</desc>
   <rect width="300" height="100" fill="#FFFFFF" rx="12"/>
   <path fill-rule="evenodd" clip-rule="evenodd" d="M86.8918 28.25H99.0219L72.5243 58.5334L103.698 99.75H79.285L60.1647 74.7536L38.2929 99.75H26.1627L54.5069 67.3565L24.5938 28.25H49.6199L66.9004 51.0974L86.8918 28.25ZM82.6337 92.4904H89.3555L45.9716 35.1301H38.7584L82.6337 92.4904Z" fill="black"/>
   <text x="110" y="60" font-family="Satoshi, Inter, sans-serif" font-size="32" font-weight="700" fill="#000000">NOSYT LABS</text>

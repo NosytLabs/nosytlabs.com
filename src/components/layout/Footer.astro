@@ -1,915 +1,264 @@
 ---
-// Enhanced Footer Component with improved layout and accessibility
-import Icon from '../ui/Icon.astro';
-
-// Footer configuration
-export interface Props {
-  showNewsletter?: boolean;
-  showSocialLinks?: boolean;
-  companyName?: string;
-  currentYear?: number;
-}
+import { SITE_CONFIG, COMPANY_INFO, createInternalLink } from '../../lib/constants'; 
+import Button from "@/components/ui/Button.astro";
+import Icon from "@/lib/icons/Icon";
+import { icons } from "@/lib/icons/icons";
+import newsletterSubscribeClientUrl from "../../lib/forms/newsletter-subscribe-client.ts?url";
 
 const {
   showNewsletter = true,
-  showSocialLinks = true,
-  companyName = "NosytLabs",
-  currentYear = new Date().getFullYear()
+  companyName = COMPANY_INFO.NAME,
+  tagline = COMPANY_INFO.TAGLINE,
+  description = COMPANY_INFO.DESCRIPTION,
+  contactEmail = SITE_CONFIG.EMAILS.CONTACT,
+  location = COMPANY_INFO.LOCATION,
 } = Astro.props;
 
-// Navigation links configuration
-const navigationSections = [
+const links = {
+  services: [
+    { href: createInternalLink("/services/professional-web-development"), text: "Web Development", iconKey: "web-development" },
+    { href: createInternalLink("/services/ai-integration-automation"), text: "AI Integration", iconKey: "ai-integration" },
+    { href: createInternalLink("/services/rapid-prototype-development"), text: "Rapid Prototyping", iconKey: "consulting" },
+    { href: createInternalLink("/services/mobile-app-development"), text: "Mobile Apps", iconKey: "brain" },
+    { href: createInternalLink("/services/tech-consulting-seo-audits"), text: "Tech Consulting", iconKey: "brain" },
+    { href: createInternalLink("/services/3d-printing-services"), text: "3D Printing", iconKey: "brain" },
+  ],
+  company: [
+    { href: createInternalLink("/about"), text: "About", iconKey: "brain" },
+    { href: createInternalLink("/blog"), text: "Blog", iconKey: "brain" },
+    { href: createInternalLink("/contact"), text: "Contact", iconKey: "brain" },
+  ],
+  legal: [
+    { href: createInternalLink("/privacy"), text: "Privacy Policy", iconKey: "brain" },
+    { href: createInternalLink("/terms"), text: "Terms of Service", iconKey: "brain" },
+    { href: createInternalLink("/cookies"), text: "Cookie Policy", iconKey: "brain" },
+    { href: createInternalLink("/disclaimer"), text: "Disclaimer", iconKey: "brain" },
+  ],
+};
+
+const social = [
   {
-    title: "Services",
-    links: [
-      { text: "Web Development", href: "/services/web-development" },
-      { text: "Mobile Apps", href: "/services/mobile-apps" },
-      { text: "UI/UX Design", href: "/services/design" },
-      { text: "Consulting", href: "/services/consulting" }
-    ]
+    href: "https://twitter.com/nosytlabs",
+    iconKey: "twitter",
+    label: "Twitter",
+    color: "hover:text-primary",
   },
   {
-    title: "Company",
-    links: [
-      { text: "About Us", href: "/about" },
-      { text: "Our Team", href: "/team" },
-      { text: "Careers", href: "/careers" },
-      { text: "Contact", href: "/contact" }
-    ]
+    href: "https://linkedin.com/company/nosytlabs",
+    iconKey: "linkedin",
+    label: "LinkedIn",
+    color: "hover:text-primary",
   },
   {
-    title: "Resources",
-    links: [
-      { text: "Blog", href: "/blog" },
-      { text: "Case Studies", href: "/case-studies" },
-      { text: "Documentation", href: "/docs" },
-      { text: "Support", href: "/support" }
-    ]
-  }
+    href: "https://github.com/nosytlabs",
+    iconKey: "github",
+    label: "GitHub",
+    color: "hover:text-foreground",
+  },
+  {
+    href: `mailto:${contactEmail}`,
+    iconKey: "brain",
+    label: "Email",
+    color: "hover:text-success",
+  },
 ];
 
-// Social media links
-const socialLinks = [
-  { name: "GitHub", href: "https://github.com/nosytlabs", icon: "github" },
-  { name: "Twitter", href: "https://twitter.com/nosytlabs", icon: "twitter" },
-  { name: "LinkedIn", href: "https://linkedin.com/company/nosytlabs", icon: "linkedin" },
-  { name: "Instagram", href: "https://instagram.com/nosytlabs", icon: "instagram" },
-  { name: "YouTube", href: "https://youtube.com/@nosytlabs", icon: "youtube" }
-];
+const currentYear = new Date().getFullYear();
 
-// Legal links
-const legalLinks = [
-  { text: "Privacy Policy", href: "/privacy" },
-  { text: "Terms of Service", href: "/terms" },
-  { text: "Cookie Policy", href: "/cookies" },
-  { text: "Accessibility", href: "/accessibility" }
-];
+// Helper function to get icon paths
+function getIconPaths(iconKey: string) {
+  // Handle special cases for icons defined in icon-factory
+  const specialIcons: Record<string, string[]> = {
+    github: ["M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4", "M9 18c-4.51 2-5-2-7-2"],
+    linkedin: ["M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z", "M2 9h4v12H2z", "M4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"],
+    twitter: ["M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"]
+  };
+  
+  return specialIcons[iconKey] || icons[iconKey as keyof typeof icons] || icons['brain'] || [];
+}
 ---
 
-<footer class="layout-section footer-section" id="footer">
-  <div class="layout-container">
-    <!-- Main Footer Content -->
-    <div class="footer-main">
-      <!-- Company Info -->
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <Icon name="logo" size="lg" class="footer-logo-icon" />
-          <span class="footer-logo-text">{companyName}</span>
-        </div>
-        
-        <p class="footer-description">
-          Creating exceptional digital experiences through innovative web development, 
-          mobile applications, and cutting-edge design solutions.
-        </p>
-        
-        <!-- Social Links -->
-        {showSocialLinks && (
-          <div class="footer-social">
-            <h3 class="footer-social-title">Follow Us</h3>
-            <div class="footer-social-links">
-              {socialLinks.map((social) => (
-                <a 
-                  href={social.href}
-                  class="footer-social-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Follow us on ${social.name}`}
-                >
-                  <Icon name={social.icon} size="md" />
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
+<footer class="bg-background border-t border-border text-foreground">
+  <div class="container-xl py-16">
+    <!-- Brand Section - Simplified -->
+    <div class="text-center mb-16">
+      <div class="flex items-center justify-center mb-8">
+        <Icon paths={getIconPaths("brain")} size={32} className="text-primary" />
       </div>
+      
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        {companyName}
+      </h2>
+      <p class="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
+        {description}
+      </p>
+      <p class="text-sm text-muted-foreground">{tagline}</p>
+    </div>
 
-      <!-- Navigation Sections -->
-      <div class="footer-navigation">
-        {navigationSections.map((section) => (
-          <div class="footer-nav-section">
-            <h3 class="footer-nav-title">{section.title}</h3>
-            <ul class="footer-nav-list">
-              {section.links.map((link) => (
-                <li class="footer-nav-item">
-                  <a href={link.href} class="footer-nav-link">
-                    {link.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-
-      <!-- Newsletter Signup -->
-      {showNewsletter && (
-        <div class="footer-newsletter">
-          <h3 class="footer-newsletter-title">Stay Updated</h3>
-          <p class="footer-newsletter-description">
-            Get the latest updates on our projects, insights, and industry trends.
-          </p>
-          
-          <form class="footer-newsletter-form" action="/api/newsletter" method="POST">
-            <div class="footer-newsletter-input-group">
-              <label for="newsletter-email" class="sr-only">Email address</label>
-              <input 
-                type="email" 
-                id="newsletter-email"
-                name="email"
-                class="footer-newsletter-input"
-                placeholder="Enter your email"
-                required
-                aria-describedby="newsletter-description"
-              />
-              <button 
-                type="submit" 
-                class="footer-newsletter-button"
-                aria-label="Subscribe to newsletter"
+    <!-- Main Footer Grid - Simplified -->
+    <div class="footer-grid mb-16">
+      <!-- Services Section - Simplified -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-bold mb-6">
+          Services
+        </h3>
+        <ul class="space-y-3">
+          {links.services.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="flex items-center space-x-3 text-muted-foreground hover:text-foreground p-2 rounded-md hover:bg-muted/50 transition-colors"
+                aria-label={`${link.text} service`}
               >
-                <Icon name="arrow-right" size="sm" />
-              </button>
-            </div>
-            
-            <div class="footer-newsletter-consent">
-              <label class="footer-newsletter-checkbox">
-                <input 
-                  type="checkbox" 
-                  name="consent" 
-                  required
-                  class="footer-newsletter-checkbox-input"
-                />
-                <span class="footer-newsletter-checkbox-mark"></span>
-                <span class="footer-newsletter-checkbox-text">
-                  I agree to receive marketing communications
-                </span>
-              </label>
-            </div>
-            
-            <p id="newsletter-description" class="footer-newsletter-privacy">
-              We respect your privacy. Unsubscribe at any time.
+                <span class="text-sm font-medium">{link.text}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company Section - Simplified -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-bold mb-6">
+          Company
+        </h3>
+        <ul class="space-y-3">
+          {links.company.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="flex items-center space-x-3 text-muted-foreground hover:text-foreground p-2 rounded-md hover:bg-muted/50 transition-colors"
+                aria-label={link.text}
+              >
+                <span class="text-sm font-medium">{link.text}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact Section - Simplified -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-bold mb-6">
+          Get in Touch
+        </h3>
+        <div class="space-y-4">
+          <a
+            href={`mailto:${contactEmail}`}
+            class="block text-muted-foreground hover:text-foreground p-3 rounded-lg hover:bg-muted/50 transition-colors"
+            aria-label={`Email us at ${contactEmail}`}
+          >
+            <p class="text-sm font-medium">{contactEmail}</p>
+          </a>
+          
+          <div class="p-3 rounded-lg bg-muted">
+            <p class="text-xs text-muted-foreground uppercase tracking-wide mb-1">Location</p>
+            <p class="text-sm font-medium text-foreground">{location}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal Section - Added -->
+      <div class="space-y-6">
+        <h3 class="text-xl font-bold mb-6">
+          Legal
+        </h3>
+        <ul class="space-y-3">
+          {links.legal.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="flex items-center space-x-3 text-muted-foreground hover:text-foreground p-2 rounded-md hover:bg-muted/50 transition-colors"
+                aria-label={link.text}
+              >
+                <span class="text-sm font-medium">{link.text}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Newsletter Section - Simplified -->
+      {showNewsletter && (
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold mb-4">
+            Stay Connected
+          </h3>
+          <div class="space-y-4">
+            <p class="text-muted-foreground text-sm">
+              Get the latest updates on web development, AI innovations, and tech insights.
             </p>
-          </form>
+            <form
+              class="space-y-3"
+              aria-label="Newsletter subscription"
+              data-newsletter-form
+              id="newsletter-form"
+              novalidate
+            >
+              <div>
+                <label for="newsletter-email" class="sr-only">Email address for newsletter subscription</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="newsletter-email"
+                  placeholder="Enter your email"
+                  required
+                  aria-label="Email address"
+                  aria-describedby="newsletter-description newsletter-status"
+                  class="flex min-h-[44px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50"
+                />
+              </div>
+              <div id="newsletter-description" class="sr-only">
+                Subscribe to receive updates on web development, AI, and tech innovations
+              </div>
+              <div id="newsletter-status" class="form-helper-text" aria-live="polite">
+                Newsletter form ready
+              </div>
+              <Button
+                type="submit"
+                text="Subscribe"
+                variant="primary"
+                class="w-full"
+                aria-describedby="newsletter-status"
+              />
+            </form>
+          </div>
         </div>
       )}
     </div>
 
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      <div class="footer-bottom-content">
+    <!-- Social Media & Legal - Simplified -->
+    <div class="border-t border-border pt-8">
+      <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+        <!-- Social Media Icons -->
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+          <span class="text-muted-foreground text-sm font-medium">Follow Us:</span>
+          <div class="flex space-x-3">
+            {social.map((item) => (
+              <a
+                href={item.href}
+                class="w-10 h-10 bg-muted rounded-lg flex items-center justify-center hover:bg-primary/20 transition-colors"
+                aria-label={`Follow us on ${item.label}`}
+                {...(item.href.startsWith("http") && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+              >
+                <Icon paths={getIconPaths(item.iconKey)} size={18} />
+              </a>
+            ))}
+          </div>
+        </div>
+
         <!-- Copyright -->
-        <div class="footer-copyright">
-          <p class="footer-copyright-text">
+        <div class="text-center lg:text-right">
+          <p class="text-muted-foreground text-sm">
             © {currentYear} {companyName}. All rights reserved.
           </p>
         </div>
-
-        <!-- Legal Links -->
-        <nav class="footer-legal" aria-label="Legal navigation">
-          <ul class="footer-legal-list">
-            {legalLinks.map((link, index) => (
-              <li class="footer-legal-item">
-                <a href={link.href} class="footer-legal-link">
-                  {link.text}
-                </a>
-                {index < legalLinks.length - 1 && (
-                  <span class="footer-legal-separator" aria-hidden="true">•</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <!-- Back to Top -->
-        <button 
-          class="footer-back-to-top"
-          onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
-          aria-label="Back to top"
-        >
-          <Icon name="chevron-up" size="md" />
-          <span class="footer-back-to-top-text">Back to Top</span>
-        </button>
       </div>
     </div>
   </div>
-
-  <!-- Footer Background Elements -->
-  <div class="footer-background">
-    <div class="footer-background-pattern"></div>
-    <div class="footer-background-gradient"></div>
-  </div>
 </footer>
 
-<style>
-  /* Footer Section */
-  .footer-section {
-    position: relative;
-    background: var(--surface-secondary);
-    border-top: 1px solid var(--border-subtle);
-    overflow: hidden;
-  }
-
-  /* Footer Background */
-  .footer-background {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .footer-background-pattern {
-    position: absolute;
-    inset: 0;
-    background-image: 
-      radial-gradient(circle at 20% 80%, var(--color-primary-500) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, var(--color-secondary-500) 0%, transparent 50%);
-    opacity: 0.03;
-  }
-
-  .footer-background-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      transparent 0%,
-      var(--color-primary-50) 50%,
-      transparent 100%
-    );
-    opacity: 0.5;
-  }
-
-  /* Footer Main */
-  .footer-main {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: var(--space-12);
-    padding-bottom: var(--space-12);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  /* Footer Brand */
-  .footer-brand {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    margin-bottom: var(--space-2);
-  }
-
-  .footer-logo-icon {
-    color: var(--color-primary-500);
-  }
-
-  .footer-logo-text {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--text-primary);
-  }
-
-  .footer-description {
-    color: var(--text-secondary);
-    line-height: var(--line-height-relaxed);
-    max-width: 300px;
-  }
-
-  /* Footer Social */
-  .footer-social-title {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-    margin-bottom: var(--space-3);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .footer-social-links {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-  }
-
-  .footer-social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    background: var(--surface-tertiary);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    color: var(--text-secondary);
-    transition: all var(--transition-fast);
-  }
-
-  .footer-social-link:hover {
-    background: var(--color-primary-500);
-    border-color: var(--color-primary-500);
-    color: white;
-    transform: translateY(-2px);
-  }
-
-  /* Footer Navigation */
-  .footer-navigation {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-8);
-  }
-
-  .footer-nav-section {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .footer-nav-title {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-2);
-  }
-
-  .footer-nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-
-  .footer-nav-link {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-relaxed);
-    transition: color var(--transition-fast);
-    position: relative;
-  }
-
-  .footer-nav-link:hover {
-    color: var(--color-primary-600);
-  }
-
-  .footer-nav-link::before {
-    content: '';
-    position: absolute;
-    left: -12px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 4px;
-    background: var(--color-primary-500);
-    border-radius: var(--radius-full);
-    opacity: 0;
-    transition: opacity var(--transition-fast);
-  }
-
-  .footer-nav-link:hover::before {
-    opacity: 1;
-  }
-
-  /* Footer Newsletter */
-  .footer-newsletter {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-
-  .footer-newsletter-title {
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-2);
-  }
-
-  .footer-newsletter-description {
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-relaxed);
-  }
-
-  .footer-newsletter-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-
-  .footer-newsletter-input-group {
-    display: flex;
-    gap: 0;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    background: var(--surface-primary);
-    transition: border-color var(--transition-fast);
-  }
-
-  .footer-newsletter-input-group:focus-within {
-    border-color: var(--color-primary-500);
-  }
-
-  .footer-newsletter-input {
-    flex: 1;
-    padding: var(--space-3) var(--space-4);
-    border: none;
-    background: transparent;
-    color: var(--text-primary);
-    font-size: var(--font-size-sm);
-    outline: none;
-  }
-
-  .footer-newsletter-input::placeholder {
-    color: var(--text-tertiary);
-  }
-
-  .footer-newsletter-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-3);
-    background: var(--color-primary-500);
-    border: none;
-    color: white;
-    cursor: pointer;
-    transition: background-color var(--transition-fast);
-  }
-
-  .footer-newsletter-button:hover {
-    background: var(--color-primary-600);
-  }
-
-  /* Newsletter Consent */
-  .footer-newsletter-consent {
-    margin-top: var(--space-2);
-  }
-
-  .footer-newsletter-checkbox {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-2);
-    cursor: pointer;
-    font-size: var(--font-size-xs);
-    line-height: var(--line-height-relaxed);
-  }
-
-  .footer-newsletter-checkbox-input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .footer-newsletter-checkbox-mark {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
-    background: var(--surface-primary);
-    transition: all var(--transition-fast);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .footer-newsletter-checkbox-input:checked + .footer-newsletter-checkbox-mark {
-    background: var(--color-primary-500);
-    border-color: var(--color-primary-500);
-  }
-
-  .footer-newsletter-checkbox-input:checked + .footer-newsletter-checkbox-mark::after {
-    content: '✓';
-    color: white;
-    font-size: 10px;
-    font-weight: bold;
-  }
-
-  .footer-newsletter-checkbox-text {
-    color: var(--text-secondary);
-  }
-
-  .footer-newsletter-privacy {
-    color: var(--text-tertiary);
-    font-size: var(--font-size-xs);
-    margin-top: var(--space-2);
-  }
-
-  /* Footer Bottom */
-  .footer-bottom {
-    position: relative;
-    z-index: 1;
-    padding-top: var(--space-8);
-  }
-
-  .footer-bottom-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-6);
-    flex-wrap: wrap;
-  }
-
-  .footer-copyright-text {
-    color: var(--text-tertiary);
-    font-size: var(--font-size-sm);
-    margin: 0;
-  }
-
-  /* Footer Legal */
-  .footer-legal-list {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-wrap: wrap;
-  }
-
-  .footer-legal-item {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-  }
-
-  .footer-legal-link {
-    color: var(--text-tertiary);
-    text-decoration: none;
-    font-size: var(--font-size-sm);
-    transition: color var(--transition-fast);
-  }
-
-  .footer-legal-link:hover {
-    color: var(--color-primary-600);
-  }
-
-  .footer-legal-separator {
-    color: var(--text-quaternary);
-    font-size: var(--font-size-xs);
-  }
-
-  /* Back to Top */
-  .footer-back-to-top {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-2) var(--space-3);
-    background: var(--surface-tertiary);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    color: var(--text-secondary);
-    font-size: var(--font-size-sm);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-  }
-
-  .footer-back-to-top:hover {
-    background: var(--surface-quaternary);
-    color: var(--color-primary-600);
-    transform: translateY(-2px);
-  }
-
-  .footer-back-to-top-text {
-    display: none;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .footer-main {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-8);
-    }
-
-    .footer-newsletter {
-      grid-column: 1 / -1;
-      max-width: 400px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .footer-navigation {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-6);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .footer-main {
-      grid-template-columns: 1fr;
-      gap: var(--space-8);
-      text-align: center;
-    }
-
-    .footer-brand {
-      align-items: center;
-    }
-
-    .footer-description {
-      max-width: none;
-    }
-
-    .footer-navigation {
-      grid-template-columns: 1fr;
-      gap: var(--space-6);
-    }
-
-    .footer-nav-section {
-      text-align: center;
-    }
-
-    .footer-nav-link::before {
-      display: none;
-    }
-
-    .footer-bottom-content {
-      flex-direction: column;
-      text-align: center;
-      gap: var(--space-4);
-    }
-
-    .footer-legal-list {
-      justify-content: center;
-    }
-
-    .footer-back-to-top-text {
-      display: inline;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .footer-social-links {
-      justify-content: center;
-    }
-
-    .footer-newsletter-form {
-      gap: var(--space-4);
-    }
-
-    .footer-newsletter-input-group {
-      flex-direction: column;
-      border-radius: var(--radius-lg);
-    }
-
-    .footer-newsletter-input {
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .footer-newsletter-button {
-      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-    }
-
-    .footer-legal-list {
-      flex-direction: column;
-      gap: var(--space-2);
-    }
-
-    .footer-legal-separator {
-      display: none;
-    }
-  }
-
-  /* Enhanced Focus States */
-  .footer-social-link:focus-visible,
-  .footer-nav-link:focus-visible,
-  .footer-newsletter-input:focus-visible,
-  .footer-newsletter-button:focus-visible,
-  .footer-newsletter-checkbox:focus-within,
-  .footer-legal-link:focus-visible,
-  .footer-back-to-top:focus-visible {
-    outline: 2px solid var(--color-primary-500);
-    outline-offset: 2px;
-  }
-
-  /* Dark Mode Enhancements */
-  @media (prefers-color-scheme: dark) {
-    .footer-section {
-      background: var(--surface-secondary-dark);
-      border-color: var(--border-subtle-dark);
-    }
-
-    .footer-background-gradient {
-      background: linear-gradient(
-        135deg,
-        transparent 0%,
-        var(--color-primary-900) 50%,
-        transparent 100%
-      );
-    }
-
-    .footer-social-link {
-      background: var(--surface-tertiary-dark);
-      border-color: var(--border-subtle-dark);
-    }
-
-    .footer-newsletter-input-group {
-      background: var(--surface-primary-dark);
-      border-color: var(--border-subtle-dark);
-    }
-
-    .footer-newsletter-checkbox-mark {
-      background: var(--surface-primary-dark);
-      border-color: var(--border-subtle-dark);
-    }
-
-    .footer-back-to-top {
-      background: var(--surface-tertiary-dark);
-      border-color: var(--border-subtle-dark);
-    }
-
-    .footer-back-to-top:hover {
-      background: var(--surface-quaternary-dark);
-    }
-  }
-
-  /* High Contrast Mode */
-  @media (prefers-contrast: high) {
-    .footer-section {
-      border-top-width: 2px;
-    }
-
-    .footer-social-link,
-    .footer-newsletter-input-group,
-    .footer-newsletter-checkbox-mark,
-    .footer-back-to-top {
-      border-width: 2px;
-    }
-  }
-
-  /* Reduced Motion */
-  @media (prefers-reduced-motion: reduce) {
-    .footer-social-link,
-    .footer-nav-link,
-    .footer-newsletter-input-group,
-    .footer-newsletter-button,
-    .footer-newsletter-checkbox-mark,
-    .footer-back-to-top {
-      transition: none;
-    }
-
-    .footer-social-link:hover,
-    .footer-back-to-top:hover {
-      transform: none;
-    }
-  }
-
-  /* Print Styles */
-  @media print {
-    .footer-section {
-      background: white;
-      border-top: 1px solid #ccc;
-    }
-
-    .footer-background,
-    .footer-newsletter,
-    .footer-social,
-    .footer-back-to-top {
-      display: none;
-    }
-
-    .footer-main {
-      grid-template-columns: 1fr 2fr;
-    }
-
-    .footer-nav-link,
-    .footer-legal-link {
-      color: #000;
-    }
-  }
-
-  /* Screen Reader Only */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-</style>
-
-<script>
-  // Enhanced footer functionality
-  function initFooter() {
-    const footer = document.querySelector('.footer-section');
-    if (!footer) return;
-
-    // Newsletter form handling
-    const newsletterForm = document.querySelector('.footer-newsletter-form');
-    if (newsletterForm) {
-      newsletterForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(newsletterForm);
-        const email = formData.get('email');
-        const consent = formData.get('consent');
-        
-        if (!email || !consent) {
-          alert('Please fill in all required fields.');
-          return;
-        }
-        
-        try {
-          const response = await fetch('/api/newsletter', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, consent: true }),
-          });
-          
-          if (response.ok) {
-            alert('Thank you for subscribing!');
-            newsletterForm.reset();
-          } else {
-            throw new Error('Subscription failed');
-          }
-        } catch (error) {
-          alert('Sorry, there was an error. Please try again later.');
-        }
-      });
-    }
-
-    // Enhanced keyboard navigation for social links
-    const socialLinks = document.querySelectorAll('.footer-social-link');
-    socialLinks.forEach((link, index) => {
-      link.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          const nextLink = socialLinks[index + 1] || socialLinks[0];
-          nextLink.focus();
-        }
-        
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          const prevLink = socialLinks[index - 1] || socialLinks[socialLinks.length - 1];
-          prevLink.focus();
-        }
-      });
-    });
-
-    // Smooth scroll for back to top
-    const backToTopButton = document.querySelector('.footer-back-to-top');
-    if (backToTopButton) {
-      backToTopButton.addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    }
-
-    // Add loading state to newsletter form
-    const newsletterButton = document.querySelector('.footer-newsletter-button');
-    if (newsletterButton && newsletterForm) {
-      const originalContent = newsletterButton.innerHTML;
-      
-      newsletterForm.addEventListener('submit', () => {
-        newsletterButton.innerHTML = '<div class="loading-spinner"></div>';
-        newsletterButton.disabled = true;
-        
-        setTimeout(() => {
-          newsletterButton.innerHTML = originalContent;
-          newsletterButton.disabled = false;
-        }, 2000);
-      });
-    }
-  }
-
-  // Initialize on DOM content loaded
-  document.addEventListener('DOMContentLoaded', initFooter);
-
-  // Re-initialize on navigation (for SPA-like behavior)
-  document.addEventListener('astro:page-load', initFooter);
-</script>
+<script type="module" is:inline src={newsletterSubscribeClientUrl}></script>

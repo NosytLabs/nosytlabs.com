@@ -10,7 +10,7 @@
   <circle cx="60" cy="60" r="60" fill="url(#avatar3)"/>
   
   <!-- Face -->
-  <circle cx="60" cy="50" r="20" fill="#fde68a" opacity="0.9"/>
+  <circle cx="60" cy="50" r="20" fill="#f1f5f9" opacity="0.9"/>
   
   <!-- Hair -->
   <path d="M38 30 Q60 20 82 30 Q88 50 75 55 Q60 45 45 55 Q32 50 38 30" fill="#7c2d12"/>
@@ -26,7 +26,7 @@
   <path d="M70 44 L71 42" stroke="#1f2937" stroke-width="0.5"/>
   
   <!-- Nose -->
-  <circle cx="60" cy="52" r="1" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="60" cy="52" r="1" fill="hsl(185, 75%, 50%)" opacity="0.6"/>
   
   <!-- Mouth -->
   <path d="M55 57 Q60 62 65 57" stroke="#dc2626" stroke-width="1.5" fill="none"/>

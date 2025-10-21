@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="NOSYT Labs Team - Open Graph Image">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="50" fill="#3b82f6" opacity="0.1"/>
+  <circle cx="1100" cy="530" r="80" fill="#8b5cf6" opacity="0.1"/>
+  <rect x="900" y="50" width="200" height="2" fill="url(#accentGradient)" opacity="0.3"/>
+  
+  <!-- Logo -->
+  <rect x="80" y="80" width="60" height="60" rx="12" fill="url(#accentGradient)"/>
+  <text x="110" y="120" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">N</text>
+  
+  <!-- Main heading -->
+  <text x="80" y="220" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white">Our Team</text>
+  
+  <!-- Subheading -->
+  <text x="80" y="280" font-family="Arial, sans-serif" font-size="28" fill="#94a3b8">Meet the talented professionals behind NOSYT Labs</text>
+  
+  <!-- Team member icons -->
+  <g transform="translate(80, 350)">
+    <!-- Member 1 -->
+    <circle cx="50" cy="50" r="40" fill="#3b82f6" opacity="0.2"/>
+    <circle cx="50" cy="50" r="30" fill="#3b82f6"/>
+    <text x="50" y="60" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">A</text>
+    
+    <!-- Member 2 -->
+    <circle cx="150" cy="50" r="40" fill="#8b5cf6" opacity="0.2"/>
+    <circle cx="150" cy="50" r="30" fill="#8b5cf6"/>
+    <text x="150" y="60" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">S</text>
+    
+    <!-- Member 3 -->
+    <circle cx="250" cy="50" r="40" fill="#06b6d4" opacity="0.2"/>
+    <circle cx="250" cy="50" r="30" fill="#06b6d4"/>
+    <text x="250" y="60" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">M</text>
+    
+    <!-- Member 4 -->
+    <circle cx="350" cy="50" r="40" fill="#10b981" opacity="0.2"/>
+    <circle cx="350" cy="50" r="30" fill="#10b981"/>
+    <text x="350" y="60" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">E</text>
+  </g>
+  
+  <!-- Bottom text -->
+  <text x="80" y="550" font-family="Arial, sans-serif" font-size="24" fill="#64748b">NOSYT Labs</text>
+  <text x="1120" y="580" font-family="Arial, sans-serif" font-size="18" fill="#64748b" text-anchor="end">nosytlabs.com</text>
+</svg>

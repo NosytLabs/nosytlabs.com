@@ -4,7 +4,7 @@ const robotsTxt = `
 User-agent: *
 Allow: /
 
-Sitemap: https://nosytlabs.com/sitemap.xml
+Sitemap: /sitemap.xml
 `.trim();
 
 export const GET: APIRoute = () => {

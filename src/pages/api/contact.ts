@@ -1,268 +1,167 @@
 import type { APIRoute } from 'astro';
+import { sanitizeInput } from '@nosytlabs/shared-utils/validation';
+import { validateContactForm, type ContactFormData } from '@/lib/forms/form-validator';
+import { SITE_CONFIG } from '../../lib/constants';
+import {
+  createErrorResponse,
+  createSuccessResponse,
+  createHealthCheck,
+  withAPIMiddleware,
+  parseRequestData
+} from '@/lib/api/api-helpers';
 
 // NOTE: For static builds, this API endpoint is disabled
 // For production, use a serverless function (Vercel, Netlify) or form service (Formspree, Netlify Forms)
-// export const prerender = false;
+export const prerender = true;
 
-// Enhanced logging for debugging
-console.log('=== CONTACT API ENDPOINT LOADED ===');
+// Contact API endpoint loaded in development mode
 
-// Email validation helper
-function isValidEmail(email: string): boolean {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  return emailRegex.test(email);
+// Sanitize contact data helper
+function sanitizeContactData(data: ContactFormData): ContactFormData {
+  return {
+    name: sanitizeInput(String(data.name || '')),
+    email: sanitizeInput(String(data.email || '')),
+    subject: sanitizeInput(String(data.subject || '')),
+    service: sanitizeInput(String(data.service || '')),
+    message: sanitizeInput(String(data.message || ''))
+  };
 }
 
-// Input sanitization helper
-function sanitizeInput(input: string): string {
-  return input.trim().replace(/[<>]/g, '');
-}
+// Server-side validation now uses unified form validator
+// validateContactForm function is imported from @/utils/form-validator
 
-// Email service interface
-interface ContactEmailData {
-  name: string;
-  email: string;
-  subject: string;
-  service: string;
-  message: string;
-}
+// Email notification service using Resend
+async function sendEmailNotification(data: ContactFormData): Promise<void> {
+  // Check if we have the required environment variables
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const fromEmail = process.env.CONTACT_FROM_EMAIL || SITE_CONFIG.EMAILS.HI;
+  const toEmail = process.env.CONTACT_TO_EMAIL || SITE_CONFIG.EMAILS.HI;
 
-// Simple email service (replace with your preferred email service)
-async function sendContactEmail(data: ContactEmailData): Promise<void> {
-  // Simulate email sending delay
-  await new Promise(resolve => setTimeout(resolve, 1000));
-
-  // Log the email data (in production, send actual email)
-  console.log('=== EMAIL NOTIFICATION ===');
-  console.log('To: hi@nosytlabs.com');
-  console.log('From:', data.email);
-  console.log('Subject:', `[Contact Form] ${data.subject}`);
-  console.log('Content:', {
-    name: data.name,
-    email: data.email,
-    service: data.service,
-    subject: data.subject,
-    message: data.message
-  });
-  console.log('=== END EMAIL ===');
-
-  // TODO: Replace with actual email service integration
-  // Examples:
-  // - Nodemailer with SMTP
-  // - SendGrid API
-  // - AWS SES
-  // - Resend
-  // - Postmark
-}
-
-// Rate limiting - simple in-memory store (in production, use Redis or similar)
-const submissions = new Map<string, number[]>();
-
-function checkRateLimit(email: string): boolean {
-  const now = Date.now();
-  const windowMs = 15 * 60 * 1000; // 15 minutes
-  const maxSubmissions = 3; // Max 3 submissions per 15 minutes
-
-  const userSubmissions = submissions.get(email) || [];
-
-  // Remove old submissions outside the window
-  const recentSubmissions = userSubmissions.filter(time => now - time < windowMs);
-
-  if (recentSubmissions.length >= maxSubmissions) {
-    return false; // Rate limit exceeded
+  // In development or if no API key, log the email data
+  if (process.env.NODE_ENV === 'development' || !resendApiKey) {
+    // Email notification (development mode)
+    // To: ${toEmail}
+    // From: ${fromEmail}
+    // Reply-To: ${data.email}
+    // Subject: [Contact Form] ${data.subject}
+    // Content: ${JSON.stringify({
+    //   name: data.name,
+    //   email: data.email,
+    //   subject: data.subject,
+    //   message: data.message
+    // }, null, 2)}
+    // End email
+    return;
   }
 
-  // Add current submission
-  recentSubmissions.push(now);
-  submissions.set(email, recentSubmissions);
+  // Production email sending with Resend
+  try {
+    const { Resend } = await import('resend');
+    const resend = new Resend(resendApiKey);
 
-  return true;
+    const emailHtml = `
+      <div style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2>New Contact Form Submission</h2>
+
+        <div>
+          <h3>Contact Details</h3>
+          <p><strong>Name:</strong> ${data.name}</p>
+          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Service:</strong> ${data.service}</p>
+          <p><strong>Subject:</strong> ${data.subject}</p>
+        </div>
+
+        <div>
+          <h3>Message</h3>
+          <p style="white-space: pre-wrap; line-height: 1.6;">${data.message}</p>
+        </div>
+
+        <div style="margin-top: 16px; font-size: 12px;">
+          <p>This email was sent from the NOSYT Labs contact form.</p>
+          <p>Reply directly to this email to respond to ${data.name}.</p>
+        </div>
+      </div>
+    `;
+
+    await resend.emails.send({
+      from: fromEmail,
+      to: toEmail,
+      replyTo: data.email,
+      subject: `[Contact Form] ${data.subject}`,
+      html: emailHtml,
+    });
+
+    // Email sent successfully via Resend
+  } catch (error) {
+    // Failed to send email via Resend
+    throw error;
+  }
 }
+
+
 
 // GET endpoint for testing API availability
-export const GET: APIRoute = async () => {
-  return new Response(JSON.stringify({
-    success: true,
-    message: 'Contact API is available',
-    methods: ['GET', 'POST', 'OPTIONS'],
-    cors: true
-  }), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type'
+export const GET: APIRoute = createHealthCheck('Contact');
+
+export const POST: APIRoute = withAPIMiddleware(async (request) => {
+  const isDev = process.env.NODE_ENV === 'development';
+  
+  // Debug logging removed for production readiness
+  
+  // Use the parseRequestData helper to handle different content types
+  const data = await parseRequestData<ContactFormData>(request, 'contact_form');
+
+  if (!data) {
+    if (isDev) {
+      let headers = {};
+      try {
+        headers = request.headers ? Object.fromEntries(request.headers.entries()) : {};
+      } catch (_e) {
+        // Error converting headers to object
+      }
+      
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Invalid form data format',
+          debug: { 
+            contentType: request.headers?.get('content-type') || 'unknown',
+            headers,
+            hasHeaders: !!request.headers,
+            requestConstructor: request.constructor.name,
+            data
+          }
+        }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
     }
-  });
-};
-
-export const POST: APIRoute = async ({ request }) => {
-  const corsHeaders = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
-    'Access-Control-Max-Age': '86400',
-  };
-
-  // Handle preflight requests
-  if (request.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 200,
-      headers: corsHeaders
-    });
+    return createErrorResponse('Invalid form data format', 400, 'contact_parse_null');
   }
 
+  // Sanitize the data
+  const sanitizedData = sanitizeContactData(data);
+  if (process.env.NODE_ENV === 'development') {
+    // Parsed fields
+  }
+
+  // Validate the form data
+  const validation = validateContactForm(sanitizedData);
+  if (!validation.isValid) {
+    return createErrorResponse(Object.values(validation.errors).join(', '));
+  }
+
+  // Send email notification (simulated)
   try {
-    console.log('Contact form submission received');
-    console.log('Request headers:', Object.fromEntries(request.headers.entries()));
-
-    // Check Content-Type
-    const contentType = request.headers.get('content-type') || '';
-    if (!contentType.includes('multipart/form-data') && !contentType.includes('application/x-www-form-urlencoded')) {
-      console.log('Invalid content type:', contentType);
-      return new Response(JSON.stringify({
-        success: false,
-        message: 'Invalid content type. Expected form data.'
-      }), {
-        status: 400,
-        headers: {
-          'Content-Type': 'application/json',
-          ...corsHeaders
-        }
-      });
-    }
-
-    const formData = await request.formData();
-    console.log('FormData received successfully');
-
-    // Extract and sanitize form fields
-    const name = (formData as any).get('name') as string;
-    const email = (formData as any).get('email') as string;
-    const subject = (formData as any).get('subject') as string;
-    const service = (formData as any).get('service') as string;
-    const message = (formData as any).get('message') as string;
-
-    // Sanitize inputs
-    const sanitizedName = sanitizeInput(name);
-    const sanitizedEmail = sanitizeInput(email);
-    const sanitizedSubject = sanitizeInput(subject);
-    const sanitizedService = sanitizeInput(service);
-    const sanitizedMessage = sanitizeInput(message);
-
-    console.log('Sanitized fields:', { name, email, subject, service, message });
-
-    // Comprehensive validation
-    const errors: string[] = [];
-
-    if (!sanitizedName) {
-      errors.push('Name is required');
-    } else if (sanitizedName.length < 2) {
-      errors.push('Name must be at least 2 characters');
-    } else if (sanitizedName.length > 100) {
-      errors.push('Name must be less than 100 characters');
-    }
-
-    if (!sanitizedEmail) {
-      errors.push('Email is required');
-    } else if (!isValidEmail(sanitizedEmail)) {
-      errors.push('Please enter a valid email address');
-    }
-
-    if (!sanitizedSubject) {
-      errors.push('Subject is required');
-    } else if (sanitizedSubject.length < 5) {
-      errors.push('Subject must be at least 5 characters');
-    } else if (sanitizedSubject.length > 200) {
-      errors.push('Subject must be less than 200 characters');
-    }
-
-    if (!sanitizedService) {
-      errors.push('Please select a service');
-    }
-
-    if (!sanitizedMessage) {
-      errors.push('Message is required');
-    } else if (sanitizedMessage.length < 10) {
-      errors.push('Message must be at least 10 characters');
-    } else if (sanitizedMessage.length > 5000) {
-      errors.push('Message must be less than 5000 characters');
-    }
-
-    // Check rate limiting
-    if (!checkRateLimit(sanitizedEmail)) {
-      console.log('Rate limit exceeded for email:', email);
-      return new Response(JSON.stringify({
-        success: false,
-        message: 'Too many submissions. Please wait 15 minutes before trying again.'
-      }), {
-        status: 429,
-        headers: {
-          'Content-Type': 'application/json',
-          ...corsHeaders
-        }
-      });
-    }
-
-    if (errors.length > 0) {
-      console.log('Validation failed:', errors);
-      return new Response(JSON.stringify({
-        success: false,
-        message: 'Please correct the following errors:',
-        errors: errors
-      }), {
-        status: 400,
-        headers: {
-          'Content-Type': 'application/json',
-          ...corsHeaders
-        }
-      });
-    }
-
-    console.log('Validation passed, processing submission');
-
-    // Send email notification
-    try {
-      await sendContactEmail({
-        name: sanitizedName,
-        email: sanitizedEmail,
-        subject: sanitizedSubject,
-        service: sanitizedService,
-        message: sanitizedMessage
-      });
-
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-      // Don't fail the request if email fails - log it and continue
-      // In production, you might want to save to a database as backup
-    }
-
-    console.log('Contact form processed successfully');
-
-    return new Response(JSON.stringify({
-      success: true,
-      message: 'Thank you for your message! We\'ll get back to you within 24 hours.'
-    }), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        ...corsHeaders
-      }
-    });
-
+    await sendEmailNotification(sanitizedData);
+    return createSuccessResponse(
+      {
+        name: sanitizedData.name,
+        email: sanitizedData.email,
+        subject: sanitizedData.subject,
+      },
+      "Message sent successfully! We'll get back to you soon."
+    );
   } catch (error) {
-    console.error('Contact form error:', error);
-    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
-
-    return new Response(JSON.stringify({
-      success: false,
-      message: 'Something went wrong. Please try again or contact us directly at hi@nosytlabs.com.'
-    }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-        ...corsHeaders
-      }
-    });
+    throw error;
   }
-};
+});

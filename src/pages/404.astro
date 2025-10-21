@@ -1,0 +1,61 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Button from '@/components/ui/Button.astro';
+import { createInternalLink } from '@/lib/constants';
+---
+
+<MainLayout title="Page Not Found" description="The page you're looking for doesn't exist." type="website">
+  <section class="section-spacing-lg">
+    <div class="container-fixed">
+      <div class="text-center content-spacing">
+        <!-- Error Code -->
+        <div class="mb-8">
+          <h1 class="text-8xl md:text-9xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            404
+          </h1>
+        </div>
+        
+        <!-- Error Message -->
+        <div class="section-header">
+          <h2 class="section-title">Page Not Found</h2>
+          <p class="section-subtitle">
+            We couldn't find the page you were looking for. It may have been moved, deleted, or you entered the wrong URL.
+          </p>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Button variant="primary" size="lg" href={createInternalLink('/')}>
+            Go to Home
+          </Button>
+          <Button variant="outline" size="lg" href={createInternalLink('/services')}>
+            View Services
+          </Button>
+        </div>
+        
+        <!-- Helpful Links -->
+        <div class="mt-16 max-w-md mx-auto">
+          <div class="card">
+            <div class="card-content">
+              <h3 class="text-lg font-semibold mb-4">Helpful Links</h3>
+              <div class="grid grid-cols-2 gap-3 text-sm">
+                <a class="text-primary hover:text-primary/80 transition-colors" href={createInternalLink('/projects')}>
+                  Projects & Portfolio
+                </a>
+                <a class="text-primary hover:text-primary/80 transition-colors" href={createInternalLink('/blog')}>
+                  Blog & Insights
+                </a>
+                <a class="text-primary hover:text-primary/80 transition-colors" href={createInternalLink('/services')}>
+                  Our Services
+                </a>
+                <a class="text-primary hover:text-primary/80 transition-colors" href={createInternalLink('/contact')}>
+                  Contact Support
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

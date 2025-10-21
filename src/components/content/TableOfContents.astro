@@ -1,0 +1,35 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+const filteredHeadings = headings.filter(h => h.depth > 1 && h.depth < 4);
+---
+
+{filteredHeadings.length > 0 && (
+  <nav 
+    class="bg-card/50 backdrop-blur-sm border border-border/50 p-6 rounded-xl shadow-sm"
+    role="navigation"
+    aria-label="Table of contents"
+  >
+    <h2 class="text-lg font-semibold text-foreground mb-4">On this page</h2>
+    <ul class="space-y-2" role="list">
+      {filteredHeadings.map(heading => (
+        <li role="listitem">
+          <a 
+            href={`#${heading.slug}`}
+            class="text-muted-foreground hover:text-primary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-sm"
+            style={{ marginLeft: `${(heading.depth - 2) * 1}rem` }}
+            aria-label={`Jump to section: ${heading.text}`}
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

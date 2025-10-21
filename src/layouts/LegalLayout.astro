@@ -1,0 +1,33 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import TableOfContents from '@/components/content/TableOfContents.astro';
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  title: string;
+  description: string;
+  headings: MarkdownHeading[];
+  canonicalUrl?: string;
+}
+
+const { title, description, headings, canonicalUrl } = Astro.props;
+---
+
+<MainLayout title={title} description={description} canonicalUrl={canonicalUrl}>
+  <div class="container py-16">
+    <div class="grid lg:grid-cols-[1fr_300px] gap-12">
+      <article class="prose prose-lg dark:prose-invert max-w-3xl">
+        <h1 class="brand-heading-1 text-center md:text-left">{title}</h1>
+        <p class="brand-body-lg text-muted mb-8 text-center md:text-left">
+          Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+        <slot />
+      </article>
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <TableOfContents headings={headings} />
+        </div>
+      </aside>
+    </div>
+  </div>
+</MainLayout>

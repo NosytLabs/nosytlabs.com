@@ -1,0 +1,524 @@
+---
+import { createInternalLink, createImagePath as _createImagePath } from "../../lib/constants";
+import Button from "../ui/Button.astro";
+import AnimatedThemeToggler from "../ui/AnimatedThemeToggler.astro";
+import headerInitClientUrl from "../../lib/header/header-init-client.ts?url";
+
+interface NavigationItem {
+  name: string;
+  href: string;
+  badge?: string;
+  external?: boolean;
+  icon?: string;
+  description?: string;
+  children?: NavigationItem[];
+}
+
+const navigation: NavigationItem[] = [
+  { 
+    name: "Home", 
+    href: createInternalLink("/"),
+    icon: "home",
+    description: "Welcome to NOSYT Labs"
+  },
+  { 
+    name: "Services", 
+    href: createInternalLink("/services"),
+    icon: "services",
+    description: "Comprehensive digital solutions",
+    children: [
+      { name: "Web Development", href: createInternalLink("/services/professional-web-development"), description: "Custom web applications with proven results" },
+      { name: "AI Integration", href: createInternalLink("/services/ai-integration-automation"), description: "AI-powered automation solutions" },
+      { name: "Rapid Prototyping", href: createInternalLink("/services/rapid-prototype-development"), description: "Fast MVP development & validation" },
+      { name: "Mobile Apps", href: createInternalLink("/services/mobile-app-development"), description: "iOS and Android app development" },
+      { name: "Tech Consulting", href: createInternalLink("/services/tech-consulting-seo-audits"), description: "Technical consulting & SEO optimization" },
+      { name: "3D Printing", href: createInternalLink("/services/3d-printing-services"), description: "3D printing & prototyping services" }
+    ]
+  },
+  { 
+    name: "Projects", 
+    href: createInternalLink("/projects"),
+    icon: "projects",
+    description: "Our portfolio of successful projects",
+    badge: "Coming Soon"
+  },
+  { 
+    name: "Blog", 
+    href: createInternalLink("/blog"),
+    icon: "resources",
+    description: "Latest insights and tutorials",
+    badge: "New"
+  },
+  { 
+    name: "About", 
+    href: createInternalLink("/about"),
+    icon: "about",
+    description: "Learn about our team & expertise"
+  },
+  { 
+    name: "Contact", 
+    href: createInternalLink("/contact"),
+    icon: "contact",
+    description: "Get in touch with our team"
+  },
+];
+
+interface Props {
+  transparent?: boolean;
+  fixed?: boolean;
+  showBorder?: boolean;
+  className?: string;
+}
+
+const {
+  transparent = false,
+  fixed = true,
+  showBorder = true,
+  className = "",
+} = Astro.props as Props;
+
+const currentPath = Astro.url.pathname;
+
+// Helper function to check if link is active
+const isActiveLink = (href: string): boolean => {
+  const normalizedHref = href.replace(/^\/nosytlabs-github-ready/, '');
+  const normalizedCurrentPath = currentPath.replace(/^\/nosytlabs-github-ready/, '');
+  
+  if (normalizedHref === "/" || normalizedHref === "") {
+    return normalizedCurrentPath === "/" || normalizedCurrentPath === "";
+  }
+  return normalizedCurrentPath.startsWith(normalizedHref);
+};
+
+// Enhanced icon component helper with more icons
+const getIcon = (iconName?: string) => {
+  const icons: Record<string, string> = {
+    home: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>`,
+    services: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>`,
+    solutions: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>`,
+    projects: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>`,
+    resources: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>`,
+    blog: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>`,
+    about: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>`,
+    contact: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>`,
+    chevron: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>`,
+    external: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>`
+  };
+  return icons[iconName || 'home'] || icons.home;
+};
+---
+
+<!-- Skip Link for Accessibility -->
+<a
+  href="#main-content"
+  class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 z-[100]"
+>
+  Skip to main content
+</a>
+
+<!-- Enhanced Professional Header with Modern Design -->
+<header
+  data-header
+  class:list={[
+    "w-full transition-all duration-300 ease-in-out relative",
+    transparent ? "bg-transparent" : "bg-background/98 backdrop-blur-sm border-b border-border/30",
+    fixed ? "fixed top-0 left-0 right-0 z-[var(--z-fixed)]" : "relative",
+    showBorder && !transparent ? "border-b border-border/30" : "",
+    className
+  ]}
+  role="banner"
+  aria-label="Main navigation"
+  style="z-index: var(--z-fixed);"
+>
+  <nav
+    class="container mx-auto px-4 sm:px-6 lg:px-8"
+    role="navigation"
+    aria-label="Main navigation"
+  >
+    <div class="flex items-center justify-between h-16 lg:h-18">
+      <!-- Simplified Modern Logo Section -->
+      <div class="flex items-center flex-shrink-0">
+        <a
+          href={createInternalLink("/")}
+          class="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 rounded-lg p-2 transition-all duration-200 hover:bg-muted/30"
+          aria-label="NOSYT Labs - Home"
+        >
+          <div class="relative">
+            <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center transition-all duration-200 group-hover:bg-primary/90 shadow-sm">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="hidden sm:block">
+            <div class="flex flex-col">
+              <span class="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-200">
+                NOSYT Labs
+              </span>
+              <span class="text-xs text-muted-foreground group-hover:text-primary/60 transition-colors duration-200">
+                Web & AI Solutions
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Enhanced Desktop Navigation with Modern Dropdowns -->
+      <div class="hidden md:flex items-center space-x-1 relative z-40">
+        {
+          navigation.map((item) => (
+            <div class="relative group">
+              <a
+                href={item.href}
+                class:list={[
+                  "nav-link-enhanced",
+                  "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 relative overflow-hidden",
+                  "hover:bg-muted/70 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+                  isActiveLink(item.href) 
+                    ? "text-primary bg-primary/10 shadow-sm border border-primary/20" 
+                    : "text-muted-foreground"
+                ]}
+                aria-current={isActiveLink(item.href) ? "page" : undefined}
+                {...(item.external && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+              >
+                <!-- Hover gradient background -->
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                
+                <svg class="w-4 h-4 relative z-10 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <Fragment set:html={getIcon(item.icon)} />
+                </svg>
+                <span class="relative z-10">{item.name}</span>
+                {item.children && (
+                  <svg class="w-3 h-3 opacity-60 transition-transform duration-200 group-hover:rotate-180 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <Fragment set:html={getIcon('chevron')} />
+                  </svg>
+                )}
+                {item.external && (
+                  <svg class="w-3 h-3 opacity-60 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <Fragment set:html={getIcon('external')} />
+                  </svg>
+                )}
+                
+                <!-- Active indicator -->
+                {isActiveLink(item.href) && (
+                  <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-primary to-accent rounded-full"></div>
+                )}
+              </a>
+              
+              <!-- Enhanced Modern Dropdown Menu -->
+              {item.children && (
+                <div class="absolute top-full left-0 mt-2 w-80 bg-popover/95 backdrop-blur-md text-popover-foreground rounded-xl shadow-xl border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0" style="z-index: var(--z-dropdown);">
+                  <!-- Dropdown header -->
+                  <div class="p-4 border-b border-border/50">
+                    <div class="flex items-center space-x-2">
+                      <div class="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <Fragment set:html={getIcon(item.icon)} />
+                        </svg>
+                      </div>
+                      <div>
+                        <h3 class="font-semibold text-sm">{item.name}</h3>
+                        <p class="text-xs text-muted-foreground">{item.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Dropdown content -->
+                  <div class="p-2">
+                    {item.children.map((child, index) => (
+                      <a
+                        href={child.href}
+                        class="flex items-start space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-all duration-200 group/item"
+                        style={`animation-delay: ${index * 50}ms`}
+                      >
+                        <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center mt-0.5 group-hover/item:bg-primary/20 transition-colors duration-200">
+                          <div class="w-2 h-2 bg-primary rounded-full group-hover/item:scale-125 transition-transform duration-200"></div>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                          <div class="font-medium text-sm group-hover/item:text-primary transition-colors duration-200">
+                            {child.name}
+                          </div>
+                          <div class="text-xs text-muted-foreground mt-1 line-clamp-2">
+                            {child.description}
+                          </div>
+                        </div>
+                        <svg class="w-4 h-4 text-muted-foreground opacity-0 group-hover/item:opacity-100 transition-opacity duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                      </a>
+                    ))}
+                  </div>
+                  
+                  <!-- Dropdown arrow -->
+                  <div class="absolute -top-2 left-6 w-4 h-4 bg-popover border-l border-t border-border rotate-45"></div>
+                </div>
+              )}
+              
+              <!-- Enhanced Tooltip for items without dropdowns -->
+              {!item.children && (
+                <div class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-popover text-popover-foreground text-xs rounded-lg shadow-lg border border-border opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap" style="z-index: var(--z-tooltip);">
+                  {item.description}
+                  <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-popover border-l border-t border-border rotate-45"></div>
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Enhanced Right Side Actions with Clear Hierarchy -->
+      <div class="flex items-center space-x-2">
+        <!-- Secondary CTA - Contact (Outline) -->
+        <div class="hidden lg:block">
+          <Button
+            href={createInternalLink("/contact")}
+            text="Contact"
+            variant="outline"
+            size="sm"
+            class="border-2 hover:border-primary hover:bg-primary/5 transition-all duration-200"
+          />
+        </div>
+        
+        <!-- Primary CTA - Get Started (Prominent) -->
+        <div class="hidden md:block">
+          <Button
+            href={createInternalLink("/contact")}
+            text="Get Started"
+            variant="primary"
+            size="md"
+            class="shadow-md hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 font-semibold px-6"
+          />
+        </div>
+
+        <AnimatedThemeToggler />
+
+        <!-- Enhanced Mobile Menu Toggle with Animation -->
+        <button
+          type="button"
+          class="md:hidden relative p-2.5 text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+          id="mobile-menu-button"
+        >
+          <div class="relative w-6 h-6">
+            <span class="hamburger-line absolute left-0 top-1 w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+            <span class="hamburger-line absolute left-0 top-3 w-6 h-0.5 bg-current transition-all duration-300"></span>
+            <span class="hamburger-line absolute left-0 top-5 w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Enhanced Mobile Menu with Modern Design -->
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 md:hidden transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto"
+      aria-hidden="true"
+      style="z-index: var(--z-modal);"
+    >
+      <!-- Enhanced Backdrop with Blur -->
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" style="z-index: var(--z-modal-backdrop);"></div>
+      
+      <!-- Enhanced Menu Panel with Modern Design -->
+      <div class="absolute right-0 top-0 h-full w-80 max-w-[90vw] bg-background/95 backdrop-blur-md border-l border-border shadow-2xl" style="z-index: var(--z-modal);">
+        <!-- Enhanced Header with Gradient -->
+        <div class="flex items-center justify-between p-6 border-b border-border/50 bg-gradient-to-r from-primary/5 to-accent/5">
+          <div class="flex items-center space-x-3">
+            <div class="relative">
+              <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-sm">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <span class="text-lg font-bold bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">NOSYT Labs</span>
+              <p class="text-xs text-muted-foreground">Web & AI Solutions</p>
+            </div>
+          </div>
+          <button
+            id="mobile-menu-close"
+            class="p-2.5 rounded-xl hover:bg-muted/70 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="Close mobile menu"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Enhanced Navigation Links with Animations -->
+        <div class="p-6 space-y-2 overflow-y-auto flex-1">
+          {navigation.map((item, index) => (
+            <div class="space-y-2" style={`animation-delay: ${index * 100}ms`}>
+              <a
+                href={item.href}
+                class={`flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 group mobile-nav-item ${
+                  isActiveLink(item.href)
+                    ? "bg-primary/10 text-primary border border-primary/20 shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/70"
+                }`}
+                {...(item.external && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+              >
+                <div class={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                  isActiveLink(item.href) 
+                    ? "bg-primary/20 text-primary shadow-sm" 
+                    : "bg-muted/50 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
+                }`}>
+                  <svg class="w-5 h-5 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <Fragment set:html={getIcon(item.icon)} />
+                  </svg>
+                </div>
+                  
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between">
+                    <span class="font-medium">{item.name}</span>
+                    <div class="flex items-center space-x-2">
+                      {item.badge && (
+                        <span class="px-2 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full border border-accent/20">
+                          {item.badge}
+                        </span>
+                      )}
+                      {item.external && (
+                        <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <Fragment set:html={getIcon('external')} />
+                        </svg>
+                      )}
+                      {isActiveLink(item.href) && (
+                        <div class="w-2 h-2 bg-primary rounded-full"></div>
+                      )}
+                    </div>
+                  </div>
+                  <p class="text-xs text-muted-foreground mt-1">{item.description}</p>
+                </div>
+              </a>
+              
+              <!-- Mobile sub-navigation -->
+              {item.children && (
+                <div class="ml-6 space-y-1">
+                  {item.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class="flex items-center space-x-3 p-3 rounded-lg hover:bg-muted/30 transition-colors duration-200 text-sm group/child"
+                    >
+                      <div class="w-1.5 h-1.5 bg-muted-foreground rounded-full group-hover/child:bg-primary transition-colors duration-200"></div>
+                      <div class="flex-1">
+                        <div class="font-medium text-muted-foreground group-hover/child:text-foreground transition-colors duration-200">{child.name}</div>
+                        <div class="text-xs text-muted-foreground/70">{child.description}</div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <!-- Enhanced Mobile CTA with Gradient -->
+        <div class="p-6 border-t border-border/50 bg-gradient-to-r from-primary/5 to-accent/5">
+          <Button
+            href={createInternalLink("/contact")}
+            text="Get Started"
+            variant="primary"
+            size="lg"
+            class="w-full shadow-md hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-primary to-accent"
+          />
+        </div>
+        
+        <!-- Enhanced Footer -->
+        <div class="p-6 text-center border-t border-border/50">
+          <div class="flex items-center justify-center space-x-2 text-xs text-muted-foreground">
+            <div class="w-2 h-2 bg-gradient-to-r from-primary to-accent rounded-full animate-pulse"></div>
+            <span>Powered by NOSYT Labs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script type="module" is:inline src={headerInitClientUrl}></script>
+
+<style>
+  .header-modern {
+    will-change: transform;
+  }
+  
+  .nav-link-enhanced::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+  }
+  
+  .nav-link-enhanced:hover::before {
+    opacity: 1;
+  }
+  
+  /* Enhanced hamburger animation */
+  .hamburger-line {
+    transform-origin: center;
+  }
+  
+  #mobile-menu-button[aria-expanded="true"] .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  #mobile-menu-button[aria-expanded="true"] .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  #mobile-menu-button[aria-expanded="true"] .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+  
+  /* Mobile menu animations */
+  .mobile-nav-item {
+    animation: slideInRight 0.3s ease-out forwards;
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  
+  @keyframes slideInRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Dropdown animations */
+  .group:hover .group-hover\:opacity-100 {
+    animation: fadeInUp 0.3s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Enhanced focus styles */
+  .nav-link-enhanced:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+  
+  /* Smooth scrolling for mobile menu */
+  #mobile-menu {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+</style>

@@ -1,0 +1,108 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#4299e1;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#4299e1;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="#0f172a"/>
+  
+  <!-- Central Brain/AI Core -->
+  <g transform="translate(200, 150)">
+    <circle cx="0" cy="0" r="40" fill="url(#glowGradient)"/>
+    <circle cx="0" cy="0" r="25" fill="url(#brainGradient)" stroke="#4299e1" stroke-width="2"/>
+    
+    <!-- Brain Pattern -->
+    <path d="M-15,-10 Q-5,-15 5,-10 Q15,-5 10,5 Q5,15 -5,10 Q-15,5 -15,-10" 
+          fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
+    <path d="M-8,-5 Q0,-8 8,-5 Q12,0 8,8 Q0,12 -8,8 Q-12,0 -8,-5" 
+          fill="none" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+  </g>
+  
+  <!-- Neural Network Nodes -->
+  <g opacity="0.8">
+    <!-- Left side nodes -->
+    <circle cx="80" cy="80" r="8" fill="url(#circuitGradient)"/>
+    <circle cx="60" cy="130" r="8" fill="url(#circuitGradient)"/>
+    <circle cx="90" cy="180" r="8" fill="url(#circuitGradient)"/>
+    <circle cx="70" cy="220" r="8" fill="url(#circuitGradient)"/>
+    
+    <!-- Right side nodes -->
+    <circle cx="320" cy="70" r="8" fill="url(#circuitGradient)"/>
+    <circle cx="340" cy="120" r="8" fill="url(#circuitGradient)"/>
+    <circle cx="310" cy="170" r="8" fill="url(#circuitGradient)"/>
+    <circle cx="330" cy="210" r="8" fill="url(#circuitGradient)"/>
+  </g>
+  
+  <!-- Connection Lines -->
+  <g stroke="#4299e1" stroke-width="1.5" fill="none" opacity="0.6">
+    <!-- Left connections -->
+    <path d="M80,80 Q140,100 175,130"/>
+    <path d="M60,130 Q130,140 175,145"/>
+    <path d="M90,180 Q140,170 175,160"/>
+    <path d="M70,220 Q140,200 175,170"/>
+    
+    <!-- Right connections -->
+    <path d="M225,130 Q280,100 320,70"/>
+    <path d="M225,145 Q280,130 340,120"/>
+    <path d="M225,160 Q280,165 310,170"/>
+    <path d="M225,170 Q280,190 330,210"/>
+  </g>
+  
+  <!-- Data Flow Particles -->
+  <g opacity="0.9">
+    <circle cx="120" cy="95" r="2" fill="#68d391">
+      <animate attributeName="cx" values="120;175" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="155" r="2" fill="hsl(185, 75%, 50%)">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="260" cy="140" r="2" fill="#8b5cf6">
+      <animate attributeName="cx" values="260;310" dur="1.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Automation Gears -->
+  <g transform="translate(50, 50)" opacity="0.7">
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#a0aec0" stroke-width="2"/>
+    <polygon points="-10,0 -5,-8 5,-8 10,0 5,8 -5,8" fill="#a0aec0"/>
+    <animateTransform attributeName="transform" type="rotate" 
+                      values="0 50 50;360 50 50" dur="4s" repeatCount="indefinite"/>
+  </g>
+  
+  <g transform="translate(320, 250)" opacity="0.7">
+    <circle cx="0" cy="0" r="12" fill="none" stroke="#a0aec0" stroke-width="2"/>
+    <polygon points="-8,0 -4,-6 4,-6 8,0 4,6 -4,6" fill="#a0aec0"/>
+    <animateTransform attributeName="transform" type="rotate" 
+                      values="360 320 250;0 320 250" dur="3s" repeatCount="indefinite"/>
+  </g>
+  
+  <!-- Code Blocks -->
+  <g transform="translate(30, 160)">
+    <rect x="0" y="0" width="60" height="40" rx="6" fill="#1a202c" opacity="0.9"/>
+    <text x="5" y="15" font-family="monospace" font-size="6" fill="#68d391">AI.process()</text>
+    <text x="5" y="25" font-family="monospace" font-size="6" fill="#4299e1">automate()</text>
+    <text x="5" y="35" font-family="monospace" font-size="6" fill="hsl(185, 75%, 50%)">optimize()</text>
+  </g>
+  
+  <g transform="translate(310, 40)">
+    <rect x="0" y="0" width="60" height="40" rx="6" fill="#1a202c" opacity="0.9"/>
+    <text x="5" y="15" font-family="monospace" font-size="6" fill="#8b5cf6">ML.train()</text>
+    <text x="5" y="25" font-family="monospace" font-size="6" fill="hsl(160, 75%, 45%)">predict()</text>
+    <text x="5" y="35" font-family="monospace" font-size="6" fill="#9f7aea">deploy()</text>
+  </g>
+  
+  <!-- Floating AI Symbols -->
+  <text x="150" y="50" font-family="sans-serif" font-size="20" fill="#4299e1" opacity="0.6">AI</text>
+  <text x="250" y="250" font-family="sans-serif" font-size="16" fill="#68d391" opacity="0.6">ML</text>
+</svg>

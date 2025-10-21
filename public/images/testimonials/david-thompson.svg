@@ -1,8 +1,8 @@
 <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="avatar4" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:hsl(160, 75%, 45%);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:hsl(185, 75%, 50%);stop-opacity:1" />
     </linearGradient>
   </defs>
   
@@ -10,7 +10,7 @@
   <circle cx="60" cy="60" r="60" fill="url(#avatar4)"/>
   
   <!-- Face -->
-  <circle cx="60" cy="50" r="20" fill="#fed7aa" opacity="0.9"/>
+  <circle cx="60" cy="50" r="20" fill="hsl(160, 75%, 45%)" opacity="0.9"/>
   
   <!-- Hair -->
   <path d="M40 35 Q60 25 80 35 Q85 45 80 50 Q60 40 40 50 Q35 45 40 35" fill="#451a03"/>
@@ -23,15 +23,15 @@
   <circle cx="68" cy="47" r="2" fill="#1f2937"/>
   
   <!-- Nose -->
-  <circle cx="60" cy="52" r="1" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="60" cy="52" r="1" fill="hsl(185, 75%, 50%)" opacity="0.6"/>
   
   <!-- Mouth (hidden by beard) -->
   <path d="M55 60 Q60 63 65 60" stroke="#1f2937" stroke-width="1" fill="none" opacity="0.3"/>
   
   <!-- Body/Shoulders -->
-  <path d="M30 100 Q60 85 90 100 L90 120 L30 120 Z" fill="#7c3aed"/>
+  <path d="M30 100 Q60 85 90 100 L90 120 L30 120 Z" fill="hsl(185, 75%, 50%)"/>
   
   <!-- Professional Badge -->
-  <rect x="75" y="15" width="35" height="12" rx="6" fill="#7c3aed"/>
+  <rect x="75" y="15" width="35" height="12" rx="6" fill="hsl(185, 75%, 50%)"/>
   <text x="92" y="23" font-family="Arial, sans-serif" font-size="7" fill="white" text-anchor="middle">Founder</text>
 </svg>

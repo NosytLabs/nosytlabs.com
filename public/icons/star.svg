@@ -1,0 +1,28 @@
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:hsl(160, 75%, 45%);stop-opacity:1" />
+      <stop offset="50%" style="stop-color:hsl(185, 75%, 50%);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:hsl(220, 85%, 55%);stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:hsl(160, 75%, 45%);stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:hsl(160, 75%, 45%);stop-opacity:0" />
+    </radialGradient>
+    <filter id="starShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="hsl(185, 75%, 50%)" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <circle cx="12" cy="12" r="11" fill="url(#starGlow)"/>
+  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" 
+        fill="url(#starGradient)" 
+        filter="url(#starShadow)"
+        stroke="#ffffff" 
+        stroke-width="0.5" 
+        stroke-opacity="0.6"/>
+  
+  <!-- Inner sparkle -->
+  <circle cx="12" cy="10" r="1" fill="#ffffff" opacity="0.8"/>
+  <path d="M12 6L12.5 7.5L14 8L12.5 8.5L12 10L11.5 8.5L10 8L11.5 7.5L12 6Z" fill="#ffffff" opacity="0.6"/>
+</svg>

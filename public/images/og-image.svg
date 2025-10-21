@@ -1,0 +1,52 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8fafc;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative Elements -->
+  <circle cx="100" cy="100" r="60" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="1100" cy="530" r="80" fill="rgba(255,255,255,0.08)"/>
+  <rect x="950" y="50" width="200" height="200" rx="20" fill="rgba(255,255,255,0.05)" transform="rotate(15 1050 150)"/>
+  
+  <!-- Main Content Container -->
+  <g transform="translate(100, 150)">
+    <!-- Logo -->
+    <g transform="scale(2.5)">
+      <rect width="40" height="40" rx="4" fill="url(#logoGradient)"/>
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M22.6337 12.4904H25.3555L17.9716 23.1301H15.7584L22.6337 12.4904Z M18.8918 8.25H21.0219L14.5243 18.5334L23.698 29.75H19.285L10.1647 14.7536L8.2929 29.75H6.1627L14.5069 17.3565L4.5938 8.25H9.6199L16.9004 21.0974L18.8918 8.25Z" fill="#1e40af"/>
+    </g>
+    
+    <!-- Company Name -->
+    <text x="120" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="white">
+      NOSYT Labs
+    </text>
+    
+    <!-- Tagline -->
+    <text x="120" y="85" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400" fill="rgba(255,255,255,0.9)">
+      Web Development • AI Integration • Digital Innovation
+    </text>
+    
+    <!-- Description -->
+    <text x="0" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="300" fill="rgba(255,255,255,0.8)">
+      Building the future of web experiences with cutting-edge technology
+    </text>
+    <text x="0" y="180" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="300" fill="rgba(255,255,255,0.8)">
+      and innovative AI solutions for modern businesses.
+    </text>
+  </g>
+  
+  <!-- Bottom accent line -->
+  <rect x="0" y="620" width="1200" height="10" fill="rgba(255,255,255,0.2)"/>
+</svg>

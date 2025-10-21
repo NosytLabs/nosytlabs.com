@@ -1,0 +1,67 @@
+---
+export interface Props {
+  /** Number of columns (desktop) */
+  cols?: 1 | 2 | 3 | 4 | 5 | 6;
+  /** Gap size */
+  gap?: 'sm' | 'md' | 'lg' | 'xl';
+  /** Responsive breakpoints for columns */
+  responsive?: {
+    sm?: 1 | 2 | 3 | 4 | 5 | 6;
+    md?: 1 | 2 | 3 | 4 | 5 | 6;
+    lg?: 1 | 2 | 3 | 4 | 5 | 6;
+    xl?: 1 | 2 | 3 | 4 | 5 | 6;
+  };
+  /** Additional CSS classes */
+  className?: string;
+  /** HTML element type */
+  as?: 'div' | 'section' | 'article' | 'ul' | 'ol';
+}
+
+const {
+  cols = 3,
+  gap = 'md',
+  responsive,
+  className = '',
+  as: Element = 'div',
+  ...rest
+} = Astro.props;
+
+// Gap classes - Optimized spacing (24px mobile, 32px desktop)
+const gapClasses = {
+  sm: 'gap-4',           // 16px
+  md: 'gap-6 lg:gap-8',  // 24px → 32px
+  lg: 'gap-8 lg:gap-10', // 32px → 40px
+  xl: 'gap-10 lg:gap-12' // 40px → 48px
+};
+
+// Column classes
+const colClasses = {
+  1: 'grid-cols-1',
+  2: 'grid-cols-2',
+  3: 'grid-cols-3',
+  4: 'grid-cols-4',
+  5: 'grid-cols-5',
+  6: 'grid-cols-6'
+};
+
+// Build responsive classes
+let responsiveClasses = '';
+if (responsive) {
+  if (responsive.sm) responsiveClasses += ` sm:${colClasses[responsive.sm as keyof typeof colClasses]}`;
+  if (responsive.md) responsiveClasses += ` md:${colClasses[responsive.md as keyof typeof colClasses]}`;
+  if (responsive.lg) responsiveClasses += ` lg:${colClasses[responsive.lg as keyof typeof colClasses]}`;
+  if (responsive.xl) responsiveClasses += ` xl:${colClasses[responsive.xl as keyof typeof colClasses]}`;
+}
+
+const gridClasses = [
+  'grid',
+  colClasses[cols as keyof typeof colClasses],
+  gapClasses[gap as keyof typeof gapClasses],
+  responsiveClasses,
+  className
+].filter(Boolean).join(' ');
+---
+
+<Element class={gridClasses} {...rest}>
+  <slot />
+</Element>

@@ -1,18 +1,146 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import EnhancedHero from '../components/enhanced/EnhancedHero.astro';
-import EnhancedServices from "../components/enhanced/EnhancedServices.astro";
-import FeaturedProjects from '../components/content/FeaturedProjects.astro';
-import Testimonials from '../components/content/Testimonials.astro';
+import MainLayout from '@/layouts/MainLayout.astro';
+import Section from '@/components/layout/Section.astro';
+import Container from '@/components/layout/Container.astro';
+import SectionHeader from '@/components/layout/SectionHeader.astro';
+import Hero from '@/components/content/Hero.astro';
+import Services from '@/components/content/Services.astro';
+import Testimonials from '@/components/content/Testimonials.astro';
+import CaseStudies from '@/components/content/CaseStudies.astro';
+import StatsDisplay from '@/components/ui/StatsDisplay.astro';
+import Button from '@/components/ui/Button.astro';
+import { getPrimaryStats } from '@/lib/data/stats';
+import { SITE_CONFIG } from '@/lib/constants';
 
+const primaryStats = getPrimaryStats();
+
+// Structured data for homepage
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NOSYT Labs",
+  "description": "Expert web development, AI integration, and digital solutions that drive results for your business.",
+  "url": SITE_CONFIG.BASE_URL,
+  "logo": `${SITE_CONFIG.BASE_URL}/images/logo-icon.webp`,
+  "foundingDate": "2020",
+  "founder": {
+    "@type": "Person",
+    "name": "Tyson Faulkner"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://github.com/nosytlabs",
+    "https://linkedin.com/company/nosytlabs"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "itemOffered": {
+      "@type": "Service",
+      "name": "Web Development & AI Integration Services",
+      "description": "Custom web applications, AI integration, and digital solutions"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "47",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+};
 ---
 
-<MainLayout title="Nosyt Labs - Web Development & AI Integration">
-  <!-- Single H1 will be in EnhancedHero component -->
+<MainLayout 
+  title="NOSYT Labs - Web Development & AI Integration"
+  description="Expert web development, AI integration, and digital solutions that drive results for your business. 47 applications built with measurable ROI and proven performance metrics."
+  keywords={["web development", "AI integration", "digital solutions", "React", "Node.js", "mobile apps", "UI/UX design", "custom software", "web applications", "AI consulting"]}
+  ogTitle="NOSYT Labs - Build Your Next Application With Proven Results"
+  ogDescription="Expert web development, AI integration, and digital solutions that drive results for your business. 47 successful deployments with measurable ROI."
+  ogImage="/images/og-homepage.jpg"
+  type="website"
+  author="NOSYT Labs"
+  jsonLd={jsonLd}
+  containerClass="full-width"
+  pageClass="home-page"
+>
+  <!-- Hero Section - Full width with no container -->
+  <Hero 
+    title="Build Your Next Application With Proven Results"
+    subtitle="Expert web development, AI integration, and digital solutions backed by 47 successful deployments with measurable ROI"
+    ctaText="Start Your Project"
+    ctaLink="/contact"
+    secondaryCtaText="View Our Work"
+    secondaryCtaLink="/services"
+  />
   
-  <EnhancedHero />
-  <EnhancedServices />
-
-  <FeaturedProjects />
-  <Testimonials />
+  <!-- Stats Section -->
+  <Section background="muted" spacing="md">
+    <Container size="standard">
+      <StatsDisplay stats={primaryStats} variant="hero" />
+    </Container>
+  </Section>
+  
+  <!-- Services Section -->
+  <Section background="gradient" spacing="lg">
+    <Container size="standard">
+      <Services />
+    </Container>
+  </Section>
+  
+  <!-- Case Studies Section -->
+  <Section background="muted" spacing="lg">
+    <Container size="standard">
+      <SectionHeader 
+        title="Success Stories"
+        subtitle="Real results from our client projects with measurable impact"
+        level={2}
+        align="center"
+      />
+      <CaseStudies />
+    </Container>
+  </Section>
+  
+  <!-- Testimonials Section -->
+  <Section background="default" spacing="lg">
+    <Container size="standard">
+      <SectionHeader 
+        title="What Our Clients Say"
+        subtitle="Trusted by businesses worldwide"
+        level={2}
+        align="center"
+      />
+      <Testimonials />
+    </Container>
+  </Section>
+  
+  <!-- Final CTA Section -->
+  <Section background="gradient" spacing="lg">
+    <Container size="narrow">
+      <div class="cta-content">
+        <h2 class="cta-title">
+          Ready to Start Your Project?
+        </h2>
+        <p class="cta-description">
+          Let's discuss how we can help you achieve your goals with proven technology solutions.
+        </p>
+        <div class="cta-actions">
+          <Button 
+            href="/contact"
+            text="Get Started"
+            variant="primary"
+            size="lg"
+          />
+          <Button 
+            href="/services"
+            text="Explore Services"
+            variant="outline"
+            size="lg"
+          />
+        </div>
+      </div>
+    </Container>
+  </Section>
 </MainLayout>

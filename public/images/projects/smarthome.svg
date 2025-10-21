@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="400" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="smarthomeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff9a9e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fecfef;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#smarthomeBg)"/>
+  
+  <!-- House outline -->
+  <g transform="translate(300, 200)">
+    <!-- House base -->
+    <rect x="-80" y="-40" width="160" height="120" fill="#ffffff" opacity="0.9"/>
+    
+    <!-- Roof -->
+    <polygon points="-100,-40 0,-100 100,-40" fill="#8e24aa"/>
+    
+    <!-- Door -->
+    <rect x="-15" y="40" width="30" height="40" fill="#5d4037"/>
+    <circle cx="8" cy="60" r="2" fill="hsl(185, 75%, 50%)"/>
+    
+    <!-- Windows -->
+    <rect x="-60" y="-10" width="25" height="25" fill="#81c784"/>
+    <rect x="35" y="-10" width="25" height="25" fill="#81c784"/>
+    
+    <!-- Smart devices indicators -->
+    <circle cx="-45" cy="2" r="3" fill="#4caf50"/>
+    <circle cx="47" cy="2" r="3" fill="#2196f3"/>
+    <circle cx="0" cy="-70" r="4" fill="hsl(160, 75%, 45%)"/>
+  </g>
+  
+  <!-- Control panel mockup -->
+  <rect x="450" y="100" width="120" height="200" rx="10" fill="#ffffff" opacity="0.9"/>
+  <rect x="460" y="110" width="100" height="30" rx="5" fill="#333"/>
+  <text x="510" y="130" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Smart Home</text>
+  
+  <!-- Control buttons -->
+  <rect x="470" y="160" width="35" height="25" rx="5" fill="#4caf50"/>
+  <rect x="515" y="160" width="35" height="25" rx="5" fill="#2196f3"/>
+  <rect x="470" y="195" width="35" height="25" rx="5" fill="hsl(185, 75%, 50%)"/>
+  <rect x="515" y="195" width="35" height="25" rx="5" fill="#9c27b0"/>
+  
+  <!-- Temperature display -->
+  <rect x="470" y="240" width="80" height="40" rx="5" fill="#e3f2fd"/>
+  <text x="510" y="260" text-anchor="middle" fill="#333" font-family="Arial, sans-serif" font-size="20" font-weight="bold">72°F</text>
+  
+  <!-- WiFi signals -->
+  <g transform="translate(100, 150)">
+    <path d="M0,0 Q-15,-15 -30,0" stroke="#4caf50" stroke-width="3" fill="none"/>
+    <path d="M0,0 Q-10,-10 -20,0" stroke="#4caf50" stroke-width="3" fill="none"/>
+    <path d="M0,0 Q-5,-5 -10,0" stroke="#4caf50" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- Title overlay -->
+  <rect x="0" y="320" width="600" height="80" fill="rgba(0,0,0,0.8)"/>
+  <text x="300" y="365" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="28" font-weight="bold">Smart Home IoT</text>
+  <text x="300" y="385" text-anchor="middle" fill="#cccccc" font-family="Arial, sans-serif" font-size="16">Connected home automation system</text>
+</svg>

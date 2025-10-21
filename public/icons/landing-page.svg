@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <linearGradient id="landingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4F46E5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#7C3AED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+    <filter id="landingGlow">
+      <feGaussianBlur stdDeviation="0.8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Browser window -->
+  <rect x="2" y="3" width="20" height="16" rx="2" fill="url(#landingGradient)" opacity="0.8" filter="url(#landingGlow)"/>
+  
+  <!-- Browser header -->
+  <rect x="2" y="3" width="20" height="3" rx="2" fill="url(#landingGradient)" opacity="0.9"/>
+  
+  <!-- Browser controls -->
+  <circle cx="4.5" cy="4.5" r="0.5" fill="#FF5F56" opacity="0.8"/>
+  <circle cx="6" cy="4.5" r="0.5" fill="hsl(185, 75%, 50%)" opacity="0.8"/>
+  <circle cx="7.5" cy="4.5" r="0.5" fill="#27CA3F" opacity="0.8"/>
+  
+  <!-- Address bar -->
+  <rect x="10" y="4" width="10" height="1" rx="0.5" fill="#ffffff" opacity="0.3"/>
+  
+  <!-- Page content area -->
+  <rect x="3" y="7" width="18" height="11" rx="1" fill="#ffffff" opacity="0.95"/>
+  
+  <!-- Hero section -->
+  <rect x="4" y="8" width="16" height="4" rx="0.5" fill="url(#landingGradient)" opacity="0.6"/>
+  
+  <!-- Hero title -->
+  <rect x="5" y="9" width="8" height="0.8" rx="0.4" fill="#4F46E5" opacity="0.8"/>
+  <rect x="5" y="10.2" width="12" height="0.5" rx="0.25" fill="#7C3AED" opacity="0.6"/>
+  <rect x="5" y="11" width="6" height="0.5" rx="0.25" fill="#EC4899" opacity="0.6"/>
+  
+  <!-- CTA Button -->
+  <rect x="15" y="10.5" width="4" height="1.2" rx="0.6" fill="url(#landingGradient)" opacity="0.8"/>
+  
+  <!-- Content sections -->
+  <rect x="4" y="13.5" width="7" height="1.5" rx="0.3" fill="url(#landingGradient)" opacity="0.4"/>
+  <rect x="12.5" y="13.5" width="7" height="1.5" rx="0.3" fill="url(#landingGradient)" opacity="0.4"/>
+  
+  <!-- Feature boxes -->
+  <rect x="4" y="15.5" width="2" height="1.5" rx="0.3" fill="#4F46E5" opacity="0.6"/>
+  <rect x="7" y="15.5" width="2" height="1.5" rx="0.3" fill="#7C3AED" opacity="0.6"/>
+  <rect x="10" y="15.5" width="2" height="1.5" rx="0.3" fill="#EC4899" opacity="0.6"/>
+  <rect x="13" y="15.5" width="2" height="1.5" rx="0.3" fill="#4F46E5" opacity="0.6"/>
+  <rect x="16" y="15.5" width="2" height="1.5" rx="0.3" fill="#7C3AED" opacity="0.6"/>
+  
+  <!-- Navigation dots -->
+  <circle cx="10" cy="20.5" r="0.3" fill="url(#landingGradient)" opacity="0.8"/>
+  <circle cx="11.5" cy="20.5" r="0.3" fill="url(#landingGradient)" opacity="0.6"/>
+  <circle cx="13" cy="20.5" r="0.3" fill="url(#landingGradient)" opacity="0.6"/>
+  <circle cx="14.5" cy="20.5" r="0.3" fill="url(#landingGradient)" opacity="0.6"/>
+  
+  <!-- Conversion indicators -->
+  <circle cx="1" cy="8" r="0.5" fill="#4F46E5" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="23" cy="12" r="0.4" fill="#7C3AED" opacity="0.7">
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+  <circle cx="1" cy="16" r="0.3" fill="#EC4899" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite" begin="1s"/>
+  </circle>
+  
+  <!-- Analytics/tracking -->
+  <path d="M20.5 1L22 2.5L20.5 4L19 2.5Z" fill="url(#landingGradient)" opacity="0.7"/>
+  <circle cx="20.5" cy="2.5" r="0.3" fill="#4F46E5" opacity="0.8"/>
+  
+  <!-- Responsive indicator -->
+  <rect x="22.5" y="18" width="1" height="2" rx="0.2" fill="url(#landingGradient)" opacity="0.6"/>
+  <rect x="22.2" y="17.5" width="1.6" height="1.2" rx="0.2" fill="url(#landingGradient)" opacity="0.5"/>
+</svg>

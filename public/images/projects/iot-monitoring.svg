@@ -48,14 +48,14 @@
     <line x1="11" y1="-11" x2="25" y2="-25" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3,3">
       <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" begin="0.5s" repeatCount="indefinite"/>
     </line>
-    <circle cx="35" cy="-35" r="8" fill="#f59e0b"/>
+    <circle cx="35" cy="-35" r="8" fill="hsl(185, 75%, 50%)"/>
     <rect x="32" y="-38" width="6" height="6" rx="1" fill="white"/>
     
     <!-- Device 3 - Right -->
     <line x1="15" y1="0" x2="40" y2="0" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3,3">
       <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" begin="1s" repeatCount="indefinite"/>
     </line>
-    <circle cx="50" cy="0" r="8" fill="#8b5cf6"/>
+    <circle cx="50" cy="0" r="8" fill="hsl(235, 85%, 65%)"/>
     <rect x="47" y="-3" width="6" height="6" rx="1" fill="white"/>
     
     <!-- Device 4 - Bottom Right -->
@@ -76,7 +76,7 @@
     <line x1="-15" y1="0" x2="-40" y2="0" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="3,3">
       <animate attributeName="stroke-opacity" values="0.3;1;0.3" dur="2s" begin="0.8s" repeatCount="indefinite"/>
     </line>
-    <circle cx="-50" cy="0" r="8" fill="#f97316"/>
+    <circle cx="-50" cy="0" r="8" fill="hsl(160, 75%, 45%)"/>
     <rect x="-53" y="-3" width="6" height="6" rx="1" fill="white"/>
   </g>
   
@@ -91,10 +91,10 @@
   <rect x="140" y="94" width="15" height="3" rx="1.5" fill="#10b981"/>
   
   <rect x="60" y="110" width="100" height="15" rx="4" fill="white" stroke="#d1d5db" stroke-width="1"/>
-  <circle cx="70" cy="117" r="3" fill="#f59e0b"/>
+  <circle cx="70" cy="117" r="3" fill="hsl(185, 75%, 50%)"/>
   <rect x="78" y="114" width="45" height="3" rx="1.5" fill="#374151"/>
   <rect x="78" y="119" width="25" height="2" rx="1" fill="#9ca3af"/>
-  <rect x="140" y="114" width="18" height="3" rx="1.5" fill="#f59e0b"/>
+  <rect x="140" y="114" width="18" height="3" rx="1.5" fill="hsl(185, 75%, 50%)"/>
   
   <rect x="60" y="130" width="100" height="15" rx="4" fill="white" stroke="#d1d5db" stroke-width="1"/>
   <circle cx="70" cy="137" r="3" fill="#ef4444"/>
@@ -111,9 +111,9 @@
   <rect x="215" y="100" width="35" height="5" rx="2.5" fill="#16a34a"/>
   <rect x="215" y="108" width="15" height="2" rx="1" fill="#9ca3af"/>
   
-  <rect x="265" y="90" width="45" height="30" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
-  <rect x="270" y="95" width="25" height="3" rx="1.5" fill="#f59e0b"/>
-  <rect x="270" y="100" width="30" height="5" rx="2.5" fill="#d97706"/>
+  <rect x="265" y="90" width="45" height="30" rx="4" fill="#fef3c7" stroke="hsl(185, 75%, 50%)" stroke-width="1"/>
+  <rect x="270" y="95" width="25" height="3" rx="1.5" fill="hsl(185, 75%, 50%)"/>
+  <rect x="270" y="100" width="30" height="5" rx="2.5" fill="hsl(160, 75%, 45%)"/>
   <rect x="270" y="108" width="20" height="2" rx="1" fill="#9ca3af"/>
   
   <rect x="210" y="130" width="45" height="20" rx="4" fill="#fef2f2" stroke="#ef4444" stroke-width="1"/>

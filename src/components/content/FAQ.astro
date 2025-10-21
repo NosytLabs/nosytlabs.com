@@ -1,0 +1,54 @@
+---
+const faqs = [
+  {
+    question: "How quickly can you start my project?",
+    answer: "Most projects can begin within 1-3 business days after our initial consultation and agreement on scope. For urgent requests like our 48-hour landing pages, we can often start the same day."
+  },
+  {
+    question: "Do you work with existing development teams?",
+    answer: "Absolutely! We frequently collaborate with in-house teams, providing specialized expertise, additional capacity, or specific services like performance optimization and AI integration."
+  },
+  {
+    question: "What's included in your pricing?",
+    answer: "Our pricing includes all development work, testing, documentation, and deployment. We provide transparent, fixed-price quotes with no hidden fees. Ongoing support and maintenance can be arranged separately."
+  },
+  {
+    question: "Can you help with ongoing maintenance?",
+    answer: "Yes, we offer flexible maintenance packages and can provide ongoing support after project completion. We also offer consulting hours for ad-hoc assistance and guidance."
+  },
+  {
+    question: "What technologies do you specialize in?",
+    answer: "We specialize in modern web technologies including React, Next.js, Astro, Node.js, and various AI/ML integrations. We choose the best technology stack for each project's specific requirements."
+  },
+  {
+    question: "Do you provide project management?",
+    answer: "Yes, we include streamlined project management in all our services. We use async communication, regular check-ins, and clear deliverable tracking without heavy overhead."
+  }
+];
+---
+
+<section class="bg-secondary py-16 md:py-20 lg:py-24">
+<div class="container">
+      <div class="text-center mb-12 animate-fade-in-up">
+        <h2 class="text-h2 bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-gradient-shift">Frequently Asked Questions</h2>
+        <p class="text-body-lg text-muted-foreground mt-2">
+          Get answers to common questions about our services and process.
+        </p>
+      </div>
+      <div class="max-w-3xl mx-auto">
+        <div class="space-y-5">
+          {faqs.map((faq, index) => 
+            <details class={`faq-item animate-fade-in-up bg-card p-6 rounded-lg border border-border group hover:border-primary/50 transition-all duration-300 animate-delay-${index * 100}`}>
+              <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center group-hover:text-primary transition-colors duration-300">
+                {faq.question}
+                <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <p class="text-muted-foreground mt-4 leading-relaxed">{faq.answer}</p>
+            </details>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>

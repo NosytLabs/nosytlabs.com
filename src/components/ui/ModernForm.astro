@@ -1,0 +1,481 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  action?: string;
+  method?: string;
+  class?: string;
+  id?: string;
+}
+
+const { 
+  title = "Get In Touch", 
+  subtitle = "Let's discuss your project and bring your ideas to life",
+  action = "/api/contact",
+  method = "POST",
+  class: className = "",
+  id = "modern-contact-form"
+} = Astro.props;
+---
+
+<div class={`modern-form-container ${className}`}>
+  {title && (
+    <div class="form-header">
+      <h2 class="form-title">{title}</h2>
+      {subtitle && <p class="form-subtitle">{subtitle}</p>}
+    </div>
+  )}
+
+  <form id={id} class="modern-form" method={method} action={action} novalidate>
+    <div class="form-grid">
+      <!-- Name Field -->
+      <div class="form-field">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            class="modern-input" 
+            placeholder=" "
+            required
+            autocomplete="name"
+            aria-describedby="name-error"
+          >
+          <label for="name" class="modern-label">
+            <span class="label-text">Full Name</span>
+            <span class="required-indicator">*</span>
+          </label>
+          <div class="input-border"></div>
+          <div class="success-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+        <div class="error-message" id="name-error" role="alert" aria-live="polite"></div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-field">
+        <div class="input-wrapper">
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="modern-input" 
+            placeholder=" "
+            required
+            autocomplete="email"
+            aria-describedby="email-error"
+          >
+          <label for="email" class="modern-label">
+            <span class="label-text">Email Address</span>
+            <span class="required-indicator">*</span>
+          </label>
+          <div class="input-border"></div>
+          <div class="success-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+        <div class="error-message" id="email-error" role="alert" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <!-- Company/Service Field -->
+    <div class="form-field">
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          id="company" 
+          name="company" 
+          class="modern-input" 
+          placeholder=" "
+          autocomplete="organization"
+        >
+        <label for="company" class="modern-label">
+          <span class="label-text">Company/Service</span>
+        </label>
+        <div class="input-border"></div>
+      </div>
+    </div>
+
+    <!-- Service Selection Field -->
+    <div class="form-field">
+      <div class="input-wrapper select-wrapper">
+        <select 
+          id="service" 
+          name="service" 
+          class="modern-select" 
+          required
+          aria-describedby="service-error"
+        >
+          <option value="">Select a service</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Mobile App Development">Mobile App Development</option>
+          <option value="UI/UX Design">UI/UX Design</option>
+          <option value="E-commerce Solutions">E-commerce Solutions</option>
+          <option value="Technical Consulting">Technical Consulting</option>
+          <option value="Other">Other</option>
+        </select>
+        <label for="service" class="modern-label">
+          <span class="label-text">Service Needed</span>
+          <span class="required-indicator">*</span>
+        </label>
+        <div class="input-border"></div>
+        <div class="select-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="success-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+      <div class="error-message" id="service-error" role="alert" aria-live="polite"></div>
+    </div>
+
+    <!-- Message Field -->
+    <div class="form-field">
+      <div class="input-wrapper textarea-wrapper">
+        <textarea 
+          id="message" 
+          name="message" 
+          class="modern-textarea" 
+          placeholder=" "
+          rows="5"
+          required
+          maxlength="2000"
+          aria-describedby="message-error message-help"
+        ></textarea>
+        <label for="message" class="modern-label">
+          <span class="label-text">Project Details</span>
+          <span class="required-indicator">*</span>
+        </label>
+        <div class="input-border"></div>
+        <div class="success-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="character-count">
+          <span class="current-count">0</span> / 2000
+        </div>
+      </div>
+      <div class="error-message" id="message-error" role="alert" aria-live="polite"></div>
+      <div class="help-text" id="message-help">
+        Tell us about your project timeline, requirements, and any specific technologies you prefer.
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+      <button type="submit" class="button button-primary" disabled aria-label="Send contact message">
+        <span class="button-content">
+          <span class="button-text">Send Message</span>
+          <span class="button-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M2.003 5.884L18.69 12.134a.5.5 0 010 .732L2.003 19.116a.5.5 0 01-.732-.732L4.271 12 1.271 5.616a.5.5 0 01.732-.732z" fill="currentColor"/>
+            </svg>
+          </span>
+        </span>
+        <div class="button-loading">
+          <div class="loading-spinner"></div>
+          <span>Sending...</span>
+        </div>
+        <div class="button-success">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" fill="currentColor"/>
+          </svg>
+          <span>Message Sent!</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Form Progress Indicator -->
+    <div class="form-progress">
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="progress-text">
+        <span class="completed-fields">0</span> of <span class="total-fields">4</span> fields completed
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Styles removed in favor of unified ui-system.css -->
+
+<script type="module" is:inline>
+  // Note: Avoid static ESM imports inside inline scripts to prevent bundling errors.
+  class ModernFormHandler {
+    constructor(formId) {
+      this.form = document.getElementById(formId);
+      this.submitBtn = this.form?.querySelector('.button');
+      this.progressFill = this.form?.querySelector('.progress-fill');
+      this.completedFields = this.form?.querySelector('.completed-fields');
+      this.totalFields = this.form?.querySelector('.total-fields');
+      
+      this.requiredFields = ['name', 'email', 'service', 'message'];
+      this.validators = {
+        name: this.validateName.bind(this),
+        email: this.validateEmail.bind(this),
+        service: this.validateService.bind(this),
+        subject: this.validateSubject.bind(this),
+        message: this.validateMessage.bind(this)
+      };
+      
+      this.init();
+    }
+
+    init() {
+      this.setupFieldValidation();
+      this.setupFormSubmission();
+      this.setupCharacterCount();
+      this.updateProgress();
+    }
+
+    setupFieldValidation() {
+      if (!this.form) return;
+      
+      this.requiredFields.forEach((fieldName) => {
+        const field = this.form.querySelector(`#${fieldName}`);
+        const fieldWrapper = field?.closest('.form-field');
+        
+        if (field && fieldWrapper) {
+          // Real-time validation on input
+          field.addEventListener('input', () => {
+            this.validateField(fieldName);
+            this.updateProgress();
+            this.updateSubmitButton();
+          });
+
+          // Validation on blur
+          field.addEventListener('blur', () => {
+            this.validateField(fieldName);
+          });
+
+          // Clear validation on focus
+          field.addEventListener('focus', () => {
+            fieldWrapper.classList.remove('error');
+          });
+
+          // Enhanced keyboard navigation for form fields
+          field.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && field.tagName !== 'TEXTAREA') {
+              e.preventDefault();
+              this.focusNextField(fieldName);
+            }
+          });
+        }
+      });
+    }
+
+    focusNextField(currentFieldName) {
+      if (!this.form) return;
+      
+      const currentIndex = this.requiredFields.indexOf(currentFieldName);
+      const nextIndex = (currentIndex + 1) % this.requiredFields.length;
+      const nextField = this.form.querySelector(`#${this.requiredFields[nextIndex]}`);
+      
+      if (nextField) {
+        nextField.focus();
+      } else if (this.submitBtn && !this.submitBtn.disabled) {
+        this.submitBtn.focus();
+      }
+    }
+
+    validateField(fieldName) {
+      if (!this.form) return false;
+      
+      const field = this.form.querySelector(`#${fieldName}`);
+      const fieldWrapper = field?.closest('.form-field');
+      const errorElement = this.form.querySelector(`#${fieldName}-error`);
+      
+      if (!field || !fieldWrapper || !errorElement) return false;
+
+      const validator = this.validators[fieldName];
+      const error = validator ? validator(field.value) : '';
+      
+      if (error) {
+        fieldWrapper.classList.add('error');
+        fieldWrapper.classList.remove('valid');
+        errorElement.textContent = error;
+        return false;
+      } else if (field.value.trim()) {
+        fieldWrapper.classList.remove('error');
+        fieldWrapper.classList.add('valid');
+        errorElement.textContent = '';
+        return true;
+      } else {
+        fieldWrapper.classList.remove('error', 'valid');
+        errorElement.textContent = '';
+        return false;
+      }
+    }
+
+    // Validation helpers are imported at the top-level of the module script
+
+    validateName(value) {
+      if (!value || !value.trim()) return 'Name is required';
+      if (value.length < 2) return 'Name must be at least 2 characters';
+      if (value.length > 100) return 'Name must be less than 100 characters';
+      if (!/^[A-Za-z\s]{2,50}$/.test(value)) return 'Please enter a valid name (2-50 letters)';
+      return '';
+    }
+
+    validateEmail(value) {
+      if (!value || !value.trim()) return 'Email is required';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) return 'Please enter a valid email address';
+      return '';
+    }
+
+    validateSubject(value) {
+      // Subject field (company) is optional, so no validation needed
+      return '';
+    }
+
+    validateService(value) {
+      if (!value || !value.trim()) return 'Please select a service';
+      return '';
+    }
+
+    validateMessage(value) {
+      if (!value || !value.trim()) return 'Message is required';
+      if (value.length < 10) return 'Message must be at least 10 characters';
+      if (value.length > 2000) return 'Message must be less than 2000 characters';
+      return '';
+    }
+
+    updateProgress() {
+      if (!this.form || !this.progressFill || !this.completedFields) return;
+      
+      let completedCount = 0;
+      
+      this.requiredFields.forEach((fieldName) => {
+        const field = this.form.querySelector(`#${fieldName}`);
+        if (field && field.value.trim() && this.validators[fieldName](field.value) === '') {
+          completedCount++;
+        }
+      });
+
+      const percentage = (completedCount / this.requiredFields.length) * 100;
+      this.progressFill.style.width = `${percentage}%`;
+      this.completedFields.textContent = completedCount.toString();
+    }
+
+    updateSubmitButton() {
+      if (!this.form || !this.submitBtn) return;
+      
+      const allValid = this.requiredFields.every((fieldName) => {
+        const field = this.form.querySelector(`#${fieldName}`);
+        return field && field.value.trim() && this.validators[fieldName](field.value) === '';
+      });
+
+      this.submitBtn.disabled = !allValid;
+    }
+
+    setupCharacterCount() {
+      if (!this.form) return;
+      
+      const messageField = this.form.querySelector('#message');
+      const currentCount = this.form.querySelector('.current-count');
+      
+      if (messageField && currentCount) {
+        messageField.addEventListener('input', () => {
+          currentCount.textContent = messageField.value.length.toString();
+        });
+      }
+    }
+
+    async setupFormSubmission() {
+      if (!this.form || !this.submitBtn) return;
+      
+      this.form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Validate all fields
+        let isValid = true;
+        this.requiredFields.forEach((fieldName) => {
+          if (!this.validateField(fieldName)) {
+            isValid = false;
+          }
+        });
+
+        if (!isValid) return;
+
+        // Show loading state
+        this.submitBtn.classList.add('loading');
+        this.submitBtn.disabled = true;
+
+        try {
+          const formData = new FormData(this.form);
+          const payload = {
+            name: String(formData.get('name') || ''),
+            email: String(formData.get('email') || ''),
+            service: String(formData.get('service') || ''),
+            subject: String(formData.get('company') || ''),
+            message: String(formData.get('message') || '')
+          };
+
+          // Submit as URL-encoded to avoid JSON body stream issues in dev
+          // Note: Use plain JS; no TypeScript assertions inside inline scripts
+          const encoded = new URLSearchParams(payload).toString();
+          const response = await fetch(this.form.action, {
+            method: this.form.method,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: encoded
+          });
+
+          if (response.ok) {
+            // Show success state
+            this.submitBtn.classList.remove('loading');
+            this.submitBtn.classList.add('success');
+            
+            // Reset form after delay
+            setTimeout(() => {
+              this.form.reset();
+              this.submitBtn.classList.remove('success');
+              this.updateProgress();
+              this.updateSubmitButton();
+              
+              // Clear all validation states
+              this.requiredFields.forEach((fieldName) => {
+                const field = this.form.querySelector(`#${fieldName}`);
+                const fieldWrapper = field?.closest('.form-field');
+                const errorElement = this.form.querySelector(`#${fieldName}-error`);
+                fieldWrapper?.classList.remove('error', 'valid');
+                if (errorElement) errorElement.textContent = '';
+              });
+            }, 2000);
+          } else {
+            throw new Error('Form submission failed');
+          }
+        } catch (error) {
+          console.error('Form submission error:', error);
+          this.submitBtn.classList.remove('loading');
+          this.submitBtn.disabled = false;
+          // You could show an error message here
+        }
+      });
+    }
+  }
+
+  // Initialize form when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ModernFormHandler('modern-contact-form');
+    });
+  } else {
+    new ModernFormHandler('modern-contact-form');
+  }
+
+  // Reinitialize on navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', () => {
+    new ModernFormHandler('modern-contact-form');
+  });
+</script>

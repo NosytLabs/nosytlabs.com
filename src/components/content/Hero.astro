@@ -1,256 +1,91 @@
 ---
-import Card from '../ui/Card.astro';
 import Button from '../ui/Button.astro';
-import ParticleBackground from '../ParticleBackground.astro';
-import GeometricPattern from '../GeometricPattern.astro';
+import Container from '../layout/Container.astro';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  className?: string;
+}
+
+const {
+  title = "Modern Web Solutions That Drive Results",
+  subtitle = "Full-Stack Development • AI Integration • Digital Innovation",
+  description = "We create clean, efficient web applications that solve real business challenges. From modern dashboards to AI-powered tools, our solutions are built for performance and growth.",
+  ctaText = "Get Started",
+  ctaLink = "/contact",
+  secondaryCtaText = "View Projects",
+  secondaryCtaLink = "/projects",
+  className = ""
+} = Astro.props;
 ---
 
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden focus:outline-none focus:ring-2 focus:ring-[hsl(var(--accent))]">
-  <!-- Enhanced Background with Modern Effects -->
-  <div class="absolute inset-0">
-    <!-- Animated gradient background -->
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900"></div>
-    
-    <!-- Particle system -->
-    <ParticleBackground />
-    
-    <!-- Geometric patterns -->
-    <GeometricPattern />
-    
-    <!-- Floating orbs with modern glow effects -->
-    <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-brand-accent/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse animation-delay-1000"></div>
-    
-    <!-- Modern mesh gradient overlay -->
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,var(--color-blue-alpha-10)_0%,transparent_70%)]"></div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="container relative z-10 px-6 lg:px-8">
-    <div class="text-center max-w-6xl mx-auto">
+<section class={`hero-enhanced section-spacing-lg ${className}`} aria-labelledby="hero-title">
+  <Container size="standard">
+    <!-- Hero Content Wrapper -->
+    <div class="hero-content text-center">
       
-      <!-- Modern Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[hsl(var(--accent)/0.1)] to-purple-500/10 border border-[hsl(var(--accent)/0.2)] mb-8 animate-fade-in-up">
-        <div class="w-2 h-2 bg-[hsl(var(--accent))] rounded-full animate-pulse"></div>
-        <span class="text-sm leading-relaxed leading-relaxed leading-relaxed font-medium text-[hsl(var(--accent))]">✨ 2025 Digital Innovation Leaders</span>
+      <!-- Subtitle Badge -->
+      <div class="mb-6">
+        <span class="hero-badge inline-block">
+          {subtitle}
+        </span>
       </div>
 
-      <!-- Enhanced Hero Heading -->
-      <h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 animate-fade-in-up animation-delay-200">
-        <span class="block text-white mb-2">Transform Your</span>
-        <span class="block bg-gradient-to-r from-[hsl(var(--accent))] via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x">
-          Digital Vision
-        </span>
-        <span class="block text-white/90 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light mt-4">
-          Into Reality
-        </span>
-      </h1>      <!-- Enhanced Description -->
-      <p class="text-xl leading-snug leading-snug leading-snug md:text-2xl lg:text-3xl text-white/80 max-w-4xl mx-auto mb-12 leading-relaxed animate-fade-in-up animation-delay-400">
-        We craft cutting-edge web applications, AI-powered solutions, and immersive digital experiences 
-        that drive growth and innovation for forward-thinking businesses.
+      <!-- Title -->
+      <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 max-w-4xl mx-auto">
+        {title}
+      </h1>
+
+      <!-- Description -->
+      <p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
+        {description}
       </p>
 
-      <!-- Modern Stats Cards -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-16 animate-fade-in-up animation-delay-600">
-        <Card variant="glass" padding="md" rounded="xl" class="text-center group hover:scale-105 transition-all duration-500">
-          <div class="text-2xl md:text-3xl font-bold text-[hsl(var(--accent))] mb-1">150+</div>
-          <div class="text-sm leading-relaxed leading-relaxed leading-relaxed text-white/70">Projects Delivered</div>
-        </Card>
-        
-        <Card variant="glass" padding="md" rounded="xl" class="text-center group hover:scale-105 transition-all duration-500">
-          <div class="text-2xl md:text-3xl font-bold text-[hsl(var(--accent))] mb-1">98%</div>
-          <div class="text-sm leading-relaxed leading-relaxed leading-relaxed text-white/70">Client Satisfaction</div>
-        </Card>
-        
-        <Card variant="glass" padding="md" rounded="xl" class="text-center group hover:scale-105 transition-all duration-500">
-          <div class="text-2xl md:text-3xl font-bold text-[hsl(var(--accent))] mb-1">24/7</div>
-          <div class="text-sm leading-relaxed leading-relaxed leading-relaxed text-white/70">Support Available</div>
-        </Card>
-        
-        <Card variant="glass" padding="md" rounded="xl" class="text-center group hover:scale-105 transition-all duration-500">
-          <div class="text-2xl md:text-3xl font-bold text-[hsl(var(--accent))] mb-1">5⭐</div>
-          <div class="text-sm leading-relaxed leading-relaxed leading-relaxed text-white/70">Average Rating</div>
-        </Card>
-      </div>
-
-      <!-- Enhanced CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in-up animation-delay-800">
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
         <Button 
-          variant="primary" 
-          size="xl" 
-          href="/contact"
-          class="group relative overflow-hidden"
-        >
-          <span class="relative z-10">Start Your Project</span>
-          <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </Button>
+          href={ctaLink}
+          text={ctaText}
+          variant="primary"
+          size="lg"
+        />
         
         <Button 
-          variant="outline" 
-          size="xl" 
-          href="/services"
-          class="border-white/30 text-white hover:bg-white/10"
-        >
-          <span>Explore Services</span>
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
-          </svg>
-        </Button>
-      </div>      <!-- Enhanced Service Preview Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto animate-fade-in-up animation-delay-1000">
-        
-        <!-- Web Development Card -->
-        <Card variant="glass" padding="lg" rounded="2xl" hover={true} glow={true} class="group text-left">
-          <div class="icon-container-enhanced icon-container-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 mb-6 group-hover:scale-110 transition-all duration-500">
-            <Icon name="code" size="lg" class="text-blue-400" />
-          </div>
-          <h3 class="text-responsive-xl font-bold text-white mb-3 group-hover:text-[hsl(var(--accent))] transition-colors duration-300">
-            Modern Web Development
-          </h3>
-          <p class="text-white/70 text-responsive mb-4">
-            Lightning-fast, responsive websites built with cutting-edge technologies and optimized for performance.
-          </p>
-          <div class="flex-enhanced text-[hsl(var(--accent))] text-sm font-medium">
-            <span>Learn More</span>
-            <Icon name="arrow-right" size="sm" class="group-hover:translate-x-1 transition-transform duration-300" />
-          </div>
-        </Card>
-
-        <!-- AI Integration Card -->
-        <Card variant="glass" padding="lg" rounded="2xl" hover={true} glow={true} class="group text-left">
-          <div class="icon-container-enhanced icon-container-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 mb-6 group-hover:scale-110 transition-all duration-500">
-            <svg class="w-7 h-7 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-            </svg>
-          </div>
-          <h3 class="text-responsive-xl font-bold text-white mb-3 group-hover:text-[hsl(var(--accent))] transition-colors duration-300">
-            AI-Powered Solutions
-          </h3>
-          <p class="text-white/70 text-responsive mb-4">
-            Intelligent automation and machine learning integration to enhance user experience and business efficiency.
-          </p>
-          <div class="flex-enhanced text-[hsl(var(--accent))] text-sm font-medium">
-            <span>Discover AI</span>
-            <Icon name="arrow-right" size="sm" class="group-hover:translate-x-1 transition-transform duration-300" />
-          </div>
-        </Card>
-
-        <!-- Mobile & UX Card -->
-        <Card variant="glass" padding="lg" rounded="2xl" hover={true} glow={true} class="group text-left">
-          <div class="icon-container-enhanced icon-container-lg bg-gradient-to-br from-green-500/20 to-emerald-500/20 mb-6 group-hover:scale-110 transition-all duration-500">
-            <Icon name="smartphone" size="lg" class="text-green-400" />
-          </div>
-          <h3 class="text-responsive-xl font-bold text-white mb-3 group-hover:text-[hsl(var(--accent))] transition-colors duration-300">
-            Mobile & UX Design
-          </h3>
-          <p class="text-white/70 text-responsive mb-4">
-            Intuitive mobile applications and user experiences designed for maximum engagement and conversion.
-          </p>
-          <div class="flex-enhanced text-[hsl(var(--accent))] text-sm font-medium">
-            <span>View Portfolio</span>
-            <Icon name="arrow-right" size="sm" class="group-hover:translate-x-1 transition-transform duration-300" />
-          </div>
-        </Card>
+          href={secondaryCtaLink}
+          text={secondaryCtaText}
+          variant="outline"
+          size="lg"
+        />
       </div>
-    </div>
-  </div>
 
-  <!-- Modern Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center backdrop-blur-sm">
-      <div class="w-1 h-3 bg-[hsl(var(--accent))] rounded-full mt-2 animate-pulse"></div>
+      <!-- Trust Indicators -->
+      <div class="flex flex-wrap gap-6 md:gap-8 justify-center text-sm text-muted-foreground">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>47 Projects Delivered</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>10,000+ Users</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>Sub-Second Response</span>
+        </div>
+      </div>
+
     </div>
-  </div>
-</section><style>
-  /* Enhanced 2025 Design Styles */
-  
-  /* Animated gradient background */
-  @keyframes gradient-x {
-    0%, 100% {
-      background-size: 200% 200%;
-      background-position: left center;
-    }
-    50% {
-      background-size: 200% 200%;
-      background-position: right center;
-    }
-  }
-  
-  .animate-gradient-x {
-    animation: gradient-x 3s ease infinite;
-  }
-  
-  /* Modern glassmorphism effects */
-  .backdrop-blur-hero {
-    backdrop-filter: blur(var(--space-6)) saturate(180%);
-    -webkit-backdrop-filter: blur(var(--space-6)) saturate(180%);
-  }
-  
-  /* Enhanced hover effects */
-  .hover-glow:hover {
-    box-shadow: 
-      0 0 var(--space-6) var(--color-interactive-primary),
-      0 0 var(--space-10) var(--color-primary-alpha-20),
-      0 0 var(--space-16) var(--color-primary-alpha-10);
-  }
-  
-  /* Smooth animations with stagger */
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0;
-    transform: translateY(var(--space-7-5));
-  }
-  
-  .animation-delay-200 { animation-delay: 0.2s; }
-  .animation-delay-400 { animation-delay: 0.4s; }
-  .animation-delay-600 { animation-delay: 0.6s; }
-  .animation-delay-800 { animation-delay: 0.8s; }
-  .animation-delay-1000 { animation-delay: 1s; }
-  
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Hardware acceleration for smooth performance */
-  .transform {
-    transform: translateZ(0);
-    will-change: transform;
-  }
-  
-  /* Accessibility enhancements */
-  @media (prefers-reduced-motion: reduce) {
-    .animate-gradient-x,
-    .animate-bounce,
-    .animate-pulse,
-    .animate-fade-in-up {
-      animation: none;
-    }
-    
-    .group:hover .group-hover-scale-110 {
-      transform: none;
-    }
-  }
-  
-  /* High contrast mode support */
-  @media (prefers-contrast: high) {
-    .bg-gradient-to-r {
-      background: var(--brand-accent);
-    }
-    
-    .text-white\\/70 {
-      color: var(--color-brand-signal-white-90) /* Fixed: design token */;
-    }
-  }
-  
-  /* Dark mode optimizations */
-  @media (prefers-color-scheme: dark) {
-    .backdrop-blur-hero {
-      background-color: var(--color-slate-900-alpha-80) /* Fixed: design token */;
-    }
-  }
-</style>
+  </Container>
+</section>

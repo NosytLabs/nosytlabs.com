@@ -1,0 +1,47 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+  description?: string;
+}
+
+interface Props {
+  stats: Stat[];
+  variant?: 'default' | 'hero' | 'compact';
+  className?: string;
+}
+
+const { stats, variant = 'default', className = '' } = Astro.props;
+
+const variantClasses = {
+  default: 'grid-3 gap-6',
+  hero: 'grid-3 gap-8',
+  compact: 'grid-3 gap-4'
+};
+---
+
+<div class={`stats-display ${variantClasses[variant]} ${className}`}>
+  {stats.map((stat) => (
+    <div class="stat-card text-center">
+      <div class="stat-value">{stat.value}</div>
+      <div class="stat-label">{stat.label}</div>
+      {stat.description && (
+        <div class="stat-description text-xs text-muted-foreground mt-2">
+          {stat.description}
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+<style>
+  .stats-display {
+    width: 100%;
+  }
+  
+  .stat-description {
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>

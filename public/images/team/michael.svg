@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bgGradient3)"/>
+  
+  <!-- Person silhouette -->
+  <g transform="translate(200, 200)">
+    <!-- Head -->
+    <circle cx="0" cy="-60" r="50" fill="#ffffff" opacity="0.9"/>
+    
+    <!-- Body -->
+    <ellipse cx="0" cy="20" rx="70" ry="90" fill="#ffffff" opacity="0.9"/>
+    
+    <!-- Arms -->
+    <ellipse cx="-50" cy="-10" rx="25" ry="60" fill="#ffffff" opacity="0.9" transform="rotate(-20)"/>
+    <ellipse cx="50" cy="-10" rx="25" ry="60" fill="#ffffff" opacity="0.9" transform="rotate(20)"/>
+  </g>
+  
+  <!-- Name overlay -->
+  <rect x="0" y="320" width="400" height="80" fill="rgba(0,0,0,0.7)"/>
+  <text x="200" y="365" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Michael Rodriguez</text>
+  <text x="200" y="385" text-anchor="middle" fill="#cccccc" font-family="Arial, sans-serif" font-size="14">DevOps Engineer</text>
+</svg>

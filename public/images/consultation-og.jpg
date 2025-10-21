@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Consultation Services - NOSYT Labs - Open Graph Image">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#334155;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="200" cy="120" r="80" fill="#3b82f6" opacity="0.1"/>
+  <circle cx="1000" cy="500" r="120" fill="#8b5cf6" opacity="0.1"/>
+  <rect x="700" y="80" width="400" height="4" fill="url(#accentGradient)" opacity="0.5"/>
+  
+  <!-- Logo -->
+  <rect x="80" y="80" width="60" height="60" rx="12" fill="url(#accentGradient)"/>
+  <text x="110" y="120" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">N</text>
+  
+  <!-- Main heading -->
+  <text x="80" y="220" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="white">Consultation</text>
+  <text x="80" y="280" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="white">Services</text>
+  
+  <!-- Subheading -->
+  <text x="80" y="340" font-family="Arial, sans-serif" font-size="26" fill="#94a3b8">Expert guidance for your digital transformation</text>
+  
+  <!-- Service highlights -->
+  <g transform="translate(80, 400)">
+    <!-- Strategy -->
+    <circle cx="30" cy="30" r="25" fill="#3b82f6" opacity="0.2"/>
+    <circle cx="30" cy="30" r="18" fill="#3b82f6"/>
+    <text x="30" y="38" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">📋</text>
+    <text x="30" y="75" font-family="Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Strategy</text>
+    
+    <!-- Implementation -->
+    <circle cx="150" cy="30" r="25" fill="#8b5cf6" opacity="0.2"/>
+    <circle cx="150" cy="30" r="18" fill="#8b5cf6"/>
+    <text x="150" y="38" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">⚙️</text>
+    <text x="150" y="75" font-family="Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Implementation</text>
+    
+    <!-- Optimization -->
+    <circle cx="270" cy="30" r="25" fill="#06b6d4" opacity="0.2"/>
+    <circle cx="270" cy="30" r="18" fill="#06b6d4"/>
+    <text x="270" y="38" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">📈</text>
+    <text x="270" y="75" font-family="Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Optimization</text>
+    
+    <!-- Support -->
+    <circle cx="390" cy="30" r="25" fill="#10b981" opacity="0.2"/>
+    <circle cx="390" cy="30" r="18" fill="#10b981"/>
+    <text x="390" y="38" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">🛠️</text>
+    <text x="390" y="75" font-family="Arial, sans-serif" font-size="14" fill="#94a3b8" text-anchor="middle">Support</text>
+  </g>
+  
+  <!-- Call to action -->
+  <rect x="80" y="520" width="200" height="50" rx="25" fill="url(#accentGradient)"/>
+  <text x="180" y="550" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">Book Consultation</text>
+  
+  <!-- Bottom text -->
+  <text x="1120" y="580" font-family="Arial, sans-serif" font-size="18" fill="#64748b" text-anchor="end">nosytlabs.com</text>
+</svg>

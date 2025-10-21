@@ -1,0 +1,59 @@
+{
+  "name": "NOSYT Labs - Web Development & AI Integration",
+  "short_name": "NOSYT Labs",
+  "description": "Expert web development, AI integration, and digital solutions that drive results for your business",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f8fa",
+  "theme_color": "#232965",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192x192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512x512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/logo-icon.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    }
+  ],
+  "categories": ["business", "productivity", "developer"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "./",
+  "shortcuts": [
+    {
+      "name": "Services",
+      "url": "services",
+      "description": "View our professional services",
+      "icons": [{ "src": "icons/services.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Projects",
+      "url": "projects",
+      "description": "View our portfolio & case studies",
+      "icons": [{ "src": "icons/projects.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contact",
+      "url": "contact",
+      "description": "Get in touch with us",
+      "icons": [{ "src": "icons/contact.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Blog",
+      "url": "blog",
+      "description": "Latest insights & updates",
+      "icons": [{ "src": "icons/blog.svg", "sizes": "96x96" }]
+    }
+  ]
+}

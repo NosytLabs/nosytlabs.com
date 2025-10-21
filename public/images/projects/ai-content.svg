@@ -62,14 +62,14 @@
   <rect x="80" y="220" width="190" height="3" rx="1.5" fill="#374151"/>
   
   <!-- AI Processing Indicators -->
-  <circle cx="300" cy="185" r="3" fill="#f59e0b">
+  <circle cx="300" cy="185" r="3" fill="hsl(185, 75%, 50%)">
     <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
   </circle>
-  <circle cx="310" cy="185" r="3" fill="#f59e0b">
-    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.3s" repeatCount="indefinite"/>
+  <circle cx="310" cy="185" r="3" fill="hsl(185, 75%, 50%)">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.5s" repeatCount="indefinite"/>
   </circle>
-  <circle cx="320" cy="185" r="3" fill="#f59e0b">
-    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.6s" repeatCount="indefinite"/>
+  <circle cx="320" cy="185" r="3" fill="hsl(185, 75%, 50%)">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="1s" repeatCount="indefinite"/>
   </circle>
   
   <!-- Stats/Metrics -->

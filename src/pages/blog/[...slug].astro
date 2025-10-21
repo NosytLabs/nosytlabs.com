@@ -1,94 +1,183 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
-import { formatDate } from '../../utils/date';
+import { formatDate } from '@nosytlabs/shared-utils';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import Button from '../../components/ui/Button.astro';
+import { createInternalLink, createImagePath, SITE_CONFIG } from '../../lib/constants';
+import RelatedPosts from '../../components/blog/RelatedPosts.astro';
+import SocialShare from '../../components/blog/SocialShare.astro';
+import { getRelatedPosts } from '../../lib/blog-utils';
+import type { BlogPost } from '../../types/blog';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((post) => ({
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  
+  return posts.map((post: BlogPost) => ({
     params: { slug: post.slug },
     props: post,
   }));
 }
 
-type Props = CollectionEntry<'blog'>;
+const post = Astro.props as BlogPost;
 
-const post = Astro.props;
+// Add safety check for post and post.data
+if (!post || !post.data) {
+  throw new Error('Blog post not found or missing data');
+}
+
 const { Content } = await post.render();
+
+// Get all posts for related posts
+const allPosts = await getCollection('blog', ({ data }: BlogPost) => !data.draft);
+const relatedPosts = getRelatedPosts(post, allPosts, 3);
+
+// Generate full URL for social sharing
+const fullUrl = `${SITE_CONFIG.BASE_URL}/blog/${post.slug}`;
+const canonicalPostUrl = `${SITE_CONFIG.BASE_URL}/blog/${post.slug}`;
 
 const blogPostJsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": post.data.title,
-  "description": post.data.description,
-  "url": `https://nosytlabs.com/blog/${post.slug}`,
-  "datePublished": post.data.pubDate.toISOString(),
-  "dateModified": post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
+  "headline": post.data.title || "Untitled",
+  "description": post.data.description || "",
+  "excerpt": post.data.excerpt || post.data.description || "",
+  "url": canonicalPostUrl,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalPostUrl
+  },
+  "datePublished": post.data.pubDate ? post.data.pubDate.toISOString() : new Date().toISOString(),
+  "dateModified": post.data.updatedDate?.toISOString() || post.data.pubDate?.toISOString() || new Date().toISOString(),
   "author": {
-    "@type": "Organization",
-    "name": "Nosyt Labs"
+    "@type": "Person",
+    "name": post.data.author || "NOSYT Labs Team",
+    "url": `${SITE_CONFIG.BASE_URL}/about`
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Nosyt Labs",
+    "name": "NOSYT Labs",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://nosytlabs.com/images/logo-icon.webp"
-    }
+      "url": `${SITE_CONFIG.BASE_URL}/images/logo-icon.webp`,
+      "width": 512,
+      "height": 512
+    },
+    "url": SITE_CONFIG.BASE_URL
   },
-  "image": post.data.heroImage ? `https://nosytlabs.com${post.data.heroImage}` : "https://nosytlabs.com/images/og-image.jpg",
-  "keywords": post.data.tags?.join(", ") || ""
+  "image": {
+    "@type": "ImageObject",
+    "url": post.data.heroImage 
+      ? `${SITE_CONFIG.BASE_URL}${post.data.heroImage.startsWith('/') ? '' : '/'}${post.data.heroImage}` 
+      : `${SITE_CONFIG.BASE_URL}/images/og-image.svg`,
+    "width": 1200,
+    "height": 630
+  },
+  "keywords": post.data.seoKeywords?.join(", ") || post.data.tags?.join(", ") || "",
+  "articleSection": post.data.category || "Technology",
+  "wordCount": post.data.readingTime ? Math.round(post.data.readingTime * 200) : 1000,
+  "timeRequired": post.data.readingTime ? `PT${post.data.readingTime}M` : "PT5M",
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": `${SITE_CONFIG.BASE_URL}/blog`,
+    "name": "NOSYT Labs Blog"
+  }
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": SITE_CONFIG.BASE_URL
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": `${SITE_CONFIG.BASE_URL}/blog`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": post.data.title,
+      "item": canonicalPostUrl
+    }
+  ]
 };
 ---
 
 <MainLayout 
-  title={`${post.data.title} - Nosyt Labs Blog`}
-  description={post.data.description}
-  ogImage={post.data.heroImage || '/images/blog-og.jpg'}
->
-  <script type="application/ld+json" set:html={JSON.stringify(blogPostJsonLd)} />
+  title={`${post.data.title} - NOSYT Labs Blog`}
+  description={post.data.excerpt || post.data.description}
+  keywords={post.data.seoKeywords || post.data.tags || []}
+  image={post.data.heroImage ? createImagePath(post.data.heroImage) : createImagePath('images/blog-index-og.jpg')}
   
-  <div class="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+>
+<div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-primary origin-left animate-reading-progress animation-timeline-scroll-root z-header"></div>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(blogPostJsonLd)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbJsonLd)} />
+  
+  <div class="min-h-screen bg-gradient-to-br from-background via-card to-primary/10 dark:from-background dark:via-muted dark:to-primary/20">
+<article class="container py-20">
+      <Breadcrumbs items={[{ name: 'Home', url: createInternalLink('/') }, { name: 'Blog', url: createInternalLink('/blog') }, { name: post.data.title }]} />
       <!-- Back to Blog -->
       <div class="mb-8">
-        <a 
-          href="/blog" 
-          class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-        >
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-          </svg>
-          Back to Blog
-        </a>
+        <Button href={createInternalLink("/blog")} text="Back to Blog" variant="outline" size="sm" icon="arrow-left" />
       </div>
 
       <!-- Hero Image -->
       {post.data.heroImage && (
         <div class="aspect-video mb-8 rounded-2xl overflow-hidden">
           <img 
-            src={post.data.heroImage} 
-            alt={post.data.title}
+            src={createImagePath(post.data.heroImage)} 
+            alt={post.data.heroImageAlt || `Featured image for ${post.data.title}`}
+            title={post.data.title}
             class="w-full h-full object-cover"
+            width="1280"
+            height="720"
             loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            onerror={`this.onerror=null; this.src='${createImagePath('images/blog-index-og.jpg')}'; this.alt='NOSYT Labs Blog Post Fallback Image'; void 0;`}
           />
         </div>
       )}
 
       <!-- Article Header -->
       <header class="mb-12">
-        <div class="flex items-center gap-4 mb-6">
+        <div class="flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-muted-foreground mb-6">
           <time 
-            datetime={post.data.pubDate.toISOString()}
-            class="text-slate-500 dark:text-slate-400"
+            datetime={post.data.pubDate ? post.data.pubDate.toISOString() : new Date().toISOString()}
+            class="text-muted-foreground"
           >
             {formatDate(post.data.pubDate)}
           </time>
           
+          {post.data.author && (
+            <div class="flex items-center gap-2">
+              <span>by</span>
+              <span class="font-medium text-foreground">{post.data.author}</span>
+            </div>
+          )}
+          
+          {post.data.readingTime && (
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>{post.data.readingTime} read</span>
+            </div>
+          )}
+          
           {post.data.tags && post.data.tags.length > 0 && (
             <div class="flex gap-2">
               {post.data.tags.map((tag) => (
-                <span class="px-3 py-1 text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full">
+                <span class="px-3 py-1 text-sm font-medium bg-primary/10 text-primary rounded-full">
                   {tag}
                 </span>
               ))}
@@ -96,120 +185,49 @@ const blogPostJsonLd = {
           )}
         </div>
         
-        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 text-foreground">
           {post.data.title}
         </h1>
         
-        <p class="text-xl text-slate-600 dark:text-slate-300">
+        <p class="text-lg text-muted-foreground mb-8">
           {post.data.description}
         </p>
-        
-        {post.data.readingTime && (
-          <div class="mt-4 text-sm text-slate-500 dark:text-slate-400">
-            {post.data.readingTime} read
-          </div>
-        )}
       </header>
 
       <!-- Article Content -->
-      <div class="prose prose-lg prose-slate dark:prose-invert max-w-none">
+      <article class="prose prose-lg dark:prose-invert max-w-none blog-content">
         <Content />
+      </article>
+
+      <!-- Social Share -->
+      <div class="mt-12">
+        <SocialShare 
+          title={post.data.title}
+          url={fullUrl}
+          description={post.data.description}
+        />
       </div>
 
       <!-- Article Footer -->
-      <footer class="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
+      <footer class="mt-16 pt-8 border-t border-border">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             {post.data.updatedDate && (
-              <p class="text-sm text-slate-500 dark:text-slate-400">
+              <p class="text-sm text-muted-foreground">
                 Last updated: {formatDate(post.data.updatedDate)}
               </p>
             )}
           </div>
           
           <div class="flex gap-4">
-            <a 
-              href="/blog" 
-              class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-            >
-              More Articles
-            </a>
-            <a 
-              href="/contact" 
-              class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Get In Touch
-            </a>
+            <Button href={createInternalLink("/blog")} text="Back to Blog" variant="outline" size="sm" />
+            <Button href={createInternalLink("/contact")} text="Get In Touch" variant="primary" size="sm" />
           </div>
         </div>
       </footer>
+
+      <!-- Related Posts -->
+      <RelatedPosts posts={relatedPosts} currentSlug={post.slug} />
     </article>
   </div>
 </MainLayout>
-
-<style>
-  /* Custom prose styles for better readability */
-  .prose {
-    --tw-prose-body: theme('colors.slate.700');
-    --tw-prose-headings: theme('colors.slate.900');
-    --tw-prose-lead: theme('colors.slate.600');
-    --tw-prose-links: theme('colors.blue.600');
-    --tw-prose-bold: theme('colors.slate.900');
-    --tw-prose-counters: theme('colors.slate.500');
-    --tw-prose-bullets: theme('colors.slate.300');
-    --tw-prose-hr: theme('colors.slate.200');
-    --tw-prose-quotes: theme('colors.slate.900');
-    --tw-prose-quote-borders: theme('colors.slate.200');
-    --tw-prose-captions: theme('colors.slate.500');
-    --tw-prose-code: theme('colors.slate.900');
-    --tw-prose-pre-code: theme('colors.slate.200');
-    --tw-prose-pre-bg: theme('colors.slate.800');
-    --tw-prose-th-borders: theme('colors.slate.300');
-    --tw-prose-td-borders: theme('colors.slate.200');
-  }
-  
-  .dark .prose {
-    --tw-prose-body: theme('colors.slate.300');
-    --tw-prose-headings: theme('colors.white');
-    --tw-prose-lead: theme('colors.slate.400');
-    --tw-prose-links: theme('colors.blue.400');
-    --tw-prose-bold: theme('colors.white');
-    --tw-prose-counters: theme('colors.slate.400');
-    --tw-prose-bullets: theme('colors.slate.600');
-    --tw-prose-hr: theme('colors.slate.700');
-    --tw-prose-quotes: theme('colors.slate.100');
-    --tw-prose-quote-borders: theme('colors.slate.700');
-    --tw-prose-captions: theme('colors.slate.400');
-    --tw-prose-code: theme('colors.white');
-    --tw-prose-pre-code: theme('colors.slate.300');
-    --tw-prose-pre-bg: theme('colors.slate.800');
-    --tw-prose-th-borders: theme('colors.slate.600');
-    --tw-prose-td-borders: theme('colors.slate.700');
-  }
-  
-  .prose img {
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  }
-  
-  .prose pre {
-    border-radius: 0.75rem;
-    border: 1px solid theme('colors.slate.200');
-  }
-  
-  .dark .prose pre {
-    border-color: theme('colors.slate.700');
-  }
-  
-  .prose blockquote {
-    border-left: 4px solid theme('colors.blue.500');
-    background: theme('colors.blue.50');
-    padding: 1rem 1.5rem;
-    border-radius: 0.5rem;
-  }
-  
-  .dark .prose blockquote {
-    background: theme('colors.blue.900/20');
-    border-left-color: theme('colors.blue.400');
-  }
-</style>

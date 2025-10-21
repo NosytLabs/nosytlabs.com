@@ -1,0 +1,55 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "checkJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared-utils/*": ["./packages/shared-utils/src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.astro",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.vue",
+    "src/**/*.svelte",
+    "src/**/*.d.ts",
+    "src/**/*.json",
+    "src/**/*.md",
+    "src/**/*.mdx",
+    "packages/**/*.ts",
+    "packages/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.min.js",
+    "public/**/*",
+    "**/node_modules/@types/react-native/**",
+    "**/node_modules/react-native/**",
+    "**/node_modules/@types/react-native*",
+    "**/react-native*",
+    "node_modules/@types/react-native",
+    "node_modules/@types/react-native*",
+    "node_modules/react-native",
+    "node_modules/react-native/*"
+  ]
+}

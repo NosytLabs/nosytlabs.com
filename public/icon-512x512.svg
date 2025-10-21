@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="64" fill="#0a0a0a"/>
+  <g transform="translate(128, 128)">
+    <circle cx="128" cy="128" r="96" fill="#00F0FF" opacity="0.1"/>
+    <path d="M128 32C163.346 32 192 60.654 192 96V160C192 195.346 163.346 224 128 224C92.654 224 64 195.346 64 160V96C64 60.654 92.654 32 128 32Z" fill="#00F0FF"/>
+    <path d="M96 128L128 160L160 128" stroke="#0a0a0a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="128" cy="96" r="16" fill="#0a0a0a"/>
+  </g>
+  <text x="256" y="400" text-anchor="middle" fill="#00F0FF" font-family="Arial, sans-serif" font-size="48" font-weight="bold">N</text>
+</svg>
