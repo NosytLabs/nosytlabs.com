@@ -17,7 +17,7 @@ const blogCollection = defineCollection({
     draft: z.boolean().default(false),
     featured: z.boolean().default(false),
     updatedDate: z.date().optional(),
-    readingTime: z.string().optional(),
+    readingTime: z.number().optional(),
     heroImage: z.string().optional(),
     heroImageAlt: z.string().optional(),
   })
