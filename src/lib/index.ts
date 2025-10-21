@@ -109,8 +109,6 @@ export {
   ErrorHandler,
   safeAsync,
   withErrorTracking,
-  trackMCPError,
-  safeMCPAsync,
 } from "./error-handling";
 
 // Animations
