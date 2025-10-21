@@ -8,7 +8,7 @@ import path from "path";
 import icon from "astro-icon";
 import compressor from "astro-compressor";
 
-const SITE_URL = process.env.PUBLIC_SITE_URL ?? "https://nosytlabs.github.io";
+const SITE_URL = process.env.PUBLIC_SITE_URL ?? "https://nosytlabs.com";
 const BASE = process.env.PUBLIC_BASE_URL ?? "/";
 
 // https://astro.build/config
