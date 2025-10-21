@@ -55,7 +55,7 @@ Internal tools that automate workflows, manage data, and integrate with existing
 
 - **Frontend**: React/Next.js, Vue/Nuxt, TypeScript
 - **Backend**: Node.js, Python/FastAPI, PostgreSQL, Redis
-- **Infrastructure**: Docker, AWS/Vercel, GitHub Actions
+- **Infrastructure**: Docker, AWS, GitHub Actions
 - **Monitoring**: Application performance monitoring and error tracking
 
 ## Real Project Examples

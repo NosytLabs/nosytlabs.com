@@ -17,7 +17,7 @@ A high-performance marketing website for NosytLabs built with Astro 5.14, React 
 
 **Recent Changes (October 2025):**
 
-- Migrated from Vercel to Replit
+- Migrated to Replit hosting
 - Replaced Resend with EmailJS for client-side email delivery
 - Removed server-side API routes (now fully static)
 - Updated site URL to nosytlabs.com
@@ -141,12 +141,12 @@ Preferred communication style: Simple, everyday language.
 
 ### Build & Deployment
 
-**Astro Build + Vercel/GitHub Pages**
+**Astro Build + Static Hosting**
 
 - **Build Command**: `npm run build` (includes type checking)
 - **Output**: `dist/` directory with static HTML/CSS/JS
 - **Preview**: `npm run preview` for production build testing
-- **Configuration**: `vercel.json` includes security headers and caching rules
+- **Configuration**: Configured for Replit autoscale deployment
 
 ## External Dependencies
 
@@ -159,8 +159,8 @@ Preferred communication style: Simple, everyday language.
 
 ### CDN & Hosting
 
-- **Vercel** (primary) or **GitHub Pages** - Static hosting with automatic deployments
-- **Configuration**: `vercel.json` defines headers, rewrites, and caching policies
+- **Replit** (primary) or **GitHub Pages** - Static hosting with automatic deployments
+- **Configuration**: Replit autoscale deployment for optimal performance
 
 ### Analytics
 

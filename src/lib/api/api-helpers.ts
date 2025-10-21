@@ -1094,7 +1094,7 @@ export function initializeRateLimitCleanup(): void {
   if (typeof setInterval !== "undefined" && typeof process !== "undefined") {
     // Check if we're in a serverless environment
     const isServerless =
-      process.env.VERCEL || process.env.NETLIFY || process.env.AWS_LAMBDA;
+      process.env.NETLIFY || process.env.AWS_LAMBDA;
 
     if (!isServerless) {
       setInterval(cleanupRateLimitStore, RATE_LIMIT_CLEANUP_INTERVAL);

@@ -530,7 +530,7 @@
 
 /* ==========================================================================
    PROVEN DESIGN PATTERNS - SPACING & LAYOUT FIXES
-   Based on shadcn/ui and Vercel design systems
+   Based on shadcn/ui design system
    ========================================================================== */
 @layer components {
   /* SECTION SPACING - Consistent vertical rhythm */
@@ -1716,7 +1716,7 @@
     }
   }
 
-  /* HERO SECTION - Vercel-inspired */
+  /* HERO SECTION - Modern design */
   .hero-enhanced {
     @apply relative min-h-[65vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden;
     padding-top: 4rem; /* 64px mobile */
