@@ -16,10 +16,10 @@
  */
 
 // Import shared validation utilities
-import { isValidEmail } from '@nosytlabs/shared-utils/validation/email-validator';
+import { isValidEmail } from '@/lib/utils/validation';
 
 // Re-export shared validation utilities
-export { isValidEmail, validateEmail } from '@nosytlabs/shared-utils/validation/email-validator';
+export { isValidEmail, validateEmail } from '@/lib/utils/validation';
 
 // ========================================
 // TYPES

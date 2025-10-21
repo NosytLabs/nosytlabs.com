@@ -5,7 +5,7 @@
  * between contact.astro and contact.ts implementations.
  */
 
-import { validateEmail as validateEmailShared } from '@nosytlabs/shared-utils/validation/email-validator';
+import { validateEmail as validateEmailShared } from '@/lib/utils/validation';
 
 export interface ValidationResult {
   isValid: boolean;

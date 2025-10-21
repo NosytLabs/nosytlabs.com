@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { sanitizeInput } from '@nosytlabs/shared-utils/validation';
+import { sanitizeInput } from '@/lib/utils/validation';
 import { validateContactForm, type ContactFormData } from '@/lib/forms/form-validator';
 import { SITE_CONFIG } from '../../lib/constants';
 import {

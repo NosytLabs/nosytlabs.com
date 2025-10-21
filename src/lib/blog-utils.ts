@@ -92,7 +92,7 @@ export function getRelatedPosts(
 }
 
 // Import formatDate from shared utilities to avoid duplication
-import { formatDate } from '@nosytlabs/shared-utils';
+import { formatDate } from '@/lib/utils/date-utils';
 
 // Re-export for backward compatibility
 export { formatDate };
