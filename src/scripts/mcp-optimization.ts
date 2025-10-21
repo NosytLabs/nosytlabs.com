@@ -3,7 +3,7 @@
  * Comprehensive performance analysis and optimization using MCP tools
  */
 
-import { mcpWrapper } from '../lib/mcp/mcp-wrapper';
+import { mcpWrapper } from "../lib/mcp/mcp-wrapper";
 
 // Type definitions for optimization report
 interface PageSpeedMetrics {
@@ -17,11 +17,11 @@ interface PageSpeedMetrics {
 }
 
 interface CoreWebVitals {
-  lcp: { value: number; rating: 'good' | 'needs-improvement' | 'poor' };
-  fid: { value: number; rating: 'good' | 'needs-improvement' | 'poor' };
-  cls: { value: number; rating: 'good' | 'needs-improvement' | 'poor' };
-  fcp: { value: number; rating: 'good' | 'needs-improvement' | 'poor' };
-  ttfb: { value: number; rating: 'good' | 'needs-improvement' | 'poor' };
+  lcp: { value: number; rating: "good" | "needs-improvement" | "poor" };
+  fid: { value: number; rating: "good" | "needs-improvement" | "poor" };
+  cls: { value: number; rating: "good" | "needs-improvement" | "poor" };
+  fcp: { value: number; rating: "good" | "needs-improvement" | "poor" };
+  ttfb: { value: number; rating: "good" | "needs-improvement" | "poor" };
 }
 
 interface NetworkAnalysis {
@@ -56,7 +56,7 @@ interface AccessibilityAnalysis {
   score: number;
   violations: Array<{
     id: string;
-    impact: 'minor' | 'moderate' | 'serious' | 'critical';
+    impact: "minor" | "moderate" | "serious" | "critical";
     description: string;
     nodes: number;
   }>;
@@ -70,7 +70,7 @@ interface BundleSizeAnalysis {
   assets: Array<{
     name: string;
     size: number;
-    type: 'js' | 'css' | 'image' | 'font' | 'other';
+    type: "js" | "css" | "image" | "font" | "other";
   }>;
 }
 
@@ -84,7 +84,7 @@ interface CodeQualityAnalysis {
 
 interface SecurityAnalysis {
   vulnerabilities: Array<{
-    severity: 'low' | 'medium' | 'high' | 'critical';
+    severity: "low" | "medium" | "high" | "critical";
     type: string;
     description: string;
   }>;
@@ -114,7 +114,7 @@ interface OptimizationReport {
 class WebsiteOptimizer {
   private siteUrl: string;
 
-  constructor(siteUrl: string = 'http://localhost:4321') {
+  constructor(siteUrl: string = "http://localhost:4321") {
     this.siteUrl = siteUrl;
   }
 
@@ -126,19 +126,19 @@ class WebsiteOptimizer {
       performance: {
         pageSpeed: null,
         coreWebVitals: null,
-        networkAnalysis: null
+        networkAnalysis: null,
       },
       seo: {
         metaTags: null,
         structuredData: null,
-        accessibility: null
+        accessibility: null,
       },
       technical: {
         bundleSize: null,
         codeQuality: null,
-        security: null
+        security: null,
       },
-      recommendations: []
+      recommendations: [],
     };
 
     try {
@@ -155,9 +155,8 @@ class WebsiteOptimizer {
       report.recommendations = await this.generateRecommendations(report);
 
       return report;
-
     } catch (error) {
-      console.error('❌ Optimization analysis failed:', error);
+      console.error("❌ Optimization analysis failed:", error);
       throw error;
     }
   }
@@ -165,40 +164,41 @@ class WebsiteOptimizer {
   /**
    * Performance analysis using Chrome DevTools MCP
    */
-  private async analyzePerformance(): Promise<OptimizationReport['performance']> {
-    const performance: OptimizationReport['performance'] = {
+  private async analyzePerformance(): Promise<
+    OptimizationReport["performance"]
+  > {
+    const performance: OptimizationReport["performance"] = {
       pageSpeed: null,
       coreWebVitals: null,
-      networkAnalysis: null
+      networkAnalysis: null,
     };
 
     try {
       // Take screenshot for visual analysis
-      await mcpWrapper.chromeDevTools('screenshot', {
+      await mcpWrapper.chromeDevTools("screenshot", {
         url: this.siteUrl,
         viewport: { width: 1920, height: 1080 },
-        fullPage: true
+        fullPage: true,
       });
 
       // Analyze page performance metrics
-      const performanceMetrics = await mcpWrapper.chromeDevTools('inspect', {
+      const performanceMetrics = await mcpWrapper.chromeDevTools("inspect", {
         url: this.siteUrl,
-        selector: 'body',
-        metrics: ['LCP', 'CLS', 'FCP', 'TTI']
+        selector: "body",
+        metrics: ["LCP", "CLS", "FCP", "TTI"],
       });
 
       performance.pageSpeed = performanceMetrics as PageSpeedMetrics;
 
       // Network analysis
-      const networkAnalysis = await mcpWrapper.chromeDevTools('network', {
+      const networkAnalysis = await mcpWrapper.chromeDevTools("network", {
         url: this.siteUrl,
-        analyze: ['resources', 'timing', 'compression']
+        analyze: ["resources", "timing", "compression"],
       });
 
       performance.networkAnalysis = networkAnalysis as NetworkAnalysis;
-
     } catch (error) {
-      console.warn('⚠️ Performance analysis partially failed:', error);
+      console.warn("⚠️ Performance analysis partially failed:", error);
     }
 
     return performance;
@@ -207,43 +207,52 @@ class WebsiteOptimizer {
   /**
    * SEO analysis using Chrome DevTools MCP
    */
-  private async analyzeSEO(): Promise<OptimizationReport['seo']> {
-    const seo: OptimizationReport['seo'] = {
+  private async analyzeSEO(): Promise<OptimizationReport["seo"]> {
+    const seo: OptimizationReport["seo"] = {
       metaTags: null,
       structuredData: null,
-      accessibility: null
+      accessibility: null,
     };
 
     try {
       // Analyze meta tags and SEO elements
-      const metaAnalysis = await mcpWrapper.chromeDevTools('inspect', {
+      const metaAnalysis = await mcpWrapper.chromeDevTools("inspect", {
         url: this.siteUrl,
-        selector: 'head',
-        extract: ['title', 'meta', 'link[rel="canonical"]', 'script[type="application/ld+json"]']
+        selector: "head",
+        extract: [
+          "title",
+          "meta",
+          'link[rel="canonical"]',
+          'script[type="application/ld+json"]',
+        ],
       });
 
       seo.metaTags = metaAnalysis as MetaTagsAnalysis;
 
       // Check for structured data
-      const structuredData = await mcpWrapper.chromeDevTools('inspect', {
+      const structuredData = await mcpWrapper.chromeDevTools("inspect", {
         url: this.siteUrl,
         selector: 'script[type="application/ld+json"]',
-        extract: 'content'
+        extract: "content",
       });
 
       seo.structuredData = structuredData as StructuredDataAnalysis;
 
       // Accessibility analysis
-      const accessibilityCheck = await mcpWrapper.chromeDevTools('inspect', {
+      const accessibilityCheck = await mcpWrapper.chromeDevTools("inspect", {
         url: this.siteUrl,
-        selector: 'body',
-        accessibility: ['alt-text', 'aria-labels', 'heading-structure', 'color-contrast']
+        selector: "body",
+        accessibility: [
+          "alt-text",
+          "aria-labels",
+          "heading-structure",
+          "color-contrast",
+        ],
       });
 
       seo.accessibility = accessibilityCheck as AccessibilityAnalysis;
-
     } catch (error) {
-      console.warn('⚠️ SEO analysis partially failed:', error);
+      console.warn("⚠️ SEO analysis partially failed:", error);
     }
 
     return seo;
@@ -252,42 +261,44 @@ class WebsiteOptimizer {
   /**
    * Technical analysis using desktop commander and file inspection
    */
-  private async analyzeTechnical(): Promise<OptimizationReport['technical']> {
-    const technical: OptimizationReport['technical'] = {
+  private async analyzeTechnical(): Promise<OptimizationReport["technical"]> {
+    const technical: OptimizationReport["technical"] = {
       bundleSize: null,
       codeQuality: null,
-      security: null
+      security: null,
     };
 
     try {
       // Analyze bundle sizes
-      const bundleAnalysis = await mcpWrapper.desktopCommander('analyze_bundle', {
-        directory: process.cwd(),
-        patterns: ['dist/**/*.js', 'dist/**/*.css']
-      });
+      const bundleAnalysis = await mcpWrapper.desktopCommander(
+        "analyze_bundle",
+        {
+          directory: process.cwd(),
+          patterns: ["dist/**/*.js", "dist/**/*.css"],
+        },
+      );
 
       technical.bundleSize = bundleAnalysis as BundleSizeAnalysis;
 
       // Code quality analysis
-      const codeQuality = await mcpWrapper.desktopCommander('analyze_code', {
+      const codeQuality = await mcpWrapper.desktopCommander("analyze_code", {
         directory: process.cwd(),
-        patterns: ['src/**/*.ts', 'src/**/*.js', 'src/**/*.astro'],
-        metrics: ['complexity', 'maintainability', 'duplication']
+        patterns: ["src/**/*.ts", "src/**/*.js", "src/**/*.astro"],
+        metrics: ["complexity", "maintainability", "duplication"],
       });
 
       technical.codeQuality = codeQuality as CodeQualityAnalysis;
 
       // Security analysis
-      const securityCheck = await mcpWrapper.desktopCommander('security_scan', {
+      const securityCheck = await mcpWrapper.desktopCommander("security_scan", {
         directory: process.cwd(),
-        patterns: ['package.json', 'src/**/*'],
-        checks: ['vulnerabilities', 'secrets', 'dependencies']
+        patterns: ["package.json", "src/**/*"],
+        checks: ["vulnerabilities", "secrets", "dependencies"],
       });
 
       technical.security = securityCheck as SecurityAnalysis;
-
     } catch (error) {
-      console.warn('⚠️ Technical analysis partially failed:', error);
+      console.warn("⚠️ Technical analysis partially failed:", error);
     }
 
     return technical;
@@ -296,35 +307,43 @@ class WebsiteOptimizer {
   /**
    * Generate optimization recommendations based on analysis
    */
-  private async generateRecommendations(report: OptimizationReport): Promise<string[]> {
+  private async generateRecommendations(
+    report: OptimizationReport,
+  ): Promise<string[]> {
     const recommendations: string[] = [];
 
     // Performance recommendations
     if (report.performance.pageSpeed) {
-      recommendations.push('🚀 Optimize Core Web Vitals for better user experience');
-      recommendations.push('📦 Implement code splitting and lazy loading');
-      recommendations.push('🗜️ Enable compression for static assets');
+      recommendations.push(
+        "🚀 Optimize Core Web Vitals for better user experience",
+      );
+      recommendations.push("📦 Implement code splitting and lazy loading");
+      recommendations.push("🗜️ Enable compression for static assets");
     }
 
     // SEO recommendations
     if (report.seo.metaTags) {
-      recommendations.push('🔍 Enhance meta descriptions and title tags');
-      recommendations.push('📋 Add structured data for better search visibility');
-      recommendations.push('♿ Improve accessibility with proper ARIA labels');
+      recommendations.push("🔍 Enhance meta descriptions and title tags");
+      recommendations.push(
+        "📋 Add structured data for better search visibility",
+      );
+      recommendations.push("♿ Improve accessibility with proper ARIA labels");
     }
 
     // Technical recommendations
     if (report.technical.bundleSize) {
-      recommendations.push('📊 Optimize bundle sizes and remove unused code');
-      recommendations.push('🔧 Implement tree shaking and minification');
-      recommendations.push('🛡️ Update dependencies and fix security vulnerabilities');
+      recommendations.push("📊 Optimize bundle sizes and remove unused code");
+      recommendations.push("🔧 Implement tree shaking and minification");
+      recommendations.push(
+        "🛡️ Update dependencies and fix security vulnerabilities",
+      );
     }
 
     // General recommendations
-    recommendations.push('🎨 Implement modern CSS Grid and Flexbox layouts');
-    recommendations.push('📱 Ensure responsive design across all devices');
-    recommendations.push('⚡ Add service worker for offline functionality');
-    recommendations.push('🔄 Implement proper caching strategies');
+    recommendations.push("🎨 Implement modern CSS Grid and Flexbox layouts");
+    recommendations.push("📱 Ensure responsive design across all devices");
+    recommendations.push("⚡ Add service worker for offline functionality");
+    recommendations.push("🔄 Implement proper caching strategies");
 
     return recommendations;
   }
@@ -345,44 +364,43 @@ class WebsiteOptimizer {
 
       // Clean up unused files
       await this.cleanupFiles();
-
     } catch (error) {
-      console.error('❌ Failed to apply optimizations:', error);
+      console.error("❌ Failed to apply optimizations:", error);
       throw error;
     }
   }
 
   private async optimizeImages(): Promise<void> {
     // Use desktop commander to optimize images
-    await mcpWrapper.desktopCommander('optimize_images', {
-      directory: 'public/images',
-      formats: ['webp', 'avif'],
-      quality: 85
+    await mcpWrapper.desktopCommander("optimize_images", {
+      directory: "public/images",
+      formats: ["webp", "avif"],
+      quality: 85,
     });
   }
 
   private async minifyAssets(): Promise<void> {
     // Minify CSS and JS files
-    await mcpWrapper.desktopCommander('minify_assets', {
-      css: 'src/styles/**/*.css',
-      js: 'src/**/*.js'
+    await mcpWrapper.desktopCommander("minify_assets", {
+      css: "src/styles/**/*.css",
+      js: "src/**/*.js",
     });
   }
 
   private async optimizeMetaTags(): Promise<void> {
     // Use sequential thinking to generate optimized meta tags
-    await mcpWrapper.sequentialThinking('optimize_meta', {
-      site: 'NOSYT Labs',
-      description: 'Professional web development and digital solutions',
-      keywords: ['web development', 'digital solutions', 'modern web apps']
+    await mcpWrapper.sequentialThinking("optimize_meta", {
+      site: "NOSYT Labs",
+      description: "Professional web development and digital solutions",
+      keywords: ["web development", "digital solutions", "modern web apps"],
     });
   }
 
   private async cleanupFiles(): Promise<void> {
     // Clean up unused files and directories
-    await mcpWrapper.desktopCommander('cleanup_files', {
+    await mcpWrapper.desktopCommander("cleanup_files", {
       directory: process.cwd(),
-      patterns: ['**/*.log', '**/node_modules/.cache', '**/dist/unused']
+      patterns: ["**/*.log", "**/node_modules/.cache", "**/dist/unused"],
     });
   }
 }
@@ -393,14 +411,13 @@ export default WebsiteOptimizer;
 // CLI usage
 async function runCLI() {
   const optimizer = new WebsiteOptimizer();
-  
+
   try {
     await optimizer.runOptimization();
-    
+
     // Report generated successfully - can be processed by calling code
-    
   } catch (error) {
-    console.error('Optimization failed:', error);
+    console.error("Optimization failed:", error);
     process.exit(1);
   }
 }

@@ -1,20 +1,20 @@
 /**
  * Performance Module
- * 
+ *
  * Unified performance management including monitoring, caching, and optimization.
  * This module provides a single entry point for all performance-related functionality.
- * 
+ *
  * @module performance
  */
 
-import { PerformanceMonitor, type PerformanceMetrics } from './monitoring.js';
-import { CacheManager, BrowserCache } from './caching.js';
-import { CodeSplitter, TaskScheduler, BundleAnalyzer } from './optimization.js';
+import { PerformanceMonitor, type PerformanceMetrics } from "./monitoring.js";
+import { CacheManager, BrowserCache } from "./caching.js";
+import { CodeSplitter, TaskScheduler, BundleAnalyzer } from "./optimization.js";
 
 // Export all sub-modules
-export * from './monitoring.js';
-export * from './caching.js';
-export * from './optimization.js';
+export * from "./monitoring.js";
+export * from "./caching.js";
+export * from "./optimization.js";
 
 // ========================================
 // UNIFIED PERFORMANCE MANAGER
@@ -71,7 +71,7 @@ export interface OptimizationStats {
 /**
  * Unified Performance Manager
  * Coordinates all performance features including monitoring, caching, and optimization.
- * 
+ *
  * @example
  * ```typescript
  * const manager = new UnifiedPerformanceManager({
@@ -79,13 +79,13 @@ export interface OptimizationStats {
  *   enableCaching: true,
  *   enableOptimization: true
  * });
- * 
+ *
  * manager.initialize();
- * 
+ *
  * // Get comprehensive performance report
  * const report = manager.getPerformanceReport();
  * console.log('Performance Score:', report.score);
- * 
+ *
  * // Cleanup when done
  * manager.cleanup();
  * ```
@@ -104,7 +104,7 @@ export class UnifiedPerformanceManager {
     this.config = {
       reportingInterval: 60000, // 1 minute
       autoCleanup: true,
-      ...config
+      ...config,
     };
   }
 
@@ -121,7 +121,7 @@ export class UnifiedPerformanceManager {
       this.browserCache = new BrowserCache();
 
       // Setup periodic cache cleanup
-      if (this.config.autoCleanup && typeof setInterval !== 'undefined') {
+      if (this.config.autoCleanup && typeof setInterval !== "undefined") {
         setInterval(() => {
           this.browserCache?.cleanup();
         }, 300000); // 5 minutes
@@ -135,7 +135,7 @@ export class UnifiedPerformanceManager {
     }
 
     // Setup periodic reporting
-    if (this.config.reportingInterval && typeof setInterval !== 'undefined') {
+    if (this.config.reportingInterval && typeof setInterval !== "undefined") {
       this.reportingInterval = setInterval(() => {
         this.sendPerformanceReport();
       }, this.config.reportingInterval);
@@ -186,7 +186,7 @@ export class UnifiedPerformanceManager {
 
   /**
    * Get comprehensive performance report
-   * 
+   *
    * @returns Performance report with metrics, stats, and recommendations
    */
   public getPerformanceReport(): PerformanceReport {
@@ -204,7 +204,8 @@ export class UnifiedPerformanceManager {
     // Get cache stats
     const cacheStats: CacheStats = {
       browserCacheKeys: this.browserCache?.keys().length || 0,
-      serviceCacheEnabled: typeof navigator !== 'undefined' && 'serviceWorker' in navigator
+      serviceCacheEnabled:
+        typeof navigator !== "undefined" && "serviceWorker" in navigator,
     };
 
     // Get optimization stats
@@ -212,18 +213,22 @@ export class UnifiedPerformanceManager {
       modulesLoaded: this.codeSplitter?.getCacheStats().loaded || 0,
       modulesLoading: this.codeSplitter?.getCacheStats().loading || 0,
       pendingTasks: this.taskScheduler?.getQueueStats().pending || 0,
-      totalBundleSize: this.bundleAnalyzer?.getTotalBundleSize() || 0
+      totalBundleSize: this.bundleAnalyzer?.getTotalBundleSize() || 0,
     };
 
     // Add optimization recommendations
     if (optimizationStats.totalBundleSize > 500000) {
       // > 500KB
-      recommendations.push('Total bundle size is large (>500KB). Consider code splitting and lazy loading.');
+      recommendations.push(
+        "Total bundle size is large (>500KB). Consider code splitting and lazy loading.",
+      );
       score -= 10;
     }
 
     if (optimizationStats.pendingTasks > 100) {
-      recommendations.push('High number of pending tasks. Consider optimizing task scheduling.');
+      recommendations.push(
+        "High number of pending tasks. Consider optimizing task scheduling.",
+      );
       score -= 5;
     }
 
@@ -232,7 +237,7 @@ export class UnifiedPerformanceManager {
       cacheStats,
       optimizationStats,
       recommendations,
-      score: Math.max(0, score)
+      score: Math.max(0, score),
     };
   }
 
@@ -245,24 +250,28 @@ export class UnifiedPerformanceManager {
     try {
       await this.monitor.sendMetrics();
     } catch (error) {
-      console.error('Failed to send performance report:', error);
+      console.error("Failed to send performance report:", error);
     }
   }
 
   /**
    * Track custom metric
-   * 
+   *
    * @param name - Metric name
    * @param value - Metric value
    * @param context - Optional context
    */
-  public trackMetric(name: string, value: number, context?: Record<string, unknown>): void {
+  public trackMetric(
+    name: string,
+    value: number,
+    context?: Record<string, unknown>,
+  ): void {
     this.monitor?.trackCustomMetric(name, value, context);
   }
 
   /**
    * Measure async operation
-   * 
+   *
    * @param name - Operation name
    * @param fn - Async function to measure
    * @returns Result of the function
@@ -276,7 +285,7 @@ export class UnifiedPerformanceManager {
 
   /**
    * Cache data in browser storage
-   * 
+   *
    * @param key - Cache key
    * @param value - Value to cache
    * @param ttl - Time to live in seconds
@@ -287,7 +296,7 @@ export class UnifiedPerformanceManager {
 
   /**
    * Get cached data
-   * 
+   *
    * @param key - Cache key
    * @returns Cached value or null
    */
@@ -297,7 +306,7 @@ export class UnifiedPerformanceManager {
 
   /**
    * Schedule a task
-   * 
+   *
    * @param task - Task function
    */
   public scheduleTask(task: () => void): void {
@@ -306,7 +315,7 @@ export class UnifiedPerformanceManager {
 
   /**
    * Import module with code splitting
-   * 
+   *
    * @param modulePath - Module path
    * @returns Imported module
    */
@@ -322,7 +331,7 @@ export class UnifiedPerformanceManager {
    */
   public logMetrics(): void {
     this.monitor?.logMetrics();
-    
+
     if (this.bundleAnalyzer) {
       this.bundleAnalyzer.analyzeBundleSize();
     }
@@ -359,10 +368,10 @@ export class UnifiedPerformanceManager {
 
 /**
  * Create and initialize a unified performance manager
- * 
+ *
  * @param config - Performance configuration
  * @returns Initialized performance manager
- * 
+ *
  * @example
  * ```typescript
  * const manager = createPerformanceManager({
@@ -372,7 +381,9 @@ export class UnifiedPerformanceManager {
  * });
  * ```
  */
-export function createPerformanceManager(config: PerformanceConfig): UnifiedPerformanceManager {
+export function createPerformanceManager(
+  config: PerformanceConfig,
+): UnifiedPerformanceManager {
   const manager = new UnifiedPerformanceManager(config);
   manager.initialize();
   return manager;
@@ -380,7 +391,7 @@ export function createPerformanceManager(config: PerformanceConfig): UnifiedPerf
 
 /**
  * Create a default performance manager with all features enabled
- * 
+ *
  * @returns Initialized performance manager
  */
 export function createDefaultPerformanceManager(): UnifiedPerformanceManager {
@@ -389,6 +400,6 @@ export function createDefaultPerformanceManager(): UnifiedPerformanceManager {
     enableCaching: true,
     enableOptimization: true,
     reportingInterval: 60000,
-    autoCleanup: true
+    autoCleanup: true,
   });
 }

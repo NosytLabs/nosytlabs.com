@@ -1,14 +1,17 @@
-import type { APIRoute } from 'astro';
-import { sanitizeInput } from '@/lib/utils/validation';
-import { validateContactForm, type ContactFormData } from '@/lib/forms/form-validator';
-import { SITE_CONFIG } from '../../lib/constants';
+import type { APIRoute } from "astro";
+import { sanitizeInput } from "@/lib/utils/validation";
+import {
+  validateContactForm,
+  type ContactFormData,
+} from "@/lib/forms/form-validator";
+import { SITE_CONFIG } from "../../lib/constants";
 import {
   createErrorResponse,
   createSuccessResponse,
   createHealthCheck,
   withAPIMiddleware,
-  parseRequestData
-} from '@/lib/api/api-helpers';
+  parseRequestData,
+} from "@/lib/api/api-helpers";
 
 // NOTE: For static builds, this API endpoint is disabled
 // For production, use a serverless function (Vercel, Netlify) or form service (Formspree, Netlify Forms)
@@ -19,11 +22,11 @@ export const prerender = true;
 // Sanitize contact data helper
 function sanitizeContactData(data: ContactFormData): ContactFormData {
   return {
-    name: sanitizeInput(String(data.name || '')),
-    email: sanitizeInput(String(data.email || '')),
-    subject: sanitizeInput(String(data.subject || '')),
-    service: sanitizeInput(String(data.service || '')),
-    message: sanitizeInput(String(data.message || ''))
+    name: sanitizeInput(String(data.name || "")),
+    email: sanitizeInput(String(data.email || "")),
+    subject: sanitizeInput(String(data.subject || "")),
+    service: sanitizeInput(String(data.service || "")),
+    message: sanitizeInput(String(data.message || "")),
   };
 }
 
@@ -38,7 +41,7 @@ async function sendEmailNotification(data: ContactFormData): Promise<void> {
   const toEmail = process.env.CONTACT_TO_EMAIL || SITE_CONFIG.EMAILS.HI;
 
   // In development or if no API key, log the email data
-  if (process.env.NODE_ENV === 'development' || !resendApiKey) {
+  if (process.env.NODE_ENV === "development" || !resendApiKey) {
     // Email notification (development mode)
     // To: ${toEmail}
     // From: ${fromEmail}
@@ -56,7 +59,7 @@ async function sendEmailNotification(data: ContactFormData): Promise<void> {
 
   // Production email sending with Resend
   try {
-    const { Resend } = await import('resend');
+    const { Resend } = await import("resend");
     const resend = new Resend(resendApiKey);
 
     const emailHtml = `
@@ -98,56 +101,60 @@ async function sendEmailNotification(data: ContactFormData): Promise<void> {
   }
 }
 
-
-
 // GET endpoint for testing API availability
-export const GET: APIRoute = createHealthCheck('Contact');
+export const GET: APIRoute = createHealthCheck("Contact");
 
 export const POST: APIRoute = withAPIMiddleware(async (request) => {
-  const isDev = process.env.NODE_ENV === 'development';
-  
+  const isDev = process.env.NODE_ENV === "development";
+
   // Debug logging removed for production readiness
-  
+
   // Use the parseRequestData helper to handle different content types
-  const data = await parseRequestData<ContactFormData>(request, 'contact_form');
+  const data = await parseRequestData<ContactFormData>(request, "contact_form");
 
   if (!data) {
     if (isDev) {
       let headers = {};
       try {
-        headers = request.headers ? Object.fromEntries(request.headers.entries()) : {};
+        headers = request.headers
+          ? Object.fromEntries(request.headers.entries())
+          : {};
       } catch (_e) {
         // Error converting headers to object
       }
-      
+
       return new Response(
         JSON.stringify({
           success: false,
-          error: 'Invalid form data format',
-          debug: { 
-            contentType: request.headers?.get('content-type') || 'unknown',
+          error: "Invalid form data format",
+          debug: {
+            contentType: request.headers?.get("content-type") || "unknown",
             headers,
             hasHeaders: !!request.headers,
             requestConstructor: request.constructor.name,
-            data
-          }
+            data,
+          },
         }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400, headers: { "Content-Type": "application/json" } },
       );
     }
-    return createErrorResponse('Invalid form data format', 400, 'contact_parse_null');
+    return createErrorResponse(
+      "Invalid form data format",
+      400,
+      "contact_parse_null",
+    );
   }
 
   // Sanitize the data
   const sanitizedData = sanitizeContactData(data);
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     // Parsed fields
   }
 
   // Validate the form data
   const validation = validateContactForm(sanitizedData);
   if (!validation.isValid) {
-    return createErrorResponse(Object.values(validation.errors).join(', '));
+    return createErrorResponse(Object.values(validation.errors).join(", "));
   }
 
   // Send email notification (simulated)
@@ -159,7 +166,7 @@ export const POST: APIRoute = withAPIMiddleware(async (request) => {
         email: sanitizedData.email,
         subject: sanitizedData.subject,
       },
-      "Message sent successfully! We'll get back to you soon."
+      "Message sent successfully! We'll get back to you soon.",
     );
   } catch (error) {
     throw error;

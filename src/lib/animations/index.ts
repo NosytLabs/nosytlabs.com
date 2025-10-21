@@ -1,21 +1,24 @@
 /**
  * Animations Module
- * 
+ *
  * Unified animation system including intersection observer animations,
  * parallax effects, staggered animations, and button enhancements.
- * 
+ *
  * @module animations
  */
 
-import { UnifiedIntersectionAnimator, type IntersectionAnimationOptions } from './intersection';
-import { StaggeredAnimator } from './stagger';
-import { ButtonAnimator } from './buttons';
+import {
+  UnifiedIntersectionAnimator,
+  type IntersectionAnimationOptions,
+} from "./intersection";
+import { StaggeredAnimator } from "./stagger";
+import { ButtonAnimator } from "./buttons";
 
 // Export all sub-modules
-export * from './intersection';
-export * from './stagger';
-export * from './buttons';
-export * from './parallax';
+export * from "./intersection";
+export * from "./stagger";
+export * from "./buttons";
+export * from "./parallax";
 
 // ========================================
 // UNIFIED ANIMATION MANAGER
@@ -53,7 +56,7 @@ export class UnifiedAnimationManager {
       enableIntersectionObserver: true,
       enableButtonAnimations: true,
       reduceMotion: false,
-      ...config
+      ...config,
     };
 
     this.intersectionAnimator = new UnifiedIntersectionAnimator();
@@ -66,10 +69,10 @@ export class UnifiedAnimationManager {
   private init(): void {
     if (this.isInitialized) return;
 
-    if (typeof document === 'undefined') return;
+    if (typeof document === "undefined") return;
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => this.setup());
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => this.setup());
     } else {
       this.setup();
     }
@@ -96,11 +99,11 @@ export class UnifiedAnimationManager {
   private setupIntersectionAnimations(): void {
     // Consolidated observer for all animated elements
     this.intersectionAnimator.observeElements(
-      '.service-card, .testimonial-card, .faq-item, .process-step, .case-study-card',
+      ".service-card, .testimonial-card, .faq-item, .process-step, .case-study-card",
       {
-        rootMargin: '0px 0px -10% 0px',
+        rootMargin: "0px 0px -10% 0px",
         threshold: 0.1,
-      }
+      },
     );
   }
 
@@ -117,7 +120,10 @@ export class UnifiedAnimationManager {
    * @param selector - CSS selector
    * @param options - Animation options
    */
-  public observeElements(selector: string, options?: IntersectionAnimationOptions): void {
+  public observeElements(
+    selector: string,
+    options?: IntersectionAnimationOptions,
+  ): void {
     this.intersectionAnimator.observeElements(selector, options);
   }
 
@@ -128,7 +134,11 @@ export class UnifiedAnimationManager {
    * @param animationClass - Animation class
    * @param staggerDelay - Delay between elements
    */
-  public animateStaggered(selector: string, animationClass?: string, staggerDelay?: number): void {
+  public animateStaggered(
+    selector: string,
+    animationClass?: string,
+    staggerDelay?: number,
+  ): void {
     StaggeredAnimator.animateElements(selector, animationClass, staggerDelay);
   }
 
@@ -164,7 +174,9 @@ export class UnifiedAnimationManager {
  * @param config - Animation configuration
  * @returns Initialized animation manager
  */
-export function createAnimationManager(config?: AnimationConfig): UnifiedAnimationManager {
+export function createAnimationManager(
+  config?: AnimationConfig,
+): UnifiedAnimationManager {
   return new UnifiedAnimationManager(config);
 }
 
@@ -176,14 +188,17 @@ export function createAnimationManager(config?: AnimationConfig): UnifiedAnimati
 export function createDefaultAnimationManager(): UnifiedAnimationManager {
   return new UnifiedAnimationManager({
     enableIntersectionObserver: true,
-    enableButtonAnimations: true
+    enableButtonAnimations: true,
   });
 }
 
 // Auto-initialize when DOM is ready
-if (typeof document !== 'undefined') {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => new UnifiedAnimationManager());
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => new UnifiedAnimationManager(),
+    );
   } else {
     new UnifiedAnimationManager();
   }

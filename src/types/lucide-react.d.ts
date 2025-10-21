@@ -1,12 +1,12 @@
-declare module 'lucide-react' {
-  import { ComponentType, SVGProps } from 'react';
-  
+declare module "lucide-react" {
+  import { ComponentType, SVGProps } from "react";
+
   export interface LucideProps extends SVGProps<SVGSVGElement> {
     size?: string | number;
     color?: string;
     strokeWidth?: string | number;
   }
-  
+
   export const Search: ComponentType<LucideProps>;
   export const X: ComponentType<LucideProps>;
   export const Calendar: ComponentType<LucideProps>;
@@ -27,11 +27,11 @@ declare module 'lucide-react' {
   export const AlertCircle: ComponentType<LucideProps>;
   export const Info: ComponentType<LucideProps>;
   export const AlertTriangle: ComponentType<LucideProps>;
-  
+
   // Add more icons as needed
   const lucideReact: {
     [key: string]: ComponentType<LucideProps>;
   };
-  
+
   export default lucideReact;
 }

@@ -1,11 +1,11 @@
 /**
  * Unified Form Validation Utility
- * 
+ *
  * Consolidates form validation logic to eliminate duplication
  * between contact.astro and contact.ts implementations.
  */
 
-import { validateEmail as validateEmailShared } from '@/lib/utils/validation';
+import { validateEmail as validateEmailShared } from "@/lib/utils/validation";
 
 export interface ValidationResult {
   isValid: boolean;
@@ -22,23 +22,26 @@ export interface FormValidationResult {
  */
 export function validateName(value: string): ValidationResult {
   if (!value || !value.trim()) {
-    return { isValid: false, error: 'Name is required' };
+    return { isValid: false, error: "Name is required" };
   }
-  
+
   if (value.trim().length < 2) {
-    return { isValid: false, error: 'Name must be at least 2 characters long' };
+    return { isValid: false, error: "Name must be at least 2 characters long" };
   }
-  
+
   if (value.trim().length > 100) {
-    return { isValid: false, error: 'Name must be less than 100 characters' };
+    return { isValid: false, error: "Name must be less than 100 characters" };
   }
-  
+
   // Check for valid name characters (letters, spaces, hyphens, apostrophes)
   const nameRegex = /^[a-zA-Z\s\-']+$/;
   if (!nameRegex.test(value.trim())) {
-    return { isValid: false, error: 'Name can only contain letters, spaces, hyphens, and apostrophes' };
+    return {
+      isValid: false,
+      error: "Name can only contain letters, spaces, hyphens, and apostrophes",
+    };
   }
-  
+
   return { isValid: true };
 }
 
@@ -47,13 +50,13 @@ export function validateName(value: string): ValidationResult {
  */
 export function validateEmail(value: string): ValidationResult {
   if (!value || !value.trim()) {
-    return { isValid: false, error: 'Email is required' };
+    return { isValid: false, error: "Email is required" };
   }
-  
+
   if (!validateEmailShared(value)) {
-    return { isValid: false, error: 'Please enter a valid email address' };
+    return { isValid: false, error: "Please enter a valid email address" };
   }
-  
+
   return { isValid: true };
 }
 
@@ -62,17 +65,20 @@ export function validateEmail(value: string): ValidationResult {
  */
 export function validateSubject(value: string): ValidationResult {
   if (!value || !value.trim()) {
-    return { isValid: false, error: 'Please select a subject' };
+    return { isValid: false, error: "Please select a subject" };
   }
-  
+
   if (value.length < 5) {
-    return { isValid: false, error: 'Subject must be at least 5 characters' };
+    return { isValid: false, error: "Subject must be at least 5 characters" };
   }
-  
+
   if (value.length > 200) {
-    return { isValid: false, error: 'Subject must be less than 200 characters' };
+    return {
+      isValid: false,
+      error: "Subject must be less than 200 characters",
+    };
   }
-  
+
   return { isValid: true };
 }
 
@@ -81,9 +87,9 @@ export function validateSubject(value: string): ValidationResult {
  */
 export function validateService(value: string): ValidationResult {
   if (!value || !value.trim()) {
-    return { isValid: false, error: 'Please select a service' };
+    return { isValid: false, error: "Please select a service" };
   }
-  
+
   return { isValid: true };
 }
 
@@ -92,17 +98,20 @@ export function validateService(value: string): ValidationResult {
  */
 export function validateMessage(value: string): ValidationResult {
   if (!value || !value.trim()) {
-    return { isValid: false, error: 'Message is required' };
+    return { isValid: false, error: "Message is required" };
   }
-  
+
   if (value.length < 10) {
-    return { isValid: false, error: 'Message must be at least 10 characters' };
+    return { isValid: false, error: "Message must be at least 10 characters" };
   }
-  
+
   if (value.length > 5000) {
-    return { isValid: false, error: 'Message must be less than 5000 characters' };
+    return {
+      isValid: false,
+      error: "Message must be less than 5000 characters",
+    };
   }
-  
+
   return { isValid: true };
 }
 
@@ -120,37 +129,39 @@ export interface ContactFormData {
 /**
  * Unified contact form validation
  */
-export function validateContactForm(data: ContactFormData): FormValidationResult {
+export function validateContactForm(
+  data: ContactFormData,
+): FormValidationResult {
   const errors: Record<string, string> = {};
-  
+
   const nameResult = validateName(data.name);
   if (!nameResult.isValid) {
     errors.name = nameResult.error!;
   }
-  
+
   const emailResult = validateEmail(data.email);
   if (!emailResult.isValid) {
     errors.email = emailResult.error!;
   }
-  
+
   const subjectResult = validateSubject(data.subject);
   if (!subjectResult.isValid) {
     errors.subject = subjectResult.error!;
   }
-  
+
   const serviceResult = validateService(data.service);
   if (!serviceResult.isValid) {
     errors.service = serviceResult.error!;
   }
-  
+
   const messageResult = validateMessage(data.message);
   if (!messageResult.isValid) {
     errors.message = messageResult.error!;
   }
-  
+
   return {
     isValid: Object.keys(errors).length === 0,
-    errors
+    errors,
   };
 }
 
@@ -163,16 +174,19 @@ export const fieldValidators = {
   email: validateEmail,
   subject: validateSubject,
   service: validateService,
-  message: validateMessage
+  message: validateMessage,
 };
 
 /**
  * Utility function to get validation error for a single field
  */
-export function getFieldError(fieldName: keyof ContactFormData, value: string): string {
+export function getFieldError(
+  fieldName: keyof ContactFormData,
+  value: string,
+): string {
   const validator = fieldValidators[fieldName];
-  if (!validator) return '';
-  
+  if (!validator) return "";
+
   const result = validator(value);
-  return result.isValid ? '' : result.error || '';
+  return result.isValid ? "" : result.error || "";
 }

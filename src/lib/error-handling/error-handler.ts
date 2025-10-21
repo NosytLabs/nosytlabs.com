@@ -1,9 +1,9 @@
 /**
  * Error Handling Utilities
- * 
+ *
  * Unified error handling and logging system for tracking, reporting,
  * and managing errors across the application.
- * 
+ *
  * @module error-handling/error-handler
  */
 
@@ -34,7 +34,7 @@ export interface ErrorReport {
 /**
  * Error severity levels
  */
-export type ErrorSeverity = 'low' | 'medium' | 'high' | 'critical';
+export type ErrorSeverity = "low" | "medium" | "high" | "critical";
 
 // ========================================
 // ERROR HANDLER CLASS
@@ -43,15 +43,15 @@ export type ErrorSeverity = 'low' | 'medium' | 'high' | 'critical';
 /**
  * Unified Error Handler
  * Centralized error tracking, logging, and reporting system.
- * 
+ *
  * @example
  * ```typescript
  * const handler = ErrorHandler.getInstance();
  * handler.trackError(new Error('Something went wrong'), 'api_call', 'high');
- * 
+ *
  * // Get error queue
  * const errors = handler.getErrorQueue();
- * 
+ *
  * // Flush errors to analytics
  * await handler.flushErrorQueue();
  * ```
@@ -62,7 +62,7 @@ export class ErrorHandler {
   private maxQueueSize = 50;
 
   private constructor() {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       this.initializeGlobalErrorHandlers();
     }
   }
@@ -82,28 +82,28 @@ export class ErrorHandler {
    */
   private initializeGlobalErrorHandlers(): void {
     // Handle uncaught JavaScript errors
-    window.addEventListener('error', (event) => {
-      this.trackError(new Error(event.message), 'global_error', 'high', {
+    window.addEventListener("error", (event) => {
+      this.trackError(new Error(event.message), "global_error", "high", {
         filename: event.filename,
         lineno: event.lineno,
-        colno: event.colno
+        colno: event.colno,
       });
     });
 
     // Handle unhandled promise rejections
-    window.addEventListener('unhandledrejection', (event) => {
+    window.addEventListener("unhandledrejection", (event) => {
       this.trackError(
-        new Error(event.reason?.toString() || 'Unhandled promise rejection'),
-        'unhandled_promise',
-        'high',
-        { reason: event.reason }
+        new Error(event.reason?.toString() || "Unhandled promise rejection"),
+        "unhandled_promise",
+        "high",
+        { reason: event.reason },
       );
     });
   }
 
   /**
    * Track an error with context
-   * 
+   *
    * @param error - Error to track
    * @param context - Context string
    * @param severity - Error severity
@@ -111,25 +111,26 @@ export class ErrorHandler {
    */
   public trackError(
     error: Error,
-    context: string = 'unknown',
-    severity: ErrorSeverity = 'medium',
-    additionalContext?: ErrorContext
+    context: string = "unknown",
+    severity: ErrorSeverity = "medium",
+    additionalContext?: ErrorContext,
   ): void {
     const errorReport: ErrorReport = {
       message: error.message,
       stack: error.stack,
       context: this.formatContext(context, additionalContext),
-      url: typeof window !== 'undefined' ? window.location.href : 'server',
+      url: typeof window !== "undefined" ? window.location.href : "server",
       timestamp: Date.now(),
-      userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'unknown',
-      severity
+      userAgent:
+        typeof navigator !== "undefined" ? navigator.userAgent : "unknown",
+      severity,
     };
 
     this.addToQueue(errorReport);
     this.logError(errorReport);
 
     // Send immediately for critical errors
-    if (severity === 'critical') {
+    if (severity === "critical") {
       this.sendErrorReport(errorReport);
     }
   }
@@ -137,7 +138,10 @@ export class ErrorHandler {
   /**
    * Format context with additional data
    */
-  private formatContext(context: string, additionalContext?: ErrorContext): string {
+  private formatContext(
+    context: string,
+    additionalContext?: ErrorContext,
+  ): string {
     if (!additionalContext) return context;
 
     try {
@@ -163,30 +167,33 @@ export class ErrorHandler {
    * Log error to console (development only)
    */
   private logError(errorReport: ErrorReport): void {
-    if (process.env.NODE_ENV === 'development') {
-      console.warn('⚠️ Tracked Error:', {
+    if (process.env.NODE_ENV === "development") {
+      console.warn("⚠️ Tracked Error:", {
         message: errorReport.message,
         severity: errorReport.severity,
         context: errorReport.context,
         timestamp: errorReport.timestamp,
         userAgent: errorReport.userAgent,
-        url: errorReport.url
+        url: errorReport.url,
       });
-  
+
       if (errorReport.stack) {
-        console.warn('Stack trace:', errorReport.stack);
+        console.warn("Stack trace:", errorReport.stack);
       }
     }
   }
 
   /**
    * Send error report to analytics service
-   * 
+   *
    * @param errorReport - Error report to send
    */
   public async sendErrorReport(errorReport: ErrorReport): Promise<void> {
-    if (process.env.NODE_ENV === 'development') {
-      console.warn('📤 Error report (would be sent to error service):', errorReport);
+    if (process.env.NODE_ENV === "development") {
+      console.warn(
+        "📤 Error report (would be sent to error service):",
+        errorReport,
+      );
       return;
     }
 
@@ -195,8 +202,8 @@ export class ErrorHandler {
       // Currently errors are logged but not sent to external service
     } catch (fetchError) {
       // Silently fail in production to avoid console spam
-      if (process.env.NODE_ENV === 'development') {
-        console.warn('Failed to send error report:', fetchError);
+      if (process.env.NODE_ENV === "development") {
+        console.warn("Failed to send error report:", fetchError);
       }
     }
   }
@@ -212,8 +219,11 @@ export class ErrorHandler {
 
     try {
       // Batch send errors
-      if (process.env.NODE_ENV === 'development') {
-        console.warn('📤 Flushing error queue (would be sent to error service):', errors);
+      if (process.env.NODE_ENV === "development") {
+        console.warn(
+          "📤 Flushing error queue (would be sent to error service):",
+          errors,
+        );
         return;
       }
 
@@ -222,16 +232,16 @@ export class ErrorHandler {
     } catch (error) {
       // Re-add errors to queue if sending fails
       this.errorQueue.unshift(...errors);
-      
-      if (process.env.NODE_ENV === 'development') {
-        console.warn('Failed to flush error queue:', error);
+
+      if (process.env.NODE_ENV === "development") {
+        console.warn("Failed to flush error queue:", error);
       }
     }
   }
 
   /**
    * Get error queue
-   * 
+   *
    * @returns Copy of error queue
    */
   public getErrorQueue(): ErrorReport[] {
@@ -247,7 +257,7 @@ export class ErrorHandler {
 
   /**
    * Get error statistics
-   * 
+   *
    * @returns Error statistics
    */
   public getErrorStats(): {
@@ -259,7 +269,7 @@ export class ErrorHandler {
       low: 0,
       medium: 0,
       high: 0,
-      critical: 0
+      critical: 0,
     };
 
     this.errorQueue.forEach((error) => {
@@ -269,7 +279,7 @@ export class ErrorHandler {
     return {
       total: this.errorQueue.length,
       bySeverity,
-      recent: this.errorQueue.slice(-10)
+      recent: this.errorQueue.slice(-10),
     };
   }
 }
@@ -280,12 +290,12 @@ export class ErrorHandler {
 
 /**
  * Track an error with context
- * 
+ *
  * @param error - Error to track
  * @param context - Context string
  * @param severity - Error severity
  * @param additionalContext - Additional context data
- * 
+ *
  * @example
  * ```typescript
  * try {
@@ -299,7 +309,7 @@ export function trackError(
   error: Error,
   context?: string,
   severity?: ErrorSeverity,
-  additionalContext?: ErrorContext
+  additionalContext?: ErrorContext,
 ): void {
   const handler = ErrorHandler.getInstance();
   handler.trackError(error, context, severity, additionalContext);
@@ -307,26 +317,30 @@ export function trackError(
 
 /**
  * Safe JSON parse with error tracking
- * 
+ *
  * @param json - JSON string to parse
  * @param fallback - Fallback value if parsing fails
  * @param context - Context for error tracking
  * @returns Parsed value or fallback
- * 
+ *
  * @example
  * ```typescript
  * const data = safeJsonParse('{"name":"John"}', {}, 'user_data');
  * ```
  */
-export function safeJsonParse<T>(json: string, fallback: T, context: string = 'json_parse'): T {
+export function safeJsonParse<T>(
+  json: string,
+  fallback: T,
+  context: string = "json_parse",
+): T {
   try {
     return JSON.parse(json);
   } catch (error) {
     trackError(
-      error instanceof Error ? error : new Error('JSON parse failed'),
+      error instanceof Error ? error : new Error("JSON parse failed"),
       context,
-      'low',
-      { json: json.substring(0, 100) + (json.length > 100 ? '...' : '') }
+      "low",
+      { json: json.substring(0, 100) + (json.length > 100 ? "..." : "") },
     );
     return fallback;
   }
@@ -334,12 +348,12 @@ export function safeJsonParse<T>(json: string, fallback: T, context: string = 'j
 
 /**
  * Safe async operation with error tracking
- * 
+ *
  * @param operation - Async operation to execute
  * @param fallback - Fallback value if operation fails
  * @param context - Context for error tracking
  * @returns Operation result or fallback
- * 
+ *
  * @example
  * ```typescript
  * const data = await safeAsync(
@@ -352,15 +366,15 @@ export function safeJsonParse<T>(json: string, fallback: T, context: string = 'j
 export async function safeAsync<T>(
   operation: () => Promise<T>,
   fallback: T,
-  context: string = 'async_operation'
+  context: string = "async_operation",
 ): Promise<T> {
   try {
     return await operation();
   } catch (error) {
     trackError(
-      error instanceof Error ? error : new Error('Async operation failed'),
+      error instanceof Error ? error : new Error("Async operation failed"),
       context,
-      'medium'
+      "medium",
     );
     return fallback;
   }
@@ -368,12 +382,12 @@ export async function safeAsync<T>(
 
 /**
  * Wrap a function with error tracking
- * 
+ *
  * @param fn - Function to wrap
  * @param context - Context for error tracking
  * @param severity - Error severity
  * @returns Wrapped function
- * 
+ *
  * @example
  * ```typescript
  * const safeFunction = withErrorTracking(
@@ -386,7 +400,7 @@ export async function safeAsync<T>(
 export function withErrorTracking<T extends (...args: unknown[]) => unknown>(
   fn: T,
   context: string,
-  severity: ErrorSeverity = 'medium'
+  severity: ErrorSeverity = "medium",
 ): T {
   return ((...args: Parameters<T>) => {
     try {
@@ -396,10 +410,12 @@ export function withErrorTracking<T extends (...args: unknown[]) => unknown>(
       if (result instanceof Promise) {
         return result.catch((error) => {
           trackError(
-            error instanceof Error ? error : new Error('Function execution failed'),
+            error instanceof Error
+              ? error
+              : new Error("Function execution failed"),
             context,
             severity,
-            { args: args.slice(0, 3) } // Limit args to prevent large objects
+            { args: args.slice(0, 3) }, // Limit args to prevent large objects
           );
           throw error;
         });
@@ -408,10 +424,10 @@ export function withErrorTracking<T extends (...args: unknown[]) => unknown>(
       return result;
     } catch (error) {
       trackError(
-        error instanceof Error ? error : new Error('Function execution failed'),
+        error instanceof Error ? error : new Error("Function execution failed"),
         context,
         severity,
-        { args: args.slice(0, 3) }
+        { args: args.slice(0, 3) },
       );
       throw error;
     }
@@ -419,6 +435,6 @@ export function withErrorTracking<T extends (...args: unknown[]) => unknown>(
 }
 
 // Initialize global error handler
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   ErrorHandler.getInstance();
 }

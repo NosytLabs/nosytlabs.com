@@ -5,7 +5,15 @@ pubDate: 2025-01-20
 author: "Tyson Faulkner"
 category: "AI Development"
 tags: ["AI", "Web Development", "Integration", "Machine Learning"]
-seoKeywords: ["AI integration", "web development", "machine learning", "artificial intelligence", "LLM integration", "AI web apps"]
+seoKeywords:
+  [
+    "AI integration",
+    "web development",
+    "machine learning",
+    "artificial intelligence",
+    "LLM integration",
+    "AI web apps",
+  ]
 excerpt: "Discover the fundamentals of integrating AI into web applications, from choosing the right tools to implementing practical solutions that enhance user experience."
 draft: false
 featured: true
@@ -38,15 +46,15 @@ The most accessible approach for most developers, offering rapid implementation 
 
 ```javascript
 // Example: OpenAI API integration with proper error handling
-const response = await fetch('https://api.openai.com/v1/chat/completions', {
-  method: 'POST',
+const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  method: "POST",
   headers: {
-    'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-    'Content-Type': 'application/json',
+    Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    model: 'gpt-4o-mini', // Latest cost-effective model with vision capabilities
-    messages: [{ role: 'user', content: userInput }],
+    model: "gpt-4o-mini", // Latest cost-effective model with vision capabilities
+    messages: [{ role: "user", content: userInput }],
     max_tokens: 150,
     temperature: 0.7,
   }),
@@ -63,17 +71,17 @@ Ideal for real-time processing without server dependencies, providing instant re
 
 ```javascript
 // TensorFlow.js example with proper model loading
-import * as tf from '@tensorflow/tfjs';
+import * as tf from "@tensorflow/tfjs";
 
 try {
-  const model = await tf.loadLayersModel('/models/sentiment-model.json');
+  const model = await tf.loadLayersModel("/models/sentiment-model.json");
   const inputTensor = tf.tensor2d([processedInput]);
   const prediction = model.predict(inputTensor);
   const result = await prediction.data();
   inputTensor.dispose(); // Clean up memory
   return result;
 } catch (error) {
-  console.error('Model loading error:', error);
+  console.error("Model loading error:", error);
   return null;
 }
 ```
@@ -86,11 +94,11 @@ Scalable AI processing with cloud functions, offering cost-effective and elastic
 // Vercel Edge Function example
 export default async function handler(req) {
   const { text } = await req.json();
-  
+
   const analysis = await analyzeText(text);
-  
+
   return new Response(JSON.stringify(analysis), {
-    headers: { 'Content-Type': 'application/json' },
+    headers: { "Content-Type": "application/json" },
   });
 }
 ```
@@ -136,31 +144,31 @@ Here's a simple example of integrating AI-powered text analysis:
 // utils/ai-helper.ts
 export async function analyzeText(text: string) {
   try {
-    const response = await fetch('/api/analyze', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("/api/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),
     });
-    
+
     if (!response.ok) {
-      throw new Error('Analysis failed');
+      throw new Error("Analysis failed");
     }
-    
+
     return await response.json();
   } catch (error) {
-    console.error('AI analysis error:', error);
-    return { error: 'Analysis unavailable' };
+    console.error("AI analysis error:", error);
+    return { error: "Analysis unavailable" };
   }
 }
 ```
 
 ```tsx
 // components/TextAnalyzer.tsx
-import { useState } from 'react';
-import { analyzeText } from '../utils/ai-helper';
+import { useState } from "react";
+import { analyzeText } from "../utils/ai-helper";
 
 export default function TextAnalyzer() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [analysis, setAnalysis] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -179,15 +187,15 @@ export default function TextAnalyzer() {
         placeholder="Enter text to analyze..."
         className="w-full p-3 border rounded-lg"
       />
-      
+
       <button
         onClick={handleAnalyze}
         disabled={loading || !text.trim()}
         className="px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50"
       >
-        {loading ? 'Analyzing...' : 'Analyze Text'}
+        {loading ? "Analyzing..." : "Analyze Text"}
       </button>
-      
+
       {analysis && (
         <div className="p-4 bg-gray-50 rounded-lg">
           <pre>{JSON.stringify(analysis, null, 2)}</pre>
@@ -217,4 +225,4 @@ The key to successful AI integration lies in balancing innovation with practical
 
 ---
 
-*Ready to integrate AI into your next project? [Contact NOSYT Labs](/contact) for expert guidance and implementation support.*
+_Ready to integrate AI into your next project? [Contact NOSYT Labs](/contact) for expert guidance and implementation support._

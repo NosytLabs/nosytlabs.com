@@ -1,14 +1,20 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import type { CollectionEntry } from 'astro:content';
-import { Search, X, Calendar, Clock, Tag, Filter } from 'lucide-react';
-import { createImagePath, createInternalLink } from '@/lib/constants';
+import React, { useState, useEffect, useMemo } from "react";
+import type { CollectionEntry } from "astro:content";
+import { Search, X, Calendar, Clock, Tag, Filter } from "lucide-react";
+import { createImagePath, createInternalLink } from "@/lib/constants";
 
 interface BlogSearchProps {
-  posts: CollectionEntry<'blog'>[];
+  posts: CollectionEntry<"blog">[];
   className?: string;
 }
 
-type SortOption = 'date-desc' | 'date-asc' | 'title-asc' | 'title-desc' | 'readingTime-asc' | 'readingTime-desc';
+type SortOption =
+  | "date-desc"
+  | "date-asc"
+  | "title-asc"
+  | "title-desc"
+  | "readingTime-asc"
+  | "readingTime-desc";
 
 interface FilterState {
   search: string;
@@ -18,25 +24,31 @@ interface FilterState {
 
 // Enhanced consolidated style classes
 const styles = {
-  input: "w-full pl-12 pr-12 py-4 bg-background border-2 border-border rounded-xl focus:ring-4 focus:ring-primary/20 focus:border-primary transition-all duration-300 text-foreground placeholder-muted-foreground text-base min-h-[52px]",
+  input:
+    "w-full pl-12 pr-12 py-4 bg-background border-2 border-border rounded-xl focus:ring-4 focus:ring-primary/20 focus:border-primary transition-all duration-300 text-foreground placeholder-muted-foreground text-base min-h-[52px]",
   button: {
-    primary: "px-6 py-3 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 hover:shadow-lg transition-all duration-300 focus:ring-4 focus:ring-primary/20 focus:ring-offset-2 font-medium min-h-[44px]",
-    secondary: "px-6 py-3 bg-muted hover:bg-muted/80 rounded-xl transition-all duration-300 focus:ring-4 focus:ring-primary/20 focus:ring-offset-2 font-medium min-h-[44px]",
+    primary:
+      "px-6 py-3 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 hover:shadow-lg transition-all duration-300 focus:ring-4 focus:ring-primary/20 focus:ring-offset-2 font-medium min-h-[44px]",
+    secondary:
+      "px-6 py-3 bg-muted hover:bg-muted/80 rounded-xl transition-all duration-300 focus:ring-4 focus:ring-primary/20 focus:ring-offset-2 font-medium min-h-[44px]",
     tag: "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 min-h-[36px] border-2",
-    clear: "text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 px-3 py-2 rounded-lg transition-all duration-200 font-medium"
+    clear:
+      "text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 px-3 py-2 rounded-lg transition-all duration-200 font-medium",
   },
   card: "group bg-card border-2 border-border rounded-xl overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 animate-fade-in gpu-accelerated cursor-pointer",
-  select: "bg-background border-2 border-border rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-primary focus:border-transparent min-h-[44px]",
-  iconButton: "absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground hover:bg-muted/50 p-2 rounded-lg transition-all duration-200"
+  select:
+    "bg-background border-2 border-border rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-primary focus:border-transparent min-h-[44px]",
+  iconButton:
+    "absolute right-4 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground hover:bg-muted/50 p-2 rounded-lg transition-all duration-200",
 };
 
-export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
+export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
   const [filters, setFilters] = useState<FilterState>({
-    search: '',
+    search: "",
     tags: [],
-    sortBy: 'date-desc'
+    sortBy: "date-desc",
   });
-  
+
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -48,7 +60,7 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
   // Extract all unique tags from posts
   const allTags = useMemo(() => {
     const tagSet = new Set<string>();
-    posts.forEach(post => {
+    posts.forEach((post) => {
       if (post.data.tags) {
         post.data.tags.forEach((tag: string) => tagSet.add(tag));
       }
@@ -58,19 +70,21 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
 
   // Filter and sort posts
   const filteredPosts = useMemo(() => {
-    const filtered = posts.filter(post => {
+    const filtered = posts.filter((post) => {
       // Search filter
       const searchLower = filters.search.toLowerCase();
-      const matchesSearch = !searchLower || 
+      const matchesSearch =
+        !searchLower ||
         post.data.title.toLowerCase().includes(searchLower) ||
         post.data.description?.toLowerCase().includes(searchLower) ||
-        post.data.tags?.some((tag: string) => tag.toLowerCase().includes(searchLower));
+        post.data.tags?.some((tag: string) =>
+          tag.toLowerCase().includes(searchLower),
+        );
 
       // Tag filter
-      const matchesTags = filters.tags.length === 0 || 
-        filters.tags.every(filterTag => 
-          post.data.tags?.includes(filterTag)
-        );
+      const matchesTags =
+        filters.tags.length === 0 ||
+        filters.tags.every((filterTag) => post.data.tags?.includes(filterTag));
 
       return matchesSearch && matchesTags;
     });
@@ -78,17 +92,23 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
     // Sort posts
     filtered.sort((a, b) => {
       switch (filters.sortBy) {
-        case 'date-desc':
-          return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
-        case 'date-asc':
-          return new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime();
-        case 'title-asc':
+        case "date-desc":
+          return (
+            new Date(b.data.pubDate).getTime() -
+            new Date(a.data.pubDate).getTime()
+          );
+        case "date-asc":
+          return (
+            new Date(a.data.pubDate).getTime() -
+            new Date(b.data.pubDate).getTime()
+          );
+        case "title-asc":
           return a.data.title.localeCompare(b.data.title);
-        case 'title-desc':
+        case "title-desc":
           return b.data.title.localeCompare(a.data.title);
-        case 'readingTime-asc':
+        case "readingTime-asc":
           return (a.data.readingTime || 0) - (b.data.readingTime || 0);
-        case 'readingTime-desc':
+        case "readingTime-desc":
           return (b.data.readingTime || 0) - (a.data.readingTime || 0);
         default:
           return 0;
@@ -99,31 +119,32 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
   }, [posts, filters]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFilters(prev => ({ ...prev, search: e.target.value }));
+    setFilters((prev) => ({ ...prev, search: e.target.value }));
   };
 
   const handleTagToggle = (tag: string) => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
       tags: prev.tags.includes(tag)
-        ? prev.tags.filter(t => t !== tag)
-        : [...prev.tags, tag]
+        ? prev.tags.filter((t) => t !== tag)
+        : [...prev.tags, tag],
     }));
   };
 
   const handleSortChange = (sortBy: SortOption) => {
-    setFilters(prev => ({ ...prev, sortBy }));
+    setFilters((prev) => ({ ...prev, sortBy }));
   };
 
   const clearFilters = () => {
     setFilters({
-      search: '',
+      search: "",
       tags: [],
-      sortBy: 'date-desc'
+      sortBy: "date-desc",
     });
   };
 
-  const hasActiveFilters = filters.search || filters.tags.length > 0 || filters.sortBy !== 'date-desc';
+  const hasActiveFilters =
+    filters.search || filters.tags.length > 0 || filters.sortBy !== "date-desc";
 
   if (!mounted) {
     return (
@@ -160,7 +181,7 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
           />
           {filters.search && (
             <button
-              onClick={() => setFilters(prev => ({ ...prev, search: '' }))}
+              onClick={() => setFilters((prev) => ({ ...prev, search: "" }))}
               className={styles.iconButton}
               aria-label="Clear search"
               type="button"
@@ -170,7 +191,8 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
           )}
           {/* Search hint */}
           <div className="absolute -bottom-6 left-0 text-xs text-muted-foreground">
-            {filters.search && `Found ${filteredPosts.length} result${filteredPosts.length !== 1 ? 's' : ''}`}
+            {filters.search &&
+              `Found ${filteredPosts.length} result${filteredPosts.length !== 1 ? "s" : ""}`}
           </div>
         </div>
 
@@ -179,7 +201,7 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
           <button
             onClick={() => setIsFilterOpen(!isFilterOpen)}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
+              if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
                 setIsFilterOpen(!isFilterOpen);
               }
@@ -197,17 +219,25 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
             )}
             {/* Animated chevron */}
             <svg
-              className={`w-4 h-4 transition-transform duration-200 ${isFilterOpen ? 'rotate-180' : ''}`}
+              className={`w-4 h-4 transition-transform duration-200 ${isFilterOpen ? "rotate-180" : ""}`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </button>
 
           <div className="flex items-center gap-3 w-full sm:w-auto">
-            <label htmlFor="sort-select" className="text-sm font-medium text-muted-foreground whitespace-nowrap">
+            <label
+              htmlFor="sort-select"
+              className="text-sm font-medium text-muted-foreground whitespace-nowrap"
+            >
               Sort by:
             </label>
             <select
@@ -229,46 +259,62 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
 
         {/* Enhanced Filter Panel */}
         {isFilterOpen && (
-          <div id="filter-panel" className="bg-muted/30 rounded-xl p-6 space-y-6 animate-fade-in border border-border/50">
+          <div
+            id="filter-panel"
+            className="bg-muted/30 rounded-xl p-6 space-y-6 animate-fade-in border border-border/50"
+          >
             <div>
-              <h3 className="text-base font-semibold mb-4 text-foreground">Filter by Tags</h3>
+              <h3 className="text-base font-semibold mb-4 text-foreground">
+                Filter by Tags
+              </h3>
               <div className="flex flex-wrap gap-3">
-                {allTags.map(tag => (
+                {allTags.map((tag) => (
                   <button
                     key={tag}
                     onClick={() => handleTagToggle(tag)}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
+                      if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
                         handleTagToggle(tag);
                       }
                     }}
                     className={`${styles.button.tag} ${
                       filters.tags.includes(tag)
-                        ? 'bg-primary text-primary-foreground border-primary shadow-md hover:shadow-lg'
-                        : 'bg-background border-border hover:border-primary/50 hover:bg-primary/5'
+                        ? "bg-primary text-primary-foreground border-primary shadow-md hover:shadow-lg"
+                        : "bg-background border-border hover:border-primary/50 hover:bg-primary/5"
                     }`}
                     aria-pressed={filters.tags.includes(tag)}
                   >
                     {tag}
                     {filters.tags.includes(tag) && (
-                      <svg className="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      <svg
+                        className="w-3 h-3 ml-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
                       </svg>
                     )}
                   </button>
                 ))}
               </div>
               {allTags.length === 0 && (
-                <p className="text-sm text-muted-foreground italic">No tags available</p>
+                <p className="text-sm text-muted-foreground italic">
+                  No tags available
+                </p>
               )}
             </div>
 
             {hasActiveFilters && (
               <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between pt-4 border-t border-border/50">
                 <span className="text-sm text-muted-foreground">
-                  {filters.tags.length} tag{filters.tags.length !== 1 ? 's' : ''} selected
-                  {filters.search && ' • search active'}
+                  {filters.tags.length} tag
+                  {filters.tags.length !== 1 ? "s" : ""} selected
+                  {filters.search && " • search active"}
                 </span>
                 <button
                   onClick={clearFilters}
@@ -290,8 +336,7 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
           <p className="text-sm font-medium text-foreground">
             {filteredPosts.length === posts.length
               ? `Showing all ${posts.length} posts`
-              : `Showing ${filteredPosts.length} of ${posts.length} posts`
-            }
+              : `Showing ${filteredPosts.length} of ${posts.length} posts`}
           </p>
           {hasActiveFilters && (
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -301,8 +346,11 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
                   Search: "{filters.search}"
                 </span>
               )}
-              {filters.tags.map(tag => (
-                <span key={tag} className="px-2 py-1 bg-background border border-border rounded-md">
+              {filters.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-1 bg-background border border-border rounded-md"
+                >
                   {tag}
                 </span>
               ))}
@@ -312,7 +360,11 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
       </div>
 
       {/* Enhanced Posts Grid */}
-      <main className="grid gap-8 md:grid-cols-2 lg:grid-cols-3" role="main" aria-label="Blog posts">
+      <main
+        className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+        role="main"
+        aria-label="Blog posts"
+      >
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post, index) => (
             <article
@@ -324,30 +376,38 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
                 <div className="aspect-video overflow-hidden relative">
                   <img
                     src={createImagePath(post.data.heroImage)}
-                    alt={post.data.heroImageAlt || `Featured image for blog post: ${post.data.title}`}
+                    alt={
+                      post.data.heroImageAlt ||
+                      `Featured image for blog post: ${post.data.title}`
+                    }
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = createImagePath('images/blog-index-og.jpg');
-                      e.currentTarget.alt = 'NOSYT Labs Blog Fallback Image';
+                      e.currentTarget.src = createImagePath(
+                        "images/blog-index-og.jpg",
+                      );
+                      e.currentTarget.alt = "NOSYT Labs Blog Fallback Image";
                     }}
                   />
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               )}
-              
+
               <div className="p-6 relative">
                 {/* Enhanced metadata */}
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                  <time dateTime={post.data.pubDate.toISOString()} className="flex items-center gap-1.5 font-medium">
+                  <time
+                    dateTime={post.data.pubDate.toISOString()}
+                    className="flex items-center gap-1.5 font-medium"
+                  >
                     <Calendar className="w-4 h-4" />
-                    {post.data.pubDate.toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric'
+                    {post.data.pubDate.toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
                     })}
                   </time>
                   {post.data.readingTime && (
@@ -387,7 +447,7 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
                         tabIndex={0}
                         onClick={() => handleTagToggle(tag)}
                         onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
+                          if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
                             handleTagToggle(tag);
                           }
@@ -409,8 +469,18 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
                 {/* Read more indicator */}
                 <div className="flex items-center gap-2 text-primary font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span>Read more</span>
-                  <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </div>
               </div>
@@ -422,9 +492,12 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
               <div className="w-20 h-20 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
                 <Search className="w-10 h-10 text-muted-foreground" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-3">No posts found</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-3">
+                No posts found
+              </h3>
               <p className="text-muted-foreground mb-8 text-lg">
-                Try adjusting your search terms or filters to find what you're looking for.
+                Try adjusting your search terms or filters to find what you're
+                looking for.
               </p>
               {hasActiveFilters && (
                 <div className="space-y-4">
@@ -436,7 +509,10 @@ export default function BlogSearch({ posts, className = '' }: BlogSearchProps) {
                     Clear all filters
                   </button>
                   <div className="text-sm text-muted-foreground">
-                    Or try searching for: <span className="font-medium">React, TypeScript, Web Development</span>
+                    Or try searching for:{" "}
+                    <span className="font-medium">
+                      React, TypeScript, Web Development
+                    </span>
                   </div>
                 </div>
               )}

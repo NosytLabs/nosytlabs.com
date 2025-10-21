@@ -1,11 +1,11 @@
 /**
  * Theme Management Utility
- * 
+ *
  * Consolidated theme management system to eliminate duplication
  * between MainLayout.astro and AnimatedThemeToggler.astro implementations.
  */
 
-export type Theme = 'light' | 'dark';
+export type Theme = "light" | "dark";
 
 export interface ThemeConfig {
   storageKey?: string;
@@ -21,14 +21,14 @@ export class ThemeManager {
 
   constructor(config: ThemeConfig = {}) {
     this.config = {
-      storageKey: 'theme',
-      defaultTheme: 'light',
+      storageKey: "theme",
+      defaultTheme: "light",
       enableSystemPreference: true,
       updateMetaThemeColor: true,
-      ...config
+      ...config,
     };
 
-    this.mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    this.mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     this.setupSystemPreferenceListener();
   }
 
@@ -37,12 +37,12 @@ export class ThemeManager {
    */
   getPreferredTheme(): Theme {
     const stored = localStorage.getItem(this.config.storageKey);
-    if (stored && (stored === 'light' || stored === 'dark')) {
+    if (stored && (stored === "light" || stored === "dark")) {
       return stored as Theme;
     }
 
     if (this.config.enableSystemPreference) {
-      return this.mediaQuery.matches ? 'dark' : 'light';
+      return this.mediaQuery.matches ? "dark" : "light";
     }
 
     return this.config.defaultTheme;
@@ -52,8 +52,10 @@ export class ThemeManager {
    * Get the current active theme
    */
   getCurrentTheme(): Theme {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    return (currentTheme === 'dark' || currentTheme === 'light') ? currentTheme : this.getPreferredTheme();
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    return currentTheme === "dark" || currentTheme === "light"
+      ? currentTheme
+      : this.getPreferredTheme();
   }
 
   /**
@@ -61,9 +63,9 @@ export class ThemeManager {
    */
   setTheme(theme: Theme): void {
     // Update DOM
-    document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    
+    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.classList.toggle("dark", theme === "dark");
+
     // Update localStorage
     localStorage.setItem(this.config.storageKey, theme);
 
@@ -84,7 +86,7 @@ export class ThemeManager {
    */
   toggleTheme(): void {
     const currentTheme = this.getCurrentTheme();
-    const newTheme: Theme = currentTheme === 'dark' ? 'light' : 'dark';
+    const newTheme: Theme = currentTheme === "dark" ? "light" : "dark";
     this.setTheme(newTheme);
   }
 
@@ -113,10 +115,12 @@ export class ThemeManager {
   /**
    * Setup theme toggle buttons
    */
-  setupThemeToggles(selector: string = '[data-theme-toggle], #theme-toggle'): void {
+  setupThemeToggles(
+    selector: string = "[data-theme-toggle], #theme-toggle",
+  ): void {
     const toggles = document.querySelectorAll(selector);
     toggles.forEach((toggle) => {
-      toggle.addEventListener('click', () => this.toggleTheme());
+      toggle.addEventListener("click", () => this.toggleTheme());
     });
   }
 
@@ -124,20 +128,26 @@ export class ThemeManager {
    * Clean up event listeners
    */
   destroy(): void {
-    this.mediaQuery.removeEventListener('change', this.handleSystemPreferenceChange);
+    this.mediaQuery.removeEventListener(
+      "change",
+      this.handleSystemPreferenceChange,
+    );
     this.listeners.clear();
   }
 
   private setupSystemPreferenceListener(): void {
     if (this.config.enableSystemPreference) {
-      this.mediaQuery.addEventListener('change', this.handleSystemPreferenceChange);
+      this.mediaQuery.addEventListener(
+        "change",
+        this.handleSystemPreferenceChange,
+      );
     }
   }
 
   private handleSystemPreferenceChange = (e: MediaQueryListEvent): void => {
     // Only update if user hasn't set a preference
     if (!localStorage.getItem(this.config.storageKey)) {
-      const newTheme: Theme = e.matches ? 'dark' : 'light';
+      const newTheme: Theme = e.matches ? "dark" : "light";
       this.setTheme(newTheme);
     }
   };
@@ -146,27 +156,37 @@ export class ThemeManager {
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     if (themeColorMeta) {
       // Use CSS custom properties for theme colors
-      const bgColor = getComputedStyle(document.documentElement).getPropertyValue('--background');
-      const fallbackColor = theme === 'dark' ? 'hsl(var(--color-neutral-950))' : 'hsl(var(--color-neutral-50))';
-      themeColorMeta.setAttribute('content', bgColor ? `hsl(${bgColor})` : fallbackColor);
+      const bgColor = getComputedStyle(
+        document.documentElement,
+      ).getPropertyValue("--background");
+      const fallbackColor =
+        theme === "dark"
+          ? "hsl(var(--color-neutral-950))"
+          : "hsl(var(--color-neutral-50))";
+      themeColorMeta.setAttribute(
+        "content",
+        bgColor ? `hsl(${bgColor})` : fallbackColor,
+      );
     }
   }
 
   private updateThemeToggles(theme: Theme): void {
-    const toggles = document.querySelectorAll('[data-theme-toggle], #theme-toggle');
+    const toggles = document.querySelectorAll(
+      "[data-theme-toggle], #theme-toggle",
+    );
     toggles.forEach((toggle) => {
-      const sunIcon = toggle.querySelector('[data-sun-icon], #sun-icon');
-      const moonIcon = toggle.querySelector('[data-moon-icon], #moon-icon');
-      
+      const sunIcon = toggle.querySelector("[data-sun-icon], #sun-icon");
+      const moonIcon = toggle.querySelector("[data-moon-icon], #moon-icon");
+
       if (sunIcon && moonIcon) {
-        sunIcon.classList.toggle('hidden', theme === 'dark');
-        moonIcon.classList.toggle('hidden', theme !== 'dark');
+        sunIcon.classList.toggle("hidden", theme === "dark");
+        moonIcon.classList.toggle("hidden", theme !== "dark");
       }
     });
   }
 
   private notifyListeners(theme: Theme): void {
-    this.listeners.forEach(callback => callback(theme));
+    this.listeners.forEach((callback) => callback(theme));
   }
 }
 
@@ -188,13 +208,13 @@ export function getThemeManager(config?: ThemeConfig): ThemeManager {
  */
 export function initThemeManagement(config?: ThemeConfig): ThemeManager {
   const themeManager = getThemeManager(config);
-  
+
   // Initialize theme
   themeManager.initTheme();
-  
+
   // Setup theme toggles
   themeManager.setupThemeToggles();
-  
+
   return themeManager;
 }
 
@@ -205,6 +225,8 @@ export const themeUtils = {
   getTheme: () => getThemeManager().getCurrentTheme(),
   setTheme: (theme: Theme) => getThemeManager().setTheme(theme),
   toggleTheme: () => getThemeManager().toggleTheme(),
-  addListener: (callback: (theme: Theme) => void) => getThemeManager().addListener(callback),
-  removeListener: (callback: (theme: Theme) => void) => getThemeManager().removeListener(callback)
+  addListener: (callback: (theme: Theme) => void) =>
+    getThemeManager().addListener(callback),
+  removeListener: (callback: (theme: Theme) => void) =>
+    getThemeManager().removeListener(callback),
 };

@@ -85,27 +85,32 @@ npm run type-check
 ## 📦 Deployment
 
 ### Netlify
+
 ```bash
 npm run build
 # Deploy dist/ folder
 ```
 
 ### Vercel
+
 ```bash
 npm run build
 # Deploy dist/ folder
 ```
 
 ### GitHub Pages
+
 Automated via GitHub Actions workflow in `.github/workflows/deploy.yml`
 
 ## 🎯 Content Schema
 
 ### Blog Posts
+
 - Required: title, description, pubDate, author, tags
 - Optional: category, seoKeywords, excerpt, draft, featured, updatedDate, readingTime, heroImage
 
 ### Services
+
 - Required: title, description, icon
 - Optional: image, price, delivery, popular, benefits, features, category, tags
 

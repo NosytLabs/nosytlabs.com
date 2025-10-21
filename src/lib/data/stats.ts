@@ -13,33 +13,33 @@ export const siteStats = {
   projectsCompleted: {
     value: "47",
     label: "Projects Completed",
-    description: "Successful deployments with measurable ROI"
+    description: "Successful deployments with measurable ROI",
   },
   trafficIncrease: {
     value: "150%",
     label: "Avg Traffic Increase",
-    description: "For client websites post-optimization"
+    description: "For client websites post-optimization",
   },
   timeSaved: {
     value: "40+",
     label: "Hours Saved Weekly",
-    description: "Through automation and AI integration"
+    description: "Through automation and AI integration",
   },
   clientSatisfaction: {
     value: "98%",
     label: "Client Satisfaction",
-    description: "Based on post-project surveys"
+    description: "Based on post-project surveys",
   },
   yearsExperience: {
     value: "10+",
     label: "Years Experience",
-    description: "In web development and AI"
+    description: "In web development and AI",
   },
   technologiesUsed: {
     value: "50+",
     label: "Technologies",
-    description: "Modern frameworks and tools"
-  }
+    description: "Modern frameworks and tools",
+  },
 } as const;
 
 /**
@@ -47,7 +47,7 @@ export const siteStats = {
  */
 export function getStatsArray(keys?: (keyof typeof siteStats)[]): SiteStat[] {
   if (keys) {
-    return keys.map(key => siteStats[key]);
+    return keys.map((key) => siteStats[key]);
   }
   return Object.values(siteStats);
 }
@@ -59,7 +59,7 @@ export function getPrimaryStats(): SiteStat[] {
   return [
     siteStats.projectsCompleted,
     siteStats.trafficIncrease,
-    siteStats.timeSaved
+    siteStats.timeSaved,
   ];
 }
 

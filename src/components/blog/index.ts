@@ -3,4 +3,4 @@
 // Import Astro components directly: import RelatedPosts from '@/components/blog/RelatedPosts.astro'
 
 // React components
-export { default as BlogSearch } from './BlogSearch';
+export { default as BlogSearch } from "./BlogSearch";

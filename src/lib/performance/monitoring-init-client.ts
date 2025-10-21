@@ -1,7 +1,7 @@
-import { startPerformanceMonitoring } from './monitoring.ts';
+import { startPerformanceMonitoring } from "./monitoring.ts";
 
 try {
   startPerformanceMonitoring?.();
 } catch (error) {
-  console.warn('Performance monitoring not available:', error);
+  console.warn("Performance monitoring not available:", error);
 }

@@ -1,9 +1,9 @@
 /**
  * Caching Utilities
- * 
+ *
  * Comprehensive caching strategies including service worker cache,
  * browser storage cache, and cache management utilities.
- * 
+ *
  * @module performance/caching
  */
 
@@ -15,11 +15,11 @@
  * Cache strategy types
  */
 export type CacheStrategy =
-  | 'cache-first'
-  | 'network-first'
-  | 'stale-while-revalidate'
-  | 'network-only'
-  | 'cache-only';
+  | "cache-first"
+  | "network-first"
+  | "stale-while-revalidate"
+  | "network-only"
+  | "cache-only";
 
 /**
  * Cache configuration
@@ -56,7 +56,7 @@ interface BrowserCacheItem<T = unknown> {
 /**
  * Cache Strategy Manager
  * Handles different caching strategies for various resource types.
- * 
+ *
  * @example
  * ```typescript
  * const manager = new CacheManager();
@@ -80,52 +80,52 @@ export class CacheManager {
       {
         pattern: /\.(css|js|woff2?|png|jpg|jpeg|webp|svg|ico)$/,
         config: {
-          name: 'static-assets',
-          version: '1.0.0',
+          name: "static-assets",
+          version: "1.0.0",
           maxAge: 31536000, // 1 year
           maxEntries: 100,
-          strategy: 'cache-first'
-        }
+          strategy: "cache-first",
+        },
       },
       // HTML pages - stale while revalidate
       {
         pattern: /\.html?$/,
         config: {
-          name: 'pages',
-          version: '1.0.0',
+          name: "pages",
+          version: "1.0.0",
           maxAge: 86400, // 1 day
           maxEntries: 50,
-          strategy: 'stale-while-revalidate'
-        }
+          strategy: "stale-while-revalidate",
+        },
       },
       // API calls - network first
       {
         pattern: /\/api\//,
         config: {
-          name: 'api',
-          version: '1.0.0',
+          name: "api",
+          version: "1.0.0",
           maxAge: 300, // 5 minutes
           maxEntries: 20,
-          strategy: 'network-first'
-        }
+          strategy: "network-first",
+        },
       },
       // Images - cache first with cleanup
       {
         pattern: /\.(png|jpg|jpeg|webp|gif|svg)$/,
         config: {
-          name: 'images',
-          version: '1.0.0',
+          name: "images",
+          version: "1.0.0",
           maxAge: 2592000, // 30 days
           maxEntries: 200,
-          strategy: 'cache-first'
-        }
-      }
+          strategy: "cache-first",
+        },
+      },
     ];
   }
 
   /**
    * Get cache config for a URL
-   * 
+   *
    * @param url - URL to get config for
    * @returns Cache config or null if no match
    */
@@ -140,7 +140,7 @@ export class CacheManager {
 
   /**
    * Add custom cache rule
-   * 
+   *
    * @param pattern - URL pattern to match
    * @param config - Cache configuration
    */
@@ -150,7 +150,7 @@ export class CacheManager {
 
   /**
    * Generate cache headers for HTTP responses
-   * 
+   *
    * @param url - URL to generate headers for
    * @returns Cache headers object
    */
@@ -158,28 +158,31 @@ export class CacheManager {
     const config = this.getCacheConfig(url);
     if (!config) {
       return {
-        'Cache-Control': 'no-cache'
+        "Cache-Control": "no-cache",
       };
     }
 
     const headers: Record<string, string> = {};
 
     switch (config.strategy) {
-      case 'cache-first':
-        headers['Cache-Control'] = `public, max-age=${config.maxAge}, immutable`;
+      case "cache-first":
+        headers["Cache-Control"] =
+          `public, max-age=${config.maxAge}, immutable`;
         break;
-      case 'network-first':
-        headers['Cache-Control'] = `public, max-age=${config.maxAge}, must-revalidate`;
+      case "network-first":
+        headers["Cache-Control"] =
+          `public, max-age=${config.maxAge}, must-revalidate`;
         break;
-      case 'stale-while-revalidate':
-        headers['Cache-Control'] = `public, max-age=${config.maxAge}, stale-while-revalidate=${config.maxAge * 2}`;
+      case "stale-while-revalidate":
+        headers["Cache-Control"] =
+          `public, max-age=${config.maxAge}, stale-while-revalidate=${config.maxAge * 2}`;
         break;
       default:
-        headers['Cache-Control'] = `public, max-age=${config.maxAge}`;
+        headers["Cache-Control"] = `public, max-age=${config.maxAge}`;
     }
 
     // Add ETag for better cache validation
-    headers['ETag'] = `"${config.version}-${Date.now()}"`;
+    headers["ETag"] = `"${config.version}-${Date.now()}"`;
 
     return headers;
   }
@@ -192,7 +195,7 @@ export class CacheManager {
 /**
  * Service Worker Cache Manager
  * Handles service worker caching strategies.
- * 
+ *
  * @example
  * ```typescript
  * const swCache = ServiceWorkerCache.getInstance();
@@ -219,11 +222,13 @@ export class ServiceWorkerCache {
 
   /**
    * Handle fetch events in service worker
-   * 
+   *
    * @param event - Fetch event
    * @returns Response promise
    */
-  public async handleFetch(event: Event & { request: Request }): Promise<Response> {
+  public async handleFetch(
+    event: Event & { request: Request },
+  ): Promise<Response> {
     const url = event.request.url;
     const config = this.cacheManager.getCacheConfig(url);
 
@@ -232,15 +237,15 @@ export class ServiceWorkerCache {
     }
 
     switch (config.strategy) {
-      case 'cache-first':
+      case "cache-first":
         return this.cacheFirst(event.request, config);
-      case 'network-first':
+      case "network-first":
         return this.networkFirst(event.request, config);
-      case 'stale-while-revalidate':
+      case "stale-while-revalidate":
         return this.staleWhileRevalidate(event.request, config);
-      case 'network-only':
+      case "network-only":
         return fetch(event.request);
-      case 'cache-only':
+      case "cache-only":
         return this.cacheOnly(event.request, config);
       default:
         return fetch(event.request);
@@ -250,7 +255,10 @@ export class ServiceWorkerCache {
   /**
    * Cache-first strategy
    */
-  private async cacheFirst(request: Request, config: CacheConfig): Promise<Response> {
+  private async cacheFirst(
+    request: Request,
+    config: CacheConfig,
+  ): Promise<Response> {
     const cache = await caches.open(config.name);
     const cached = await cache.match(request);
 
@@ -265,7 +273,7 @@ export class ServiceWorkerCache {
       }
       return response;
     } catch (error) {
-      console.warn('Network request failed:', error);
+      console.warn("Network request failed:", error);
       throw error;
     }
   }
@@ -273,7 +281,10 @@ export class ServiceWorkerCache {
   /**
    * Network-first strategy
    */
-  private async networkFirst(request: Request, config: CacheConfig): Promise<Response> {
+  private async networkFirst(
+    request: Request,
+    config: CacheConfig,
+  ): Promise<Response> {
     const cache = await caches.open(config.name);
 
     try {
@@ -283,7 +294,7 @@ export class ServiceWorkerCache {
       }
       return response;
     } catch (error) {
-      console.warn('Network request failed, trying cache:', error);
+      console.warn("Network request failed, trying cache:", error);
       const cached = await cache.match(request);
       if (cached) {
         return cached;
@@ -295,7 +306,10 @@ export class ServiceWorkerCache {
   /**
    * Stale-while-revalidate strategy
    */
-  private async staleWhileRevalidate(request: Request, config: CacheConfig): Promise<Response> {
+  private async staleWhileRevalidate(
+    request: Request,
+    config: CacheConfig,
+  ): Promise<Response> {
     const cache = await caches.open(config.name);
     const cached = await cache.match(request);
 
@@ -308,7 +322,7 @@ export class ServiceWorkerCache {
         return response;
       })
       .catch((error) => {
-        console.warn('Background network request failed:', error);
+        console.warn("Background network request failed:", error);
         return null;
       });
 
@@ -323,13 +337,16 @@ export class ServiceWorkerCache {
       return networkResponse;
     }
 
-    throw new Error('No cached response and network request failed');
+    throw new Error("No cached response and network request failed");
   }
 
   /**
    * Cache-only strategy
    */
-  private async cacheOnly(request: Request, config: CacheConfig): Promise<Response> {
+  private async cacheOnly(
+    request: Request,
+    config: CacheConfig,
+  ): Promise<Response> {
     const cache = await caches.open(config.name);
     const cached = await cache.match(request);
 
@@ -337,7 +354,7 @@ export class ServiceWorkerCache {
       return cached;
     }
 
-    throw new Error('Resource not found in cache');
+    throw new Error("Resource not found in cache");
   }
 
   /**
@@ -347,7 +364,7 @@ export class ServiceWorkerCache {
     cache: Cache,
     request: Request,
     response: Response,
-    config: CacheConfig
+    config: CacheConfig,
   ): Promise<void> {
     // Check cache size and clean up if needed
     if (config.maxEntries) {
@@ -360,7 +377,10 @@ export class ServiceWorkerCache {
   /**
    * Manage cache size by removing old entries
    */
-  private async manageCacheSize(cache: Cache, maxEntries: number): Promise<void> {
+  private async manageCacheSize(
+    cache: Cache,
+    maxEntries: number,
+  ): Promise<void> {
     const keys = await cache.keys();
 
     if (keys.length >= maxEntries) {
@@ -372,11 +392,11 @@ export class ServiceWorkerCache {
 
   /**
    * Preload critical resources
-   * 
+   *
    * @param urls - URLs to preload
    */
   public async preloadCriticalResources(urls: string[]): Promise<void> {
-    const cache = await caches.open('critical-resources');
+    const cache = await caches.open("critical-resources");
 
     const preloadPromises = urls.map(async (url) => {
       try {
@@ -394,12 +414,14 @@ export class ServiceWorkerCache {
 
   /**
    * Clean up old caches
-   * 
+   *
    * @param currentCaches - List of current cache names to keep
    */
   public async cleanupOldCaches(currentCaches: string[]): Promise<void> {
     const cacheNames = await caches.keys();
-    const oldCaches = cacheNames.filter((name) => !currentCaches.includes(name));
+    const oldCaches = cacheNames.filter(
+      (name) => !currentCaches.includes(name),
+    );
 
     await Promise.all(oldCaches.map((name) => caches.delete(name)));
   }
@@ -412,7 +434,7 @@ export class ServiceWorkerCache {
 /**
  * Browser Cache Utilities
  * Client-side cache management using localStorage/sessionStorage.
- * 
+ *
  * @example
  * ```typescript
  * const cache = new BrowserCache();
@@ -424,14 +446,17 @@ export class BrowserCache {
   private storage: Storage;
   private prefix: string;
 
-  constructor(useSessionStorage: boolean = false, prefix: string = 'app-cache-') {
+  constructor(
+    useSessionStorage: boolean = false,
+    prefix: string = "app-cache-",
+  ) {
     this.storage = useSessionStorage ? sessionStorage : localStorage;
     this.prefix = prefix;
   }
 
   /**
    * Set item in cache with expiration
-   * 
+   *
    * @param key - Cache key
    * @param value - Value to cache
    * @param ttl - Time to live in seconds (0 = no expiration)
@@ -440,13 +465,13 @@ export class BrowserCache {
     const item: BrowserCacheItem<T> = {
       value,
       timestamp: Date.now(),
-      ttl
+      ttl,
     };
 
     try {
       this.storage.setItem(this.prefix + key, JSON.stringify(item));
     } catch (error) {
-      console.warn('Failed to set cache item:', error);
+      console.warn("Failed to set cache item:", error);
       // Handle quota exceeded
       this.cleanup();
     }
@@ -454,7 +479,7 @@ export class BrowserCache {
 
   /**
    * Get item from cache
-   * 
+   *
    * @param key - Cache key
    * @returns Cached value or null if not found/expired
    */
@@ -473,14 +498,14 @@ export class BrowserCache {
 
       return item.value;
     } catch (error) {
-      console.warn('Failed to get cache item:', error);
+      console.warn("Failed to get cache item:", error);
       return null;
     }
   }
 
   /**
    * Remove item from cache
-   * 
+   *
    * @param key - Cache key
    */
   public remove(key: string): void {
@@ -524,7 +549,7 @@ export class BrowserCache {
 
   /**
    * Check if key exists in cache
-   * 
+   *
    * @param key - Cache key
    * @returns True if key exists and is not expired
    */
@@ -534,7 +559,7 @@ export class BrowserCache {
 
   /**
    * Get all cache keys
-   * 
+   *
    * @returns Array of cache keys (without prefix)
    */
   public keys(): string[] {
@@ -551,7 +576,7 @@ export class BrowserCache {
 
 /**
  * Initialize cache optimization
- * 
+ *
  * @returns Cache manager and browser cache instances
  */
 export function initializeCacheOptimization(): {
@@ -562,19 +587,23 @@ export function initializeCacheOptimization(): {
   const browserCache = new BrowserCache();
 
   // Setup periodic cleanup
-  if (typeof setInterval !== 'undefined') {
+  if (typeof setInterval !== "undefined") {
     setInterval(() => {
       browserCache.cleanup();
     }, 300000); // 5 minutes
   }
 
   // Register service worker in production only to avoid dev preview conflicts
-  if (import.meta.env.PROD && typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
-    const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  if (
+    import.meta.env.PROD &&
+    typeof navigator !== "undefined" &&
+    "serviceWorker" in navigator
+  ) {
+    const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
     const swUrl = `${base}/sw.js`;
-    const scope = import.meta.env.BASE_URL || '/';
+    const scope = import.meta.env.BASE_URL || "/";
     navigator.serviceWorker.register(swUrl, { scope }).catch((error) => {
-      console.warn('Service worker registration failed:', error);
+      console.warn("Service worker registration failed:", error);
     });
   }
 
@@ -583,7 +612,7 @@ export function initializeCacheOptimization(): {
 
 /**
  * Generate service worker code
- * 
+ *
  * @returns Service worker code as string
  */
 export function generateServiceWorkerCode(): string {
@@ -840,4 +869,3 @@ function isAssetRequest(request) {
 
 `;
 }
-

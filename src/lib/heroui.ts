@@ -1,4 +1,4 @@
-import { HeroUIProvider } from '@heroui/react';
+import { HeroUIProvider } from "@heroui/react";
 
 export { HeroUIProvider };
-export * from '@heroui/react';
+export * from "@heroui/react";

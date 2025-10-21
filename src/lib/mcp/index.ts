@@ -1,15 +1,15 @@
 /**
  * MCP Module
- * 
+ *
  * MCP (Model Context Protocol) utilities including optimization,
  * wrapper functions, and performance monitoring for MCP operations.
- * 
+ *
  * @module mcp
  */
 
 // Export all MCP utilities
-export * from './mcp-optimization';
-export * from './mcp-wrapper';
+export * from "./mcp-optimization";
+export * from "./mcp-wrapper";
 
 // Re-export commonly used utilities for convenience
 export {
@@ -20,8 +20,8 @@ export {
   getMCPRecommendations,
   type MCPToolConfig,
   type MCPOperationResult,
-  type MCPHealthStatus
-} from './mcp-optimization';
+  type MCPHealthStatus,
+} from "./mcp-optimization";
 
 export {
   MCPWrapper,
@@ -33,5 +33,5 @@ export {
   optimizedFileRead,
   optimizedPageScreenshot,
   type MCPWrapperOptions,
-  type MCPOperationResult as MCPWrapperOperationResult
-} from './mcp-wrapper';
+  type MCPOperationResult as MCPWrapperOperationResult,
+} from "./mcp-wrapper";

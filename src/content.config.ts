@@ -1,7 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const blogCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     // Required fields
     title: z.string(),
@@ -9,7 +9,7 @@ const blogCollection = defineCollection({
     pubDate: z.date(),
     author: z.string().default("NOSYT Labs"),
     tags: z.array(z.string()),
-    
+
     // Optional fields
     category: z.string().optional(),
     seoKeywords: z.array(z.string()).optional(),
@@ -20,11 +20,11 @@ const blogCollection = defineCollection({
     readingTime: z.number().optional(),
     heroImage: z.string().optional(),
     heroImageAlt: z.string().optional(),
-  })
+  }),
 });
 
 const servicesCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -35,10 +35,10 @@ const servicesCollection = defineCollection({
     features: z.array(z.string()).optional(),
     category: z.string().optional(),
     featured: z.boolean().optional(),
-  })
+  }),
 });
 
 export const collections = {
-  'blog': blogCollection,
-  'services': servicesCollection,
+  blog: blogCollection,
+  services: servicesCollection,
 };

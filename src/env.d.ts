@@ -4,14 +4,17 @@
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      form: React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> & {
-        'data-netlify'?: boolean | string;
-        'data-netlify-honeypot'?: string;
+      form: React.DetailedHTMLProps<
+        React.FormHTMLAttributes<HTMLFormElement>,
+        HTMLFormElement
+      > & {
+        "data-netlify"?: boolean | string;
+        "data-netlify-honeypot"?: string;
         netlify?: boolean | string;
       };
     }
   }
-  
+
   // Ensure FormData is available in API routes
   interface FormData {
     get(name: string): FormDataEntryValue | null;
@@ -23,6 +26,13 @@ declare global {
     entries(): IterableIterator<[string, FormDataEntryValue]>;
     keys(): IterableIterator<string>;
     values(): IterableIterator<FormDataEntryValue>;
-    forEach(callbackfn: (value: FormDataEntryValue, key: string, parent: FormData) => void, thisArg?: any): void;
+    forEach(
+      callbackfn: (
+        value: FormDataEntryValue,
+        key: string,
+        parent: FormData,
+      ) => void,
+      thisArg?: any,
+    ): void;
   }
 }

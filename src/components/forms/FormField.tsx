@@ -8,7 +8,7 @@ interface FormFieldProps {
   children: React.ReactNode;
   id?: string;
   className?: string;
-  'aria-required'?: boolean;
+  "aria-required"?: boolean;
   autoComplete?: string;
 }
 
@@ -19,14 +19,15 @@ const FormField = ({
   children,
   id,
   className,
-  'aria-required': ariaRequired,
+  "aria-required": ariaRequired,
   autoComplete,
 }: FormFieldProps) => {
   const inputId = id || React.useId();
   const errorId = error ? `${inputId}-error` : undefined;
   const helperTextId = helperText ? `${inputId}-helper` : undefined;
 
-  const describedBy = [errorId, helperTextId].filter(Boolean).join(" ") || undefined;
+  const describedBy =
+    [errorId, helperTextId].filter(Boolean).join(" ") || undefined;
 
   return (
     <div className={cn("space-y-2", className)}>
@@ -36,7 +37,11 @@ const FormField = ({
           className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           {label}
-          {ariaRequired && <span className="text-destructive ml-1" aria-hidden="true">*</span>}
+          {ariaRequired && (
+            <span className="text-destructive ml-1" aria-hidden="true">
+              *
+            </span>
+          )}
         </label>
       )}
       {React.cloneElement(children as React.ReactElement, {

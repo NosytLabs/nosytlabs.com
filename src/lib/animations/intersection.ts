@@ -1,9 +1,9 @@
 /**
  * Intersection Observer Animations
- * 
+ *
  * Provides intersection observer-based animations for elements
  * entering the viewport with support for staggering and reduced motion.
- * 
+ *
  * @module animations/intersection
  */
 
@@ -39,7 +39,7 @@ export interface IntersectionAnimationOptions extends AnimationOptions {
 /**
  * Unified Intersection Animator
  * Handles intersection observer-based animations with staggering support.
- * 
+ *
  * @example
  * ```typescript
  * const animator = new UnifiedIntersectionAnimator();
@@ -72,31 +72,42 @@ export class UnifiedIntersectionAnimator {
    * Setup reduced motion support
    */
   private setupReducedMotionSupport(): void {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
 
     if (prefersReducedMotion.matches) {
-      document.documentElement.style.setProperty('--animation-duration', '0.01ms');
-      document.documentElement.style.setProperty('--transition-duration', '0.01ms');
+      document.documentElement.style.setProperty(
+        "--animation-duration",
+        "0.01ms",
+      );
+      document.documentElement.style.setProperty(
+        "--transition-duration",
+        "0.01ms",
+      );
     }
   }
 
   /**
    * Observe elements for intersection animations with performance optimizations
-   * 
+   *
    * @param selector - CSS selector for elements to observe
    * @param options - Animation options
    */
-  public observeElements(selector: string, options: IntersectionAnimationOptions = {}): void {
-    if (typeof document === 'undefined') return;
+  public observeElements(
+    selector: string,
+    options: IntersectionAnimationOptions = {},
+  ): void {
+    if (typeof document === "undefined") return;
 
     const {
       threshold = 0.1,
-      rootMargin = '50px 0px',
+      rootMargin = "50px 0px",
       once = true,
-      className = 'animate-fade-in',
-      stagger = 0.1
+      className = "animate-fade-in",
+      stagger = 0.1,
     } = options;
 
     const elements = document.querySelectorAll(selector);
@@ -115,27 +126,30 @@ export class UnifiedIntersectionAnimator {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !this.animatedElements.has(entry.target)) {
+          if (
+            entry.isIntersecting &&
+            !this.animatedElements.has(entry.target)
+          ) {
             entriesToAnimate.push(entry);
-            
+
             // Batch animations using requestAnimationFrame
             if (!animationFramePending) {
               animationFramePending = true;
               requestAnimationFrame(() => {
                 entriesToAnimate.forEach((animEntry, animIndex) => {
                   const element = animEntry.target as HTMLElement;
-                  
+
                   // Apply staggered delay
                   element.style.animationDelay = `${animIndex * stagger}s`;
-                  
+
                   // Pre-apply will-change for better performance
-                  element.style.willChange = 'opacity, transform';
-                  
+                  element.style.willChange = "opacity, transform";
+
                   // Add consolidated animation class from main.css
-                  element.classList.add(className, 'gpu-accelerated');
-                  
+                  element.classList.add(className, "gpu-accelerated");
+
                   this.animatedElements.add(animEntry.target);
-                  
+
                   if (once) {
                     observer.unobserve(animEntry.target);
                   }
@@ -147,13 +161,13 @@ export class UnifiedIntersectionAnimator {
           }
         });
       },
-      { threshold, rootMargin }
+      { threshold, rootMargin },
     );
 
     elements.forEach((element) => {
       // Pre-apply initial styles for better performance
-      (element as HTMLElement).style.opacity = '0';
-      (element as HTMLElement).style.transform = 'translate3d(0, 20px, 0)';
+      (element as HTMLElement).style.opacity = "0";
+      (element as HTMLElement).style.transform = "translate3d(0, 20px, 0)";
       observer.observe(element);
     });
     this.observers.set(observerKey, observer);
@@ -161,21 +175,32 @@ export class UnifiedIntersectionAnimator {
 
   /**
    * Observe a single element
-   * 
+   *
    * @param element - Element to observe
    * @param options - Animation options
    */
-  public observeElement(element: Element, options: IntersectionAnimationOptions = {}): void {
-    if (typeof window === 'undefined') return;
+  public observeElement(
+    element: Element,
+    options: IntersectionAnimationOptions = {},
+  ): void {
+    if (typeof window === "undefined") return;
 
-    const { threshold = 0.1, rootMargin = '50px 0px', once = true, className = 'animate-fade-in' } = options;
+    const {
+      threshold = 0.1,
+      rootMargin = "50px 0px",
+      once = true,
+      className = "animate-fade-in",
+    } = options;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !this.animatedElements.has(entry.target)) {
+          if (
+            entry.isIntersecting &&
+            !this.animatedElements.has(entry.target)
+          ) {
             const htmlElement = entry.target as HTMLElement;
-            htmlElement.classList.add(className, 'gpu-accelerated');
+            htmlElement.classList.add(className, "gpu-accelerated");
             this.animatedElements.add(entry.target);
 
             if (once) {
@@ -184,7 +209,7 @@ export class UnifiedIntersectionAnimator {
           }
         });
       },
-      { threshold, rootMargin }
+      { threshold, rootMargin },
     );
 
     observer.observe(element);
@@ -203,13 +228,13 @@ export class UnifiedIntersectionAnimator {
 
   /**
    * Get statistics
-   * 
+   *
    * @returns Animation statistics
    */
   public getStats(): { observers: number; animatedElements: number } {
     return {
       observers: this.observers.size,
-      animatedElements: this.animatedElements.size
+      animatedElements: this.animatedElements.size,
     };
   }
 }

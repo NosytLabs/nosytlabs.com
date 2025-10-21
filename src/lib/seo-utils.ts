@@ -3,21 +3,21 @@
  * Provides functions for generating structured data and meta tags
  */
 
-import { SITE_CONFIG, COMPANY_INFO } from './constants';
+import { SITE_CONFIG, COMPANY_INFO } from "./constants";
 
 export interface StructuredDataOrganization {
-  '@context': 'https://schema.org';
-  '@type': 'Organization';
+  "@context": "https://schema.org";
+  "@type": "Organization";
   name: string;
   url: string;
   logo: string;
   description: string;
   address: {
-    '@type': 'PostalAddress';
+    "@type": "PostalAddress";
     addressCountry: string;
   };
   contactPoint: {
-    '@type': 'ContactPoint';
+    "@type": "ContactPoint";
     contactType: string;
     email: string;
   };
@@ -25,34 +25,34 @@ export interface StructuredDataOrganization {
 }
 
 export interface StructuredDataWebSite {
-  '@context': 'https://schema.org';
-  '@type': 'WebSite';
+  "@context": "https://schema.org";
+  "@type": "WebSite";
   url: string;
   name: string;
   potentialAction: {
-    '@type': 'SearchAction';
+    "@type": "SearchAction";
     target: string;
-    'query-input': string;
+    "query-input": string;
   };
 }
 
 export interface StructuredDataBlogPosting {
-  '@context': 'https://schema.org';
-  '@type': 'BlogPosting';
+  "@context": "https://schema.org";
+  "@type": "BlogPosting";
   headline: string;
   description: string;
   url: string;
   datePublished: string;
   dateModified: string;
   author: {
-    '@type': 'Organization';
+    "@type": "Organization";
     name: string;
   };
   publisher: {
-    '@type': 'Organization';
+    "@type": "Organization";
     name: string;
     logo: {
-      '@type': 'ImageObject';
+      "@type": "ImageObject";
       url: string;
     };
   };
@@ -61,19 +61,19 @@ export interface StructuredDataBlogPosting {
 }
 
 export interface StructuredDataService {
-  '@context': 'https://schema.org';
-  '@type': 'Service';
+  "@context": "https://schema.org";
+  "@type": "Service";
   name: string;
   description: string;
   provider: {
-    '@type': 'Organization';
+    "@type": "Organization";
     name: string;
     url: string;
   };
   areaServed: string;
   serviceType: string;
   offers?: {
-    '@type': 'Offer';
+    "@type": "Offer";
     price?: string;
     priceCurrency?: string;
     availability?: string;
@@ -81,25 +81,25 @@ export interface StructuredDataService {
 }
 
 export interface StructuredDataLocalBusiness {
-  '@context': 'https://schema.org';
-  '@type': 'LocalBusiness';
+  "@context": "https://schema.org";
+  "@type": "LocalBusiness";
   name: string;
   description: string;
   url: string;
   telephone?: string;
   email: string;
   address: {
-    '@type': 'PostalAddress';
+    "@type": "PostalAddress";
     addressCountry: string;
     addressLocality?: string;
   };
   geo?: {
-    '@type': 'GeoCoordinates';
+    "@type": "GeoCoordinates";
     latitude: number;
     longitude: number;
   };
   openingHoursSpecification?: Array<{
-    '@type': 'OpeningHoursSpecification';
+    "@type": "OpeningHoursSpecification";
     dayOfWeek: string[];
     opens: string;
     closes: string;
@@ -111,26 +111,26 @@ export interface StructuredDataLocalBusiness {
  */
 export function generateOrganizationSchema(): StructuredDataOrganization {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
+    "@context": "https://schema.org",
+    "@type": "Organization",
     name: COMPANY_INFO.NAME,
     url: SITE_CONFIG.BASE_URL,
     logo: SITE_CONFIG.LOGO_PATH,
     description: COMPANY_INFO.DESCRIPTION,
     address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'US'
+      "@type": "PostalAddress",
+      addressCountry: "US",
     },
     contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'customer support',
-      email: SITE_CONFIG.EMAILS.HELLO
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: SITE_CONFIG.EMAILS.HELLO,
     },
     sameAs: [
-      'https://twitter.com/nosytlabs',
-      'https://linkedin.com/company/nosytlabs',
-      'https://github.com/nosytlabs'
-    ]
+      "https://twitter.com/nosytlabs",
+      "https://linkedin.com/company/nosytlabs",
+      "https://github.com/nosytlabs",
+    ],
   };
 }
 
@@ -139,15 +139,15 @@ export function generateOrganizationSchema(): StructuredDataOrganization {
  */
 export function generateWebSiteSchema(): StructuredDataWebSite {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
+    "@context": "https://schema.org",
+    "@type": "WebSite",
     url: SITE_CONFIG.BASE_URL,
     name: COMPANY_INFO.NAME,
     potentialAction: {
-      '@type': 'SearchAction',
+      "@type": "SearchAction",
       target: `${SITE_CONFIG.BASE_URL}/blog/?q={search_term_string}`,
-      'query-input': 'required name=search_term_string'
-    }
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
@@ -161,30 +161,30 @@ export function generateBlogPostingSchema(
   datePublished: Date,
   dateModified?: Date,
   image?: string,
-  keywords?: string[]
+  keywords?: string[],
 ): StructuredDataBlogPosting {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
     headline: title,
     description,
     url,
     datePublished: datePublished.toISOString(),
     dateModified: (dateModified || datePublished).toISOString(),
     author: {
-      '@type': 'Organization',
-      name: COMPANY_INFO.NAME
+      "@type": "Organization",
+      name: COMPANY_INFO.NAME,
     },
     publisher: {
-      '@type': 'Organization',
+      "@type": "Organization",
       name: COMPANY_INFO.NAME,
       logo: {
-        '@type': 'ImageObject',
-        url: SITE_CONFIG.LOGO_ICON_PATH
-      }
+        "@type": "ImageObject",
+        url: SITE_CONFIG.LOGO_ICON_PATH,
+      },
     },
     ...(image && { image }),
-    ...(keywords && keywords.length > 0 && { keywords })
+    ...(keywords && keywords.length > 0 && { keywords }),
   };
 }
 
@@ -195,28 +195,28 @@ export function generateServiceSchema(
   name: string,
   description: string,
   serviceType: string,
-  price?: string
+  price?: string,
 ): StructuredDataService {
   const schema: StructuredDataService = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
+    "@context": "https://schema.org",
+    "@type": "Service",
     name,
     description,
     provider: {
-      '@type': 'Organization',
+      "@type": "Organization",
       name: COMPANY_INFO.NAME,
-      url: SITE_CONFIG.BASE_URL
+      url: SITE_CONFIG.BASE_URL,
     },
-    areaServed: 'Worldwide',
-    serviceType
+    areaServed: "Worldwide",
+    serviceType,
   };
 
   if (price) {
     schema.offers = {
-      '@type': 'Offer',
-      price: price.replace(/[^0-9]/g, ''),
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock'
+      "@type": "Offer",
+      price: price.replace(/[^0-9]/g, ""),
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
     };
   }
 
@@ -228,25 +228,25 @@ export function generateServiceSchema(
  */
 export function generateLocalBusinessSchema(): StructuredDataLocalBusiness {
   return {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
     name: COMPANY_INFO.NAME,
     description: COMPANY_INFO.DESCRIPTION,
     url: SITE_CONFIG.BASE_URL,
     email: SITE_CONFIG.EMAILS.HELLO,
     address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'US',
-      addressLocality: 'Remote'
+      "@type": "PostalAddress",
+      addressCountry: "US",
+      addressLocality: "Remote",
     },
     openingHoursSpecification: [
       {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        opens: '09:00',
-        closes: '17:00'
-      }
-    ]
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "17:00",
+      },
+    ],
   };
 }
 
@@ -254,16 +254,17 @@ export function generateLocalBusinessSchema(): StructuredDataLocalBusiness {
  * Generate meta keywords string from array
  */
 export function generateKeywordsString(keywords: string[]): string {
-  return keywords.join(', ');
+  return keywords.join(", ");
 }
 
 /**
  * Generate canonical URL
  */
 export function generateCanonicalUrl(pathname: string): string {
-  const cleanPath = pathname.endsWith('/') && pathname !== '/' 
-    ? pathname.slice(0, -1) 
-    : pathname;
+  const cleanPath =
+    pathname.endsWith("/") && pathname !== "/"
+      ? pathname.slice(0, -1)
+      : pathname;
   return `${SITE_CONFIG.BASE_URL}${cleanPath}`;
 }
 
@@ -272,15 +273,17 @@ export function generateCanonicalUrl(pathname: string): string {
  */
 export function generateOgImageUrl(imagePath?: string): string {
   // Default to site OG image when none provided
-  const basePrefix = import.meta.env.BASE_URL || '/';
-  const normalizedBase = basePrefix.endsWith('/') ? basePrefix : `${basePrefix}/`;
+  const basePrefix = import.meta.env.BASE_URL || "/";
+  const normalizedBase = basePrefix.endsWith("/")
+    ? basePrefix
+    : `${basePrefix}/`;
 
   if (!imagePath) {
     imagePath = SITE_CONFIG.OG_IMAGE_PATH;
   }
 
   // If it's already a full URL, return as is
-  if (imagePath.startsWith('http')) {
+  if (imagePath.startsWith("http")) {
     return imagePath;
   }
 
@@ -288,7 +291,7 @@ export function generateOgImageUrl(imagePath?: string): string {
   let cleanPath = imagePath;
   if (cleanPath.startsWith(normalizedBase)) {
     cleanPath = `/${cleanPath.slice(normalizedBase.length)}`;
-  } else if (!cleanPath.startsWith('/')) {
+  } else if (!cleanPath.startsWith("/")) {
     cleanPath = `/${cleanPath}`;
   }
 

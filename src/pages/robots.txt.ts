@@ -1,4 +1,4 @@
-import type { APIRoute } from 'astro';
+import type { APIRoute } from "astro";
 
 const robotsTxt = `
 User-agent: *
@@ -10,7 +10,7 @@ Sitemap: /sitemap.xml
 export const GET: APIRoute = () => {
   return new Response(robotsTxt, {
     headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
+      "Content-Type": "text/plain; charset=utf-8",
     },
   });
 };

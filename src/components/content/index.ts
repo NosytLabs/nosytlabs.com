@@ -3,5 +3,5 @@
 // Import Astro components directly: import Hero from '@/components/content/Hero.astro'
 
 // React Components
-export { default as BlogCallout } from './BlogCallout';
-export { default as CodeDisplay } from './CodeDisplay';
+export { default as BlogCallout } from "./BlogCallout";
+export { default as CodeDisplay } from "./CodeDisplay";

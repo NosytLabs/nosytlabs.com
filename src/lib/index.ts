@@ -1,10 +1,10 @@
 /**
  * Main Library Index
- * 
+ *
  * Central export point for all library utilities and components.
  * This file provides a unified interface for accessing all functionality
  * across the application.
- * 
+ *
  * @module lib
  */
 
@@ -34,39 +34,39 @@ export {
   formatDate,
   formatCurrency,
   formatNumber,
-  pluralize
-} from './core';
-export type { ValidationResult as CoreValidationResult } from './core';
+  pluralize,
+} from "./core";
+export type { ValidationResult as CoreValidationResult } from "./core";
 
 // ========================================
 // UTILITIES
 // ========================================
 
-export * from './core/utils';
+export * from "./core/utils";
 
 // ========================================
 // BLOG UTILITIES
 // ========================================
 
-export * from './blog-utils';
+export * from "./blog-utils";
 
 // ========================================
 // ANIMATIONS
 // ========================================
 
-export * from './animations';
+export * from "./animations";
 
 // ========================================
 // API UTILITIES
 // ========================================
 
-export * from './api';
+export * from "./api";
 
 // ========================================
 // FORM UTILITIES
 // ========================================
 
-export { 
+export {
   validateFormName,
   validateFormEmail,
   validateSubject,
@@ -75,27 +75,27 @@ export {
   validateContactForm,
   fieldValidators,
   getFieldError,
-  submitContactForm
-} from './forms';
-export type { FormValidationResult, ContactFormData } from './forms';
+  submitContactForm,
+} from "./forms";
+export type { FormValidationResult, ContactFormData } from "./forms";
 
 // ========================================
 // MCP UTILITIES
 // ========================================
 
-export * from './mcp';
+export * from "./mcp";
 
 // ========================================
 // THEME MANAGEMENT
 // ========================================
 
-export * from './theme-manager';
+export * from "./theme-manager";
 
 // ========================================
 // CONSTANTS
 // ========================================
 
-export * from './constants';
+export * from "./constants";
 
 // ========================================
 // COMMONLY USED EXPORTS
@@ -108,11 +108,7 @@ export * from './constants';
 // Formatting - already exported above
 
 // Performance
-export {
-  PerformanceMonitor,
-  CacheManager,
-  BrowserCache
-} from './performance';
+export { PerformanceMonitor, CacheManager, BrowserCache } from "./performance";
 
 // Error handling
 export {
@@ -120,8 +116,8 @@ export {
   safeAsync,
   withErrorTracking,
   trackMCPError,
-  safeMCPAsync
-} from './error-handling';
+  safeMCPAsync,
+} from "./error-handling";
 
 // Animations
 export {
@@ -130,22 +126,31 @@ export {
   StaggeredAnimator,
   ButtonAnimator,
   createAnimationManager,
-  createDefaultAnimationManager
-} from './animations';
+  createDefaultAnimationManager,
+} from "./animations";
 
 // API
 export {
   createAPIResponse,
   createErrorResponse,
   createSuccessResponse,
-  withAPIMiddleware
-} from './api';
+  withAPIMiddleware,
+} from "./api";
 
 // MCP
-export { mcpOptimizer, mcpWrapper, optimizedMCPCall } from './mcp';
+export { mcpOptimizer, mcpWrapper, optimizedMCPCall } from "./mcp";
 
 // Theme
-export { ThemeManager, initThemeManagement, toggleTheme } from './theme-manager';
+export {
+  ThemeManager,
+  initThemeManagement,
+  toggleTheme,
+} from "./theme-manager";
 
 // Constants
-export { SITE_CONFIG, COMPANY_INFO, createInternalLink, createImagePath } from './constants';
+export {
+  SITE_CONFIG,
+  COMPANY_INFO,
+  createInternalLink,
+  createImagePath,
+} from "./constants";

@@ -6,8 +6,18 @@ interface ModuleImporter<T = unknown> {
 }
 
 // Type guard for requestIdleCallback support
-function hasRequestIdleCallback(win: Window): win is Window & { requestIdleCallback: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number } {
-  return 'requestIdleCallback' in win && typeof win.requestIdleCallback === 'function';
+function hasRequestIdleCallback(
+  win: Window,
+): win is Window & {
+  requestIdleCallback: (
+    callback: IdleRequestCallback,
+    options?: IdleRequestOptions,
+  ) => number;
+} {
+  return (
+    "requestIdleCallback" in win &&
+    typeof win.requestIdleCallback === "function"
+  );
 }
 
 function initializeJSOptimization() {
@@ -44,16 +54,23 @@ function optimizeExistingScripts() {
 }
 
 function adaptiveJSLoading() {
-  if ('connection' in navigator) {
-    const connection = (navigator as Navigator & { connection?: { effectiveType?: string } }).connection;
-    if (connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')) {
+  if ("connection" in navigator) {
+    const connection = (
+      navigator as Navigator & { connection?: { effectiveType?: string } }
+    ).connection;
+    if (
+      connection &&
+      (connection.effectiveType === "slow-2g" ||
+        connection.effectiveType === "2g")
+    ) {
       // Slow connection detected, reducing JS loading
     }
   }
 }
 
 async function initJSOptimization() {
-  const { codeSplitter, taskScheduler, bundleAnalyzer } = initializeJSOptimization();
+  const { codeSplitter, taskScheduler, bundleAnalyzer } =
+    initializeJSOptimization();
 
   optimizeExistingScripts();
   adaptiveJSLoading();
@@ -61,41 +78,61 @@ async function initJSOptimization() {
   // Load non-critical scripts on first user interaction
   const loadNonCriticalScripts = () => {
     // Use direct dynamic imports so bundler includes these modules
-    codeSplitter.importModule(() => import('../analytics.js')).catch((_error) => {
-      // Failed to load non-critical script: analytics
-    });
-    codeSplitter.importModule(() => import('../social-sharing.js')).catch((_error) => {
-      // Failed to load non-critical script: social-sharing
-    });
+    codeSplitter
+      .importModule(() => import("../analytics.js"))
+      .catch((_error) => {
+        // Failed to load non-critical script: analytics
+      });
+    codeSplitter
+      .importModule(() => import("../social-sharing.js"))
+      .catch((_error) => {
+        // Failed to load non-critical script: social-sharing
+      });
     // Enhanced animations removed for performance optimization
 
-    document.removeEventListener('click', loadNonCriticalScripts);
-    document.removeEventListener('scroll', loadNonCriticalScripts);
-    document.removeEventListener('keydown', loadNonCriticalScripts);
+    document.removeEventListener("click", loadNonCriticalScripts);
+    document.removeEventListener("scroll", loadNonCriticalScripts);
+    document.removeEventListener("keydown", loadNonCriticalScripts);
   };
 
-  document.addEventListener('click', loadNonCriticalScripts, { once: true, passive: true });
-  document.addEventListener('scroll', loadNonCriticalScripts, { once: true, passive: true });
-  document.addEventListener('keydown', loadNonCriticalScripts, { once: true, passive: true });
+  document.addEventListener("click", loadNonCriticalScripts, {
+    once: true,
+    passive: true,
+  });
+  document.addEventListener("scroll", loadNonCriticalScripts, {
+    once: true,
+    passive: true,
+  });
+  document.addEventListener("keydown", loadNonCriticalScripts, {
+    once: true,
+    passive: true,
+  });
 
   setTimeout(loadNonCriticalScripts, 10000);
 
   const heavyTasks: Array<() => void | Promise<void>> = [
     async () => {
-      if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-        const animations = await codeSplitter.importModule(() => import('../animations/complex-animations.js'));
+      if (
+        window.matchMedia("(prefers-reduced-motion: no-preference)").matches
+      ) {
+        const animations = await codeSplitter.importModule(
+          () => import("../animations/complex-animations.js"),
+        );
         if (animations && animations.initAllAnimations) {
           animations.initAllAnimations();
         }
       }
     },
     () => {
-      if (localStorage.getItem('analytics-consent') === 'true') {
-        codeSplitter.importModule(() => import('../analytics.js'));
+      if (localStorage.getItem("analytics-consent") === "true") {
+        codeSplitter.importModule(() => import("../analytics.js"));
       }
     },
     () => {
-      if (!/^(localhost|127\.0\.0\.1)$/i.test(location.hostname) && 'serviceWorker' in navigator) {
+      if (
+        !/^(localhost|127\.0\.0\.1)$/i.test(location.hostname) &&
+        "serviceWorker" in navigator
+      ) {
         navigator.serviceWorker.ready.then((registration) => {
           registration.update();
         });
@@ -105,17 +142,17 @@ async function initJSOptimization() {
 
   heavyTasks.forEach((task) => taskScheduler.addTask(task));
 
-  if (window.location.hostname === 'localhost') {
+  if (window.location.hostname === "localhost") {
     setTimeout(() => {
       bundleAnalyzer.analyzeBundleSize();
     }, 5000);
   }
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initJSOptimization);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initJSOptimization);
 } else {
   initJSOptimization();
 }
 
-document.addEventListener('astro:page-load', initJSOptimization);
+document.addEventListener("astro:page-load", initJSOptimization);

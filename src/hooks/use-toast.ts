@@ -1,5 +1,8 @@
 import * as React from "react";
-import { type ToastActionElement, type ToastProps } from "@/components/ui/Toast";
+import {
+  type ToastActionElement,
+  type ToastProps,
+} from "@/components/ui/Toast";
 import { generateId } from "@/lib/core/utils";
 
 const TOAST_LIMIT = 1;
@@ -12,7 +15,7 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement;
 };
 
-type Action = 
+type Action =
   | { type: "ADD_TOAST"; toast: ToasterToast }
   | { type: "UPDATE_TOAST"; toast: Partial<ToasterToast> }
   | { type: "DISMISS_TOAST"; toastId?: ToasterToast["id"] }
@@ -48,7 +51,7 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         toasts: state.toasts.map((t) =>
-          t.id === action.toast.id ? { ...t, ...action.toast } : t
+          t.id === action.toast.id ? { ...t, ...action.toast } : t,
         ),
       };
     case "DISMISS_TOAST":
@@ -61,9 +64,7 @@ export const reducer = (state: State, action: Action): State => {
       return {
         ...state,
         toasts: state.toasts.map((t) =>
-          t.id === toastId || toastId === undefined
-            ? { ...t, open: false }
-            : t
+          t.id === toastId || toastId === undefined ? { ...t, open: false } : t,
         ),
       };
     case "REMOVE_TOAST":
@@ -90,7 +91,7 @@ function dispatch(action: Action) {
 type Toast = Omit<ToasterToast, "id">;
 
 function toast(props: Toast) {
-  const id = generateId('toast');
+  const id = generateId("toast");
   const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id });
 
   dispatch({

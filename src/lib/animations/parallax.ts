@@ -1,8 +1,8 @@
 /**
  * Parallax Animation Module
- * 
+ *
  * Provides parallax scrolling effects for elements.
- * 
+ *
  * @module animations/parallax
  */
 
@@ -11,7 +11,7 @@
  */
 export interface ParallaxOptions {
   speed?: number;
-  direction?: 'up' | 'down' | 'left' | 'right';
+  direction?: "up" | "down" | "left" | "right";
   offset?: number;
   threshold?: number;
 }
@@ -35,14 +35,14 @@ export class ParallaxAnimator {
   public addElement(element: Element, options: ParallaxOptions = {}): void {
     const config: ParallaxOptions = {
       speed: 0.5,
-      direction: 'up',
+      direction: "up",
       offset: 0,
       threshold: 0.1,
-      ...options
+      ...options,
     };
 
     this.elements.set(element, config);
-    
+
     if (!this.isActive) {
       this.start();
     }
@@ -53,7 +53,7 @@ export class ParallaxAnimator {
    */
   public removeElement(element: Element): void {
     this.elements.delete(element);
-    
+
     if (this.elements.size === 0) {
       this.stop();
     }
@@ -64,7 +64,7 @@ export class ParallaxAnimator {
    */
   public start(): void {
     if (this.isActive) return;
-    
+
     this.isActive = true;
     this.handleScroll();
   }
@@ -74,7 +74,7 @@ export class ParallaxAnimator {
    */
   public stop(): void {
     this.isActive = false;
-    
+
     if (this.rafId) {
       cancelAnimationFrame(this.rafId);
       this.rafId = undefined;
@@ -94,30 +94,32 @@ export class ParallaxAnimator {
       const rect = element.getBoundingClientRect();
       const elementTop = rect.top + scrollY;
       const elementHeight = rect.height;
-      
+
       // Check if element is in viewport
       if (rect.bottom >= 0 && rect.top <= windowHeight) {
-        const progress = (scrollY - elementTop + windowHeight) / (windowHeight + elementHeight);
+        const progress =
+          (scrollY - elementTop + windowHeight) /
+          (windowHeight + elementHeight);
         const clampedProgress = Math.max(0, Math.min(1, progress));
-        
-        let transform = '';
+
+        let transform = "";
         const movement = (clampedProgress - 0.5) * options.speed! * 100;
-        
+
         switch (options.direction) {
-          case 'up':
+          case "up":
             transform = `translateY(${-movement}px)`;
             break;
-          case 'down':
+          case "down":
             transform = `translateY(${movement}px)`;
             break;
-          case 'left':
+          case "left":
             transform = `translateX(${-movement}px)`;
             break;
-          case 'right':
+          case "right":
             transform = `translateX(${movement}px)`;
             break;
         }
-        
+
         (element as HTMLElement).style.transform = transform;
       }
     });

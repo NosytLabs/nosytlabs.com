@@ -1,5 +1,5 @@
-import React from 'react';
-import type { BaseComponentProps } from '@/types';
+import React from "react";
+import type { BaseComponentProps } from "@/types";
 
 export interface IconProps extends BaseComponentProps {
   size?: number;
@@ -12,42 +12,42 @@ export interface IconProps extends BaseComponentProps {
 function sanitizeSvg(svg: string): string {
   // Remove potentially dangerous attributes and elements
   return svg
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-    .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
-    .replace(/javascript:/gi, '')
-    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
-    .replace(/style\s*=\s*["'][^"']*expression\([^"']*\)["']/gi, '')
-    .replace(/href\s*=\s*["']javascript:[^"']*["']/gi, '');
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+    .replace(/on\w+\s*=\s*["'][^"']*["']/gi, "")
+    .replace(/javascript:/gi, "")
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, "")
+    .replace(/style\s*=\s*["'][^"']*expression\([^"']*\)["']/gi, "")
+    .replace(/href\s*=\s*["']javascript:[^"']*["']/gi, "");
 }
 
-const Icon: React.FC<IconProps> = ({ 
-  size = 24, 
-  color = 'currentColor', 
-  className, 
-  paths = [], 
-  svg 
+const Icon: React.FC<IconProps> = ({
+  size = 24,
+  color = "currentColor",
+  className,
+  paths = [],
+  svg,
 }) => {
   // If we have a complete SVG string, render it directly
   if (svg) {
     // Sanitize the SVG first to prevent XSS
     const sanitizedSvg = sanitizeSvg(svg);
-    
+
     // Create a modified SVG with the correct size and color
     const modifiedSvg = sanitizedSvg
       .replace(/width="[^"]*"/, `width="${size}"`)
       .replace(/height="[^"]*"/, `height="${size}"`)
       .replace(/stroke="[^"]*"/g, `stroke="${color}"`)
-      .replace(/class="[^"]*"/g, className ? `class="${className}"` : '');
-    
+      .replace(/class="[^"]*"/g, className ? `class="${className}"` : "");
+
     return (
-      <div 
+      <div
         className={className}
-        style={{ 
-          width: size, 
-          height: size, 
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center'
+        style={{
+          width: size,
+          height: size,
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
         dangerouslySetInnerHTML={{ __html: modifiedSvg }}
       />
@@ -68,9 +68,8 @@ const Icon: React.FC<IconProps> = ({
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {Array.isArray(paths) && paths.map((path, index) => (
-        <path key={index} d={path} />
-      ))}
+      {Array.isArray(paths) &&
+        paths.map((path, index) => <path key={index} d={path} />)}
     </svg>
   );
 };

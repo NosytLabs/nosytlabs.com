@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card, CardBody, CardFooter, Chip } from '@heroui/react';
-import { getServiceIcon } from '@/lib/icons/serviceIcons';
+import React from "react";
+import { Card, CardBody, CardFooter, Chip } from "@heroui/react";
+import { getServiceIcon } from "@/lib/icons/serviceIcons";
 
 interface HeroUIServiceCardProps {
   title: string;
@@ -17,7 +17,7 @@ export const HeroUIServiceCard: React.FC<HeroUIServiceCardProps> = ({
   features,
   price,
   icon,
-  href
+  href,
 }) => {
   return (
     <Card
@@ -27,28 +27,26 @@ export const HeroUIServiceCard: React.FC<HeroUIServiceCardProps> = ({
       <CardBody className="p-6 relative overflow-hidden">
         {/* Background gradient on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
+
         {/* Icon with enhanced styling */}
         <div className="w-14 h-14 bg-gradient-to-br from-primary/15 to-accent/15 rounded-xl flex items-center justify-center mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300">
-          <div className="text-primary">
-            {getServiceIcon(icon)}
-          </div>
+          <div className="text-primary">{getServiceIcon(icon)}</div>
           {/* Pulse effect on hover */}
           <div className="absolute inset-0 bg-primary/20 rounded-xl scale-0 group-hover:scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500" />
         </div>
-        
+
         {/* Title with hover effect */}
         <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300 relative z-10">
           {title}
           {/* Underline animation */}
           <div className="h-0.5 bg-gradient-to-r from-primary to-accent mt-1 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
         </h3>
-        
+
         {/* Description */}
         <p className="text-default-600 mb-4 line-clamp-3 leading-relaxed relative z-10">
           {description}
         </p>
-        
+
         {/* Enhanced features list */}
         <div className="space-y-3 mb-6 relative z-10">
           {features.slice(0, 3).map((feature, index) => (
@@ -64,7 +62,7 @@ export const HeroUIServiceCard: React.FC<HeroUIServiceCardProps> = ({
             </div>
           ))}
         </div>
-        
+
         {/* Enhanced price display */}
         {price && (
           <div className="flex items-center justify-between mb-6 relative z-10">
@@ -80,10 +78,10 @@ export const HeroUIServiceCard: React.FC<HeroUIServiceCardProps> = ({
           </div>
         )}
       </CardBody>
-      
+
       <CardFooter className="p-6 pt-0 relative z-10">
-        <a 
-          href={href} 
+        <a
+          href={href}
           className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 group/btn"
         >
           Learn More
@@ -93,7 +91,12 @@ export const HeroUIServiceCard: React.FC<HeroUIServiceCardProps> = ({
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </a>
       </CardFooter>

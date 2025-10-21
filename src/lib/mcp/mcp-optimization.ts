@@ -1,8 +1,11 @@
 // MCP Server Tools Optimization Utilities
 // Builds upon existing error-handler.ts and performance.ts infrastructure
 
-import { trackError, type ErrorSeverity } from '../error-handling/error-handler';
-import { PerformanceMonitor } from '../performance/monitoring';
+import {
+  trackError,
+  type ErrorSeverity,
+} from "../error-handling/error-handler";
+import { PerformanceMonitor } from "../performance/monitoring";
 
 export interface MCPToolConfig {
   name: string;
@@ -34,42 +37,42 @@ export interface MCPHealthStatus {
 
 // Default configurations for MCP tools based on testing results
 const DEFAULT_MCP_CONFIGS: Record<string, MCPToolConfig> = {
-  'desktop-commander': {
-    name: 'Desktop Commander',
+  "desktop-commander": {
+    name: "Desktop Commander",
     enabled: true,
     timeout: 30000,
     retryAttempts: 3,
     retryDelay: 1000,
     healthCheckInterval: 60000,
-    performanceThreshold: 5000
+    performanceThreshold: 5000,
   },
-  'chrome-devtools': {
-    name: 'Chrome DevTools',
+  "chrome-devtools": {
+    name: "Chrome DevTools",
     enabled: true,
     timeout: 45000,
     retryAttempts: 2,
     retryDelay: 2000,
     healthCheckInterval: 30000,
-    performanceThreshold: 10000
+    performanceThreshold: 10000,
   },
-  'brave-search': {
-    name: 'Brave Search',
+  "brave-search": {
+    name: "Brave Search",
     enabled: true,
     timeout: 15000,
     retryAttempts: 3,
     retryDelay: 5000, // Higher delay due to rate limiting
     healthCheckInterval: 120000,
-    performanceThreshold: 3000
+    performanceThreshold: 3000,
   },
-  'sequential-thinking': {
-    name: 'Sequential Thinking',
+  "sequential-thinking": {
+    name: "Sequential Thinking",
     enabled: true,
     timeout: 60000,
     retryAttempts: 1,
     retryDelay: 1000,
     healthCheckInterval: 300000,
-    performanceThreshold: 15000
-  }
+    performanceThreshold: 15000,
+  },
 };
 
 export class MCPOptimizer {
@@ -93,7 +96,7 @@ export class MCPOptimizer {
         lastCheck: new Date(),
         responseTime: 0,
         successRate: 100,
-        errorCount: 0
+        errorCount: 0,
       });
     });
   }
@@ -104,7 +107,7 @@ export class MCPOptimizer {
   async executeWithOptimization<T>(
     toolName: string,
     operation: () => Promise<T>,
-    context?: string
+    context?: string,
   ): Promise<MCPOperationResult<T>> {
     const config = this.configs.get(toolName);
     if (!config || !config.enabled) {
@@ -113,7 +116,7 @@ export class MCPOptimizer {
         error: new Error(`MCP tool ${toolName} is not configured or disabled`),
         duration: 0,
         retryCount: 0,
-        toolName
+        toolName,
       };
     }
 
@@ -132,14 +135,17 @@ export class MCPOptimizer {
         this.updateHealthStatus(toolName, true, duration);
 
         // Track performance
-        this.performanceMonitor.trackCustomMetric(`mcp_${toolName}_duration`, duration);
+        this.performanceMonitor.trackCustomMetric(
+          `mcp_${toolName}_duration`,
+          duration,
+        );
 
         return {
           success: true,
           data: result,
           duration,
           retryCount,
-          toolName
+          toolName,
         };
       } catch (error) {
         lastError = error as Error;
@@ -149,7 +155,11 @@ export class MCPOptimizer {
         this.updateHealthStatus(toolName, false, performance.now() - startTime);
 
         // Track error
-        trackError(lastError, context || `mcp_${toolName}`, this.getErrorSeverity(attempt, config.retryAttempts));
+        trackError(
+          lastError,
+          context || `mcp_${toolName}`,
+          this.getErrorSeverity(attempt, config.retryAttempts),
+        );
 
         // Wait before retry (exponential backoff)
         if (attempt < config.retryAttempts) {
@@ -166,7 +176,7 @@ export class MCPOptimizer {
       error: lastError,
       duration,
       retryCount,
-      toolName
+      toolName,
     };
   }
 
@@ -206,59 +216,81 @@ export class MCPOptimizer {
    */
   getPerformanceRecommendations(): string[] {
     const recommendations: string[] = [];
-    
+
     this.healthStatus.forEach((status, toolName) => {
       if (status.successRate < 90) {
-        recommendations.push(`${status.toolName}: Success rate is ${status.successRate.toFixed(1)}%. Consider increasing retry attempts or timeout.`);
+        recommendations.push(
+          `${status.toolName}: Success rate is ${status.successRate.toFixed(1)}%. Consider increasing retry attempts or timeout.`,
+        );
       }
-      
-      if (status.responseTime > (this.configs.get(toolName)?.performanceThreshold || 5000)) {
-        recommendations.push(`${status.toolName}: Response time is ${status.responseTime}ms. Consider optimizing operations or increasing timeout.`);
+
+      if (
+        status.responseTime >
+        (this.configs.get(toolName)?.performanceThreshold || 5000)
+      ) {
+        recommendations.push(
+          `${status.toolName}: Response time is ${status.responseTime}ms. Consider optimizing operations or increasing timeout.`,
+        );
       }
-      
+
       if (status.errorCount > 10) {
-        recommendations.push(`${status.toolName}: High error count (${status.errorCount}). Review error patterns and consider configuration adjustments.`);
+        recommendations.push(
+          `${status.toolName}: High error count (${status.errorCount}). Review error patterns and consider configuration adjustments.`,
+        );
       }
     });
 
     return recommendations;
   }
 
-  private async withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
+  private async withTimeout<T>(
+    promise: Promise<T>,
+    timeoutMs: number,
+  ): Promise<T> {
     return Promise.race([
       promise,
       new Promise<never>((_, reject) => {
-        setTimeout(() => reject(new Error(`Operation timed out after ${timeoutMs}ms`)), timeoutMs);
-      })
+        setTimeout(
+          () => reject(new Error(`Operation timed out after ${timeoutMs}ms`)),
+          timeoutMs,
+        );
+      }),
     ]);
   }
 
   private sleep(ms: number): Promise<void> {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(resolve, ms);
     });
   }
 
-  private getErrorSeverity(attempt: number, maxAttempts: number): ErrorSeverity {
-    if (attempt === maxAttempts) return 'high';
-    if (attempt > maxAttempts / 2) return 'medium';
-    return 'low';
+  private getErrorSeverity(
+    attempt: number,
+    maxAttempts: number,
+  ): ErrorSeverity {
+    if (attempt === maxAttempts) return "high";
+    if (attempt > maxAttempts / 2) return "medium";
+    return "low";
   }
 
-  private updateHealthStatus(toolName: string, success: boolean, responseTime: number): void {
+  private updateHealthStatus(
+    toolName: string,
+    success: boolean,
+    responseTime: number,
+  ): void {
     const status = this.healthStatus.get(toolName);
     if (!status) return;
 
     status.lastCheck = new Date();
     status.responseTime = responseTime;
-    
+
     if (success) {
       status.successRate = Math.min(100, status.successRate + 0.1);
     } else {
       status.successRate = Math.max(0, status.successRate - 1);
       status.errorCount++;
     }
-    
+
     status.isHealthy = status.successRate > 80 && status.errorCount < 20;
   }
 
@@ -267,7 +299,7 @@ export class MCPOptimizer {
       const interval = setInterval(() => {
         this.performHealthCheck(toolName);
       }, config.healthCheckInterval);
-      
+
       this.healthCheckIntervals.set(toolName, interval);
     });
   }
@@ -285,7 +317,7 @@ export class MCPOptimizer {
    * Cleanup resources
    */
   cleanup(): void {
-    this.healthCheckIntervals.forEach(interval => clearInterval(interval));
+    this.healthCheckIntervals.forEach((interval) => clearInterval(interval));
     this.healthCheckIntervals.clear();
     this.performanceMonitor.cleanup();
   }
@@ -298,7 +330,7 @@ export const mcpOptimizer = new MCPOptimizer();
 export const optimizedMCPCall = <T>(
   toolName: string,
   operation: () => Promise<T>,
-  context?: string
+  context?: string,
 ): Promise<MCPOperationResult<T>> => {
   return mcpOptimizer.executeWithOptimization(toolName, operation, context);
 };

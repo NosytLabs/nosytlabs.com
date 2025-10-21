@@ -3,9 +3,9 @@
 // Import Astro components directly: import Button from '@/components/ui/Button.astro'
 
 // React Components (only export existing files)
-export { Input } from './input';
-export { ReactIcon } from './ReactIcon';
-export { HeroUIServiceCard } from './HeroUIServiceCard';
+export { Input } from "./input";
+export { ReactIcon } from "./ReactIcon";
+export { HeroUIServiceCard } from "./HeroUIServiceCard";
 
 // Astro components - import directly:
 // import Button from '@/components/ui/Button.astro';

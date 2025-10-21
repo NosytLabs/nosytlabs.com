@@ -1,13 +1,17 @@
 /**
  * MCP Error Handling Utilities
- * 
+ *
  * Specialized error handling for MCP (Model Context Protocol) operations
  * including error classification, retry logic, and statistics tracking.
- * 
+ *
  * @module error-handling/mcp-errors
  */
 
-import { ErrorHandler, type ErrorContext, type ErrorSeverity } from './error-handler';
+import {
+  ErrorHandler,
+  type ErrorContext,
+  type ErrorSeverity,
+} from "./error-handler";
 
 // ========================================
 // TYPE DEFINITIONS
@@ -27,14 +31,14 @@ export interface MCPErrorContext extends ErrorContext {
  * MCP error types for classification
  */
 export enum MCPErrorType {
-  CONNECTION_REFUSED = 'connection_refused',
-  TIMEOUT = 'timeout',
-  PERMISSION_DENIED = 'permission_denied',
-  FILE_NOT_FOUND = 'file_not_found',
-  INVALID_PATH = 'invalid_path',
-  RATE_LIMITED = 'rate_limited',
-  SERVER_ERROR = 'server_error',
-  UNKNOWN = 'unknown'
+  CONNECTION_REFUSED = "connection_refused",
+  TIMEOUT = "timeout",
+  PERMISSION_DENIED = "permission_denied",
+  FILE_NOT_FOUND = "file_not_found",
+  INVALID_PATH = "invalid_path",
+  RATE_LIMITED = "rate_limited",
+  SERVER_ERROR = "server_error",
+  UNKNOWN = "unknown",
 }
 
 // ========================================
@@ -44,24 +48,27 @@ export enum MCPErrorType {
 /**
  * MCP Error Handler
  * Specialized error handler for MCP operations with retry logic and statistics.
- * 
+ *
  * @example
  * ```typescript
  * const handler = MCPErrorHandler.getInstance();
- * 
+ *
  * // Classify error
  * const errorType = handler.classifyError(error);
- * 
+ *
  * // Check if should retry
  * const shouldRetry = handler.shouldRetry(error, retryCount);
- * 
+ *
  * // Get retry delay
  * const delay = handler.getRetryDelay(errorType, retryCount);
  * ```
  */
 export class MCPErrorHandler {
   private static instance: MCPErrorHandler;
-  private errorStats = new Map<string, { count: number; lastOccurrence: number }>();
+  private errorStats = new Map<
+    string,
+    { count: number; lastOccurrence: number }
+  >();
 
   private constructor() {}
 
@@ -77,56 +84,71 @@ export class MCPErrorHandler {
 
   /**
    * Track MCP-specific error
-   * 
+   *
    * @param context - Error context
    * @param message - Error message
    */
   public trackMCPError(context: string, message: string): void {
     const key = `${context}:${message}`;
-    const existing = this.errorStats.get(key) || { count: 0, lastOccurrence: 0 };
+    const existing = this.errorStats.get(key) || {
+      count: 0,
+      lastOccurrence: 0,
+    };
     this.errorStats.set(key, {
       count: existing.count + 1,
-      lastOccurrence: Date.now()
+      lastOccurrence: Date.now(),
     });
   }
 
   /**
    * Get MCP error statistics
-   * 
+   *
    * @returns Map of error statistics
    */
-  public getErrorStats(): Map<string, { count: number; lastOccurrence: number }> {
+  public getErrorStats(): Map<
+    string,
+    { count: number; lastOccurrence: number }
+  > {
     return new Map(this.errorStats);
   }
 
   /**
    * Classify MCP error by type
-   * 
+   *
    * @param error - Error to classify
    * @returns Error type
    */
   public classifyError(error: Error): MCPErrorType {
     const message = error.message.toLowerCase();
 
-    if (message.includes('connection refused') || message.includes('econnrefused')) {
+    if (
+      message.includes("connection refused") ||
+      message.includes("econnrefused")
+    ) {
       return MCPErrorType.CONNECTION_REFUSED;
     }
-    if (message.includes('timeout') || message.includes('etimedout')) {
+    if (message.includes("timeout") || message.includes("etimedout")) {
       return MCPErrorType.TIMEOUT;
     }
-    if (message.includes('permission denied') || message.includes('eacces')) {
+    if (message.includes("permission denied") || message.includes("eacces")) {
       return MCPErrorType.PERMISSION_DENIED;
     }
-    if (message.includes('no such file') || message.includes('enoent')) {
+    if (message.includes("no such file") || message.includes("enoent")) {
       return MCPErrorType.FILE_NOT_FOUND;
     }
-    if (message.includes('invalid path') || message.includes('malformed')) {
+    if (message.includes("invalid path") || message.includes("malformed")) {
       return MCPErrorType.INVALID_PATH;
     }
-    if (message.includes('rate limit') || message.includes('too many requests')) {
+    if (
+      message.includes("rate limit") ||
+      message.includes("too many requests")
+    ) {
       return MCPErrorType.RATE_LIMITED;
     }
-    if (message.includes('server error') || message.includes('internal error')) {
+    if (
+      message.includes("server error") ||
+      message.includes("internal error")
+    ) {
       return MCPErrorType.SERVER_ERROR;
     }
 
@@ -135,7 +157,7 @@ export class MCPErrorHandler {
 
   /**
    * Check if MCP operation should be retried
-   * 
+   *
    * @param error - Error that occurred
    * @param retryCount - Current retry count
    * @returns True if should retry
@@ -149,7 +171,7 @@ export class MCPErrorHandler {
 
   /**
    * Get maximum retries for error type
-   * 
+   *
    * @param errorType - Type of error
    * @returns Maximum retry count
    */
@@ -173,7 +195,7 @@ export class MCPErrorHandler {
 
   /**
    * Get retry delay for error type
-   * 
+   *
    * @param errorType - Type of error
    * @param retryCount - Current retry count
    * @returns Delay in milliseconds
@@ -211,13 +233,13 @@ export class MCPErrorHandler {
 
 /**
  * Track MCP-specific error with enhanced context
- * 
+ *
  * @param error - Error to track
  * @param mcpServer - MCP server name
  * @param operation - Operation name
  * @param retryCount - Current retry count
  * @param severity - Error severity
- * 
+ *
  * @example
  * ```typescript
  * try {
@@ -232,7 +254,7 @@ export function trackMCPError(
   mcpServer: string,
   operation: string,
   retryCount: number = 0,
-  severity: ErrorSeverity = 'medium'
+  severity: ErrorSeverity = "medium",
 ): void {
   const handler = ErrorHandler.getInstance();
   const mcpHandler = MCPErrorHandler.getInstance();
@@ -241,7 +263,7 @@ export function trackMCPError(
     mcpServer,
     operation,
     retryCount,
-    lastError: error.message
+    lastError: error.message,
   };
 
   handler.trackError(error, `mcp_${mcpServer}_${operation}`, severity, context);
@@ -250,14 +272,14 @@ export function trackMCPError(
 
 /**
  * Safe async operation with MCP-specific retry logic
- * 
+ *
  * @param operation - Async operation to execute
  * @param fallback - Fallback value if operation fails
  * @param mcpServer - MCP server name
  * @param operationName - Operation name
  * @param maxRetries - Maximum retry attempts
  * @returns Operation result or fallback
- * 
+ *
  * @example
  * ```typescript
  * const result = await safeMCPAsync(
@@ -274,7 +296,7 @@ export async function safeMCPAsync<T>(
   fallback: T,
   mcpServer: string,
   operationName: string,
-  maxRetries: number = 3
+  maxRetries: number = 3,
 ): Promise<T> {
   const mcpHandler = MCPErrorHandler.getInstance();
   let lastError: Error | null = null;
@@ -285,19 +307,23 @@ export async function safeMCPAsync<T>(
       // eslint-disable-next-line no-await-in-loop
       return await operation();
     } catch (error) {
-      lastError = error instanceof Error ? error : new Error('MCP operation failed');
+      lastError =
+        error instanceof Error ? error : new Error("MCP operation failed");
 
       // Track the error
       trackMCPError(lastError, mcpServer, operationName, retryCount);
 
       // Check if we should retry
-      if (retryCount < maxRetries && mcpHandler.shouldRetry(lastError, retryCount)) {
+      if (
+        retryCount < maxRetries &&
+        mcpHandler.shouldRetry(lastError, retryCount)
+      ) {
         const errorType = mcpHandler.classifyError(lastError);
         const delay = mcpHandler.getRetryDelay(errorType, retryCount);
 
         console.warn(
           `MCP operation failed, retrying in ${delay}ms (attempt ${retryCount + 1}/${maxRetries + 1}):`,
-          lastError.message
+          lastError.message,
         );
         // eslint-disable-next-line no-await-in-loop, no-promise-executor-return
         await new Promise((resolve) => setTimeout(resolve, delay));
@@ -311,7 +337,7 @@ export async function safeMCPAsync<T>(
 
   // All retries exhausted, track final error and return fallback
   if (lastError) {
-    trackMCPError(lastError, mcpServer, operationName, maxRetries, 'high');
+    trackMCPError(lastError, mcpServer, operationName, maxRetries, "high");
   }
 
   return fallback;
@@ -319,10 +345,13 @@ export async function safeMCPAsync<T>(
 
 /**
  * Get MCP error statistics
- * 
+ *
  * @returns Error statistics
  */
-export function getMCPErrorStats(): Map<string, { count: number; lastOccurrence: number }> {
+export function getMCPErrorStats(): Map<
+  string,
+  { count: number; lastOccurrence: number }
+> {
   return MCPErrorHandler.getInstance().getErrorStats();
 }
 

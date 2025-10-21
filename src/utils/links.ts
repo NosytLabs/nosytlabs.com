@@ -1,35 +1,38 @@
 /**
  * Link Utilities
- * 
+ *
  * Utilities for creating and managing internal and external links
- * 
+ *
  * @module utils/links
  */
 
 // Re-export the createInternalLink function from constants
-export { createInternalLink } from '@/lib/constants';
+export { createInternalLink } from "@/lib/constants";
 
 /**
  * Creates an external link with proper attributes
- * 
+ *
  * @param url - The external URL
  * @param options - Link options
  * @returns External link attributes
  */
-export function createExternalLink(url: string, options: {
-  target?: string;
-  rel?: string;
-} = {}) {
+export function createExternalLink(
+  url: string,
+  options: {
+    target?: string;
+    rel?: string;
+  } = {},
+) {
   return {
     href: url,
-    target: options.target || '_blank',
-    rel: options.rel || 'noopener noreferrer'
+    target: options.target || "_blank",
+    rel: options.rel || "noopener noreferrer",
   };
 }
 
 /**
  * Checks if a URL is external
- * 
+ *
  * @param url - URL to check
  * @returns True if external, false if internal
  */
@@ -45,11 +48,11 @@ export function isExternalUrl(url: string): boolean {
 
 /**
  * Normalizes a URL path
- * 
+ *
  * @param path - Path to normalize
  * @returns Normalized path
  */
 export function normalizePath(path: string): string {
   // Remove double slashes and ensure proper format
-  return path.replace(/\/+/g, '/').replace(/\/$/, '') || '/';
+  return path.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
 }

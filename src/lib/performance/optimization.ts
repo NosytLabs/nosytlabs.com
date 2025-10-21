@@ -1,9 +1,9 @@
 /**
  * Performance Optimization Utilities
- * 
+ *
  * JavaScript and resource optimization utilities including code splitting,
  * lazy loading, task scheduling, and bundle analysis.
- * 
+ *
  * @module performance/optimization
  */
 
@@ -15,7 +15,7 @@
  * JavaScript loading options
  */
 export interface JSLoadOptions {
-  priority?: 'high' | 'low';
+  priority?: "high" | "low";
   defer?: boolean;
   async?: boolean;
   preload?: boolean;
@@ -28,17 +28,20 @@ export interface JSLoadOptions {
 
 /**
  * Dynamically load JavaScript with performance optimizations
- * 
+ *
  * @param src - Script source URL
  * @param options - Loading options
  * @returns Promise that resolves when script is loaded
- * 
+ *
  * @example
  * ```typescript
  * await loadJS('/scripts/analytics.js', { async: true, defer: true });
  * ```
  */
-export function loadJS(src: string, options: JSLoadOptions = {}): Promise<void> {
+export function loadJS(
+  src: string,
+  options: JSLoadOptions = {},
+): Promise<void> {
   return new Promise((resolve, reject) => {
     // Check if script is already loaded
     if (document.querySelector(`script[src="${src}"]`)) {
@@ -46,13 +49,13 @@ export function loadJS(src: string, options: JSLoadOptions = {}): Promise<void> 
       return;
     }
 
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = src;
 
     // Set loading attributes
     if (options.defer) script.defer = true;
     if (options.async) script.async = true;
-    if (options.module) script.type = 'module';
+    if (options.module) script.type = "module";
 
     // Add loading event listeners
     script.onload = () => resolve();
@@ -60,9 +63,9 @@ export function loadJS(src: string, options: JSLoadOptions = {}): Promise<void> 
 
     // Preload if specified
     if (options.preload) {
-      const preloadLink = document.createElement('link');
-      preloadLink.rel = 'preload';
-      preloadLink.as = 'script';
+      const preloadLink = document.createElement("link");
+      preloadLink.rel = "preload";
+      preloadLink.as = "script";
       preloadLink.href = src;
       preloadLink.onload = () => {
         document.head.appendChild(script);
@@ -76,11 +79,11 @@ export function loadJS(src: string, options: JSLoadOptions = {}): Promise<void> 
 
 /**
  * Load JavaScript conditionally based on user interaction
- * 
+ *
  * @param src - Script source URL
  * @param events - Events to trigger loading
  * @returns Promise that resolves when script is loaded
- * 
+ *
  * @example
  * ```typescript
  * await loadJSOnInteraction('/scripts/chat.js', ['click', 'scroll']);
@@ -88,7 +91,7 @@ export function loadJS(src: string, options: JSLoadOptions = {}): Promise<void> 
  */
 export function loadJSOnInteraction(
   src: string,
-  events: string[] = ['click', 'scroll', 'keydown']
+  events: string[] = ["click", "scroll", "keydown"],
 ): Promise<void> {
   return new Promise((resolve) => {
     const loadScript = () => {
@@ -101,7 +104,10 @@ export function loadJSOnInteraction(
 
     // Add event listeners
     events.forEach((event) => {
-      document.addEventListener(event, loadScript, { once: true, passive: true });
+      document.addEventListener(event, loadScript, {
+        once: true,
+        passive: true,
+      });
     });
 
     // Fallback: load after 5 seconds if no interaction
@@ -111,11 +117,11 @@ export function loadJSOnInteraction(
 
 /**
  * Load JavaScript based on viewport visibility
- * 
+ *
  * @param src - Script source URL
  * @param selector - Element selector to observe
  * @returns Promise that resolves when script is loaded
- * 
+ *
  * @example
  * ```typescript
  * await loadJSOnVisible('/scripts/video-player.js', '#video-container');
@@ -140,9 +146,9 @@ export function loadJSOnVisible(src: string, selector: string): Promise<void> {
         });
       },
       {
-        rootMargin: '50px 0px',
-        threshold: 0.1
-      }
+        rootMargin: "50px 0px",
+        threshold: 0.1,
+      },
     );
 
     observer.observe(target);
@@ -155,7 +161,7 @@ export function loadJSOnVisible(src: string, selector: string): Promise<void> {
 
 /**
  * Code splitting utility for dynamic imports with caching
- * 
+ *
  * @example
  * ```typescript
  * const splitter = new CodeSplitter();
@@ -168,7 +174,7 @@ export class CodeSplitter {
 
   /**
    * Dynamically import a module with caching
-   * 
+   *
    * @param modulePath - Module path to import
    * @returns Imported module
    */
@@ -201,41 +207,46 @@ export class CodeSplitter {
 
   /**
    * Preload a module without executing it
-   * 
+   *
    * @param modulePath - Module path to preload
    */
   public preloadModule(modulePath: string): void {
-    if (typeof document === 'undefined') return;
+    if (typeof document === "undefined") return;
 
-    const link = document.createElement('link');
-    link.rel = 'modulepreload';
+    const link = document.createElement("link");
+    link.rel = "modulepreload";
     link.href = modulePath;
     document.head.appendChild(link);
   }
 
   /**
    * Load module on user interaction
-   * 
+   *
    * @param modulePath - Module path to import
    * @param events - Events to trigger loading
    * @returns Promise that resolves with imported module
    */
   public loadModuleOnInteraction<T = unknown>(
     modulePath: string,
-    events: string[] = ['click', 'scroll']
+    events: string[] = ["click", "scroll"],
   ): Promise<T> {
     return new Promise((resolve) => {
       const loadModule = () => {
-        this.importModule<T>(modulePath).then(resolve).catch(() => {
-          // Error loading module on interaction
-        });
+        this.importModule<T>(modulePath)
+          .then(resolve)
+          .catch(() => {
+            // Error loading module on interaction
+          });
         events.forEach((event) => {
           document.removeEventListener(event, loadModule);
         });
       };
 
       events.forEach((event) => {
-        document.addEventListener(event, loadModule, { once: true, passive: true });
+        document.addEventListener(event, loadModule, {
+          once: true,
+          passive: true,
+        });
       });
     });
   }
@@ -250,13 +261,13 @@ export class CodeSplitter {
 
   /**
    * Get cache statistics
-   * 
+   *
    * @returns Cache statistics
    */
   public getCacheStats(): { loaded: number; loading: number } {
     return {
       loaded: this.loadedModules.size,
-      loading: this.loadingPromises.size
+      loading: this.loadingPromises.size,
     };
   }
 }
@@ -268,7 +279,7 @@ export class CodeSplitter {
 /**
  * Task scheduler for breaking up long-running tasks
  * Prevents blocking the main thread by time-slicing tasks.
- * 
+ *
  * @example
  * ```typescript
  * const scheduler = new TaskScheduler();
@@ -283,7 +294,7 @@ export class TaskScheduler {
 
   /**
    * Add a task to the queue
-   * 
+   *
    * @param task - Task function to execute
    */
   public addTask(task: () => void): void {
@@ -295,7 +306,7 @@ export class TaskScheduler {
 
   /**
    * Add multiple tasks to the queue
-   * 
+   *
    * @param tasks - Array of task functions
    */
   public addTasks(tasks: (() => void)[]): void {
@@ -315,13 +326,16 @@ export class TaskScheduler {
       const start = performance.now();
 
       // Process tasks for up to timeSlice ms
-      while (this.taskQueue.length > 0 && performance.now() - start < this.timeSlice) {
+      while (
+        this.taskQueue.length > 0 &&
+        performance.now() - start < this.timeSlice
+      ) {
         const task = this.taskQueue.shift();
         if (task) {
           try {
             task();
           } catch (error) {
-            console.error('Task execution error:', error);
+            console.error("Task execution error:", error);
           }
         }
       }
@@ -342,12 +356,23 @@ export class TaskScheduler {
    */
   private scheduleNextChunk(callback: () => void): void {
     const windowWithScheduler = window as Window & {
-      scheduler?: { postTask: (callback: () => void, options?: { priority: string }) => void };
+      scheduler?: {
+        postTask: (
+          callback: () => void,
+          options?: { priority: string },
+        ) => void;
+      };
     };
 
-    if ('scheduler' in window && windowWithScheduler.scheduler && 'postTask' in windowWithScheduler.scheduler) {
-      windowWithScheduler.scheduler.postTask(callback, { priority: 'background' });
-    } else if ('requestIdleCallback' in window) {
+    if (
+      "scheduler" in window &&
+      windowWithScheduler.scheduler &&
+      "postTask" in windowWithScheduler.scheduler
+    ) {
+      windowWithScheduler.scheduler.postTask(callback, {
+        priority: "background",
+      });
+    } else if ("requestIdleCallback" in window) {
       requestIdleCallback(callback);
     } else {
       setTimeout(callback, 0);
@@ -364,19 +389,19 @@ export class TaskScheduler {
 
   /**
    * Get queue statistics
-   * 
+   *
    * @returns Queue statistics
    */
   public getQueueStats(): { pending: number; isRunning: boolean } {
     return {
       pending: this.taskQueue.length,
-      isRunning: this.isRunning
+      isRunning: this.isRunning,
     };
   }
 
   /**
    * Set time slice duration
-   * 
+   *
    * @param ms - Time slice in milliseconds
    */
   public setTimeSlice(ms: number): void {
@@ -390,7 +415,7 @@ export class TaskScheduler {
 
 /**
  * JavaScript bundle analyzer for tracking script loading performance
- * 
+ *
  * @example
  * ```typescript
  * const analyzer = new BundleAnalyzer();
@@ -403,11 +428,12 @@ export class BundleAnalyzer {
 
   /**
    * Track script loading performance
-   * 
+   *
    * @param src - Script source URL
    */
   public trackScriptLoad(src: string): void {
-    if (typeof performance === 'undefined' || !performance.getEntriesByType) return;
+    if (typeof performance === "undefined" || !performance.getEntriesByType)
+      return;
 
     const observer = new PerformanceObserver((list) => {
       const entries = list.getEntries();
@@ -419,7 +445,7 @@ export class BundleAnalyzer {
     });
 
     try {
-      observer.observe({ entryTypes: ['resource'] });
+      observer.observe({ entryTypes: ["resource"] });
     } catch (_error) {
       // PerformanceObserver not supported
     }
@@ -427,7 +453,7 @@ export class BundleAnalyzer {
 
   /**
    * Get loading performance report
-   * 
+   *
    * @returns Performance report object
    */
   public getPerformanceReport(): Record<string, number> {
@@ -438,7 +464,8 @@ export class BundleAnalyzer {
    * Analyze bundle size impact
    */
   public analyzeBundleSize(): void {
-    if (typeof performance === 'undefined' || !performance.getEntriesByType) return;
+    if (typeof performance === "undefined" || !performance.getEntriesByType)
+      return;
 
     // const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
     // const jsResources = resources.filter(
@@ -453,18 +480,25 @@ export class BundleAnalyzer {
 
   /**
    * Get total bundle size
-   * 
+   *
    * @returns Total size in bytes
    */
   public getTotalBundleSize(): number {
-    if (typeof performance === 'undefined' || !performance.getEntriesByType) return 0;
+    if (typeof performance === "undefined" || !performance.getEntriesByType)
+      return 0;
 
-    const resources = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+    const resources = performance.getEntriesByType(
+      "resource",
+    ) as PerformanceResourceTiming[];
     const jsResources = resources.filter(
-      (resource) => resource.name.endsWith('.js') || resource.name.endsWith('.mjs')
+      (resource) =>
+        resource.name.endsWith(".js") || resource.name.endsWith(".mjs"),
     );
 
-    return jsResources.reduce((total, resource) => total + (resource.transferSize || 0), 0);
+    return jsResources.reduce(
+      (total, resource) => total + (resource.transferSize || 0),
+      0,
+    );
   }
 }
 
@@ -474,7 +508,7 @@ export class BundleAnalyzer {
 
 /**
  * Web Worker utility for offloading heavy computations
- * 
+ *
  * @example
  * ```typescript
  * const manager = new WebWorkerManager();
@@ -486,7 +520,7 @@ export class WebWorkerManager {
 
   /**
    * Create or get a web worker
-   * 
+   *
    * @param name - Worker name
    * @param scriptPath - Worker script path
    * @returns Worker instance
@@ -501,13 +535,17 @@ export class WebWorkerManager {
 
   /**
    * Execute a task in a web worker
-   * 
+   *
    * @param workerName - Worker name
    * @param scriptPath - Worker script path
    * @param data - Data to send to worker
    * @returns Promise that resolves with worker result
    */
-  public executeInWorker<T = unknown>(workerName: string, scriptPath: string, data: unknown): Promise<T> {
+  public executeInWorker<T = unknown>(
+    workerName: string,
+    scriptPath: string,
+    data: unknown,
+  ): Promise<T> {
     return new Promise((resolve, reject) => {
       const worker = this.getWorker(workerName, scriptPath);
 
@@ -525,7 +563,7 @@ export class WebWorkerManager {
 
   /**
    * Terminate a specific worker
-   * 
+   *
    * @param name - Worker name
    */
   public terminateWorker(name: string): void {
@@ -551,7 +589,7 @@ export class WebWorkerManager {
 
 /**
  * Initialize JavaScript optimization
- * 
+ *
  * @returns Optimization utilities
  */
 export function initializeJSOptimization(): {
@@ -564,13 +602,37 @@ export function initializeJSOptimization(): {
   const bundleAnalyzer = new BundleAnalyzer();
 
   // Determine base URL and helper to resolve library paths
-  const baseUrl = (typeof window !== 'undefined' && (window as { __BASE_URL__?: string }).__BASE_URL__) || '/';
-  const libPath = (name: string) => (baseUrl && baseUrl !== '/') ? `${baseUrl}src/lib/${name}` : `/src/lib/${name}`;
+  const baseUrl =
+    (typeof window !== "undefined" &&
+      (window as { __BASE_URL__?: string }).__BASE_URL__) ||
+    "/";
+  const libPath = (name: string) =>
+    baseUrl && baseUrl !== "/"
+      ? `${baseUrl}src/lib/${name}`
+      : `/src/lib/${name}`;
 
   // Use optional configuration provided at runtime to avoid referencing non-existent modules
-  const jsOptConfig = (typeof window !== 'undefined' && (window as { __JS_OPTIMIZATION_CONFIG__?: { criticalModules?: string[]; nonCriticalModules?: string[] } }).__JS_OPTIMIZATION_CONFIG__) || {};
-  const configuredCritical: string[] = Array.isArray(jsOptConfig.criticalModules) ? jsOptConfig.criticalModules : [];
-  const configuredNonCritical: string[] = Array.isArray(jsOptConfig.nonCriticalModules) ? jsOptConfig.nonCriticalModules : [];
+  const jsOptConfig =
+    (typeof window !== "undefined" &&
+      (
+        window as {
+          __JS_OPTIMIZATION_CONFIG__?: {
+            criticalModules?: string[];
+            nonCriticalModules?: string[];
+          };
+        }
+      ).__JS_OPTIMIZATION_CONFIG__) ||
+    {};
+  const configuredCritical: string[] = Array.isArray(
+    jsOptConfig.criticalModules,
+  )
+    ? jsOptConfig.criticalModules
+    : [];
+  const configuredNonCritical: string[] = Array.isArray(
+    jsOptConfig.nonCriticalModules,
+  )
+    ? jsOptConfig.nonCriticalModules
+    : [];
 
   // Resolve and preload only configured critical modules
   const criticalModules = configuredCritical.map((name) => libPath(name));
@@ -581,7 +643,11 @@ export function initializeJSOptimization(): {
   // Resolve and load non-critical modules on interaction
   const nonCriticalModules = configuredNonCritical.map((name) => libPath(name));
   nonCriticalModules.forEach((module) => {
-    codeSplitter.loadModuleOnInteraction(module, ['click', 'scroll', 'keydown']);
+    codeSplitter.loadModuleOnInteraction(module, [
+      "click",
+      "scroll",
+      "keydown",
+    ]);
   });
 
   return { codeSplitter, taskScheduler, bundleAnalyzer };
@@ -591,21 +657,23 @@ export function initializeJSOptimization(): {
  * Optimize existing scripts for better performance
  */
 export function optimizeExistingScripts(): void {
-  if (typeof document === 'undefined') return;
+  if (typeof document === "undefined") return;
 
   // Add defer to non-critical scripts
-  const scripts = document.querySelectorAll('script[src]:not([defer]):not([async])');
+  const scripts = document.querySelectorAll(
+    "script[src]:not([defer]):not([async])",
+  );
   scripts.forEach((script) => {
-    const src = script.getAttribute('src');
-    if (src && !src.includes('critical') && !src.includes('inline')) {
-      script.setAttribute('defer', 'true');
+    const src = script.getAttribute("src");
+    if (src && !src.includes("critical") && !src.includes("inline")) {
+      script.setAttribute("defer", "true");
     }
   });
 
   // Add loading="lazy" to non-critical iframes
-  const iframes = document.querySelectorAll('iframe:not([loading])');
+  const iframes = document.querySelectorAll("iframe:not([loading])");
   iframes.forEach((iframe) => {
-    iframe.setAttribute('loading', 'lazy');
+    iframe.setAttribute("loading", "lazy");
   });
 }
 
@@ -614,32 +682,49 @@ export function optimizeExistingScripts(): void {
  * Adapts JavaScript loading based on network conditions
  */
 export function adaptiveJSLoading(): void {
-  if (typeof navigator === 'undefined' || !('connection' in navigator)) return;
+  if (typeof navigator === "undefined" || !("connection" in navigator)) return;
 
-  const connection = (navigator as Navigator & {
-    connection?: { effectiveType: string; downlink: number; saveData: boolean };
-  }).connection;
+  const connection = (
+    navigator as Navigator & {
+      connection?: {
+        effectiveType: string;
+        downlink: number;
+        saveData: boolean;
+      };
+    }
+  ).connection;
 
   if (!connection) return;
 
   const { effectiveType, downlink, saveData } = connection;
 
   // Reduce JavaScript loading on slow connections or data saver mode
-  if (effectiveType === 'slow-2g' || effectiveType === '2g' || saveData || downlink < 1) {
+  if (
+    effectiveType === "slow-2g" ||
+    effectiveType === "2g" ||
+    saveData ||
+    downlink < 1
+  ) {
     // Slow connection detected, reducing JavaScript loading
 
     // Remove non-essential scripts
-    const nonEssentialScripts = document.querySelectorAll('script[data-priority="low"]');
+    const nonEssentialScripts = document.querySelectorAll(
+      'script[data-priority="low"]',
+    );
     nonEssentialScripts.forEach((script) => script.remove());
 
     return;
   }
 
   // Preload additional scripts on fast connections
-  if (effectiveType === '4g' && downlink > 10) {
+  if (effectiveType === "4g" && downlink > 10) {
     // Fast connection detected, preloading additional scripts
 
-    const additionalScripts = ['/js/animations.js', '/js/analytics.js', '/js/enhanced-features.js'];
+    const additionalScripts = [
+      "/js/animations.js",
+      "/js/analytics.js",
+      "/js/enhanced-features.js",
+    ];
 
     additionalScripts.forEach((src) => {
       loadJS(src, { preload: true, async: true }).catch(() => {

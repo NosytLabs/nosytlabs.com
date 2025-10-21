@@ -1,8 +1,8 @@
 /**
  * Common Type Definitions
- * 
+ *
  * Shared types used across multiple modules in the application.
- * 
+ *
  * @module types/common
  */
 
@@ -70,27 +70,27 @@ export type Maybe<T> = T | null | undefined;
 /**
  * Size variants
  */
-export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type Size = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 /**
  * Status types
  */
-export type Status = 'idle' | 'loading' | 'success' | 'error';
+export type Status = "idle" | "loading" | "success" | "error";
 
 /**
  * Direction types
  */
-export type Direction = 'horizontal' | 'vertical';
+export type Direction = "horizontal" | "vertical";
 
 /**
  * Position types
  */
-export type Position = 'top' | 'right' | 'bottom' | 'left';
+export type Position = "top" | "right" | "bottom" | "left";
 
 /**
  * Alignment types
  */
-export type Alignment = 'left' | 'center' | 'right' | 'justify';
+export type Alignment = "left" | "center" | "right" | "justify";
 
 // ========================================
 // COMMON INTERFACES
@@ -119,7 +119,7 @@ export interface PaginationParams {
  */
 export interface SortParams {
   sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
+  sortOrder?: "asc" | "desc";
 }
 
 /**
