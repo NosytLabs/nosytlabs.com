@@ -66,7 +66,7 @@ const {
       </div>
 
       <!-- CTA Buttons -->
-      <div class="cta-actions">
+      <div class="cta-actions mt-8">
         {(primaryCTA || cta1) && (
           <a href={(primaryCTA || cta1)?.href || createInternalLink("/contact")} class="btn btn-primary btn-lg">
             {(primaryCTA || cta1)?.text || "Get a Free Quote"}
@@ -87,7 +87,7 @@ const {
 
       <!-- Stats -->
       {showStats && (
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-12 md:mt-16">
           {stats.map((stat) => (
             <div class="text-center">
               <div class="stat-value">

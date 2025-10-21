@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { User, Mail, MessageSquare, Briefcase, Send, Loader2, X } from "lucide-react";
+import {
+  UserIcon as User,
+  MailIcon as Mail,
+  MessageSquareIcon as MessageSquare,
+  BriefcaseIcon as Briefcase,
+  SendIcon as Send,
+  Loader2Icon as Loader2,
+  XIcon as X,
+} from "@/components/ui/FormIcons";
 import {
   validateContactForm,
   type ContactFormData,

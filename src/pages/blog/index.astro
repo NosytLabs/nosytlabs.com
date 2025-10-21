@@ -63,14 +63,14 @@ const blogJsonLd = {
   <!-- Search Section -->
   <Section background="muted" spacing="md">
     <Container size="narrow">
-      <div class="text-center">
+      <div class="text-center mb-4">
         <BlogSearch posts={posts} client:load />
       </div>
     </Container>
   </Section>
 
   <!-- Blog Posts Grid -->
-  <Section background="default" spacing="md">
+  <Section background="default" spacing="lg">
     <Container size="standard">
       {posts.length === 0 ? (
         <div class="text-center py-16">
@@ -86,7 +86,7 @@ const blogJsonLd = {
           </Button>
         </div>
       ) : (
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {posts.map((post: BlogPost) => (
             <article class="group relative bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border">
               {post.data.heroImage && (

@@ -123,8 +123,11 @@ const breadcrumbJsonLd = {
   <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbJsonLd)} />
   
   <div class="min-h-screen bg-gradient-to-br from-background via-card to-primary/10 dark:from-background dark:via-muted dark:to-primary/20">
-<article class="container py-20">
-      <Breadcrumbs items={[{ name: 'Home', url: createInternalLink('/') }, { name: 'Blog', url: createInternalLink('/blog') }, { name: post.data.title }]} />
+<article class="container py-16 md:py-24">
+      <div class="mb-6">
+        <Breadcrumbs items={[{ name: 'Home', url: createInternalLink('/') }, { name: 'Blog', url: createInternalLink('/blog') }, { name: post.data.title }]} />
+      </div>
+      
       <!-- Back to Blog -->
       <div class="mb-8">
         <Button href={createInternalLink("/blog")} text="Back to Blog" variant="outline" size="sm" icon="arrow-left" />
@@ -132,7 +135,7 @@ const breadcrumbJsonLd = {
 
       <!-- Hero Image -->
       {post.data.heroImage && (
-        <div class="aspect-video mb-8 rounded-2xl overflow-hidden">
+        <div class="aspect-video mb-10 md:mb-12 rounded-2xl overflow-hidden">
           <img 
             src={createImagePath(post.data.heroImage)} 
             alt={post.data.heroImageAlt || `Featured image for ${post.data.title}`}
@@ -200,7 +203,7 @@ const breadcrumbJsonLd = {
       </article>
 
       <!-- Social Share -->
-      <div class="mt-12">
+      <div class="mt-12 md:mt-16">
         <SocialShare 
           title={post.data.title}
           url={fullUrl}
@@ -209,7 +212,7 @@ const breadcrumbJsonLd = {
       </div>
 
       <!-- Article Footer -->
-      <footer class="mt-16 pt-8 border-t border-border">
+      <footer class="mt-16 md:mt-20 pt-8 border-t border-border">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             {post.data.updatedDate && (

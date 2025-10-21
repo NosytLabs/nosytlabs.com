@@ -25,13 +25,13 @@ const {
 } = Astro.props;
 ---
 
-<section class={`hero-enhanced py-20 md:py-24 lg:py-32 ${className}`} aria-labelledby="hero-title">
+<section class={`hero-enhanced py-24 md:py-32 lg:py-40 ${className}`} aria-labelledby="hero-title">
   <Container size="standard">
     <!-- Hero Content Wrapper -->
-    <div class="hero-content text-center space-y-8 md:space-y-10 lg:space-y-12">
+    <div class="hero-content text-center space-y-6 md:space-y-8 lg:space-y-10">
       
       <!-- Enhanced Subtitle Badge -->
-      <div class="flex justify-center">
+      <div class="flex justify-center mb-2">
         <span class="hero-badge inline-flex items-center px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm md:text-base font-medium backdrop-blur-sm shadow-sm hover:bg-primary/10 hover:border-primary/20 transition-all duration-300">
           <span class="inline-block w-2 h-2 bg-primary rounded-full mr-3 animate-pulse"></span>
           {subtitle}
@@ -39,17 +39,17 @@ const {
       </div>
 
       <!-- Title with improved spacing -->
-      <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight max-w-5xl mx-auto leading-tight">
+      <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight max-w-5xl mx-auto leading-tight mt-4">
         {title}
       </h1>
 
       <!-- Description with better typography -->
-      <p class="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
+      <p class="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4 mt-6">
         {description}
       </p>
 
       <!-- CTA Buttons with better spacing and alignment -->
-      <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center pt-4">
+      <div class="flex flex-col sm:flex-row gap-4 md:gap-5 justify-center items-center pt-6 md:pt-8">
         <Button 
           href={ctaLink}
           text={ctaText}
