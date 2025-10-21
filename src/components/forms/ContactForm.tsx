@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input } from "../ui/input";
+import { User, Mail, MessageSquare, Briefcase, Send, Loader2, X } from "lucide-react";
 import {
   validateContactForm,
   type ContactFormData,
@@ -11,6 +11,20 @@ interface ContactFormProps extends BaseComponentProps {
   onSubmit?: (data: ContactFormData) => void;
 }
 
+const MAX_MESSAGE_LENGTH = 2000;
+const MIN_MESSAGE_LENGTH = 10;
+
+const serviceOptions = [
+  { value: "", label: "Select a service (optional)" },
+  { value: "web-development", label: "Web Development" },
+  { value: "mobile-app", label: "Mobile App Development" },
+  { value: "ai-integration", label: "AI Integration & Automation" },
+  { value: "consulting", label: "Tech Consulting & SEO" },
+  { value: "rapid-prototype", label: "Rapid Prototype Development" },
+  { value: "3d-printing", label: "3D Printing Services" },
+  { value: "other", label: "Other" },
+];
+
 export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
@@ -21,17 +35,23 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   });
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const { toast } = useToast();
 
   const handleInputChange =
     (field: keyof ContactFormData) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      const value = e.target.value;
+      
+      if (field === "message" && value.length > MAX_MESSAGE_LENGTH) {
+        return;
+      }
+
       setFormData((prev) => ({
         ...prev,
-        [field]: e.target.value,
+        [field]: value,
       }));
 
-      // Clear error when user starts typing
       if (errors[field]) {
         setErrors((prev) => ({
           ...prev,
@@ -42,6 +62,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setShowSuccess(false);
 
     const validation = validateContactForm(formData);
     if (!validation.isValid) {
@@ -52,17 +73,16 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     setIsSubmitting(true);
 
     try {
-      // Import and use the form service
       const { submitContactForm } = await import("@/lib/forms/form-service");
       const result = await submitContactForm(formData);
 
       if (result.success) {
+        setShowSuccess(true);
         toast({
-          title: "Message sent!",
-          description: result.message,
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. We'll get back to you soon.",
         });
 
-        // Reset form
         setFormData({
           name: "",
           email: "",
@@ -74,8 +94,8 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         onSubmit?.(formData);
       } else {
         toast({
-          title: "Error",
-          description: result.message,
+          title: "Failed to send message",
+          description: result.message || "Please try again or contact us directly.",
         });
       }
     } catch (error) {
@@ -90,185 +110,240 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     }
   };
 
+  const handleClear = () => {
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+      subject: "",
+      service: "",
+    });
+    setErrors({});
+    setShowSuccess(false);
+  };
+
+  const messageLength = formData.message.length;
+  const isMessageValid = messageLength >= MIN_MESSAGE_LENGTH && messageLength <= MAX_MESSAGE_LENGTH;
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      <div className="grid gap-6 sm:grid-cols-2">
-        <Input
-          label="Full Name"
-          type="text"
-          value={formData.name}
-          onChange={handleInputChange("name")}
-          error={errors.name}
-          required
-          placeholder="John Doe"
-          autoComplete="name"
-          aria-describedby="name-help name-error"
-          className="transition-all duration-200 focus:ring-2 focus:ring-primary/20"
-        />
-
-        <Input
-          label="Email Address"
-          type="email"
-          value={formData.email}
-          onChange={handleInputChange("email")}
-          error={errors.email}
-          required
-          placeholder="john@example.com"
-          autoComplete="email"
-          aria-describedby="email-help email-error"
-          className="transition-all duration-200 focus:ring-2 focus:ring-primary/20"
-        />
-
-        <Input
-          label="Subject"
-          type="text"
-          value={formData.subject}
-          onChange={handleInputChange("subject")}
-          error={errors.subject}
-          required
-          placeholder="Project inquiry"
-          autoComplete="off"
-          aria-describedby="subject-help subject-error"
-          className="transition-all duration-200 focus:ring-2 focus:ring-primary/20"
-        />
-
-        <div className="space-y-2">
-          <label
-            htmlFor="message"
-            className="block text-sm font-medium text-foreground mb-2"
-          >
-            Message <span className="text-destructive">*</span>
-          </label>
-          <div className="relative">
-            <textarea
-              id="message"
-              value={formData.message}
-              onChange={handleInputChange("message")}
-              rows={6}
-              className={`w-full px-4 py-3 border rounded-lg resize-vertical transition-all duration-200 focus:ring-2 focus:ring-primary/20 focus:border-primary placeholder:text-muted-foreground/60 ${
-                errors.message
-                  ? "border-destructive bg-destructive/5 text-destructive"
-                  : "border-input bg-background text-foreground"
-              }`}
-              placeholder="Tell us about your project, goals, and timeline..."
-              required
-              aria-describedby="message-help message-error message-counter"
-              aria-invalid={!!errors.message}
-            />
-            <div className="absolute bottom-3 right-3 text-xs text-muted-foreground">
-              {formData.message.length}/2000
-            </div>
-          </div>
-          {errors.message && (
-            <div
-              id="message-error"
-              className="flex items-center gap-2 text-sm text-destructive animate-fade-in"
-              role="alert"
-            >
-              <svg
-                className="w-4 h-4 flex-shrink-0"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              {errors.message}
+    <div className="w-full max-w-3xl mx-auto">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-background via-background to-muted/20 shadow-2xl border border-border/50">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+        
+        <div className="relative p-8 md:p-12">
+          {showSuccess && (
+            <div className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/20 animate-fade-in">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-sm font-semibold text-green-600 dark:text-green-400">Message sent successfully!</h3>
+                  <p className="mt-1 text-sm text-green-600/80 dark:text-green-400/80">We'll get back to you as soon as possible.</p>
+                </div>
+              </div>
             </div>
           )}
-          <p id="message-help" className="text-xs text-muted-foreground">
-            Please provide at least 10 characters to help us understand your
-            needs
-          </p>
-        </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`flex-1 min-h-[44px] px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-              isSubmitting
-                ? "bg-primary/70 text-primary-foreground cursor-not-allowed"
-                : "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg active:scale-[0.98]"
-            }`}
-            aria-describedby="submit-status"
-            aria-label={
-              isSubmitting ? "Sending message..." : "Send contact message"
-            }
-          >
-            {isSubmitting ? (
-              <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    fill="none"
+          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="space-y-2">
+                <label htmlFor="name" className="block text-sm font-semibold text-foreground">
+                  Full Name <span className="text-destructive">*</span>
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <User className={`h-5 w-5 transition-colors ${errors.name ? 'text-destructive' : 'text-muted-foreground group-focus-within:text-primary'}`} />
+                  </div>
+                  <input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleInputChange("name")}
+                    placeholder="John Doe"
+                    autoComplete="name"
+                    className={`w-full pl-11 pr-4 py-3 rounded-lg border-2 bg-background transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground/60 ${
+                      errors.name
+                        ? "border-destructive focus:border-destructive"
+                        : "border-border focus:border-primary"
+                    }`}
                   />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  />
-                </svg>
-                Sending...
-              </span>
-            ) : (
-              <span className="flex items-center justify-center gap-2">
-                Send Message
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                  />
-                </svg>
-              </span>
-            )}
-          </button>
+                </div>
+                {errors.name && (
+                  <p className="text-sm text-destructive flex items-center gap-1 animate-fade-in">
+                    <X className="h-3 w-3" />
+                    {errors.name}
+                  </p>
+                )}
+              </div>
 
-          <button
-            type="button"
-            onClick={() => {
-              setFormData({
-                name: "",
-                email: "",
-                message: "",
-                subject: "",
-                service: "",
-              });
-              setErrors({});
-            }}
-            disabled={isSubmitting}
-            className="px-6 py-3 min-h-[44px] rounded-lg font-medium border border-border bg-background text-foreground hover:bg-muted/50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Clear Form
-          </button>
-        </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-foreground">
+                  Email Address <span className="text-destructive">*</span>
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Mail className={`h-5 w-5 transition-colors ${errors.email ? 'text-destructive' : 'text-muted-foreground group-focus-within:text-primary'}`} />
+                  </div>
+                  <input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange("email")}
+                    placeholder="john@example.com"
+                    autoComplete="email"
+                    className={`w-full pl-11 pr-4 py-3 rounded-lg border-2 bg-background transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground/60 ${
+                      errors.email
+                        ? "border-destructive focus:border-destructive"
+                        : "border-border focus:border-primary"
+                    }`}
+                  />
+                </div>
+                {errors.email && (
+                  <p className="text-sm text-destructive flex items-center gap-1 animate-fade-in">
+                    <X className="h-3 w-3" />
+                    {errors.email}
+                  </p>
+                )}
+              </div>
+            </div>
 
-        <div
-          id="submit-status"
-          className="sr-only"
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          {isSubmitting
-            ? "Form is being submitted, please wait"
-            : "Form ready to submit"}
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="space-y-2">
+                <label htmlFor="subject" className="block text-sm font-semibold text-foreground">
+                  Subject <span className="text-destructive">*</span>
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <MessageSquare className={`h-5 w-5 transition-colors ${errors.subject ? 'text-destructive' : 'text-muted-foreground group-focus-within:text-primary'}`} />
+                  </div>
+                  <input
+                    id="subject"
+                    type="text"
+                    value={formData.subject}
+                    onChange={handleInputChange("subject")}
+                    placeholder="Project inquiry"
+                    autoComplete="off"
+                    className={`w-full pl-11 pr-4 py-3 rounded-lg border-2 bg-background transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground/60 ${
+                      errors.subject
+                        ? "border-destructive focus:border-destructive"
+                        : "border-border focus:border-primary"
+                    }`}
+                  />
+                </div>
+                {errors.subject && (
+                  <p className="text-sm text-destructive flex items-center gap-1 animate-fade-in">
+                    <X className="h-3 w-3" />
+                    {errors.subject}
+                  </p>
+                )}
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="service" className="block text-sm font-semibold text-foreground">
+                  Service Interest
+                </label>
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Briefcase className="h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                  </div>
+                  <select
+                    id="service"
+                    value={formData.service}
+                    onChange={handleInputChange("service")}
+                    className="w-full pl-11 pr-4 py-3 rounded-lg border-2 border-border bg-background transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none cursor-pointer"
+                  >
+                    {serviceOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <svg className="h-5 w-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="message" className="block text-sm font-semibold text-foreground">
+                Message <span className="text-destructive">*</span>
+              </label>
+              <div className="relative">
+                <textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={handleInputChange("message")}
+                  rows={8}
+                  placeholder="Tell us about your project, goals, and timeline..."
+                  className={`w-full px-4 py-3 rounded-lg border-2 bg-background transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground/60 resize-vertical ${
+                    errors.message
+                      ? "border-destructive focus:border-destructive"
+                      : "border-border focus:border-primary"
+                  }`}
+                />
+                <div className={`absolute bottom-3 right-3 text-xs font-medium transition-colors ${
+                  messageLength > MAX_MESSAGE_LENGTH * 0.9 ? 'text-destructive' : 
+                  messageLength >= MIN_MESSAGE_LENGTH ? 'text-primary' : 
+                  'text-muted-foreground'
+                }`}>
+                  {messageLength}/{MAX_MESSAGE_LENGTH}
+                </div>
+              </div>
+              {errors.message && (
+                <p className="text-sm text-destructive flex items-center gap-1 animate-fade-in">
+                  <X className="h-3 w-3" />
+                  {errors.message}
+                </p>
+              )}
+              <p className="text-xs text-muted-foreground">
+                Minimum {MIN_MESSAGE_LENGTH} characters required
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`flex-1 group relative overflow-hidden px-8 py-4 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+                  isSubmitting
+                    ? "bg-primary/70 text-primary-foreground cursor-not-allowed"
+                    : "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+                }`}
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-white/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                <span className="relative flex items-center justify-center gap-2">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleClear}
+                disabled={isSubmitting}
+                className="px-8 py-4 rounded-lg font-semibold border-2 border-border bg-background text-foreground hover:bg-muted/50 hover:border-primary/50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Clear
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-    </form>
+    </div>
   );
 }

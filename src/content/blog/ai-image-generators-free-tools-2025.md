@@ -10,7 +10,7 @@ excerpt: "Want to create stunning AI images for free? We compare the top 10 AI i
 draft: false
 featured: false
 readingTime: 13
-heroImage: "images/blog/ai-coding-evolution.svg"
+heroImage: "/images/blog/digital_art_creation_079ef02c.jpg"
 heroImageAlt: "Comparison of the best free AI image generators in 2025"
 ---
 

@@ -10,7 +10,7 @@ excerpt: "Don't overspend on email marketing! Compare the best free email market
 draft: false
 featured: false
 readingTime: 14
-heroImage: "images/blog/placeholder-3.svg"
+heroImage: "/images/blog/email_marketing_news_8487251d.jpg"
 heroImageAlt: "Comparison of the best free email marketing tools and platforms in 2025"
 ---
 

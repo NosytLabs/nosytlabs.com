@@ -10,7 +10,7 @@ excerpt: "Looking beyond ChatGPT? Discover 7 free AI chatbot alternatives that m
 draft: false
 featured: false
 readingTime: 11
-heroImage: "images/blog/ai-network-intelligence-2025.svg"
+heroImage: "/images/blog/ai_chatbot_conversat_670c1faa.jpg"
 heroImageAlt: "Alternative AI chatbots to ChatGPT in 2025"
 ---
 

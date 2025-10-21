@@ -10,7 +10,7 @@ excerpt: "Need a professional logo but can't afford a designer? Discover the bes
 draft: false
 featured: false
 readingTime: 12
-heroImage: "images/blog/placeholder-2.svg"
+heroImage: "/images/blog/logo_design_branding_d1b7e8e6.jpg"
 heroImageAlt: "Best free logo makers for creating professional logos in 2025"
 ---
 

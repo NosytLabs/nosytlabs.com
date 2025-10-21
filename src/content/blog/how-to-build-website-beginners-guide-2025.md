@@ -10,7 +10,7 @@ excerpt: "Want to build your own website but don't know where to start? This com
 draft: false
 featured: true
 readingTime: 16
-heroImage: "images/blog/placeholder-1.svg"
+heroImage: "/images/blog/web_development_codi_68c6da06.jpg"
 heroImageAlt: "Step-by-step guide to building a website in 2025"
 ---
 

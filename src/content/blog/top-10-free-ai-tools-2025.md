@@ -10,7 +10,7 @@ excerpt: "Looking for free AI tools to supercharge your productivity? We've test
 draft: false
 featured: true
 readingTime: 12
-heroImage: "images/blog/ai-coding-tools-2025.svg"
+heroImage: "/images/blog/artificial_intellige_3aaac7ee.jpg"
 heroImageAlt: "Comparison of top free AI tools for productivity in 2025"
 ---
 

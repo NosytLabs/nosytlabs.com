@@ -10,7 +10,7 @@ excerpt: "Confused about which website builder to choose? We compare the top 8 f
 draft: false
 featured: false
 readingTime: 14
-heroImage: "images/blog/astro-website-framework.svg"
+heroImage: "/images/blog/website_design_lapto_f641e4d5.jpg"
 heroImageAlt: "Comparison of the best free website builders in 2025"
 ---
 
