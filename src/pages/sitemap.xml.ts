@@ -4,6 +4,9 @@ import { getCollection } from "astro:content";
 import { SITE_CONFIG } from "../lib/constants";
 
 const getPages = async () => {
+  // Get current date for static pages
+  const currentDate = new Date().toISOString().split("T")[0];
+
   // Get all blog posts with dates
   const posts = await getCollection("blog");
   const postUrls = posts.map((post: CollectionEntry<"blog">) => ({
@@ -20,34 +23,34 @@ const getPages = async () => {
 
   // Static pages with last modified dates
   const staticPages = [
-    { url: "/", lastmod: "2025-01-10", priority: "1.0", changefreq: "daily" },
+    { url: "/", lastmod: currentDate, priority: "1.0", changefreq: "daily" },
     {
       url: "/about",
-      lastmod: "2025-01-10",
+      lastmod: currentDate,
       priority: "0.9",
       changefreq: "monthly",
     },
     {
       url: "/services",
-      lastmod: "2025-01-10",
+      lastmod: currentDate,
       priority: "0.9",
       changefreq: "weekly",
     },
     {
       url: "/blog",
-      lastmod: "2025-01-10",
+      lastmod: currentDate,
       priority: "0.9",
       changefreq: "daily",
     },
     {
       url: "/contact",
-      lastmod: "2025-01-10",
+      lastmod: currentDate,
       priority: "0.8",
       changefreq: "monthly",
     },
     {
       url: "/projects",
-      lastmod: "2025-01-10",
+      lastmod: currentDate,
       priority: "0.8",
       changefreq: "weekly",
     },
@@ -56,7 +59,7 @@ const getPages = async () => {
   // Generate service URLs
   const serviceUrls = services.map((service: CollectionEntry<"services">) => ({
     url: `/services/${service.slug}`,
-    lastmod: "2025-01-10",
+    lastmod: currentDate,
     priority: "0.8",
     changefreq: "monthly",
   }));

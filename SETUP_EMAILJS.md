@@ -5,11 +5,13 @@ Your site is now fully migrated to Replit with EmailJS integration! The contact 
 ## Quick Setup (5 minutes)
 
 ### Step 1: Create EmailJS Account
+
 1. Go to https://dashboard.emailjs.com/sign-up
 2. Sign up with your email (it's free - 200 emails/month)
 3. Verify your email address
 
 ### Step 2: Add Email Service
+
 1. In the EmailJS dashboard, go to **Email Services**
 2. Click **Add New Service**
 3. Choose your email provider (Gmail recommended):
@@ -20,6 +22,7 @@ Your site is now fully migrated to Replit with EmailJS integration! The contact 
 5. **Copy your Service ID** (looks like `service_xxxxxxx`)
 
 ### Step 3: Create Email Template
+
 1. Go to **Email Templates** in the dashboard
 2. Click **Create New Template**
 3. Use this template configuration:
@@ -29,6 +32,7 @@ Your site is now fully migrated to Replit with EmailJS integration! The contact 
 **Subject:** New Contact from {{from_name}}
 
 **Content (HTML):**
+
 ```html
 <h2>New Contact Form Submission</h2>
 
@@ -40,7 +44,7 @@ Your site is now fully migrated to Replit with EmailJS integration! The contact 
 <h3>Message:</h3>
 <p>{{message}}</p>
 
-<hr>
+<hr />
 <p>Reply to: {{from_email}}</p>
 ```
 
@@ -49,10 +53,12 @@ Your site is now fully migrated to Replit with EmailJS integration! The contact 
 4. **Save the template** and **copy the Template ID** (looks like `template_xxxxxxx`)
 
 ### Step 4: Get Public Key
+
 1. Go to **Account** → **General** in the dashboard
 2. **Copy your Public Key** (looks like a long string of letters/numbers)
 
 ### Step 5: Add to Replit Secrets
+
 1. In Replit, open the **Secrets** panel (lock icon in left sidebar)
 2. Add these three secrets:
 
@@ -63,11 +69,13 @@ PUBLIC_EMAILJS_PUBLIC_KEY = your_public_key_here
 ```
 
 3. Also add your site URL:
+
 ```
 PUBLIC_SITE_URL = https://nosytlabs.com
 ```
 
 ### Step 6: Restart the Server
+
 1. Click the **Stop** button in Replit
 2. Click **Run** to restart with the new secrets
 3. The contact form will now work!
@@ -83,14 +91,17 @@ PUBLIC_SITE_URL = https://nosytlabs.com
 ## Troubleshooting
 
 **"EmailJS configuration is incomplete" error:**
-- Make sure all three PUBLIC_EMAILJS_* variables are set in Replit Secrets
+
+- Make sure all three PUBLIC*EMAILJS*\* variables are set in Replit Secrets
 - Restart the server after adding secrets
 
 **Form opens email client instead:**
+
 - This is the fallback when EmailJS isn't configured
 - Check that your secrets are named exactly as shown above
 
 **No email received:**
+
 - Check your EmailJS dashboard for rate limits (200/month free)
 - Verify the template ID and service ID are correct
 - Check spam folder

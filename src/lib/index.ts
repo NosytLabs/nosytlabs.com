@@ -105,11 +105,7 @@ export * from "./constants";
 export { PerformanceMonitor, CacheManager, BrowserCache } from "./performance";
 
 // Error handling
-export {
-  ErrorHandler,
-  safeAsync,
-  withErrorTracking,
-} from "./error-handling";
+export { ErrorHandler, safeAsync, withErrorTracking } from "./error-handling";
 
 // Animations
 export {

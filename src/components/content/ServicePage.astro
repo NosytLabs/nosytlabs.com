@@ -166,7 +166,7 @@ const customIconMap: Record<string, string> = {
                 if (customIconPath) {
                   return <img src={createImagePath(customIconPath)} alt={`${title} service icon`} class="h-64 w-64 lg:h-72 lg:w-72 relative z-10 group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />;
                 } else {
-                  const Icon = serviceIcons[icon as keyof typeof serviceIcons] || serviceIcons['default-icon'];
+                  const Icon = serviceIcons[icon as keyof typeof serviceIcons] || serviceIcons.brain;
                   return <Icon size={280} className="h-64 w-64 lg:h-72 lg:w-72 relative z-10 group-hover:scale-105 transition-transform duration-300" aria-label={`${title} service icon`} />;
                 }
               })()}

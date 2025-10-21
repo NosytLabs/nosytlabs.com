@@ -36,7 +36,9 @@ export const MailIcon: React.FC<IconProps> = ({ className = "h-5 w-5" }) => (
   </svg>
 );
 
-export const MessageSquareIcon: React.FC<IconProps> = ({ className = "h-5 w-5" }) => (
+export const MessageSquareIcon: React.FC<IconProps> = ({
+  className = "h-5 w-5",
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -51,7 +53,9 @@ export const MessageSquareIcon: React.FC<IconProps> = ({ className = "h-5 w-5" }
   </svg>
 );
 
-export const BriefcaseIcon: React.FC<IconProps> = ({ className = "h-5 w-5" }) => (
+export const BriefcaseIcon: React.FC<IconProps> = ({
+  className = "h-5 w-5",
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"

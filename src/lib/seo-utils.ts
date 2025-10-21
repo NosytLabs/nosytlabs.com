@@ -21,7 +21,7 @@ export interface StructuredDataOrganization {
     contactType: string;
     email: string;
   };
-  sameAs: string[];
+  sameAs?: string[];
 }
 
 export interface StructuredDataWebSite {
@@ -126,11 +126,6 @@ export function generateOrganizationSchema(): StructuredDataOrganization {
       contactType: "customer support",
       email: SITE_CONFIG.EMAILS.HELLO,
     },
-    sameAs: [
-      "https://twitter.com/nosytlabs",
-      "https://linkedin.com/company/nosytlabs",
-      "https://github.com/nosytlabs",
-    ],
   };
 }
 
