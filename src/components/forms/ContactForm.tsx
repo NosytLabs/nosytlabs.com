@@ -123,7 +123,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   };
 
   const messageLength = formData.message.length;
-  const isMessageValid = messageLength >= MIN_MESSAGE_LENGTH && messageLength <= MAX_MESSAGE_LENGTH;
 
   return (
     <div className="w-full max-w-3xl mx-auto">
