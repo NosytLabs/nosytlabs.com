@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardBody, CardFooter, Chip } from "@heroui/react";
+import { Card, CardBody, CardFooter } from "@heroui/react";
 import { getServiceIcon } from "@/lib/icons/serviceIcons";
 
 interface HeroUIServiceCardProps {
@@ -24,13 +24,13 @@ export const HeroUIServiceCard: React.FC<HeroUIServiceCardProps> = ({
       className="w-full h-full hover:scale-[1.02] transition-all duration-300 hover:shadow-xl border-2 hover:border-primary/30 group"
       isPressable
     >
-      <CardBody className="p-6 relative overflow-hidden">
+      <CardBody className="p-8 md:p-10 relative overflow-hidden">
         {/* Background gradient on hover */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
         {/* Icon with enhanced styling */}
-        <div className="w-14 h-14 bg-gradient-to-br from-primary/15 to-accent/15 rounded-xl flex items-center justify-center mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300">
-          <div className="text-primary">{getServiceIcon(icon)}</div>
+        <div className="w-16 h-16 md:w-[72px] md:h-[72px] bg-gradient-to-br from-primary/15 to-accent/15 rounded-xl flex items-center justify-center mb-6 relative z-10 group-hover:scale-110 transition-transform duration-300">
+          <div className="text-primary text-3xl">{getServiceIcon(icon)}</div>
           {/* Pulse effect on hover */}
           <div className="absolute inset-0 bg-primary/20 rounded-xl scale-0 group-hover:scale-150 opacity-0 group-hover:opacity-100 transition-all duration-500" />
         </div>
@@ -66,26 +66,21 @@ export const HeroUIServiceCard: React.FC<HeroUIServiceCardProps> = ({
         {/* Enhanced price display */}
         {price && (
           <div className="mb-6 relative z-10">
-            <Chip
-              color="primary"
-              variant="flat"
-              size="lg"
-              className="font-bold text-base bg-gradient-to-r from-primary/10 to-accent/10"
-            >
+            <div className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               {price}
-            </Chip>
+            </div>
           </div>
         )}
       </CardBody>
 
-      <CardFooter className="p-6 pt-0 relative z-10">
+      <CardFooter className="p-8 md:p-10 pt-0 relative z-10">
         <a
           href={href}
-          className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300 group/btn"
+          className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-bold hover:shadow-xl transition-all duration-300 group/btn min-h-[48px]"
         >
           Learn More
           <svg
-            className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200"
+            className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-200"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

@@ -44,26 +44,26 @@ const finalClassName = classNameProp || className;
 const styles = {
   variants: {
     // Primary CTA - Gradient background (primary to accent)
-    primary: 'bg-gradient-to-br from-primary to-accent text-primary-foreground font-semibold shadow-[0_2px_8px_hsl(var(--primary)/0.2)] hover:shadow-[0_4px_12px_hsl(var(--primary)/0.3)] hover:-translate-y-0.5',
+    primary: 'bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold shadow-[0_4px_12px_hsl(var(--primary)/0.25)] hover:shadow-[0_6px_16px_hsl(var(--primary)/0.35)] hover:-translate-y-0.5 hover:scale-[1.02]',
     // Secondary Action - Outline with border
-    secondary: 'border border-border bg-transparent text-foreground hover:border-primary/50 hover:bg-primary/5',
+    secondary: 'border-2 border-border bg-transparent text-foreground hover:border-primary/50 hover:bg-primary/5 font-semibold',
     // Tertiary Action - Ghost with transparent background
-    tertiary: 'bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted',
+    tertiary: 'bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted font-medium',
     // Legacy variants for backward compatibility
-    outline: 'border border-border bg-transparent text-foreground hover:border-primary/50 hover:bg-primary/5',
-    ghost: 'bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted',
-    destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm hover:shadow-lg',
-    magic: 'button-magic relative overflow-hidden shadow-lg hover:shadow-xl active:shadow-md',
-    gradient: 'bg-gradient-to-br from-primary to-accent text-primary-foreground font-semibold shadow-[0_2px_8px_hsl(var(--primary)/0.2)] hover:shadow-[0_4px_12px_hsl(var(--primary)/0.3)] hover:-translate-y-0.5',
-    white: 'bg-white text-foreground border border-border hover:bg-muted/50 shadow-sm hover:shadow-md'
+    outline: 'border-2 border-border bg-transparent text-foreground hover:border-primary/50 hover:bg-primary/5 font-semibold',
+    ghost: 'bg-transparent text-muted-foreground hover:text-foreground hover:bg-muted font-medium',
+    destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-md hover:shadow-lg font-bold',
+    magic: 'button-magic relative overflow-hidden shadow-lg hover:shadow-xl active:shadow-md font-bold',
+    gradient: 'bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold shadow-[0_4px_12px_hsl(var(--primary)/0.25)] hover:shadow-[0_6px_16px_hsl(var(--primary)/0.35)] hover:-translate-y-0.5 hover:scale-[1.02]',
+    white: 'bg-white text-foreground border-2 border-border hover:bg-muted/50 shadow-md hover:shadow-lg font-semibold'
   },
   sizes: {
-    // Small - Tertiary actions (0.5rem/1rem padding, 0.875rem font)
+    // Small - Tertiary actions
     sm: 'px-4 py-2 text-sm min-h-[36px]',
-    // Medium - Standard actions (0.75rem/1.5rem padding, 1rem font)
+    // Medium - Standard actions
     md: 'px-6 py-3 text-base min-h-[44px]',
-    // Large - Primary CTAs (0.75rem/1.5rem padding, 1rem font)
-    lg: 'px-6 py-3 text-base min-h-[44px]'
+    // Large - Primary CTAs with enhanced sizing
+    lg: 'px-8 py-4 text-base md:text-lg min-h-[48px]'
   }
 } as const;
 
