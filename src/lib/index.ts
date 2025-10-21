@@ -80,12 +80,6 @@ export {
 export type { FormValidationResult, ContactFormData } from "./forms";
 
 // ========================================
-// MCP UTILITIES
-// ========================================
-
-export * from "./mcp";
-
-// ========================================
 // THEME MANAGEMENT
 // ========================================
 
@@ -136,9 +130,6 @@ export {
   createSuccessResponse,
   withAPIMiddleware,
 } from "./api";
-
-// MCP
-export { mcpOptimizer, mcpWrapper, optimizedMCPCall } from "./mcp";
 
 // Theme
 export {

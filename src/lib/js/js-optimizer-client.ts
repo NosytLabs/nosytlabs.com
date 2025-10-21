@@ -79,11 +79,6 @@ async function initJSOptimization() {
   const loadNonCriticalScripts = () => {
     // Use direct dynamic imports so bundler includes these modules
     codeSplitter
-      .importModule(() => import("../analytics.js"))
-      .catch((_error) => {
-        // Failed to load non-critical script: analytics
-      });
-    codeSplitter
       .importModule(() => import("../social-sharing.js"))
       .catch((_error) => {
         // Failed to load non-critical script: social-sharing
@@ -121,11 +116,6 @@ async function initJSOptimization() {
         if (animations && animations.initAllAnimations) {
           animations.initAllAnimations();
         }
-      }
-    },
-    () => {
-      if (localStorage.getItem("analytics-consent") === "true") {
-        codeSplitter.importModule(() => import("../analytics.js"));
       }
     },
     () => {

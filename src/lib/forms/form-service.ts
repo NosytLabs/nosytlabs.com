@@ -209,23 +209,16 @@ export async function submitContactForm(
   data: ContactFormData,
   config: FormServiceConfig = defaultConfig,
 ): Promise<FormSubmissionResult> {
-  console.warn("Form submission started with data:", data);
-  console.warn("Form service config:", config);
-
   // Try Formspree first if configured
   if (config.formspreeEndpoint) {
-    console.warn("Attempting to submit via Formspree...");
     const result = await submitToFormspree(data, config.formspreeEndpoint);
     if (result.success) return result;
-    console.warn("Formspree submission failed:", result.error);
   }
 
   // Try Netlify Forms if configured
   if (config.useNetlifyForms) {
-    console.warn("Attempting to submit via Netlify Forms...");
     const result = await submitToNetlify(data);
     if (result.success) return result;
-    console.warn("Netlify Forms submission failed:", result.error);
   }
 
   // Try EmailJS if configured
@@ -234,14 +227,11 @@ export async function submitContactForm(
     config.emailjsTemplateId &&
     config.emailjsPublicKey
   ) {
-    console.warn("Attempting to submit via EmailJS...");
     const result = await submitToEmailJS(data, config);
     if (result.success) return result;
-    console.warn("EmailJS submission failed:", result.error);
   }
 
   // Fallback to mailto link
-  console.warn("All services failed, falling back to mailto...");
   const mailtoLink = createMailtoFallback(data, config);
 
   // Open mailto link
