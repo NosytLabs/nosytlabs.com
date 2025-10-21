@@ -84,8 +84,8 @@ async function initJSOptimization() {
     async () => {
       if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
         const animations = await codeSplitter.importModule(() => import('../animations/complex-animations.js'));
-        if (animations && animations.initComplexAnimations) {
-          animations.initComplexAnimations();
+        if (animations && animations.initAllAnimations) {
+          animations.initAllAnimations();
         }
       }
     },

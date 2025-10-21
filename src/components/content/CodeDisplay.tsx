@@ -40,9 +40,8 @@ export default function CodeDisplay({
           </div>
           
           <CopyButton
-            textToCopy={code}
+            text={code}
             className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 button-icon"
-            title="Copy code"
           />
         </div>
       )}

@@ -76,7 +76,6 @@ export function getClientIP(request: Request): string {
  */
 export function cleanupRateLimitStore(): void {
   const now = Date.now();
-  let cleanedCount = 0;
   
   for (const [identifier, data] of rateLimitStore.entries()) {
     // Remove entries older than the cleanup interval
@@ -792,7 +791,7 @@ export function withAPIMiddleware(
         if (rawData) {
           const sanitizedData = validateAndSanitizeData(rawData);
           if (sanitizedData) {
-            (context as Record<string, unknown>).sanitizedData = sanitizedData;
+            (context as unknown as Record<string, unknown>).sanitizedData = sanitizedData;
           }
         }
       }

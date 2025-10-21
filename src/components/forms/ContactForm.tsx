@@ -73,7 +73,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         toast({
           title: "Error",
           description: result.message,
-          variant: "destructive",
         });
       }
     } catch (error) {
@@ -81,7 +80,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       toast({
         title: "Error",
         description: "Failed to send message. Please try again or contact us directly.",
-        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
