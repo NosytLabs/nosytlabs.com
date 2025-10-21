@@ -65,13 +65,12 @@ export const HeroUIServiceCard: React.FC<HeroUIServiceCardProps> = ({
 
         {/* Enhanced price display */}
         {price && (
-          <div className="flex items-center justify-between mb-6 relative z-10">
-            <span className="text-sm text-default-500">Starting from</span>
+          <div className="mb-6 relative z-10">
             <Chip
               color="primary"
               variant="flat"
-              size="sm"
-              className="font-semibold bg-gradient-to-r from-primary/10 to-accent/10"
+              size="lg"
+              className="font-bold text-base bg-gradient-to-r from-primary/10 to-accent/10"
             >
               {price}
             </Chip>

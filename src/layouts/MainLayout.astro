@@ -1,6 +1,8 @@
 ---
 import '../styles/main.css';
 import CriticalCSS from '../components/CriticalCSS.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
 
 export interface Props {
   title: string;
@@ -104,7 +106,13 @@ const {
 
   </head>
   <body>
-    <slot />
+    <Header />
+    
+    <main id="main-content" class="pt-16 lg:pt-18">
+      <slot />
+    </main>
+    
+    <Footer />
     
     <script>
       // Theme initialization - must run immediately to prevent flash
