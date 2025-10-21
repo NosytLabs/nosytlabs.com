@@ -91,13 +91,6 @@ npm run build
 # Deploy dist/ folder
 ```
 
-### Vercel
-
-```bash
-npm run build
-# Deploy dist/ folder
-```
-
 ### GitHub Pages
 
 Automated via GitHub Actions workflow in `.github/workflows/deploy.yml`
