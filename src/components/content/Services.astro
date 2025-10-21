@@ -12,20 +12,28 @@ const coreServices = services.filter(s =>
 ).sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
-<div class="space-y-12">
-  <!-- Section Header -->
-  <div class="text-center mb-12">
-    <h2 class="section-title">
-      Our Core <span class="text-gradient">Services</span>
+<div class="space-y-16 md:space-y-20">
+  <!-- Enhanced Section Header -->
+  <div class="text-center space-y-4 md:space-y-6">
+    <div class="inline-flex items-center px-4 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm font-medium mb-4">
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+      </svg>
+      What We Offer
+    </div>
+    
+    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+      Our Core <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Services</span>
     </h2>
-    <p class="section-subtitle max-w-3xl mx-auto">
+    
+    <p class="text-base md:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4">
       We specialize in web development, AI integration, mobile apps, and rapid prototyping. 
       Each service is designed to deliver measurable results for your business.
     </p>
   </div>
 
-  <!-- Services Grid - Show only 4 core services -->
-  <div class="grid-4 mb-12">
+  <!-- Enhanced Services Grid with better responsive breakpoints -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
     {coreServices.map((service) => (
       <ServiceCard 
         title={service.data.title}
@@ -38,13 +46,27 @@ const coreServices = services.filter(s =>
     ))}
   </div>
 
-  <!-- CTA -->
-  <div class="text-center">
-    <Button 
-      href={createInternalLink("/services")}
-      text="View All Services"
-      variant="outline"
-      size="lg"
-    />
+  <!-- Enhanced CTA Section -->
+  <div class="text-center pt-8 md:pt-12">
+    <div class="inline-flex flex-col sm:flex-row gap-4 items-center">
+      <Button 
+        href={createInternalLink("/services")}
+        text="View All Services"
+        variant="outline"
+        size="lg"
+        class="w-full sm:w-auto border-2 hover:bg-muted/50 shadow-sm hover:shadow-md transition-all duration-300"
+      />
+      <Button 
+        href={createInternalLink("/contact")}
+        text="Get a Quote"
+        variant="primary"
+        size="lg"
+        class="w-full sm:w-auto shadow-lg hover:shadow-xl transition-all duration-300"
+      />
+    </div>
+    
+    <p class="mt-6 text-sm text-muted-foreground">
+      Not sure which service is right for you? <a href={createInternalLink("/contact")} class="text-primary hover:underline font-medium">Contact us</a> for a free consultation.
+    </p>
   </div>
 </div>

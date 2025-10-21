@@ -14,22 +14,37 @@ interface Props {
 const { stats, variant = 'default', className = '' } = Astro.props;
 
 const variantClasses = {
-  default: 'grid-3 gap-6',
-  hero: 'grid-3 gap-8',
-  compact: 'grid-3 gap-4'
+  default: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6',
+  hero: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8',
+  compact: 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4'
+};
+
+const cardClasses = {
+  default: 'p-6 md:p-8',
+  hero: 'p-8 md:p-10',
+  compact: 'p-5 md:p-6'
 };
 ---
 
 <div class={`stats-display ${variantClasses[variant]} ${className}`}>
   {stats.map((stat) => (
-    <div class="stat-card text-center">
-      <div class="stat-value">{stat.value}</div>
-      <div class="stat-label">{stat.label}</div>
-      {stat.description && (
-        <div class="stat-description text-xs text-muted-foreground mt-2">
-          {stat.description}
+    <div class={`stat-card group ${cardClasses[variant]} text-center rounded-xl border border-border/50 bg-gradient-to-br from-card via-card to-muted/20 hover:border-border hover:shadow-lg hover:scale-[1.02] transition-all duration-300 backdrop-blur-sm`}>
+      <div class="space-y-3">
+        <div class="stat-value text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-primary to-accent bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+          {stat.value}
         </div>
-      )}
+        <div class="stat-label text-sm md:text-base font-semibold text-foreground/90 uppercase tracking-wide">
+          {stat.label}
+        </div>
+        {stat.description && (
+          <div class="stat-description text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[200px] mx-auto">
+            {stat.description}
+          </div>
+        )}
+      </div>
+      
+      <!-- Decorative accent -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     </div>
   ))}
 </div>
@@ -39,9 +54,25 @@ const variantClasses = {
     width: 100%;
   }
   
-  .stat-description {
-    max-width: 200px;
-    margin-left: auto;
-    margin-right: auto;
+  .stat-card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.03), hsl(var(--accent) / 0.03));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .stat-card:hover::before {
+    opacity: 1;
   }
 </style>

@@ -25,35 +25,37 @@ const {
 } = Astro.props;
 ---
 
-<section class={`hero-enhanced section-spacing-lg ${className}`} aria-labelledby="hero-title">
+<section class={`hero-enhanced py-20 md:py-24 lg:py-32 ${className}`} aria-labelledby="hero-title">
   <Container size="standard">
     <!-- Hero Content Wrapper -->
-    <div class="hero-content text-center">
+    <div class="hero-content text-center space-y-8 md:space-y-10 lg:space-y-12">
       
-      <!-- Subtitle Badge -->
-      <div class="mb-6">
-        <span class="hero-badge inline-block">
+      <!-- Enhanced Subtitle Badge -->
+      <div class="flex justify-center">
+        <span class="hero-badge inline-flex items-center px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm md:text-base font-medium backdrop-blur-sm shadow-sm hover:bg-primary/10 hover:border-primary/20 transition-all duration-300">
+          <span class="inline-block w-2 h-2 bg-primary rounded-full mr-3 animate-pulse"></span>
           {subtitle}
         </span>
       </div>
 
-      <!-- Title -->
-      <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 max-w-4xl mx-auto">
+      <!-- Title with improved spacing -->
+      <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight max-w-5xl mx-auto leading-tight">
         {title}
       </h1>
 
-      <!-- Description -->
-      <p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
+      <!-- Description with better typography -->
+      <p class="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
         {description}
       </p>
 
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+      <!-- CTA Buttons with better spacing and alignment -->
+      <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center pt-4">
         <Button 
           href={ctaLink}
           text={ctaText}
           variant="primary"
           size="lg"
+          class="w-full sm:w-auto min-w-[160px] shadow-lg hover:shadow-xl transition-all duration-300"
         />
         
         <Button 
@@ -61,28 +63,46 @@ const {
           text={secondaryCtaText}
           variant="outline"
           size="lg"
+          class="w-full sm:w-auto min-w-[160px] border-2 hover:bg-muted/50 transition-all duration-300"
         />
       </div>
 
-      <!-- Trust Indicators -->
-      <div class="flex flex-wrap gap-6 md:gap-8 justify-center text-sm text-muted-foreground">
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-          </svg>
-          <span>47 Projects Delivered</span>
+      <!-- Enhanced Trust Indicators with cards -->
+      <div class="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 justify-center items-center pt-8 md:pt-12">
+        <div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/30 border border-border/50 hover:border-border hover:bg-muted/50 transition-all duration-300 min-w-[200px] justify-center">
+          <div class="flex-shrink-0 w-10 h-10 bg-success/10 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="text-left">
+            <div class="text-sm font-semibold text-foreground">47 Projects</div>
+            <div class="text-xs text-muted-foreground">Delivered</div>
+          </div>
         </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-          </svg>
-          <span>10,000+ Users</span>
+        
+        <div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/30 border border-border/50 hover:border-border hover:bg-muted/50 transition-all duration-300 min-w-[200px] justify-center">
+          <div class="flex-shrink-0 w-10 h-10 bg-success/10 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="text-left">
+            <div class="text-sm font-semibold text-foreground">10,000+ Users</div>
+            <div class="text-xs text-muted-foreground">Worldwide</div>
+          </div>
         </div>
-        <div class="flex items-center gap-2">
-          <svg class="w-5 h-5 text-success flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-          </svg>
-          <span>Sub-Second Response</span>
+        
+        <div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/30 border border-border/50 hover:border-border hover:bg-muted/50 transition-all duration-300 min-w-[200px] justify-center">
+          <div class="flex-shrink-0 w-10 h-10 bg-success/10 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="text-left">
+            <div class="text-sm font-semibold text-foreground">Sub-Second</div>
+            <div class="text-xs text-muted-foreground">Response Time</div>
+          </div>
         </div>
       </div>
 
