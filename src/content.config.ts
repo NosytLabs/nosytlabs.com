@@ -3,12 +3,23 @@ import { defineCollection, z } from 'astro:content';
 const blogCollection = defineCollection({
   type: 'content',
   schema: z.object({
+    // Required fields
     title: z.string(),
-    pubDate: z.date(),
     description: z.string(),
-    author: z.string(),
+    pubDate: z.date(),
+    author: z.string().default("NOSYT Labs"),
+    tags: z.array(z.string()),
+    
+    // Optional fields
+    category: z.string().optional(),
+    seoKeywords: z.array(z.string()).optional(),
+    excerpt: z.string().optional(),
+    draft: z.boolean().default(false),
+    featured: z.boolean().default(false),
+    updatedDate: z.date().optional(),
+    readingTime: z.string().optional(),
     heroImage: z.string().optional(),
-    tags: z.array(z.string())
+    heroImageAlt: z.string().optional(),
   })
 });
 
