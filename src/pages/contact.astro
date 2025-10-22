@@ -52,7 +52,7 @@ const jsonLD = {
     <Section spacing="lg">
       <Container size="standard">
         <div class="max-w-6xl mx-auto">
-          <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div class="grid gap-6 lg:grid-cols-2 lg:gap-8 xl:gap-10 items-start">
             <!-- HeroUI Contact Form -->
             <div class="w-full">
               <HeroUIWrapper client:load>
@@ -157,14 +157,12 @@ const jsonLD = {
               </div>
 
               <!-- Quick Response Card -->
-              <div
-                class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg"
-              >
+              <div class="card-professional group p-6 md:p-8 text-center">
                 <div
-                  class="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-md"
+                  class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105"
                 >
                   <svg
-                    class="w-7 h-7 text-white"
+                    class="w-7 h-7 md:w-8 md:h-8 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -176,27 +174,35 @@ const jsonLD = {
                       d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                   </svg>
                 </div>
-                <h4 class="text-lg font-bold text-foreground mb-2 text-center">
+                <h4
+                  class="text-lg md:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors"
+                >
                   Fast Response
                 </h4>
-                <p class="text-default-600 text-center text-sm leading-relaxed">
+                <p
+                  class="text-sm md:text-base text-muted-foreground leading-relaxed"
+                >
                   Quick turnaround on quotes and questions. No corporate
                   bureaucracy, just direct communication.
                 </p>
               </div>
 
               <!-- Free Consultation Card -->
-              <div
-                class="bg-content1 rounded-2xl p-6 border-2 border-default-200 hover:border-primary/40 transition-all duration-300 hover:shadow-lg"
-              >
-                <h4 class="text-lg font-bold mb-3">Technical Assessment</h4>
-                <p class="text-default-600 mb-4 text-sm leading-relaxed">
+              <div class="card-professional p-6 md:p-8">
+                <h4 class="text-lg md:text-xl font-bold mb-3">
+                  Technical Assessment
+                </h4>
+                <p
+                  class="text-sm md:text-base text-muted-foreground mb-4 leading-relaxed"
+                >
                   Free consultation to discuss your project. I'll provide honest
                   feedback and realistic timelines.
                 </p>
-                <p class="text-xs text-default-500 leading-relaxed">
+                <p
+                  class="text-xs md:text-sm text-muted-foreground/80 leading-relaxed"
+                >
                   Fill out the form and I'll respond within 24 hours with a
-                  detailed assessment.
+                  detailed assessment tailored to your goals.
                 </p>
               </div>
             </div>
@@ -345,243 +351,3 @@ const jsonLD = {
     </Section>
   </main>
 </MainLayout>
-
-<script type="module" is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Email validation function
-    function isValidEmail(email) {
-      // Simple email validation regex
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    }
-
-    // Initialize form functionality
-    function initializeContactForm() {
-      const form = document.getElementById("contact-form");
-      if (!form) return;
-
-      // Simple notification system
-      function showNotification(message, type = "success") {
-        // Remove any existing notifications
-        const existingNotification = document.querySelector(".notification");
-        if (existingNotification) {
-          existingNotification.remove();
-        }
-
-        // Create notification element
-        const notification = document.createElement("div");
-        notification.className = `notification fixed top-4 right-4 p-4 rounded-lg shadow-lg max-w-sm transition-all duration-300 z-50 ${
-          type === "success"
-            ? "bg-green-500 text-white"
-            : "bg-red-500 text-white"
-        }`;
-        notification.textContent = message;
-
-        // Add to page
-        document.body.appendChild(notification);
-
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-          notification.style.opacity = "0";
-          setTimeout(() => {
-            if (notification.parentNode) {
-              notification.parentNode.removeChild(notification);
-            }
-          }, 300);
-        }, 5000);
-      }
-
-      // UI Interactions
-      const messageField = document.querySelector("#message");
-      const messageCount = document.querySelector("#message-count");
-      if (messageField && messageCount) {
-        const updateCount = () => {
-          messageCount.textContent = String(messageField.value.length);
-        };
-        messageField.addEventListener("input", updateCount);
-        updateCount();
-      }
-
-      const fileInput = document.querySelector("#files");
-      const fileDropZone = document.querySelector("#file-drop-zone");
-      if (fileDropZone && fileInput) {
-        fileDropZone.addEventListener("click", () => fileInput.click());
-        fileDropZone.addEventListener("dragover", (e) => {
-          e.preventDefault();
-          fileDropZone.classList.add("dragover");
-        });
-        fileDropZone.addEventListener("dragleave", () =>
-          fileDropZone.classList.remove("dragover"),
-        );
-        fileDropZone.addEventListener("drop", (e) => {
-          const dragEvent = e;
-          dragEvent.preventDefault();
-          fileDropZone.classList.remove("dragover");
-          if (dragEvent.dataTransfer && dragEvent.dataTransfer.files) {
-            fileInput.files = dragEvent.dataTransfer.files;
-          }
-        });
-      }
-
-      // Unified field validators
-      const validators = {
-        name: (value) => {
-          if (!value || !value.trim()) return "Name is required";
-          if (value.length < 2) return "Name must be at least 2 characters";
-          if (value.length > 100)
-            return "Name must be less than 100 characters";
-          if (!/^[A-Za-z\s]{2,50}$/.test(value))
-            return "Please enter a valid name (2-50 letters)";
-          return "";
-        },
-        email: async (value) => {
-          if (!value || !value.trim()) return "Email is required";
-          if (!(await isValidEmail(value)))
-            return "Please enter a valid email address";
-          return "";
-        },
-        subject: (value) => {
-          if (!value || !value.trim()) return "Subject is required";
-          if (value.length < 5) return "Subject must be at least 5 characters";
-          if (value.length > 200)
-            return "Subject must be less than 200 characters";
-          return "";
-        },
-        message: (value) => {
-          if (!value || !value.trim()) return "Message is required";
-          if (value.length < 10)
-            return "Message must be at least 10 characters";
-          if (value.length > 2000)
-            return "Message must be less than 2000 characters";
-          return "";
-        },
-      };
-
-      // Real-time validation
-      Object.keys(validators).forEach((fieldName) => {
-        const field = form.querySelector(`#${fieldName}`);
-        const errorDiv = form.querySelector(`#${fieldName}-error`);
-        if (field && errorDiv) {
-          field.addEventListener("blur", async () => {
-            const validator = validators[fieldName];
-            const error = await validator(field.value);
-            errorDiv.textContent = error;
-            field.classList.toggle("error", !!error);
-            field.classList.toggle("success", !error && !!field.value.trim());
-          });
-        }
-      });
-
-      // Form submission
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        // Get submit button and add loading state
-        const submitButton = form.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton?.textContent || "Send Message";
-
-        let isFormValid = true;
-        // Validate fields sequentially to handle async email validation
-        for (const fieldName of Object.keys(validators)) {
-          const field = form.querySelector(`#${fieldName}`);
-          const errorDiv = form.querySelector(`#${fieldName}-error`);
-          if (field && errorDiv) {
-            const validator = validators[fieldName];
-            const error = await validator(field.value);
-            errorDiv.textContent = error;
-            field.classList.toggle("error", !!error);
-            field.classList.toggle("success", !error && !!field.value.trim());
-            if (error) {
-              isFormValid = false;
-            }
-          }
-        }
-
-        if (!isFormValid) {
-          showNotification("Please fix the errors before submitting.", "error");
-          return;
-        }
-
-        // Collect form data
-        const formData = new FormData(form);
-        const contactData = {
-          name: String(formData.get("name")),
-          email: String(formData.get("email")),
-          subject: String(formData.get("subject")),
-          service: String(formData.get("service")),
-          message: String(formData.get("message")),
-        };
-
-        try {
-          // Show loading state
-          if (submitButton) {
-            submitButton.disabled = true;
-            submitButton.innerHTML = `
-            <svg class="animate-spin h-5 w-5 inline-block mr-2" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            Sending...
-          `;
-          }
-
-          // Import and use the form service
-          const { submitContactForm } = await import(
-            "../lib/forms/form-service"
-          );
-          const result = await submitContactForm(contactData);
-
-          if (result.success) {
-            showNotification(
-              result.message || "Message sent successfully!",
-              "success",
-            );
-            form.reset();
-
-            // Reset button state
-            if (submitButton) {
-              submitButton.disabled = false;
-              submitButton.textContent = originalButtonText;
-            }
-            // Clear validation states
-            Object.keys(validators).forEach((fieldName) => {
-              const field = form.querySelector(`#${fieldName}`);
-              const errorDiv = form.querySelector(`#${fieldName}-error`);
-              if (field) {
-                field.classList.remove("error", "success");
-              }
-              if (errorDiv) {
-                errorDiv.textContent = "";
-              }
-            });
-          } else {
-            showNotification(
-              result.message || "Error sending message",
-              "error",
-            );
-
-            // Reset button state
-            if (submitButton) {
-              submitButton.disabled = false;
-              submitButton.textContent = originalButtonText;
-            }
-          }
-        } catch {
-          showNotification(
-            "An unexpected error occurred. Please try again later.",
-            "error",
-          );
-
-          // Reset button state
-          if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
-          }
-        }
-      });
-    }
-
-    // Initialize the form
-    initializeContactForm();
-  });
-</script>
