@@ -8,3 +8,9 @@
 .git
 replit.nix
 .replit
+
+# Documentation and reports
+*_REPORT.md
+*_GUIDE.md
+*_CHECKLIST.md
+*_SUMMARY.md
