@@ -38,6 +38,7 @@ Professional 3D printing and prototyping services for product development, custo
 Test your designs before committing to expensive manufacturing. Perfect for product development and proof-of-concept.
 
 **Materials Available**:
+
 - PLA (standard, biodegradable, great for prototypes)
 - PETG (stronger, more durable, food-safe)
 - ABS (heat resistant, tough)
@@ -52,6 +53,7 @@ Test your designs before committing to expensive manufacturing. Perfect for prod
 Need a replacement part that's no longer available? Custom brackets? Unique tools? We can print it.
 
 **Common Requests**:
+
 - Replacement parts for appliances/equipment
 - Custom mounting brackets and adapters
 - Jigs and fixtures for workshops
@@ -65,6 +67,7 @@ Need a replacement part that's no longer available? Custom brackets? Unique tool
 Need 10-100 of something? 3D printing can be more cost-effective than traditional manufacturing for small runs.
 
 **Perfect For**:
+
 - Product launches (test market before mass production)
 - Limited edition items
 - Custom merchandise

@@ -1,42 +1,44 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-import HeroUIContactForm from '../components/forms/HeroUIContactForm';
-import { HeroUIWrapper } from '../components/providers/HeroUIWrapper';
-import Section from '../components/layout/Section.astro';
-import Container from '../components/layout/Container.astro';
-import PageHero from '../components/layout/PageHero.astro';
-import { SITE_CONFIG } from '../lib/constants';
+import MainLayout from "../layouts/MainLayout.astro";
+import HeroUIContactForm from "../components/forms/HeroUIContactForm";
+import { HeroUIWrapper } from "../components/providers/HeroUIWrapper";
+import Section from "../components/layout/Section.astro";
+import Container from "../components/layout/Container.astro";
+import PageHero from "../components/layout/PageHero.astro";
+import { SITE_CONFIG } from "../lib/constants";
 
 const pageTitle = "Contact Us - NOSYT Labs";
-const pageDescription = "Get in touch with NOSYT Labs for your next project. We're here to help bring your ideas to life with proven technology solutions based on 47 successful deployments.";
+const pageDescription =
+  "Get in touch with NOSYT Labs for your next project. We're here to help bring your ideas to life with proven technology solutions based on 47 successful deployments.";
 
 // JSON-LD for Contact Page
 const jsonLD = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  "name": "Contact NOSYT Labs",
-  "description": pageDescription,
-  "url": `${SITE_CONFIG.BASE_URL}/contact`,
-  "mainEntity": {
+  name: "Contact NOSYT Labs",
+  description: pageDescription,
+  url: `${SITE_CONFIG.BASE_URL}/contact`,
+  mainEntity: {
     "@type": "Organization",
-    "name": "NOSYT Labs",
-    "email": "hello@nosytlabs.com",
-    "url": SITE_CONFIG.BASE_URL,
-    "contactPoint": {
+    name: "NOSYT Labs",
+    email: "hello@nosytlabs.com",
+    url: SITE_CONFIG.BASE_URL,
+    contactPoint: {
       "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "hello@nosytlabs.com",
-      "availableLanguage": "English"
-    }
-  }
+      contactType: "customer service",
+      email: "hello@nosytlabs.com",
+      availableLanguage: "English",
+    },
+  },
 };
 ---
 
-<MainLayout 
-  title={pageTitle}
-  description={pageDescription}
->
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLD)} />
+<MainLayout title={pageTitle} description={pageDescription}>
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(jsonLD)}
+  />
   <main>
     <!-- Hero Section -->
     <PageHero
@@ -61,18 +63,35 @@ const jsonLD = {
             <!-- Contact Information -->
             <div class="space-y-6 w-full">
               <div>
-                <h3 class="text-2xl font-bold text-foreground mb-4">Get in Touch</h3>
-                
+                <h3 class="text-2xl font-bold text-foreground mb-4">
+                  Get in Touch
+                </h3>
+
                 <!-- Email -->
                 <div class="flex items-center space-x-4 mb-6">
-                  <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
-                    <svg class="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  <div
+                    class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-primary-foreground"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      ></path>
                     </svg>
                   </div>
                   <div>
                     <p class="font-semibold text-foreground">Email</p>
-                    <a href="mailto:hello@nosytlabs.com" class="text-primary hover:text-primary/80 transition-colors">
+                    <a
+                      href="mailto:hello@nosytlabs.com"
+                      class="text-primary hover:text-primary/80 transition-colors"
+                    >
                       hello@nosytlabs.com
                     </a>
                   </div>
@@ -80,9 +99,21 @@ const jsonLD = {
 
                 <!-- Phone -->
                 <div class="flex items-center space-x-4 mb-6">
-                  <div class="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center">
-                    <svg class="w-6 h-6 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  <div
+                    class="w-12 h-12 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-secondary-foreground"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      ></path>
                     </svg>
                   </div>
                   <div>
@@ -93,16 +124,32 @@ const jsonLD = {
 
                 <!-- Location -->
                 <div class="flex items-center space-x-4 mb-6">
-                  <div class="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center">
-                    <svg class="w-6 h-6 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <div
+                    class="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-6 h-6 text-accent-foreground"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      ></path>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
                   </div>
                   <div>
                     <p class="font-semibold text-foreground">Visit Us</p>
                     <p class="text-muted-foreground">
-                      Remote-first company<br>
+                      Remote-first company<br />
                       Serving clients worldwide
                     </p>
                   </div>
@@ -110,26 +157,46 @@ const jsonLD = {
               </div>
 
               <!-- Quick Response Card -->
-              <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg">
-                <div class="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-md">
-                  <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              <div
+                class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg"
+              >
+                <div
+                  class="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-md"
+                >
+                  <svg
+                    class="w-7 h-7 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                   </svg>
                 </div>
-                <h4 class="text-lg font-bold text-foreground mb-2 text-center">Fast Response</h4>
+                <h4 class="text-lg font-bold text-foreground mb-2 text-center">
+                  Fast Response
+                </h4>
                 <p class="text-default-600 text-center text-sm leading-relaxed">
-                  Quick turnaround on quotes and questions. No corporate bureaucracy, just direct communication.
+                  Quick turnaround on quotes and questions. No corporate
+                  bureaucracy, just direct communication.
                 </p>
               </div>
 
               <!-- Free Consultation Card -->
-              <div class="bg-content1 rounded-2xl p-6 border-2 border-default-200 hover:border-primary/40 transition-all duration-300 hover:shadow-lg">
+              <div
+                class="bg-content1 rounded-2xl p-6 border-2 border-default-200 hover:border-primary/40 transition-all duration-300 hover:shadow-lg"
+              >
                 <h4 class="text-lg font-bold mb-3">Technical Assessment</h4>
                 <p class="text-default-600 mb-4 text-sm leading-relaxed">
-                  Free consultation to discuss your project. I'll provide honest feedback and realistic timelines.
+                  Free consultation to discuss your project. I'll provide honest
+                  feedback and realistic timelines.
                 </p>
                 <p class="text-xs text-default-500 leading-relaxed">
-                  Fill out the form and I'll respond within 24 hours with a detailed assessment.
+                  Fill out the form and I'll respond within 24 hours with a
+                  detailed assessment.
                 </p>
               </div>
             </div>
@@ -142,51 +209,136 @@ const jsonLD = {
     <Section spacing="lg" background="muted">
       <Container size="standard">
         <div class="text-center mb-8">
-          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">Why Work With NOSYT Labs</h2>
+          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Why Work With NOSYT Labs
+          </h2>
           <p class="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto">
-            Solo developer with modern AI tools, honest communication, and a focus on delivering what you actually need.
+            Solo developer with modern AI tools, honest communication, and a
+            focus on delivering what you actually need.
           </p>
         </div>
 
         <div class="grid-responsive-4 max-w-none">
           <div class="card-professional group p-6 md:p-8 text-center">
-            <div class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5">
-              <svg class="w-8 h-8 md:w-9 md:h-9 text-primary group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            <div
+              class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5"
+            >
+              <svg
+                class="w-8 h-8 md:w-9 md:h-9 text-primary group-hover:text-accent transition-colors duration-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h3 class="text-lg md:text-xl font-bold mb-3 group-hover:text-primary transition-colors">Fast Response</h3>
-            <p class="text-sm md:text-base text-muted-foreground leading-relaxed">Quick turnaround on quotes and questions. No corporate bureaucracy, just direct communication.</p>
+            <h3
+              class="text-lg md:text-xl font-bold mb-3 group-hover:text-primary transition-colors"
+            >
+              Fast Response
+            </h3>
+            <p
+              class="text-sm md:text-base text-muted-foreground leading-relaxed"
+            >
+              Quick turnaround on quotes and questions. No corporate
+              bureaucracy, just direct communication.
+            </p>
           </div>
 
           <div class="card-professional group p-6 md:p-8 text-center">
-            <div class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5 bg-gradient-to-br from-accent/20 to-accent/10 border-accent/40">
-              <svg class="w-8 h-8 md:w-9 md:h-9 text-accent group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+            <div
+              class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5 bg-gradient-to-br from-accent/20 to-accent/10 border-accent/40"
+            >
+              <svg
+                class="w-8 h-8 md:w-9 md:h-9 text-accent group-hover:text-accent transition-colors duration-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-lg md:text-xl font-bold mb-3 group-hover:text-accent transition-colors">Modern Tech Stack</h3>
-            <p class="text-sm md:text-base text-muted-foreground leading-relaxed">React, Astro, Next.js, TypeScript, and AI tools. Building with the latest proven technologies.</p>
+            <h3
+              class="text-lg md:text-xl font-bold mb-3 group-hover:text-accent transition-colors"
+            >
+              Modern Tech Stack
+            </h3>
+            <p
+              class="text-sm md:text-base text-muted-foreground leading-relaxed"
+            >
+              React, Astro, Next.js, TypeScript, and AI tools. Building with the
+              latest proven technologies.
+            </p>
           </div>
 
           <div class="card-professional group p-6 md:p-8 text-center">
-            <div class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5 bg-gradient-to-br from-success/20 to-success/10 border-success/40">
-              <svg class="w-8 h-8 md:w-9 md:h-9 text-success group-hover:text-success transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            <div
+              class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5 bg-gradient-to-br from-success/20 to-success/10 border-success/40"
+            >
+              <svg
+                class="w-8 h-8 md:w-9 md:h-9 text-success group-hover:text-success transition-colors duration-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-lg md:text-xl font-bold mb-3 group-hover:text-success transition-colors">AI-Powered Development</h3>
-            <p class="text-sm md:text-base text-muted-foreground leading-relaxed">Using Claude, Cursor, and modern AI tools to code faster and deliver quality results.</p>
+            <h3
+              class="text-lg md:text-xl font-bold mb-3 group-hover:text-success transition-colors"
+            >
+              AI-Powered Development
+            </h3>
+            <p
+              class="text-sm md:text-base text-muted-foreground leading-relaxed"
+            >
+              Using Claude, Cursor, and modern AI tools to code faster and
+              deliver quality results.
+            </p>
           </div>
 
           <div class="card-professional group p-6 md:p-8 text-center">
-            <div class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5">
-              <svg class="w-8 h-8 md:w-9 md:h-9 text-primary group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 109.75 9.75A9.75 9.75 0 0012 2.25z"></path>
+            <div
+              class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5"
+            >
+              <svg
+                class="w-8 h-8 md:w-9 md:h-9 text-primary group-hover:text-accent transition-colors duration-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                stroke-width="2.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 109.75 9.75A9.75 9.75 0 0012 2.25z"
+                ></path>
               </svg>
             </div>
-            <h3 class="text-lg md:text-xl font-bold mb-3 group-hover:text-primary transition-colors">Post-Launch Support</h3>
-            <p class="text-sm md:text-base text-muted-foreground leading-relaxed">Monitoring, updates, and performance optimization to maintain 99.9% uptime.</p>
+            <h3
+              class="text-lg md:text-xl font-bold mb-3 group-hover:text-primary transition-colors"
+            >
+              Post-Launch Support
+            </h3>
+            <p
+              class="text-sm md:text-base text-muted-foreground leading-relaxed"
+            >
+              Monitoring, updates, and performance optimization to maintain
+              99.9% uptime.
+            </p>
           </div>
         </div>
       </Container>
@@ -195,225 +347,241 @@ const jsonLD = {
 </MainLayout>
 
 <script type="module" is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     // Email validation function
     function isValidEmail(email) {
       // Simple email validation regex
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
     }
-    
+
     // Initialize form functionality
     function initializeContactForm() {
-      const form = document.getElementById('contact-form');
-    if (!form) return;
+      const form = document.getElementById("contact-form");
+      if (!form) return;
 
-    // Simple notification system
-    function showNotification(message, type = 'success') {
-      
-      // Remove any existing notifications
-      const existingNotification = document.querySelector('.notification');
-      if (existingNotification) {
-        existingNotification.remove();
-      }
-
-      // Create notification element
-      const notification = document.createElement('div');
-      notification.className = `notification fixed top-4 right-4 p-4 rounded-lg shadow-lg max-w-sm transition-all duration-300 z-50 ${
-          type === 'success' 
-            ? 'bg-green-500 text-white' 
-            : 'bg-red-500 text-white'
-        }`;
-      notification.textContent = message;
-
-      // Add to page
-      document.body.appendChild(notification);
-
-      // Auto remove after 5 seconds
-      setTimeout(() => {
-        notification.style.opacity = '0';
-        setTimeout(() => {
-          if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-          }
-        }, 300);
-      }, 5000);
-    }
-
-    // UI Interactions
-    const messageField = document.querySelector('#message');
-    const messageCount = document.querySelector('#message-count');
-    if (messageField && messageCount) {
-      const updateCount = () => {
-        messageCount.textContent = String(messageField.value.length);
-      };
-      messageField.addEventListener('input', updateCount);
-      updateCount();
-    }
-
-    const fileInput = document.querySelector('#files');
-    const fileDropZone = document.querySelector('#file-drop-zone');
-    if (fileDropZone && fileInput) {
-      fileDropZone.addEventListener('click', () => fileInput.click());
-      fileDropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        fileDropZone.classList.add('dragover');
-      });
-      fileDropZone.addEventListener('dragleave', () => fileDropZone.classList.remove('dragover'));
-      fileDropZone.addEventListener('drop', (e) => {
-        const dragEvent = e;
-        dragEvent.preventDefault();
-        fileDropZone.classList.remove('dragover');
-        if (dragEvent.dataTransfer && dragEvent.dataTransfer.files) {
-          fileInput.files = dragEvent.dataTransfer.files;
+      // Simple notification system
+      function showNotification(message, type = "success") {
+        // Remove any existing notifications
+        const existingNotification = document.querySelector(".notification");
+        if (existingNotification) {
+          existingNotification.remove();
         }
-      });
-    }
 
-    // Unified field validators
-    const validators = {
-      name: (value) => {
-        if (!value || !value.trim()) return 'Name is required';
-        if (value.length < 2) return 'Name must be at least 2 characters';
-        if (value.length > 100) return 'Name must be less than 100 characters';
-        if (!/^[A-Za-z\s]{2,50}$/.test(value)) return 'Please enter a valid name (2-50 letters)';
-        return '';
-      },
-      email: async (value) => {
-        if (!value || !value.trim()) return 'Email is required';
-        if (!await isValidEmail(value)) return 'Please enter a valid email address';
-        return '';
-      },
-      subject: (value) => {
-        if (!value || !value.trim()) return 'Subject is required';
-        if (value.length < 5) return 'Subject must be at least 5 characters';
-        if (value.length > 200) return 'Subject must be less than 200 characters';
-        return '';
-      },
-      message: (value) => {
-        if (!value || !value.trim()) return 'Message is required';
-        if (value.length < 10) return 'Message must be at least 10 characters';
-        if (value.length > 2000) return 'Message must be less than 2000 characters';
-        return '';
+        // Create notification element
+        const notification = document.createElement("div");
+        notification.className = `notification fixed top-4 right-4 p-4 rounded-lg shadow-lg max-w-sm transition-all duration-300 z-50 ${
+          type === "success"
+            ? "bg-green-500 text-white"
+            : "bg-red-500 text-white"
+        }`;
+        notification.textContent = message;
+
+        // Add to page
+        document.body.appendChild(notification);
+
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+          notification.style.opacity = "0";
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.parentNode.removeChild(notification);
+            }
+          }, 300);
+        }, 5000);
       }
-    };
 
-    // Real-time validation
-    Object.keys(validators).forEach(fieldName => {
-      const field = form.querySelector(`#${fieldName}`);
-      const errorDiv = form.querySelector(`#${fieldName}-error`);
-      if (field && errorDiv) {
-        field.addEventListener('blur', async () => {
-          const validator = validators[fieldName];
-          const error = await validator(field.value);
-          errorDiv.textContent = error;
-          field.classList.toggle('error', !!error);
-          field.classList.toggle('success', !error && !!field.value.trim());
+      // UI Interactions
+      const messageField = document.querySelector("#message");
+      const messageCount = document.querySelector("#message-count");
+      if (messageField && messageCount) {
+        const updateCount = () => {
+          messageCount.textContent = String(messageField.value.length);
+        };
+        messageField.addEventListener("input", updateCount);
+        updateCount();
+      }
+
+      const fileInput = document.querySelector("#files");
+      const fileDropZone = document.querySelector("#file-drop-zone");
+      if (fileDropZone && fileInput) {
+        fileDropZone.addEventListener("click", () => fileInput.click());
+        fileDropZone.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          fileDropZone.classList.add("dragover");
+        });
+        fileDropZone.addEventListener("dragleave", () =>
+          fileDropZone.classList.remove("dragover"),
+        );
+        fileDropZone.addEventListener("drop", (e) => {
+          const dragEvent = e;
+          dragEvent.preventDefault();
+          fileDropZone.classList.remove("dragover");
+          if (dragEvent.dataTransfer && dragEvent.dataTransfer.files) {
+            fileInput.files = dragEvent.dataTransfer.files;
+          }
         });
       }
-    });
 
-    // Form submission
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+      // Unified field validators
+      const validators = {
+        name: (value) => {
+          if (!value || !value.trim()) return "Name is required";
+          if (value.length < 2) return "Name must be at least 2 characters";
+          if (value.length > 100)
+            return "Name must be less than 100 characters";
+          if (!/^[A-Za-z\s]{2,50}$/.test(value))
+            return "Please enter a valid name (2-50 letters)";
+          return "";
+        },
+        email: async (value) => {
+          if (!value || !value.trim()) return "Email is required";
+          if (!(await isValidEmail(value)))
+            return "Please enter a valid email address";
+          return "";
+        },
+        subject: (value) => {
+          if (!value || !value.trim()) return "Subject is required";
+          if (value.length < 5) return "Subject must be at least 5 characters";
+          if (value.length > 200)
+            return "Subject must be less than 200 characters";
+          return "";
+        },
+        message: (value) => {
+          if (!value || !value.trim()) return "Message is required";
+          if (value.length < 10)
+            return "Message must be at least 10 characters";
+          if (value.length > 2000)
+            return "Message must be less than 2000 characters";
+          return "";
+        },
+      };
 
-      // Get submit button and add loading state
-      const submitButton = form.querySelector('button[type="submit"]');
-      const originalButtonText = submitButton?.textContent || 'Send Message';
-      
-      let isFormValid = true;
-      // Validate fields sequentially to handle async email validation
-      for (const fieldName of Object.keys(validators)) {
+      // Real-time validation
+      Object.keys(validators).forEach((fieldName) => {
         const field = form.querySelector(`#${fieldName}`);
         const errorDiv = form.querySelector(`#${fieldName}-error`);
         if (field && errorDiv) {
-          const validator = validators[fieldName];
-          const error = await validator(field.value);
-          errorDiv.textContent = error;
-          field.classList.toggle('error', !!error);
-          field.classList.toggle('success', !error && !!field.value.trim());
-          if (error) {
-            isFormValid = false;
+          field.addEventListener("blur", async () => {
+            const validator = validators[fieldName];
+            const error = await validator(field.value);
+            errorDiv.textContent = error;
+            field.classList.toggle("error", !!error);
+            field.classList.toggle("success", !error && !!field.value.trim());
+          });
+        }
+      });
+
+      // Form submission
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Get submit button and add loading state
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton?.textContent || "Send Message";
+
+        let isFormValid = true;
+        // Validate fields sequentially to handle async email validation
+        for (const fieldName of Object.keys(validators)) {
+          const field = form.querySelector(`#${fieldName}`);
+          const errorDiv = form.querySelector(`#${fieldName}-error`);
+          if (field && errorDiv) {
+            const validator = validators[fieldName];
+            const error = await validator(field.value);
+            errorDiv.textContent = error;
+            field.classList.toggle("error", !!error);
+            field.classList.toggle("success", !error && !!field.value.trim());
+            if (error) {
+              isFormValid = false;
+            }
           }
         }
-      }
 
-      if (!isFormValid) {
-        showNotification("Please fix the errors before submitting.", "error");
-        return;
-      }
+        if (!isFormValid) {
+          showNotification("Please fix the errors before submitting.", "error");
+          return;
+        }
 
-      // Collect form data
-      const formData = new FormData(form);
-      const contactData = {
-        name: String(formData.get('name')),
-        email: String(formData.get('email')),
-        subject: String(formData.get('subject')),
-        service: String(formData.get('service')),
-        message: String(formData.get('message'))
-      };
+        // Collect form data
+        const formData = new FormData(form);
+        const contactData = {
+          name: String(formData.get("name")),
+          email: String(formData.get("email")),
+          subject: String(formData.get("subject")),
+          service: String(formData.get("service")),
+          message: String(formData.get("message")),
+        };
 
-      try {
-        // Show loading state
-        if (submitButton) {
-          submitButton.disabled = true;
-          submitButton.innerHTML = `
+        try {
+          // Show loading state
+          if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerHTML = `
             <svg class="animate-spin h-5 w-5 inline-block mr-2" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
             Sending...
           `;
-        }
-        
-        // Import and use the form service
-        const { submitContactForm } = await import('../lib/forms/form-service');
-        const result = await submitContactForm(contactData);
+          }
 
-        if (result.success) {
-          showNotification(result.message || "Message sent successfully!", "success");
-          form.reset();
-          
-          // Reset button state
-          if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
+          // Import and use the form service
+          const { submitContactForm } = await import(
+            "../lib/forms/form-service"
+          );
+          const result = await submitContactForm(contactData);
+
+          if (result.success) {
+            showNotification(
+              result.message || "Message sent successfully!",
+              "success",
+            );
+            form.reset();
+
+            // Reset button state
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = originalButtonText;
+            }
+            // Clear validation states
+            Object.keys(validators).forEach((fieldName) => {
+              const field = form.querySelector(`#${fieldName}`);
+              const errorDiv = form.querySelector(`#${fieldName}-error`);
+              if (field) {
+                field.classList.remove("error", "success");
+              }
+              if (errorDiv) {
+                errorDiv.textContent = "";
+              }
+            });
+          } else {
+            showNotification(
+              result.message || "Error sending message",
+              "error",
+            );
+
+            // Reset button state
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = originalButtonText;
+            }
           }
-          // Clear validation states
-          Object.keys(validators).forEach(fieldName => {
-            const field = form.querySelector(`#${fieldName}`);
-            const errorDiv = form.querySelector(`#${fieldName}-error`);
-            if (field) {
-              field.classList.remove('error', 'success');
-            }
-            if (errorDiv) {
-              errorDiv.textContent = '';
-            }
-          });
-        } else {
-          showNotification(result.message || "Error sending message", "error");
-          
+        } catch {
+          showNotification(
+            "An unexpected error occurred. Please try again later.",
+            "error",
+          );
+
           // Reset button state
           if (submitButton) {
             submitButton.disabled = false;
             submitButton.textContent = originalButtonText;
           }
         }
-      } catch (error) {
-        console.error('Form submission error:', error);
-        showNotification("An unexpected error occurred. Please try again later.", "error");
-        
-        // Reset button state
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.textContent = originalButtonText;
-        }
-      }
-    });
+      });
     }
-    
+
     // Initialize the form
     initializeContactForm();
   });
 </script>
-

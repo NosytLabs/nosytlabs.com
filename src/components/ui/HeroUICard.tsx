@@ -30,14 +30,8 @@ export function HeroUICard({
       className={`border border-border/50 bg-gradient-to-br from-card via-card to-muted/10 ${className || ""}`}
       {...props}
     >
-      {header && (
-        <CardHeader className="flex gap-3">
-          {header}
-        </CardHeader>
-      )}
-      <CardBody className="flex-grow">
-        {children}
-      </CardBody>
+      {header && <CardHeader className="flex gap-3">{header}</CardHeader>}
+      <CardBody className="flex-grow">{children}</CardBody>
       {footer && (
         <CardFooter className="border-t border-border/50 pt-4">
           {footer}

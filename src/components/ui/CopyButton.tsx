@@ -66,4 +66,3 @@ export default function CopyButton({ text, className = "" }: CopyButtonProps) {
     </button>
   );
 }
-

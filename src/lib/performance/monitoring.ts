@@ -208,11 +208,7 @@ export class PerformanceMonitor {
    * Log metrics to console (development only)
    */
   public logMetrics(): void {
-    if (process.env.NODE_ENV === "development") {
-      // Performance Metrics
-      // this.metrics
-      // End Performance Metrics
-    }
+    // Metrics are tracked internally
   }
 
   /**
@@ -243,10 +239,6 @@ export class PerformanceMonitor {
       this.customMetrics.set(name, []);
     }
     this.customMetrics.get(name)!.push(metric);
-
-    if (process.env.NODE_ENV === "development") {
-      // Custom metric tracked
-    }
   }
 
   /**
@@ -265,8 +257,6 @@ export class PerformanceMonitor {
   public recordMetric(name: string, data: unknown): void {
     if (typeof data === "number") {
       this.trackCustomMetric(name, data);
-    } else if (process.env.NODE_ENV === "development") {
-      console.warn(`📊 Recording metric "${name}":`, data);
     }
   }
 
@@ -276,30 +266,28 @@ export class PerformanceMonitor {
    * @returns Promise that resolves when metrics are sent
    */
   public async sendMetrics(): Promise<void> {
-    const payload = {
-      type: "performance",
-      url: typeof window !== "undefined" ? window.location.href : "unknown",
-      metrics: this.metrics,
-      customMetrics: Array.from(this.customMetrics.entries()).map(
-        ([name, values]) => ({
-          name,
-          values,
-        }),
-      ),
-      timestamp: Date.now(),
-      userAgent:
-        typeof navigator !== "undefined" ? navigator.userAgent : "unknown",
-    };
-
-    if (process.env.NODE_ENV === "development") {
-      console.warn(
-        "📤 Performance metrics (would be sent to analytics):",
-        payload,
-      );
-      return;
-    }
-
     try {
+      if (process.env.NODE_ENV === "development") {
+        return;
+      }
+
+      const payload = {
+        type: "performance",
+        url: typeof window !== "undefined" ? window.location.href : "unknown",
+        metrics: this.metrics,
+        customMetrics: Array.from(this.customMetrics.entries()).map(
+          ([name, values]) => ({
+            name,
+            values,
+          }),
+        ),
+        timestamp: Date.now(),
+        userAgent:
+          typeof navigator !== "undefined" ? navigator.userAgent : "unknown",
+      };
+
+      void payload;
+
       // Analytics service integration would go here
       // Currently metrics are collected but not sent to external service
     } catch (error) {

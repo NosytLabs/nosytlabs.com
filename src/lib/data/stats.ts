@@ -56,11 +56,7 @@ export function getStatsArray(keys?: (keyof typeof siteStats)[]): SiteStat[] {
  * Get primary stats (most important 3)
  */
 export function getPrimaryStats(): SiteStat[] {
-  return [
-    siteStats.projectsCompleted,
-    siteStats.aiTools,
-    siteStats.delivery,
-  ];
+  return [siteStats.projectsCompleted, siteStats.aiTools, siteStats.delivery];
 }
 
 /**

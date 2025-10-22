@@ -44,6 +44,7 @@ Practical AI integration that actually works. Add ChatGPT, Claude, or custom AI 
 Add an AI assistant to your website or app. Handle common questions automatically, escalate complex ones to humans.
 
 **What's Included**:
+
 - Custom-trained on your content/docs
 - Integrates with your website
 - Handles FAQs automatically
@@ -59,6 +60,7 @@ Add an AI assistant to your website or app. Handle common questions automaticall
 Automate extracting data from PDFs, invoices, forms, or documents using AI.
 
 **Use Cases**:
+
 - Invoice data extraction
 - Resume parsing
 - Form processing
@@ -74,6 +76,7 @@ Automate extracting data from PDFs, invoices, forms, or documents using AI.
 Use AI to generate content, summaries, or responses at scale.
 
 **Examples**:
+
 - Product descriptions from specs
 - Email response suggestions
 - Social media post generation
@@ -88,6 +91,7 @@ Use AI to generate content, summaries, or responses at scale.
 Connect your tools and add AI decision-making to automate complex workflows.
 
 **Examples**:
+
 - Lead qualification and routing
 - Email triage and categorization
 - Data enrichment and validation

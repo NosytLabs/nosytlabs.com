@@ -28,6 +28,7 @@ Modern web applications built with React, Astro, Next.js, and TypeScript. Using 
 Fast, SEO-optimized websites built with Astro or Next.js. Perfect for businesses, products, and services.
 
 **What's Included**:
+
 - Modern, responsive design
 - Lightning-fast performance (90+ PageSpeed score)
 - SEO optimized out of the box
@@ -42,6 +43,7 @@ Fast, SEO-optimized websites built with Astro or Next.js. Perfect for businesses
 Custom web apps with user authentication, databases, and real-time features.
 
 **Examples**:
+
 - Dashboard and admin panels
 - Internal business tools
 - Customer portals
@@ -56,6 +58,7 @@ Custom web apps with user authentication, databases, and real-time features.
 Online stores with payment processing, inventory, and order management.
 
 **What's Included**:
+
 - Product catalog and search
 - Shopping cart and checkout
 - Payment processing (Stripe, PayPal)
@@ -68,6 +71,7 @@ Online stores with payment processing, inventory, and order management.
 ## Our Tech Stack
 
 ### Frontend
+
 - **React** - Interactive UIs
 - **Next.js** - Full-stack React framework
 - **Astro** - Ultra-fast static sites
@@ -75,12 +79,14 @@ Online stores with payment processing, inventory, and order management.
 - **TailwindCSS** - Modern styling
 
 ### Backend & Database
+
 - **Node.js** - JavaScript backend
 - **PostgreSQL** - Reliable database
 - **Supabase** - Backend-as-a-service
 - **Vercel** - Fast hosting and deployment
 
 ### AI-Assisted Development
+
 - **Claude** - AI pair programming
 - **Cursor** - AI code editor
 - **GitHub Copilot** - Code suggestions
@@ -139,5 +145,3 @@ This lets us build faster without sacrificing quality.
 - Third-party integrations and API complexity
 - Real-time features and data processing requirements
 - Custom design and user experience needs
-
-

@@ -5,7 +5,14 @@ icon: "ai-integration"
 price: "Starting at $99 USD"
 delivery: "1-3 days"
 category: "ai"
-tags: ["suno ai", "music generation", "jingles", "podcast intros", "content creation"]
+tags:
+  [
+    "suno ai",
+    "music generation",
+    "jingles",
+    "podcast intros",
+    "content creation",
+  ]
 featured: true
 benefits:
   - "Custom jingles for your brand (15-30 seconds)"
@@ -52,12 +59,14 @@ Check out tracks created with Suno AI under the NOSYT artist name on Spotify. Th
 Short, memorable audio signatures that represent your brand. Think of those catchy tunes you can't get out of your head - but for your business.
 
 **Perfect For**:
+
 - Business phone hold music
 - Radio and podcast advertisements
 - Social media video intros
 - Brand recognition and recall
 
 **Example Projects**:
+
 - 20-second upbeat jingle for coffee shop with acoustic guitar vibes
 - 15-second tech startup audio logo with modern electronic sound
 - 30-second retail store jingle with friendly, welcoming tone
@@ -69,12 +78,14 @@ Short, memorable audio signatures that represent your brand. Think of those catc
 Custom music that sets the tone for your podcast and makes your show instantly recognizable.
 
 **What You Get**:
+
 - Intro music (15-30 seconds) that captures your show's vibe
 - Outro music (15-30 seconds) for consistent branding
 - Background music for transitions between segments
 - Multiple style options to choose from
 
 **Example Projects**:
+
 - Energetic electronic intro for tech podcast
 - Chill lo-fi beats for productivity podcast
 - Professional corporate sound for business interview show
@@ -86,12 +97,14 @@ Custom music that sets the tone for your podcast and makes your show instantly r
 Background tracks for your videos that won't get copyright strikes. Unique music that makes your content stand out.
 
 **Use Cases**:
+
 - YouTube video backgrounds and intros
 - Instagram Reels and TikTok content
 - Explainer videos and tutorials
 - Product demonstrations
 
 **Example Projects**:
+
 - Chill lo-fi beats for coding tutorial videos
 - Upbeat energetic tracks for fitness content
 - Ambient background music for meditation videos
@@ -103,12 +116,14 @@ Background tracks for your videos that won't get copyright strikes. Unique music
 Longer tracks (1-3 minutes) for various content and business needs.
 
 **Perfect For**:
+
 - Presentation backgrounds
 - On-hold music for phone systems
 - Store ambiance and atmosphere
 - Event music and soundscapes
 
 **Example Projects**:
+
 - 2-minute ambient track for spa waiting room
 - 3-minute upbeat background for corporate presentation
 - 90-second loop for retail store atmosphere
@@ -120,6 +135,7 @@ Longer tracks (1-3 minutes) for various content and business needs.
 ### 1. Tell Us What You Need
 
 Share your vision and requirements:
+
 - What's the vibe? (upbeat, chill, professional, energetic, fun)
 - What's it for? (podcast, jingle, video background, business use)
 - Any reference tracks you like?
@@ -129,6 +145,7 @@ Share your vision and requirements:
 ### 2. We Create Options
 
 Using Suno AI, we generate 3-5 variations based on your description:
+
 - Different musical styles and approaches
 - Various energy levels and tempos
 - Multiple interpretations of your concept
@@ -137,6 +154,7 @@ Using Suno AI, we generate 3-5 variations based on your description:
 ### 3. You Choose & Refine
 
 Pick your favorite and we refine it to perfection:
+
 - Adjust tempo or energy level
 - Tweak the musical style
 - Perfect the length and structure
@@ -145,6 +163,7 @@ Pick your favorite and we refine it to perfection:
 ### 4. Receive Your Files
 
 Final delivery includes everything you need:
+
 - High-quality WAV files (uncompressed)
 - MP3 versions for easy sharing
 - Full commercial usage rights
@@ -159,6 +178,7 @@ Traditional music production takes 2-4 weeks minimum. With AI-assisted generatio
 ### Affordable & Accessible
 
 **Cost Comparison**:
+
 - Traditional jingles: $500-$2,000+
 - Professional composers: $200-$350 per minute
 - Brand audio logos: $5,000-$50,000+
@@ -167,6 +187,7 @@ Traditional music production takes 2-4 weeks minimum. With AI-assisted generatio
 ### Full Commercial Rights
 
 You get complete commercial usage rights with every project:
+
 - Monetized YouTube videos
 - Podcast ads and sponsorships
 - Commercial advertising
@@ -177,6 +198,7 @@ You get complete commercial usage rights with every project:
 ### Any Style, Any Genre
 
 Suno AI can generate virtually any musical style:
+
 - 1950s commercial jingles
 - Modern electronic and EDM
 - Lo-fi hip-hop beats
@@ -189,6 +211,7 @@ Suno AI can generate virtually any musical style:
 ### Revisions Until You're Happy
 
 Not quite right? We keep refining:
+
 - Adjust tempo and energy
 - Change musical style
 - Modify length and structure
@@ -202,6 +225,7 @@ Not quite right? We keep refining:
 Create a professional sound identity for your show that listeners recognize instantly.
 
 **What Podcasters Need**:
+
 - Memorable intros that set the tone
 - Professional outros for consistent branding
 - Episode transitions between segments
@@ -214,6 +238,7 @@ Create a professional sound identity for your show that listeners recognize inst
 Build audio branding that makes your business memorable.
 
 **What Businesses Need**:
+
 - Phone hold music that reflects brand personality
 - Radio and podcast ad jingles that stick in minds
 - Store ambiance that matches brand vibe
@@ -226,6 +251,7 @@ Build audio branding that makes your business memorable.
 Stand out with unique music that won't get copyright strikes.
 
 **What Creators Need**:
+
 - YouTube intros for consistent branding
 - Instagram Reels and TikTok music that's unique
 - Twitch stream alerts and background music
@@ -238,6 +264,7 @@ Stand out with unique music that won't get copyright strikes.
 Attention-grabbing music for campaigns and content.
 
 **What Marketers Need**:
+
 - Social media ad music (15-30 seconds)
 - Product demo backgrounds
 - Explainer video soundtracks

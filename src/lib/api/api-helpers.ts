@@ -568,9 +568,6 @@ export async function parseRequestData<T = Record<string, unknown>>(
       return null;
     }
 
-    // Debug logging in development
-    // Debug info available in development mode
-
     const timeoutMs = 30000; // 30 second timeout for parsing
 
     // Parse based on content type with timeout
@@ -1093,8 +1090,7 @@ export function initializeRateLimitCleanup(): void {
   // Only set up periodic cleanup in server environments
   if (typeof setInterval !== "undefined" && typeof process !== "undefined") {
     // Check if we're in a serverless environment
-    const isServerless =
-      process.env.NETLIFY || process.env.AWS_LAMBDA;
+    const isServerless = process.env.NETLIFY || process.env.AWS_LAMBDA;
 
     if (!isServerless) {
       setInterval(cleanupRateLimitStore, RATE_LIMIT_CLEANUP_INTERVAL);

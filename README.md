@@ -58,12 +58,15 @@ src/
 ## 🎨 Design System
 
 ### Colors
+
 - **Primary**: #232965 (Navy)
 - **Secondary**: #2F82FF (Blue)
 - **Accent**: #29FFAB (Teal)
 
 ### Components
+
 All UI uses HeroUI for consistency:
+
 - Buttons: `HeroUIButtonAstro`
 - Cards: `HeroUICard`, `HeroUIServiceCard`
 - Forms: HeroUI inputs
@@ -72,7 +75,9 @@ All UI uses HeroUI for consistency:
 ## 📝 Content Management
 
 ### Add Blog Post
+
 Create `src/content/blog/post-name.md`:
+
 ```markdown
 ---
 title: "Post Title"
@@ -86,7 +91,9 @@ Content here...
 ```
 
 ### Add Service
+
 Create `src/content/services/service-name.md`:
+
 ```markdown
 ---
 title: "Service Name"
@@ -104,18 +111,22 @@ Details here...
 ## 🚢 Deployment
 
 ### Build
+
 ```bash
 npm run build
 ```
 
 ### Deploy
+
 Upload `dist/` folder to:
+
 - **Vercel** (recommended)
 - **Netlify**
 - **Cloudflare Pages**
 - Any static host
 
 ### Environment Variables
+
 ```env
 PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
