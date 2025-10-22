@@ -37,6 +37,7 @@ Validate your idea fast with a working prototype or MVP. Test with real users, g
 Building a full app can cost $30,000-$150,000+. A prototype costs $5,000-$20,000 and tells you if your idea works.
 
 **What You Learn**:
+
 - Do people actually want this?
 - What features matter most?
 - What's confusing or broken?
@@ -47,6 +48,7 @@ Building a full app can cost $30,000-$150,000+. A prototype costs $5,000-$20,000
 Investors want to see something working, not just slides. A prototype shows you're serious and capable.
 
 **Prototype vs Pitch Deck**:
+
 - Pitch deck alone: "Interesting idea, come back when you have traction"
 - Working prototype: "Let's talk numbers"
 
@@ -55,6 +57,7 @@ Investors want to see something working, not just slides. A prototype shows you'
 Launch in weeks, not months. Test your concept while competitors are still planning.
 
 **Timeline Comparison**:
+
 - Full app development: 3-6 months
 - Prototype/MVP: 2-4 weeks
 - Time saved: 2-5 months
@@ -66,6 +69,7 @@ Launch in weeks, not months. Test your concept while competitors are still plann
 Interactive mockups that look and feel like a real app. Perfect for user testing and investor demos.
 
 **What's Included**:
+
 - 5-10 key screens designed
 - Clickable navigation between screens
 - Basic interactions (buttons, forms)
@@ -80,6 +84,7 @@ Interactive mockups that look and feel like a real app. Perfect for user testing
 Real working apps with core features only. Users can actually use it, not just click through.
 
 **What's Included**:
+
 - User authentication (login/signup)
 - 1-3 core features working
 - Basic database and backend
@@ -94,6 +99,7 @@ Real working apps with core features only. Users can actually use it, not just c
 Test demand before building anything. See if people actually want your product.
 
 **What's Included**:
+
 - Professional landing page
 - Email capture form
 - Analytics tracking
@@ -106,18 +112,21 @@ Test demand before building anything. See if people actually want your product.
 ## Our Process
 
 ### Week 1: Define & Design
+
 - Clarify the core concept
 - Identify must-have features
 - Create wireframes and flow
 - Design key screens
 
 ### Week 2-3: Build
+
 - Develop core functionality
 - Implement key features
 - Set up hosting/deployment
 - Basic testing
 
 ### Week 4: Test & Iterate
+
 - User testing sessions
 - Gather feedback
 - Quick fixes and tweaks

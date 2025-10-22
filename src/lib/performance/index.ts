@@ -336,15 +336,7 @@ export class UnifiedPerformanceManager {
       this.bundleAnalyzer.analyzeBundleSize();
     }
 
-    const report = this.getPerformanceReport();
-    // Performance Report
-    // Score: report.score
-    // Cache Stats: report.cacheStats
-    // Optimization Stats: report.optimizationStats
-    if (report.recommendations.length > 0) {
-      // Recommendations: report.recommendations
-    }
-    // End Performance Report
+    // Performance report is generated and tracked internally
   }
 
   /**

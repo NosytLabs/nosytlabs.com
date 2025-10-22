@@ -2,7 +2,14 @@ import { Button } from "@heroui/react";
 import type { ButtonProps } from "@heroui/react";
 
 interface HeroUIButtonProps extends Omit<ButtonProps, "variant" | "color"> {
-  variant?: "primary" | "secondary" | "tertiary" | "outline" | "ghost" | "destructive" | "gradient";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "outline"
+    | "ghost"
+    | "destructive"
+    | "gradient";
   href?: string;
   external?: boolean;
 }

@@ -48,10 +48,7 @@ export class BlogCardEnhancerImpl implements BlogCardEnhancer {
 
       // Add smooth animations
       cardElement.style.animationDelay = `${index * 150}ms`;
-      cardElement.classList.add(
-        "animate-fade-in",
-        "transition-smooth"
-      );
+      cardElement.classList.add("animate-fade-in", "transition-smooth");
 
       // Enhanced keyboard navigation
       cardElement.setAttribute("tabindex", "0");

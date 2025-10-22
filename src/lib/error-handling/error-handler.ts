@@ -168,7 +168,7 @@ export class ErrorHandler {
    */
   private logError(errorReport: ErrorReport): void {
     if (process.env.NODE_ENV === "development") {
-      console.warn("⚠️ Tracked Error:", {
+      console.warn("Tracked error report:", {
         message: errorReport.message,
         severity: errorReport.severity,
         context: errorReport.context,
@@ -190,10 +190,7 @@ export class ErrorHandler {
    */
   public async sendErrorReport(errorReport: ErrorReport): Promise<void> {
     if (process.env.NODE_ENV === "development") {
-      console.warn(
-        "📤 Error report (would be sent to error service):",
-        errorReport,
-      );
+      console.warn("Error report would be sent to error service:", errorReport);
       return;
     }
 
@@ -220,10 +217,7 @@ export class ErrorHandler {
     try {
       // Batch send errors
       if (process.env.NODE_ENV === "development") {
-        console.warn(
-          "📤 Flushing error queue (would be sent to error service):",
-          errors,
-        );
+        console.warn("Error queue would be sent to error service:", errors);
         return;
       }
 

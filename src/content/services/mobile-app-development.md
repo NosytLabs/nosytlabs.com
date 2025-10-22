@@ -37,6 +37,7 @@ Cross-platform mobile apps built with React Native - one codebase that works on 
 Write once, deploy to both iOS and Android. Saves time and money compared to building separate native apps.
 
 **Cost Comparison**:
+
 - Native development (separate iOS + Android): $40,000-$150,000+
 - React Native (cross-platform): $15,000-$70,000
 - Savings: 40-60% on development costs
@@ -46,6 +47,7 @@ Write once, deploy to both iOS and Android. Saves time and money compared to bui
 React Native apps feel like native apps. Smooth animations, fast load times, and access to device features.
 
 **What You Get**:
+
 - Native UI components (looks like a real iOS/Android app)
 - 60fps animations and transitions
 - Access to camera, GPS, notifications, etc.
@@ -57,8 +59,9 @@ React Native apps feel like native apps. Smooth animations, fast load times, and
 Using Claude, Cursor, and modern AI tools to code faster without sacrificing quality.
 
 **Timeline**:
+
 - Simple app (3-5 screens): 6-8 weeks
-- Medium app (10-15 screens): 8-12 weeks  
+- Medium app (10-15 screens): 8-12 weeks
 - Complex app (20+ screens, integrations): 12-16 weeks
 
 ## What We Build
