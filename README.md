@@ -1,11 +1,8 @@
-# NosytLabs Website
+# NOSYT Labs
 
-Modern, high-performance Astro website with React integration, optimized for accessibility, SEO, and Core Web Vitals.
+> Notable Opportunities Shape Your Tomorrow
 
-[![Astro](https://img.shields.io/badge/Astro-5.14-FF5D01?logo=astro)](https://astro.build)
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css)](https://tailwindcss.com)
+Professional website built with Astro, React, and HeroUI. Fast, accessible, and production-ready.
 
 ## 🚀 Quick Start
 
@@ -23,117 +20,139 @@ npm run build
 npm run preview
 ```
 
-## 📊 Performance
-
-- **LCP:** 323ms (< 2.5s target)
-- **CLS:** 0.00 (< 0.1 target)
-- **TTFB:** 33ms (< 600ms target)
-- **Lighthouse:** 95+ Performance, 100/100 Accessibility, 100/100 SEO
-
-## 🏗️ Tech Stack
-
-- **Framework:** Astro 5.14.7 (Static Site Generation)
-- **UI Library:** React 18.3.1 with TypeScript
-- **Styling:** Tailwind CSS 3.4.14 + HeroUI 2.8.5
-- **Content:** MDX with Astro Content Collections
-- **Animations:** Framer Motion 12.23.24
-- **Icons:** Lucide React
-- **Forms:** EmailJS integration
-
-## 📁 Project Structure
+## 📊 Build Status
 
 ```
-nosytlabs-github-ready/
-├── src/
-│   ├── components/     # React & Astro components
-│   ├── content/        # MDX content (blog, services)
-│   ├── layouts/        # Page layouts
-│   ├── lib/            # Utilities & helpers
-│   ├── pages/          # Route pages
-│   └── styles/         # Global styles
-├── public/             # Static assets
-└── dist/               # Build output
+✅ Build: SUCCESS (31.96s)
+✅ Pages: 21
+✅ Errors: 0
+✅ Bundle: 43.22 kB (gzipped)
 ```
 
-## 🎨 Features
+## 🛠️ Tech Stack
 
-- ✅ Static Site Generation (SSG)
-- ✅ MDX Content Collections
-- ✅ Progressive Web App (PWA)
-- ✅ Advanced compression (Brotli, Gzip, Zstd)
-- ✅ Optimized images
-- ✅ SEO optimized
-- ✅ Accessibility compliant (WCAG 2.1 AA)
-- ✅ Dark mode support
-- ✅ Responsive design
+- **Astro** 5.14.7 - Static site framework
+- **React** 18.3.1 - UI components
+- **HeroUI** 2.8.5 - Component library
+- **Tailwind CSS** 3.4.14 - Styling
+- **TypeScript** 5.6.3 - Type safety
+- **Framer Motion** 12.23.24 - Animations
 
-## 🔧 Development
+## 📁 Structure
 
-```bash
-# Linting
-npm run lint
-npm run lint:fix
-
-# Formatting
-npm run format
-npm run format:check
-
-# Type checking
-npm run type-check
+```
+src/
+├── components/
+│   ├── ui/          # HeroUI components
+│   ├── content/     # Content sections
+│   ├── layout/      # Layout components
+│   └── providers/   # React providers
+├── content/
+│   ├── blog/        # Blog posts (Markdown)
+│   └── services/    # Services (Markdown)
+├── pages/           # Routes
+├── styles/          # Global CSS
+└── lib/             # Utilities
 ```
 
-## 📦 Deployment
+## 🎨 Design System
 
-### Netlify
+### Colors
+- **Primary**: #232965 (Navy)
+- **Secondary**: #2F82FF (Blue)
+- **Accent**: #29FFAB (Teal)
 
+### Components
+All UI uses HeroUI for consistency:
+- Buttons: `HeroUIButtonAstro`
+- Cards: `HeroUICard`, `HeroUIServiceCard`
+- Forms: HeroUI inputs
+- Layout: Responsive containers
+
+## 📝 Content Management
+
+### Add Blog Post
+Create `src/content/blog/post-name.md`:
+```markdown
+---
+title: "Post Title"
+description: "Description"
+pubDate: 2025-01-01
+heroImage: "/images/blog/image.jpg"
+tags: ["tag1", "tag2"]
+---
+
+Content here...
+```
+
+### Add Service
+Create `src/content/services/service-name.md`:
+```markdown
+---
+title: "Service Name"
+description: "Description"
+price: "Starting from $X,XXX"
+icon: "icon-name"
+features:
+  - "Feature 1"
+  - "Feature 2"
+---
+
+Details here...
+```
+
+## 🚢 Deployment
+
+### Build
 ```bash
 npm run build
-# Deploy dist/ folder
 ```
 
-### GitHub Pages
+### Deploy
+Upload `dist/` folder to:
+- **Vercel** (recommended)
+- **Netlify**
+- **Cloudflare Pages**
+- Any static host
 
-Automated via GitHub Actions workflow in `.github/workflows/deploy.yml`
-
-## 🎯 Content Schema
-
-### Blog Posts
-
-- Required: title, description, pubDate, author, tags
-- Optional: category, seoKeywords, excerpt, draft, featured, updatedDate, readingTime, heroImage
-
-### Services
-
-- Required: title, description, icon
-- Optional: image, price, delivery, popular, benefits, features, category, tags
-
-## 🔐 Environment Variables
-
-Create a `.env` file based on `.env.example`:
-
+### Environment Variables
 ```env
-# EmailJS Configuration
 PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-## 📝 License
+## ⚡ Performance
 
-MIT License - see LICENSE file for details
+- **Build Time**: 31.96s
+- **Main Bundle**: 43.22 kB (gzipped)
+- **Pages**: 21 static pages
+- **Compression**: gzip + brotli + zstd
 
-## 🤝 Contributing
+## ♿ Accessibility
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- ✅ WCAG 2.1 AA compliant
+- ✅ ARIA labels
+- ✅ Keyboard navigation
+- ✅ Screen reader support
+- ✅ Reduced motion support
 
-## 📞 Support
+## 🔍 SEO
 
-For issues or questions, please open an issue on GitHub.
+- ✅ Meta tags
+- ✅ Open Graph
+- ✅ Structured data (JSON-LD)
+- ✅ Sitemap
+- ✅ Robots.txt
+
+## 📄 License
+
+MIT License
+
+## 🤝 Contact
+
+Email: hello@nosytlabs.com
 
 ---
 
-**Built with ❤️ by NosytLabs**
+Built with ❤️ by NOSYT Labs

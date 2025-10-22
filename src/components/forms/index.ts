@@ -1,3 +1,3 @@
 // Form Components
-export { default as ContactForm } from "./ContactForm";
+export { default as HeroUIContactForm } from "./HeroUIContactForm";
 export { FormField } from "./FormField";

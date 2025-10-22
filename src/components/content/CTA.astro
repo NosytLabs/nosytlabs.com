@@ -1,5 +1,6 @@
 ---
 import { createInternalLink } from "../../lib/constants";
+import HeroButton from "../ui/HeroUIButtonAstro.astro";
 
 interface Props {
   title?: string;
@@ -66,21 +67,37 @@ const {
       </div>
 
       <!-- CTA Buttons -->
-      <div class="cta-actions mt-8">
+      <div class="flex flex-col sm:flex-row gap-5 justify-center mt-8">
         {(primaryCTA || cta1) && (
-          <a href={(primaryCTA || cta1)?.href || createInternalLink("/contact")} class="btn btn-primary btn-lg">
-            {(primaryCTA || cta1)?.text || "Get a Free Quote"}
-          </a>
+          <HeroButton 
+            href={(primaryCTA || cta1)?.href || createInternalLink("/contact")}
+            text={(primaryCTA || cta1)?.text || "Get a Free Quote"}
+            variant="gradient"
+            size="lg"
+          />
         )}
         {(secondaryCTA || cta2) && (
-          <a href={(secondaryCTA || cta2)?.href || createInternalLink("/services")} class="btn btn-outline btn-lg">
-            {(secondaryCTA || cta2)?.text || "Explore Services"}
-          </a>
+          <HeroButton 
+            href={(secondaryCTA || cta2)?.href || createInternalLink("/services")}
+            text={(secondaryCTA || cta2)?.text || "Explore Services"}
+            variant="outline"
+            size="lg"
+          />
         )}
         {!primaryCTA && !cta1 && !secondaryCTA && !cta2 && (
           <>
-            <a href={createInternalLink("/contact")} class="btn btn-primary btn-lg">Get a Free Quote</a>
-            <a href={createInternalLink("/services")} class="btn btn-outline btn-lg">Explore Services</a>
+            <HeroButton 
+              href={createInternalLink("/contact")}
+              text="Get a Free Quote"
+              variant="gradient"
+              size="lg"
+            />
+            <HeroButton 
+              href={createInternalLink("/services")}
+              text="Explore Services"
+              variant="outline"
+              size="lg"
+            />
           </>
         )}
       </div>
@@ -103,3 +120,4 @@ const {
     </div>
   </div>
 </section>
+

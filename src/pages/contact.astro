@@ -1,10 +1,11 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import ModernForm from '../components/ui/ModernForm.astro';
+import HeroUIContactForm from '../components/forms/HeroUIContactForm';
+import { HeroUIWrapper } from '../components/providers/HeroUIWrapper';
 import Section from '../components/layout/Section.astro';
 import Container from '../components/layout/Container.astro';
 import PageHero from '../components/layout/PageHero.astro';
-import { createInternalLink, SITE_CONFIG } from '../lib/constants';
+import { SITE_CONFIG } from '../lib/constants';
 
 const pageTitle = "Contact Us - NOSYT Labs";
 const pageDescription = "Get in touch with NOSYT Labs for your next project. We're here to help bring your ideas to life with proven technology solutions based on 47 successful deployments.";
@@ -42,26 +43,25 @@ const jsonLD = {
       title="Ready to Build Your Next Application?"
       subtitle="Get a comprehensive technical assessment and transparent project estimate within 24 hours. Let's discuss your requirements and build something exceptional."
       background="gradient"
-      size="large"
+      size="compact"
     />
 
     <!-- Contact Form Section -->
-    <Section spacing="xl">
-      <Container>
-        <div class="max-w-4xl mx-auto">
-          <div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-start">
-            <!-- Modern Contact Form -->
-            <ModernForm 
-              title="Get Technical Assessment"
-              subtitle="Tell us about your project. We'll respond with actionable insights within 24 hours."
-              action={createInternalLink("/api/contact")}
-              method="POST"
-            />
+    <Section spacing="lg">
+      <Container size="standard">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <!-- HeroUI Contact Form -->
+            <div class="w-full">
+              <HeroUIWrapper client:load>
+                <HeroUIContactForm client:load />
+              </HeroUIWrapper>
+            </div>
 
             <!-- Contact Information -->
-            <div class="space-y-8">
+            <div class="space-y-6 w-full">
               <div>
-                <h3 class="text-2xl font-bold text-foreground mb-6">Get in Touch</h3>
+                <h3 class="text-2xl font-bold text-foreground mb-4">Get in Touch</h3>
                 
                 <!-- Email -->
                 <div class="flex items-center space-x-4 mb-6">
@@ -110,26 +110,26 @@ const jsonLD = {
               </div>
 
               <!-- Quick Response Card -->
-              <div class="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-8 border border-border/50">
-                <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              <div class="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl p-6 border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-lg">
+                <div class="w-14 h-14 bg-gradient-to-br from-primary to-primary/80 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-md">
+                  <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                   </svg>
                 </div>
-                <h4 class="text-xl font-bold text-foreground mb-2">24-Hour Response</h4>
-                <p class="text-muted-foreground">
-                  Technical assessment and project roadmap delivered within one business day.
+                <h4 class="text-lg font-bold text-foreground mb-2 text-center">Fast Response</h4>
+                <p class="text-default-600 text-center text-sm leading-relaxed">
+                  Quick turnaround on quotes and questions. No corporate bureaucracy, just direct communication.
                 </p>
               </div>
 
               <!-- Free Consultation Card -->
-              <div class="bg-gradient-to-br from-card to-muted/50 rounded-3xl p-8 text-card-foreground border border-border">
-                <h4 class="text-xl font-bold mb-2">Technical Assessment</h4>
-                <p class="text-muted-foreground mb-6">
-                  30-minute technical consultation based on our proven track record of delivering enterprise-grade applications.
+              <div class="bg-content1 rounded-2xl p-6 border-2 border-default-200 hover:border-primary/40 transition-all duration-300 hover:shadow-lg">
+                <h4 class="text-lg font-bold mb-3">Technical Assessment</h4>
+                <p class="text-default-600 mb-4 text-sm leading-relaxed">
+                  Free consultation to discuss your project. I'll provide honest feedback and realistic timelines.
                 </p>
-                <p class="text-sm text-muted-foreground">
-                  Fill out the form to schedule your free technical assessment. We'll respond within 24 hours with a detailed project roadmap.
+                <p class="text-xs text-default-500 leading-relaxed">
+                  Fill out the form and I'll respond within 24 hours with a detailed assessment.
                 </p>
               </div>
             </div>
@@ -139,54 +139,54 @@ const jsonLD = {
     </Section>
 
     <!-- Why Choose Us Section -->
-    <Section spacing="xl" background="muted">
+    <Section spacing="lg" background="muted">
       <Container size="standard">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold text-foreground mb-4">Why Clients Choose NOSYT Labs</h2>
-          <p class="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Proven expertise with measurable results: 2-3x traffic growth, 35% higher conversions, and 40+ hours saved weekly through intelligent automation.
+        <div class="text-center mb-8">
+          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">Why Work With NOSYT Labs</h2>
+          <p class="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto">
+            Solo developer with modern AI tools, honest communication, and a focus on delivering what you actually need.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          <div class="text-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+        <div class="grid-responsive-4 max-w-none">
+          <div class="card-professional group p-6 md:p-8 text-center">
+            <div class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5">
+              <svg class="w-8 h-8 md:w-9 md:h-9 text-primary group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-foreground mb-2">24-Hour Response</h3>
-            <p class="text-muted-foreground">Comprehensive technical assessment and transparent project roadmap within one business day.</p>
+            <h3 class="text-lg md:text-xl font-bold mb-3 group-hover:text-primary transition-colors">Fast Response</h3>
+            <p class="text-sm md:text-base text-muted-foreground leading-relaxed">Quick turnaround on quotes and questions. No corporate bureaucracy, just direct communication.</p>
           </div>
 
-          <div class="text-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-accent to-accent/80 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+          <div class="card-professional group p-6 md:p-8 text-center">
+            <div class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5 bg-gradient-to-br from-accent/20 to-accent/10 border-accent/40">
+              <svg class="w-8 h-8 md:w-9 md:h-9 text-accent group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-foreground mb-2">Enterprise-Grade Solutions</h3>
-            <p class="text-muted-foreground">Production-tested experience with React, Next.js, and Node.js delivering sub-500ms performance.</p>
+            <h3 class="text-lg md:text-xl font-bold mb-3 group-hover:text-accent transition-colors">Modern Tech Stack</h3>
+            <p class="text-sm md:text-base text-muted-foreground leading-relaxed">React, Astro, Next.js, TypeScript, and AI tools. Building with the latest proven technologies.</p>
           </div>
 
-          <div class="text-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-secondary to-secondary/80 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-secondary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <div class="card-professional group p-6 md:p-8 text-center">
+            <div class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5 bg-gradient-to-br from-success/20 to-success/10 border-success/40">
+              <svg class="w-8 h-8 md:w-9 md:h-9 text-success group-hover:text-success transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-foreground mb-2">100% Completion Rate</h3>
-            <p class="text-muted-foreground">Every project delivered on time with measurable ROI and performance metrics.</p>
+            <h3 class="text-lg md:text-xl font-bold mb-3 group-hover:text-success transition-colors">AI-Powered Development</h3>
+            <p class="text-sm md:text-base text-muted-foreground leading-relaxed">Using Claude, Cursor, and modern AI tools to code faster and deliver quality results.</p>
           </div>
 
-          <div class="text-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-primary/80 to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 109.75 9.75A9.75 9.75 0 0012 2.25z"></path>
+          <div class="card-professional group p-6 md:p-8 text-center">
+            <div class="card-icon-wrapper w-16 h-16 md:w-18 md:h-18 mx-auto mb-5">
+              <svg class="w-8 h-8 md:w-9 md:h-9 text-primary group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 109.75 9.75A9.75 9.75 0 0012 2.25z"></path>
               </svg>
             </div>
-            <h3 class="text-lg font-bold text-foreground mb-2">Post-Launch Support</h3>
-            <p class="text-muted-foreground">Monitoring, updates, and performance optimization to maintain 99.9% uptime.</p>
+            <h3 class="text-lg md:text-xl font-bold mb-3 group-hover:text-primary transition-colors">Post-Launch Support</h3>
+            <p class="text-sm md:text-base text-muted-foreground leading-relaxed">Monitoring, updates, and performance optimization to maintain 99.9% uptime.</p>
           </div>
         </div>
       </Container>
@@ -197,9 +197,10 @@ const jsonLD = {
 <script type="module" is:inline>
   document.addEventListener('DOMContentLoaded', () => {
     // Email validation function
-    async function isValidEmail(email) {
-      const { isValidEmail: sharedIsValidEmail } = await import('@nosytlabs/shared-utils/validation/email-validator');
-      return sharedIsValidEmail(email);
+    function isValidEmail(email) {
+      // Simple email validation regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
     }
     
     // Initialize form functionality
@@ -415,3 +416,4 @@ const jsonLD = {
     initializeContactForm();
   });
 </script>
+

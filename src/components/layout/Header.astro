@@ -1,6 +1,6 @@
 ---
 import { createInternalLink, createImagePath as _createImagePath } from "../../lib/constants";
-import Button from "../ui/Button.astro";
+import HeroButton from "../ui/HeroUIButtonAstro.astro";
 import AnimatedThemeToggler from "../ui/AnimatedThemeToggler.astro";
 import headerInitClientUrl from "../../lib/header/header-init-client.ts?url";
 
@@ -135,7 +135,7 @@ const getIcon = (iconName?: string) => {
     role="navigation"
     aria-label="Main navigation"
   >
-    <div class="flex items-center justify-between h-16 lg:h-18">
+    <div class="flex items-center justify-between h-16 sm:h-18 lg:h-20">
       <!-- Simplified Modern Logo Section -->
       <div class="flex items-center flex-shrink-0">
         <a
@@ -273,7 +273,7 @@ const getIcon = (iconName?: string) => {
       <div class="flex items-center space-x-2">
         <!-- Secondary CTA - Contact (Outline) -->
         <div class="hidden lg:block">
-          <Button
+          <HeroButton
             href={createInternalLink("/contact")}
             text="Contact"
             variant="outline"
@@ -284,7 +284,7 @@ const getIcon = (iconName?: string) => {
         
         <!-- Primary CTA - Get Started (Prominent) -->
         <div class="hidden md:block">
-          <Button
+          <HeroButton
             href={createInternalLink("/contact")}
             text="Get Started"
             variant="primary"
@@ -296,7 +296,7 @@ const getIcon = (iconName?: string) => {
         <AnimatedThemeToggler />
 
         <!-- Enhanced Mobile Menu Toggle with Animation -->
-        <button
+        <HeroButton
           type="button"
           class="md:hidden relative p-2.5 text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
           aria-label="Toggle mobile menu"
@@ -308,7 +308,7 @@ const getIcon = (iconName?: string) => {
             <span class="hamburger-line absolute left-0 top-3 w-6 h-0.5 bg-current transition-all duration-300"></span>
             <span class="hamburger-line absolute left-0 top-5 w-6 h-0.5 bg-current transition-all duration-300 origin-center"></span>
           </div>
-        </button>
+        </HeroButton>
       </div>
     </div>
 
@@ -339,7 +339,7 @@ const getIcon = (iconName?: string) => {
               <p class="text-xs text-muted-foreground">Web & AI Solutions</p>
             </div>
           </div>
-          <button
+          <HeroButton
             id="mobile-menu-close"
             class="p-2.5 rounded-xl hover:bg-muted/70 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             aria-label="Close mobile menu"
@@ -347,7 +347,7 @@ const getIcon = (iconName?: string) => {
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
-          </button>
+          </HeroButton>
         </div>
         
         <!-- Enhanced Navigation Links with Animations -->
@@ -422,7 +422,7 @@ const getIcon = (iconName?: string) => {
 
         <!-- Enhanced Mobile CTA with Gradient -->
         <div class="p-6 border-t border-border/50 bg-gradient-to-r from-primary/5 to-accent/5">
-          <Button
+          <HeroButton
             href={createInternalLink("/contact")}
             text="Get Started"
             variant="primary"
@@ -522,3 +522,4 @@ const getIcon = (iconName?: string) => {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 </style>
+

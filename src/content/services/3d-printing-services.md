@@ -2,12 +2,12 @@
 title: "3D Printing Services"
 description: "Transform your digital designs into physical reality with professional 3D printing and prototyping services."
 icon: "cube"
-price: "Starting from $50"
+price: "Starting at $25 USD"
 delivery: "3-7 days"
 category: "manufacturing"
 tags:
   ["3d printing", "prototyping", "manufacturing", "design", "rapid production"]
-featured: false
+featured: true
 benefits:
   - "Rapid prototyping and iteration"
   - "Cost-effective small batch production"
@@ -29,25 +29,47 @@ deliverables:
 timeline: "3-7 days depending on complexity and quantity"
 ---
 
-Professional 3D printing and prototyping services for product development, custom manufacturing, and rapid iteration. We help bring your ideas to life with precision and speed.
+Professional 3D printing and prototyping services for product development, custom parts, and rapid iteration. Fast turnaround, quality prints, and competitive pricing.
 
 ## What We Print
 
 ### Functional Prototypes
 
-Create working prototypes to test fit, form, and function before committing to expensive tooling or manufacturing.
+Test your designs before committing to expensive manufacturing. Perfect for product development and proof-of-concept.
 
-**Materials**: PLA, PETG, ABS, TPU (flexible), ASA (outdoor use)
-**Tolerances**: ±0.1mm for critical dimensions
-**Typical Use**: Product testing, proof-of-concept, design validation
+**Materials Available**:
+- PLA (standard, biodegradable, great for prototypes)
+- PETG (stronger, more durable, food-safe)
+- ABS (heat resistant, tough)
+- TPU (flexible, rubber-like)
+- ASA (outdoor use, UV resistant)
 
-### Custom Manufacturing Parts
+**Typical Pricing**: $25-$150 depending on size and complexity
+**Tolerances**: ±0.2mm standard, ±0.1mm for precision parts
 
-Small-batch production of custom components, replacement parts, and specialized tools.
+### Custom Parts & Replacements
 
-**Real Example**: Custom mounting brackets for industrial equipment that would have cost $500+ per part through traditional manufacturing – delivered for $45 each in 3 days.
+Need a replacement part that's no longer available? Custom brackets? Unique tools? We can print it.
 
-### Architectural Models & Visualization
+**Common Requests**:
+- Replacement parts for appliances/equipment
+- Custom mounting brackets and adapters
+- Jigs and fixtures for workshops
+- Enclosures for electronics projects
+- Prototype housings for products
+
+**Example**: Custom mounting bracket that would cost $200+ from a machine shop - printed for $35 in 2 days.
+
+### Small Batch Production
+
+Need 10-100 of something? 3D printing can be more cost-effective than traditional manufacturing for small runs.
+
+**Perfect For**:
+- Product launches (test market before mass production)
+- Limited edition items
+- Custom merchandise
+- Replacement parts inventory
+- Event giveaways
 
 Scale models for presentations, planning, and client visualization.
 

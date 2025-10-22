@@ -46,12 +46,11 @@ export class BlogCardEnhancerImpl implements BlogCardEnhancer {
     this.cards.forEach((card, index) => {
       const cardElement = card as HTMLElement;
 
-      // Use consolidated animation classes from main.css
+      // Add smooth animations
       cardElement.style.animationDelay = `${index * 150}ms`;
       cardElement.classList.add(
         "animate-fade-in",
-        "card-hover",
-        "gpu-accelerated",
+        "transition-smooth"
       );
 
       // Enhanced keyboard navigation

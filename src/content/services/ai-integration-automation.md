@@ -1,16 +1,17 @@
 ---
 title: "AI Integration & Automation"
-description: "AI solutions that automate specific workflows and deliver measurable ROI. We've saved clients 40+ hours weekly and processed 10x more data than manual methods."
+description: "Practical AI solutions using ChatGPT API, Claude, and automation tools. Integrate AI into your workflows without enterprise complexity or pricing."
 icon: "ai-integration"
-price: "Starting from $12,000"
-delivery: "8-16 weeks"
+price: "Starting at $3,000 USD"
+delivery: "3-6 weeks"
 category: "ai"
 tags:
   [
     "artificial intelligence",
     "automation",
+    "chatbots",
     "workflow optimization",
-    "business intelligence",
+    "ai integration",
   ]
 featured: true
 benefits:
@@ -34,7 +35,67 @@ deliverables:
 timeline: "8-16 weeks depending on system complexity and integrations"
 ---
 
-AI automation that delivers specific, measurable results. We've built systems that save 40+ hours weekly, process documents 10x faster than manual methods, and integrate seamlessly with existing business operations.
+Practical AI integration that actually works. Add ChatGPT, Claude, or custom AI features to your existing systems. No hype, just useful automation.
+
+## What We Can Build
+
+### AI Chatbots & Customer Support
+
+Add an AI assistant to your website or app. Handle common questions automatically, escalate complex ones to humans.
+
+**What's Included**:
+- Custom-trained on your content/docs
+- Integrates with your website
+- Handles FAQs automatically
+- Escalates to human when needed
+- Analytics on common questions
+
+**Pricing**: $3,000-$8,000
+**Timeline**: 3-4 weeks
+**Saves**: 10-20 hours/week on support
+
+### Document Processing & Data Extraction
+
+Automate extracting data from PDFs, invoices, forms, or documents using AI.
+
+**Use Cases**:
+- Invoice data extraction
+- Resume parsing
+- Form processing
+- Document classification
+- Data entry automation
+
+**Pricing**: $5,000-$15,000
+**Timeline**: 4-6 weeks
+**Saves**: 15-30 hours/week
+
+### Content Generation & Automation
+
+Use AI to generate content, summaries, or responses at scale.
+
+**Examples**:
+- Product descriptions from specs
+- Email response suggestions
+- Social media post generation
+- Report summaries
+- Content translation
+
+**Pricing**: $4,000-$10,000
+**Timeline**: 3-5 weeks
+
+### Workflow Automation with AI
+
+Connect your tools and add AI decision-making to automate complex workflows.
+
+**Examples**:
+- Lead qualification and routing
+- Email triage and categorization
+- Data enrichment and validation
+- Automated reporting
+- Smart notifications
+
+**Pricing**: $6,000-$20,000
+**Timeline**: 4-8 weeks
 
 ## What We Automate
 
@@ -358,5 +419,3 @@ We begin every AI project with a thorough analysis of your current processes to 
 - Test with real data from your business
 - Demonstrate measurable results before full investment
 - Risk-free way to evaluate AI potential for your organization
-
-Ready to see what AI can do for your business? Let's discuss your workflows and identify automation opportunities that deliver real results.

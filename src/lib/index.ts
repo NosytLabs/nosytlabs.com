@@ -83,7 +83,8 @@ export type { FormValidationResult, ContactFormData } from "./forms";
 // THEME MANAGEMENT
 // ========================================
 
-export * from "./theme-manager";
+// Re-export from shared-utils to maintain backward compatibility
+export * from "@shared-utils/theme";
 
 // ========================================
 // CONSTANTS
@@ -125,12 +126,17 @@ export {
   withAPIMiddleware,
 } from "./api";
 
-// Theme
+// Theme (re-exported from shared-utils)
 export {
   ThemeManager,
   initThemeManagement,
-  toggleTheme,
-} from "./theme-manager";
+  themeUtils,
+  getThemeManager,
+} from "@shared-utils/theme";
+
+// Export toggleTheme as a standalone function for backward compatibility
+import { themeUtils as _themeUtils } from "@shared-utils/theme";
+export const toggleTheme = _themeUtils.toggleTheme;
 
 // Constants
 export {

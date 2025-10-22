@@ -13,59 +13,22 @@
 
 /**
  * Formats a date into a readable string.
+ * Re-exported from shared-utils for comprehensive date formatting capabilities.
  *
  * @param date - Date to format
- * @param format - Format style ('short', 'medium', 'long', 'full')
- * @param locale - Locale for formatting (default: 'en-US')
+ * @param options - Formatting options
  * @returns Formatted date string
  *
  * @example
  * ```typescript
- * formatDate(new Date('2025-01-10'), 'medium')
- * // Returns: 'Jan 10, 2025'
+ * formatDate(new Date('2025-01-10'))
+ * // Returns: '2025-01-10'
  *
- * formatDate(new Date('2025-01-10'), 'long')
+ * formatDate(new Date('2025-01-10'), { format: 'long' })
  * // Returns: 'January 10, 2025'
  * ```
  */
-export function formatDate(
-  date: Date | string | number,
-  format: "short" | "medium" | "long" | "full" = "medium",
-  locale: string = "en-US",
-): string {
-  const dateObj =
-    typeof date === "string" || typeof date === "number"
-      ? new Date(date)
-      : date;
-
-  const formatOptions = {
-    short: {
-      month: "numeric" as const,
-      day: "numeric" as const,
-      year: "2-digit" as const,
-    },
-    medium: {
-      month: "short" as const,
-      day: "numeric" as const,
-      year: "numeric" as const,
-    },
-    long: {
-      month: "long" as const,
-      day: "numeric" as const,
-      year: "numeric" as const,
-    },
-    full: {
-      weekday: "long" as const,
-      month: "long" as const,
-      day: "numeric" as const,
-      year: "numeric" as const,
-    },
-  };
-
-  const options: Intl.DateTimeFormatOptions = formatOptions[format];
-
-  return new Intl.DateTimeFormat(locale, options).format(dateObj);
-}
+export { formatDate } from "@shared-utils/unified-date-utils";
 
 /**
  * Formats a date and time into a readable string.

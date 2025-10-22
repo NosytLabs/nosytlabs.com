@@ -94,8 +94,8 @@ export function getRelatedPosts(
   return relatedPosts;
 }
 
-// Import formatDate from shared utilities to avoid duplication
-import { formatDate } from "@/lib/utils/date-utils";
+// Import formatDate from shared-utils unified date utilities
+import { formatDate } from "@shared-utils/unified-date-utils";
 
 // Re-export for backward compatibility
 export { formatDate };

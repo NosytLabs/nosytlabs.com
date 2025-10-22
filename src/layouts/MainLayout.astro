@@ -51,7 +51,7 @@ const {
   <head>
     <CriticalCSS />
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
     <!-- Basic SEO Meta Tags -->
     <title>{title}</title>
@@ -92,27 +92,23 @@ const {
       <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
     )}
     
-    <!-- Font Preloading for Performance -->
-    <link rel="preload" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/fonts/inter-var.woff2`} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/fonts/inter-latin.woff2`} as="font" type="font/woff2" crossorigin />
-    
     <!-- DNS Prefetch for External Resources -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//images.unsplash.com" />
+    <link rel="dns-prefetch" href="//open.spotify.com" />
     
     <!-- Resource Hints for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="preconnect" href="https://open.spotify.com" crossorigin />
 
   </head>
-  <body>
-    <Header />
-    
-    <main id="main-content" class="pt-16 lg:pt-18">
-      <slot />
-    </main>
-    
-    <Footer />
+  <body class="min-h-screen flex flex-col">
+    <div id="app" class="min-h-screen flex flex-col">
+      <Header />
+      
+      <main id="main-content" class="flex-1">
+        <slot />
+      </main>
+      
+      <Footer />
+    </div>
     
     <script>
       // Theme initialization - must run immediately to prevent flash
@@ -138,3 +134,4 @@ const {
     </script>
   </body>
 </html>
+

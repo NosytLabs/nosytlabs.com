@@ -1,10 +1,8 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
 import Breadcrumbs from "@/components/ui/Breadcrumbs.astro";
-import Button from "@/components/ui/Button.astro";
-import { serviceIcons } from "@/lib/icons/service-icons";
-import { createInternalLink, createImagePath } from "../../lib/constants";
-import type { MarkdownHeading } from "astro";
+import HeroButton from "@/components/ui/HeroUIButtonAstro.astro";
+import { createInternalLink } from "../../lib/constants";
 
 interface Props {
   title: string;
@@ -23,185 +21,125 @@ interface Props {
   deliverables?: string[];
   ctaPrimary?: { text: string; href: string };
   ctaSecondary?: { text: string; href: string };
-  headings?: MarkdownHeading[];
 }
 
 const {
   title,
   description,
-  icon,
-  heroSubtitle,
   price,
   delivery,
   popular = false,
   benefits = [],
   features = [],
-
+  deliverables = [],
   ctaPrimary = { text: "Start Your Project", href: createInternalLink("/contact") },
   ctaSecondary = { text: "Contact Us", href: createInternalLink("/contact") }
 } = Astro.props;
 
-
-
-// Custom icon mapping for high-quality SVG icons
-const customIconMap: Record<string, string> = {
-  'cpu': '/icons/ai-integration.svg',
-  'brain': '/icons/brain.svg',
-  'globe': '/icons/code.svg',
-  'smartphone': '/icons/cube.svg',
-  'search': '/icons/debug.svg',
-  'zap': '/icons/sprint.svg',
-  'palette': '/icons/cube.svg',
-  'shopping-cart': '/icons/code.svg',
-  'message-circle': '/icons/brain.svg',
-  'rocket': '/icons/sprint.svg',
-  'code': '/icons/code.svg',
-  'star': '/icons/debug.svg'
-};
-
-// Icon will be rendered using IIFE pattern to avoid toString() issues
+const pageUrl = new URL(Astro.request.url).href;
 ---
 
 <MainLayout title={title} description={description}>
-  <script type="application/ld+json" is:inline>
-    {JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      name: title,
-      description,
-      provider: {
-        '@type': 'Organization',
-        name: 'NOSYT Labs',
-        url: new URL(Astro.request.url).origin,
-        logo: new URL(`${import.meta.env.BASE_URL}/images/logo.svg`, Astro.request.url).href,
-      },
-      areaServed: 'Remote',
-      serviceType: title,
-      url: pageUrl,
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: 'USD',
-        availability: 'https://schema.org/InStock',
-      },
-      mainEntityOfPage: pageUrl,
-    })}
-  </script>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: title,
+    description,
+    provider: {
+      '@type': 'Organization',
+      name: 'NOSYT Labs',
+      url: new URL(Astro.request.url).origin,
+    },
+    areaServed: 'Remote',
+    serviceType: title,
+    url: pageUrl,
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
+    },
+  })}></script>
 
-  <!-- Breadcrumbs with improved spacing -->
-  <div class="container pt-6">
-    <Breadcrumbs items={[{ name: 'Home', url: createInternalLink('/') }, { name: 'Services', url: createInternalLink('/services') }, { name: title }]} />
+  <!-- Breadcrumbs -->
+  <div class="container pt-6 pb-4">
+    <Breadcrumbs items={[
+      { name: 'Home', url: createInternalLink('/') }, 
+      { name: 'Services', url: createInternalLink('/services') }, 
+      { name: title }
+    ]} />
   </div>
 
-  <!-- Hero Section with improved hierarchy and typography -->
-  <section class="py-16 lg:py-20 bg-gradient-to-br from-background via-background to-muted/5 relative overflow-hidden">
-    <!-- Subtle background elements -->
+  <!-- Hero Section -->
+  <section class="py-8 md:py-12 lg:py-16 bg-gradient-to-br from-background via-background to-muted/5 relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-primary/2 via-transparent to-accent/2"></div>
-    <div class="absolute top-1/3 right-1/4 w-32 h-32 bg-primary/3 rounded-full blur-3xl animate-float"></div>
-    <div class="absolute bottom-1/3 left-1/4 w-24 h-24 bg-accent/3 rounded-full blur-2xl animate-float animation-delay-2000"></div>
     
-    <div class="container relative z-10">
-      <div class="grid gap-12 lg:grid-cols-[1fr_280px] items-center">
-        <!-- Content Column with improved typography hierarchy -->
-        <div class="animate-fade-in-up space-y-5">
-          {popular && (
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/8 border border-primary/15 hover:bg-primary/12 transition-all duration-300">
-              <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              <span class="text-sm font-semibold text-primary uppercase tracking-wide">Most Popular</span>
-            </div>
-          )}
-          
-          <!-- Improved title hierarchy -->
-          <div class="space-y-4">
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-[1.1]">
-              {title}
-            </h1>
-            <p class="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              {description}
-            </p>
-            {heroSubtitle && (
-              <p class="text-base text-muted-foreground/90 leading-relaxed max-w-2xl">
-                {heroSubtitle}
-              </p>
-            )}
-          </div>
-          
-          <!-- Enhanced pricing card with better visual hierarchy -->
-          {(price || delivery) && (
-            <div class="p-6 bg-card/40 backdrop-blur-sm border border-border/30 rounded-2xl hover:border-primary/20 transition-all duration-300 max-w-md">
-              {price && (
-                <div class="mb-4">
-                  <div class="flex items-baseline gap-2">
-                    <span class="text-4xl font-bold text-primary">{price}</span>
-                    <span class="text-base text-muted-foreground">Starting Price</span>
-                  </div>
-                </div>
-              )}
-              {delivery && (
-                <div class="flex items-center gap-2 text-base text-muted-foreground">
-                  <div class="w-6 h-6 rounded-full bg-primary/15 flex items-center justify-center">
-                    <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                  </div>
-                  <span class="font-medium">{delivery} Delivery</span>
-                </div>
-              )}
-            </div>
-          )}
-          
-          <!-- Improved CTA buttons with better spacing -->
-          <div class="flex flex-col sm:flex-row gap-4 pt-4">
-            {ctaPrimary && <Button href={ctaPrimary.href} text={ctaPrimary.text} variant="primary" />}
-            {ctaSecondary && <Button href={ctaSecondary.href} text={ctaSecondary.text} variant="secondary" />}
-          </div>
-        </div>
-        
-        <!-- Icon Column with improved media placement -->
-        {icon && (
-          <div class="flex justify-center lg:justify-end animate-fade-in-up animate-delay-300">
-            <div class="relative group">
-              <div class="absolute inset-0 bg-gradient-to-br from-primary/8 to-accent/8 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-              {(() => {
-                const customIconPath = customIconMap[icon];
-                if (customIconPath) {
-                  return <img src={createImagePath(customIconPath)} alt={`${title} service icon`} class="h-64 w-64 lg:h-72 lg:w-72 relative z-10 group-hover:scale-105 transition-transform duration-300" loading="lazy" decoding="async" />;
-                } else {
-                  const Icon = serviceIcons[icon as keyof typeof serviceIcons] || serviceIcons.brain;
-                  return <Icon size={280} className="h-64 w-64 lg:h-72 lg:w-72 relative z-10 group-hover:scale-105 transition-transform duration-300" aria-label={`${title} service icon`} />;
-                }
-              })()}
-            </div>
+    <div class="container-fixed relative z-10">
+      <div class="max-w-6xl mx-auto text-center">
+        {popular && (
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+            <div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+            <span class="text-sm font-semibold text-primary uppercase tracking-wide">Most Popular</span>
           </div>
         )}
+        
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6 leading-tight">
+          {title}
+        </h1>
+        
+        <p class="text-xl lg:text-2xl text-muted-foreground leading-relaxed mb-8">
+          {description}
+        </p>
+        
+        {(price || delivery) && (
+          <div class="inline-flex flex-col sm:flex-row items-center gap-6 p-6 bg-card/40 backdrop-blur-sm border border-border/30 rounded-2xl mb-8">
+            {price && (
+              <div class="flex items-baseline gap-2">
+                <span class="text-4xl font-bold text-primary">{price}</span>
+                <span class="text-base text-muted-foreground">Starting Price</span>
+              </div>
+            )}
+            {delivery && (
+              <div class="flex items-center gap-2 text-base text-muted-foreground">
+                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="font-medium">{delivery}</span>
+              </div>
+            )}
+          </div>
+        )}
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <HeroButton href={ctaPrimary.href} text={ctaPrimary.text} variant="gradient" size="lg" />
+          <HeroButton href={ctaSecondary.href} text={ctaSecondary.text} variant="outline" size="lg" />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Benefits Section with improved color scheme and typography -->
+  <!-- Benefits Section -->
   {benefits.length > 0 && (
-    <section class="py-16 bg-background">
-      <div class="container pt-4">
+    <section class="py-12 md:py-16 bg-background">
+      <div class="container-fixed">
         <div class="text-center mb-12">
-          <h2 class="text-2xl lg:text-3xl font-bold text-foreground mb-4">
-            Why Choose This Service
+          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Key Benefits
           </h2>
-          <p class="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Discover the key advantages that make this service the perfect choice for your project needs.
+          <p class="text-lg text-muted-foreground max-w-5xl mx-auto">
+            Why this service is the right choice for your business
           </p>
         </div>
         
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {benefits.map((benefit, index) => (
-            <div class={`group bg-card/20 backdrop-blur-sm border border-border/20 p-5 rounded-lg hover:border-primary/15 hover:bg-card/30 transition-all duration-300 animate-fade-in-up animate-delay-${index * 100}`}>
-              <div class="flex items-start gap-3">
-                <div class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-primary/15 transition-all duration-300">
-                  <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-8 max-w-none">
+          {benefits.map((benefit) => (
+            <div class="group p-6 md:p-8 rounded-2xl bg-gradient-to-br from-content1 to-default-50/50 border-2 border-default-200/60 hover:border-success/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-success/20 to-success/10 border-2 border-success/40 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-5 h-5 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
-                <p class="text-foreground/90 group-hover:text-foreground transition-colors duration-300 leading-relaxed">
-                  {benefit}
-                </p>
+                <p class="text-foreground leading-relaxed text-base">{benefit}</p>
               </div>
             </div>
           ))}
@@ -210,31 +148,29 @@ const customIconMap: Record<string, string> = {
     </section>
   )}
 
-  <!-- Features Section with enhanced visual design -->
+  <!-- Features Section -->
   {features.length > 0 && (
-    <section class="py-16 bg-muted/10">
-      <div class="container">
+    <section class="py-12 md:py-16 bg-muted/10">
+      <div class="container-fixed">
         <div class="text-center mb-12">
-          <h2 class="text-2xl lg:text-3xl font-bold text-foreground mb-4">
+          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">
             What's Included
           </h2>
-          <p class="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Everything you need to bring your project to life, delivered with precision and care.
+          <p class="text-lg text-muted-foreground max-w-5xl mx-auto">
+            Everything you need to bring your project to life
           </p>
         </div>
         
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
-            <div class={`group bg-card/30 backdrop-blur-sm border border-border/30 p-5 rounded-lg hover:border-primary/20 hover:bg-card/40 transition-all duration-300 animate-fade-in-up animate-delay-${index * 100}`}>
-              <div class="flex items-start gap-3">
-                <div class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1 group-hover:bg-primary/15 transition-all duration-300">
-                  <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6 lg:gap-8 max-w-none">
+          {features.map((feature) => (
+            <div class="group p-6 md:p-8 rounded-2xl bg-gradient-to-br from-content1 to-default-50/50 border-2 border-default-200/60 hover:border-primary/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 border-2 border-primary/40 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                   </svg>
                 </div>
-                <p class="text-foreground font-medium group-hover:text-foreground transition-colors duration-300 leading-relaxed">
-                  {feature}
-                </p>
+                <p class="text-foreground font-medium leading-relaxed text-base">{feature}</p>
               </div>
             </div>
           ))}
@@ -243,303 +179,91 @@ const customIconMap: Record<string, string> = {
     </section>
   )}
 
-  <!-- Pricing Comparison Section -->
-  <section class="py-16 bg-background">
-    <div class="container">
-      <div class="text-center mb-12">
-        <h2 class="text-2xl lg:text-3xl font-bold text-foreground mb-4">
-          Choose Your Package
-        </h2>
-        <p class="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Flexible pricing options designed to match your project scope and budget requirements.
-        </p>
-      </div>
-      
-      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <!-- Starter Package -->
-        <div class="group bg-card/20 backdrop-blur-sm border border-border/30 rounded-2xl p-8 hover:border-primary/20 transition-all duration-300">
-          <div class="text-center mb-6">
-            <h3 class="text-xl font-bold text-foreground mb-2">Starter</h3>
-            <div class="text-3xl font-bold text-primary mb-1">$8,000</div>
-            <p class="text-sm text-muted-foreground">Perfect for MVP projects</p>
-          </div>
-          
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Core functionality</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Responsive design</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Basic integrations</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">6-week timeline</span>
-            </li>
-          </ul>
-          
-          <Button href="/contact" text="Get Started" variant="secondary" className="w-full" />
+  <!-- Deliverables Section -->
+  {deliverables.length > 0 && (
+    <section class="py-12 md:py-16 bg-background">
+      <div class="container-fixed">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Deliverables
+          </h2>
+          <p class="text-lg text-muted-foreground max-w-5xl mx-auto">
+            What you'll receive upon project completion
+          </p>
         </div>
-
-        <!-- Professional Package (Popular) -->
-        <div class="group relative bg-gradient-to-br from-primary/5 to-accent/5 backdrop-blur-sm border-2 border-primary/30 rounded-2xl p-8 hover:border-primary/40 transition-all duration-300">
-          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-            <div class="bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-semibold">
-              Most Popular
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 max-w-none">
+          {deliverables.map((deliverable) => (
+            <div class="group p-6 md:p-8 rounded-2xl bg-gradient-to-br from-content1 to-default-50/50 border-2 border-default-200/60 hover:border-accent/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-accent/20 to-accent/10 border-2 border-accent/40 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <p class="text-foreground leading-relaxed text-base">{deliverable}</p>
+              </div>
             </div>
-          </div>
-          
-          <div class="text-center mb-6">
-            <h3 class="text-xl font-bold text-foreground mb-2">Professional</h3>
-            <div class="text-3xl font-bold text-primary mb-1">$15,000</div>
-            <p class="text-sm text-muted-foreground">For growing businesses</p>
-          </div>
-          
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Advanced features</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Real-time capabilities</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Advanced integrations</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">8-10 week timeline</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Priority support</span>
-            </li>
-          </ul>
-          
-          <Button href="/contact" text="Start Your Project" variant="primary" className="w-full" />
+          ))}
         </div>
+      </div>
+    </section>
+  )}
 
-        <!-- Enterprise Package -->
-        <div class="group bg-card/20 backdrop-blur-sm border border-border/30 rounded-2xl p-8 hover:border-primary/20 transition-all duration-300">
-          <div class="text-center mb-6">
-            <h3 class="text-xl font-bold text-foreground mb-2">Enterprise</h3>
-            <div class="text-3xl font-bold text-primary mb-1">$30,000+</div>
-            <p class="text-sm text-muted-foreground">For large-scale projects</p>
-          </div>
-          
-          <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Custom architecture</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Microservices design</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Advanced security</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">12+ week timeline</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <span class="text-foreground">Dedicated team</span>
-            </li>
-          </ul>
-          
-          <Button href="/contact" text="Contact Sales" variant="secondary" className="w-full" />
-        </div>
+  <!-- Main Content (Markdown) -->
+  <section class="py-12 md:py-16 bg-muted/10">
+    <div class="container-fixed">
+      <div class="prose prose-lg max-w-6xl mx-auto prose-headings:text-foreground prose-p:text-foreground/90 prose-a:text-primary prose-strong:text-foreground prose-ul:text-foreground/90 prose-ol:text-foreground/90">
+        <slot />
       </div>
     </div>
   </section>
 
-  <!-- Feature Comparison Table -->
-  <section class="py-16 bg-muted/10">
-    <div class="container">
-      <div class="text-center mb-12">
-        <h2 class="text-2xl lg:text-3xl font-bold text-foreground mb-4">
-          Detailed Feature Comparison
+  <!-- CTA Section -->
+  <section class="py-12 md:py-16 bg-gradient-to-br from-primary/5 to-accent/5">
+    <div class="container-fixed">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+          Ready to Get Started?
         </h2>
-        <p class="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Compare what's included in each package to find the perfect fit for your needs.
-        </p>
-      </div>
-      
-      <div class="max-w-4xl mx-auto bg-card/30 backdrop-blur-sm border border-border/30 rounded-2xl overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead class="bg-primary/5">
-              <tr>
-                <th class="text-left p-4 font-semibold text-foreground">Features</th>
-                <th class="text-center p-4 font-semibold text-foreground">Starter</th>
-                <th class="text-center p-4 font-semibold text-primary">Professional</th>
-                <th class="text-center p-4 font-semibold text-foreground">Enterprise</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-border/20">
-              <tr>
-                <td class="p-4 font-medium text-foreground">Custom Development</td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </td>
-              </tr>
-              <tr class="bg-primary/3">
-                <td class="p-4 font-medium text-foreground">Real-time Features</td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-muted-foreground mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </td>
-              </tr>
-              <tr>
-                <td class="p-4 font-medium text-foreground">Advanced Integrations</td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-muted-foreground mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </td>
-              </tr>
-              <tr class="bg-primary/3">
-                <td class="p-4 font-medium text-foreground">Priority Support</td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-muted-foreground mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
-                </td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </td>
-                <td class="p-4 text-center">
-                  <svg class="w-5 h-5 text-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Compelling CTA Section -->
-  <section class="py-16 bg-gradient-to-br from-primary/5 to-accent/5">
-    <div class="container">
-      <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-          Ready to Build Something Amazing?
-        </h2>
-        <p class="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-          Let's discuss your project requirements and create a custom solution that exceeds your expectations. 
-          Get a detailed proposal with timeline and investment breakdown within 24 hours.
+        <p class="text-xl text-muted-foreground mb-8 max-w-4xl mx-auto">
+          Let's discuss your project and create a custom solution that exceeds your expectations.
         </p>
         
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Button href="/contact" text="Get Free Consultation" variant="primary" size="lg" />
-          <Button href="tel:+1234567890" text="Call Now: (123) 456-7890" variant="secondary" size="lg" />
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <HeroButton href="/contact" text="Get Free Consultation" variant="gradient" size="lg" />
+          <HeroButton href="/services" text="View All Services" variant="outline" size="lg" />
         </div>
         
-        <div class="grid sm:grid-cols-3 gap-6 mt-12">
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        <div class="grid sm:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 max-w-none">
+          <div class="group p-6 md:p-8 rounded-2xl bg-gradient-to-br from-content1 to-default-50/50 border-2 border-default-200/60 hover:border-primary/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center">
+            <div class="w-16 h-16 md:w-18 md:h-18 rounded-3xl bg-gradient-to-br from-primary/20 to-accent/10 border-2 border-primary/40 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+              <svg class="w-8 h-8 md:w-9 md:h-9 text-primary group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h4 class="font-semibold text-foreground mb-1">Fast Response</h4>
-            <p class="text-sm text-muted-foreground">Get a proposal within 24 hours</p>
+            <h4 class="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors">Fast Response</h4>
+            <p class="text-base text-muted-foreground leading-relaxed">Get a proposal within 24 hours</p>
           </div>
           
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <div class="group p-6 md:p-8 rounded-2xl bg-gradient-to-br from-content1 to-default-50/50 border-2 border-default-200/60 hover:border-success/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center">
+            <div class="w-16 h-16 md:w-18 md:h-18 rounded-3xl bg-gradient-to-br from-success/20 to-success/10 border-2 border-success/40 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+              <svg class="w-8 h-8 md:w-9 md:h-9 text-success group-hover:text-success transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </div>
-            <h4 class="font-semibold text-foreground mb-1">No Obligation</h4>
-            <p class="text-sm text-muted-foreground">Free consultation, no commitment</p>
+            <h4 class="text-lg font-bold text-foreground mb-3 group-hover:text-success transition-colors">No Obligation</h4>
+            <p class="text-base text-muted-foreground leading-relaxed">Free consultation, no commitment</p>
           </div>
           
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          <div class="group p-6 md:p-8 rounded-2xl bg-gradient-to-br from-content1 to-default-50/50 border-2 border-default-200/60 hover:border-accent/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center">
+            <div class="w-16 h-16 md:w-18 md:h-18 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/10 border-2 border-accent/40 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+              <svg class="w-8 h-8 md:w-9 md:h-9 text-accent group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h4 class="font-semibold text-foreground mb-1">Quick Start</h4>
-            <p class="text-sm text-muted-foreground">Projects start within 1 week</p>
+            <h4 class="text-lg font-bold text-foreground mb-3 group-hover:text-accent transition-colors">Quick Start</h4>
+            <p class="text-base text-muted-foreground leading-relaxed">Projects start within 1 week</p>
           </div>
         </div>
       </div>

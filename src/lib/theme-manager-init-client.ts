@@ -1,4 +1,4 @@
-import { initThemeManagement } from "./theme-manager.ts";
+import { initThemeManagement } from "@shared-utils/theme";
 
 try {
   initThemeManagement?.();

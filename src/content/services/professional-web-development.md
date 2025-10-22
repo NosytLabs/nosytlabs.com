@@ -1,9 +1,9 @@
 ---
 title: "Web Application Development"
-description: "Web applications that handle real traffic and solve business problems. We've built 47 applications serving 10,000+ concurrent users with sub-second response times."
+description: "Modern web apps built with React, Next.js, and Astro. I use AI tools to code faster and deliver quality results as a solo developer."
 icon: "web-development"
-price: "Starting at $8,000"
-delivery: "6-12 weeks"
+price: "Starting at $3,000 USD"
+delivery: "3-6 weeks"
 features:
   - "React/Next.js or Vue/Nuxt applications"
   - "Real-time features and WebSocket integration"
@@ -19,65 +19,81 @@ featured: true
 
 # Web Application Development
 
-We've built 47 web applications that handle real users and solve specific business problems. Our focus is performance, reliability, and scalability from day one - not just making things look good.
+Modern web applications built with React, Astro, Next.js, and TypeScript. Using AI tools like Claude and Cursor to code faster while maintaining quality. Focus on performance, clean code, and actually shipping.
 
 ## What We Build
 
-### SaaS Platforms & Dashboards
+### Marketing Websites & Landing Pages
 
-Real-time analytics dashboards, user management systems, and data visualization tools that handle thousands of concurrent users.
+Fast, SEO-optimized websites built with Astro or Next.js. Perfect for businesses, products, and services.
 
-### E-commerce & Marketplaces
+**What's Included**:
+- Modern, responsive design
+- Lightning-fast performance (90+ PageSpeed score)
+- SEO optimized out of the box
+- Contact forms and analytics
+- CMS integration if needed
 
-Custom shopping experiences with payment processing, inventory management, and order fulfillment integrations.
+**Pricing**: $3,000-$8,000
+**Timeline**: 2-4 weeks
 
-### Business Process Applications
+### Web Applications & SaaS
 
-Internal tools that automate workflows, manage data, and integrate with existing systems to save time and reduce errors.
+Custom web apps with user authentication, databases, and real-time features.
 
-## Our Technical Approach
+**Examples**:
+- Dashboard and admin panels
+- Internal business tools
+- Customer portals
+- Booking/scheduling systems
+- Data management apps
 
-### Performance-First Development
+**Pricing**: $10,000-$50,000+
+**Timeline**: 6-12 weeks
 
-- **Sub-second load times** with code splitting and lazy loading
-- **Database optimization** with proper indexing and query analysis
-- **CDN integration** for global content delivery
-- **Real-time monitoring** to catch issues before users do
+### E-commerce Solutions
 
-### Scalable Architecture
+Online stores with payment processing, inventory, and order management.
 
-- **Microservices design** when complexity demands it
-- **Horizontal scaling** strategies for growing traffic
-- **Caching layers** (Redis, CDN) for optimal performance
-- **Load balancing** and failover planning
+**What's Included**:
+- Product catalog and search
+- Shopping cart and checkout
+- Payment processing (Stripe, PayPal)
+- Order management
+- Customer accounts
 
-### Modern Tech Stack
+**Pricing**: $8,000-$25,000
+**Timeline**: 6-10 weeks
 
-- **Frontend**: React/Next.js, Vue/Nuxt, TypeScript
-- **Backend**: Node.js, Python/FastAPI, PostgreSQL, Redis
-- **Infrastructure**: Docker, AWS, GitHub Actions
-- **Monitoring**: Application performance monitoring and error tracking
+## Our Tech Stack
 
-## Real Project Examples
+### Frontend
+- **React** - Interactive UIs
+- **Next.js** - Full-stack React framework
+- **Astro** - Ultra-fast static sites
+- **TypeScript** - Type-safe code
+- **TailwindCSS** - Modern styling
 
-### Analytics Dashboard (SaaS)
+### Backend & Database
+- **Node.js** - JavaScript backend
+- **PostgreSQL** - Reliable database
+- **Supabase** - Backend-as-a-service
+- **Vercel** - Fast hosting and deployment
 
-Built a real-time analytics platform serving 10,000+ daily active users with sub-second query responses and 99.9% uptime.
+### AI-Assisted Development
+- **Claude** - AI pair programming
+- **Cursor** - AI code editor
+- **GitHub Copilot** - Code suggestions
 
-### E-commerce Platform
-
-Developed a custom marketplace handling $2M+ in annual transactions with automated inventory management and multi-vendor support.
-
-### Process Automation Tool
-
-Created a workflow automation system that reduced manual data entry by 40+ hours per week for a 50-person team.
+This lets us build faster without sacrificing quality.
 
 ## Development Process
 
-### 1. Technical Discovery (Week 1)
+### 1. Planning (Week 1)
 
-- Architecture planning and technology selection
-- Database schema design and API specification
+- Clarify requirements and goals
+- Design wireframes and user flows
+- Choose tech stack
 - Performance requirements and scalability planning
 
 ### 2. Core Development (Weeks 2-8)
@@ -124,6 +140,4 @@ Created a workflow automation system that reduced manual data entry by 40+ hours
 - Real-time features and data processing requirements
 - Custom design and user experience needs
 
-## Ready to Build?
 
-Let's discuss your specific requirements and create a detailed technical plan. We'll provide an honest assessment of complexity, timeline, and investment needed.

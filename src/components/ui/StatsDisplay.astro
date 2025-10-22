@@ -28,23 +28,23 @@ const cardClasses = {
 
 <div class={`stats-display ${variantClasses[variant]} ${className}`}>
   {stats.map((stat) => (
-    <div class={`stat-card group ${cardClasses[variant]} text-center rounded-xl border border-border/50 bg-gradient-to-br from-card via-card to-muted/20 hover:border-border hover:shadow-lg hover:scale-[1.02] transition-all duration-300 backdrop-blur-sm`}>
+    <div class={`stat-card group ${cardClasses[variant]} text-center rounded-2xl border-2 border-default-200 bg-content1 hover:border-primary hover:shadow-xl hover:scale-[1.02] transition-all duration-300`}>
       <div class="space-y-3">
-        <div class="stat-value text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-primary to-accent bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+        <div class="stat-value text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-primary to-primary/70 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
           {stat.value}
         </div>
-        <div class="stat-label text-sm md:text-base font-semibold text-foreground/90 uppercase tracking-wide">
+        <div class="stat-label text-sm md:text-base font-semibold text-foreground uppercase tracking-wide">
           {stat.label}
         </div>
         {stat.description && (
-          <div class="stat-description text-xs md:text-sm text-muted-foreground leading-relaxed max-w-[200px] mx-auto">
+          <div class="stat-description text-xs md:text-sm text-default-600 leading-relaxed max-w-[200px] mx-auto">
             {stat.description}
           </div>
         )}
       </div>
       
       <!-- Decorative accent -->
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-gradient-to-r from-primary to-primary/70 rounded-b-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     </div>
   ))}
 </div>
@@ -76,3 +76,4 @@ const cardClasses = {
     opacity: 1;
   }
 </style>
+

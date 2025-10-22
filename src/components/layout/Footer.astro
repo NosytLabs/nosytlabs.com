@@ -1,6 +1,6 @@
 ---
 import { SITE_CONFIG, COMPANY_INFO, createInternalLink } from '../../lib/constants'; 
-import Button from "@/components/ui/Button.astro";
+import HeroButton from "@/components/ui/HeroUIButtonAstro.astro";
 import Icon from "@/lib/icons/Icon";
 import { icons } from "@/lib/icons/icons";
 import newsletterSubscribeClientUrl from "../../lib/forms/newsletter-subscribe-client.ts?url";
@@ -91,7 +91,7 @@ function getIconPaths(iconKey: string) {
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
         {companyName}
       </h2>
-      <p class="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-3 leading-relaxed">
+      <p class="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-3 leading-relaxed">
         {description}
       </p>
       <p class="text-sm text-muted-foreground/80">{tagline}</p>
@@ -234,7 +234,7 @@ function getIconPaths(iconKey: string) {
               <div id="newsletter-status" class="form-helper-text" aria-live="polite">
                 Newsletter form ready
               </div>
-              <Button
+              <HeroButton
                 type="submit"
                 text="Subscribe"
                 variant="primary"
@@ -282,3 +282,4 @@ function getIconPaths(iconKey: string) {
 </footer>
 
 <script type="module" is:inline src={newsletterSubscribeClientUrl}></script>
+

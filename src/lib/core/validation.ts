@@ -15,11 +15,60 @@
  * All functions return consistent ValidationResult objects for easy error handling.
  */
 
-// Import shared validation utilities
-import { isValidEmail } from "@/lib/utils/validation";
+// ========================================
+// UTILITY FUNCTIONS
+// ========================================
 
-// Re-export shared validation utilities
-export { isValidEmail, validateEmail } from "@/lib/utils/validation";
+/**
+ * Sanitizes user input by removing potentially dangerous characters
+ *
+ * @param input - String to sanitize
+ * @returns Sanitized string
+ *
+ * @example
+ * ```typescript
+ * sanitizeInput('<script>alert("xss")</script>')
+ * // Returns: 'scriptalert("xss")/script'
+ * ```
+ */
+export function sanitizeInput(input: string): string {
+  if (!input || typeof input !== "string") {
+    return "";
+  }
+
+  return input
+    .trim()
+    .replace(/[<>]/g, "")
+    .replace(/javascript:/gi, "")
+    .replace(/on\w+=/gi, "");
+}
+
+/**
+ * Validates an email address format
+ *
+ * @param email - Email address to validate
+ * @returns True if email format is valid
+ *
+ * @example
+ * ```typescript
+ * validateEmail('user@example.com')
+ * // Returns: true
+ *
+ * validateEmail('invalid-email')
+ * // Returns: false
+ * ```
+ */
+export function validateEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+/**
+ * Alias for validateEmail for backward compatibility
+ */
+export function isValidEmail(email: string): boolean {
+  return validateEmail(email);
+}
 
 // ========================================
 // TYPES

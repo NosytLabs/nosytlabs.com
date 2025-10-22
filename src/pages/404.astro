@@ -1,6 +1,6 @@
 ---
 import MainLayout from '@/layouts/MainLayout.astro';
-import Button from '@/components/ui/Button.astro';
+import HeroButton from '@/components/ui/HeroUIButtonAstro.astro';
 import { createInternalLink } from '@/lib/constants';
 ---
 
@@ -25,12 +25,12 @@ import { createInternalLink } from '@/lib/constants';
         
         <!-- Action Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button variant="primary" size="lg" href={createInternalLink('/')}>
+          <HeroButton variant="primary" size="lg" href={createInternalLink('/')}>
             Go to Home
-          </Button>
-          <Button variant="outline" size="lg" href={createInternalLink('/services')}>
+          </HeroButton>
+          <HeroButton variant="outline" size="lg" href={createInternalLink('/services')}>
             View Services
-          </Button>
+          </HeroButton>
         </div>
         
         <!-- Helpful Links -->
@@ -59,3 +59,4 @@ import { createInternalLink } from '@/lib/constants';
     </div>
   </section>
 </MainLayout>
+

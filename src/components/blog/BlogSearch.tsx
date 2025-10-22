@@ -359,9 +359,9 @@ export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
         </div>
       </div>
 
-      {/* Enhanced Posts Grid */}
+      {/* Enhanced Posts Grid - Wider layout */}
       <main
-        className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+        className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         role="main"
         aria-label="Blog posts"
       >

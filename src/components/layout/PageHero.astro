@@ -1,6 +1,6 @@
 ---
 import Container from './Container.astro';
-import Button from '../ui/Button.astro';
+import HeroButton from '../ui/HeroUIButtonAstro.astro';
 
 export interface Props {
   /** Hero title */
@@ -82,7 +82,7 @@ const subtitleClasses = [
   )}
   
   <Container size="standard" class="relative z-10">
-    <div class="text-center max-w-4xl mx-auto">
+    <div class="text-center max-w-5xl mx-auto">
       <h1 class={titleClasses}>
         <slot name="title">
           <span set:html={title} />
@@ -101,22 +101,22 @@ const subtitleClasses = [
       {(ctaText || secondaryCtaText) && (
         <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
           {ctaText && ctaHref && (
-            <Button 
+            <HeroButton 
               variant={background === 'primary' ? 'secondary' : 'primary'} 
               size="lg" 
               href={ctaHref}
             >
               {ctaText}
-            </Button>
+            </HeroButton>
           )}
           {secondaryCtaText && secondaryCtaHref && (
-            <Button 
+            <HeroButton 
               variant="outline" 
               size="lg" 
               href={secondaryCtaHref}
             >
               {secondaryCtaText}
-            </Button>
+            </HeroButton>
           )}
         </div>
       )}
@@ -126,3 +126,4 @@ const subtitleClasses = [
     </div>
   </Container>
 </section>
+

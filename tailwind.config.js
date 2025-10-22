@@ -1,6 +1,11 @@
+import { heroui } from "@heroui/react";
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  content: [
+    "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}"
+  ],
   darkMode: "class",
   theme: {
     container: {
@@ -8,14 +13,17 @@ export default {
       padding: {
         DEFAULT: "1rem",
         sm: "1.5rem",
+        md: "2rem",
         lg: "2rem",
+        xl: "2.5rem",
+        "2xl": "3rem",
       },
       screens: {
         sm: "640px",
         md: "768px",
         lg: "1024px",
         xl: "1280px",
-        "2xl": "1280px", // Max width at 1280px (same as max-w-7xl)
+        "2xl": "2400px", // Maximized width for modern layouts
       },
     },
     extend: {
@@ -124,16 +132,6 @@ export default {
             transform: "translateY(0)",
           },
         },
-        fadeInUp: {
-          "0%": {
-            opacity: "0",
-            transform: "translateY(30px)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translateY(0)",
-          },
-        },
         float: {
           "0%, 100%": {
             transform: "translateY(0px)",
@@ -163,7 +161,6 @@ export default {
       },
       animation: {
         "fade-in-up": "fade-in-up 0.6s ease-out",
-        fadeInUp: "fadeInUp 0.6s ease-out",
         float: "float 3s ease-in-out infinite",
         "bounce-slow": "bounce-slow 2s infinite",
         "pulse-slow": "pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
@@ -189,5 +186,49 @@ export default {
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
     require("tailwindcss-animate"),
+    heroui({
+      themes: {
+        light: {
+          colors: {
+            primary: {
+              DEFAULT: "#232965",
+              foreground: "#FFFFFF",
+            },
+            secondary: {
+              DEFAULT: "#2F82FF",
+              foreground: "#FFFFFF",
+            },
+            success: {
+              DEFAULT: "#29FFAB",
+              foreground: "#252934",
+            },
+            danger: {
+              DEFAULT: "hsl(0 84% 60%)",
+              foreground: "#FFFFFF",
+            },
+          },
+        },
+        dark: {
+          colors: {
+            primary: {
+              DEFAULT: "hsl(235 47% 35%)",
+              foreground: "#FFFFFF",
+            },
+            secondary: {
+              DEFAULT: "hsl(218 100% 65%)",
+              foreground: "#FFFFFF",
+            },
+            success: {
+              DEFAULT: "hsl(162 100% 65%)",
+              foreground: "hsl(220 12% 13%)",
+            },
+            danger: {
+              DEFAULT: "hsl(0 84% 60%)",
+              foreground: "#FFFFFF",
+            },
+          },
+        },
+      },
+    }),
   ],
 };

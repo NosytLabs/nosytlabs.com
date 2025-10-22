@@ -5,8 +5,7 @@ import Section from '../../components/layout/Section.astro';
 import Container from '../../components/layout/Container.astro';
 import PageHero from '../../components/layout/PageHero.astro';
 import BlogSearch from '../../components/blog/BlogSearch';
-import Button from '../../components/ui/Button.astro';
-import { createInternalLink, createImagePath, SITE_CONFIG } from '../../lib/constants';
+import { createImagePath, SITE_CONFIG } from '../../lib/constants';
 import type { BlogPost } from '../../types/blog';
 
 const posts = (await getCollection('blog')).sort(
@@ -60,95 +59,11 @@ const blogJsonLd = {
     background="gradient"
   />
 
-  <!-- Search Section -->
-  <Section background="muted" spacing="md">
-    <Container size="narrow">
-      <div class="text-center mb-4">
-        <BlogSearch posts={posts} client:load />
-      </div>
-    </Container>
-  </Section>
-
-  <!-- Blog Posts Grid -->
+  <!-- Blog Search and Posts Section -->
   <Section background="default" spacing="lg">
-    <Container size="standard">
-      {posts.length === 0 ? (
-        <div class="text-center py-16">
-          <div class="w-16 h-16 mx-auto mb-6 text-muted-foreground">
-            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-            </svg>
-          </div>
-          <h2 class="text-2xl font-bold mb-4">No posts yet</h2>
-          <p class="text-muted-foreground mb-8">We're working on some amazing content. Check back soon!</p>
-          <Button href={createInternalLink("/")} variant="primary">
-            Back to Home
-          </Button>
-        </div>
-      ) : (
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {posts.map((post: BlogPost) => (
-            <article class="group relative bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border">
-              {post.data.heroImage && (
-                <div class="aspect-video overflow-hidden">
-                  <img 
-                    src={createImagePath(post.data.heroImage)} 
-                    alt={post.data.heroImageAlt || `Featured image for ${post.data.title}`}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                    onerror={`this.onerror=null; this.src='${createImagePath('images/blog-index-og.jpg')}'; this.alt='NOSYT Labs Blog Fallback Image'; void 0;`}
-                  />
-                </div>
-              )}
-              
-              <div class="p-6">
-                <div class="flex items-center justify-between mb-4">
-                  <time 
-                    datetime={post.data.pubDate.toISOString()}
-                    class="text-sm text-muted-foreground"
-                  >
-                    {post.data.pubDate.toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </time>
-                  
-                  {post.data.tags && post.data.tags.length > 0 && (
-                    <div class="flex gap-2">
-                      {post.data.tags.slice(0, 2).map((tag: string) => (
-                        <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                
-                <h2 class="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
-                  <a href={createInternalLink(`/blog/${post.slug}`)} class="stretched-link">
-                    {post.data.title}
-                  </a>
-                </h2>
-                
-                <p class="text-muted-foreground mb-4 line-clamp-3">
-                  {post.data.description}
-                </p>
-                
-                <div class="flex items-center justify-between">
-                  <span class="text-sm text-muted-foreground">
-                    {post.data.readingTime || '5 min read'}
-                  </span>
-                  
-                  <svg class="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                  </svg>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      )}
+    <Container size="wide">
+      <BlogSearch posts={posts} client:load />
     </Container>
   </Section>
 </MainLayout>
+

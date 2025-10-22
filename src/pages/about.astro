@@ -5,7 +5,7 @@ import Container from '@/components/layout/Container.astro';
 import SectionHeader from '@/components/layout/SectionHeader.astro';
 import PageHero from '@/components/layout/PageHero.astro';
 import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
-import Button from '@/components/ui/Button.astro';
+import HeroButton from '@/components/ui/HeroUIButtonAstro.astro';
 import { SITE_CONFIG, createInternalLink } from '@/lib/constants';
 
 const jsonLd = {
@@ -55,64 +55,102 @@ const jsonLd = {
   <!-- Hero Section -->
   <PageHero 
     title="About NOSYT Labs"
-    subtitle="Since 2020, I've delivered enterprise-grade web applications with measurable performance: 99.9% uptime, sub-500ms response times, and proven scalability. A solo developer focused on real results."
+    subtitle="A solo developer building with modern AI tools. I focus on web development, AI integration, and exploring new technologies. Based in the US, working with clients worldwide."
     size="standard"
     background="gradient"
   />
 
   <!-- Mission Section -->
-  <Section background="muted" spacing="md">
+  <Section background="muted" spacing="lg">
     <Container size="standard">
       <SectionHeader 
-        title="Our Track Record"
-        subtitle="Four years of measurable results: 2-3x traffic growth, 35% cart abandonment reductions, and 40+ hours weekly saved through automation"
+        title="What We're About"
+        subtitle="Building with AI, learning in public, and delivering real solutions"
         align="center"
         level={2}
       />
       
-      <div class="prose prose-lg mx-auto text-center max-w-4xl">
+      <div class="prose prose-lg mx-auto text-center max-w-5xl">
         <p class="text-xl text-muted-foreground mb-8">
-          Founded in 2020, NOSYT Labs has completed 47+ web applications that handle real traffic and deliver measurable ROI. 
-          Our clients typically see 2-3x organic traffic growth and 35% reduction in cart abandonment rates 
-          within 6 months of launch.
+          NOSYT Labs is a solo development shop focused on leveraging AI tools like Claude, Cursor, and Suno AI 
+          to build modern web applications faster. We're exploring the intersection of AI and development, 
+          sharing what we learn, and helping others do the same.
         </p>
         
-        <div class="grid md:grid-cols-3 gap-6 md:gap-8 mt-12 md:mt-16">
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        <div class="grid md:grid-cols-3 gap-6 lg:gap-8 mt-12 md:mt-16">
+          <div class="group p-8 rounded-2xl bg-gradient-to-br from-content1 to-default-50/50 border-2 border-default-200/60 hover:border-primary/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center">
+            <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-accent/10 border-2 border-primary/40 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+              <svg class="w-10 h-10 text-primary group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 class="text-xl font-semibold mb-2">47+ Applications Deployed</h3>
-            <p class="text-muted-foreground">
-              Enterprise-grade web applications with 99.9% uptime and sub-500ms response times across all routes.
+            <h3 class="text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors">AI-Powered Development</h3>
+            <p class="text-base text-muted-foreground leading-relaxed">
+              Using Claude, Cursor, and modern AI tools to build faster and smarter. AI-assisted coding is the future.
             </p>
           </div>
           
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <div class="group p-8 rounded-2xl bg-gradient-to-br from-content1 to-default-50/50 border-2 border-default-200/60 hover:border-success/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center">
+            <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-success/20 to-success/10 border-2 border-success/40 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+              <svg class="w-10 h-10 text-success group-hover:text-success transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 class="text-xl font-semibold mb-2">2-3x Traffic Growth</h3>
-            <p class="text-muted-foreground">
-              Typical organic traffic multiplier achieved within 6 months through technical SEO and performance optimization.
+            <h3 class="text-xl md:text-2xl font-bold mb-3 group-hover:text-success transition-colors">Open Source</h3>
+            <p class="text-base text-muted-foreground leading-relaxed">
+              Contributing to the community with projects like the Presearch MCP Server. Check out our GitHub.
             </p>
           </div>
           
-          <div class="text-center">
-            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          <div class="group p-8 rounded-2xl bg-gradient-to-br from-content1 to-default-50/50 border-2 border-default-200/60 hover:border-accent/60 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center">
+            <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/10 border-2 border-accent/40 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+              <svg class="w-10 h-10 text-accent group-hover:text-accent transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
-            <h3 class="text-xl font-semibold mb-2">40+ Hours Saved Weekly</h3>
-            <p class="text-muted-foreground">
-              Time saved through AI automation and process optimization for our clients.
+            <h3 class="text-xl md:text-2xl font-bold mb-3 group-hover:text-accent transition-colors">Real Solutions</h3>
+            <p class="text-base text-muted-foreground leading-relaxed">
+              No fluff or over-promising. We build what you need with modern tech and honest communication.
             </p>
           </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <!-- Music Section -->
+  <Section background="default" spacing="md">
+    <Container size="standard">
+      <SectionHeader 
+        title="Our Music"
+        subtitle="AI-generated tracks showcasing what's possible with modern music generation technology"
+        align="center"
+        level={2}
+      />
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-card rounded-2xl p-6 md:p-8 shadow-lg border border-border">
+          <p class="text-center text-muted-foreground mb-6">
+            Check out tracks created with Suno AI under the NOSYT artist name. These demonstrate the quality 
+            and variety possible with AI music generation - the same technology we use for client projects.
+          </p>
+          
+          <!-- Spotify Embed -->
+          <div class="relative w-full" style="padding-bottom: 380px;">
+            <iframe 
+              style="border-radius:12px; border: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+              src="https://open.spotify.com/embed/artist/6PgkavAN36A3ngqiqOollE?utm_source=generator&theme=0" 
+              allowfullscreen="" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"
+              title="NOSYT on Spotify"
+            ></iframe>
+          </div>
+          
+          <p class="text-sm text-muted-foreground text-center mt-4">
+            Want custom music for your brand, podcast, or content? 
+            <a href="/services/ai-music-jingles" class="text-primary hover:underline font-medium">Check out our AI Music & Jingles service</a>
+          </p>
         </div>
       </div>
     </Container>
@@ -122,39 +160,36 @@ const jsonLd = {
   <Section background="default" spacing="md">
     <Container size="standard">
       <SectionHeader 
-        title="What We Actually Build"
-        subtitle="Real applications with measurable performance metrics and proven ROI"
+        title="What We Build"
+        subtitle="Modern web apps, AI integrations, and creative solutions"
         align="center"
         gradient={true}
         level={2}
       />
       
-      <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div class="grid lg:grid-cols-2 xl:grid-cols-2 gap-8 md:gap-12 items-center max-w-7xl mx-auto">
         <div class="space-y-6">
           <div class="space-y-4">
-            <h3 class="text-2xl font-semibold">Web Applications That Scale</h3>
+            <h3 class="text-2xl font-semibold">Web Applications</h3>
             <p class="text-muted-foreground">
-              Production-ready applications built with React, Next.js, and Node.js, delivering consistent 
-              sub-500ms response times even under high load. Our latest e-commerce platform reduced cart abandonment by 35% 
-              and increased conversion rates by 28%.
+              Modern web apps built with React, Astro, Next.js, and TypeScript. Fast, responsive, and optimized 
+              for performance. We use AI tools like Cursor and Claude to code faster and deliver quality results.
             </p>
           </div>
           
           <div class="space-y-4">
-            <h3 class="text-2xl font-semibold">AI That Saves 40+ Hours Weekly</h3>
+            <h3 class="text-2xl font-semibold">AI Integration</h3>
             <p class="text-muted-foreground">
-              Custom automation systems that process 10x more data than manual methods. Our AI chatbots 
-              handle 80% of customer inquiries automatically, while our predictive analytics help clients 
-              reduce inventory costs by 25%.
+              Integrating AI into your workflows with tools like ChatGPT API, Claude, and custom automation. 
+              From chatbots to document processing, we help you leverage AI practically.
             </p>
           </div>
           
           <div class="space-y-4">
-            <h3 class="text-2xl font-semibold">SEO That Delivers Real Growth</h3>
+            <h3 class="text-2xl font-semibold">AI Music & Content</h3>
             <p class="text-muted-foreground">
-              Technical SEO audits and implementations that achieve measurable results. Clients typically see 
-              2-3x organic traffic growth within 6 months, with our most successful implementations reaching 
-              5x growth in competitive markets through Core Web Vitals optimization.
+              Creating custom music with Suno AI for podcasts, brands, and content creators. We're exploring 
+              what's possible with AI-generated content and sharing what we learn.
             </p>
           </div>
         </div>
@@ -167,9 +202,9 @@ const jsonLd = {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h4 class="text-xl font-semibold">4 Years, 47 Projects</h4>
+              <h4 class="text-xl font-semibold">Solo Developer</h4>
               <p class="text-muted-foreground">
-                Since 2020, we've maintained a 100% project completion rate with measurable ROI for every client.
+                One person, modern AI tools, and a focus on delivering what you actually need. No agency overhead, just honest work.
               </p>
             </div>
           </div>
@@ -177,21 +212,22 @@ const jsonLd = {
       </div>
       
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12 md:mt-16">
-        <Button 
+        <HeroButton 
           href="/services" 
           variant="primary" 
           size="lg"
         >
           View Our Work
-        </Button>
-        <Button 
+        </HeroButton>
+        <HeroButton 
           href="/consultation" 
           variant="outline" 
           size="lg"
         >
           Get Technical Assessment
-        </Button>
+        </HeroButton>
       </div>
     </Container>
   </Section>
 </MainLayout>
+

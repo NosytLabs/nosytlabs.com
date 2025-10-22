@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
-import { formatDate } from '@/lib/utils/date-utils';
+import { formatDate } from '@shared-utils/unified-date-utils';
 import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
-import Button from '../../components/ui/Button.astro';
+import HeroButton from '../../components/ui/HeroUIButtonAstro.astro';
 import { createInternalLink, createImagePath, SITE_CONFIG } from '../../lib/constants';
 import RelatedPosts from '../../components/blog/RelatedPosts.astro';
 import SocialShare from '../../components/blog/SocialShare.astro';
@@ -130,7 +130,7 @@ const breadcrumbJsonLd = {
       
       <!-- Back to Blog -->
       <div class="mb-8">
-        <Button href={createInternalLink("/blog")} text="Back to Blog" variant="outline" size="sm" icon="arrow-left" />
+        <HeroButton href={createInternalLink("/blog")} text="← Back to Blog" variant="outline" size="sm" />
       </div>
 
       <!-- Hero Image -->
@@ -223,8 +223,8 @@ const breadcrumbJsonLd = {
           </div>
           
           <div class="flex gap-4">
-            <Button href={createInternalLink("/blog")} text="Back to Blog" variant="outline" size="sm" />
-            <Button href={createInternalLink("/contact")} text="Get In Touch" variant="primary" size="sm" />
+            <HeroButton href={createInternalLink("/blog")} text="Back to Blog" variant="outline" size="sm" />
+            <HeroButton href={createInternalLink("/contact")} text="Get In Touch" variant="gradient" size="sm" />
           </div>
         </div>
       </footer>

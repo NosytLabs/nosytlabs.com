@@ -2,7 +2,7 @@
 title: "Tech Consulting & SEO Audits"
 description: "Optimize your digital presence with expert technical consulting and comprehensive SEO audits."
 icon: "consulting"
-price: "Starting from $1,500"
+price: "Starting at $1,500 USD"
 delivery: "2-4 weeks"
 category: "consulting"
 tags: ["seo", "technical audit", "consulting", "optimization", "performance"]

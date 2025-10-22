@@ -15,12 +15,12 @@ const {
   ...rest
 } = Astro.props;
 
-// Container size classes - Using CSS custom properties for consistent spacing
+// Enhanced container size classes - Maximized for modern 2025 layouts
 const sizeClasses = {
-  full: 'w-full px-[var(--space-4)] sm:px-[var(--space-6)] md:px-[var(--space-8)] lg:px-[var(--space-12)]',
-  narrow: 'max-w-4xl mx-auto px-[var(--space-4)] sm:px-[var(--space-6)] md:px-[var(--space-8)] lg:px-[var(--space-12)]',
-  standard: 'container-fixed', // Use the CSS utility class
-  wide: 'max-w-[1536px] mx-auto px-[var(--space-4)] sm:px-[var(--space-6)] md:px-[var(--space-8)] lg:px-[var(--space-12)]'
+  full: 'w-full px-4 sm:px-6 md:px-8 lg:px-8 xl:px-10 2xl:px-12 overflow-hidden',
+  narrow: 'max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8 xl:px-10 w-full',
+  standard: 'container-fixed w-full', // Use the CSS utility class (now max-w-[2400px])
+  wide: 'max-w-[2800px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8 xl:px-10 2xl:px-12 w-full'
 };
 
 const containerClasses = [
@@ -32,3 +32,4 @@ const containerClasses = [
 <Element class={containerClasses} {...rest}>
   <slot />
 </Element>
+

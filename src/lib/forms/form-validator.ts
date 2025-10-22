@@ -5,7 +5,7 @@
  * between contact.astro and contact.ts implementations.
  */
 
-import { validateEmail as validateEmailShared } from "@/lib/utils/validation";
+import { validateEmail as validateEmailShared } from "@/lib/core/validation";
 
 export interface ValidationResult {
   isValid: boolean;

@@ -5,10 +5,8 @@ import Container from '@/components/layout/Container.astro';
 import SectionHeader from '@/components/layout/SectionHeader.astro';
 import Hero from '@/components/content/Hero.astro';
 import Services from '@/components/content/Services.astro';
-import Testimonials from '@/components/content/Testimonials.astro';
-import CaseStudies from '@/components/content/CaseStudies.astro';
 import StatsDisplay from '@/components/ui/StatsDisplay.astro';
-import Button from '@/components/ui/Button.astro';
+import HeroButton from '@/components/ui/HeroUIButtonAstro.astro';
 import { getPrimaryStats } from '@/lib/data/stats';
 import { SITE_CONFIG } from '@/lib/constants';
 
@@ -66,81 +64,203 @@ const jsonLd = {
   containerClass="full-width"
   pageClass="home-page"
 >
-  <!-- Hero Section - Full width with no container -->
+  <!-- Hero Section -->
   <Hero 
     title="Notable Opportunities Shape Your Tomorrow"
-    subtitle="NOSYT • Innovative Digital Solutions • Transform Your Business"
-    ctaText="Seize Your Opportunity"
+    subtitle="NOSYT • Solo Developer • AI-Powered"
+    description="Building modern web apps, mobile apps, and AI solutions with tools like Claude, Cursor, and Suno AI. Fast, affordable, and honest."
+    ctaText="Start Your Project"
     ctaLink="/contact"
-    secondaryCtaText="Explore Solutions"
+    secondaryCtaText="View Services"
     secondaryCtaLink="/services"
   />
   
   <!-- Stats Section -->
-  <Section background="muted" spacing="md">
+  <Section background="muted" spacing="sm">
     <Container size="standard">
       <StatsDisplay stats={primaryStats} variant="hero" />
     </Container>
   </Section>
   
   <!-- Services Section -->
-  <Section background="gradient" spacing="lg">
+  <Section background="gradient" spacing="md">
     <Container size="standard">
       <Services />
     </Container>
   </Section>
   
-  <!-- Case Studies Section -->
-  <Section background="muted" spacing="lg">
+  <!-- Enhanced Projects Section -->
+  <Section background="muted" spacing="md">
     <Container size="standard">
       <SectionHeader 
-        title="Success Stories"
-        subtitle="Real results from our client projects with measurable impact"
+        title="What We're Building"
+        subtitle="Open source projects and explorations in AI"
         level={2}
         align="center"
       />
-      <CaseStudies />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full">
+        {[
+          {
+            href: "https://github.com/nosytlabs/presearch-mcp-server",
+            title: "Presearch MCP Server",
+            description: "Model Context Protocol server for AI search integration with Claude and other AI assistants",
+            tags: ["TypeScript", "MCP", "AI"],
+            external: true,
+            icon: "🔍"
+          },
+          {
+            href: "/projects",
+            title: "NOSYT Labs Website",
+            description: "This modern website built with Astro, React, TailwindCSS, and HeroUI components",
+            tags: ["Astro", "React", "TailwindCSS"],
+            external: false,
+            icon: "🌐"
+          },
+          {
+            href: "https://open.spotify.com/artist/6PgkavAN36A3ngqiqOollE",
+            title: "AI Music Generation",
+            description: "Exploring AI music creation with Suno AI - custom tracks for brands and content",
+            tags: ["Suno AI", "Music", "Creative"],
+            external: true,
+            icon: "🎵"
+          }
+        ].map((project, index) => (
+          <a 
+            href={project.href} 
+            target={project.external ? "_blank" : undefined}
+            rel={project.external ? "noopener noreferrer" : undefined}
+            class="group block animate-fade-in"
+            style={`animation-delay: ${index * 150}ms`}
+          >
+            <div class="card-professional h-full p-6 md:p-8 flex flex-col">
+              <!-- Project Icon -->
+              <div class="text-4xl md:text-5xl mb-5 group-hover:scale-110 transition-transform duration-300">
+                {project.icon}
+              </div>
+              
+              <!-- Project Title -->
+              <h3 class="text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
+                {project.title}
+                {project.external && (
+                  <svg class="inline-block w-4 h-4 ml-2 opacity-60 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                  </svg>
+                )}
+              </h3>
+              
+              <!-- Project Description -->
+              <p class="text-muted-foreground mb-5 leading-relaxed text-sm md:text-base flex-grow">
+                {project.description}
+              </p>
+              
+              <!-- Project Tags -->
+              <div class="flex gap-2 flex-wrap mb-4">
+                {project.tags.map((tag) => (
+                  <span class="text-xs md:text-sm bg-gradient-to-r from-primary/10 to-accent/10 text-primary px-3 py-1.5 rounded-full font-semibold border border-primary/20 group-hover:border-primary/40 transition-colors duration-300">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              
+              <!-- Hover indicator -->
+              <div class="flex items-center text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-auto">
+                <span class="font-semibold text-sm mr-2">
+                  {project.external ? "View Project" : "Learn More"}
+                </span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
     </Container>
   </Section>
   
-  <!-- Testimonials Section -->
-  <Section background="default" spacing="lg">
+  <!-- Music Section - NOSYT Artist -->
+  <Section background="default" spacing="md">
     <Container size="standard">
       <SectionHeader 
-        title="What Our Clients Say"
-        subtitle="Trusted by businesses worldwide"
+        title="NOSYT Music"
+        subtitle="AI-generated tracks on Spotify"
         level={2}
         align="center"
       />
-      <Testimonials />
-    </Container>
-  </Section>
-  
-  <!-- Final CTA Section -->
-  <Section background="gradient" spacing="lg">
-    <Container size="narrow">
-      <div class="cta-content">
-        <h2 class="cta-title">
-          Ready to Shape Your Tomorrow?
-        </h2>
-        <p class="cta-description">
-          Seize your opportunity today. Let's discuss how NOSYT can help you achieve your goals with innovative digital solutions.
+      <div class="max-w-5xl mx-auto">
+        <iframe 
+          style="border-radius:12px; border: 0;" 
+          src="https://open.spotify.com/embed/artist/6PgkavAN36A3ngqiqOollE?utm_source=generator&theme=0" 
+          width="100%" 
+          height="352" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy"
+          title="NOSYT on Spotify"
+        ></iframe>
+        <p class="text-center mt-4 text-muted-foreground">
+          Created with Suno AI - demonstrating what's possible for your podcast, brand, or content. 
+          <a href="/services/ai-music-jingles" class="text-primary hover:underline">Get custom music →</a>
         </p>
-        <div class="cta-actions">
-          <Button 
-            href="/contact"
-            text="Get Started"
-            variant="primary"
-            size="lg"
-          />
-          <Button 
-            href="/services"
-            text="Explore Services"
-            variant="outline"
-            size="lg"
-          />
+      </div>
+    </Container>
+  </Section>
+  
+  <!-- Enhanced Final CTA Section -->
+  <Section background="gradient" spacing="md">
+    <Container size="standard">
+      <div class="relative max-w-5xl mx-auto">
+        <!-- Background decoration -->
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 rounded-3xl blur-3xl -z-10"></div>
+        
+        <div class="relative bg-gradient-to-br from-background/80 to-muted/20 backdrop-blur-sm border border-border/50 rounded-3xl p-6 md:p-10 lg:p-12 shadow-2xl">
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-center mb-5 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+            Ready to Shape Your Tomorrow?
+          </h2>
+          <p class="text-base md:text-lg text-muted-foreground text-center max-w-3xl mx-auto leading-relaxed mb-6">
+            Seize your opportunity today. Let's discuss how NOSYT can help you achieve your goals with innovative digital solutions that drive real results.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
+            <HeroButton 
+              href="/contact"
+              text="Get Started Today"
+              variant="gradient"
+              size="lg"
+              class="w-full sm:w-auto min-w-[200px] px-8 py-4 text-lg font-bold shadow-2xl hover:shadow-3xl"
+            />
+            <HeroButton 
+              href="/services"
+              text="Explore Services"
+              variant="outline"
+              size="lg"
+              class="w-full sm:w-auto min-w-[200px] px-8 py-4 text-lg font-semibold border-2"
+            />
+          </div>
+          
+          <!-- Trust indicators -->
+          <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 mt-6 pt-6 border-t border-border/30">
+            <div class="flex items-center gap-3 text-muted-foreground">
+              <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="font-medium">Free Consultation</span>
+            </div>
+            <div class="flex items-center gap-3 text-muted-foreground">
+              <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="font-medium">Fast Response</span>
+            </div>
+            <div class="flex items-center gap-3 text-muted-foreground">
+              <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="font-medium">No Long Contracts</span>
+            </div>
+          </div>
         </div>
       </div>
     </Container>
   </Section>
 </MainLayout>
+

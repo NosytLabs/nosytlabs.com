@@ -1,5 +1,5 @@
 ---
-import Button from '../ui/Button.astro';
+import HeroButton from '../ui/HeroUIButtonAstro.astro';
 import Container from '../layout/Container.astro';
 
 interface Props {
@@ -15,8 +15,8 @@ interface Props {
 
 const {
   title = "Notable Opportunities Shape Your Tomorrow",
-  subtitle = "NOSYT • Innovative Digital Solutions • Transform Your Business",
-  description = "NOSYT stands for Notable Opportunities Shape Your Tomorrow. We help businesses seize opportunities through innovative digital solutions that drive real results and sustainable growth.",
+  subtitle = "NOSYT • Solo Developer • AI-Powered Development",
+  description = "I'm a developer who uses AI tools like Claude and Cursor to build web apps, create custom music with Suno AI, and develop practical solutions. Fast, affordable, and honest.",
   ctaText = "Seize Your Opportunity",
   ctaLink = "/contact",
   secondaryCtaText = "Explore Solutions",
@@ -25,87 +25,86 @@ const {
 } = Astro.props;
 ---
 
-<section class={`hero-enhanced py-24 md:py-32 lg:py-40 ${className}`} aria-labelledby="hero-title">
-  <Container size="standard">
+<section class={`relative flex items-center justify-center w-full overflow-hidden ${className}`} style="min-height: 90vh;" aria-labelledby="hero-title">
+  <!-- Enhanced Background with multiple layers -->
+  <div class="absolute inset-0 bg-gradient-to-br from-background via-muted/10 to-primary/10 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent pointer-events-none"></div>
+  
+  <Container size="standard" className="relative z-10 w-full">
     <!-- Hero Content Wrapper -->
-    <div class="hero-content text-center space-y-6 md:space-y-8 lg:space-y-10">
+    <div class="hero-content text-center space-y-5 sm:space-y-6 md:space-y-7 lg:space-y-9 py-16 sm:py-18 md:py-20 lg:py-24 px-4 sm:px-6">
       
       <!-- Enhanced Subtitle Badge -->
-      <div class="flex justify-center mb-2">
-        <span class="hero-badge inline-flex items-center px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-sm md:text-base font-medium backdrop-blur-sm shadow-sm hover:bg-primary/10 hover:border-primary/20 transition-all duration-300">
-          <span class="inline-block w-2 h-2 bg-primary rounded-full mr-3 animate-pulse"></span>
+      <div class="flex justify-center">
+        <span class="hero-badge inline-flex items-center px-6 py-3 md:px-8 md:py-4 rounded-full bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20 text-primary text-sm md:text-base lg:text-lg font-semibold backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+          <span class="inline-block w-2.5 h-2.5 bg-primary rounded-full mr-3 animate-pulse shadow-sm"></span>
           {subtitle}
         </span>
       </div>
 
-      <!-- Title with improved spacing -->
-      <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight max-w-5xl mx-auto leading-tight mt-4">
+      <!-- Title with enhanced typography -->
+      <h1 id="hero-title" class="text-hero max-w-6xl mx-auto">
         {title}
       </h1>
 
       <!-- Description with better typography -->
-      <p class="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4 mt-6">
+      <p class="text-subtitle text-muted-foreground max-w-4xl mx-auto px-4">
         {description}
       </p>
 
-      <!-- CTA Buttons with better spacing and alignment -->
-      <div class="flex flex-col sm:flex-row gap-4 md:gap-5 justify-center items-center pt-6 md:pt-8">
-        <Button 
+      <!-- Enhanced CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 justify-center items-stretch sm:items-center pt-6 md:pt-8 max-w-lg sm:max-w-none mx-auto">
+        <HeroButton 
           href={ctaLink}
           text={ctaText}
-          variant="primary"
+          variant="gradient"
           size="lg"
-          class="w-full sm:w-auto min-w-[160px] shadow-lg hover:shadow-xl transition-all duration-300"
+          class="w-full sm:w-auto sm:min-w-[200px] px-6 sm:px-8 py-4 text-base sm:text-lg font-semibold shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
         />
         
-        <Button 
+        <HeroButton 
           href={secondaryCtaLink}
           text={secondaryCtaText}
           variant="outline"
           size="lg"
-          class="w-full sm:w-auto min-w-[160px] border-2 hover:bg-muted/50 transition-all duration-300"
+          class="w-full sm:w-auto sm:min-w-[200px] px-6 sm:px-8 py-4 text-base sm:text-lg font-semibold border-2 border-primary/30 hover:border-primary hover:bg-primary/10 hover:scale-105 transition-all duration-300"
         />
       </div>
 
-      <!-- Enhanced Trust Indicators with cards -->
-      <div class="flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 justify-center items-center pt-8 md:pt-12">
-        <div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/30 border border-border/50 hover:border-border hover:bg-muted/50 transition-all duration-300 min-w-[200px] justify-center">
-          <div class="flex-shrink-0 w-10 h-10 bg-success/10 rounded-full flex items-center justify-center">
-            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
+      <!-- Enhanced Trust Indicators -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto pt-8 md:pt-10">
+        <div class="flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-br from-success/5 to-success/10 border border-success/20 hover:border-success/40 hover:shadow-lg transition-all duration-300">
+          <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-success/20 to-success/30 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+            <svg class="w-7 h-7 text-success" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
             </svg>
           </div>
-          <div class="text-left">
-            <div class="text-sm font-semibold text-foreground">47 Projects</div>
-            <div class="text-xs text-muted-foreground">Delivered</div>
-          </div>
+          <div class="text-lg font-bold text-foreground mb-1">Solo Developer</div>
+          <div class="text-sm text-muted-foreground">AI-Assisted Development</div>
         </div>
         
-        <div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/30 border border-border/50 hover:border-border hover:bg-muted/50 transition-all duration-300 min-w-[200px] justify-center">
-          <div class="flex-shrink-0 w-10 h-10 bg-success/10 rounded-full flex items-center justify-center">
-            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        <div class="flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 border border-primary/20 hover:border-primary/40 hover:shadow-lg transition-all duration-300">
+          <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-primary/20 to-primary/30 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
           </div>
-          <div class="text-left">
-            <div class="text-sm font-semibold text-foreground">10,000+ Users</div>
-            <div class="text-xs text-muted-foreground">Worldwide</div>
-          </div>
+          <div class="text-lg font-bold text-foreground mb-1">Fast Delivery</div>
+          <div class="text-sm text-muted-foreground">AI-Powered Speed</div>
         </div>
         
-        <div class="flex items-center gap-3 px-4 py-3 rounded-lg bg-muted/30 border border-border/50 hover:border-border hover:bg-muted/50 transition-all duration-300 min-w-[200px] justify-center">
-          <div class="flex-shrink-0 w-10 h-10 bg-success/10 rounded-full flex items-center justify-center">
-            <svg class="w-5 h-5 text-success" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        <div class="flex flex-col items-center text-center p-6 rounded-2xl bg-gradient-to-br from-accent/5 to-accent/10 border border-accent/20 hover:border-accent/40 hover:shadow-lg transition-all duration-300">
+          <div class="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-accent/20 to-accent/30 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
+            <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
             </svg>
           </div>
-          <div class="text-left">
-            <div class="text-sm font-semibold text-foreground">Sub-Second</div>
-            <div class="text-xs text-muted-foreground">Response Time</div>
-          </div>
+          <div class="text-lg font-bold text-foreground mb-1">Affordable</div>
+          <div class="text-sm text-muted-foreground">Solo Dev Rates</div>
         </div>
       </div>
 
     </div>
   </Container>
 </section>
+
