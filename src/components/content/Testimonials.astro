@@ -1,0 +1,134 @@
+---
+interface Testimonial {
+  name: string;
+  title: string;
+  company: string;
+  quote: string;
+  project: string;
+  avatarInitials: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    name: "Avery Thompson",
+    title: "Founder",
+    company: "Atlas Creative",
+    quote:
+      "NOSYT Labs rebuilt our marketing site in Astro and cut page load times by more than half. We launched ahead of schedule and bookings jumped immediately.",
+    project: "Marketing site redesign",
+    avatarInitials: "AT",
+  },
+  {
+    name: "Jordan Kim",
+    title: "Head of Operations",
+    company: "Brightline Logistics",
+    quote:
+      "The automation workflows Tyson developed saved our team 20+ hours every week. His communication is clear, honest, and backed by real technical depth.",
+    project: "Internal tools & automation",
+    avatarInitials: "JK",
+  },
+  {
+    name: "Priya Desai",
+    title: "Product Lead",
+    company: "SignalScope",
+    quote:
+      "We needed AI-driven prototypes fast. NOSYT delivered production-ready code, complete documentation, and training for our in-house developers.",
+    project: "AI feature prototyping",
+    avatarInitials: "PD",
+  },
+];
+---
+
+<section class="relative overflow-hidden">
+  <div
+    class="absolute inset-0 bg-grid-slate-900/[0.04] dark:bg-grid-white/[0.02] -z-10"
+  >
+  </div>
+  <div
+    class="absolute inset-x-0 -top-32 h-64 bg-gradient-to-b from-primary/10 via-background to-background blur-3xl -z-10"
+  >
+  </div>
+
+  <div class="container py-16 md:py-20 lg:py-24">
+    <div class="text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+      <p
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold uppercase tracking-wide"
+      >
+        Trusted by teams shipping fast
+      </p>
+      <h2
+        class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent"
+      >
+        Results our clients talk about
+      </h2>
+      <p class="text-base md:text-lg text-muted-foreground mt-4">
+        Real stories from founders and product teams who've shipped with NOSYT
+        Labs.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {
+        testimonials.map((testimonial, index) => (
+          <article
+            class={`relative h-full p-6 md:p-7 rounded-3xl border border-border/60 bg-card/80 backdrop-blur hover:border-primary/50 transition-all duration-300 shadow-lg shadow-primary/5 animate-fade-in`}
+            style={`animation-delay: ${index * 120}ms`}
+          >
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary/70 to-accent/70 text-white font-semibold flex items-center justify-center text-lg">
+                  {testimonial.avatarInitials}
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-foreground leading-tight">
+                    {testimonial.name}
+                  </h3>
+                  <p class="text-sm text-muted-foreground">
+                    {testimonial.title} · {testimonial.company}
+                  </p>
+                </div>
+              </div>
+              <svg
+                class="w-8 h-8 text-primary/60"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7.5 7.5A3 3 0 0010.5 4.5m0 0h.75m-.75 0v.75m6 2.25A3 3 0 0119.5 4.5m0 0h.75m-.75 0v.75M6 12h12m-9 4h6"
+                />
+              </svg>
+            </div>
+
+            <p class="mt-6 text-base text-foreground/90 leading-relaxed">
+              “{testimonial.quote}”
+            </p>
+
+            <div class="mt-6 pt-6 border-t border-border/40 flex items-center justify-between text-sm text-muted-foreground">
+              <span>{testimonial.project}</span>
+              <span class="inline-flex items-center gap-1 text-primary font-medium">
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 19.5l-7-7a4.5 4.5 0 116.364-6.364L12 7.5l.636-.636A4.5 4.5 0 1119 12.5l-7 7z"
+                  />
+                </svg>
+                5.0 ★★★★★
+              </span>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

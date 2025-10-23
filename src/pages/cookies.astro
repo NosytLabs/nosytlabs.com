@@ -1,0 +1,350 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import Section from "@/components/layout/Section.astro";
+import Container from "@/components/layout/Container.astro";
+import PageHero from "@/components/layout/PageHero.astro";
+import Breadcrumbs from "@/components/ui/Breadcrumbs.astro";
+import { SITE_CONFIG, COMPANY_INFO, createInternalLink } from "@/lib/constants";
+
+const lastUpdated = "January 2025";
+---
+
+<MainLayout
+  title="Cookie Policy - NOSYT Labs"
+  description="Learn how NOSYT Labs uses cookies and similar tracking technologies on our website."
+  keywords={["cookie policy", "cookies", "tracking", "web storage", "privacy"]}
+>
+  <Section background="default" spacing="none">
+    <Container size="standard">
+      <Breadcrumbs
+        items={[
+          { name: "Home", url: createInternalLink("/") },
+          { name: "Cookie Policy", url: createInternalLink("/cookies") },
+        ]}
+      />
+    </Container>
+  </Section>
+
+  <PageHero
+    title="Cookie Policy"
+    subtitle={`Last Updated: ${lastUpdated}`}
+    size="compact"
+    background="gradient"
+  />
+
+  <Section background="default" spacing="lg">
+    <Container size="prose">
+      <div class="prose prose-lg mx-auto max-w-4xl">
+        <p
+          class="bg-muted/30 border border-border rounded-lg p-6 text-muted-foreground"
+        >
+          This Cookie Policy explains how NOSYT Labs uses cookies and similar
+          technologies on our website. By using our site, you consent to our use
+          of cookies as described in this policy.
+        </p>
+
+        <h2>1. What Are Cookies?</h2>
+        <p>
+          Cookies are small text files that are placed on your device (computer,
+          smartphone, or tablet) when you visit a website. They help websites
+          remember your preferences and improve your browsing experience.
+        </p>
+
+        <h2>2. How We Use Cookies</h2>
+        <p>We use cookies and similar technologies for several purposes:</p>
+
+        <h3>2.1 Essential Cookies</h3>
+        <p>
+          These cookies are necessary for the website to function properly. They
+          enable core features such as security, network management, and
+          accessibility.
+        </p>
+        <ul>
+          <li>
+            <strong>Theme Preference:</strong> Remembering your light/dark mode preference
+          </li>
+          <li>
+            <strong>Form Data:</strong> Temporarily storing form inputs to prevent
+            data loss
+          </li>
+          <li>
+            <strong>Security:</strong> Ensuring secure connections and preventing
+            fraud
+          </li>
+        </ul>
+
+        <h3>2.2 Analytics Cookies</h3>
+        <p>
+          These cookies help us understand how visitors interact with our
+          website by collecting and reporting information anonymously.
+        </p>
+        <ul>
+          <li>
+            <strong>Usage Statistics:</strong> Pages visited, time spent, navigation
+            paths
+          </li>
+          <li><strong>Performance:</strong> Site speed and error tracking</li>
+          <li>
+            <strong>Demographics:</strong> General location, device type, browser
+          </li>
+        </ul>
+
+        <h3>2.3 Preference Cookies</h3>
+        <p>
+          These cookies remember your preferences and settings to provide a
+          personalized experience.
+        </p>
+        <ul>
+          <li><strong>Theme:</strong> Dark or light mode preference</li>
+          <li><strong>Language:</strong> Preferred language settings</li>
+          <li><strong>Accessibility:</strong> Font size, contrast settings</li>
+        </ul>
+
+        <h3>2.4 Marketing Cookies</h3>
+        <p>
+          These cookies track your browsing activity across websites to show
+          relevant advertisements.
+        </p>
+        <ul>
+          <li>
+            <strong>Retargeting:</strong> Showing ads based on pages visited
+          </li>
+          <li>
+            <strong>Social Media:</strong> Enabling sharing and interaction
+          </li>
+          <li>
+            <strong>Campaign Tracking:</strong> Measuring effectiveness of marketing
+            campaigns
+          </li>
+        </ul>
+
+        <h2>3. Types of Cookies We Use</h2>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full border border-border rounded-lg">
+            <thead class="bg-muted">
+              <tr>
+                <th class="px-4 py-2 text-left">Cookie Type</th>
+                <th class="px-4 py-2 text-left">Purpose</th>
+                <th class="px-4 py-2 text-left">Duration</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-border">
+              <tr>
+                <td class="px-4 py-2"><code>theme</code></td>
+                <td class="px-4 py-2">Store theme preference (dark/light)</td>
+                <td class="px-4 py-2">Persistent (1 year)</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2"><code>_ga</code></td>
+                <td class="px-4 py-2">Google Analytics - visitor tracking</td>
+                <td class="px-4 py-2">2 years</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2"><code>_gid</code></td>
+                <td class="px-4 py-2">Google Analytics - session tracking</td>
+                <td class="px-4 py-2">24 hours</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2"><code>_gat</code></td>
+                <td class="px-4 py-2">Google Analytics - throttle requests</td>
+                <td class="px-4 py-2">1 minute</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>4. Third-Party Cookies</h2>
+        <p>We use third-party services that may set cookies on your device:</p>
+
+        <h3>4.1 Google Analytics</h3>
+        <p>
+          We use Google Analytics to analyze website usage. Google Analytics
+          uses cookies to collect information about how visitors use our site.
+          This data is anonymous and helps us improve the user experience.
+        </p>
+        <p>
+          Learn more: <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer">Google Privacy Policy</a
+          >
+        </p>
+
+        <h3>4.2 Spotify Embeds</h3>
+        <p>
+          Our website includes embedded Spotify content. Spotify may set cookies
+          to track playback and user preferences.
+        </p>
+        <p>
+          Learn more: <a
+            href="https://www.spotify.com/us/legal/privacy-policy/"
+            target="_blank"
+            rel="noopener noreferrer">Spotify Privacy Policy</a
+          >
+        </p>
+
+        <h3>4.3 Social Media Platforms</h3>
+        <p>
+          Links to social media platforms (Twitter, LinkedIn, GitHub) may result
+          in cookies being set by those platforms if you interact with their
+          content.
+        </p>
+
+        <h2>5. Local Storage and Session Storage</h2>
+        <p>In addition to cookies, we use browser storage technologies:</p>
+        <ul>
+          <li>
+            <strong>localStorage:</strong> For storing theme preferences and user
+            settings
+          </li>
+          <li>
+            <strong>sessionStorage:</strong> For temporary data during your browsing
+            session
+          </li>
+        </ul>
+        <p>
+          These technologies do not send data to our servers automatically and
+          are stored locally on your device.
+        </p>
+
+        <h2>6. Managing Cookies</h2>
+
+        <h3>6.1 Browser Settings</h3>
+        <p>
+          Most browsers allow you to control cookies through their settings. You
+          can:
+        </p>
+        <ul>
+          <li>View cookies stored on your device</li>
+          <li>Delete existing cookies</li>
+          <li>Block cookies from specific websites</li>
+          <li>Block all cookies</li>
+          <li>Delete cookies when closing your browser</li>
+        </ul>
+
+        <h3>6.2 Browser-Specific Instructions</h3>
+        <ul>
+          <li>
+            <a
+              href="https://support.google.com/chrome/answer/95647"
+              target="_blank"
+              rel="noopener noreferrer">Chrome</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences"
+              target="_blank"
+              rel="noopener noreferrer">Firefox</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac"
+              target="_blank"
+              rel="noopener noreferrer">Safari</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09"
+              target="_blank"
+              rel="noopener noreferrer">Edge</a
+            >
+          </li>
+        </ul>
+
+        <h3>6.3 Opt-Out Links</h3>
+        <ul>
+          <li>
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              target="_blank"
+              rel="noopener noreferrer">Google Analytics Opt-out</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://optout.aboutads.info/"
+              target="_blank"
+              rel="noopener noreferrer">Digital Advertising Alliance Opt-out</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.youronlinechoices.com/"
+              target="_blank"
+              rel="noopener noreferrer">Your Online Choices (EU)</a
+            >
+          </li>
+        </ul>
+
+        <div
+          class="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 text-sm"
+        >
+          <strong>Note:</strong> Blocking or deleting cookies may affect your experience
+          on our website. Some features may not work properly without cookies enabled.
+        </div>
+
+        <h2>7. Do Not Track</h2>
+        <p>
+          Some browsers have a "Do Not Track" (DNT) feature that signals to
+          websites that you do not want to be tracked. Our website currently
+          does not respond to DNT signals, but we respect your browser's cookie
+          settings.
+        </p>
+
+        <h2>8. Updates to This Policy</h2>
+        <p>
+          We may update this Cookie Policy from time to time to reflect changes
+          in technology or legal requirements. Changes will be posted on this
+          page with an updated "Last Updated" date.
+        </p>
+
+        <h2>9. Contact Us</h2>
+        <p>
+          If you have questions about our use of cookies, please contact us:
+        </p>
+
+        <div class="bg-muted/50 border border-border rounded-lg p-6 not-prose">
+          <p class="mb-2">
+            <strong class="text-foreground">{COMPANY_INFO.NAME}</strong>
+          </p>
+          <p class="text-sm text-muted-foreground mb-1">
+            <strong>Email:</strong>
+            <a
+              href={`mailto:${SITE_CONFIG.EMAILS.CONTACT}`}
+              class="text-primary hover:underline"
+              >{SITE_CONFIG.EMAILS.CONTACT}</a
+            >
+          </p>
+          <p class="text-sm text-muted-foreground mb-1">
+            <strong>Location:</strong>
+            {COMPANY_INFO.LOCATION}
+          </p>
+          <p class="text-sm text-muted-foreground mb-0">
+            <strong>Website:</strong>
+            <a href={SITE_CONFIG.BASE_URL} class="text-primary hover:underline"
+              >{SITE_CONFIG.BASE_URL}</a
+            >
+          </p>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-border">
+          <p class="text-sm text-muted-foreground text-center">
+            <a href="/privacy" class="text-primary hover:underline"
+              >Privacy Policy</a
+            > •
+            <a href="/terms" class="text-primary hover:underline ml-2"
+              >Terms of Service</a
+            > •
+            <a href="/disclaimer" class="text-primary hover:underline ml-2"
+              >Disclaimer</a
+            >
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</MainLayout>

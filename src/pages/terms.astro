@@ -1,0 +1,219 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import Section from "@/components/layout/Section.astro";
+import Container from "@/components/layout/Container.astro";
+import PageHero from "@/components/layout/PageHero.astro";
+import Breadcrumbs from "@/components/ui/Breadcrumbs.astro";
+import { SITE_CONFIG, COMPANY_INFO, createInternalLink } from "@/lib/constants";
+
+const lastUpdated = "January 2025";
+---
+
+<MainLayout
+  title="Terms of Service - NOSYT Labs"
+  description="Read the terms and conditions governing your use of NOSYT Labs services and website."
+  keywords={["terms of service", "legal", "agreements", "terms", "conditions"]}
+>
+  <Section background="default" spacing="none">
+    <Container size="standard">
+      <Breadcrumbs
+        items={[
+          { name: "Home", url: createInternalLink("/") },
+          { name: "Terms of Service", url: createInternalLink("/terms") },
+        ]}
+      />
+    </Container>
+  </Section>
+
+  <PageHero
+    title="Terms of Service"
+    subtitle={`Last Updated: ${lastUpdated}`}
+    size="compact"
+    background="gradient"
+  />
+
+  <Section background="default" spacing="lg">
+    <Container size="prose">
+      <div class="prose prose-lg mx-auto max-w-4xl">
+        <p
+          class="bg-muted/30 border border-border rounded-lg p-6 text-muted-foreground"
+        >
+          These Terms of Service ("Terms") govern your access to and use of the
+          NOSYT Labs website and services. By accessing or using our services,
+          you agree to be bound by these Terms.
+        </p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing or using our services, you agree to be bound by these
+          Terms and our Privacy Policy. If you do not agree with these Terms,
+          you may not access or use our services. If you are using our services
+          on behalf of an organization, you are agreeing to these Terms on
+          behalf of that organization.
+        </p>
+
+        <h2>2. Services Provided</h2>
+        <p>
+          NOSYT Labs provides web development, AI integration, consulting, and
+          related technical services. The scope of services is defined in
+          project proposals, statements of work, or agreements between NOSYT
+          Labs and the client.
+        </p>
+
+        <h3>2.1 Service Estimates</h3>
+        <p>
+          Any estimates or proposals provided by NOSYT Labs are valid for 30
+          days unless otherwise stated. Estimates are not binding and may change
+          based on scope, requirements, or timelines.
+        </p>
+
+        <h3>2.2 Project Commencement</h3>
+        <p>
+          Projects begin upon execution of a written agreement or acceptance of
+          a proposal and payment of any required deposit.
+        </p>
+
+        <h2>3. Client Responsibilities</h2>
+        <ul>
+          <li>
+            Provide timely access to necessary information, assets, and
+            stakeholders
+          </li>
+          <li>Review and approve deliverables within agreed timelines</li>
+          <li>
+            Ensure all materials provided do not infringe third-party rights
+          </li>
+          <li>Maintain backups of any content or assets provided</li>
+          <li>
+            Provide accurate and complete information necessary for project
+            success
+          </li>
+        </ul>
+
+        <h2>4. Intellectual Property</h2>
+        <h3>4.1 Ownership</h3>
+        <p>
+          Upon full payment, clients receive ownership of the final deliverables
+          as defined in the project agreement, excluding underlying tools,
+          frameworks, or pre-existing intellectual property used by NOSYT Labs.
+        </p>
+
+        <h3>4.2 License</h3>
+        <p>
+          NOSYT Labs retains the right to use project deliverables for
+          portfolio, marketing, and promotional purposes unless otherwise agreed
+          in writing.
+        </p>
+
+        <h2>5. Payment Terms</h2>
+        <ul>
+          <li>Invoices are due within 14 days unless specified otherwise</li>
+          <li>Late payments may incur a 1.5% monthly interest charge</li>
+          <li>Deposits and milestones are non-refundable once work begins</li>
+          <li>Work may pause if payments are overdue beyond 15 days</li>
+        </ul>
+
+        <h2>6. Confidentiality</h2>
+        <p>
+          Both parties agree to maintain the confidentiality of non-public
+          information shared during the engagement. Confidential information
+          will only be used to perform the services agreed upon.
+        </p>
+
+        <h2>7. Warranties and Disclaimers</h2>
+        <ul>
+          <li>Services are provided "as-is" without warranties of any kind</li>
+          <li>
+            We do not guarantee specific business outcomes, conversions, or
+            revenue increases
+          </li>
+          <li>
+            We are not responsible for third-party service outages or issues
+          </li>
+        </ul>
+
+        <h2>8. Limitation of Liability</h2>
+        <p>
+          To the fullest extent permitted by law, NOSYT Labs shall not be liable
+          for any indirect, incidental, special, consequential, or punitive
+          damages. Our total liability for any claim shall not exceed the fees
+          paid for the specific project giving rise to the claim.
+        </p>
+
+        <h2>9. Indemnification</h2>
+        <p>
+          You agree to indemnify and hold harmless NOSYT Labs from any claims,
+          damages, liabilities, costs, or expenses arising from your use of our
+          services or breach of these Terms.
+        </p>
+
+        <h2>10. Termination</h2>
+        <p>NOSYT Labs may suspend or terminate services if:</p>
+        <ul>
+          <li>Payments are overdue</li>
+          <li>Client violates these Terms</li>
+          <li>Client engages in illegal or unethical activities</li>
+        </ul>
+
+        <p>
+          Clients may terminate services with written notice. Cancellation terms
+          and any associated fees are defined in each project agreement.
+        </p>
+
+        <h2>11. Governing Law</h2>
+        <p>
+          These Terms shall be governed by the laws of the United States and the
+          state of Utah (or the state where NOSYT Labs is primarily based). Any
+          disputes will be resolved in a court of competent jurisdiction in that
+          state.
+        </p>
+
+        <h2>12. Updates to Terms</h2>
+        <p>
+          We may update these Terms from time to time. Changes will be posted on
+          this page with an updated "Last Updated" date. Continued use of our
+          services after changes constitutes acceptance.
+        </p>
+
+        <h2>13. Contact Information</h2>
+        <div class="bg-muted/50 border border-border rounded-lg p-6 not-prose">
+          <p class="mb-2">
+            <strong class="text-foreground">{COMPANY_INFO.NAME}</strong>
+          </p>
+          <p class="text-sm text-muted-foreground mb-1">
+            <strong>Email:</strong>
+            <a
+              href={`mailto:${SITE_CONFIG.EMAILS.CONTACT}`}
+              class="text-primary hover:underline"
+              >{SITE_CONFIG.EMAILS.CONTACT}</a
+            >
+          </p>
+          <p class="text-sm text-muted-foreground mb-1">
+            <strong>Location:</strong>
+            {COMPANY_INFO.LOCATION}
+          </p>
+          <p class="text-sm text-muted-foreground mb-0">
+            <strong>Website:</strong>
+            <a href={SITE_CONFIG.BASE_URL} class="text-primary hover:underline"
+              >{SITE_CONFIG.BASE_URL}</a
+            >
+          </p>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-border">
+          <p class="text-sm text-muted-foreground text-center">
+            <a href="/privacy" class="text-primary hover:underline"
+              >Privacy Policy</a
+            > •
+            <a href="/cookies" class="text-primary hover:underline ml-2"
+              >Cookie Policy</a
+            > •
+            <a href="/disclaimer" class="text-primary hover:underline ml-2"
+              >Disclaimer</a
+            >
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</MainLayout>
