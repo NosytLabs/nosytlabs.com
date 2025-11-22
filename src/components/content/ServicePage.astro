@@ -91,19 +91,27 @@ const pageUrl = new URL(Astro.request.url).href;
         </p>
         
         {(price || delivery) && (
-          <div class="inline-flex flex-col sm:flex-row items-center gap-6 p-6 bg-card/40 backdrop-blur-sm border border-border/30 rounded-2xl mb-8">
+          <div class="inline-flex flex-col sm:flex-row items-center gap-8 p-8 md:p-10 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/5 backdrop-blur-sm border-2 border-primary/20 rounded-3xl mb-8 shadow-lg">
             {price && (
-              <div class="flex items-baseline gap-2">
-                <span class="text-4xl font-bold text-primary">{price}</span>
-                <span class="text-base text-muted-foreground">Starting Price</span>
+              <div class="flex flex-col items-center sm:items-start gap-1">
+                <span class="text-xs font-bold text-primary uppercase tracking-widest">Investment</span>
+                <span class="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{price}</span>
+                <span class="text-sm text-muted-foreground font-medium">Customized for your needs</span>
               </div>
             )}
             {delivery && (
-              <div class="flex items-center gap-2 text-base text-muted-foreground">
-                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span class="font-medium">{delivery}</span>
+              <div class="flex flex-col sm:flex-col items-center gap-2 text-base text-foreground sm:border-l-2 border-border/30 sm:pl-8">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-bold text-muted-foreground uppercase tracking-widest">Timeline</span>
+                    <span class="font-bold text-lg text-foreground">{delivery}</span>
+                  </div>
+                </div>
               </div>
             )}
           </div>

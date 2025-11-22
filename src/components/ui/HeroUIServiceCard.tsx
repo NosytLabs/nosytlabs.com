@@ -74,15 +74,15 @@ export function HeroUIServiceCard({
 
         {/* Features */}
         {limitedFeatures.length > 0 && (
-          <ul className="space-y-2.5">
+          <ul className="space-y-3 my-5">
             {limitedFeatures.map((feature, index) => (
               <li
                 key={index}
-                className="flex items-start gap-2.5 text-sm group/item"
+                className="flex items-start gap-3 text-sm font-medium group/item"
               >
-                <div className="flex-shrink-0 w-5 h-5 mt-0.5 bg-success/10 rounded-full flex items-center justify-center">
+                <div className="flex-shrink-0 w-6 h-6 mt-0.5 bg-gradient-to-br from-success to-success/70 rounded-full flex items-center justify-center shadow-md group-hover/item:scale-110 transition-transform">
                   <svg
-                    className="w-3 h-3 text-success"
+                    className="w-3.5 h-3.5 text-white"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -93,7 +93,7 @@ export function HeroUIServiceCard({
                     />
                   </svg>
                 </div>
-                <span className="text-foreground/90 group-hover/item:text-foreground transition-colors leading-snug">
+                <span className="text-foreground/95 group-hover/item:text-foreground transition-colors leading-snug pt-0.5">
                   {feature}
                 </span>
               </li>
@@ -103,10 +103,12 @@ export function HeroUIServiceCard({
 
         {/* Price */}
         {price && (
-          <div className="pt-4 border-t border-border/50">
-            <span className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <div className="mt-6 pt-6 border-t-2 border-border/40">
+            <p className="text-xs font-semibold text-muted-foreground mb-2 tracking-wide uppercase">Investment</p>
+            <span className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent block mb-1">
               {price}
             </span>
+            <p className="text-xs text-muted-foreground mt-2">Flexible payment options available</p>
           </div>
         )}
 
