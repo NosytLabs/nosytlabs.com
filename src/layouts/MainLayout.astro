@@ -1,16 +1,22 @@
 ---
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
-import '../styles/theme.css';
+import '../styles/main.css';
 
 interface Props {
   title: string;
   description?: string;
+  keywords?: string[];
   noIndex?: boolean;
   image?: string;
   type?: 'website' | 'article';
   publishedTime?: string;
   modifiedTime?: string;
+  author?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  jsonLd?: object;
 }
 
 const { 
