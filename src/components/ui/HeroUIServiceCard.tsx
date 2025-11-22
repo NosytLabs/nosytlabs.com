@@ -50,9 +50,9 @@ export function HeroUIServiceCard({
 
       <CardBody className="relative z-10 flex flex-col gap-5 p-6 md:p-8 h-full">
         {/* Enhanced Icon */}
-        <div className="flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/40 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
+        <div className="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border-2 border-primary/40 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg group-hover:shadow-2xl">
           <svg
-            className="w-7 h-7 md:w-8 md:h-8 text-primary group-hover:text-accent transition-colors duration-500"
+            className="w-8 h-8 md:w-10 md:h-10 text-primary group-hover:text-accent transition-colors duration-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -103,12 +103,12 @@ export function HeroUIServiceCard({
 
         {/* Price */}
         {price && (
-          <div className="mt-6 pt-6 border-t-2 border-border/40">
-            <p className="text-xs font-semibold text-muted-foreground mb-2 tracking-wide uppercase">Investment</p>
-            <span className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent block mb-1">
+          <div className="mt-8 pt-8 border-t-2 border-border/40">
+            <p className="text-xs font-semibold text-muted-foreground mb-3 tracking-wide uppercase">Starting Price</p>
+            <span className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent block mb-2">
               {price}
             </span>
-            <p className="text-xs text-muted-foreground mt-2">Flexible payment options available</p>
+            <p className="text-sm text-muted-foreground mt-2">Custom quotes available for all projects</p>
           </div>
         )}
 

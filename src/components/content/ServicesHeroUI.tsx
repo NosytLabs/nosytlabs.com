@@ -100,7 +100,7 @@ export function ServicesHeroUI({ services }: ServicesHeroUIProps) {
             href="/contact"
             variant="gradient"
             size="lg"
-            className="w-full sm:w-auto px-8 py-3 text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 min-h-14"
+            className="w-full sm:w-auto px-10 py-4 text-lg font-bold shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 min-h-16"
           >
             Get Started Today
           </HeroUIButton>
@@ -108,7 +108,7 @@ export function ServicesHeroUI({ services }: ServicesHeroUIProps) {
             href="/services"
             variant="gradient"
             size="lg"
-            className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-all duration-300"
+            className="w-full sm:w-auto px-10 py-4 text-lg font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 min-h-16"
           >
             Get a Quote
           </HeroUIButton>
