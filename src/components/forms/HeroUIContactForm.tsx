@@ -201,7 +201,7 @@ export function HeroUIContactForm() {
         setSubmitStatus("success");
         setFeedbackMessage(
           result.message ||
-            "Message sent successfully! We'll get back to you soon.",
+            "✓ Message received! We'll review your request and respond within 24 hours. Check your email for updates.",
         );
         setFormData({
           name: "",

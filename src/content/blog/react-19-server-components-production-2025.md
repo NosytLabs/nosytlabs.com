@@ -1,12 +1,13 @@
 ---
 title: "React 19 Server Components in Production: Real-World Performance Gains and Adoption Stories in 2025"
 description: "Deep dive into how leading companies achieved 40-70% performance improvements and reduced bundle sizes by implementing React 19 Server Components in production environments."
-publishedAt: 2025-11-19
+pubDate: 2025-11-19
 author: "NOSYTLABS Frontend Team"
 image: "/images/og-image.svg"
 tags: ["React 19", "Server Components", "2025 Tech News", "Web Performance", "Frontend"]
 category: "Technology"
 featured: true
+readingTime: 9
 ---
 
 # React 19 Server Components in Production: Real-World Performance Gains and Adoption Stories in 2025
