@@ -91,18 +91,21 @@ export function ServicesHeroUI({ services }: ServicesHeroUIProps) {
       </div>
 
       {/* CTA Section */}
-      <div className="text-center pt-6 md:pt-8">
+      <div className="text-center pt-8 md:pt-12">
+        <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+          Ready to transform your business with modern technology? Let's discuss your project and deliver results that matter.
+        </p>
         <div className="inline-flex flex-col sm:flex-row gap-4 items-center">
           <HeroUIButton
-            href="/services"
-            variant="outline"
+            href="/contact"
+            variant="gradient"
             size="lg"
-            className="w-full sm:w-auto border-2 hover:bg-muted/50 shadow-sm hover:shadow-md transition-all duration-300"
+            className="w-full sm:w-auto px-8 py-3 text-lg font-bold shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 min-h-14"
           >
-            View All Services
+            Get Started Today
           </HeroUIButton>
           <HeroUIButton
-            href="/contact"
+            href="/services"
             variant="gradient"
             size="lg"
             className="w-full sm:w-auto shadow-lg hover:shadow-xl transition-all duration-300"
