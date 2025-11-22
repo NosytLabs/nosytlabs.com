@@ -2,7 +2,7 @@
 title: "AI Photo Editing"
 description: "Professional photo enhancement using AI. Perfect for e-commerce, social media, and visual content without design experience needed."
 icon: "image"
-price: "Starting at $20 USD"
+price: "Starting at $2 USD"
 delivery: "2-3 days"
 category: "design"
 tags:
@@ -37,8 +37,8 @@ Professional background replacement and enhancement.
 - **Remove clutter** from busy backgrounds
 - **Blur backgrounds** to focus on subject
 
-**Price**: $20-30 per photo
-**Turnaround**: 2-3 days
+**Price**: $5-8 per photo
+**Turnaround**: 1-2 days
 
 ### Color & Lighting Fixes
 Professional color correction and lighting enhancement.
@@ -48,7 +48,7 @@ Professional color correction and lighting enhancement.
 - Brighten shadows, balance bright areas
 - Enhance color vibrancy and tone
 
-**Price**: $15-25 per photo
+**Price**: $2-4 per photo
 **Turnaround**: 1-2 days
 
 ### Object Removal
@@ -59,8 +59,8 @@ Clean removal of unwanted elements.
 - Remove logos, text, or watermarks
 - Eliminate photobombers
 
-**Price**: $25-40 depending on complexity
-**Turnaround**: 2-3 days
+**Price**: $5-10 depending on complexity
+**Turnaround**: 1-2 days
 
 ### Text & Graphics
 Add professional text to images.
@@ -70,8 +70,8 @@ Add professional text to images.
 - Watermarks and branding
 - Basic graphic design text
 
-**Price**: $20-35 per image
-**Turnaround**: 1-2 days
+**Price**: $3-6 per image
+**Turnaround**: 1 day
 
 ### Product Photography Enhancement
 Professional touch-up for e-commerce.
@@ -81,8 +81,8 @@ Professional touch-up for e-commerce.
 - Color accuracy correction
 - Remove dust, wrinkles, and minor flaws
 
-**Price**: $20-30 per product photo
-**Turnaround**: 2-3 days
+**Price**: $3-6 per product photo
+**Turnaround**: 1-2 days
 
 ## How It Works
 
@@ -106,13 +106,14 @@ Professional touch-up for e-commerce.
 
 | Service | Price | Turnaround |
 |---------|-------|-----------|
-| Color/Lighting Correction | $15-25 | 1-2 days |
-| Background Replacement | $20-30 | 2-3 days |
-| Object Removal | $25-40 | 2-3 days |
-| Text/Graphics | $20-35 | 1-2 days |
-| Product Photo Enhancement | $20-30 | 2-3 days |
+| Color/Lighting Correction | $2-4 | 1-2 days |
+| Background Replacement | $5-8 | 1-2 days |
+| Object Removal | $5-10 | 1-2 days |
+| Text/Graphics | $3-6 | 1 day |
+| Product Photo Enhancement | $3-6 | 1-2 days |
 
-**Bulk Discount**: 5+ photos receive 15% discount
+**Bulk Discount**: 10+ photos receive 20% discount
+**Fast Track**: +$2 per image for 24-hour turnaround
 
 All orders include 2 revision rounds.
 

@@ -2,7 +2,7 @@
 title: "Web Development"
 description: "Custom websites and web applications. Professional sites for small businesses, portfolios, and service providers."
 icon: "code"
-price: "Starting at $500 USD"
+price: "Starting at $1,200 USD"
 delivery: "2-4 weeks"
 category: "development"
 tags:
@@ -38,9 +38,10 @@ Professional online presence for your company.
 - About page and team information
 - Contact form with email integration
 - Mobile responsive design
+- Performance optimization
 
 **Scope**: 5-10 pages
-**Price**: $500-1,200
+**Price**: $1,200-$2,000
 **Timeline**: 2-3 weeks
 **Includes**: Design, development, deployment, 2 revisions
 
@@ -54,8 +55,8 @@ Professional sites for consultants, agencies, and service providers.
 - Contact and inquiry forms
 
 **Scope**: 5-8 pages
-**Price**: $600-1,500
-**Timeline**: 2-4 weeks
+**Price**: $1,500-$2,500
+**Timeline**: 3-4 weeks
 **Includes**: Custom design, full development, optimization, 2 revisions
 
 ### Portfolio Websites
@@ -68,8 +69,8 @@ Showcase your work and accomplishments.
 - Case studies with images
 
 **Scope**: 6-12 pages
-**Price**: $500-1,200
-**Timeline**: 2-3 weeks
+**Price**: $1,200-$2,000
+**Timeline**: 2-4 weeks
 **Includes**: Custom design, gallery setup, optimization, 2 revisions
 
 ## What's Included

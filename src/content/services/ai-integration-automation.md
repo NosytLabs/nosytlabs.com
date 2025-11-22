@@ -2,7 +2,7 @@
 title: "AI Integration & Automation"
 description: "Practical AI solutions using ChatGPT API, Claude, and automation tools. Integrate AI into your workflows without enterprise complexity or pricing."
 icon: "ai-integration"
-price: "Starting at $3,000 USD"
+price: "Starting at $8,000 USD"
 delivery: "3-6 weeks"
 category: "ai"
 tags:
