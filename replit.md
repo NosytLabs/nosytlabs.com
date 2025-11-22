@@ -2,9 +2,9 @@
 
 ## Overview
 
-NOSYT Labs is a professional web development and AI integration agency website built with modern web technologies. The site showcases services including web development, AI integration, mobile app development, rapid prototyping, tech consulting, and 3D printing services. Built as a static site with Astro for optimal performance, it features a component-based architecture using React and HeroUI for a polished, accessible user experience.
+NOSYT Labs is a professional web development and AI integration agency website built with modern web technologies. The site showcases 9 professional services: web development, mobile apps, AI integration, Web3/blockchain, rapid prototyping, 3D printing, photo editing, AI music, and tech consulting. Built as a static site with Astro for optimal performance, it features a component-based architecture using React and HeroUI for a polished, accessible user experience.
 
-The platform emphasizes speed, accessibility, and modern design principles while maintaining clean, maintainable code. The site includes comprehensive legal pages, a blog system with content collections, and an optimized contact form with real-time validation.
+The platform emphasizes speed, accessibility, and modern design principles while maintaining clean, maintainable code. The site includes comprehensive legal pages, a blog system with 10 posts, and a professional contact form with service selection, real-time validation, and Email.js integration.
 
 ## User Preferences
 
