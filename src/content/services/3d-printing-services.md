@@ -39,7 +39,7 @@ Professional 3D printing using our Creality Ender 3 Max Neo. We print custom par
 **CR Touch Auto-Leveling**: 25-point detection for consistent prints
 **32-bit Motherboard**: Quiet operation (~50dB)
 
-## What We Can Print
+## What We Print
 
 ### Gaming Miniatures & Terrain
 Perfect for tabletop gaming - D&D, Warhammer, board games.
@@ -117,10 +117,10 @@ Custom phone stands, tablet holders, monitor arms.
 - Any special requirements
 
 **2. We Review**:
-- Check printability on Ender 3 Max Neo
+- Verify printability on Ender 3 Max Neo
 - Estimate material cost and print time
 - Suggest optimizations if needed
-- Quote final price
+- Provide final quote
 
 **3. We Print**:
 - Optimize print orientation
@@ -154,19 +154,23 @@ Custom phone stands, tablet holders, monitor arms.
 - **Small items** (under 50g): $35-60
 - **Medium items** (50-100g): $60-100
 - **Large items** (100-200g): $100-150
-- **Design services**: $50 if we help optimize your design
+- **Design optimization**: $50 if we help refine your design
 
-Material costs included. Finishing/painting available for additional cost.
+Material costs included. Finishing, sanding, and painting available for additional cost.
 
-## Honest Limitations
+## Service Scope
 
-We're new to this service and promise realistic outcomes:
+We specialize in:
+- Single-piece prints and assembled components
+- Detailed gaming miniatures and collectibles
+- Functional parts and enclosures
+- Custom designs optimized for 3D printing
 
-- **Prints take 5-10 days** due to print time + queue
-- **Quality depends on design** - bad designs print badly
-- **Some finishes need hand-work** - sanding, painting, cleanup
-- **Not suitable for**: food contact, high-temperature use, load-bearing structural parts
-- **Details have limits** - very fine details may not print perfectly
+We do not provide:
+- Food-contact surfaces
+- Load-bearing structural components
+- High-temperature applications (above 60°C)
+- Custom mold design for production casting
 
 ## Getting Started
 
@@ -176,8 +180,8 @@ Send us:
 - Desired color
 - Size/dimensions needed
 
-**No upfront cost** - we'll quote the project first. Only pay if you approve.
+We'll review your project and provide a detailed quote with timeline. No upfront costs—we quote first, you approve, then we proceed.
 
-**Free Design Review**: We'll check if your design is printable and suggest improvements if needed.
+**Free Design Review**: We'll verify your design is optimized for printing and suggest improvements if needed.
 
-Let's create something cool together.
+Let's create something amazing.

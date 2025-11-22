@@ -1,6 +1,6 @@
 ---
 title: "Web Development"
-description: "Custom websites and web applications. Simple sites, business apps, and web projects built with modern technology."
+description: "Custom websites and web applications. Professional sites for small businesses, portfolios, and service providers."
 icon: "code"
 price: "Starting at $500 USD"
 delivery: "2-4 weeks"
@@ -12,12 +12,12 @@ benefits:
   - "Custom built for your needs"
   - "Mobile-friendly responsive design"
   - "Fast loading speeds"
-  - "Easy to maintain"
+  - "Professional maintenance support"
 features:
   - "Modern tech stack (Astro, React, TypeScript)"
   - "Responsive mobile design"
   - "Search engine optimized"
-  - "Contact forms and basic functionality"
+  - "Contact forms and functionality"
 deliverables:
   - "Fully functional website"
   - "Mobile responsive"
@@ -26,115 +26,134 @@ deliverables:
 timeline: "2-4 weeks depending on complexity"
 ---
 
-Custom websites built with modern technology. We create fast, responsive websites that work great on phones and computers. Perfect for small businesses, portfolios, and service-based companies.
+Custom websites built with modern technology. We create fast, responsive websites that work perfectly on phones and computers. Ideal for small businesses, portfolios, and service providers.
 
-## What We Build
+## Website Services
 
 ### Business Websites
-Professional online presence for your business.
+Professional online presence for your company.
 
 - Homepage showcasing your business
-- Service/product pages
-- About page and team info
-- Contact form
+- Service/product pages with descriptions
+- About page and team information
+- Contact form with email integration
 - Mobile responsive design
 
 **Scope**: 5-10 pages
 **Price**: $500-1,200
 **Timeline**: 2-3 weeks
-**Honest Note**: We build straightforward business websites. Very custom designs take longer.
+**Includes**: Design, development, deployment, 2 revisions
 
-### Service-Based Sites
-Websites for consultants, agencies, and service providers.
+### Service-Based Websites
+Professional sites for consultants, agencies, and service providers.
 
-- Service descriptions
-- Pricing information
+- Detailed service descriptions
+- Pricing and packages
 - Team/expert profiles
-- Case studies (optional)
+- Case studies and testimonials
 - Contact and inquiry forms
 
 **Scope**: 5-8 pages
 **Price**: $600-1,500
 **Timeline**: 2-4 weeks
-**Honest Note**: We focus on conversion and clarity, not fancy animations.
+**Includes**: Custom design, full development, optimization, 2 revisions
 
 ### Portfolio Websites
-Showcase your work or portfolio.
+Showcase your work and accomplishments.
 
-- Portfolio grid/gallery
+- Portfolio grid and gallery
 - Project detail pages
-- About/bio section
+- Professional bio/about section
 - Contact information
 - Case studies with images
 
 **Scope**: 6-12 pages
 **Price**: $500-1,200
 **Timeline**: 2-3 weeks
-**Honest Note**: We create clean, professional portfolios. Gallery sites require good photos from you.
+**Includes**: Custom design, gallery setup, optimization, 2 revisions
 
 ## What's Included
 
-✅ Custom website design (no templates)
-✅ Mobile responsive (works great on phones)
-✅ SEO optimization basics
+✅ Custom professional design (no templates)
+✅ Mobile responsive (optimized for all devices)
+✅ SEO optimization and best practices
 ✅ Contact form with email notifications
-✅ Deployment to live domain
-✅ Basic performance optimization
+✅ Live deployment on your domain
+✅ Performance optimization
 ✅ 2 rounds of revisions
+✅ Deployment support
 
-## What We Use
+## Technology & Standards
 
-- **Astro** - Fast, modern web framework
-- **React** - For interactive features when needed
-- **TypeScript** - For reliable, maintainable code
-- **Tailwind CSS** - For professional styling
-- **Mobile-first design** - Works on phones first
+- **Astro** - Modern, fast web framework
+- **React** - For interactive features
+- **TypeScript** - Type-safe, reliable code
+- **Tailwind CSS** - Professional styling
+- **Mobile-first design** - Perfect on all devices
+- **SEO standards** - Built-in optimization
+- **Web performance** - Fast load times
 
-## Honest Limitations
+## Project Scope & Pricing
 
-We're straightforward about what we can do:
+| Website Type | Pages | Price | Timeline |
+|-------------|-------|-------|----------|
+| Basic Business | 5 pages | $500-700 | 2-3 weeks |
+| Service-Based | 8 pages | $800-1,200 | 3-4 weeks |
+| Portfolio | 6-12 pages | $600-1,000 | 2-3 weeks |
 
-- **No complex applications** - if you need a full app with user accounts, that's different pricing
-- **No eCommerce setup** - we can build a store structure, but payment processing is separate
-- **No high-end animations** - we focus on clean, professional sites
-- **Your content needed** - you provide text and images; we build the site
-- **One revision round per section** - communicate clearly during design
+### Additional Features (À la carte)
 
-## Pricing Breakdown
+- Blog system setup: +$150
+- Image optimization: +$100
+- Advanced email integration: +$75
+- Enhanced SEO: +$200
+- Extra revision round: +$150
 
-| Project Type | Price | Timeline |
-|-------------|-------|----------|
-| Basic 5-page site | $500-700 | 2-3 weeks |
-| Service-based site (8 pages) | $800-1,200 | 3-4 weeks |
-| Portfolio site (6-12 pages) | $600-1,000 | 2-3 weeks |
-| Additional features | +$100-300 each | varies |
+## Development Process
 
-## Additional Services (Extra Cost)
+**1. Initial Consultation**
+- Discuss your goals and vision
+- Review your content
+- Define scope and timeline
 
-- **Blog system setup**: +$150
-- **Image optimization**: +$100
-- **Email integration**: +$75
-- **Advanced SEO setup**: +$200
-- **Extra revision round**: +$150
+**2. Design & Planning**
+- Create wireframes and structure
+- Establish visual design
+- Plan functionality
 
-## Process
+**3. Development**
+- Build the website
+- Integrate all features
+- Test thoroughly
 
-1. **Discovery Call** - Understand your goals and needs
-2. **Design & Planning** - Create wireframes and structure
-3. **Development** - Build the actual site
-4. **Review** - You review and request changes
-5. **Launch** - Deploy to your domain
+**4. Review & Revisions**
+- You review the site
+- Request adjustments (2 rounds included)
+- Test on all devices
 
-Turnaround depends on complexity and how quickly you provide feedback.
+**5. Launch**
+- Final optimizations
+- Deploy to live domain
+- Post-launch support
+
+## Requirements for Success
+
+To deliver the best results, we need:
+
+- Your business content (text, descriptions, copy)
+- Logo and brand materials
+- High-quality photos and images
+- Clear communication about your goals
+- Timely feedback during revisions
 
 ## Getting Started
 
 Tell us:
-- What's your business/service?
-- What do you want the site to do?
+- What's your business or service?
+- What should the website accomplish?
 - How many pages do you need?
-- Do you have content/images ready?
+- Do you have content and images ready?
 
-We'll schedule a quick call and provide an honest quote.
+We'll schedule a consultation and provide a detailed quote with timeline and deliverables.
 
-No surprises. Clear timeline. Professional results.
+Professional websites for growing businesses.

@@ -1,6 +1,6 @@
 ---
 title: "AI Photo Editing"
-description: "Professional photo enhancement using AI. Perfect for e-commerce, social media, and quick visual improvements without design experience."
+description: "Professional photo enhancement using AI. Perfect for e-commerce, social media, and visual content without design experience needed."
 icon: "image"
 price: "Starting at $20 USD"
 delivery: "2-3 days"
@@ -9,8 +9,8 @@ tags:
   ["photo editing", "AI image", "design", "social media", "e-commerce"]
 featured: true
 benefits:
-  - "Professional results without design experience"
-  - "Fast turnaround"
+  - "Professional results instantly"
+  - "Fast 2-3 day turnaround"
   - "Affordable per-photo pricing"
   - "Multiple revision rounds"
 features:
@@ -25,119 +25,111 @@ deliverables:
 timeline: "2-3 days depending on complexity"
 ---
 
-Simple, honest photo editing. Send us your photos with what you want changed, and we'll make them look better. Perfect for e-commerce, social media, or any visual content.
+Professional photo editing using advanced AI technology. Send us your photos with what you want changed, and we'll deliver polished, professional results. Perfect for e-commerce, social media, and marketing content.
 
-## What We Can Do
+## What We Offer
 
 ### Background Changes
-Replace or improve backgrounds.
+Professional background replacement and enhancement.
 
 - **White/neutral backgrounds** for product listings
-- **Simple color backgrounds** (solid colors, gradients)
+- **Custom color backgrounds** (solid colors, gradients)
 - **Remove clutter** from busy backgrounds
 - **Blur backgrounds** to focus on subject
 
 **Price**: $20-30 per photo
 **Turnaround**: 2-3 days
-**Honest Note**: Complex backgrounds take longer. Simple changes are fastest.
 
 ### Color & Lighting Fixes
-Make photos look better with better colors and lighting.
+Professional color correction and lighting enhancement.
 
-- Fix dark or washed-out photos
-- Correct white balance (fix weird color casts)
-- Brighten shadows, tone down bright spots
-- Increase color vibrancy or mute tones
+- Fix underexposed or overexposed photos
+- Correct white balance and color casts
+- Brighten shadows, balance bright areas
+- Enhance color vibrancy and tone
 
 **Price**: $15-25 per photo
 **Turnaround**: 1-2 days
-**Honest Note**: We work with what you give us. Great original photos = better results.
 
-### Remove Unwanted Objects
-Take out things you don't want in the photo.
+### Object Removal
+Clean removal of unwanted elements.
 
 - Remove people, animals, or objects
-- Clean up messy backgrounds
-- Remove text or logos
-- Delete photobombers
+- Clean up messy or distracting backgrounds
+- Remove logos, text, or watermarks
+- Eliminate photobombers
 
-**Price**: $25-40 depending on difficulty
+**Price**: $25-40 depending on complexity
 **Turnaround**: 2-3 days
-**Honest Note**: Simple removals are quick. Complex stuff takes longer and may need touchup.
 
-### Add Text to Images
-Add text for social media, ads, or graphics.
+### Text & Graphics
+Add professional text to images.
 
-- Simple text overlays
-- Social media captions
+- Social media captions and overlays
 - Promotional text
+- Watermarks and branding
 - Basic graphic design text
 
 **Price**: $20-35 per image
 **Turnaround**: 1-2 days
-**Honest Note**: Basic text placement only. Complex design layouts cost more.
 
-### Product Photography Touch-Up
-Enhance product photos for e-commerce.
+### Product Photography Enhancement
+Professional touch-up for e-commerce.
 
-- Clean up shadows and lighting
-- Standardize background
-- Fix color accuracy
-- Remove dust, wrinkles, or flaws
+- Lighting and shadow refinement
+- Background standardization
+- Color accuracy correction
+- Remove dust, wrinkles, and minor flaws
 
 **Price**: $20-30 per product photo
 **Turnaround**: 2-3 days
-**Honest Note**: We enhance photos you provide. Great source photo = better results.
 
 ## How It Works
 
-**1. You Send**:
-- Photo (JPG or PNG)
-- What you want changed (e.g., "remove background," "brighten photo," "fix colors")
+**1. You Submit**:
+- Your photo (JPG or PNG)
+- What you want changed
 
 **2. We Edit**:
-- Make the changes you requested
-- Send you a preview
+- Process your request using advanced AI tools
+- Deliver preview for review
 
 **3. You Review**:
 - Check the preview
-- Ask for adjustments (2 free revisions included)
+- Request adjustments (2 revisions included)
 
-**4. You Receive**:
-- Final edited photo
-- Ready to use
-
-## What We Won't Promise
-
-We're honest about what we can and can't do:
-
-- **Can't fix blurry photos** - if it's out of focus, we can't fix that
-- **Can't do complex compositing** - blending multiple photos requires more skill
-- **Can't recreate missing parts** - if something isn't in the photo, we can't invent it
-- **One major change per order** - background change OR color fix, not both (choose one)
-- **Text is basic placement** - not fancy design typography
+**4. Final Delivery**:
+- High-resolution edited photo
+- Ready to use immediately
 
 ## Pricing Summary
 
-| Service | Price | Time |
-|---------|-------|------|
-| Color/Lighting Fix | $15-25 | 1-2 days |
-| Simple Background Change | $20-30 | 2-3 days |
+| Service | Price | Turnaround |
+|---------|-------|-----------|
+| Color/Lighting Correction | $15-25 | 1-2 days |
+| Background Replacement | $20-30 | 2-3 days |
 | Object Removal | $25-40 | 2-3 days |
-| Add Text | $20-35 | 1-2 days |
-| Product Photo Touch-Up | $20-30 | 2-3 days |
+| Text/Graphics | $20-35 | 1-2 days |
+| Product Photo Enhancement | $20-30 | 2-3 days |
 
-**Bulk Discount**: 5+ photos = 15% off
+**Bulk Discount**: 5+ photos receive 15% discount
 
-Revisions included (2 rounds per order).
+All orders include 2 revision rounds.
+
+## Service Specifications
+
+**Input Formats**: JPG, PNG, WebP (up to 10MB)
+**Output Formats**: JPG, PNG, WebP
+**Resolution**: Full resolution matching your original
+**Revisions**: 2 included per order
 
 ## Getting Started
 
 Send us:
 - Your photo
-- What you want changed
-- Any specific details (colors, style preferences)
+- Description of what you want changed
+- Any specific style or color preferences
 
-**No upfront cost** - we quote first, you approve, then we work.
+We'll deliver a quote and timeline. No upfront payment—we quote first, you approve, then we work.
 
-Honest, straightforward photo editing. Nothing fancy, just better-looking photos.
+Professional photo editing made simple and affordable.
