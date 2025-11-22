@@ -56,7 +56,7 @@ export function HeroUIServiceCard({
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
-            strokeWidth="2.5"
+            stroke-width="2.5"
           >
             <path d={iconPath} />
           </svg>
@@ -127,9 +127,9 @@ export function HeroUIServiceCard({
                 viewBox="0 0 24 24"
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
                   d="M9 5l7 7-7 7"
                 />
               </svg>

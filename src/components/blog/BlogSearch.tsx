@@ -225,9 +225,9 @@ export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
               viewBox="0 0 24 24"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
                 d="M19 9l-7 7-7-7"
               />
             </svg>
@@ -476,9 +476,9 @@ export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
                     viewBox="0 0 24 24"
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
