@@ -54,6 +54,7 @@ export function HeroUIContactForm() {
     { value: "rapid-prototype", label: "Rapid Prototype/MVP Development" },
     { value: "3d-printing", label: "3D Printing Services" },
     { value: "ai-music", label: "AI Music & Jingles" },
+    { value: "seo-audits", label: "SEO Audits & Technical Consulting" },
     { value: "general", label: "General Inquiry" },
     { value: "other", label: "Other" },
   ];
