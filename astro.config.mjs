@@ -1,23 +1,19 @@
 import { defineConfig } from "astro/config";
-import node from "@astrojs/node";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import path from "path";
-
+import react from "@astrojs/react";
 import icon from "astro-icon";
 
-// const __dirname = path.dirname(fileURLToPath(import.meta.url)); // Removed unused variable
-
-const SITE_URL = process.env.PUBLIC_SITE_URL ?? (process.env.NODE_ENV === 'development' ? "http://localhost:4321" : "https://nosytlabs.com");
+const SITE_URL = process.env.PUBLIC_SITE_URL ?? (process.env.NODE_ENV === 'development' ? "http://localhost:5000" : "https://nosytlabs.com");
 const BASE = process.env.PUBLIC_BASE_URL ?? "/";
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
   base: BASE,
-  output: 'server',
-  adapter: node({ mode: 'standalone' }),
+  output: 'static',
   devToolbar: {
     enabled: process.env.NODE_ENV === 'development',
   },
@@ -29,11 +25,9 @@ export default defineConfig({
     }
   },
   integrations: [
-    // React integration temporarily disabled - site uses Astro components only
-    // react({
-    //   // Configure React to avoid development-specific issues
-    //   experimentalReactChildren: false,
-    // }),
+    react({
+      experimentalReactChildren: true,
+    }),
     tailwind(),
     mdx(),
     sitemap({
