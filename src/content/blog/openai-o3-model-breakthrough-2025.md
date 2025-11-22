@@ -1,8 +1,8 @@
 ---
 title: "OpenAI's o3 Model Breakthrough: AI Reasoning Reaches Human-Level Performance in 2025"
 description: "Revolutionary AI model demonstrates human-level reasoning capabilities, achieving 90% on complex problem-solving tasks and setting new benchmarks for artificial intelligence."
-publishedAt: 2025-11-19
-updatedAt: 2025-11-19
+pubDate: 2025-11-19
+updatedDate: 2025-11-19
 author: "NOSYTLABS Team"
 image: "/images/og-image.svg"
 tags: ["AI", "OpenAI", "Machine Learning", "2025 Tech News", "Artificial Intelligence", "o3 Model", "Human-Level AI", "Reasoning AI", "GPT-4.5", "AI Breakthrough"]
@@ -10,7 +10,7 @@ category: "Technology"
 featured: true
 keywords: ["OpenAI o3 model", "human-level AI reasoning", "AI breakthrough 2025", "artificial intelligence reasoning", "OpenAI latest model", "AI problem solving", "machine learning breakthrough", "AGI progress 2025"]
 canonicalURL: "https://nosytlabs.com/blog/openai-o3-model-breakthrough-2025"
-readingTime: "8 minutes"
+readingTime: 8
 ---
 
 <script type="application/ld+json">
