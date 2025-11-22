@@ -1,147 +1,140 @@
 ---
-title: "Web Application Development"
-description: "Modern web apps built with React, Next.js, and Astro. I use AI tools to code faster and deliver quality results as a solo developer."
-icon: "web-development"
-price: "Starting at $3,000 USD"
-delivery: "3-6 weeks"
-features:
-  - "React/Next.js or Vue/Nuxt applications"
-  - "Real-time features and WebSocket integration"
-  - "Database design and optimization"
-  - "API development and third-party integrations"
-  - "Performance monitoring and analytics"
-  - "Deployment and DevOps setup"
-  - "Load testing and scalability planning"
-  - "Ongoing maintenance and support"
-category: "Web Development"
+title: "Web Development"
+description: "Custom websites and web applications. Simple sites, business apps, and web projects built with modern technology."
+icon: "code"
+price: "Starting at $500 USD"
+delivery: "2-4 weeks"
+category: "development"
+tags:
+  ["web development", "website", "business", "responsive design"]
 featured: true
+benefits:
+  - "Custom built for your needs"
+  - "Mobile-friendly responsive design"
+  - "Fast loading speeds"
+  - "Easy to maintain"
+features:
+  - "Modern tech stack (Astro, React, TypeScript)"
+  - "Responsive mobile design"
+  - "Search engine optimized"
+  - "Contact forms and basic functionality"
+deliverables:
+  - "Fully functional website"
+  - "Mobile responsive"
+  - "SEO optimized"
+  - "Deployed and live"
+timeline: "2-4 weeks depending on complexity"
 ---
 
-# Web Application Development
-
-Modern web applications built with React, Astro, Next.js, and TypeScript. Using AI tools like Claude and Cursor to code faster while maintaining quality. Focus on performance, clean code, and actually shipping.
+Custom websites built with modern technology. We create fast, responsive websites that work great on phones and computers. Perfect for small businesses, portfolios, and service-based companies.
 
 ## What We Build
 
-### Marketing Websites & Landing Pages
+### Business Websites
+Professional online presence for your business.
 
-Fast, SEO-optimized websites built with Astro or Next.js. Perfect for businesses, products, and services.
+- Homepage showcasing your business
+- Service/product pages
+- About page and team info
+- Contact form
+- Mobile responsive design
 
-**What's Included**:
+**Scope**: 5-10 pages
+**Price**: $500-1,200
+**Timeline**: 2-3 weeks
+**Honest Note**: We build straightforward business websites. Very custom designs take longer.
 
-- Modern, responsive design
-- Lightning-fast performance (90+ PageSpeed score)
-- SEO optimized out of the box
-- Contact forms and analytics
-- CMS integration if needed
+### Service-Based Sites
+Websites for consultants, agencies, and service providers.
 
-**Pricing**: $3,000-$8,000
+- Service descriptions
+- Pricing information
+- Team/expert profiles
+- Case studies (optional)
+- Contact and inquiry forms
+
+**Scope**: 5-8 pages
+**Price**: $600-1,500
 **Timeline**: 2-4 weeks
+**Honest Note**: We focus on conversion and clarity, not fancy animations.
 
-### Web Applications & SaaS
+### Portfolio Websites
+Showcase your work or portfolio.
 
-Custom web apps with user authentication, databases, and real-time features.
+- Portfolio grid/gallery
+- Project detail pages
+- About/bio section
+- Contact information
+- Case studies with images
 
-**Examples**:
-
-- Dashboard and admin panels
-- Internal business tools
-- Customer portals
-- Booking/scheduling systems
-- Data management apps
-
-**Pricing**: $10,000-$50,000+
-**Timeline**: 6-12 weeks
-
-### E-commerce Solutions
-
-Online stores with payment processing, inventory, and order management.
-
-**What's Included**:
-
-- Product catalog and search
-- Shopping cart and checkout
-- Payment processing (Stripe, PayPal)
-- Order management
-- Customer accounts
-
-**Pricing**: $8,000-$25,000
-**Timeline**: 6-10 weeks
-
-## Our Tech Stack
-
-### Frontend
-
-- **React** - Interactive UIs
-- **Next.js** - Full-stack React framework
-- **Astro** - Ultra-fast static sites
-- **TypeScript** - Type-safe code
-- **TailwindCSS** - Modern styling
-
-### Backend & Database
-
-- **Node.js** - JavaScript backend
-- **PostgreSQL** - Reliable database
-- **Supabase** - Backend-as-a-service
-- **Vercel** - Fast hosting and deployment
-
-### AI-Assisted Development
-
-- **Claude** - AI pair programming
-- **Cursor** - AI code editor
-- **GitHub Copilot** - Code suggestions
-
-This lets us build faster without sacrificing quality.
-
-## Development Process
-
-### 1. Planning (Week 1)
-
-- Clarify requirements and goals
-- Design wireframes and user flows
-- Choose tech stack
-- Performance requirements and scalability planning
-
-### 2. Core Development (Weeks 2-8)
-
-- Iterative development with weekly demos
-- Continuous integration and automated testing
-- Performance monitoring from day one
-
-### 3. Launch & Optimization (Weeks 9-12)
-
-- Load testing and performance tuning
-- Production deployment and monitoring setup
-- Team training and documentation handover
+**Scope**: 6-12 pages
+**Price**: $500-1,200
+**Timeline**: 2-3 weeks
+**Honest Note**: We create clean, professional portfolios. Gallery sites require good photos from you.
 
 ## What's Included
 
-### Development Deliverables
+✅ Custom website design (no templates)
+✅ Mobile responsive (works great on phones)
+✅ SEO optimization basics
+✅ Contact form with email notifications
+✅ Deployment to live domain
+✅ Basic performance optimization
+✅ 2 rounds of revisions
 
-- **Complete source code** with comprehensive documentation
-- **Database migrations** and seeding scripts
-- **API documentation** with interactive examples
-- **Deployment scripts** and infrastructure configuration
+## What We Use
 
-### Post-Launch Support
+- **Astro** - Fast, modern web framework
+- **React** - For interactive features when needed
+- **TypeScript** - For reliable, maintainable code
+- **Tailwind CSS** - For professional styling
+- **Mobile-first design** - Works on phones first
 
-- **3 months included support** for bug fixes and minor adjustments
-- **Performance monitoring** and optimization recommendations
-- **Security updates** and dependency management
-- **Team training** on maintenance and updates
+## Honest Limitations
 
-## Investment & Timeline
+We're straightforward about what we can do:
 
-### Typical Project Scope
+- **No complex applications** - if you need a full app with user accounts, that's different pricing
+- **No eCommerce setup** - we can build a store structure, but payment processing is separate
+- **No high-end animations** - we focus on clean, professional sites
+- **Your content needed** - you provide text and images; we build the site
+- **One revision round per section** - communicate clearly during design
 
-- **6-12 weeks** development timeline
-- **Starting at $8,000** for core applications
-- **$15,000-$50,000** for complex platforms
-- **Custom pricing** for enterprise requirements
+## Pricing Breakdown
 
-### What Affects Pricing
+| Project Type | Price | Timeline |
+|-------------|-------|----------|
+| Basic 5-page site | $500-700 | 2-3 weeks |
+| Service-based site (8 pages) | $800-1,200 | 3-4 weeks |
+| Portfolio site (6-12 pages) | $600-1,000 | 2-3 weeks |
+| Additional features | +$100-300 each | varies |
 
-- Number of user roles and permissions
-- Third-party integrations and API complexity
-- Real-time features and data processing requirements
-- Custom design and user experience needs
+## Additional Services (Extra Cost)
+
+- **Blog system setup**: +$150
+- **Image optimization**: +$100
+- **Email integration**: +$75
+- **Advanced SEO setup**: +$200
+- **Extra revision round**: +$150
+
+## Process
+
+1. **Discovery Call** - Understand your goals and needs
+2. **Design & Planning** - Create wireframes and structure
+3. **Development** - Build the actual site
+4. **Review** - You review and request changes
+5. **Launch** - Deploy to your domain
+
+Turnaround depends on complexity and how quickly you provide feedback.
+
+## Getting Started
+
+Tell us:
+- What's your business/service?
+- What do you want the site to do?
+- How many pages do you need?
+- Do you have content/images ready?
+
+We'll schedule a quick call and provide an honest quote.
+
+No surprises. Clear timeline. Professional results.

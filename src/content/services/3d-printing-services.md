@@ -1,203 +1,183 @@
 ---
-title: "3D Printing & Creality Ender Services"
-description: "Professional 3D printing services featuring Creality Ender Neo series printers with precision printing, design optimization, and rapid prototyping."
+title: "3D Printing - Ender 3 Max Neo"
+description: "Professional 3D printing using Creality Ender 3 Max Neo. Custom parts, prototypes, miniatures, and tabletop gaming pieces."
 icon: "cube"
-price: "Starting at $25 USD"
-delivery: "3-7 days"
+price: "Starting at $35 USD"
+delivery: "5-10 days"
 category: "manufacturing"
 tags:
-  ["3d printing", "creality ender", "prototyping", "manufacturing", "design", "rapid production"]
+  ["3d printing", "ender 3 max neo", "prototypes", "custom parts", "miniatures"]
 featured: true
 benefits:
-  - "Creality Ender Neo precision printing"
-  - "Cost-effective rapid prototyping"
-  - "High-quality material options"
-  - "Custom design and modeling support"
-  - "Fast turnaround times"
+  - "Large build volume (300x300x320mm)"
+  - "Durable, production-ready prints"
+  - "Affordable rapid prototyping"
+  - "Custom designs optimized for printing"
 features:
-  - "Creality Ender 3 Neo / V2 Neo / Max Neo"
-  - "CR Touch auto-leveling (16-25 point detection)"
-  - "Wide range of materials and colors"
-  - "Post-processing and finishing"
-  - "Design optimization for 3D printing"
-  - "Quality control and inspection"
+  - "Creality Ender 3 Max Neo"
+  - "300x300x320mm build volume"
+  - "CR Touch auto-leveling"
+  - "Multiple material options"
+  - "Precision tolerance ±0.2mm"
 deliverables:
-  - "High-quality 3D printed parts"
-  - "Quality inspection reports"
-  - "Design files and documentation"
-  - "Packaging and shipping"
-timeline: "3-7 days depending on complexity and quantity"
+  - "3D printed parts"
+  - "Quality inspection"
+  - "Basic finishing (if needed)"
+timeline: "5-10 days depending on print size and queue"
 ---
 
-Professional 3D printing services using state-of-the-art Creality Ender Neo series printers. Perfect for product development, custom parts, rapid iteration, and small batch production.
+Professional 3D printing using our Creality Ender 3 Max Neo. We print custom parts, miniatures, gaming pieces, enclosures, and functional prototypes. Fast, affordable, and reliable.
 
-## Our 3D Printers - Creality Ender Neo Series
+## Our Printer - Creality Ender 3 Max Neo
 
-### Creality Ender 3 Neo
-**Budget-Friendly Entry Model**
-- **Build Volume**: 220 × 220 × 250 mm (8.66 × 8.66 × 9.84 in)
-- **Nozzle Temp**: Up to 260°C
-- **Bed Temp**: Up to 100°C
-- **Filament**: 1.75 mm
-- **XY Precision**: 0.012 mm
-- **Z Precision**: 0.004 mm
-- **Nozzle Size**: 0.4 mm (standard)
-- **Build Surface**: Carborundum glass plate
-- **Auto-Leveling**: CR Touch 16-point detection
-- **Motherboard**: 32-bit silent (~50 dB operation)
-- **Max Print Speed**: 120 mm/s
-- **Price**: ~$219-239 USD
-- **Best For**: DIY learners, tight budgets, small to medium prints
+**Build Volume**: 300 × 300 × 320mm (largest in the Ender 3 line)
+**Nozzle Temp**: Up to 260°C
+**Bed Temp**: Up to 100°C
+**Precision**: ±0.2mm standard tolerance
+**Filament**: 1.75mm standard
+**Dual Z-Axis**: Improved stability for large prints
+**CR Touch Auto-Leveling**: 25-point detection for consistent prints
+**32-bit Motherboard**: Quiet operation (~50dB)
 
-### Creality Ender 3 V2 Neo
-**Best Balance of Features & Ease-of-Use**
-- **Build Volume**: 220 × 220 × 250 mm
-- **Nozzle Temp**: Up to 260°C
-- **Bed Temp**: Up to 100°C
-- **Filament**: 1.75 mm
-- **Layer Resolution**: 0.1-0.4 mm
-- **Build Surface**: PC spring steel magnetic plate (flexible, removable)
-- **Display**: 4.3-inch color screen with icon-based UI
-- **Auto-Leveling**: CR Touch 16-point detection
-- **Motherboard**: 32-bit silent
-- **Assembly**: Semi-assembled (easier setup)
-- **Price**: ~$269-289 USD
-- **Best For**: Beginners, detailed prints, flexible build plate advantage
-- **Key Feature**: Magnetic build plate allows easy part removal
+## What We Can Print
 
-### Creality Ender 3 Max Neo
-**Professional Large-Format Printing**
-- **Build Volume**: 300 × 300 × 320 mm (11.8 × 11.8 × 12.6 in)
-- **Nozzle Temp**: Up to 260°C
-- **Bed Temp**: Up to 100°C
-- **Filament**: 1.75 mm (PLA, ABS, PETG, wood-fill)
-- **Build Surface**: Carborundum-coated glass plate
-- **Z-Axis Motors**: Dual motors with timing belt linkage (improved stability)
-- **Auto-Leveling**: CR Touch 25-point detection (enhanced accuracy)
-- **Display**: 4.3-inch color knob screen
-- **Power Supply**: 350W built-in
-- **Assembly**: Semi-assembled (3-step setup)
-- **Weight**: 10.3 kg (22 lb 11 oz)
-- **Price**: ~$369-389 USD
-- **Best For**: Large prints, production runs, professional quality, hobbyists
+### Gaming Miniatures & Terrain
+Perfect for tabletop gaming - D&D, Warhammer, board games.
 
-## All Neo Models Share
-✓ 32-bit silent motherboard (~50 dB operation)
-✓ CR Touch auto bed leveling (16-25 point detection)
-✓ Metal Bowden extruder (upgraded)
-✓ Resume printing after power loss/filament runout
-✓ Filament runout sensor
-✓ Standard 0.4mm nozzle (custom sizes available)
+- Custom character miniatures
+- Terrain tiles and bases
+- Map markers and tokens
+- Customized game pieces
 
-## What We Print
+**Materials**: Standard PLA (crisp details)
+**Typical Size**: 25-100mm height
+**Price**: $35-75 depending on detail level
+**Turnaround**: 7-10 days
 
-### Functional Prototypes
-Test your designs before committing to expensive manufacturing. Perfect for product development and proof-of-concept.
+### Functional Parts & Enclosures
+Custom brackets, boxes, adapters, and replacement parts.
 
-**Materials Available**:
-- **PLA** - Standard, biodegradable, great for prototypes (prints at 200-220°C)
-- **PETG** - Stronger, more durable, food-safe (prints at 230-250°C)
-- **ABS** - Heat resistant, tough (prints at 240-260°C)
-- **TPU** - Flexible, rubber-like (prints at 220-240°C)
-- **ASA** - Outdoor use, UV resistant (prints at 240-260°C)
-- **Wood-fill** - Aesthetic finish, CNC-like appearance
+- Custom enclosures for electronics projects
+- Mounting brackets and adapters
+- Cable organizers and clips
+- Drawer organizers
+- Parts for hobby projects
 
-**Typical Pricing**: $25-$150 depending on size and complexity
-**Tolerances**: ±0.2mm standard, ±0.1mm for precision parts
+**Materials**: PLA (standard) or PETG (stronger)
+**Typical Size**: Up to 300x300x320mm
+**Price**: $35-150 depending on complexity
+**Turnaround**: 5-10 days
 
-### Custom Parts & Replacements
-Need a replacement part that's no longer available? Custom brackets? Unique tools? We can print it.
+### Miniatures & Collectibles
+Detailed figurines, dollhouse items, collectible pieces.
 
-**Common Requests**:
-- Replacement parts for appliances/equipment
-- Custom mounting brackets and adapters
-- Jigs and fixtures for workshops
-- Enclosures for electronics projects
-- Prototype housings for products
+- Anime/character figures
+- Decorative miniatures
+- Gift items
+- Hobby collectibles
 
-**Example**: Custom mounting bracket that would cost $200+ from a machine shop - printed for $35 in 2 days.
+**Materials**: PLA with fine detail settings
+**Typical Size**: 50-150mm
+**Price**: $40-100 per piece
+**Turnaround**: 7-10 days
 
-### Small Batch Production
-Need 10-100 of something? 3D printing is more cost-effective than traditional manufacturing for small runs.
+### Desk Organizers & Decor
+Practical and stylish items for work or home.
 
-**Perfect For**:
-- Product launches (test market before mass production)
-- Limited edition items
-- Custom merchandise
-- Replacement parts inventory
-- Event giveaways
+- Pen holders
+- Desk organizers
+- Cable management
+- Decorative displays
+- Plant pot holders
 
-### Scale Models & Presentations
-High-detail models for presentations, planning, and client visualization.
+**Materials**: PLA (various colors)
+**Typical Size**: 100-250mm
+**Price**: $35-75
+**Turnaround**: 5-7 days
 
-**Materials**: High-detail printing for smooth finishes
-**Capabilities**: Multi-color printing, transparent materials, fine details down to 0.1mm
+### Phone Stands & Mounts
+Custom phone stands, tablet holders, monitor arms.
 
-## Design & Engineering Support
+- Phone stands (desk/wall)
+- Tablet holders
+- Monitor stands
+- Camera mounts
 
-### Design Optimization for 3D Printing
-We review your designs and optimize them for 3D printing on our Creality Ender Neo printers, ensuring printability while maintaining functionality.
+**Materials**: PETG (durable) recommended
+**Typical Size**: 100-200mm
+**Price**: $40-60
+**Turnaround**: 5-7 days
 
-**Common Optimizations**:
-- Support structure minimization
-- Wall thickness optimization
-- Overhang angle adjustments
-- Print orientation selection for quality and speed
-- Material selection for your use case
+## How It Works
 
-### Material Selection Consulting
-Choose the right material for your application based on:
-- Mechanical properties needed
-- Environmental requirements
-- Cost considerations
-- Temperature resistance needed
-- Flexibility vs. rigidity requirements
+**1. You Provide**:
+- STL, OBJ, or 3MF file (or description of what you need)
+- Preferred material (PLA or PETG)
+- Desired color
+- Any special requirements
 
-### Reverse Engineering
-Don't have CAD files? We can create them from physical parts, sketches, or photos.
+**2. We Review**:
+- Check printability on Ender 3 Max Neo
+- Estimate material cost and print time
+- Suggest optimizations if needed
+- Quote final price
 
-**Process**:
-1. 3D scanning or manual measurement
-2. CAD model creation
-3. Design optimization
-4. Test print and validation
+**3. We Print**:
+- Optimize print orientation
+- Print on Ender 3 Max Neo
+- Quality check and inspection
+- Light finishing if requested
 
-## Pricing & Timeline
+**4. You Receive**:
+- High-quality 3D printed part
+- Ready to use or paint
+- Documentation of print settings
 
-### Standard Turnaround
-- **Simple parts**: 1-3 business days
-- **Complex assemblies**: 3-7 business days
-- **Large or high-detail parts**: 5-10 business days
-- **Rush Orders**: 50% surcharge for 24-hour delivery (availability dependent)
+## Materials Available
 
-### Pricing Structure
-- **FDM Printing**: Starting at $0.15 per gram + setup fee ($5-15)
-- **Design Services**: $75/hour for optimization and engineering
-- **Rush Orders**: 50% surcharge for 24-hour delivery
-- **Post-processing**: Sanding, painting, assembly available at additional cost
+**PLA** - Best for gaming miniatures, decorative items
+- Crisp details, multiple colors
+- Easy to paint
+- Biodegradable
+- Print Temp: 200-220°C
+- **Price**: Standard rate
 
-### Volume Discounts
-- **10+ identical parts**: 15% discount
-- **50+ identical parts**: 25% discount
-- **100+ identical parts**: Contact for custom manufacturing quote
+**PETG** - Best for functional parts, durable items
+- Stronger than PLA
+- More durable
+- Better for stress parts
+- Print Temp: 230-250°C
+- **Price**: +10% over PLA
 
-## Quality Guarantee
+## Pricing
 
-Every part is inspected before delivery. Dimensional accuracy guaranteed within specified tolerances or we'll reprint at no charge.
+- **Small items** (under 50g): $35-60
+- **Medium items** (50-100g): $60-100
+- **Large items** (100-200g): $100-150
+- **Design services**: $50 if we help optimize your design
 
-**Quality Standards**:
-- Dimensional verification with calipers and precision gauges
-- Visual inspection for layer consistency and defects
-- Functional testing when applicable
-- Photo documentation of completed parts
-- Detailed quality report included
+Material costs included. Finishing/painting available for additional cost.
+
+## Honest Limitations
+
+We're new to this service and promise realistic outcomes:
+
+- **Prints take 5-10 days** due to print time + queue
+- **Quality depends on design** - bad designs print badly
+- **Some finishes need hand-work** - sanding, painting, cleanup
+- **Not suitable for**: food contact, high-temperature use, load-bearing structural parts
+- **Details have limits** - very fine details may not print perfectly
 
 ## Getting Started
 
-Ready to print? Send us your CAD files, sketches, or even just a description of what you need. We'll provide a detailed quote with material recommendations, timeline, and printer selection.
+Send us:
+- Your 3D file (STL/OBJ/3MF) or description of what you need
+- Preferred material (PLA or PETG)
+- Desired color
+- Size/dimensions needed
 
-**File Formats Accepted**: STL, OBJ, 3MF, STEP, IGES, DWG, PDF
+**No upfront cost** - we'll quote the project first. Only pay if you approve.
 
-**Design Consultation**: Free 30-minute consultation for new projects
+**Free Design Review**: We'll check if your design is printable and suggest improvements if needed.
 
-Contact us today to discuss your 3D printing needs and get started with professional Creality Ender printing.
+Let's create something cool together.

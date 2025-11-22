@@ -1,247 +1,143 @@
 ---
-title: "AI Photo Editing & Enhancement Services"
-description: "Professional photo editing using Nano Banana Pro AI technology. Natural language editing, background replacement, color grading, text generation, and object manipulation."
+title: "AI Photo Editing"
+description: "Professional photo enhancement using AI. Perfect for e-commerce, social media, and quick visual improvements without design experience."
 icon: "image"
-price: "Starting at $15 USD"
-delivery: "1-3 days"
+price: "Starting at $20 USD"
+delivery: "2-3 days"
 category: "design"
 tags:
-  ["photo editing", "AI image", "nano banana", "design", "visual content"]
+  ["photo editing", "AI image", "design", "social media", "e-commerce"]
 featured: true
 benefits:
-  - "Natural language photo instructions"
-  - "Professional-grade results instantly"
-  - "Studio-quality lighting and color grading"
-  - "Background replacement and composition"
-  - "Perfect text rendering in multiple languages"
+  - "Professional results without design experience"
+  - "Fast turnaround"
+  - "Affordable per-photo pricing"
+  - "Multiple revision rounds"
 features:
-  - "Nano Banana Pro AI Editor (Google Gemini 3 Pro)"
-  - "Natural language editing instructions"
-  - "Studio-quality camera and lighting controls"
-  - "Multi-image blending and composition"
-  - "Professional text generation with typography"
-  - "Object removal and manipulation"
-  - "Character consistency across edits"
-  - "4K high-resolution output"
+  - "Background replacement"
+  - "Color correction and grading"
+  - "Object removal and enhancement"
+  - "Text addition for graphics"
 deliverables:
-  - "Edited/enhanced photos (high resolution)"
-  - "Multiple format options (JPG, PNG, WebP)"
-  - "Source files and editing documentation"
-  - "Revision rounds included"
-timeline: "1-3 days depending on complexity"
+  - "Edited photo (high resolution)"
+  - "Multiple format options"
+  - "2 revision rounds included"
+timeline: "2-3 days depending on complexity"
 ---
 
-Professional photo editing using cutting-edge Nano Banana Pro AI technology powered by Google's Gemini 3 Pro. Perfect for e-commerce, social media, marketing materials, and professional photography retouching.
+Simple, honest photo editing. Send us your photos with what you want changed, and we'll make them look better. Perfect for e-commerce, social media, or any visual content.
 
-## What We Can Do With Nano Banana Pro
+## What We Can Do
 
-### Natural Language Photo Editing
-Simply describe what you want changed - our AI understands context, spatial relationships, and artistic intent. No technical skills needed.
+### Background Changes
+Replace or improve backgrounds.
 
-**Example Instructions**:
-- "Make it a sunset with warm golden lighting"
-- "Blur the background while keeping the subject sharp"
-- "Remove the person on the left side"
-- "Change the sky to a dramatic stormy look"
-- "Add professional studio lighting"
-- "Make it look like a painting in impressionist style"
+- **White/neutral backgrounds** for product listings
+- **Simple color backgrounds** (solid colors, gradients)
+- **Remove clutter** from busy backgrounds
+- **Blur backgrounds** to focus on subject
 
-The AI understands your intent and executes precisely what you're asking for.
+**Price**: $20-30 per photo
+**Turnaround**: 2-3 days
+**Honest Note**: Complex backgrounds take longer. Simple changes are fastest.
 
-### Professional Photography Retouching
-- **Portrait Enhancement**: Skin smoothing, blemish removal, eye brightening, lighting adjustments
-- **Wedding Photography**: Lighting correction, background enhancement, atmospheric effects
-- **Commercial Photography**: Product background replacement, shadow adjustment, color grading
-- **Event Photography**: Lighting fix, crowd removal, atmospheric enhancement
+### Color & Lighting Fixes
+Make photos look better with better colors and lighting.
 
-### E-Commerce Product Photography
-- **Background Replacement**: Professional studio backgrounds, white/transparent, custom scenes
-- **Lighting Adjustment**: Professional studio lighting, fill light, highlights and shadows
-- **Product Enhancement**: Shine enhancement, color correction, shadow adjustment
-- **Multi-product Composition**: Blend product photos with matching lighting and perspective
+- Fix dark or washed-out photos
+- Correct white balance (fix weird color casts)
+- Brighten shadows, tone down bright spots
+- Increase color vibrancy or mute tones
 
-**Benefits**:
-- Save thousands on studio photoshoots
-- Consistent product aesthetic across listings
-- Professional appearance on every platform
-- Rapid turnaround for inventory updates
+**Price**: $15-25 per photo
+**Turnaround**: 1-2 days
+**Honest Note**: We work with what you give us. Great original photos = better results.
 
-### Social Media Content Creation
-- **Influencer Graphics**: Branded backgrounds, text overlays, consistent aesthetic
-- **Posts & Stories**: Optimized for each platform (Instagram, TikTok, Facebook, Pinterest)
-- **Carousel Content**: Multi-image series with matching style
-- **Promotional Graphics**: Text, product integration, calls-to-action
+### Remove Unwanted Objects
+Take out things you don't want in the photo.
 
-**Capabilities**:
-- Character consistency across multiple posts
-- Perfect text rendering with varied fonts
-- Aspect ratio optimization for each platform
-- Brand color and style matching
+- Remove people, animals, or objects
+- Clean up messy backgrounds
+- Remove text or logos
+- Delete photobombers
 
-### Marketing & Campaign Materials
-- **Promotional Posters**: Sharp text, professional design, background integration
-- **Email Marketing**: Eye-catching hero images, product photography
-- **Website Graphics**: Banner images, homepage visuals, feature photography
-- **Ad Creative**: Platform-specific optimization (Google Ads, Facebook, LinkedIn)
+**Price**: $25-40 depending on difficulty
+**Turnaround**: 2-3 days
+**Honest Note**: Simple removals are quick. Complex stuff takes longer and may need touchup.
 
-### Professional Text & Typography
-Generate razor-sharp, legible text directly in images across multiple languages - perfect for:
-- Posters and promotional materials
-- Mockups and presentations
-- Infographics and diagrams
-- Educational content and tutorials
-- Data visualizations
-- Multiple language support without starting over
+### Add Text to Images
+Add text for social media, ads, or graphics.
 
-**Advantages**:
-- Perfect clarity even at small sizes
-- Multiple font styles and textures
-- Calligraphy and handwriting styles
-- Text translation while preserving visuals
+- Simple text overlays
+- Social media captions
+- Promotional text
+- Basic graphic design text
 
-### Multi-Image Blending & Composition
-Seamlessly combine multiple photos into one professional composition:
-- **Outfit Blending**: Mix clothing pieces from different shots
-- **Product Composition**: Combine product photos with lifestyle elements
-- **Scene Creation**: Merge backgrounds, subjects, and elements
-- **Group Photos**: Combine elements from multiple group shots
+**Price**: $20-35 per image
+**Turnaround**: 1-2 days
+**Honest Note**: Basic text placement only. Complex design layouts cost more.
 
-**Smart Features**:
-- Automatic lighting matching
-- Shadow and perspective correction
-- Natural blending without visible seams
-- Lighting consistency across blended elements
+### Product Photography Touch-Up
+Enhance product photos for e-commerce.
 
-### Advanced Editing Controls
-**Camera & Perspective**:
-- Change camera angle and perspective
-- Adjust depth of field (shallow to deep focus)
-- Change day to night or any lighting condition
-- Apply professional color grading
+- Clean up shadows and lighting
+- Standardize background
+- Fix color accuracy
+- Remove dust, wrinkles, or flaws
 
-**Object Manipulation**:
-- Add or remove objects seamlessly
-- Remove unwanted people or elements
-- Add props and accessories
-- Automatic shadow and lighting matching
+**Price**: $20-30 per product photo
+**Turnaround**: 2-3 days
+**Honest Note**: We enhance photos you provide. Great source photo = better results.
 
-**Style Transfer**:
-- Apply artistic styles (oil painting, watercolor, sketch)
-- Photography styles (cinematic, film noir, vintage)
-- Aesthetic filters (moody, bright, pastel, vibrant)
-- Painting techniques (Renaissance, impressionist, modern)
+## How It Works
 
-**Color Adjustment**:
-- Automatic white balance and exposure
-- Contrast and saturation tuning
-- Color grading for consistent aesthetic
-- Selective color enhancement
+**1. You Send**:
+- Photo (JPG or PNG)
+- What you want changed (e.g., "remove background," "brighten photo," "fix colors")
 
-### Character Consistency
-Perfect for creating AI influencers and branded content:
-- Maintain facial features across multiple edits
-- Industry-leading consistency compared to competitors
-- Preserve identity across different poses and settings
-- Perfect for multi-post campaigns with same character
+**2. We Edit**:
+- Make the changes you requested
+- Send you a preview
 
-## Use Cases
+**3. You Review**:
+- Check the preview
+- Ask for adjustments (2 free revisions included)
 
-**Professional Photography**:
-- Portrait retouching and enhancement
-- Wedding and event photography
-- Commercial product photography
-- Architectural photography
+**4. You Receive**:
+- Final edited photo
+- Ready to use
 
-**E-Commerce**:
-- Product photography with professional backgrounds
-- Consistent product aesthetic
-- Rapid inventory updates
-- Multi-product composition
+## What We Won't Promise
 
-**Social Media**:
-- Influencer content with consistent aesthetic
-- Platform-optimized graphics
-- Brand integration and consistency
-- Character consistency for AI influencers
+We're honest about what we can and can't do:
 
-**Marketing & Advertising**:
-- Campaign materials and promotional graphics
-- Email marketing hero images
-- Website graphics and banners
-- Platform-specific ad creative
+- **Can't fix blurry photos** - if it's out of focus, we can't fix that
+- **Can't do complex compositing** - blending multiple photos requires more skill
+- **Can't recreate missing parts** - if something isn't in the photo, we can't invent it
+- **One major change per order** - background change OR color fix, not both (choose one)
+- **Text is basic placement** - not fancy design typography
 
-**Content Creation**:
-- Blog post imagery
-- Educational graphics and diagrams
-- Step-by-step tutorial images
-- Data visualizations
+## Pricing Summary
 
-**Design & Creative**:
-- UI mockups and prototypes
-- Packaging design
-- Poster and promotional art
-- Infographics with perfect text
+| Service | Price | Time |
+|---------|-------|------|
+| Color/Lighting Fix | $15-25 | 1-2 days |
+| Simple Background Change | $20-30 | 2-3 days |
+| Object Removal | $25-40 | 2-3 days |
+| Add Text | $20-35 | 1-2 days |
+| Product Photo Touch-Up | $20-30 | 2-3 days |
 
-## Technical Details
+**Bulk Discount**: 5+ photos = 15% off
 
-### Supported Formats
-- **Input**: JPEG, PNG, WebP (up to 5-10MB)
-- **Output**: JPEG, PNG, WebP, 4K high-resolution
-- **Aspect Ratios**: Full flexibility - resize without cropping
-
-### AI Technology
-- **Model**: Google DeepMind Gemini 3 Pro (GEMPIX 2)
-- **Speed**: Lightning-fast generation optimized for professional workflows
-- **Quality**: Studio-quality results comparable to professional editing
-- **Real-time Knowledge**: Can access current information for data visualizations
-
-### Resolution & Quality
-- **Standard Output**: Full resolution matching input
-- **High-Resolution**: Up to 4K output available
-- **Detail Preservation**: Fine details maintained through editing
-- **Watermarking**: Optional SynthID watermark for AI-generated content identification
-
-## Pricing & Timeline
-
-### Standard Turnaround
-- **Simple edits** (background change, color grading): 1 business day
-- **Complex edits** (multi-image blend, detailed composition): 2-3 business days
-- **Large batch projects**: Custom timeline
-
-### Pricing Structure
-- **Single Photo Edit**: $15-50 depending on complexity
-- **Background Replacement**: $20-35
-- **Product Photography Suite** (3-5 photos with consistent editing): $75-150
-- **Social Media Package** (5-10 pieces with brand consistency): $100-200
-- **Campaign Project**: Contact for custom quote
-- **Bulk Discounts**: 10+ photos receive 15-25% discount
-
-### Revision Included
-- 2 revision rounds included on standard edits
-- Unlimited iterations on base concept
-- Format/platform variations included
-
-## Quality Guarantee
-
-Every edited photo is reviewed for quality before delivery. Professional-grade results guaranteed or we'll redo the edit at no charge.
-
-**Quality Standards**:
-- Seamless blending with no visible artifacts
-- Natural lighting and shadow consistency
-- Professional color balance and tone
-- Text clarity and legibility (if included)
-- Format and resolution verification
-- Preview before final delivery
+Revisions included (2 rounds per order).
 
 ## Getting Started
 
 Send us:
-- 📸 Original photo(s)
-- 📝 Detailed description or instructions (or let us recommend edits)
-- 🎯 Purpose (e-commerce, social media, print, web, etc.)
-- 📏 Desired dimensions/aspect ratio
-- 🎨 Any brand colors or style preferences
+- Your photo
+- What you want changed
+- Any specific details (colors, style preferences)
 
-**Free Consultation**: Chat about your project and get recommendations before we start.
+**No upfront cost** - we quote first, you approve, then we work.
 
-Perfect for photographers, e-commerce businesses, influencers, marketing teams, and anyone who wants professional photo results instantly.
+Honest, straightforward photo editing. Nothing fancy, just better-looking photos.
