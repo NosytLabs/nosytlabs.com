@@ -3,10 +3,8 @@ import { SITE_CONFIG, COMPANY_INFO, createInternalLink } from '../../lib/constan
 import HeroButton from "@/components/ui/HeroUIButtonAstro.astro";
 import Icon from "@/lib/icons/Icon";
 import { icons } from "@/lib/icons/icons";
-import newsletterSubscribeClientUrl from "../../lib/forms/newsletter-subscribe-client.ts?url";
 
 const {
-  showNewsletter = true,
   companyName = COMPANY_INFO.NAME,
   tagline = COMPANY_INFO.TAGLINE,
   description = COMPANY_INFO.DESCRIPTION,
@@ -200,51 +198,6 @@ function getIconPaths(iconKey: string) {
 
       <!-- Newsletter Section - Simplified -->
       {showNewsletter && (
-        <div class="space-y-4">
-          <h3 class="text-xl font-bold mb-4">
-            Stay Connected
-          </h3>
-          <div class="space-y-4">
-            <p class="text-muted-foreground text-sm">
-              Get the latest updates on web development, AI innovations, and tech insights.
-            </p>
-            <form
-              class="space-y-3"
-              aria-label="Newsletter subscription"
-              data-newsletter-form
-              id="newsletter-form"
-              novalidate
-            >
-              <div>
-                <label for="newsletter-email" class="sr-only">Email address for newsletter subscription</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="newsletter-email"
-                  placeholder="Enter your email"
-                  required
-                  aria-label="Email address"
-                  aria-describedby="newsletter-description newsletter-status"
-                  class="flex min-h-[44px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50"
-                />
-              </div>
-              <div id="newsletter-description" class="sr-only">
-                Subscribe to receive updates on web development, AI, and tech innovations
-              </div>
-              <div id="newsletter-status" class="form-helper-text" aria-live="polite">
-                Newsletter form ready
-              </div>
-              <HeroButton
-                type="submit"
-                text="Subscribe"
-                variant="primary"
-                class="w-full"
-                aria-describedby="newsletter-status"
-              />
-            </form>
-          </div>
-        </div>
-      )}
     </div>
 
     <!-- Social Media & Legal - Simplified -->
