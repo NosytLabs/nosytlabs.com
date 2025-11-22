@@ -10,9 +10,9 @@ export const UserIcon: React.FC<IconProps> = ({ className = "h-5 w-5" }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
@@ -26,9 +26,9 @@ export const MailIcon: React.FC<IconProps> = ({ className = "h-5 w-5" }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <rect width="20" height="16" x="2" y="4" rx="2" />
@@ -44,9 +44,9 @@ export const MessageSquareIcon: React.FC<IconProps> = ({
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -61,9 +61,9 @@ export const BriefcaseIcon: React.FC<IconProps> = ({
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
@@ -77,9 +77,9 @@ export const SendIcon: React.FC<IconProps> = ({ className = "h-5 w-5" }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <path d="m22 2-7 20-4-9-9-4Z" />
@@ -93,9 +93,9 @@ export const Loader2Icon: React.FC<IconProps> = ({ className = "h-5 w-5" }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={`${className} animate-spin`}
   >
     <path d="M21 12a9 9 0 1 1-6.219-8.56" />
@@ -108,9 +108,9 @@ export const XIcon: React.FC<IconProps> = ({ className = "h-5 w-5" }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className={className}
   >
     <path d="M18 6 6 18" />
