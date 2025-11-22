@@ -223,13 +223,11 @@ export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
+              <path d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
