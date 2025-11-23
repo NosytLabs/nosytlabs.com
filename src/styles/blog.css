@@ -1,0 +1,218 @@
+/* Blog Post Professional Styling */
+
+.blog-content {
+  /* Typography */
+  @apply leading-relaxed text-base md:text-lg;
+}
+
+.blog-content h1 {
+  @apply text-4xl md:text-5xl font-bold mb-8 mt-12 text-foreground;
+}
+
+.blog-content h2 {
+  @apply text-3xl md:text-4xl font-bold mb-6 mt-10 text-foreground;
+}
+
+.blog-content h3 {
+  @apply text-2xl md:text-3xl font-bold mb-4 mt-8 text-foreground;
+}
+
+.blog-content h4 {
+  @apply text-xl md:text-2xl font-semibold mb-3 mt-6 text-foreground;
+}
+
+.blog-content h5 {
+  @apply text-lg md:text-xl font-semibold mb-2 mt-4 text-foreground;
+}
+
+.blog-content h6 {
+  @apply text-base md:text-lg font-semibold mb-2 mt-3 text-foreground;
+}
+
+.blog-content p {
+  @apply mb-6 text-muted-foreground leading-7;
+}
+
+.blog-content strong {
+  @apply font-bold text-foreground;
+}
+
+.blog-content em {
+  @apply italic text-muted-foreground;
+}
+
+.blog-content a {
+  @apply text-primary hover:text-accent underline transition-colors duration-200;
+}
+
+.blog-content a:hover {
+  @apply text-accent;
+}
+
+/* Code blocks */
+.blog-content pre {
+  @apply bg-muted/50 border border-border rounded-lg p-4 md:p-6 overflow-x-auto mb-6;
+}
+
+.blog-content code {
+  @apply font-mono text-sm bg-muted/30 px-2 py-1 rounded text-primary;
+}
+
+.blog-content pre code {
+  @apply bg-transparent px-0 py-0;
+}
+
+/* Lists */
+.blog-content ul,
+.blog-content ol {
+  @apply mb-6 pl-6 md:pl-8;
+}
+
+.blog-content li {
+  @apply mb-3 text-muted-foreground;
+}
+
+.blog-content ul li {
+  @apply list-disc;
+}
+
+.blog-content ol li {
+  @apply list-decimal;
+}
+
+/* Blockquotes */
+.blog-content blockquote {
+  @apply border-l-4 border-primary pl-4 md:pl-6 italic my-6 text-muted-foreground bg-primary/5 py-4 rounded-r;
+}
+
+/* Tables */
+.blog-content table {
+  @apply w-full border-collapse mb-6;
+}
+
+.blog-content table th {
+  @apply bg-muted border border-border px-4 py-2 text-left font-bold;
+}
+
+.blog-content table td {
+  @apply border border-border px-4 py-2;
+}
+
+.blog-content table tbody tr:nth-child(even) {
+  @apply bg-muted/30;
+}
+
+/* Horizontal rule */
+.blog-content hr {
+  @apply border-0 border-t border-border my-8;
+}
+
+/* Images */
+.blog-content img {
+  @apply rounded-lg max-w-full h-auto my-6;
+}
+
+/* Inline code */
+.blog-content :not(pre) > code {
+  @apply bg-muted/50 border border-border/50 rounded px-2 py-1 text-sm;
+}
+
+/* Custom spacing for first element */
+.blog-content > *:first-child {
+  @apply mt-0;
+}
+
+/* Reading progress bar */
+@supports (animation-timeline: scroll()) {
+  .animate-reading-progress {
+    animation: progress linear;
+    animation-timeline: scroll();
+  }
+}
+
+@keyframes progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Professional article layout */
+article.prose {
+  @apply max-w-4xl mx-auto;
+}
+
+/* Typography scale for article header */
+article header h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold mb-8;
+}
+
+article header p {
+  @apply text-lg md:text-xl text-muted-foreground mb-8;
+}
+
+/* Meta information styling */
+.article-meta {
+  @apply flex flex-wrap items-center gap-4 text-sm text-muted-foreground;
+}
+
+.article-meta span {
+  @apply flex items-center gap-2;
+}
+
+.article-meta time {
+  @apply font-medium;
+}
+
+/* Featured image styling */
+.featured-image {
+  @apply w-full h-auto rounded-xl shadow-lg mb-12;
+}
+
+/* Social share styling */
+.social-share {
+  @apply flex gap-4 mt-12 pt-8 border-t border-border;
+}
+
+/* Related posts styling */
+.related-posts {
+  @apply mt-20 pt-12 border-t border-border;
+}
+
+.related-posts-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+}
+
+.related-post-card {
+  @apply group relative overflow-hidden rounded-xl border border-border bg-card hover:border-primary/50 transition-all duration-300;
+}
+
+.related-post-card:hover {
+  @apply shadow-lg;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .blog-content {
+    @apply text-base leading-relaxed;
+  }
+
+  .blog-content h1 {
+    @apply text-2xl mb-6 mt-8;
+  }
+
+  .blog-content h2 {
+    @apply text-xl mb-4 mt-6;
+  }
+
+  .blog-content h3 {
+    @apply text-lg mb-3 mt-4;
+  }
+
+  article header h1 {
+    @apply text-3xl;
+  }
+
+  article header p {
+    @apply text-base;
+  }
+}
