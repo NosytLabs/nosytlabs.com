@@ -6,7 +6,7 @@ updatedDate: 2025-11-23
 author: "NOSYT Labs Team"
 image: "/images/og-image.svg"
 tags: ["No-Code", "Software Development", "Business Decision", "Technology Strategy", "2025"]
-category: "Business"
+category: "Research"
 featured: true
 keywords: ["custom software vs no-code", "no-code tools 2025", "when to build custom software", "no-code platforms comparison"]
 canonicalURL: "https://nosytlabs.com/blog/custom-vs-nocode"

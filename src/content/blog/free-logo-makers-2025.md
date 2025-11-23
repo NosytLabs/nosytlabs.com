@@ -3,7 +3,7 @@ title: "Free Logo Makers: Create Professional Logos Without a Designer"
 description: "Create professional logos for free in 2025. Compare the best free logo makers including Canva, Looka, and Hatchful. No design skills needed!"
 pubDate: 2025-02-10
 author: "NOSYT Labs"
-category: "Design"
+category: "Top 10"
 tags: ["Logo Design", "Branding", "Free Tools", "Small Business"]
 seoKeywords:
   [

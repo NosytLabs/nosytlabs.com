@@ -6,7 +6,7 @@ updatedDate: 2025-11-23
 author: "NOSYT Labs Team"
 image: "/images/og-image.svg"
 tags: ["AI Agents", "Business Automation", "RPA", "Workflow Automation", "AI", "2025"]
-category: "Technology"
+category: "Research"
 featured: true
 keywords: ["AI agents vs RPA", "business process automation", "workflow automation tools", "intelligent automation", "AI vs traditional automation"]
 canonicalURL: "https://nosytlabs.com/blog/ai-agents-vs-automation"

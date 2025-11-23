@@ -269,7 +269,7 @@ Content-Encoding: gzip
 ```
 
 **Tools:**
-- Bull (Node.js)
+- Bull ([Node.js](https://nodejs.org))
 - Celery (Python)
 - Sidekiq (Ruby)
 - Azure Service Bus (Cloud)
@@ -393,11 +393,11 @@ Content-Encoding: gzip
 | Layer | Technology | Why |
 |-------|----------|-----|
 | **Frontend** | React/Vue/Svelte | Built for scalability |
-| **Backend** | Node.js/Python/Go | Good performance |
+| **Backend** | [Node.js](https://nodejs.org)/Python/[Go](https://go.dev) | Good performance |
 | **Database** | PostgreSQL | Proven at scale |
 | **Cache** | Redis | Industry standard |
-| **Message Queue** | RabbitMQ/Bull | Reliable task processing |
-| **CDN** | Cloudflare/AWS CloudFront | Global content delivery |
+| **Message Queue** | [RabbitMQ](https://rabbitmq.com)/Bull | Reliable task processing |
+| **CDN** | Cloudflare/[AWS](https://aws.amazon.com) CloudFront | Global content delivery |
 | **Monitoring** | DataDog/New Relic | Real-time insights |
 
 ---

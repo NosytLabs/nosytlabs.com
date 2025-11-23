@@ -6,7 +6,7 @@ updatedDate: 2025-11-19
 author: "NOSYTLABS Team"
 image: "/images/og-image.svg"
 tags: ["AI", "OpenAI", "Machine Learning", "2025 Tech News", "Artificial Intelligence", "o3 Model", "Human-Level AI", "Reasoning AI", "GPT-4.5", "AI Breakthrough"]
-category: "Technology"
+category: "News"
 featured: true
 keywords: ["OpenAI o3 model", "human-level AI reasoning", "AI breakthrough 2025", "artificial intelligence reasoning", "OpenAI latest model", "AI problem solving", "machine learning breakthrough", "AGI progress 2025"]
 canonicalURL: "https://nosytlabs.com/blog/openai-o3-model-breakthrough-2025"

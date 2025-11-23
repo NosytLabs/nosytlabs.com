@@ -6,7 +6,7 @@ updatedDate: 2025-11-23
 author: "NOSYT Labs Team"
 image: "/images/og-image.svg"
 tags: ["Prompt Engineering", "AI", "LLMs", "Techniques", "2025", "ChatGPT"]
-category: "Technology"
+category: "Ideas"
 featured: true
 keywords: ["prompt engineering 2025", "best prompting techniques", "how to prompt AI", "prompt engineering for coding", "ChatGPT prompt tips"]
 canonicalURL: "https://nosytlabs.com/blog/prompt-engineering-2025"

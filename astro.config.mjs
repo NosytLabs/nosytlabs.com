@@ -175,9 +175,17 @@ export default defineConfig({
         allow: ['..']
       },
       hmr: {
-        overlay: true
+        overlay: true,
+        host: 'localhost'
       },
-      allowedHosts: ['localhost', '127.0.0.1', '0.0.0.0', '*.replit.dev']
+      allowedHosts: [
+        'localhost',
+        '127.0.0.1',
+        '0.0.0.0',
+        '.replit.dev',
+        '*.replit.dev',
+        'localhost:5000'
+      ]
     },
     define: {
       // Ensure React is in the correct mode

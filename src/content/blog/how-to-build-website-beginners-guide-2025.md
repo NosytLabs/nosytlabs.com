@@ -463,7 +463,7 @@ You're almost ready to go live!
 
 ### Going Live
 
-1. Click "Publish" or "Go Live" button
+1. Click "Publish" or "[Go](https://go.dev) Live" button
 2. Choose your domain (custom or free subdomain)
 3. Confirm publication
 4. Visit your site in a new browser window

@@ -5,7 +5,7 @@ pubDate: 2025-11-19
 author: "NOSYTLABS Frontend Team"
 image: "/images/og-image.svg"
 tags: ["React 19", "Server Components", "2025 Tech News", "Web Performance", "Frontend"]
-category: "Technology"
+category: "News"
 featured: true
 ---
 

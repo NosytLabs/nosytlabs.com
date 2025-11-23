@@ -6,7 +6,7 @@ updatedDate: 2025-11-23
 author: "NOSYT Labs Team"
 image: "/images/og-image.svg"
 tags: ["Voice Search", "SEO", "Search Optimization", "Mobile", "AI Assistants", "2025"]
-category: "Technology"
+category: "Ideas"
 featured: true
 keywords: ["voice search optimization", "voice search SEO", "optimize for voice search", "voice search strategy 2025", "smart speaker marketing"]
 canonicalURL: "https://nosytlabs.com/blog/voice-search-optimization-2025"

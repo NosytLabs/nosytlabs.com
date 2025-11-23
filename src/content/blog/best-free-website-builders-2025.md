@@ -309,7 +309,7 @@ Now, let's explore the best options available.
 
 **Want the most beautiful design?** → Consider **[Squarespace](https://squarespace.com)** (paid)
 
-**Just need a simple one-page site?** → Go with **Carrd**
+**Just need a simple one-page site?** → [Go](https://go.dev) with **Carrd**
 
 **Creating an internal or team site?** → Try **Google Sites**
 

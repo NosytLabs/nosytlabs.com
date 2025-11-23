@@ -6,7 +6,7 @@ updatedDate: 2025-11-23
 author: "NOSYT Labs Team"
 image: "/images/og-image.svg"
 tags: ["AI Models", "[Claude](https://claude.ai)", "GPT-4", "[Gemini](https://gemini.google.com) 3", "LLM Comparison", "2025"]
-category: "Technology"
+category: "Research"
 featured: true
 keywords: ["[Claude](https://claude.ai) vs GPT-4", "AI model comparison", "best LLM 2025", "[Claude](https://claude.ai) 3.5 vs GPT-4", "[Gemini](https://gemini.google.com) 3 Pro"]
 canonicalURL: "https://nosytlabs.com/blog/ai-models-comparison-2025"

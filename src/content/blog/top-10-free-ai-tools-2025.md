@@ -3,7 +3,7 @@ title: "Top 10 Free AI Tools That Will Transform Your Workflow in 2025"
 description: "Discover the best free AI tools in 2025 that boost productivity. From [ChatGPT](https://chatgpt.com) to [Claude](https://claude.ai), compare features, use cases, and pricing for AI assistants."
 pubDate: 2025-01-15
 author: "NOSYT Labs"
-category: "AI Tools"
+category: "Top 10"
 tags: ["AI", "Productivity", "Free Tools", "[ChatGPT](https://chatgpt.com)"]
 seoKeywords:
   [

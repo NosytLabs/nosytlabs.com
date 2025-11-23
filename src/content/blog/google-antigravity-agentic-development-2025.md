@@ -6,7 +6,7 @@ updatedDate: 2025-11-23
 author: "NOSYT Labs Team"
 image: "/images/og-image.svg"
 tags: ["Google Antigravity", "AI Development", "Agents", "Gemini 3", "IDE", "2025 Tech", "Agentic Computing"]
-category: "Technology"
+category: "News"
 featured: true
 keywords: ["Google Antigravity", "agentic development platform", "AI coding agents", "Gemini 3 Pro", "agent-first IDE", "autonomous code generation", "2025 development tools"]
 canonicalURL: "https://nosytlabs.com/blog/google-antigravity-agentic-development-2025"
@@ -146,7 +146,7 @@ Imagine spawning 5 agents simultaneously:
 
 ```
 Agent 1: "Build the frontend React components"
-Agent 2: "Set up the Node.js backend API"
+Agent 2: "Set up the [Node.js](https://nodejs.org) backend API"
 Agent 3: "Create the PostgreSQL schema"
 Agent 4: "Write integration tests"
 Agent 5: "Set up deployment and CI/CD"
