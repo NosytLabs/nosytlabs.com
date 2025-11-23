@@ -73,8 +73,7 @@ export function ServicesHeroUI({ services }: ServicesHeroUIProps) {
         {coreServices.map((service, index) => (
           <div
             key={service.slug}
-            className="h-full animate-fade-in w-full"
-            style={{ animationDelay: `${index * 150}ms` }}
+            className={`h-full w-full animate-fade-in animate-staggered-${Math.min(index + 1, 6)}`}
           >
             <HeroUIServiceCard
               title={service.data.title}

@@ -359,8 +359,7 @@ export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
           filteredPosts.map((post, index) => (
             <article
               key={post.slug}
-              className={`${styles.card} animate-fade-in-up transform hover:-translate-y-2`}
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`${styles.card} animate-fade-in-up transform hover:-translate-y-2 animate-staggered-${Math.min(index + 1, 6)}`}
             >
               {post.data.heroImage && (
                 <div className="aspect-video overflow-hidden relative">
