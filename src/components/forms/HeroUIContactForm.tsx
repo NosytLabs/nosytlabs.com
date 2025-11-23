@@ -488,10 +488,10 @@ export function HeroUIContactForm() {
           <p className="text-xs text-muted-foreground text-center">
             Prefer email?{" "}
             <a
-              href="mailto:hello@nosytlabs.com"
+              href="mailto:hi@nosytlabs.com"
               className="text-primary hover:underline font-medium"
             >
-              hello@nosytlabs.com
+              hi@nosytlabs.com
             </a>
           </p>
         </div>

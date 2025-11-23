@@ -567,4 +567,3 @@ Don't let email marketing overwhelm you. Start simple:
 
 Email marketing is one of the most effective ways to build relationships with your audience and grow your business. The tools are free, the barrier to entry is low, and the potential return is huge.
 
-**Ready to start email marketing? Choose your platform and send your first email today!**

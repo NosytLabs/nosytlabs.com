@@ -2,7 +2,7 @@
 title: "3D Printing - Ender 3 Max Neo"
 description: "Professional 3D printing using Creality Ender 3 Max Neo. Custom parts, prototypes, miniatures, and tabletop gaming pieces."
 icon: "cube"
-price: "Starting at $35 USD"
+price: "Starting at $75 USD"
 delivery: "5-10 days"
 category: "manufacturing"
 tags:

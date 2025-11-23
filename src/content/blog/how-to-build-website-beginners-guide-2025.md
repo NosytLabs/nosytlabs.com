@@ -565,4 +565,3 @@ The hardest part is getting started. Now that you have this guide, you have ever
 
 **Your website is waiting to be built. What are you waiting for?**
 
-Ready to start? Pick your platform, choose a template, and follow these steps. You've got this!

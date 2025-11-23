@@ -2,7 +2,7 @@
 title: "AI Photo Editing"
 description: "Professional photo enhancement using AI. Perfect for e-commerce, social media, and visual content without design experience needed."
 icon: "image"
-price: "Starting at $2 USD"
+price: "Starting at $250 USD"
 delivery: "2-3 days"
 category: "design"
 tags:
