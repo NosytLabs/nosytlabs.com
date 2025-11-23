@@ -269,26 +269,15 @@ const getIcon = (iconName?: string) => {
       </div>
 
       <!-- Enhanced Right Side Actions with Clear Hierarchy -->
-      <div class="flex items-center space-x-2">
-        <!-- Secondary CTA - Contact (Outline) -->
-        <div class="hidden lg:block">
-          <HeroButton
-            href={createInternalLink("/contact")}
-            text="Contact"
-            variant="outline"
-            size="sm"
-            class="border-2 hover:border-primary hover:bg-primary/5 transition-all duration-200"
-          />
-        </div>
-        
+      <div class="flex items-center gap-3">
         <!-- Primary CTA - Get Started (Prominent) -->
-        <div class="hidden md:block">
+        <div class="hidden sm:block">
           <HeroButton
             href={createInternalLink("/contact")}
             text="Get Started"
             variant="primary"
             size="md"
-            class="shadow-md hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 font-semibold px-6"
+            class="shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 font-semibold px-6 hover:scale-105"
           />
         </div>
 
@@ -297,7 +286,7 @@ const getIcon = (iconName?: string) => {
         <!-- Enhanced Mobile Menu Toggle with Animation -->
         <HeroButton
           type="button"
-          class="md:hidden relative p-2.5 text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
+          class="sm:hidden relative p-2.5 text-muted-foreground hover:text-foreground hover:bg-muted/70 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-xl"
           aria-label="Toggle mobile menu"
           aria-expanded="false"
           id="mobile-menu-button"
@@ -314,15 +303,14 @@ const getIcon = (iconName?: string) => {
     <!-- Enhanced Mobile Menu with Modern Design -->
     <div
       id="mobile-menu"
-      class="fixed inset-0 md:hidden transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto"
+      class="fixed inset-0 sm:hidden transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto z-40"
       aria-hidden="true"
-      class="z-40"
     >
       <!-- Enhanced Backdrop with Blur -->
-      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" class="z-30"></div>
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-30"></div>
       
       <!-- Enhanced Menu Panel with Modern Design -->
-      <div class="absolute right-0 top-0 h-full w-80 max-w-[90vw] bg-background/95 backdrop-blur-md border-l border-border shadow-2xl" class="z-40">
+      <div class="absolute right-0 top-0 h-full w-80 max-w-[90vw] bg-background/95 backdrop-blur-md border-l border-border shadow-2xl z-40">
         <!-- Enhanced Header with Gradient -->
         <div class="flex items-center justify-between p-6 border-b border-border/50 bg-gradient-to-r from-primary/5 to-accent/5">
           <div class="flex items-center space-x-3">
@@ -426,7 +414,7 @@ const getIcon = (iconName?: string) => {
             text="Get Started"
             variant="primary"
             size="lg"
-            class="w-full shadow-md hover:shadow-lg transition-all duration-300 bg-gradient-to-r from-primary to-accent"
+            class="w-full shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 font-semibold hover:scale-105"
           />
         </div>
         
