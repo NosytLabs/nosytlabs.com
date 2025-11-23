@@ -1,0 +1,39 @@
+---
+// Back to Top Button Component
+---
+
+<button
+  id="back-to-top"
+  class="fixed bottom-8 right-8 p-3 bg-gradient-to-br from-primary to-accent text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:shadow-xl hover:scale-110 z-40"
+  aria-label="Back to top"
+>
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M5 15l7-7 7 7"></path>
+  </svg>
+</button>
+
+<script is:inline>
+  // Back to top functionality
+  const backToTopButton = document.getElementById('back-to-top');
+  
+  if (backToTopButton) {
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.add('opacity-0', 'invisible');
+        backToTopButton.classList.remove('opacity-100', 'visible');
+      }
+    });
+    
+    // Scroll to top on button click
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+</script>

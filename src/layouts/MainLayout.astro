@@ -1,6 +1,7 @@
 ---
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import BackToTop from '@/components/ui/BackToTop.astro';
 import '../styles/main.css';
 
 interface Props {
@@ -121,6 +122,7 @@ const siteName = "NOSYT Labs";
         <slot />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   </body>
 </html>

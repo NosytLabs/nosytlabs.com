@@ -1,0 +1,33 @@
+---
+// Newsletter CTA Component
+---
+
+<section class="bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 border border-primary/20 rounded-2xl py-12 md:py-16">
+  <div class="max-w-2xl mx-auto px-6">
+    <h3 class="text-2xl md:text-3xl font-bold text-foreground mb-3 text-center">
+      Stay Updated with Web Development & AI Trends
+    </h3>
+    <p class="text-muted-foreground text-center mb-8 leading-relaxed">
+      Get weekly insights on modern web development, AI integration strategies, and latest tools. Join 1000+ developers building smarter applications.
+    </p>
+    
+    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+      <input
+        type="email"
+        placeholder="your@email.com"
+        required
+        class="flex-1 px-4 py-3 rounded-lg bg-background border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
+      />
+      <button
+        type="submit"
+        class="px-6 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 whitespace-nowrap"
+      >
+        Subscribe
+      </button>
+    </form>
+    
+    <p class="text-xs text-muted-foreground text-center mt-4">
+      No spam. Unsubscribe anytime.
+    </p>
+  </div>
+</section>
