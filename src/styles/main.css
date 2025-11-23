@@ -733,3 +733,10 @@ img {
 .animate-staggered-4 { animation-delay: 450ms; }
 .animate-staggered-5 { animation-delay: 600ms; }
 .animate-staggered-6 { animation-delay: 750ms; }
+@import url(./polish.css);
+
+/* Animation delay CSS variable support */
+.animate-fade-in {
+  --animation-delay: 0ms;
+  animation-delay: var(--animation-delay);
+}

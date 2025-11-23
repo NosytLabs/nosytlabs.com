@@ -360,7 +360,7 @@ export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
             <article
               key={post.slug}
               className={`${styles.card} animate-fade-in-up transform hover:-translate-y-2`}
-              style={{ animationDelay: `${index * 100}ms` }}
+              style={{ animationDelay: `${index * 100}ms` } as any}
             >
               {post.data.heroImage && (
                 <div className="aspect-video overflow-hidden relative">

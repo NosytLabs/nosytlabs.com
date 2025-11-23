@@ -1,0 +1,206 @@
+/* ==========================================================================
+   FINAL COMPREHENSIVE POLISH - 2025 DESIGN STANDARDS
+   ========================================================================== */
+
+/* Text visibility and readability */
+body, p, span, li, h1, h2, h3, h4, h5, h6 {
+  color-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced text contrast */
+.text-foreground {
+  @apply text-foreground/95;
+  color-rendering: optimizeLegibility;
+}
+
+.text-muted-foreground {
+  @apply text-muted-foreground/85;
+}
+
+/* Perfect alignment utilities */
+.align-center { @apply text-center mx-auto; }
+.align-left { @apply text-left; }
+.align-right { @apply text-right; }
+
+/* Consistent spacing grid */
+.space-tight { @apply space-y-4; }
+.space-normal { @apply space-y-6; }
+.space-relaxed { @apply space-y-8; }
+
+/* Professional card styling */
+.card-professional {
+  @apply bg-gradient-to-br from-background to-background/98;
+  @apply border border-border/50;
+  @apply rounded-2xl overflow-hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 4px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.card-professional:hover {
+  @apply shadow-xl border-primary/40 -translate-y-1;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+/* Service card polish */
+.service-card {
+  @apply h-full flex flex-col p-6 md:p-8;
+  @apply bg-gradient-to-br from-content1 via-content1/95 to-default-50/80;
+  @apply border-2 border-border/60 rounded-2xl;
+  @apply hover:border-primary/40 hover:shadow-2xl hover:-translate-y-2;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Blog card polish */
+.blog-card {
+  @apply h-full flex flex-col overflow-hidden;
+  @apply bg-card border-2 border-border/60 rounded-2xl;
+  @apply hover:shadow-2xl hover:border-primary/40 hover:-translate-y-2;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-card img {
+  @apply w-full h-full object-cover transition-all duration-500;
+  @apply group-hover:scale-110 group-hover:brightness-110;
+}
+
+/* Section card polish */
+.section-card {
+  @apply p-6 md:p-8 rounded-2xl text-center;
+  @apply border-2 transition-all duration-500;
+  @apply hover:shadow-2xl hover:-translate-y-2;
+}
+
+/* Button polish */
+.btn {
+  @apply inline-flex items-center justify-center;
+  @apply font-semibold transition-all duration-300;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+  @apply rounded-xl;
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-gradient-to-r from-primary via-primary to-accent;
+  @apply text-primary-foreground shadow-lg;
+  @apply hover:shadow-xl hover:scale-105;
+  @apply min-h-[44px];
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-muted/50 border border-border;
+  @apply text-foreground hover:bg-muted;
+  @apply min-h-[44px];
+}
+
+/* Image polish */
+img {
+  @apply bg-muted select-none;
+  @apply max-w-full h-auto;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Form input polish */
+input, textarea, select {
+  @apply w-full px-4 py-3;
+  @apply bg-background border-2 border-border;
+  @apply rounded-xl text-foreground;
+  @apply placeholder-muted-foreground;
+  @apply focus:border-primary focus:ring-4 focus:ring-primary/20;
+  @apply transition-all duration-300;
+  @apply min-h-[44px];
+}
+
+/* Link polish */
+a {
+  @apply text-primary hover:text-primary/80;
+  @apply transition-colors duration-200;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded;
+}
+
+/* Header and typography polish */
+h1 {
+  @apply text-balance;
+}
+
+h2, h3 {
+  @apply text-pretty;
+}
+
+/* Professional table styling */
+table {
+  @apply w-full border-collapse;
+}
+
+table th {
+  @apply bg-muted/30 border-b-2 border-border;
+  @apply px-4 py-3 text-left font-semibold;
+}
+
+table td {
+  @apply border-b border-border/50;
+  @apply px-4 py-3;
+}
+
+/* Professional list styling */
+ul, ol {
+  @apply space-y-2;
+}
+
+li {
+  @apply text-base leading-relaxed;
+}
+
+/* Badge/tag polish */
+.badge {
+  @apply inline-flex items-center px-3 py-1;
+  @apply rounded-full text-sm font-medium;
+  @apply border transition-colors duration-200;
+}
+
+.badge-primary {
+  @apply bg-primary/10 text-primary border-primary/30;
+  @apply hover:bg-primary/20;
+}
+
+.badge-secondary {
+  @apply bg-muted/50 text-foreground border-border;
+  @apply hover:bg-muted;
+}
+
+/* Professional divider */
+hr {
+  @apply border-border/50 my-6 md:my-8;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsive container */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Professional section padding */
+section {
+  @apply py-12 md:py-16 lg:py-20;
+}
+
+section.py-sm { @apply py-8 md:py-12; }
+section.py-lg { @apply py-16 md:py-24 lg:py-32; }
+
+/* Focus visible for accessibility */
+:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2 rounded;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    @apply animate-none transition-none;
+  }
+}
