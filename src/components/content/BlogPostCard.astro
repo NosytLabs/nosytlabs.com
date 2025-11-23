@@ -22,7 +22,7 @@ const { post, index = 0 } = Astro.props;
         loading="lazy"
         decoding="async"
         class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
-        onerror="this.src='{createImagePath('images/blog-index-og.jpg')}'; this.alt='NOSYT Labs Blog';"
+        onerror={`this.src='${createImagePath('images/blog-index-og.jpg')}'; this.alt='NOSYT Labs Blog';`}
       />
       <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
