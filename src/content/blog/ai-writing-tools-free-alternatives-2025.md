@@ -16,7 +16,6 @@ seoKeywords:
 excerpt: "Don't pay $50+/month for AI writing tools. Discover free alternatives to Copy.ai and Jasper that create quality content for blogs, marketing, and social media."
 draft: false
 featured: false
-readingTime: 13
 heroImage: "/images/blog/content_writing_keyb_3ab53752.jpg"
 heroImageAlt: "Best free AI writing tools and alternatives to Copy.ai and Jasper"
 ---

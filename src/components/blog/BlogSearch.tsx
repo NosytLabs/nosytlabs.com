@@ -12,9 +12,7 @@ type SortOption =
   | "date-desc"
   | "date-asc"
   | "title-asc"
-  | "title-desc"
-  | "readingTime-asc"
-  | "readingTime-desc";
+  | "title-desc";
 
 interface FilterState {
   search: string;
@@ -106,10 +104,6 @@ export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
           return a.data.title.localeCompare(b.data.title);
         case "title-desc":
           return b.data.title.localeCompare(a.data.title);
-        case "readingTime-asc":
-          return (a.data.readingTime || 0) - (b.data.readingTime || 0);
-        case "readingTime-desc":
-          return (b.data.readingTime || 0) - (a.data.readingTime || 0);
         default:
           return 0;
       }
@@ -249,8 +243,6 @@ export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
               <option value="date-asc">Oldest First</option>
               <option value="title-asc">Title A-Z</option>
               <option value="title-desc">Title Z-A</option>
-              <option value="readingTime-asc">Quick Read</option>
-              <option value="readingTime-desc">Long Read</option>
             </select>
           </div>
         </div>
@@ -408,12 +400,6 @@ export default function BlogSearch({ posts, className = "" }: BlogSearchProps) {
                       year: "numeric",
                     })}
                   </time>
-                  {post.data.readingTime && (
-                    <span className="flex items-center gap-1.5 font-medium">
-                      <Clock className="w-4 h-4" />
-                      {post.data.readingTime} min
-                    </span>
-                  )}
                 </div>
 
                 {/* Enhanced title */}

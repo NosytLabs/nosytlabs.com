@@ -16,7 +16,6 @@ seoKeywords:
 excerpt: "Want to create stunning AI images for free? We compare the top 10 AI image generators in 2025, including quality, features, and free credits."
 draft: false
 featured: false
-readingTime: 13
 heroImage: "/images/blog/digital_art_creation_079ef02c.jpg"
 heroImageAlt: "Comparison of the best free AI image generators in 2025"
 ---

@@ -10,7 +10,6 @@ category: "Technology"
 featured: true
 keywords: ["Google Antigravity IDE", "agentic development 2025", "Gemini 3 IDE", "AI development environment", "future of coding"]
 canonicalURL: "https://nosytlabs.com/blog/google-antigravity-agentic-ide"
-readingTime: 12
 ---
 
 # Google's Antigravity IDE: The Agentic Development Platform Changing How We Build

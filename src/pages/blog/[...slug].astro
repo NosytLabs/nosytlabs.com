@@ -156,31 +156,22 @@ const breadcrumbJsonLd = {
         <div class="flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-muted-foreground mb-6">
           <time 
             datetime={post.data.pubDate ? post.data.pubDate.toISOString() : new Date().toISOString()}
-            class="text-muted-foreground"
+            class="text-muted-foreground font-medium"
           >
             {formatDate(post.data.pubDate)}
           </time>
           
           {post.data.author && (
-            <div class="flex items-center gap-2">
-              <span>by</span>
+            <div class="flex items-center gap-2 text-muted-foreground">
+              <span class="text-muted-foreground/60">by</span>
               <span class="font-medium text-foreground">{post.data.author}</span>
             </div>
           )}
           
-          {post.data.readingTime && (
-            <div class="flex items-center gap-2">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <span>{post.data.readingTime} read</span>
-            </div>
-          )}
-          
           {post.data.tags && post.data.tags.length > 0 && (
-            <div class="flex gap-2">
+            <div class="flex gap-2 flex-wrap">
               {post.data.tags.map((tag) => (
-                <span class="px-3 py-1 text-sm font-medium bg-primary/10 text-primary rounded-full">
+                <span class="px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors">
                   {tag}
                 </span>
               ))}

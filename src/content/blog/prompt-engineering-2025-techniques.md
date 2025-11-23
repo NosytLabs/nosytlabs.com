@@ -10,7 +10,6 @@ category: "Technology"
 featured: true
 keywords: ["prompt engineering 2025", "best prompting techniques", "how to prompt AI", "prompt engineering for coding", "ChatGPT prompt tips"]
 canonicalURL: "https://nosytlabs.com/blog/prompt-engineering-2025"
-readingTime: 11
 ---
 
 # Prompt Engineering 2025: Techniques That Actually Work

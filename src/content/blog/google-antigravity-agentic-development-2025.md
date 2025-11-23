@@ -10,7 +10,6 @@ category: "Technology"
 featured: true
 keywords: ["Google Antigravity", "agentic development platform", "AI coding agents", "Gemini 3 Pro", "agent-first IDE", "autonomous code generation", "2025 development tools"]
 canonicalURL: "https://nosytlabs.com/blog/google-antigravity-agentic-development-2025"
-readingTime: 10
 ---
 
 # Google Antigravity: The Future of Agentic Development – Getting Started in 2025

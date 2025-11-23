@@ -7,7 +7,6 @@ image: "/images/og-image.svg"
 tags: ["React 19", "Server Components", "2025 Tech News", "Web Performance", "Frontend"]
 category: "Technology"
 featured: true
-readingTime: 9
 ---
 
 # React 19 Server Components in Production: Real-World Performance Gains and Adoption Stories in 2025

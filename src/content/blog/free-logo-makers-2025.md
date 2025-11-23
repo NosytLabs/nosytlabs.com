@@ -16,7 +16,6 @@ seoKeywords:
 excerpt: "Need a professional logo but can't afford a designer? Discover the best free logo makers in 2025. Compare features, quality, and download options."
 draft: false
 featured: false
-readingTime: 12
 heroImage: "/images/blog/logo_design_branding_d1b7e8e6.jpg"
 heroImageAlt: "Best free logo makers for creating professional logos in 2025"
 ---
