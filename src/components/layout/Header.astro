@@ -122,13 +122,12 @@ const getIcon = (iconName?: string) => {
   class:list={[
     "w-full transition-all duration-300 ease-in-out relative",
     transparent ? "bg-transparent" : "bg-background/98 backdrop-blur-sm border-b border-border/30",
-    fixed ? "fixed top-0 left-0 right-0 z-[var(--z-fixed)]" : "relative",
+    fixed ? "fixed top-0 left-0 right-0 z-50" : "relative",
     showBorder && !transparent ? "border-b border-border/30" : "",
     className
   ]}
   role="banner"
   aria-label="Main navigation"
-  style="z-index: var(--z-fixed);"
 >
   <nav
     class="container mx-auto px-4 sm:px-6 lg:px-8"
@@ -210,7 +209,7 @@ const getIcon = (iconName?: string) => {
               
               <!-- Enhanced Modern Dropdown Menu -->
               {item.children && (
-                <div class="absolute top-full left-0 mt-2 w-80 bg-popover/95 backdrop-blur-md text-popover-foreground rounded-xl shadow-xl border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0" style="z-index: var(--z-dropdown);">
+                <div class="absolute top-full left-0 mt-2 w-80 bg-popover/95 backdrop-blur-md text-popover-foreground rounded-xl shadow-xl border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-40">
                   <!-- Dropdown header -->
                   <div class="p-4 border-b border-border/50">
                     <div class="flex items-center space-x-2">
@@ -232,7 +231,7 @@ const getIcon = (iconName?: string) => {
                       <a
                         href={child.href}
                         class="flex items-start space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-all duration-200 group/item"
-                        style={`animation-delay: ${index * 50}ms`}
+                        class="mobile-nav" data-delay={` ${index * 50}ms`}
                       >
                         <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center mt-0.5 group-hover/item:bg-primary/20 transition-colors duration-200">
                           <div class="w-2 h-2 bg-primary rounded-full group-hover/item:scale-125 transition-transform duration-200"></div>
@@ -259,7 +258,7 @@ const getIcon = (iconName?: string) => {
               
               <!-- Enhanced Tooltip for items without dropdowns -->
               {!item.children && (
-                <div class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-popover text-popover-foreground text-xs rounded-lg shadow-lg border border-border opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap" style="z-index: var(--z-tooltip);">
+                <div class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-popover text-popover-foreground text-xs rounded-lg shadow-lg border border-border opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap z-40">
                   {item.description}
                   <div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-popover border-l border-t border-border rotate-45"></div>
                 </div>
@@ -317,13 +316,13 @@ const getIcon = (iconName?: string) => {
       id="mobile-menu"
       class="fixed inset-0 md:hidden transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto"
       aria-hidden="true"
-      style="z-index: var(--z-modal);"
+      class="z-40"
     >
       <!-- Enhanced Backdrop with Blur -->
-      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" style="z-index: var(--z-modal-backdrop);"></div>
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" class="z-30"></div>
       
       <!-- Enhanced Menu Panel with Modern Design -->
-      <div class="absolute right-0 top-0 h-full w-80 max-w-[90vw] bg-background/95 backdrop-blur-md border-l border-border shadow-2xl" style="z-index: var(--z-modal);">
+      <div class="absolute right-0 top-0 h-full w-80 max-w-[90vw] bg-background/95 backdrop-blur-md border-l border-border shadow-2xl" class="z-40">
         <!-- Enhanced Header with Gradient -->
         <div class="flex items-center justify-between p-6 border-b border-border/50 bg-gradient-to-r from-primary/5 to-accent/5">
           <div class="flex items-center space-x-3">
@@ -353,7 +352,7 @@ const getIcon = (iconName?: string) => {
         <!-- Enhanced Navigation Links with Animations -->
         <div class="p-6 space-y-2 overflow-y-auto flex-1">
           {navigation.map((item, index) => (
-            <div class="space-y-2" style={`animation-delay: ${index * 100}ms`}>
+            <div class="space-y-2" class="mobile-nav" data-delay={` ${index * 100}ms`}>
               <a
                 href={item.href}
                 class={`flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 group mobile-nav-item ${
