@@ -120,9 +120,10 @@
 
   /* 2025 Modern Typography Scale - Optimized for web & AI search */
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl font-bold tracking-tight;
-    line-height: 1.1;
-    letter-spacing: -0.025em;
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: hsl(var(--foreground));
   }
 
   h2 {

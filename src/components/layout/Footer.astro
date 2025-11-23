@@ -13,217 +13,201 @@ const {
 
 const links = {
   services: [
-    { href: createInternalLink("/services/professional-web-development"), text: "Web Development", iconKey: "web-development" },
-    { href: createInternalLink("/services/ai-integration-automation"), text: "AI Integration", iconKey: "ai-integration" },
-    { href: createInternalLink("/services/rapid-prototype-development"), text: "Rapid Prototyping", iconKey: "consulting" },
-    { href: createInternalLink("/services/mobile-app-development"), text: "Mobile Apps", iconKey: "brain" },
-    { href: createInternalLink("/services/tech-consulting-seo-audits"), text: "Tech Consulting", iconKey: "brain" },
-    { href: createInternalLink("/services/3d-printing-services"), text: "3D Printing", iconKey: "brain" },
+    { href: createInternalLink("/services/professional-web-development"), text: "Web Development" },
+    { href: createInternalLink("/services/ai-integration-automation"), text: "AI Integration" },
+    { href: createInternalLink("/services/rapid-prototype-development"), text: "Rapid Prototyping" },
+    { href: createInternalLink("/services/mobile-app-development"), text: "Mobile Apps" },
+    { href: createInternalLink("/services/tech-consulting-seo-audits"), text: "Tech Consulting" },
+    { href: createInternalLink("/services/3d-printing-services"), text: "3D Printing" },
   ],
   company: [
-    { href: createInternalLink("/about"), text: "About", iconKey: "brain" },
-    { href: createInternalLink("/blog"), text: "Blog", iconKey: "brain" },
-    { href: createInternalLink("/contact"), text: "Contact", iconKey: "brain" },
+    { href: createInternalLink("/about"), text: "About" },
+    { href: createInternalLink("/blog"), text: "Blog" },
+    { href: createInternalLink("/projects"), text: "Projects" },
+    { href: createInternalLink("/contact"), text: "Contact" },
   ],
   legal: [
-    { href: createInternalLink("/privacy"), text: "Privacy Policy", iconKey: "brain" },
-    { href: createInternalLink("/terms"), text: "Terms of Service", iconKey: "brain" },
-    { href: createInternalLink("/cookies"), text: "Cookie Policy", iconKey: "brain" },
-    { href: createInternalLink("/disclaimer"), text: "Disclaimer", iconKey: "brain" },
+    { href: createInternalLink("/privacy"), text: "Privacy Policy" },
+    { href: createInternalLink("/terms"), text: "Terms of Service" },
+    { href: createInternalLink("/cookies"), text: "Cookie Policy" },
+    { href: createInternalLink("/disclaimer"), text: "Disclaimer" },
   ],
 };
 
 const social = [
   {
     href: "https://twitter.com/nosytlabs",
-    iconKey: "twitter",
+    icon: "twitter",
     label: "Twitter",
-    color: "hover:text-primary",
   },
   {
     href: "https://linkedin.com/company/nosytlabs",
-    iconKey: "linkedin",
+    icon: "linkedin",
     label: "LinkedIn",
-    color: "hover:text-primary",
   },
   {
     href: "https://github.com/nosytlabs",
-    iconKey: "github",
+    icon: "github",
     label: "GitHub",
-    color: "hover:text-foreground",
   },
   {
     href: `mailto:${contactEmail}`,
-    iconKey: "brain",
+    icon: "email",
     label: "Email",
-    color: "hover:text-success",
   },
 ];
 
 const currentYear = new Date().getFullYear();
-
-// Helper function to get icon paths
-function getIconPaths(iconKey: string) {
-  // Handle special cases for icons defined in icon-factory
-  const specialIcons: Record<string, string[]> = {
-    github: ["M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4", "M9 18c-4.51 2-5-2-7-2"],
-    linkedin: ["M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z", "M2 9h4v12H2z", "M4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"],
-    twitter: ["M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"]
-  };
-  
-  return specialIcons[iconKey] || icons[iconKey as keyof typeof icons] || icons['brain'] || [];
-}
 ---
 
-<footer class="bg-background border-t border-border text-foreground">
-  <div class="container-xl py-16 md:py-20 lg:py-24">
-    <!-- Brand Section - Enhanced -->
-    <div class="text-center mb-16 md:mb-20">
-      <div class="flex items-center justify-center mb-6">
-        <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center shadow-lg">
-          <Icon paths={getIconPaths("brain")} size={32} className="text-white" />
+<footer class="bg-background border-t border-border/50 text-foreground py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Top Section - Brand & CTA -->
+    <div class="mb-16 md:mb-24">
+      <div class="grid md:grid-cols-2 gap-12 items-start mb-12">
+        <!-- Brand Info -->
+        <div class="space-y-4">
+          <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-lg">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-2xl md:text-3xl font-bold text-foreground">{companyName}</h3>
+            <p class="text-sm md:text-base text-muted-foreground mt-2 leading-relaxed max-w-sm">
+              {description}
+            </p>
+            <p class="text-xs text-primary font-semibold uppercase tracking-widest mt-4">
+              {tagline}
+            </p>
+          </div>
+        </div>
+
+        <!-- Newsletter/CTA -->
+        <div class="bg-gradient-to-br from-primary/10 via-transparent to-accent/10 border border-primary/20 rounded-2xl p-6 md:p-8">
+          <h4 class="text-lg md:text-xl font-bold text-foreground mb-3">Let's Build Something Great</h4>
+          <p class="text-sm md:text-base text-muted-foreground mb-6">
+            Ready to start your next project? Let's discuss your ideas and deliver exceptional results.
+          </p>
+          <a href={createInternalLink("/contact")} class="inline-block px-6 py-3 bg-gradient-to-r from-primary via-primary to-accent text-primary-foreground rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+            Get Started Today
+          </a>
         </div>
       </div>
-      
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-        {companyName}
-      </h2>
-      <p class="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto mb-3 leading-relaxed">
-        {description}
-      </p>
-      <p class="text-sm text-muted-foreground/80 mb-2">{tagline}</p>
-      <p class="text-xs font-semibold text-primary uppercase tracking-widest">nosytlabs.com</p>
+
+      <!-- Divider -->
+      <div class="h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
     </div>
 
-    <!-- Main Footer Grid - Enhanced -->
-    <div class="footer-grid mb-16 md:mb-20">
-      <!-- Services Section - Enhanced -->
-      <div class="space-y-4">
-        <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 text-foreground">
-          Services
-        </h3>
-        <ul class="space-y-2">
+    <!-- Main Content Grid -->
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16 md:mb-24">
+      <!-- Services -->
+      <div>
+        <h5 class="text-sm font-bold uppercase tracking-widest text-foreground mb-6">Services</h5>
+        <ul class="space-y-3">
           {links.services.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="flex items-center space-x-2 text-sm md:text-base text-muted-foreground hover:text-primary py-2 px-3 rounded-lg hover:bg-muted/30 transition-all duration-200 group"
-                aria-label={`${link.text} service`}
+                class="text-sm md:text-base text-muted-foreground hover:text-primary transition-colors duration-200 hover:translate-x-1"
               >
-                <svg class="w-4 h-4 text-primary/50 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                  <path d="M9 5l7 7-7 7"></path>
-                </svg>
-                <span class="font-medium">{link.text}</span>
+                {link.text}
               </a>
             </li>
           ))}
         </ul>
       </div>
 
-      <!-- Company Section - Enhanced -->
-      <div class="space-y-4">
-        <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 text-foreground">
-          Company
-        </h3>
-        <ul class="space-y-2">
+      <!-- Company -->
+      <div>
+        <h5 class="text-sm font-bold uppercase tracking-widest text-foreground mb-6">Company</h5>
+        <ul class="space-y-3">
           {links.company.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="flex items-center space-x-2 text-sm md:text-base text-muted-foreground hover:text-primary py-2 px-3 rounded-lg hover:bg-muted/30 transition-all duration-200 group"
-                aria-label={link.text}
+                class="text-sm md:text-base text-muted-foreground hover:text-primary transition-colors duration-200 hover:translate-x-1"
               >
-                <svg class="w-4 h-4 text-primary/50 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                  <path d="M9 5l7 7-7 7"></path>
-                </svg>
-                <span class="font-medium">{link.text}</span>
+                {link.text}
               </a>
             </li>
           ))}
         </ul>
       </div>
 
-      <!-- Contact Section - Enhanced -->
-      <div class="space-y-4">
-        <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 text-foreground">
-          Get in Touch
-        </h3>
-        <div class="space-y-3">
-          <a
-            href={`mailto:${contactEmail}`}
-            class="flex items-center space-x-3 text-sm md:text-base text-muted-foreground hover:text-primary p-3 rounded-lg hover:bg-muted/30 transition-all duration-200 group"
-            aria-label={`Email us at ${contactEmail}`}
-          >
-            <svg class="w-5 h-5 text-primary/50 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-            <span class="font-medium">{contactEmail}</span>
-          </a>
-          
-          <div class="p-4 rounded-lg bg-gradient-to-br from-muted/50 to-muted/30 border border-border/50">
-            <div class="flex items-center space-x-2 mb-2">
-              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-              </svg>
-              <p class="text-xs font-semibold text-foreground/80 uppercase tracking-wide">Location</p>
-            </div>
-            <p class="text-sm font-medium text-foreground">{location}</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Legal Section - Enhanced -->
-      <div class="space-y-4">
-        <h3 class="text-lg md:text-xl font-bold mb-4 md:mb-6 text-foreground">
-          Legal
-        </h3>
-        <ul class="space-y-2">
+      <!-- Legal -->
+      <div>
+        <h5 class="text-sm font-bold uppercase tracking-widest text-foreground mb-6">Legal</h5>
+        <ul class="space-y-3">
           {links.legal.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="flex items-center space-x-2 text-sm md:text-base text-muted-foreground hover:text-primary py-2 px-3 rounded-lg hover:bg-muted/30 transition-all duration-200 group"
-                aria-label={link.text}
+                class="text-sm md:text-base text-muted-foreground hover:text-primary transition-colors duration-200 hover:translate-x-1"
               >
-                <svg class="w-4 h-4 text-primary/50 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                  <path d="M9 5l7 7-7 7"></path>
-                </svg>
-                <span class="font-medium">{link.text}</span>
+                {link.text}
               </a>
             </li>
           ))}
         </ul>
       </div>
+
+      <!-- Contact -->
+      <div>
+        <h5 class="text-sm font-bold uppercase tracking-widest text-foreground mb-6">Get in Touch</h5>
+        <div class="space-y-4">
+          <div>
+            <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Email</p>
+            <a href={`mailto:${contactEmail}`} class="text-sm md:text-base text-muted-foreground hover:text-primary transition-colors duration-200">
+              {contactEmail}
+            </a>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Location</p>
+            <p class="text-sm md:text-base text-foreground">{location}</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Social Media & Legal - Enhanced -->
-    <div class="border-t border-border pt-8">
-      <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
-        <!-- Social Media Icons -->
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-          <span class="text-muted-foreground text-sm font-medium">Follow Us:</span>
-          <div class="flex space-x-3">
-            {social.map((item) => (
-              <a
-                href={item.href}
-                class="w-10 h-10 bg-muted rounded-lg flex items-center justify-center hover:bg-primary/20 transition-colors"
-                aria-label={`Follow us on ${item.label}`}
-                {...(item.href.startsWith("http") && {
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                })}
-              >
-                <Icon paths={getIconPaths(item.iconKey)} size={18} />
-              </a>
-            ))}
-          </div>
+    <!-- Bottom Section - Social & Copyright -->
+    <div class="border-t border-border/50 pt-8 md:pt-12">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+        <!-- Social Links -->
+        <div class="flex items-center gap-4">
+          {social.map((item) => (
+            <a
+              href={item.href}
+              aria-label={item.label}
+              class="w-10 h-10 rounded-lg bg-muted/50 hover:bg-primary/20 text-foreground hover:text-primary flex items-center justify-center transition-all duration-300 hover:scale-110"
+              {...(item.href.startsWith("http") && {
+                target: "_blank",
+                rel: "noopener noreferrer",
+              })}
+            >
+              {item.icon === "twitter" && (
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2s9 5 20 5a9.5 9.5 0 00-9-5.5c4.75 2.25 9 0 11-4s1-6.75 1-6.75"/></svg>
+              )}
+              {item.icon === "linkedin" && (
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              )}
+              {item.icon === "github" && (
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.49v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.5 2.34 1.07 2.91.82.09-.65.34-1.07.62-1.32-2.15-.25-4.42-1.08-4.42-4.78 0-1.06.38-1.93 1-2.61-.1-.25-.44-1.28.1-2.66 0 0 .82-.26 2.7 1.01.78-.22 1.62-.33 2.45-.33.83 0 1.67.11 2.45.33 1.88-1.27 2.7-1.01 2.7-1.01.54 1.38.2 2.41.1 2.66.62.68 1 1.55 1 2.61 0 3.71-2.27 4.53-4.43 4.77.35.3.66.89.66 1.8v2.67c0 .27.18.59.69.49C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
+              )}
+              {item.icon === "email" && (
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              )}
+            </a>
+          ))}
         </div>
 
         <!-- Copyright -->
-        <div class="text-center lg:text-right">
-          <p class="text-muted-foreground text-sm">
-            © {currentYear} {companyName}. All rights reserved.
+        <div class="text-center sm:text-right">
+          <p class="text-xs md:text-sm text-muted-foreground">
+            © {currentYear} <span class="font-semibold text-foreground">{companyName}</span>. All rights reserved.
+          </p>
+          <p class="text-xs text-muted-foreground/70 mt-1">
+            Built with <span class="text-primary font-semibold">Astro</span> + <span class="text-accent font-semibold">React</span>
           </p>
         </div>
       </div>

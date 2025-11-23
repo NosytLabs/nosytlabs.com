@@ -1,35 +1,22 @@
 ---
-export interface Props {
-  /** Container size variant */
-  size?: 'standard' | 'wide' | 'narrow' | 'full';
-  /** Additional CSS classes */
+interface Props {
+  size?: 'sm' | 'standard' | 'lg' | 'full';
   className?: string;
-  /** HTML element type */
-  as?: 'div' | 'main' | 'article' | 'section';
 }
 
 const {
   size = 'standard',
-  className = '',
-  as: Element = 'div',
-  ...rest
+  className = ''
 } = Astro.props;
 
-// Enhanced container size classes - Maximized for modern 2025 layouts
 const sizeClasses = {
-  full: 'w-full px-4 sm:px-6 md:px-8 lg:px-8 xl:px-10 2xl:px-12 overflow-hidden',
-  narrow: 'max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-8 xl:px-10 w-full',
-  standard: 'container-fixed w-full', // Use the CSS utility class (now max-w-[2400px])
-  wide: 'max-w-[2800px] mx-auto px-4 sm:px-6 md:px-8 lg:px-8 xl:px-10 2xl:px-12 w-full'
+  sm: 'max-w-2xl',
+  standard: 'max-w-7xl',
+  lg: 'max-w-7xl',
+  full: 'w-full'
 };
-
-const containerClasses = [
-  sizeClasses[size as keyof typeof sizeClasses],
-  className
-].filter(Boolean).join(' ');
 ---
 
-<Element class={containerClasses} {...rest}>
+<div class={`${sizeClasses[size]} mx-auto px-4 sm:px-6 lg:px-8 ${className}`}>
   <slot />
-</Element>
-
+</div>

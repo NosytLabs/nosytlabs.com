@@ -1,56 +1,37 @@
 ---
-export interface Props {
-  /** Section spacing variant */
-  spacing?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
-  /** Background variant */
-  background?: 'default' | 'muted' | 'gradient' | 'primary' | 'none';
-  /** Additional CSS classes */
+interface Props {
+  background?: 'default' | 'muted' | 'gradient' | 'none';
+  spacing?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
-  /** HTML element type */
-  as?: 'section' | 'div' | 'article' | 'aside';
-  /** Section ID for navigation */
   id?: string;
 }
 
-const {
+const { 
+  background = 'default', 
   spacing = 'md',
-  background = 'default',
   className = '',
-  as: Element = 'section',
-  id,
-  ...rest
+  id
 } = Astro.props;
 
-// Spacing classes - Using CSS custom properties for consistency
-const spacingClasses = {
-  none: '',
-  sm: 'section-spacing-sm',
-  md: 'section-spacing-md', 
-  lg: 'section-spacing-lg',
-  xl: 'section-spacing-xl'
-};
-
-// Background classes with enhanced gradients
-const backgroundClasses = {
-  none: '',
+const bgClasses = {
   default: 'bg-background',
-  muted: 'bg-muted/20',
-  gradient: 'bg-gradient-to-br from-background via-muted/10 to-primary/5',
-  primary: 'bg-primary text-primary-foreground'
+  muted: 'bg-muted/30',
+  gradient: 'bg-gradient-to-br from-primary/5 via-background to-accent/5',
+  none: ''
 };
 
-const sectionClasses = [
-  spacingClasses[spacing as keyof typeof spacingClasses],
-  backgroundClasses[background as keyof typeof backgroundClasses],
-  'relative',
-  className
-].filter(Boolean).join(' ');
-
-// Add ARIA attributes for accessibility
-const ariaProps = Element === 'section' ? { role: 'region' } : {};
+const spacingClasses = {
+  none: 'py-0',
+  sm: 'py-8 md:py-12',
+  md: 'py-12 md:py-16 lg:py-20',
+  lg: 'py-16 md:py-24 lg:py-32',
+  xl: 'py-20 md:py-32 lg:py-40'
+};
 ---
 
-<Element class={sectionClasses} id={id} {...ariaProps} {...rest}>
+<section 
+  class={`${bgClasses[background]} ${spacingClasses[spacing]} ${className}`}
+  {...(id && { id })}
+>
   <slot />
-</Element>
-
+</section>
