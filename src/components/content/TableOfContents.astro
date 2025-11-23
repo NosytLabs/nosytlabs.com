@@ -18,8 +18,10 @@ const filteredHeadings = headings.filter(h => h.depth > 1 && h.depth < 4);
   >
     <h2 class="text-lg font-semibold text-foreground mb-4">On this page</h2>
     <ul class="space-y-2" role="list">
-      {filteredHeadings.map(heading => (
-        <li role="listitem" style={`margin-left: ${(heading.depth - 2) * 1}rem`}>
+      {filteredHeadings.map(heading => {
+        const indent = heading.depth === 2 ? "pl-0" : heading.depth === 3 ? "pl-4" : "pl-8";
+        return (
+        <li role="listitem" class={indent}>
           <a 
             href={`#${heading.slug}`}
             class="text-muted-foreground hover:text-primary transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-sm"
@@ -28,7 +30,8 @@ const filteredHeadings = headings.filter(h => h.depth > 1 && h.depth < 4);
             {heading.text}
           </a>
         </li>
-      ))}
+        );
+      })}
     </ul>
   </nav>
 )}
