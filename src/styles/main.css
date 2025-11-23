@@ -66,7 +66,33 @@
   --radius: 0.5rem;
 }
 
-/* Staggered animation fixes for components */
+/* ============================================================================= */
+/*                          LINK STYLING & INTERACTIONS                        */
+/* ============================================================================= */
+
+/* Global link styling */
+a {
+  position: relative;
+  color: inherit;
+  text-decoration-color: hsl(var(--primary) / 0.3);
+  text-underline-offset: 4px;
+}
+
+a:hover {
+  color: hsl(var(--primary));
+  text-decoration-color: hsl(var(--primary));
+}
+
+a:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+  border-radius: 2px;
+}
+
+/* ============================================================================= */
+/*                       STAGGERED ANIMATION DELAYS                            */
+/* ============================================================================= */
+
 .animate-staggered-1 { animation-delay: 0ms; }
 .animate-staggered-2 { animation-delay: 150ms; }
 .animate-staggered-3 { animation-delay: 300ms; }

@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
 import { formatDate } from '@shared-utils/unified-date-utils';
-import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
 import HeroButton from '../../components/ui/HeroUIButtonAstro.astro';
 import { createInternalLink, createImagePath, SITE_CONFIG } from '../../lib/constants';
 import RelatedPosts from '../../components/blog/RelatedPosts.astro';
@@ -124,10 +123,6 @@ const breadcrumbJsonLd = {
   
   <div class="min-h-screen bg-gradient-to-br from-background via-card to-primary/10 dark:from-background dark:via-muted dark:to-primary/20">
 <article class="container py-16 md:py-24">
-      <div class="mb-6">
-        <Breadcrumbs items={[{ name: 'Home', url: createInternalLink('/') }, { name: 'Blog', url: createInternalLink('/blog') }, { name: post.data.title }]} />
-      </div>
-      
       <!-- Back to Blog -->
       <div class="mb-8">
         <HeroButton href={createInternalLink("/blog")} text="← Back to Blog" variant="outline" size="sm" />
