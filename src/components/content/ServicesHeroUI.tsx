@@ -74,7 +74,7 @@ export function ServicesHeroUI({ services }: ServicesHeroUIProps) {
           <div
             key={service.slug}
             className="h-full animate-fade-in w-full"
-            style={{ animationDelay: `${index * 150}ms` } as any}
+            style={{ animationDelay: `${index * 150}ms` }}
           >
             <HeroUIServiceCard
               title={service.data.title}
