@@ -2,7 +2,7 @@
 title: "Web Development"
 description: "Custom websites and web applications. Professional sites for small businesses, portfolios, and service providers."
 icon: "code"
-price: "Starting at $1,200 USD"
+price: "Starting at $1,500 USD"
 delivery: "2-4 weeks"
 category: "development"
 tags:
@@ -41,7 +41,7 @@ Professional online presence for your company.
 - Performance optimization
 
 **Scope**: 5-10 pages
-**Price**: $1,200-$2,000
+**Price**: $1,500-$2,500
 **Timeline**: 2-3 weeks
 **Includes**: Design, development, deployment, 2 revisions
 
@@ -55,7 +55,7 @@ Professional sites for consultants, agencies, and service providers.
 - Contact and inquiry forms
 
 **Scope**: 5-8 pages
-**Price**: $1,500-$2,500
+**Price**: $2,000-$3,500
 **Timeline**: 3-4 weeks
 **Includes**: Custom design, full development, optimization, 2 revisions
 
@@ -69,7 +69,7 @@ Showcase your work and accomplishments.
 - Case studies with images
 
 **Scope**: 6-12 pages
-**Price**: $1,200-$2,000
+**Price**: $1,500-$2,500
 **Timeline**: 2-4 weeks
 **Includes**: Custom design, gallery setup, optimization, 2 revisions
 
@@ -98,9 +98,9 @@ Showcase your work and accomplishments.
 
 | Website Type | Pages | Price | Timeline |
 |-------------|-------|-------|----------|
-| Basic Business | 5 pages | $500-700 | 2-3 weeks |
-| Service-Based | 8 pages | $800-1,200 | 3-4 weeks |
-| Portfolio | 6-12 pages | $600-1,000 | 2-3 weeks |
+| Basic Business | 5 pages | $1,500-2,000 | 2-3 weeks |
+| Service-Based | 8 pages | $2,000-3,000 | 3-4 weeks |
+| Portfolio | 6-12 pages | $1,500-2,500 | 2-3 weeks |
 
 ### Additional Features (À la carte)
 

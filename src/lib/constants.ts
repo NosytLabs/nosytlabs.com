@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
   OG_IMAGE_PATH: `${baseUrl}images/og-image.svg`,
   EMAILS: {
     CONTACT: "contact@nosytlabs.com",
-    HELLO: "hello@nosytlabs.com",
+    HELLO: "hi@nosytlabs.com",
     LEGAL: "legal@nosytlabs.com",
     HI: "hi@nosytlabs.com",
   },

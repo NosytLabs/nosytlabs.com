@@ -50,6 +50,8 @@ export function HeroUIContactForm() {
   const services = [
     { value: "web-development", label: "Web Application Development" },
     { value: "mobile-app", label: "Mobile App Development" },
+    { value: "ai-agents", label: "AI Agents & Custom Automation" },
+    { value: "ai-chatbot", label: "AI Chatbot Development" },
     { value: "ai-integration", label: "AI Integration & Automation" },
     { value: "web3-integration", label: "Web3 & Blockchain Integration" },
     { value: "rapid-prototype", label: "Rapid Prototype/MVP Development" },
@@ -224,7 +226,7 @@ export function HeroUIContactForm() {
       console.error("Form submission error:", error);
       setSubmitStatus("error");
       setFeedbackMessage(
-        "An unexpected error occurred. Please try again or email hello@nosytlabs.com.",
+        "An unexpected error occurred. Please try again or email hi@nosytlabs.com.",
       );
     } finally {
       setIsSubmitting(false);
