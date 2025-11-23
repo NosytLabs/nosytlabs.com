@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import type { CollectionEntry } from "astro:content";
-import { Search, X, Calendar, Clock, Tag, Filter } from "lucide-react";
+import { Search, X, Calendar, Tag, Filter } from "lucide-react";
 import { createImagePath, createInternalLink } from "@/lib/constants";
 
 interface BlogSearchProps {

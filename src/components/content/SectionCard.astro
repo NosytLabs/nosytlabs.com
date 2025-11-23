@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  color?: 'primary' | 'success' | 'accent';
+  className?: string;
+}
+
+const { title, description, icon, color = 'primary', className = '' } = Astro.props;
+
+const colorClasses = {
+  primary: 'from-primary/20 to-primary/10 border-primary/40 text-primary',
+  success: 'from-success/20 to-success/10 border-success/40 text-success',
+  accent: 'from-accent/20 to-accent/10 border-accent/40 text-accent'
+};
+
+const iconColor = {
+  primary: 'text-primary',
+  success: 'text-success',
+  accent: 'text-accent'
+};
+---
+
+<div class={`group p-6 md:p-8 rounded-2xl bg-gradient-to-br ${colorClasses[color]} border-2 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center flex flex-col items-center justify-center ${className}`}>
+  {icon && (
+    <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-${color}/20 to-${color}/10 border-2 border-${color}/40 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-lg">
+      <svg class={`w-10 h-10 ${iconColor[color]} group-hover:brightness-110 transition-all duration-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <slot name="icon" />
+      </svg>
+    </div>
+  )}
+  
+  <h3 class="text-xl md:text-2xl font-bold mb-3 group-hover:scale-105 transition-transform duration-300 text-foreground">
+    {title}
+  </h3>
+  
+  <p class="text-base text-muted-foreground leading-relaxed">
+    {description}
+  </p>
+</div>

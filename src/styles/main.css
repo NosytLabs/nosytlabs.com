@@ -667,3 +667,61 @@
     @apply grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8;
   }
 }
+
+/* ==========================================================================
+   2025 POLISH - CARDS & COMPONENTS
+   ========================================================================== */
+
+/* Blog & Service Cards */
+.bg-card {
+  @apply bg-gradient-to-br from-background to-background/95;
+}
+
+.card-hover {
+  @apply hover:shadow-2xl hover:border-primary/40 hover:-translate-y-2 transition-all duration-500;
+}
+
+
+/* Enhanced Button Styling */
+.button-primary {
+  @apply px-6 py-3 bg-gradient-to-r from-primary via-primary to-accent text-primary-foreground rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 inline-flex items-center justify-center;
+}
+
+.button-secondary {
+  @apply px-6 py-3 bg-muted/50 border border-border hover:bg-muted text-foreground rounded-xl font-semibold transition-all duration-300 inline-flex items-center justify-center;
+}
+
+/* Card Styling */
+.card-base {
+  @apply bg-card border border-border/50 rounded-2xl overflow-hidden;
+}
+
+.card-hover-effect {
+  @apply hover:shadow-xl hover:border-primary/30 transition-all duration-300;
+}
+
+/* Better image contrast */
+img {
+  @apply bg-muted;
+}
+
+/* Animation utilities */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.gpu-accelerated {
+  @apply will-change-transform;
+}
+

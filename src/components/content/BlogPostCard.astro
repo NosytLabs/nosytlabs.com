@@ -1,0 +1,88 @@
+---
+import { createImagePath, createInternalLink } from "@/lib/constants";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  index?: number;
+}
+
+const { post, index = 0 } = Astro.props;
+---
+
+<article 
+  class="group h-full bg-card border-2 border-border/60 rounded-2xl overflow-hidden hover:shadow-2xl hover:border-primary/40 hover:-translate-y-2 transition-all duration-500 flex flex-col"
+  style={{ animationDelay: `${index * 100}ms` }}
+>
+  <!-- Image with overlay -->
+  {post.data.heroImage && (
+    <div class="aspect-video overflow-hidden relative bg-muted">
+      <img
+        src={createImagePath(post.data.heroImage)}
+        alt={post.data.heroImageAlt || `Featured image for blog post: ${post.data.title}`}
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
+        onerror="this.src='{createImagePath('images/blog-index-og.jpg')}'; this.alt='NOSYT Labs Blog';"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    </div>
+  )}
+
+  <!-- Content -->
+  <div class="p-6 md:p-8 flex flex-col flex-grow">
+    <!-- Metadata -->
+    <div class="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+      <time datetime={post.data.pubDate.toISOString()} class="flex items-center gap-1.5 font-medium">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h18M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        {post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+      </time>
+    </div>
+
+    <!-- Title -->
+    <h2 class="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-2">
+      <a
+        href={createInternalLink(`/blog/${post.slug}`)}
+        class="hover:underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded inline-block"
+      >
+        {post.data.title}
+      </a>
+    </h2>
+
+    <!-- Description -->
+    {post.data.description && (
+      <p class="text-base text-muted-foreground mb-4 line-clamp-3 leading-relaxed flex-grow">
+        {post.data.description}
+      </p>
+    )}
+
+    <!-- Tags -->
+    {post.data.tags && post.data.tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-4">
+        {post.data.tags.slice(0, 3).map((tag: string) => (
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-muted/70 text-muted-foreground text-xs rounded-full font-medium border border-border/50">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            {tag}
+          </span>
+        ))}
+        {post.data.tags.length > 3 && (
+          <span class="text-xs text-muted-foreground px-2 py-1 font-medium">
+            +{post.data.tags.length - 3} more
+          </span>
+        )}
+      </div>
+    )}
+
+    <!-- Read more indicator -->
+    <div class="flex items-center gap-2 text-primary font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 mt-auto">
+      <span>Read more</span>
+      <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  </div>
+</article>
