@@ -106,6 +106,17 @@ a:focus {
   animation-delay: var(--animation-delay);
 }
 
+/* Data-index based animation delays */
+[data-index="0"] { --animation-delay: 0ms; }
+[data-index="1"] { --animation-delay: 120ms; }
+[data-index="2"] { --animation-delay: 240ms; }
+[data-index="3"] { --animation-delay: 360ms; }
+[data-index="4"] { --animation-delay: 480ms; }
+[data-index="5"] { --animation-delay: 600ms; }
+[data-index="6"] { --animation-delay: 720ms; }
+[data-index="7"] { --animation-delay: 840ms; }
+[data-index="8"] { --animation-delay: 960ms; }
+
 /* ==========================================================================
    FINAL COMPREHENSIVE POLISH - 2025 DESIGN STANDARDS
    ========================================================================== */
