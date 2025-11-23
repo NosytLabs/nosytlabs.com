@@ -2,7 +2,7 @@
 title: "SEO Audits & Technical Consulting"
 description: "Comprehensive SEO audits and technical analysis to identify issues impacting your search rankings and user experience."
 icon: "code"
-price: "Starting at $1,500 USD"
+price: "Starting at $2,500 USD"
 delivery: "2-4 weeks"
 category: "consulting"
 tags: ["seo", "technical audit", "consulting", "optimization", "performance"]

@@ -2,7 +2,7 @@
 title: "AI Content Generation for Marketing & SEO"
 description: "AI-powered content creation for blogs, social media, product descriptions, and marketing copy. 10x faster content production at 1/10th the cost."
 icon: "pen-tool"
-price: "Starting at $3,000 USD"
+price: "Starting at $5,000 USD"
 delivery: "2-4 weeks"
 category: "ai"
 tags: ["AI content creation", "marketing copy", "blog writing", "SEO content", "content marketing"]

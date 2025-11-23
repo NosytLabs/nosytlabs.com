@@ -2,7 +2,7 @@
 title: "Mobile App Development"
 description: "Cross-platform mobile apps using React Native. One codebase for iOS and Android, built efficiently with AI-assisted development."
 icon: "mobile-app"
-price: "Starting at $15,000 USD"
+price: "Starting at $30,000 USD"
 delivery: "6-12 weeks"
 category: "mobile"
 tags: ["mobile apps", "ios", "android", "react native", "cross-platform"]

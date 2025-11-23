@@ -2,7 +2,7 @@
 title: "AI Integration & Automation"
 description: "AI integration and business automation services using ChatGPT, Claude, and modern AI tools. Automate workflows, save 10-30 hours/week, reduce costs by 30-50%."
 icon: "ai-integration"
-price: "Starting at $10,000 USD"
+price: "Starting at $15,000 USD"
 delivery: "3-8 weeks"
 category: "ai"
 tags:

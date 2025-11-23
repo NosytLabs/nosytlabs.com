@@ -2,7 +2,7 @@
 title: "AI Agents & Custom Automation"
 description: "Build autonomous AI agents for business automation using Claude, Gemini 3 Pro, and OpenAI. Custom agents handle complex workflows, save 40-60 hours/week, and deliver measurable ROI."
 icon: "zap"
-price: "Starting at $12,000 USD"
+price: "Starting at $20,000 USD"
 delivery: "4-10 weeks"
 category: "ai"
 tags:

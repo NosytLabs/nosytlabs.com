@@ -2,7 +2,7 @@
 title: "AI-Assisted Code Generation & Development"
 description: "AI-powered code generation using Claude, GPT-4, and Cursor. Generate full applications faster, reduce development time by 60-70%."
 icon: "code"
-price: "Starting at $8,000 USD"
+price: "Starting at $12,000 USD"
 delivery: "2-6 weeks"
 category: "ai"
 tags: ["AI code generation", "rapid development", "Cursor", "Claude coding", "AI programming"]

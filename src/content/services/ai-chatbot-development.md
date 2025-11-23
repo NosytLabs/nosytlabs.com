@@ -1,8 +1,8 @@
 ---
 title: "AI Chatbot Development"
-description: "Custom AI chatbots for 24/7 customer support starting at $6,000. Deploy to website, Slack, Discord, or WhatsApp. Reduce support tickets by 60-75% with AI-powered automation."
+description: "Custom AI chatbots for 24/7 customer support starting at $15,000. Deploy to website, Slack, Discord, or WhatsApp. Reduce support tickets by 60-75% with AI-powered automation."
 icon: "message-square"
-price: "Starting at $6,000 USD"
+price: "Starting at $15,000 USD"
 delivery: "3-6 weeks"
 category: "ai"
 tags:
