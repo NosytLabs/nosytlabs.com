@@ -725,3 +725,11 @@ img {
   @apply will-change-transform;
 }
 
+
+/* Staggered animation fixes for components */
+.animate-staggered-1 { animation-delay: 0ms; }
+.animate-staggered-2 { animation-delay: 150ms; }
+.animate-staggered-3 { animation-delay: 300ms; }
+.animate-staggered-4 { animation-delay: 450ms; }
+.animate-staggered-5 { animation-delay: 600ms; }
+.animate-staggered-6 { animation-delay: 750ms; }
