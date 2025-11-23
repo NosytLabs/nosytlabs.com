@@ -126,7 +126,7 @@ Software robots that mimic human actions on computer screens. They click buttons
 ✅ Very reliable once configured
 ✅ Easy to audit and monitor
 ✅ Good for high-volume repetitive work
-✅ Massive ROI (usually 200-400%)
+✅ Potential for significant cost savings (case-dependent)
 
 ### Cons
 ❌ Expensive setup ($15K-$100K)
@@ -145,14 +145,14 @@ Software robots that mimic human actions on computer screens. They click buttons
 - Companies with IT departments
 - 3+ year payback timeline
 
-### ROI Example
+### Example (Results vary based on implementation)
 **Processing 5,000 invoices/month manually**
-- 2 FTE employees × $60K salary = $120K/year
+- 2 FTE employees × $60K salary = $120K/year labor cost
 - RPA implementation: $40K one-time + $15K/year licensing
 - RPA processes same 5,000 invoices/month automatically
-- **Savings: $105K/year**
-- **Payback: 4-5 months**
-- **Year 5 ROI: 425%**
+- **Potential annual savings: ~$105K** (based on labor reduction)
+- **Payback: Estimated 4-5 months** (actual results depend on many factors)
+- **Note:** Results depend on successful implementation, maintenance costs, and process stability
 
 ---
 
@@ -212,16 +212,15 @@ Autonomous AI systems that understand context, handle exceptions, and make decis
 - Processes that change frequently
 - Companies needing quick implementation
 
-### ROI Example
+### Example (Results vary based on implementation)
 **Customer support handling 500 emails/month**
-- 1 FTE support person × $50K/year = $50K/year
+- 1 FTE support person × $50K/year = $50K/year labor cost
 - AI agent development: $8K + $200/month operation = $10.4K/year
-- Handles 60% of emails automatically (300/month)
+- Assumes agent handles ~60% of emails automatically (300/month)
 - Reduces manual workload to 200 emails/month
-- Saves 20 hours/week = $30K/year
-- **Savings: $30K/year**
-- **Payback: 4 months**
-- **Year 1 ROI: 288%**
+- **Estimated potential savings: ~$30K/year** (based on labor reduction)
+- **Estimated payback: ~4 months** (depends on implementation success)
+- **Note:** Results depend on proper implementation, training data quality, and adoption
 
 ---
 
@@ -241,14 +240,14 @@ Autonomous AI systems that understand context, handle exceptions, and make decis
 - Example: Multi-app data entry
 - Setup time: 4-12 weeks
 - Cost: $5K-$50K/year
-- ROI: 200-400%
+- Potential ROI: Depends on successful implementation and cost factors
 
 **Complex Tasks** (2+ hours, requires judgment)
 → **Winner:** AI Agents
 - Example: Customer service, lead qualification
 - Setup time: 2-8 weeks
 - Cost: $10K-$50K/year
-- ROI: 300-500%
+- Potential ROI: Varies based on specific use case
 
 ---
 

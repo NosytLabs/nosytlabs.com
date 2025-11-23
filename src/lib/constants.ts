@@ -50,10 +50,10 @@ export const createImagePath = (path: string): string => {
 
 // Company information
 export const COMPANY_INFO = {
-  NAME: "NOSYT Labs",
+  NAME: "NOSYT LLC",
   TEAM_NAME: "NOSYT Labs Team",
   TAGLINE: "Web & AI Solutions",
   LOCATION: "Global Remote Team",
   DESCRIPTION:
-    "We specialize in proven web development and AI integration solutions, helping businesses achieve measurable results with technology backed by 47 successful deployments.",
+    "We specialize in web development and AI integration solutions, helping businesses leverage technology effectively.",
 } as const;
