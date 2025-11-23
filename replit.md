@@ -80,3 +80,64 @@ Preferred communication style: Simple, everyday language. Focus on professional 
 ### Environment Variables
 - `PUBLIC_SITE_URL`, `PUBLIC_BASE_URL`.
 - EmailJS credentials: `PUBLIC_EMAILJS_SERVICE_ID`, `PUBLIC_EMAILJS_TEMPLATE_ID`, `PUBLIC_EMAILJS_PUBLIC_KEY`.
+## SEO & Search Optimization Strategy (2025)
+
+### Current SEO Status
+- ✅ 0 build errors, 0 warnings
+- ✅ All 11 service pages optimized with keywords
+- ✅ 13 blog posts for organic visibility
+- ✅ Schema markup utilities created
+- ✅ GEO (Generative Engine Optimization) content structure
+- ✅ Local SEO checklist implemented
+
+### Backlink Strategy
+**30-Day Plan:**
+- Week 1: Submit to 10+ free high-DA sites (WordPress, Medium, LinkedIn, GitHub, Yelp)
+- Week 2: Pitch 3 guest posts to Dev.to, Hashnode, industry blogs
+- Week 3: Respond to 3+ HARO/Featured journalist queries
+- Week 4: Build partnerships with 3 complementary services
+
+**Expected Results:**
+- Month 1: 15-25 backlinks, +5-10% organic traffic
+- Month 3: 40-50 backlinks, 25-30 Domain Authority
+- Month 6: 50-75+ backlinks, top 10 for 5+ keywords
+
+### GEO (Generative Engine Optimization)
+Optimizing for AI-powered search (ChatGPT, Gemini, Perplexity):
+- E-E-A-T signals (expertise, authority, trust)
+- Conversational language and FAQ optimization
+- Citation-worthy original data and statistics
+- Schema markup for AI parsing
+- Third-party mentions and authority
+
+### Service Keyword Strategy
+- **Web Development**: "custom website design", "web development agency", 2025 pricing keywords
+- **AI Agents**: "business automation", "autonomous agents", ROI keywords
+- **AI Chatbots**: "customer support chatbot", "AI customer service 24/7"
+- **AI Integration**: "ChatGPT integration", "Claude API", "workflow automation"
+- All services: Include brand name in search intent
+
+### Free High-DA Backlink Sites
+Web 2.0: WordPress.com (94), Medium (92), LinkedIn (98), GitHub (94), Behance (92)
+Directories: Google Business, Yelp (93), YellowPages (85), Manta (75)
+Q&A: Quora (90), StackExchange (93)
+Social: Reddit (91), Pinterest (90)
+
+### Tools in Use
+- Google Search Console (free, track rankings/backlinks)
+- Ahrefs Backlink Checker (100 free checks/day)
+- Google Keyword Planner (free keyword research)
+- Schema.org validator (free schema validation)
+
+### Files Created
+- SEO_BACKLINK_STRATEGY.md - Strategic implementation guide
+- NOSYT_LABS_COMPREHENSIVE_SEO_GUIDE.md - Complete SEO manual (14K words)
+- src/lib/seo/schema-markup.ts - Schema generation utilities
+- src/lib/seo/seo-keywords.ts - Keyword database and checklists
+
+### Next Steps (Priority Order)
+1. Google Business Profile - Complete and optimize (1 hour)
+2. Submit to free sites - WordPress, Medium, LinkedIn, GitHub (2 hours)
+3. Update all FAQ sections - Add schema markup (3 hours)
+4. Pitch guest posts - Dev.to, Hashnode, industry blogs (5 hours)
+5. Monitor Google Search Console - Track rankings weekly

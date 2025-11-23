@@ -1,12 +1,13 @@
 ---
 title: "AI Agents & Custom Automation"
-description: "Build autonomous AI agents using Claude, Gemini 3, and OpenAI that handle complex workflows, decision-making, and multi-step tasks without human intervention."
+description: "Build autonomous AI agents for business automation using Claude, Gemini 3 Pro, and OpenAI. Custom agents handle complex workflows, save 40-60 hours/week, and deliver measurable ROI."
 icon: "zap"
 price: "Starting at $12,000 USD"
 delivery: "4-10 weeks"
 category: "ai"
 tags:
-  ["AI agents", "automation", "workflow", "Gemini 3", "Claude", "autonomous systems"]
+  ["AI agents", "business automation", "workflow automation", "autonomous agents", "Gemini 3", "Claude agents", "workflow orchestration", "process automation", "business process automation", "AI automation pricing", "custom automation 2025"]
+keywords: "AI agents for business, autonomous agents, business process automation, workflow automation software, AI automation services, how do AI agents work, best AI agents 2025, agent-based automation, Gemini agents, Claude agents"
 featured: true
 benefits:
   - "Autonomous task execution across systems"

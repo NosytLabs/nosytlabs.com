@@ -1,12 +1,13 @@
 ---
 title: "Web Development"
-description: "Custom websites and web applications. Professional sites for small businesses, portfolios, and service providers."
+description: "Custom website development and web applications starting at $1,500. Fast, responsive sites for small businesses and portfolios built with Astro, React, and modern tech stack."
 icon: "code"
 price: "Starting at $1,500 USD"
 delivery: "2-4 weeks"
 category: "development"
 tags:
-  ["web development", "website", "business", "responsive design"]
+  ["web development", "website design", "custom websites", "responsive design", "web applications", "business websites", "Astro development", "React websites", "freelance web developer", "web development pricing 2025"]
+keywords: "web development services, custom website design, web development agency, responsive website design, small business websites, portfolio websites, e-commerce websites, web application development, web development cost, hire web developer"
 featured: true
 benefits:
   - "Custom built for your needs"
