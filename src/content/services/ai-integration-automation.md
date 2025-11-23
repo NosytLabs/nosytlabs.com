@@ -1,6 +1,6 @@
 ---
 title: "AI Integration & Automation"
-description: "AI integration and business automation services using ChatGPT, Claude, and modern AI tools. Automate workflows, save 10-30 hours/week, reduce costs by 30-50%."
+description: "AI integration and business automation services using ChatGPT, Claude, and modern AI tools. Automate workflows to potentially improve efficiency."
 icon: "ai-integration"
 price: "Starting at $15,000 USD"
 delivery: "3-8 weeks"
@@ -15,11 +15,11 @@ tags:
   ]
 featured: true
 benefits:
-  - "Automate repetitive tasks that waste 10+ hours per week"
-  - "Process documents and data 10x faster than manual methods"
-  - "Integrate AI into existing systems without disruption"
-  - "Get actionable insights from data you already have"
-  - "Scale operations without proportional staff increases"
+  - "Automate repetitive manual tasks"
+  - "Improve document and data processing efficiency"
+  - "Integrate AI into existing systems"
+  - "Extract insights from existing data"
+  - "Improve operational efficiency"
 features:
   - "Custom workflow automation with AI decision-making"
   - "Document processing and data extraction"
@@ -53,7 +53,7 @@ Add an AI assistant to your website or app. Handle common questions automaticall
 
 **Pricing**: $3,000-$8,000
 **Timeline**: 3-4 weeks
-**Saves**: 10-20 hours/week on support
+**Potential Impact**: Estimated time savings depend on implementation and usage
 
 ### Document Processing & Data Extraction
 
@@ -69,7 +69,7 @@ Automate extracting data from PDFs, invoices, forms, or documents using AI.
 
 **Pricing**: $5,000-$15,000
 **Timeline**: 4-6 weeks
-**Saves**: 15-30 hours/week
+**Potential Impact**: Improved processing speed depends on document complexity and AI model accuracy
 
 ### Content Generation & Automation
 

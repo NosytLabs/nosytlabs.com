@@ -244,9 +244,11 @@ export function HeroUIContactForm() {
       <CardBody className="p-6 md:p-8">
         <div className="mb-6 space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-bold text-foreground">
-              Get Technical Assessment
-            </h3>
+            <div>
+              <h3 className="text-2xl font-bold text-foreground">
+                Let's Discuss Your Project
+              </h3>
+            </div>
             <Chip
               size="sm"
               color="primary"
@@ -262,12 +264,11 @@ export function HeroUIContactForm() {
                 </svg>
               }
             >
-              24-hr reply
+              24-hr response
             </Chip>
           </div>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            Tell us about your project and we'll respond with actionable
-            insights and honest estimates.
+            Share details about your project, and we'll provide a thoughtful response with insights and honest estimates. Have something custom in mind? Select "Other" and let us know.
           </p>
         </div>
 
@@ -350,7 +351,7 @@ export function HeroUIContactForm() {
           {/* Service */}
           <Select
             label="Service Interested In *"
-            placeholder="Select a service"
+            placeholder="Select a service or choose Other"
             selectedKeys={
               formData.service ? new Set([formData.service]) : new Set()
             }
@@ -362,7 +363,7 @@ export function HeroUIContactForm() {
             errorMessage={touched.service && errors.service}
             description={
               !errors.service
-                ? "Which service are you interested in?"
+                ? "Select from our services or choose 'Other' for custom requests"
                 : undefined
             }
             classNames={{
@@ -484,16 +485,31 @@ export function HeroUIContactForm() {
         </form>
 
         {/* Additional Help */}
-        <div className="mt-6 pt-6 border-t border-default-200">
+        <div className="mt-6 pt-6 border-t border-default-200 space-y-3">
           <p className="text-xs text-muted-foreground text-center">
-            Prefer email?{" "}
-            <a
-              href="mailto:hi@nosytlabs.com"
-              className="text-primary hover:underline font-medium"
-            >
-              hi@nosytlabs.com
-            </a>
+            <strong>Preferred Contact Method:</strong>
           </p>
+          <div className="flex flex-col gap-2 text-xs text-center">
+            <div>
+              <p className="text-muted-foreground">
+                Email:{" "}
+                <a
+                  href="mailto:hi@nosytlabs.com"
+                  className="text-primary hover:underline font-medium"
+                >
+                  hi@nosytlabs.com
+                </a>
+              </p>
+            </div>
+            <div>
+              <p className="text-muted-foreground">
+                Address:{" "}
+                <span className="font-medium">
+                  801 S White Sands Blvd, Alamogordo, NM 88310
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
       </CardBody>
     </Card>

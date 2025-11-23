@@ -53,7 +53,7 @@ export const COMPANY_INFO = {
   NAME: "NOSYT LLC",
   TEAM_NAME: "NOSYT Labs Team",
   TAGLINE: "Web & AI Solutions",
-  LOCATION: "Global Remote Team",
+  LOCATION: "801 S White Sands Blvd, Alamogordo, NM 88310",
   DESCRIPTION:
     "We specialize in web development and AI integration solutions, helping businesses leverage technology effectively.",
 } as const;
